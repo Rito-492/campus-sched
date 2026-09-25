@@ -166,4 +166,5 @@ campus-sched/
 - ⬜ 技术栈未定（确定后更新本文件与 `src/`、`tests/`）
 - ⬜ 本校具体审批流程及资源管理规则待需求调研核实
 - ✅ git 仓库已初始化，首次提交并打 `baseline/init-v1.0` tag（2026-09-25）
-- ⬜ 关联 GitHub 远程（配置经理负责）；`baseline/init-v1.0` 需在《配置管理计划》的基线清单中补登
+- ✅ 已关联 GitHub 远程（`Rito-492/campus-sched`）并推送 `main` 与 `baseline/init-v1.0`
+- ⬜ `baseline/init-v1.0` 需在《配置管理计划》的基线清单中补登（配置经理）
