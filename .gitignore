@@ -1,0 +1,33 @@
+# ===== OS =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== Office 临时/锁文件 =====
+~$*
+*.tmp
+
+# ===== Drawio 备份 =====
+*.bkp
+*.dtmp
+
+# ===== Node =====
+node_modules/
+dist/
+build/
+npm-debug.log*
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# ===== 环境与密钥 =====
+.env
+.env.*
+
+# ===== IDE / 编辑器 =====
+.idea/
+.vscode/
+*.swp
