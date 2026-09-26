@@ -21,7 +21,9 @@ export default defineConfig({
   retries: 0,
   reporter: [
     ['list'],
-    ['json', { outputFile: '../artifacts/test-results/e2e-results.json' }],
+    // json 报告先落 qa/test-results/（gitignore 覆盖）；真实运行后由 QA-05 择要归档到 artifacts/，
+    // 避免 --list 等探测动作把空结果写进证据目录（03 §5：证据只能由真实运行产生）
+    ['json', { outputFile: './test-results/e2e-results.json' }],
   ],
   use: {
     baseURL,
