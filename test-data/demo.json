@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "organizations": [
+    { "id": "00000000-0000-0000-0000-000000001001", "name": "软件学院" },
+    { "id": "00000000-0000-0000-0000-000000001002", "name": "其他学院" }
+  ],
+  "users": [
+    { "id": "00000000-0000-0000-0000-000000002001", "username": "organizer_a", "displayName": "组织者A（演示）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["ORGANIZER"] },
+    { "id": "00000000-0000-0000-0000-000000002002", "username": "organizer_b", "displayName": "组织者B（演示）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["ORGANIZER"] },
+    { "id": "00000000-0000-0000-0000-000000002003", "username": "teacher_a", "displayName": "教师A（演示）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["TEACHER"] },
+    { "id": "00000000-0000-0000-0000-000000002004", "username": "resource_admin", "displayName": "资源管理员（演示）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["RESOURCE_ADMIN"] },
+    { "id": "00000000-0000-0000-0000-000000002005", "username": "student_a", "displayName": "学生A（演示）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
+    { "id": "00000000-0000-0000-0000-000000002006", "username": "staff_a", "displayName": "工作人员A（演示）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
+    { "id": "00000000-0000-0000-0000-000000002007", "username": "sys_admin", "displayName": "系统管理员（演示）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["SYS_ADMIN"] },
+    { "id": "00000000-0000-0000-0000-000000002008", "username": "teacher_other", "displayName": "外院教师（演示）", "organizationId": "00000000-0000-0000-0000-000000001002", "roles": ["TEACHER"] },
+    { "id": "00000000-0000-0000-0000-000000002009", "username": "student_b", "displayName": "学生B（演示）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] }
+  ],
+  "resources": [
+    { "id": "00000000-0000-0000-0000-000000003101", "kind": "VENUE", "name": "学术报告厅A", "category": "VENUE", "capacity": 80, "quantity": 1, "openFrom": "08:00", "openTo": "22:00", "createdAt": "${DEMO_DATE}T08:00:00+08:00" },
+    { "id": "00000000-0000-0000-0000-000000003102", "kind": "VENUE", "name": "多功能厅B", "category": "VENUE", "capacity": 120, "quantity": 1, "openFrom": "08:00", "openTo": "22:00", "createdAt": "${DEMO_DATE}T08:00:00+08:00" },
+    { "id": "00000000-0000-0000-0000-000000003201", "kind": "EQUIPMENT", "name": "投影设备组A", "category": "PROJECTOR", "capacity": null, "quantity": 2, "openFrom": "08:00", "openTo": "22:00", "createdAt": "${DEMO_DATE}T08:00:00+08:00" },
+    { "id": "00000000-0000-0000-0000-000000003202", "kind": "EQUIPMENT", "name": "投影设备组B", "category": "PROJECTOR", "capacity": null, "quantity": 2, "openFrom": "08:00", "openTo": "22:00", "createdAt": "${DEMO_DATE}T08:00:00+08:00" }
+  ],
+  "activities": [
+    {
+      "id": "00000000-0000-0000-0000-000000004001",
+      "ownerId": "00000000-0000-0000-0000-000000002001",
+      "organizationId": "00000000-0000-0000-0000-000000001001",
+      "status": "OPEN",
+      "versionNo": 1,
+      "input": {
+        "title": "校园技术分享会",
+        "description": "面向软件学院师生的技术分享与交流，含主题演讲与自由讨论环节。（演示数据）",
+        "expectedAttendees": 60,
+        "registrationCapacity": 20,
+        "staffUserIds": ["00000000-0000-0000-0000-000000002006"],
+        "plan": {
+          "startAt": "${DEMO_DATE}T10:00:00+08:00",
+          "endAt": "${DEMO_DATE}T11:00:00+08:00",
+          "setupMinutes": 30,
+          "teardownMinutes": 30,
+          "venueId": "00000000-0000-0000-0000-000000003101",
+          "equipment": [{ "resourceId": "00000000-0000-0000-0000-000000003201", "quantity": 2 }]
+        }
+      }
+    },
+    {
+      "id": "00000000-0000-0000-0000-000000004002",
+      "ownerId": "00000000-0000-0000-0000-000000002002",
+      "organizationId": "00000000-0000-0000-0000-000000001001",
+      "status": "SCHEDULED",
+      "versionNo": 1,
+      "input": {
+        "title": "社团交流会",
+        "description": "校内社团经验交流与活动展示。（演示数据）",
+        "expectedAttendees": 50,
+        "registrationCapacity": 20,
+        "staffUserIds": [],
+        "plan": {
+          "startAt": "${DEMO_DATE}T14:30:00+08:00",
+          "endAt": "${DEMO_DATE}T16:30:00+08:00",
+          "setupMinutes": 0,
+          "teardownMinutes": 0,
+          "venueId": "00000000-0000-0000-0000-000000003101",
+          "equipment": [{ "resourceId": "00000000-0000-0000-0000-000000003201", "quantity": 1 }]
+        }
+      }
+    }
+  ],
+  "registrations": [
+    { "activityId": "00000000-0000-0000-0000-000000004001", "userId": "00000000-0000-0000-0000-000000002005", "status": "ACTIVE", "versionNo": 1 }
+  ]
+}

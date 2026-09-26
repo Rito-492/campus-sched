@@ -1,0 +1,271 @@
+{
+  "schemaVersion": 1,
+  "evaluation": {
+    "strategies": ["FIRST_FIT", "RANKED"],
+    "maxCandidates": 300,
+    "warmupRuns": 1,
+    "measuredRuns": 10,
+    "offsetsMinutes": [0, -30, 30, -60, 60, -90, 90, -120, 120],
+    "offsetsOrderNote": "数组顺序即候选生成顺序（01 基线 §7：偏移→场地→器材组合）；排序元组为 (abs(timeShiftMinutes), venueChanged?1:0, replacedEquipmentLines, startAt, venueId, 按resourceId排序的器材JSON)"
+  },
+  "scenarios": [
+    {
+      "scenarioId": "SCH-01-TIME-CONFLICT",
+      "title": "纯时间冲突",
+      "description": "目标时段两个场地均被占用，只能靠时间平移解决（-60 与 +60 均可行，排序取 startAt 更早的 -60）。被评估活动自身旧占用 [09:00,10:00) 与胜出窗口重叠，用于验证排除自身旧占用（D-AT-13 语义）：若未正确排除，胜出方案将漂移为 +60。",
+      "dAtRefs": ["D-AT-22", "D-AT-13"],
+      "blockers": [
+        { "tail": 5001, "title": "占用活动-SCH01-a", "reservations": [
+          { "resourceId": "00000000-0000-0000-0000-000000003101", "startAt": "${DEMO_DATE}T10:00:00+08:00", "endAt": "${DEMO_DATE}T11:00:00+08:00", "quantity": 1 } ] },
+        { "tail": 5002, "title": "占用活动-SCH01-b", "reservations": [
+          { "resourceId": "00000000-0000-0000-0000-000000003102", "startAt": "${DEMO_DATE}T10:00:00+08:00", "endAt": "${DEMO_DATE}T11:00:00+08:00", "quantity": 1 } ] },
+        { "tail": 5101, "title": "被评估活动-SCH01（自身旧占用）", "reservations": [
+          { "resourceId": "00000000-0000-0000-0000-000000003101", "startAt": "${DEMO_DATE}T09:00:00+08:00", "endAt": "${DEMO_DATE}T10:00:00+08:00", "quantity": 1 },
+          { "resourceId": "00000000-0000-0000-0000-000000003201", "startAt": "${DEMO_DATE}T09:00:00+08:00", "endAt": "${DEMO_DATE}T10:00:00+08:00", "quantity": 2 } ] }
+      ],
+      "faults": [],
+      "request": {
+        "subjectTail": 5101,
+        "expectedAttendees": 60,
+        "plan": {
+          "startAt": "${DEMO_DATE}T10:00:00+08:00",
+          "endAt": "${DEMO_DATE}T11:00:00+08:00",
+          "setupMinutes": 0,
+          "teardownMinutes": 0,
+          "venueId": "00000000-0000-0000-0000-000000003101",
+          "equipment": [{ "resourceId": "00000000-0000-0000-0000-000000003201", "quantity": 2 }]
+        }
+      },
+      "expected": {
+        "feasible": true,
+        "firstFitChoice": { "timeShiftMinutes": -60, "venueChanged": false, "replacedEquipmentLines": 0 },
+        "rankedChoice": { "timeShiftMinutes": -60, "venueChanged": false, "replacedEquipmentLines": 0 },
+        "firstFitSameAsRanked": true,
+        "expectedConflictCodes": ["VENUE_OCCUPIED"],
+        "note": "偏移0±30两场地均占用；±60起可行。-60与+60代价同为(60,0,0)，排序以startAt取-60。"
+      }
+    },
+    {
+      "scenarioId": "SCH-02-VENUE-SWAP",
+      "title": "换场地",
+      "description": "场地3101全天占用，同时间换用3102即可行，代价(0,1,0)。",
+      "dAtRefs": ["D-AT-22", "D-AT-09"],
+      "blockers": [
+        { "tail": 5003, "title": "占用活动-SCH02", "reservations": [
+          { "resourceId": "00000000-0000-0000-0000-000000003101", "startAt": "${DEMO_DATE}T08:00:00+08:00", "endAt": "${DEMO_DATE}T22:00:00+08:00", "quantity": 1 } ] }
+      ],
+      "faults": [],
+      "request": {
+        "subjectTail": 5102,
+        "expectedAttendees": 60,
+        "plan": {
+          "startAt": "${DEMO_DATE}T10:00:00+08:00",
+          "endAt": "${DEMO_DATE}T11:00:00+08:00",
+          "setupMinutes": 0,
+          "teardownMinutes": 0,
+          "venueId": "00000000-0000-0000-0000-000000003101",
+          "equipment": [{ "resourceId": "00000000-0000-0000-0000-000000003201", "quantity": 2 }]
+        }
+      },
+      "expected": {
+        "feasible": true,
+        "firstFitChoice": { "timeShiftMinutes": 0, "venueChanged": true, "replacedEquipmentLines": 0 },
+        "rankedChoice": { "timeShiftMinutes": 0, "venueChanged": true, "replacedEquipmentLines": 0 },
+        "firstFitSameAsRanked": true,
+        "expectedConflictCodes": ["VENUE_OCCUPIED"],
+        "note": "代价(0,1,0)在所有候选中abs最小，任何平移方案都劣于换场地。"
+      }
+    },
+    {
+      "scenarioId": "SCH-03-EQUIPMENT-REPLACE",
+      "title": "单器材替换",
+      "description": "器材3201（库存2）被占满，同category的3202空闲，替换一条器材需求即可行，代价(0,0,1)。",
+      "dAtRefs": ["D-AT-22"],
+      "blockers": [
+        { "tail": 5004, "title": "占用活动-SCH03", "reservations": [
+          { "resourceId": "00000000-0000-0000-0000-000000003201", "startAt": "${DEMO_DATE}T10:00:00+08:00", "endAt": "${DEMO_DATE}T11:00:00+08:00", "quantity": 2 } ] }
+      ],
+      "faults": [],
+      "request": {
+        "subjectTail": 5103,
+        "expectedAttendees": 60,
+        "plan": {
+          "startAt": "${DEMO_DATE}T10:00:00+08:00",
+          "endAt": "${DEMO_DATE}T11:00:00+08:00",
+          "setupMinutes": 0,
+          "teardownMinutes": 0,
+          "venueId": "00000000-0000-0000-0000-000000003101",
+          "equipment": [{ "resourceId": "00000000-0000-0000-0000-000000003201", "quantity": 2 }]
+        }
+      },
+      "expected": {
+        "feasible": true,
+        "firstFitChoice": { "timeShiftMinutes": 0, "venueChanged": false, "replacedEquipmentLines": 1 },
+        "rankedChoice": { "timeShiftMinutes": 0, "venueChanged": false, "replacedEquipmentLines": 1 },
+        "firstFitSameAsRanked": true,
+        "expectedConflictCodes": ["EQUIPMENT_SHORTAGE"],
+        "note": "缺2件；原组合不可行、替换组合在原场地原时间可行，(0,0,1)最优。"
+      }
+    },
+    {
+      "scenarioId": "SCH-04-NO-SOLUTION",
+      "title": "无解",
+      "description": "两个场地全时段占用，候选生成的全部组合（9偏移×2场地×2器材组合=36个）在几何上均不可行，结果必须明确报告无解而不是伪造方案。",
+      "dAtRefs": ["D-AT-22"],
+      "blockers": [
+        { "tail": 5005, "title": "占用活动-SCH04-a", "reservations": [
+          { "resourceId": "00000000-0000-0000-0000-000000003101", "startAt": "${DEMO_DATE}T08:00:00+08:00", "endAt": "${DEMO_DATE}T22:00:00+08:00", "quantity": 1 } ] },
+        { "tail": 5006, "title": "占用活动-SCH04-b", "reservations": [
+          { "resourceId": "00000000-0000-0000-0000-000000003102", "startAt": "${DEMO_DATE}T08:00:00+08:00", "endAt": "${DEMO_DATE}T22:00:00+08:00", "quantity": 1 } ] }
+      ],
+      "faults": [],
+      "request": {
+        "subjectTail": 5104,
+        "expectedAttendees": 60,
+        "plan": {
+          "startAt": "${DEMO_DATE}T10:00:00+08:00",
+          "endAt": "${DEMO_DATE}T11:00:00+08:00",
+          "setupMinutes": 0,
+          "teardownMinutes": 0,
+          "venueId": "00000000-0000-0000-0000-000000003101",
+          "equipment": [{ "resourceId": "00000000-0000-0000-0000-000000003201", "quantity": 2 }]
+        }
+      },
+      "expected": {
+        "feasible": false,
+        "firstFitChoice": null,
+        "rankedChoice": null,
+        "firstFitSameAsRanked": true,
+        "expectedConflictCodes": ["VENUE_OCCUPIED"],
+        "note": "evaluatedCount应≤maxCandidates且报告搜索范围；0个结果只表示该范围未找到方案（01基线§7）。"
+      }
+    },
+    {
+      "scenarioId": "SCH-05-BOUNDARY-TOUCH",
+      "title": "边界相接",
+      "description": "请求区间[11:00,12:00)与既有占用[10:00,11:00)端点相接，必须不冲突（区间端点相接不冲突、相同时间先处理结束再开始，01基线§4）。",
+      "dAtRefs": ["D-AT-22", "D-AT-04"],
+      "blockers": [
+        { "tail": 5007, "title": "占用活动-SCH05", "reservations": [
+          { "resourceId": "00000000-0000-0000-0000-000000003101", "startAt": "${DEMO_DATE}T10:00:00+08:00", "endAt": "${DEMO_DATE}T11:00:00+08:00", "quantity": 1 } ] }
+      ],
+      "faults": [],
+      "request": {
+        "subjectTail": 5105,
+        "expectedAttendees": 60,
+        "plan": {
+          "startAt": "${DEMO_DATE}T11:00:00+08:00",
+          "endAt": "${DEMO_DATE}T12:00:00+08:00",
+          "setupMinutes": 0,
+          "teardownMinutes": 0,
+          "venueId": "00000000-0000-0000-0000-000000003101",
+          "equipment": [{ "resourceId": "00000000-0000-0000-0000-000000003201", "quantity": 1 }]
+        }
+      },
+      "expected": {
+        "feasible": true,
+        "firstFitChoice": { "timeShiftMinutes": 0, "venueChanged": false, "replacedEquipmentLines": 0 },
+        "rankedChoice": { "timeShiftMinutes": 0, "venueChanged": false, "replacedEquipmentLines": 0 },
+        "firstFitSameAsRanked": true,
+        "expectedConflictCodes": [],
+        "note": "原方案直接可行(0,0,0)。若边界被误判为冲突，则胜出方案会漂移为±30，可据此定位边界扫描缺陷。"
+      }
+    },
+    {
+      "scenarioId": "SCH-06-PEAK-QUANTITY",
+      "title": "数量峰值",
+      "description": "库存2，旧占用[10,11)×1与[11,12)×1错峰，新申请[10,12)×1任一时刻峰值恰为2，不能把不同时发生的预约简单求和误算为3（01基线§4，对应D-AT-05）。",
+      "dAtRefs": ["D-AT-22", "D-AT-05"],
+      "blockers": [
+        { "tail": 5008, "title": "占用活动-SCH06-a", "reservations": [
+          { "resourceId": "00000000-0000-0000-0000-000000003201", "startAt": "${DEMO_DATE}T10:00:00+08:00", "endAt": "${DEMO_DATE}T11:00:00+08:00", "quantity": 1 } ] },
+        { "tail": 5009, "title": "占用活动-SCH06-b", "reservations": [
+          { "resourceId": "00000000-0000-0000-0000-000000003201", "startAt": "${DEMO_DATE}T11:00:00+08:00", "endAt": "${DEMO_DATE}T12:00:00+08:00", "quantity": 1 } ] }
+      ],
+      "faults": [],
+      "request": {
+        "subjectTail": 5106,
+        "expectedAttendees": 60,
+        "plan": {
+          "startAt": "${DEMO_DATE}T10:00:00+08:00",
+          "endAt": "${DEMO_DATE}T12:00:00+08:00",
+          "setupMinutes": 0,
+          "teardownMinutes": 0,
+          "venueId": "00000000-0000-0000-0000-000000003101",
+          "equipment": [{ "resourceId": "00000000-0000-0000-0000-000000003201", "quantity": 1 }]
+        }
+      },
+      "expected": {
+        "feasible": true,
+        "firstFitChoice": { "timeShiftMinutes": 0, "venueChanged": false, "replacedEquipmentLines": 0 },
+        "rankedChoice": { "timeShiftMinutes": 0, "venueChanged": false, "replacedEquipmentLines": 0 },
+        "firstFitSameAsRanked": true,
+        "expectedConflictCodes": [],
+        "note": "按开始/结束边界扫描、先处理结束再开始；误用求和会得出缺1的假冲突。"
+      }
+    },
+    {
+      "scenarioId": "SCH-07-RESOURCE-FAULT",
+      "title": "故障扣减可用量",
+      "description": "器材3201在09:00—13:00故障1件（可用量=库存2−故障1=1），申请2件在原时段缺1，替换3202可行（01基线§4：库存减该时刻故障数量，对应D-AT-18的资源侧语义）。",
+      "dAtRefs": ["D-AT-22", "D-AT-18"],
+      "blockers": [],
+      "faults": [
+        { "resourceId": "00000000-0000-0000-0000-000000003201", "startAt": "${DEMO_DATE}T09:00:00+08:00", "endAt": "${DEMO_DATE}T13:00:00+08:00", "unavailableQuantity": 1, "reason": "灯泡检修（测试数据）" }
+      ],
+      "request": {
+        "subjectTail": 5107,
+        "expectedAttendees": 60,
+        "plan": {
+          "startAt": "${DEMO_DATE}T10:00:00+08:00",
+          "endAt": "${DEMO_DATE}T11:00:00+08:00",
+          "setupMinutes": 0,
+          "teardownMinutes": 0,
+          "venueId": "00000000-0000-0000-0000-000000003101",
+          "equipment": [{ "resourceId": "00000000-0000-0000-0000-000000003201", "quantity": 2 }]
+        }
+      },
+      "expected": {
+        "feasible": true,
+        "firstFitChoice": { "timeShiftMinutes": 0, "venueChanged": false, "replacedEquipmentLines": 1 },
+        "rankedChoice": { "timeShiftMinutes": 0, "venueChanged": false, "replacedEquipmentLines": 1 },
+        "firstFitSameAsRanked": true,
+        "note": "故障场景的冲突码由DS决定为EQUIPMENT_SHORTAGE或RESOURCE_FAULT，不在此硬断言（契约未唯一指定），只断言可行性与代价三元组。"
+      }
+    },
+    {
+      "scenarioId": "SCH-08-STRATEGY-DIFF",
+      "title": "策略差异对照",
+      "description": "精心构造生成顺序与排序元组不一致的几何：FIRST_FIT按偏移→场地→器材顺序最先命中(-30,换场地,不替换)，RANKED按代价元组取(+30,不换场地,替换1条器材)。用于如实报告两策略的选择差异（01基线§7：不预设先进策略成功率一定更高）。",
+      "dAtRefs": ["D-AT-22"],
+      "blockers": [
+        { "tail": 5010, "title": "占用活动-SCH08-场地3101", "reservations": [
+          { "resourceId": "00000000-0000-0000-0000-000000003101", "startAt": "${DEMO_DATE}T10:00:00+08:00", "endAt": "${DEMO_DATE}T10:30:00+08:00", "quantity": 1 } ] },
+        { "tail": 5011, "title": "占用活动-SCH08-场地3102", "reservations": [
+          { "resourceId": "00000000-0000-0000-0000-000000003102", "startAt": "${DEMO_DATE}T10:30:00+08:00", "endAt": "${DEMO_DATE}T11:00:00+08:00", "quantity": 1 } ] },
+        { "tail": 5012, "title": "占用活动-SCH08-器材3201", "reservations": [
+          { "resourceId": "00000000-0000-0000-0000-000000003201", "startAt": "${DEMO_DATE}T10:30:00+08:00", "endAt": "${DEMO_DATE}T11:30:00+08:00", "quantity": 1 } ] }
+      ],
+      "faults": [],
+      "request": {
+        "subjectTail": 5108,
+        "expectedAttendees": 60,
+        "plan": {
+          "startAt": "${DEMO_DATE}T10:00:00+08:00",
+          "endAt": "${DEMO_DATE}T11:00:00+08:00",
+          "setupMinutes": 0,
+          "teardownMinutes": 0,
+          "venueId": "00000000-0000-0000-0000-000000003101",
+          "equipment": [{ "resourceId": "00000000-0000-0000-0000-000000003201", "quantity": 2 }]
+        }
+      },
+      "expected": {
+        "feasible": true,
+        "firstFitChoice": { "timeShiftMinutes": -30, "venueChanged": true, "replacedEquipmentLines": 0 },
+        "rankedChoice": { "timeShiftMinutes": 30, "venueChanged": false, "replacedEquipmentLines": 1 },
+        "firstFitSameAsRanked": false,
+        "note": "推演：偏移0两场地均占用；-30时3101被占只能用3102原器材→(30,1,0)先被FIRST_FIT命中；+30时3101可用但3201被占1件仅剩1<2，须替换3202→(30,0,1)，排序元组第二项0<1故RANKED取它。±60及以上有更劣候选(60,0,0)不入前。"
+      }
+    }
+  ]
+}

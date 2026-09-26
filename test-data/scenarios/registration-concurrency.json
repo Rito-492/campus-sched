@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "purpose": "D-AT-16 并发报名容量测试数据：容量1的OPEN活动 + 20名独立测试学生（不覆盖团队成员身份，与 demo.json 合并装载）",
+  "users": [
+    { "id": "00000000-0000-0000-0000-000000002101", "username": "perf_s01", "displayName": "并发测试学生01（测试）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
+    { "id": "00000000-0000-0000-0000-000000002102", "username": "perf_s02", "displayName": "并发测试学生02（测试）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
+    { "id": "00000000-0000-0000-0000-000000002103", "username": "perf_s03", "displayName": "并发测试学生03（测试）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
+    { "id": "00000000-0000-0000-0000-000000002104", "username": "perf_s04", "displayName": "并发测试学生04（测试）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
+    { "id": "00000000-0000-0000-0000-000000002105", "username": "perf_s05", "displayName": "并发测试学生05（测试）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
+    { "id": "00000000-0000-0000-0000-000000002106", "username": "perf_s06", "displayName": "并发测试学生06（测试）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
+    { "id": "00000000-0000-0000-0000-000000002107", "username": "perf_s07", "displayName": "并发测试学生07（测试）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
+    { "id": "00000000-0000-0000-0000-000000002108", "username": "perf_s08", "displayName": "并发测试学生08（测试）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
+    { "id": "00000000-0000-0000-0000-000000002109", "username": "perf_s09", "displayName": "并发测试学生09（测试）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
+    { "id": "00000000-0000-0000-0000-000000002110", "username": "perf_s10", "displayName": "并发测试学生10（测试）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
+    { "id": "00000000-0000-0000-0000-000000002111", "username": "perf_s11", "displayName": "并发测试学生11（测试）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
+    { "id": "00000000-0000-0000-0000-000000002112", "username": "perf_s12", "displayName": "并发测试学生12（测试）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
+    { "id": "00000000-0000-0000-0000-000000002113", "username": "perf_s13", "displayName": "并发测试学生13（测试）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
+    { "id": "00000000-0000-0000-0000-000000002114", "username": "perf_s14", "displayName": "并发测试学生14（测试）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
+    { "id": "00000000-0000-0000-0000-000000002115", "username": "perf_s15", "displayName": "并发测试学生15（测试）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
+    { "id": "00000000-0000-0000-0000-000000002116", "username": "perf_s16", "displayName": "并发测试学生16（测试）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
+    { "id": "00000000-0000-0000-0000-000000002117", "username": "perf_s17", "displayName": "并发测试学生17（测试）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
+    { "id": "00000000-0000-0000-0000-000000002118", "username": "perf_s18", "displayName": "并发测试学生18（测试）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
+    { "id": "00000000-0000-0000-0000-000000002119", "username": "perf_s19", "displayName": "并发测试学生19（测试）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
+    { "id": "00000000-0000-0000-0000-000000002120", "username": "perf_s20", "displayName": "并发测试学生20（测试）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] }
+  ],
+  "activities": [
+    {
+      "id": "00000000-0000-0000-0000-000000004101",
+      "ownerId": "00000000-0000-0000-0000-000000002001",
+      "organizationId": "00000000-0000-0000-0000-000000001001",
+      "status": "OPEN",
+      "versionNo": 1,
+      "input": {
+        "title": "并发报名测试活动",
+        "description": "容量1的OPEN活动，用于D-AT-16并发报名与名额释放验证。（测试数据）",
+        "expectedAttendees": 1,
+        "registrationCapacity": 1,
+        "staffUserIds": [],
+        "plan": {
+          "startAt": "${DEMO_DATE}T18:00:00+08:00",
+          "endAt": "${DEMO_DATE}T19:00:00+08:00",
+          "setupMinutes": 0,
+          "teardownMinutes": 0,
+          "venueId": "00000000-0000-0000-0000-000000003101",
+          "equipment": []
+        }
+      }
+    }
+  ]
+}
