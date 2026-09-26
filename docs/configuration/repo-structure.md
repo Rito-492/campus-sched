@@ -45,7 +45,7 @@ campus-sched/
 |---|---|---|---|
 | `docs/course/` | 课程下发的管理文档 | —（过程依据，只读） | 只读，全员 |
 | `docs/course/role-confirmations/` | 六份成员角色确认表 | — | 只读，全员 |
-| `docs/management/` | 计划族：初始/详细项目计划、decision-log、risks、任务分配与状态 | 交付物 1、4 | 项目经理 |
+| `docs/management/` | 计划族：初始/详细项目计划、decision-log、risks、integration-log | 交付物 1、4 | 项目经理 |
 | `docs/requirements/` | 需求族：需求规范、用例、业务规则、需求追踪 | 交付物 2 | 系统分析员 |
 | `docs/design/` | 设计族：system-design、database-design、migration-register 及图源 | 交付物 7 | 设计师 |
 | `docs/ui/` | 界面族：`prototype/`（原型导出）、interaction-spec、user-manual | 交付物 3、12 | 界面设计师 |
@@ -59,7 +59,7 @@ campus-sched/
 - 不放：任何成员自产文档；**不改内容、不改文件名**（红线，见 `AGENTS.md` §7）
 
 **`docs/management/`**
-- 放：`initial-project-plan.md`、`detailed-project-plan.md`、`decision-log.md`、`risks.md`、`integration-log.md`、`task-assignments.md`（交付状态唯一源）
+- 放：`initial-project-plan.md`（含交付物清单与排期状态）、`detailed-project-plan.md`、`decision-log.md`、`risks.md`、`integration-log.md`
 - 不放：他人模块的进度记录（各岗位写自己的 handoff.md）
 
 **`docs/requirements/`**
