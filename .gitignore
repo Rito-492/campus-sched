@@ -11,11 +11,23 @@ desktop.ini
 *.bkp
 *.dtmp
 
-# ===== Node =====
+# ===== Node / 前端 =====
 node_modules/
 dist/
 build/
 npm-debug.log*
+playwright-report/
+test-results/
+coverage/
+
+# ===== Java / Maven（server）=====
+target/
+*.class
+*.jar
+*.war
+.mvn/wrapper/maven-wrapper.jar
+
+# ===== 环境与密钥 =====
 
 # ===== Python =====
 __pycache__/
