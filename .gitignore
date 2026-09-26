@@ -17,7 +17,8 @@ dist/
 build/
 npm-debug.log*
 playwright-report/
-test-results/
+/test-results/
+/qa/test-results/
 coverage/
 
 # ===== Java / Maven（server）=====
@@ -38,6 +39,7 @@ venv/
 # ===== 环境与密钥 =====
 .env
 .env.*
+!.env.example
 
 # ===== IDE / 编辑器 =====
 .idea/
