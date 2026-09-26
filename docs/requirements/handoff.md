@@ -79,3 +79,12 @@
 按用户要求生成三份独立 Word 文档：软件开发计划 v0.5、软件需求规约 v1.1、用户界面说明文档 v1.1。需求规约合并用例规约、补充规约及业务规则、需求追踪附录；界面说明保留设计示意图及文字说明。全文使用宋体，仅封面标题与各级标题加粗，正文、表格表头和图中文字不加粗；附封面、可更新目录与页码。原 Markdown 及旧版 Word 保留。
 
 检查记录：本机 Word 更新目录并导出预览，检查页面图像、分页、表格和示意图，修复封面装饰线、多余空白页及孤立表头。最终页数分别为20、55、17；文字字体与非标题加粗检查未发现异常。内置渲染工具因缺少 LibreOffice 未运行成功，改用 Word 预览。此轮仅迁移文档，未运行产品业务测试。
+
+## 系统分析员开发交接（2026-10-13）
+
+- 成员/任务：冯玉琪（22220314），AN-01～05；本轮起始基准为 `origin/main` 的 v3.0 任务包提交 `5097af7`。
+- 同步方式：将本分支 `3e8b745` 状态机提交移植到 `origin/main`，未带入旧需求材料提交 `bf0cef7`；保留 main 上需求规约 v1.1、追踪矩阵及新增个人任务书。
+- 本轮状态机文件：`server/src/main/java/com/campus/events/activity/ActivityStateMachine.java`、`server/src/test/java/com/campus/events/activity/ActivityStateMachineTest.java`。按基线 v3.0 将 `PENDING_TEACHER` 改为 `PENDING_APPROVER`；覆盖创建、草稿编辑、提交、批准、驳回回 DRAFT、待审/已批准撤回生成新版本、资源确认、发布、报名 lockVersion 递增、取消幂等和取消终态不可复活。
+- 验证：尚未运行 Java/Maven 测试；需在同步后检查 `java -version`、`server/mvnw.cmd` 与 `server/pom.xml`，记录真实可运行入口和结果。不得将测试源码存在视为测试通过。
+- 后续任务：AN-02～04 的 repository、service/controller、ActivityPortAdapter、审批、报名并发及取消联调，等待 PM 的 Java 公共类型/构建、DS 的 v3 schema/SchedulingPort、CM 的 ChangePort/EventPort；仅修改 `activity/`、`registration/` 和本人需求文档，不改共享类型或他人模块。
+- 接收确认：尚未接收。
