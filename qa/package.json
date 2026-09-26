@@ -1,0 +1,24 @@
+{
+  "name": "campus-sched-qa",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "E2E、契约检查与策略评测工程（测试经理拥有；不改 web 的 package.json）",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "test:e2e": "playwright test",
+    "test:contract": "node scripts/check-contract.ts",
+    "evaluate": "node scripts/evaluate-scheduling.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/node": "22.20.4",
+    "typescript": "7.0.2"
+  },
+  "dependencies": {
+    "yaml": "^2.9.1"
+  }
+}
