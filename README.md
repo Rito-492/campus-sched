@@ -31,12 +31,12 @@
 | 杨瀚霖 | 55231031 | 配置经理 |
 | 杨畅 | 17231018 | 界面设计师 |
 
-六人同时承担的开发模块与交接关系见 [`agent.md`](agent.md) §3、§5。
+六人同时承担的开发模块与交接关系见 [`taskbook.md`](taskbook.md) §3、§5。
 
 ## 仓库结构
 
 ```text
-agent.md + agents/   开发任务包 v2.0（总说明、公共契约、六份个人任务书）
+taskbook.md + agents/   开发任务包 v2.0（总说明、公共契约、六份个人任务书）
 docs/                文档区（course / management / requirements / design / ui / testing / configuration）
 server/  web/  qa/   后端 · 前端 · E2E 测试工程
 test-data/ contracts/ infra/ scripts/ release/ artifacts/ models/
@@ -46,6 +46,6 @@ test-data/ contracts/ infra/ scripts/ release/ artifacts/ models/
 
 ## 开始工作
 
-- **成员/agent 启动开发**：读 [`agent.md`](agent.md)（含可直接使用的启动指令与交付物对照）
+- **成员/agent 启动开发**：读 [`taskbook.md`](taskbook.md)（含可直接使用的启动指令与交付物对照）
 - **了解项目**：本 README → [`AGENTS.md`](AGENTS.md)（agent 与新成员指南）
 - **课程与分工文档**：`docs/course/`
