@@ -23,9 +23,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * DS-01 schema 迁移验证（真实 PostgreSQL，Failsafe 运行 *IT）。
  *
  * <p>对应验收：DS-01 要求"在全新测试 schema 执行迁移并验证唯一键、非法数量、外键、
- * 第二个待处理改期的拒绝"。断言依据 02 契约 §4 与 01 基线 §4/§8。
- * SQL 级等价验证已于 2026-10-13 用 psql 脚本在 PostgreSQL 17 真库通过（见
- * docs/design/handoff.md），本类把同一组断言固化为可重复执行的集成测试。
+ * 第二个待处理改期的拒绝"。断言依据 02 契约 §4（v3.0）与 01 基线 §2/§4/§8。
+ * SQL 级等价验证已于 2026-10-13 用 psql 脚本在 PostgreSQL 17 真库通过（v3.0 形态，
+ * 见 docs/design/handoff.md），本类把同一组断言固化为可重复执行的集成测试。
  *
  * <p>装载数据：无（纯结构验证，测试内自行写入最小数据；类内共享 schema，基础数据幂等）。
  *
@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * <p>执行命令（在仓库根目录，待 PM 基础工程 pom/mvnw 到位后可运行）：
  * {@code ./server/mvnw.cmd -f server/pom.xml "-Dit.test=SchemaIT" verify}
  */
-@DisplayName("DS-01 V1 迁移验证（SchemaIT）")
+@DisplayName("DS-01 V1 迁移验证 v3.0（SchemaIT）")
 class SchemaIT {
 
     @RegisterExtension
@@ -53,14 +53,16 @@ class SchemaIT {
     // ------------------------------------------------------------------ 1. 17 表齐全
 
     @Test
-    @DisplayName("V1 迁移后 17 张表全部存在且无多余表")
+    @DisplayName("V1(v3.0) 迁移后 22 张表全部存在且无多余表")
     void tc01_allSeventeenTablesExist() {
         List<String> tables = jdbc().queryForList(
                 "SELECT table_name FROM information_schema.tables " +
                         "WHERE table_schema = ? AND table_type = 'BASE TABLE' ORDER BY 1",
                 String.class, jdbc().queryForObject("SELECT current_schema()", String.class));
-        assertEquals(17, tables.size(), () -> "应为 17 张表，实际：" + tables);
-        List.<String>of("organization", "app_user", "user_role", "auth_session", "command_receipt",
+        assertEquals(22, tables.size(), () -> "应为 22 张表，实际：" + tables);
+        List.<String>of("organization", "app_user", "user_role", "user_permission",
+                "user_approval_scope", "user_resource_scope", "authorization_change",
+                "resource_eligibility_change", "auth_session", "command_receipt",
                 "resource", "resource_fault", "activity", "activity_version", "activity_approval",
                 "activity_registration", "reservation", "change_request", "change_confirmation",
                 "audit_log", "outbox_event", "notification")
@@ -74,8 +76,8 @@ class SchemaIT {
     void tc02_uniqueConstraintsRejectDuplicates() {
         ensureBaseData();
         assertUniqueRejected("重复用户名", "uq_app_user_username",
-                "INSERT INTO app_user (id, organization_id, username, display_name, password_hash, enabled) " +
-                        "VALUES (?,?, 'organizer_a', '重复用户名', 'x', true)",
+                "INSERT INTO app_user (id, organization_id, username, display_name, password_hash, enabled, identity) " +
+                        "VALUES (?,?, 'organizer_a', '重复用户名', 'x', true, 'STUDENT')",
                 UUID.randomUUID(), ORG);
 
         jdbc().update("INSERT INTO command_receipt (actor_id, idempotency_key, route, request_hash) VALUES (?,?,?,?)",
@@ -107,16 +109,16 @@ class SchemaIT {
     void tc03_resourceChecksRejectIllegalValues() {
         ensureBaseData();
         assertCheckRejected("venue 数量必须为 1", "ck_resource_shape",
-                "INSERT INTO resource (id, kind, name, category, capacity, quantity, open_from, open_to) " +
-                        "VALUES (?, 'VENUE', '坏场地', 'VENUE', 80, 2, '08:00', '22:00')",
+                "INSERT INTO resource (id, kind, name, category, capacity, quantity, open_from, open_to, allow_teacher, allow_student) " +
+                        "VALUES (?, 'VENUE', '坏场地', 'VENUE', 80, 2, '08:00', '22:00', true, true)",
                 UUID.randomUUID());
         assertCheckRejected("equipment capacity 必须为 NULL", "ck_resource_shape",
-                "INSERT INTO resource (id, kind, name, category, capacity, quantity, open_from, open_to) " +
-                        "VALUES (?, 'EQUIPMENT', '坏器材', 'LMIC', 5, 2, '08:00', '22:00')",
+                "INSERT INTO resource (id, kind, name, category, capacity, quantity, open_from, open_to, allow_teacher, allow_student) " +
+                        "VALUES (?, 'EQUIPMENT', '坏器材', 'LMIC', 5, 2, '08:00', '22:00', true, true)",
                 UUID.randomUUID());
         assertCheckRejected("开放时段必须递增", "ck_resource_open_window",
-                "INSERT INTO resource (id, kind, name, category, capacity, quantity, open_from, open_to) " +
-                        "VALUES (?, 'VENUE', '倒置时段', 'VENUE', 80, 1, '22:00', '08:00')",
+                "INSERT INTO resource (id, kind, name, category, capacity, quantity, open_from, open_to, allow_teacher, allow_student) " +
+                        "VALUES (?, 'VENUE', '倒置时段', 'VENUE', 80, 1, '22:00', '08:00', true, true)",
                 UUID.randomUUID());
         assertFkRejected("故障引用不存在资源", "fk_resource_fault_resource",
                 "INSERT INTO resource_fault (id, resource_id, start_at, end_at, unavailable_quantity, reason, created_by) " +
@@ -135,7 +137,7 @@ class SchemaIT {
 
         assertUniqueRejected("同活动第二个待处理改期", "uq_change_request_pending_activity",
                 "INSERT INTO change_request (id, activity_id, base_version_no, target_plan_json, impact_json, reason, status, created_by) " +
-                        "VALUES (?,?,1,'{}','{}','x','PENDING_TEACHER',?)",
+                        "VALUES (?,?,1,'{}','{}','x','PENDING_APPROVER',?)",
                 UUID.randomUUID(), ACTIVITY, USER);
 
         // 终态后新待处理被允许，且当前待处理恰为 1
@@ -143,7 +145,7 @@ class SchemaIT {
         insertChange(UUID.randomUUID(), "PENDING_RESOURCE");
         Integer pendingCount = jdbc().queryForObject(
                 "SELECT count(*) FROM change_request WHERE activity_id = ? AND status IN " +
-                        "('AWAITING_CONFIRMATIONS','PENDING_TEACHER','PENDING_RESOURCE')",
+                        "('AWAITING_CONFIRMATIONS','PENDING_APPROVER','PENDING_RESOURCE')",
                 Integer.class, ACTIVITY);
         assertEquals(1, pendingCount, "终态后新建待处理应成功，且同时刻恰有 1 个待处理");
     }
@@ -204,7 +206,64 @@ class SchemaIT {
         }
     }
 
-    // ------------------------------------------------------------------ 6. 不可变保护触发器
+    // ------------------------------------------------------------------ 6. v3.0 三角色/身份/资格新结构
+
+    @Test
+    @DisplayName("v3.0 新表可写入：身份/权限/审批范围/资源范围/授权快照/资格快照；非法枚举与旧角色被拒绝")
+    void tc07_v3IdentityEligibilityStructures() {
+        ensureBaseData();
+        // 三角色表正常写入
+        jdbc().update("INSERT INTO user_role (user_id, role) VALUES (?, 'APPROVER')", USER);
+        // 旧角色 TEACHER（v2 残留）被 CHECK 拒绝
+        assertCheckRejected("旧角色 TEACHER", "ck_user_role_role",
+                "INSERT INTO user_role (user_id, role) VALUES (?, 'TEACHER')", USER);
+        // 身份非法值拒绝
+        assertCheckRejected("非法 identity", "ck_app_user_identity",
+                "INSERT INTO app_user (id, organization_id, username, display_name, password_hash, enabled, identity) " +
+                        "VALUES (?,?,'bad_identity','坏身份','x',true,'ORGANIZER')",
+                UUID.randomUUID(), ORG);
+        // 权限枚举：四值之外拒绝
+        UUID adminUser = UUID.randomUUID();
+        jdbc().update("INSERT INTO app_user (id, organization_id, username, display_name, password_hash, enabled, identity) VALUES (?,?,?,?,?,true,'TEACHER')",
+                adminUser, ORG, "schema_it_admin", "管理员", "x");
+        jdbc().update("INSERT INTO user_permission (user_id, permission) VALUES (?, 'RESOURCE_MANAGE')", adminUser);
+        assertCheckRejected("未知权限", "ck_user_permission_permission",
+                "INSERT INTO user_permission (user_id, permission) VALUES (?, 'USER_DELETE')", adminUser);
+        // 审批范围/资源范围/授权快照正写
+        jdbc().update("INSERT INTO user_approval_scope (user_id, organization_id, resource_category) VALUES (?,?, 'PROJECTOR')", adminUser, ORG);
+        jdbc().update("INSERT INTO user_resource_scope (user_id, resource_id) VALUES (?,?)", adminUser, EQUIP);
+        jdbc().update("INSERT INTO authorization_change (id, user_id, actor_id, before_json, after_json) VALUES (?,?,?,?::jsonb,?::jsonb)",
+                UUID.randomUUID(), adminUser, adminUser, "{\"roles\":[]}", "{\"roles\":[\"ADMIN\"]}");
+        jdbc().update("INSERT INTO resource_eligibility_change (id, resource_id, actor_id, before_json, after_json) VALUES (?,?,?,?::jsonb,?::jsonb)",
+                UUID.randomUUID(), EQUIP, adminUser, "{\"allowTeacher\":true,\"allowStudent\":true}",
+                "{\"allowTeacher\":true,\"allowStudent\":false}");
+        jdbc().update("UPDATE resource SET allow_student = false WHERE id = ?", EQUIP);
+        // 资格变更与记录同事务语义（同一连接无中间提交即已校验）；此处确认最终值
+        Boolean allowStudent = jdbc().queryForObject(
+                "SELECT allow_student FROM resource WHERE id = ?", Boolean.class, EQUIP);
+        assertFalse(allowStudent, "资格变更后 allow_student 应为 false");
+    }
+
+    @Test
+    @DisplayName("v3.0 更名核验：teacher_decision_json 不存在，approver_decision_json 可写")
+    void tc08_approverDecisionColumnRenamed() {
+        ensureBaseData();
+        Integer legacy = jdbc().queryForObject(
+                "SELECT count(*) FROM information_schema.columns " +
+                        "WHERE table_schema = current_schema() AND table_name = 'change_request' " +
+                        "AND column_name = 'teacher_decision_json'", Integer.class);
+        assertEquals(0, legacy, "teacher_decision_json 应已更名为 approver_decision_json（无残留）");
+        UUID changeId = UUID.randomUUID();
+        jdbc().update("INSERT INTO change_request (id, activity_id, base_version_no, target_plan_json, impact_json, reason, status, approver_decision_json, created_by) " +
+                "VALUES (?,?,1,'{}','{}','x','PENDING_APPROVER',?::jsonb,?)",
+                changeId, ACTIVITY, "{\"decision\":\"APPROVE\"}", USER);
+        Integer marker = jdbc().queryForObject(
+                "SELECT count(*) FROM change_request WHERE id = ? AND approver_decision_json = ?::jsonb",
+                Integer.class, changeId, "{\"decision\":\"APPROVE\"}");
+        assertEquals(1, marker, "approver_decision_json 应可正常写入读取");
+    }
+
+    // ------------------------------------------------------------------ 7. 不可变保护触发器
 
     @Test
     @DisplayName("activity_version 不可改删、change_request.target_plan_json 不可改、audit_log 只追加")
@@ -215,7 +274,7 @@ class SchemaIT {
                 "{\"x\":1}", ACTIVITY);
 
         UUID changeId = UUID.randomUUID();
-        insertChange(changeId, "PENDING_TEACHER");
+        insertChange(changeId, "PENDING_APPROVER");
         assertTriggerRejected("target_plan_json 更新", "target_plan_json 不可修改",
                 "UPDATE change_request SET target_plan_json = ? WHERE id = ?",
                 "{\"x\":2}", changeId);
@@ -238,10 +297,10 @@ class SchemaIT {
             return;
         }
         jdbc().update("INSERT INTO organization (id, name) VALUES (?, '软件学院')", ORG);
-        jdbc().update("INSERT INTO app_user (id, organization_id, username, display_name, password_hash, enabled) VALUES (?,?,?,?,?,true)",
+        jdbc().update("INSERT INTO app_user (id, organization_id, username, display_name, password_hash, enabled, identity) VALUES (?,?,?,?,?,true,'TEACHER')",
                 USER, ORG, "organizer_a", "组织者A", "x");
-        jdbc().update("INSERT INTO resource (id, kind, name, category, capacity, quantity, open_from, open_to) VALUES (?, 'VENUE', '学术报告厅A', 'VENUE', 80, 1, '08:00', '22:00')", VENUE);
-        jdbc().update("INSERT INTO resource (id, kind, name, category, capacity, quantity, open_from, open_to) VALUES (?, 'EQUIPMENT', '投影设备组A', 'PROJECTOR', NULL, 2, '08:00', '22:00')", EQUIP);
+        jdbc().update("INSERT INTO resource (id, kind, name, category, capacity, quantity, open_from, open_to, allow_teacher, allow_student) VALUES (?, 'VENUE', '学术报告厅A', 'VENUE', 80, 1, '08:00', '22:00', true, true)", VENUE);
+        jdbc().update("INSERT INTO resource (id, kind, name, category, capacity, quantity, open_from, open_to, allow_teacher, allow_student) VALUES (?, 'EQUIPMENT', '投影设备组A', 'PROJECTOR', NULL, 2, '08:00', '22:00', true, true)", EQUIP);
         jdbc().update("INSERT INTO activity (id, organization_id, owner_id, status, version_no, effective_version_no, lock_version) VALUES (?, ?, ?, 'SCHEDULED', 1, 1, 0)",
                 ACTIVITY, ORG, USER);
         jdbc().update("INSERT INTO activity_version (activity_id, version_no, input_json, created_by) VALUES (?, 1, ?, ?)",

@@ -1,6 +1,6 @@
-# 系统设计文档（v0.1 草稿——DS-01 范围）
+# 系统设计文档（v0.2 草稿——DS-01 范围，v3.0 契约）
 
-> 维护：黄方勇 55230315（设计师）。本文档随交付逐步充实，当前覆盖 DS-01：统一数据库结构与设计模型。
+> 维护：黄方勇 55230315（设计师）。本文档随交付逐步充实，当前覆盖 DS-01：统一数据库结构与设计模型。v3.0 采用三角色（APPLICANT/APPROVER/ADMIN）、独立身份（TEACHER/STUDENT）与资源资格（allowTeacher/allowStudent，四组合均合法）。
 > 全文体系为 Mermaid 图源（可直接编辑），不提供外部链接占位。
 
 ## 1. 系统模块图
@@ -13,7 +13,7 @@ flowchart LR
         FE["页面与 API 客户端"]
     end
     subgraph server["server — com.campus.events"]
-        F["foundation/auth/contract<br/>PM：DTO、CommandExecutor、认证"]
+        F["foundation/auth/contract<br/>PM：DTO、CommandExecutor、认证、AccountPort"]
         A["activity/registration\nAN：活动与报名"]
         R["resource\nDS：资源/故障/日历"]
         S["scheduling\nDS：约束检查/预约/方案"]
@@ -63,12 +63,12 @@ flowchart TB
 
 ```mermaid
 stateDiagram-v2
-    [*] --> DRAFT: ORGANIZER 创建（版本1）
+    [*] --> DRAFT: APPLICANT 创建（版本1）
     DRAFT --> DRAFT: 编辑 → 新版本 n+1
-    DRAFT --> PENDING_TEACHER: 提交（不占资源）
-    PENDING_TEACHER --> APPROVED_UNRESERVED: 教师同意
-    PENDING_TEACHER --> DRAFT: 驳回（意见入档）
-    PENDING_TEACHER --> DRAFT: 撤回 → 克隆 n+1
+    DRAFT --> PENDING_APPROVER: 提交（不占资源）
+    PENDING_APPROVER --> APPROVED_UNRESERVED: APPROVER 同意
+    PENDING_APPROVER --> DRAFT: 驳回（意见入档）
+    PENDING_APPROVER --> DRAFT: 撤回 → 克隆 n+1
     APPROVED_UNRESERVED --> DRAFT: 撤回
     APPROVED_UNRESERVED --> SCHEDULED: 资源确认（SchedulingPort 整组预约，冲突则 409 保持原状态）
     SCHEDULED --> OPEN: 发布报名（无资源风险才允许）
@@ -81,16 +81,18 @@ stateDiagram-v2
 
 ```mermaid
 stateDiagram-v2
-    [*] --> AWAITING_CONFIRMATIONS: 创建（无待确认人者直达 PENDING_TEACHER）
+    [*] --> AWAITING_CONFIRMATIONS: 创建（无待确认人者直达 PENDING_APPROVER）
     AWAITING_CONFIRMATIONS --> REJECTED: 任一工作人员拒绝
-    AWAITING_CONFIRMATIONS --> PENDING_TEACHER: 全部同意
-    PENDING_TEACHER --> PENDING_RESOURCE: 教师同意（绑定 changeId+targetPlan）
-    PENDING_TEACHER --> REJECTED: 教师驳回
+    AWAITING_CONFIRMATIONS --> PENDING_APPROVER: 全部同意
+    PENDING_APPROVER --> PENDING_RESOURCE: APPROVER 同意（绑定 changeId+targetPlan）
+    PENDING_APPROVER --> REJECTED: APPROVER 驳回
     PENDING_RESOURCE --> APPLIED: 资源确认\n= lockAndCheck + activatePlan + replaceReservations 同一事务
     PENDING_RESOURCE --> CONFLICTED: lockAndCheck 不可行（409，原安排保留）
     [*] --> WITHDRAWN: 组织者撤销
     [*] --> CANCELLED_BY_ACTIVITY: 活动取消
 ```
+
+> v3.0 资格规则：所有场地和设备按**活动所有者最新身份**校验（覆盖提交、候选、改期创建和最终确认）；SchedulingPort 各方法签名包含 `Identity applicantIdentity`。已生效预约保留，未确认申请及改期目标用最新资格（01 §2）。
 
 ## 5. 首次资源确认时序（成功与失败路径）
 

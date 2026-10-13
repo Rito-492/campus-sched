@@ -1,12 +1,17 @@
 -- =====================================================================
 -- V1__schema.sql —— 校园活动调度系统 V1 数据库结构（DS-01，黄方勇 55230315）
--- 依据：agents/common/02-数据与接口契约.md §4（唯一权威，字段名不得改名）
---      agents/common/01-开发基线.md §4/§8（数据与时间规则、事务与锁）
+-- 依据：agents/common/02-数据与接口契约.md §4（v3.0，2026-10-13，唯一权威，字段名不得改名）
+--      agents/common/01-开发基线.md §2/§4/§8（三角色与资格、数据与时间规则、事务与锁）
+-- v3.0 变更：新增 5 表（user_permission/user_approval_scope/user_resource_scope/
+--      authorization_change/resource_eligibility_change）；app_user 加 identity；
+--      resource 加 allow_teacher/allow_student；teacher_decision_json → approver_decision_json；
+--      状态枚举 PENDING_TEACHER → PENDING_APPROVER；角色枚举 APPLICANT/APPROVER/ADMIN。
+--      V1 从未进入基线/合并（只存在于本人分支），按 02 §7 规程判定后原地升级，无 V2 补丁。
 -- 约定：
 --   * 全部表/索引不写死 schema 名，由 Flyway 迁移目标 schema 决定
 --     （迁移测试使用 DbTestSupport 的 t_<32hex> 独立 schema）。
---   * 时间戳一律 timestamptz；数量/版本/次数为 integer；enabled 为 boolean；
---     状态/角色/类别用 text + CHECK；JSON 字段为 jsonb。
+--   * 时间戳一律 timestamptz；数量/版本/次数为 integer；enabled/allow_* 为 boolean；
+--     状态/角色/身份/类别用 text + CHECK；JSON 字段为 jsonb。
 --   * 引用 activity_version 的复合外键均为 DEFERRABLE INITIALLY DEFERRED，
 --     以保证"同一事务创建活动及其首版本"被允许（契约 §4 外键说明）；
 --     提交时仍完整校验，不削弱一致性。
@@ -28,6 +33,7 @@ CREATE TABLE organization (
 
 -- ---------------------------------------------------------------------
 -- 2. app_user —— 账号（写入方：PM）
+--    identity=TEACHER/STUDENT 独立于角色；教师身份不自动有审批权（01 §2）。
 -- ---------------------------------------------------------------------
 CREATE TABLE app_user (
     id              uuid         NOT NULL,
@@ -36,19 +42,22 @@ CREATE TABLE app_user (
     display_name    text         NOT NULL,
     password_hash   text         NOT NULL,
     enabled         boolean      NOT NULL DEFAULT true,
+    identity        text         NOT NULL,
     created_at      timestamptz  NOT NULL DEFAULT now(),
     updated_at      timestamptz  NOT NULL DEFAULT now(),
     CONSTRAINT pk_app_user PRIMARY KEY (id),
     CONSTRAINT uq_app_user_username UNIQUE (username),
     CONSTRAINT fk_app_user_organization
         FOREIGN KEY (organization_id) REFERENCES organization (id),
-    CONSTRAINT ck_app_user_username_not_empty CHECK (length(btrim(username)) > 0)
+    CONSTRAINT ck_app_user_username_not_empty CHECK (length(btrim(username)) > 0),
+    CONSTRAINT ck_app_user_identity CHECK (identity IN ('TEACHER', 'STUDENT'))
 );
 
 CREATE INDEX idx_app_user_organization ON app_user (organization_id);
 
 -- ---------------------------------------------------------------------
 -- 3. user_role —— 角色（纯关系表；写入方：PM）
+--    三角色：APPLICANT（申请人）/APPROVER（批准人）/ADMIN（管理员）。
 -- ---------------------------------------------------------------------
 CREATE TABLE user_role (
     user_id     uuid         NOT NULL,
@@ -57,12 +66,99 @@ CREATE TABLE user_role (
     CONSTRAINT pk_user_role PRIMARY KEY (user_id, role),
     CONSTRAINT fk_user_role_user
         FOREIGN KEY (user_id) REFERENCES app_user (id),
-    CONSTRAINT ck_user_role_role CHECK (role IN
-        ('STUDENT', 'ORGANIZER', 'TEACHER', 'RESOURCE_ADMIN', 'SYS_ADMIN'))
+    CONSTRAINT ck_user_role_role CHECK (role IN ('APPLICANT', 'APPROVER', 'ADMIN'))
 );
 
 -- ---------------------------------------------------------------------
--- 4. auth_session —— 登录会话（只存令牌哈希；写入方：PM）
+-- 4. user_permission —— 权限（纯关系表；写入方：PM）
+--    权限仅随 ADMIN 角色生效；装载/授权由 PM 校验，此处只保枚举合法。
+-- ---------------------------------------------------------------------
+CREATE TABLE user_permission (
+    user_id     uuid         NOT NULL,
+    permission  text         NOT NULL,
+    created_at  timestamptz  NOT NULL DEFAULT now(),
+    CONSTRAINT pk_user_permission PRIMARY KEY (user_id, permission),
+    CONSTRAINT fk_user_permission_user
+        FOREIGN KEY (user_id) REFERENCES app_user (id),
+    CONSTRAINT ck_user_permission_permission CHECK (permission IN
+        ('USER_MANAGE', 'RESOURCE_MANAGE', 'RESOURCE_CONFIRM', 'AUDIT_READ'))
+);
+
+-- ---------------------------------------------------------------------
+-- 5. user_approval_scope —— 审批范围（纯关系表；写入方：PM）
+--    每行是一项明确（组织,资源类别）授权，无隐式通配（01 §2）。
+-- ---------------------------------------------------------------------
+CREATE TABLE user_approval_scope (
+    user_id           uuid         NOT NULL,
+    organization_id   uuid         NOT NULL,
+    resource_category text         NOT NULL,
+    created_at        timestamptz  NOT NULL DEFAULT now(),
+    CONSTRAINT pk_user_approval_scope PRIMARY KEY (user_id, organization_id, resource_category),
+    CONSTRAINT fk_user_approval_scope_user
+        FOREIGN KEY (user_id) REFERENCES app_user (id),
+    CONSTRAINT fk_user_approval_scope_organization
+        FOREIGN KEY (organization_id) REFERENCES organization (id),
+    CONSTRAINT ck_user_approval_scope_category CHECK (length(btrim(resource_category)) > 0)
+);
+
+-- ---------------------------------------------------------------------
+-- 6. user_resource_scope —— 资源管理范围（纯关系表；写入方：PM）
+--    资源管理及复核仅此资源集合；AccountPort.grantResource 在资源创建编排中追加。
+-- ---------------------------------------------------------------------
+CREATE TABLE user_resource_scope (
+    user_id     uuid         NOT NULL,
+    resource_id uuid         NOT NULL,
+    created_at  timestamptz  NOT NULL DEFAULT now(),
+    CONSTRAINT pk_user_resource_scope PRIMARY KEY (user_id, resource_id),
+    CONSTRAINT fk_user_resource_scope_user
+        FOREIGN KEY (user_id) REFERENCES app_user (id)
+    -- resource_id 外键在本文件 §11 resource 建表后补加（表序所限）
+);
+
+-- ---------------------------------------------------------------------
+-- 7. authorization_change —— 身份/授权/启停前后值（写入方：PM）
+--    权限变更与记录同一事务；before_json/after_json 为 AuthorizationInput 快照。
+-- ---------------------------------------------------------------------
+CREATE TABLE authorization_change (
+    id          uuid         NOT NULL,
+    user_id     uuid         NOT NULL,
+    actor_id    uuid         NOT NULL,
+    before_json jsonb        NOT NULL,
+    after_json  jsonb        NOT NULL,
+    created_at  timestamptz  NOT NULL DEFAULT now(),
+    updated_at  timestamptz  NOT NULL DEFAULT now(),
+    CONSTRAINT pk_authorization_change PRIMARY KEY (id),
+    CONSTRAINT fk_authorization_change_user
+        FOREIGN KEY (user_id) REFERENCES app_user (id),
+    CONSTRAINT fk_authorization_change_actor
+        FOREIGN KEY (actor_id) REFERENCES app_user (id)
+);
+
+CREATE INDEX idx_authorization_change_user ON authorization_change (user_id, created_at);
+
+-- ---------------------------------------------------------------------
+-- 8. resource_eligibility_change —— 资源资格前后值（写入方：DS）
+--    与资源修改同一事务；before/after 为 ResourceEligibility 快照。
+-- ---------------------------------------------------------------------
+CREATE TABLE resource_eligibility_change (
+    id          uuid         NOT NULL,
+    resource_id uuid         NOT NULL,
+    actor_id    uuid         NOT NULL,
+    before_json jsonb        NOT NULL,
+    after_json  jsonb        NOT NULL,
+    created_at  timestamptz  NOT NULL DEFAULT now(),
+    updated_at  timestamptz  NOT NULL DEFAULT now(),
+    CONSTRAINT pk_resource_eligibility_change PRIMARY KEY (id),
+    CONSTRAINT fk_resource_eligibility_change_actor
+        FOREIGN KEY (actor_id) REFERENCES app_user (id)
+    -- resource_id 外键在本文件 §11 resource 建表后补加（表序所限）
+);
+
+CREATE INDEX idx_resource_eligibility_change_resource
+    ON resource_eligibility_change (resource_id, created_at);
+
+-- ---------------------------------------------------------------------
+-- 9. auth_session —— 登录会话（只存令牌哈希；写入方：PM）
 -- ---------------------------------------------------------------------
 CREATE TABLE auth_session (
     id          uuid         NOT NULL,
@@ -80,7 +176,7 @@ CREATE TABLE auth_session (
 CREATE INDEX idx_auth_session_user ON auth_session (user_id);
 
 -- ---------------------------------------------------------------------
--- 5. command_receipt —— 幂等回执（写入方：PM；契约 §5 CommandExecutor）
+-- 10. command_receipt —— 幂等回执（写入方：PM；契约 §5 CommandExecutor）
 --    http_status/response_json 在事务内占位时可空，成功提交前必须填好。
 -- ---------------------------------------------------------------------
 CREATE TABLE command_receipt (
@@ -99,21 +195,24 @@ CREATE TABLE command_receipt (
 );
 
 -- ---------------------------------------------------------------------
--- 6. resource —— 场地与器材（写入方：DS）
+-- 11. resource —— 场地与器材（写入方：DS）
 --    契约 §2 附加校验：venue capacity 正整数、quantity 必须 1、category 固定 VENUE；
 --    equipment capacity 为 NULL、quantity 正整数、category 非空。
+--    allowTeacher/allowStudent 四种组合均合法（01 §2）。
 -- ---------------------------------------------------------------------
 CREATE TABLE resource (
-    id          uuid         NOT NULL,
-    kind        text         NOT NULL,
-    name        text         NOT NULL,
-    category    text         NOT NULL,
-    capacity    integer      NULL,
-    quantity    integer      NOT NULL,
-    open_from   time         NOT NULL,
-    open_to     time         NOT NULL,
-    created_at  timestamptz  NOT NULL DEFAULT now(),
-    updated_at  timestamptz  NOT NULL DEFAULT now(),
+    id             uuid         NOT NULL,
+    kind           text         NOT NULL,
+    name           text         NOT NULL,
+    category       text         NOT NULL,
+    capacity       integer      NULL,
+    quantity       integer      NOT NULL,
+    open_from      time         NOT NULL,
+    open_to        time         NOT NULL,
+    allow_teacher  boolean      NOT NULL DEFAULT true,
+    allow_student  boolean      NOT NULL DEFAULT true,
+    created_at     timestamptz  NOT NULL DEFAULT now(),
+    updated_at     timestamptz  NOT NULL DEFAULT now(),
     CONSTRAINT pk_resource PRIMARY KEY (id),
     CONSTRAINT ck_resource_kind CHECK (kind IN ('VENUE', 'EQUIPMENT')),
     CONSTRAINT ck_resource_name_not_empty CHECK (length(btrim(name)) > 0),
@@ -129,9 +228,19 @@ CREATE TABLE resource (
 CREATE INDEX idx_resource_kind ON resource (kind);
 CREATE INDEX idx_resource_category ON resource (category);
 
+-- user_resource_scope.resource_id → resource（表序所限，建 resource 后补加）
+ALTER TABLE user_resource_scope
+    ADD CONSTRAINT fk_user_resource_scope_resource
+    FOREIGN KEY (resource_id) REFERENCES resource (id);
+
+-- resource_eligibility_change.resource_id → resource（表序所限，建 resource 后补加）
+ALTER TABLE resource_eligibility_change
+    ADD CONSTRAINT fk_resource_eligibility_change_resource
+    FOREIGN KEY (resource_id) REFERENCES resource (id);
+
 -- ---------------------------------------------------------------------
--- 7. resource_fault —— 资源故障（写入方：DS）
---    start<end、数量为正；venue 数量仅 1 由 DS-02 服务层校验（跨表规则无法用
+-- 12. resource_fault —— 资源故障（写入方：DS）
+--    start<end、数量为正；venue 数量仅 1 由 DS 服务层校验（跨表规则无法用
 --    单表 CHECK 表达，见 docs/design/migration-register.md）。
 -- ---------------------------------------------------------------------
 CREATE TABLE resource_fault (
@@ -157,7 +266,7 @@ CREATE INDEX idx_resource_fault_resource_window
     ON resource_fault (resource_id, start_at, end_at);
 
 -- ---------------------------------------------------------------------
--- 8. activity —— 活动（写入方：AN）
+-- 13. activity —— 活动（写入方：AN）
 --    version_no 从 1 起、lock_version 从 0 起；当前/有效版本指针经延迟复合
 --    外键指向 activity_version（见文件头部约定）。
 -- ---------------------------------------------------------------------
@@ -177,7 +286,7 @@ CREATE TABLE activity (
     CONSTRAINT fk_activity_owner
         FOREIGN KEY (owner_id) REFERENCES app_user (id),
     CONSTRAINT ck_activity_status CHECK (status IN
-        ('DRAFT', 'PENDING_TEACHER', 'APPROVED_UNRESERVED', 'SCHEDULED', 'OPEN', 'CANCELLED')),
+        ('DRAFT', 'PENDING_APPROVER', 'APPROVED_UNRESERVED', 'SCHEDULED', 'OPEN', 'CANCELLED')),
     CONSTRAINT ck_activity_version_no CHECK (version_no >= 1),
     CONSTRAINT ck_activity_lock_version CHECK (lock_version >= 0),
     CONSTRAINT ck_activity_effective_version CHECK (effective_version_no IS NULL OR effective_version_no >= 1)
@@ -187,7 +296,7 @@ CREATE INDEX idx_activity_owner_status ON activity (owner_id, status);
 CREATE INDEX idx_activity_organization_status ON activity (organization_id, status);
 
 -- ---------------------------------------------------------------------
--- 9. activity_version —— 活动版本（写入方：AN；input_json 写入后不修改）
+-- 14. activity_version —— 活动版本（写入方：AN；input_json 写入后不修改）
 -- ---------------------------------------------------------------------
 CREATE TABLE activity_version (
     activity_id  uuid         NOT NULL,
@@ -227,7 +336,7 @@ CREATE TRIGGER activity_version_immutable
     FOR EACH ROW EXECUTE FUNCTION trg_activity_version_immutable();
 
 -- ---------------------------------------------------------------------
--- 10. activity_approval —— 审批记录（绑定具体版本，保留历次；写入方：AN）
+-- 15. activity_approval —— 审批记录（绑定具体版本，保留历次；写入方：AN）
 -- ---------------------------------------------------------------------
 CREATE TABLE activity_approval (
     id          uuid         NOT NULL,
@@ -253,7 +362,7 @@ CREATE TABLE activity_approval (
 CREATE INDEX idx_activity_approval_activity ON activity_approval (activity_id, version_no);
 
 -- ---------------------------------------------------------------------
--- 11. activity_registration —— 报名（写入方：AN）
+-- 16. activity_registration —— 报名（写入方：AN）
 --     status：ACTIVE/WITHDRAWN/CANCELLED；version_no 为当前有效安排版本。
 -- ---------------------------------------------------------------------
 CREATE TABLE activity_registration (
@@ -279,7 +388,7 @@ CREATE TABLE activity_registration (
 CREATE INDEX idx_activity_registration_user ON activity_registration (user_id, status);
 
 -- ---------------------------------------------------------------------
--- 12. reservation —— 资源预约（写入方：DS；仅经 SchedulingPort）
+-- 17. reservation —— 资源预约（写入方：DS；仅经 SchedulingPort）
 --     status：ACTIVE/RELEASED；每活动/版本/资源唯一。
 -- ---------------------------------------------------------------------
 CREATE TABLE reservation (
@@ -314,23 +423,24 @@ CREATE INDEX idx_reservation_active_resource_window
     WHERE status = 'ACTIVE';
 
 -- ---------------------------------------------------------------------
--- 13. change_request —— 改期请求（写入方：CM；target_plan_json 不可修改）
+-- 18. change_request —— 改期请求（写入方：CM；target_plan_json 不可修改）
+--     approver_decision_json：三角色版批准人（V2 为 teacher_decision_json，v3.0 更名）。
 -- ---------------------------------------------------------------------
 CREATE TABLE change_request (
-    id                    uuid         NOT NULL,
-    activity_id           uuid         NOT NULL,
-    base_version_no       integer      NOT NULL,
-    target_plan_json      jsonb        NOT NULL,
-    impact_json           jsonb        NOT NULL,
-    reason                text         NOT NULL,
-    status                text         NOT NULL,
-    teacher_decision_json jsonb        NULL,
-    resource_decision_json jsonb       NULL,
-    last_conflicts_json   jsonb        NULL,
-    applied_version_no    integer      NULL,
-    created_by            uuid         NOT NULL,
-    created_at            timestamptz  NOT NULL DEFAULT now(),
-    updated_at            timestamptz  NOT NULL DEFAULT now(),
+    id                     uuid         NOT NULL,
+    activity_id            uuid         NOT NULL,
+    base_version_no        integer      NOT NULL,
+    target_plan_json       jsonb        NOT NULL,
+    impact_json            jsonb        NOT NULL,
+    reason                 text         NOT NULL,
+    status                 text         NOT NULL,
+    approver_decision_json jsonb        NULL,
+    resource_decision_json jsonb        NULL,
+    last_conflicts_json    jsonb        NULL,
+    applied_version_no     integer      NULL,
+    created_by             uuid         NOT NULL,
+    created_at             timestamptz  NOT NULL DEFAULT now(),
+    updated_at             timestamptz  NOT NULL DEFAULT now(),
     CONSTRAINT pk_change_request PRIMARY KEY (id),
     CONSTRAINT fk_change_request_activity
         FOREIGN KEY (activity_id) REFERENCES activity (id),
@@ -340,7 +450,7 @@ CREATE TABLE change_request (
     CONSTRAINT fk_change_request_creator
         FOREIGN KEY (created_by) REFERENCES app_user (id),
     CONSTRAINT ck_change_request_status CHECK (status IN
-        ('AWAITING_CONFIRMATIONS', 'PENDING_TEACHER', 'PENDING_RESOURCE',
+        ('AWAITING_CONFIRMATIONS', 'PENDING_APPROVER', 'PENDING_RESOURCE',
          'APPLIED', 'REJECTED', 'CONFLICTED', 'WITHDRAWN', 'CANCELLED_BY_ACTIVITY')),
     CONSTRAINT ck_change_request_base_version_positive CHECK (base_version_no >= 1),
     CONSTRAINT ck_change_request_applied_version CHECK (applied_version_no IS NULL OR applied_version_no >= 1),
@@ -352,7 +462,7 @@ CREATE INDEX idx_change_request_activity ON change_request (activity_id, created
 -- 契约 §4 索引：每活动最多一个待处理改期（三个待处理状态上建部分唯一索引）
 CREATE UNIQUE INDEX uq_change_request_pending_activity
     ON change_request (activity_id)
-    WHERE status IN ('AWAITING_CONFIRMATIONS', 'PENDING_TEACHER', 'PENDING_RESOURCE');
+    WHERE status IN ('AWAITING_CONFIRMATIONS', 'PENDING_APPROVER', 'PENDING_RESOURCE');
 
 -- target_plan_json 不可修改保护（契约 §4：不可变 targetPlan）
 CREATE FUNCTION trg_change_request_plan_immutable() RETURNS trigger AS $$
@@ -369,7 +479,7 @@ CREATE TRIGGER change_request_plan_immutable
     FOR EACH ROW EXECUTE FUNCTION trg_change_request_plan_immutable();
 
 -- ---------------------------------------------------------------------
--- 14. change_confirmation —— 改期工作人员确认（写入方：CM）
+-- 19. change_confirmation —— 改期工作人员确认（写入方：CM）
 --     decision 可空（用户被指派但未决定）；comment 允许空字符串。
 -- ---------------------------------------------------------------------
 CREATE TABLE change_confirmation (
@@ -389,7 +499,7 @@ CREATE TABLE change_confirmation (
 );
 
 -- ---------------------------------------------------------------------
--- 15. audit_log —— 审计（只追加；写入方：CM 事件基础设施）
+-- 20. audit_log —— 审计（只追加；写入方：CM 事件基础设施）
 --     activity_id 可空以支持资源故障事件；该情形 version_no 置 0。
 -- ---------------------------------------------------------------------
 CREATE TABLE audit_log (
@@ -424,7 +534,7 @@ CREATE TRIGGER audit_log_append_only
     FOR EACH ROW EXECUTE FUNCTION trg_audit_log_append_only();
 
 -- ---------------------------------------------------------------------
--- 16. outbox_event —— 站外/站内事件发件箱（写入方：CM，随业务事务追加）
+-- 21. outbox_event —— 事件发件箱（写入方：CM，随业务事务追加）
 --     status：PENDING/DONE/FAILED；attempts 初始 0。
 -- ---------------------------------------------------------------------
 CREATE TABLE outbox_event (
@@ -452,7 +562,7 @@ CREATE TABLE outbox_event (
 CREATE INDEX idx_outbox_event_status_next_attempt ON outbox_event (status, next_attempt_at);
 
 -- ---------------------------------------------------------------------
--- 17. notification —— 站内通知（写入方：CM；event_id+recipient_id 唯一去重）
+-- 22. notification —— 站内通知（写入方：CM；event_id+recipient_id 唯一去重）
 -- ---------------------------------------------------------------------
 CREATE TABLE notification (
     id           uuid         NOT NULL,
