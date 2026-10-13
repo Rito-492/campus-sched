@@ -1,4 +1,7 @@
-# 测试设计 v0.1 —— D-AT 验收场景 → 测试用例
+# 测试设计 v0.2（对齐任务包 v3.0）—— D-AT/N-AT 验收场景 → 测试用例
+
+> **正负面配对（课件 5.1）**：每个测试需求至少一正一负两个用例——正面证明需求满足，负面用不可接受/反常条件论证仅在所需条件下满足。各 IT 的 @DisplayName 中【正】【负】标记对应关系。
+> **测试过程五要素（课件 6.1）**：本设计每条用例的「前置条件/输入/步骤/预期/观察点」即课件的前置条件、输入条件、要执行的操作、预期结果、验证预期结果的方法；「清理」为环境复位附加项。
 
 > 归属：测试经理（55230316）。依据 `agents/common/03-验收与演示数据.md` §2 的 24 项 D-AT 场景逐条转写。
 > 断言依据：`agents/common/02-数据与接口契约.md`（字段/枚举/状态码）、`agents/common/01-开发基线.md`（业务规则/状态机）。
@@ -44,23 +47,23 @@
 
 ### TC-01-1 正常登录并访问（PermissionsIT / login.spec）
 - **前置**：装载 demo.json；Clock 固定 2030-10-19T00:00:00Z。
-- **输入**：`POST /api/v1/auth/login {username:"organizer_a", password:"<DEMO_PASSWORD>"}`；随后带 token `GET /auth/me`。
+- **输入**：`POST /api/v1/auth/login {username:"applicant_a", password:"<DEMO_PASSWORD>"}`；随后带 token `GET /auth/me`。
 - **步骤**：1) 登录；2) 递归扫描登录响应 JSON；3) 带令牌取 /auth/me。
-- **预期**：200；`data{token, expiresAt, user}`，user.roles=["ORGANIZER"]、organizationId=组织1001；/auth/me 返回同一用户；响应信封含 requestId。
+- **预期**：200；`data{token, expiresAt, user}`，user.roles=["APPLICANT"]、organizationId=组织1001；/auth/me 返回同一用户；响应信封含 requestId。
 - **观察点**：响应任意层级**无 password/passwordHash 键**；`auth_session` 新增 1 行且 token_hash ≠ token 明文；expiresAt 为带时区 ISO8601。
 - **清理**：schema 级自动清理（DbTestSupport）。
 
 ### TC-01-2 错误密码（PermissionsIT）
 - **前置**：同上。
-- **输入**：`POST /auth/login {username:"organizer_a", password:"wrong"}`。
+- **输入**：`POST /auth/login {username:"applicant_a", password:"wrong"}`。
 - **步骤**：登录失败后立即用正确密码登录一次。
 - **预期**：401 `UNAUTHENTICATED`；第二次正确密码 200（账号未被锁死）。
 - **观察点**：错误信封结构 `{error:{code,message,details},requestId}`；`auth_session` 无失败登录产生的行；错误响应不含 passwordHash。
 - **清理**：无写入。
 
 ### TC-01-3 停用账号使旧令牌失效（PermissionsIT）
-- **前置**：sys_admin 已登录；student_a 已登录并持有旧令牌 T。
-- **输入**：`PATCH /users/{student_a}/enabled {enabled:false}`（sys_admin）；再用 T `GET /auth/me`。
+- **前置**：account_admin 已登录；student_a 已登录并持有旧令牌 T。
+- **输入**：`PATCH /users/{student_a}/enabled {enabled:false}`（account_admin）；再用 T `GET /auth/me`。
 - **步骤**：1) 记录 student_a 登录；2) 停用；3) 旧令牌访问；4) 重新启用。
 - **预期**：停用 200 `{ok:true}`；旧令牌 401。
 - **观察点**：`app_user.enabled=false`；旧会话不可用（令牌失效，而非仅前端隐藏）。
@@ -69,8 +72,8 @@
 ## D-AT-02 越权访问（403）
 
 ### TC-02-1/2/3 跨组织审批、SYS_ADMIN 无业务审批权、非所有者编辑（PermissionsIT）
-- **前置**：A（4001，OPEN，owner=organizer_a，组织1001）已装载。
-- **输入**：① teacher_other（组织1002）`POST /activities/{4001}/teacher-decision {decision:"APPROVE",comment:"",expectedLockVersion:0}`；② sys_admin 同请求；③ organizer_b `PATCH /activities/{4001}`（ActivityEdit）。
+- **前置**：A（4001，OPEN，owner=applicant_a，组织1001）已装载。
+- **输入**：① approver_other（组织1002）`POST /activities/{4001}/approver-decision {decision:"APPROVE",comment:"",expectedLockVersion:0}`；② account_admin 同请求；③ applicant_b `PATCH /activities/{4001}`（ActivityEdit）。
 - **步骤**：三个请求依次执行，各自用对应账号令牌。
 - **预期**：**均 403 FORBIDDEN**；活动、预约及审批记录无成功变化。
 - **观察点**：A 的 status 仍 OPEN、lock_version 不变；`activity_approval` 无新增行；`reservation` 状态计数不变；403 详情不泄露无权查看的对象信息（02 §3）。
@@ -80,9 +83,9 @@
 
 ### TC-03-1 新建→编辑→提交→教师同意→资源确认→发布
 - **前置**：空活动数据（组织 1001 账号齐全）。
-- **输入**：API-12 新建（ActivityInput：30 分钟活动、场地 3101、器材 3201×1）→ API-15 编辑 → API-16 提交 → API-18 teacher_a 同意 → API-19 resource_admin 确认 → API-20 发布。全部写操作带各自 `Idempotency-Key`。
+- **输入**：API-12 新建（ActivityInput：30 分钟活动、场地 3101、器材 3201×1）→ API-15 编辑 → API-16 提交 → API-18 approver_a 同意 → API-19 resource_admin 确认 → API-20 发布。全部写操作带各自 `Idempotency-Key`。
 - **步骤**：逐步推进并在每步后 GET /activities/{id}。
-- **预期**：状态依次 DRAFT(v1)→DRAFT(v2)→PENDING_TEACHER→APPROVED_UNRESERVED→SCHEDULED→OPEN；version_no 每次编辑 +1；resource-confirm 设置 effectiveVersionNo=当前版本。
+- **预期**：状态依次 DRAFT(v1)→DRAFT(v2)→PENDING_APPROVER→APPROVED_UNRESERVED→SCHEDULED→OPEN；version_no 每次编辑 +1；resource-confirm 设置 effectiveVersionNo=当前版本。
 - **观察点**：**首次确认前 `reservation` 0 条 ACTIVE**；确认后 ACTIVE 行数 = 场地 1 + 器材 1 = 2，数量与区间（含布撤场）正确；`activity_version` 每版本 1 行且 input_json 完整。
 - **清理**：schema 级自动清理。
 
@@ -162,7 +165,7 @@
 - **清理**：无写入。
 
 ### TC-09-2 UI 预览一致性（conflict.spec）
-- **前置**：organizer_a 登录 web。
+- **前置**：applicant_a 登录 web。
 - **输入**：活动 A 详情 → 发起改期 → 目标 15:00—16:00 → 预览。
 - **步骤**：走 UI 主线，读页面冲突列表与替代方案列表。
 - **预期**：页面同时呈现场地冲突与器材缺 1；首选方案标注 3102+3202×2、同时间。
@@ -173,9 +176,9 @@
 
 ### TC-10-1 确认链走完并原子切换到 version2
 - **前置**：A（OPEN）+ TC-09 的目标/首选方案。
-- **输入**：API-26 change-preview → API-27 changes 创建（ChangeCreate：baseVersionNo=1、targetPlan=首选、expectedLockVersion、reason≥1字）→ API-30 staff_a 确认 APPROVE → API-31 teacher_a 同意 → API-32 resource_admin 同意。
+- **输入**：API-26 change-preview → API-27 changes 创建（ChangeCreate：baseVersionNo=1、targetPlan=首选、expectedLockVersion、reason≥1字）→ API-30 staff_a 确认 APPROVE → API-31 approver_a 同意 → API-32 resource_admin 同意。
 - **步骤**：每步后 GET /changes/{id} 记录 status。
-- **预期**：状态依次 AWAITING_CONFIRMATIONS →（staff_a 同意）PENDING_TEACHER →（teacher 同意）PENDING_RESOURCE →（资源同意）APPLIED；A 变 **version2**；旧预约 RELEASED、新预约 ACTIVE；报名保留且 versionNo=2；通知/审计关联 version2（03 §2）。
+- **预期**：状态依次 AWAITING_CONFIRMATIONS →（staff_a 同意）PENDING_APPROVER →（teacher 同意）PENDING_RESOURCE →（资源同意）APPLIED；A 变 **version2**；旧预约 RELEASED、新预约 ACTIVE；报名保留且 versionNo=2；通知/审计关联 version2（03 §2）。
 - **观察点**：`activity.version_no=2、effective_version_no=2`；`reservation`：旧 2 行 status=RELEASED、新 2 行 status=ACTIVE（3102+3202×2）；`activity_registration` 仍 ACTIVE 且 version_no=2（02 §5 activatePlan 更新报名版本）；`audit_log`/`outbox_event`/`notification` 的 versionNo=2；ChangeView.appliedVersionNo=2。
 - **清理**：schema 级自动清理。
 
@@ -190,8 +193,8 @@
 - **清理**：schema 级自动清理。
 
 ### TC-11-2 教师驳回
-- **前置**：改期经全部 staff 同意后处于 PENDING_TEACHER。
-- **输入**：teacher_a `POST /changes/{id}/teacher-decision {decision:"REJECT",comment:"不同意"}`。
+- **前置**：改期经全部 staff 同意后处于 PENDING_APPROVER。
+- **输入**：approver_a `POST /changes/{id}/approver-decision {decision:"REJECT",comment:"不同意"}`。
 - **预期**：REJECTED；同 TC-11-1 的保留性断言；审批绑定该 changeId 与 targetPlan，不可被其他方案复用（01 §6）。
 - **观察点**：teacher_decision_json 落库；活动版本指针不变。
 - **清理**：schema 级自动清理。
@@ -229,7 +232,7 @@
 ## D-AT-15 改期期间报名冻结（RegCapacityIT）
 
 ### TC-15-1 待处理 409、终态恢复
-- **前置**：OPEN 活动存在待处理改期（AWAITING_CONFIRMATIONS/PENDING_TEACHER/PENDING_RESOURCE 之一）。
+- **前置**：OPEN 活动存在待处理改期（AWAITING_CONFIRMATIONS/PENDING_APPROVER/PENDING_RESOURCE 之一）。
 - **输入**：student `PUT /activities/{id}/registration {action:"JOIN",expectedVersionNo:n}` 与 `{action:"WITHDRAW",...}`；改期到终态后重试。
 - **步骤**：冻结期请求 → 终态（REJECTED 或 APPLIED）→ 重试。
 - **预期**：冻结期 409 `CHANGE_PENDING`（保证影响名单不漂移，01 §6）；终态后按名额规则执行。
@@ -375,3 +378,20 @@
 | 契约检查 | `qa/scripts/check-contract.ts` 读 `contracts/openapi.yaml`，核对 38 接口、必需字段、枚举、响应包装、认证与 Idempotency-Key；发现差异交实现者或 PM，**不私自改契约迎合实现** | ⬜ 未执行 |
 | 视觉核对 | `ui-layout.spec.ts` 按 05 界面规范检查 1366/1920 桌面与 390 移动视口，自动查溢出/错误，人工审查层次/文本/对比；截图不等于「自动证明美观」 | ⬜ 未执行 |
 | E2E 通则 | 每角色独立浏览器 context 登录；公共 data-testid；`expect` 轮询业务状态，不用长 sleep | ⬜ 未执行 |
+
+---
+
+## N-AT 身份/资格/授权用例（v3.0 新增，QA-03）
+
+用例细节以 `acceptance/IdentityEligibilityIT.java` 各方法 javadoc 为准（避免双处维护）；此处索引场景↔方法↔关键断言：
+
+| 用例 | 场景（03 §2） | 执行方法 | 关键断言 | 正/负 |
+|---|---|---|---|---|
+| N-AT-01 | 教师申请人/学生申请人/仅账号管理员调用审批复核 | IdentityEligibilityIT.nat01 | 均 403；审批/预约无变化；身份≠角色 | 负 |
+| N-AT-02 | 两类身份×四种资源资格（3111-3114/3211-3214） | IdentityEligibilityIT.nat02 | 8 组组合正确；拒绝 403 RESOURCE_INELIGIBLE 且无预约 | 正+负 |
+| N-AT-03 | 候选过滤受限资源；强制提交仍拒绝 | IdentityEligibilityIT.nat03 | alternatives 不含受限资源；直提 403 | 正+负 |
+| N-AT-04 | 提交后改身份/资格 | IdentityEligibilityIT.nat04 | 未确认用最新设置；旧预约保留；新目标拒绝且原安排不变 | 正+负 |
+| N-AT-05 | 所有者兼任审批/复核对本人申请 4 种审核 | IdentityEligibilityIT.nat05 | 全部 403 回避；独立授权人员正常 | 负+正 |
+| N-AT-06 | 范围不全覆盖拒绝；停用工作人员不代签 | IdentityEligibilityIT.nat06 | 范围外 403；停用 401/403 且 confirmation 无记录 | 负 |
+
+另：API-04 新语义（purpose=staff vs 无 purpose 权限差异）在 PermissionsIT TC-21-4；报名资格按 identity=STUDENT 判定在 RegistrationCapacityIT 注明。

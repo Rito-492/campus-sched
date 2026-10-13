@@ -7,7 +7,7 @@
  *           05 §3 冲突与替代方案 / 变更差异。
  *
  * 状态语义（02 §2）：预览只读不改库；最终资源确认失去可行性 → 409 RESOURCE_CONFLICT、
- *   改期 CONFLICTED、原安排保留；工作人员/教师拒绝 → REJECTED、原版本与预约完全保留。
+ *   改期 CONFLICTED、原安排保留；工作人员/批准人拒绝 → REJECTED、原版本与预约完全保留。
  * 资源故障：原 reservation 仍在但 ActivityView.resourceRisk=AT_RISK，页面必须展示风险提示。
  *
  * 数据准备说明：抢占活动与故障登记通过真实 REST（API-12/16/18/19、API-10）准备，
@@ -25,7 +25,7 @@ import {
   apiLogin,
   at,
   changePreview,
-  changeTeacherDecision,
+  changeApproverDecision,
   closeSessions,
   confirmChange,
   createActivity,
@@ -43,7 +43,7 @@ import {
   readError,
   resourceConfirmActivity,
   submitActivity,
-  teacherDecideActivity,
+  approverDecideActivity,
   type ActivityInputDto,
   type ApiSession,
   type PlanDto,
@@ -70,10 +70,10 @@ async function createFeasibleChange(api: ApiSession): Promise<string> {
   return change.id;
 }
 
-/** 另一组织者 organizer_b 创建并确认一个真实占用首选资源的活动（预览后抢占）。 */
+/** 另一申请人 applicant_b 创建并确认一个真实占用首选资源的活动（预览后抢占）。 */
 async function preemptPreferredResources(): Promise<void> {
-  const owner = await apiLogin(USERS.organizerB);
-  const teacher = await apiLogin(USERS.teacherA);
+  const owner = await apiLogin(USERS.applicantB);
+  const approver = await apiLogin(USERS.approverA);
   const resource = await apiLogin(USERS.resourceAdmin);
   try {
     const input: ActivityInputDto = {
@@ -93,11 +93,11 @@ async function preemptPreferredResources(): Promise<void> {
     };
     let created = await createActivity(owner, input);
     created = await submitActivity(owner, created.id, created.lockVersion);
-    created = await teacherDecideActivity(teacher, created.id, 'APPROVE', created.lockVersion);
+    created = await approverDecideActivity(approver, created.id, 'APPROVE', created.lockVersion);
     created = await resourceConfirmActivity(resource, created.id, created.lockVersion);
     expect(created.status, '抢占活动应 SCHEDULED 以真实占用候选资源').toBe('SCHEDULED');
   } finally {
-    await apiClose([owner, teacher, resource]);
+    await apiClose([owner, approver, resource]);
   }
 }
 
@@ -125,7 +125,7 @@ test.describe('D-AT-09 改期冲突与替代方案（UI）', () => {
     async ({ browser }) => {
       const sessions: UiSession[] = [];
       try {
-        const organizer = await openSession(browser, USERS.organizerA);
+        const organizer = await openSession(browser, USERS.applicantA);
         sessions.push(organizer);
 
         await openChangeWorkbench(organizer.page, ACTIVITIES.a.id);
@@ -167,7 +167,7 @@ test.describe('D-AT-11 拒绝改期（原安排保护）', () => {
       const sessions: UiSession[] = [];
       const apis: ApiSession[] = [];
       try {
-        const organizerApi = await apiLogin(USERS.organizerA);
+        const organizerApi = await apiLogin(USERS.applicantA);
         apis.push(organizerApi);
         const changeId = await createFeasibleChange(organizerApi);
 
@@ -186,7 +186,7 @@ test.describe('D-AT-11 拒绝改期（原安排保护）', () => {
         expect(activity.versionNo, '原版本号不变').toBe(1);
         expect(activity.effectiveVersionNo, '有效版本仍为 1').toBe(1);
 
-        const organizer = await openSession(browser, USERS.organizerA);
+        const organizer = await openSession(browser, USERS.applicantA);
         sessions.push(organizer);
         await expectOriginalPlanPreserved(organizer.page);
       } finally {
@@ -197,13 +197,13 @@ test.describe('D-AT-11 拒绝改期（原安排保护）', () => {
   );
 
   test(
-    'TC-11-2 教师驳回 → REJECTED，版本指针不变且意见落库',
+    'TC-11-2 批准人驳回 → REJECTED，版本指针不变且意见落库',
     { annotation: [{ type: 'D-AT', description: 'D-AT-11' }, { type: 'TC', description: 'TC-11-2' }] },
     async ({ browser }) => {
       const sessions: UiSession[] = [];
       const apis: ApiSession[] = [];
       try {
-        const organizerApi = await apiLogin(USERS.organizerA);
+        const organizerApi = await apiLogin(USERS.applicantA);
         apis.push(organizerApi);
         const changeId = await createFeasibleChange(organizerApi);
 
@@ -211,16 +211,16 @@ test.describe('D-AT-11 拒绝改期（原安排保护）', () => {
         apis.push(staffApi);
         await confirmChange(staffApi, changeId, 'APPROVE');
 
-        const teacher = await openSession(browser, USERS.teacherA);
-        sessions.push(teacher);
-        await teacher.page.goto(`/changes/${changeId}`);
-        await expectChangeStatus(teacher.page, /PENDING_TEACHER|待教师审批/);
-        await rejectChangeViaUi(teacher.page, '不同意');
-        await expectChangeStatus(teacher.page, /REJECTED|已拒绝|驳回/);
+        const approver = await openSession(browser, USERS.approverA);
+        sessions.push(approver);
+        await approver.page.goto(`/changes/${changeId}`);
+        await expectChangeStatus(approver.page, /PENDING_APPROVER|待批准人审批/);
+        await rejectChangeViaUi(approver.page, '不同意');
+        await expectChangeStatus(approver.page, /REJECTED|已拒绝|驳回/);
 
         const change = await getChange(organizerApi, changeId);
         expect(change.status, '改期应 REJECTED').toBe('REJECTED');
-        expect(change.teacherDecision?.decision, 'teacher_decision_json 应记录 REJECT').toBe('REJECT');
+        expect(change.approverDecision?.decision, 'approver_decision_json 应记录 REJECT').toBe('REJECT');
         const activity = await getActivity(organizerApi, ACTIVITIES.a.id);
         expect(activity.versionNo, '原版本指针不变').toBe(1);
         expect(activity.effectiveVersionNo, '有效版本不变').toBe(1);
@@ -240,7 +240,7 @@ test.describe('D-AT-12 预览后被抢占（最终确认冲突）', () => {
       const sessions: UiSession[] = [];
       const apis: ApiSession[] = [];
       try {
-        const organizerApi = await apiLogin(USERS.organizerA);
+        const organizerApi = await apiLogin(USERS.applicantA);
         apis.push(organizerApi);
         const before = await getActivity(organizerApi, ACTIVITIES.a.id);
 
@@ -259,9 +259,9 @@ test.describe('D-AT-12 预览后被抢占（最终确认冲突）', () => {
         const staffApi = await apiLogin(USERS.staffA);
         apis.push(staffApi);
         await confirmChange(staffApi, changeId, 'APPROVE');
-        const teacherApi = await apiLogin(USERS.teacherA);
-        apis.push(teacherApi);
-        await changeTeacherDecision(teacherApi, changeId, 'APPROVE');
+        const approverApi = await apiLogin(USERS.approverA);
+        apis.push(approverApi);
+        await changeApproverDecision(approverApi, changeId, 'APPROVE');
 
         // resource_admin 最终确认：重新检查发现冲突 → 409，事务正常提交 CONFLICTED 记录
         const resource = await openSession(browser, USERS.resourceAdmin);
@@ -289,7 +289,7 @@ test.describe('D-AT-12 预览后被抢占（最终确认冲突）', () => {
         expect(after.versionNo, '抢占失败不得产生新版本').toBe(1);
         expect(after.effectiveVersionNo, '有效版本保持 1').toBe(1);
 
-        const organizer = await openSession(browser, USERS.organizerA);
+        const organizer = await openSession(browser, USERS.applicantA);
         sessions.push(organizer);
         await expectOriginalPlanPreserved(organizer.page);
       } finally {
@@ -308,7 +308,7 @@ test.describe('D-AT-18 资源故障与风险提示', () => {
       const sessions: UiSession[] = [];
       const apis: ApiSession[] = [];
       try {
-        const organizerApi = await apiLogin(USERS.organizerA);
+        const organizerApi = await apiLogin(USERS.applicantA);
         apis.push(organizerApi);
         const resourceApi = await apiLogin(USERS.resourceAdmin);
         apis.push(resourceApi);
@@ -335,7 +335,7 @@ test.describe('D-AT-18 资源故障与风险提示', () => {
         expect(refreshed.resourceRisk, 'ActivityView.resourceRisk 应为 AT_RISK').toBe(RISK.atRisk);
 
         // 页面必须展示风险提示，不能把原安排显示为可正常使用
-        const organizer = await openSession(browser, USERS.organizerA);
+        const organizer = await openSession(browser, USERS.applicantA);
         sessions.push(organizer);
         await organizer.page.goto(`/activities/${ACTIVITIES.a.id}`);
         await expect(

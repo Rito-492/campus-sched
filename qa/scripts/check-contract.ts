@@ -1,5 +1,7 @@
 /**
- * 契约一致性检查（QA-03，任务书 QA-03 第 6 条）。
+ * 契约一致性检查（QA-02，任务包 v3.0：40 接口/三角色/身份/资格）。
+ * v3.0 变更点：Role 三值、Identity/Permission 新枚举、approver-decision、
+ * API-39 账号授权、API-40 资源资格、RESOURCE_INELIGIBLE 资格拒绝。
  *
  * 读取 contracts/openapi.yaml，核对：
  *   1. 38 个接口的 方法+路径（02 契约 §3 清单）
@@ -53,7 +55,7 @@ const EXPECTED_APIS: [string, string, string][] = [
   ['API-15', 'patch', '/activities/{id}'],
   ['API-16', 'post', '/activities/{id}/submit'],
   ['API-17', 'post', '/activities/{id}/withdraw'],
-  ['API-18', 'post', '/activities/{id}/teacher-decision'],
+  ['API-18', 'post', '/activities/{id}/approver-decision'],
   ['API-19', 'post', '/activities/{id}/resource-confirm'],
   ['API-20', 'post', '/activities/{id}/publish'],
   ['API-21', 'post', '/activities/{id}/cancel'],
@@ -66,7 +68,7 @@ const EXPECTED_APIS: [string, string, string][] = [
   ['API-28', 'get', '/activities/{id}/changes'],
   ['API-29', 'get', '/changes/{id}'],
   ['API-30', 'post', '/changes/{id}/confirmation'],
-  ['API-31', 'post', '/changes/{id}/teacher-decision'],
+  ['API-31', 'post', '/changes/{id}/approver-decision'],
   ['API-32', 'post', '/changes/{id}/resource-decision'],
   ['API-33', 'post', '/changes/{id}/withdraw'],
   ['API-34', 'get', '/notifications'],
@@ -74,6 +76,8 @@ const EXPECTED_APIS: [string, string, string][] = [
   ['API-36', 'get', '/activities/{id}/audit'],
   ['API-37', 'get', '/health'],
   ['API-38', 'get', '/organizations'],
+  ['API-39', 'patch', '/users/{id}/authorization'],
+  ['API-40', 'patch', '/resources/{id}/eligibility'],
 ];
 
 /** 免登录接口（02 契约 §1/§3：登录外全部 Bearer；/health 免登录） */
@@ -93,10 +97,12 @@ const NO_IDEMPOTENCY = new Set([
 
 /** 02 契约 §2 枚举取值 */
 const EXPECTED_ENUMS: Record<string, string[]> = {
-  Role: ['STUDENT', 'ORGANIZER', 'TEACHER', 'RESOURCE_ADMIN', 'SYS_ADMIN'],
-  ActivityStatus: ['DRAFT', 'PENDING_TEACHER', 'APPROVED_UNRESERVED', 'SCHEDULED', 'OPEN', 'CANCELLED'],
+  Role: ['APPLICANT', 'APPROVER', 'ADMIN'],
+  Identity: ['TEACHER', 'STUDENT'],
+  Permission: ['USER_MANAGE', 'RESOURCE_MANAGE', 'RESOURCE_CONFIRM', 'AUDIT_READ'],
+  ActivityStatus: ['DRAFT', 'PENDING_APPROVER', 'APPROVED_UNRESERVED', 'SCHEDULED', 'OPEN', 'CANCELLED'],
   ChangeStatus: [
-    'AWAITING_CONFIRMATIONS', 'PENDING_TEACHER', 'PENDING_RESOURCE', 'APPLIED',
+    'AWAITING_CONFIRMATIONS', 'PENDING_APPROVER', 'PENDING_RESOURCE', 'APPLIED',
     'REJECTED', 'CONFLICTED', 'WITHDRAWN', 'CANCELLED_BY_ACTIVITY',
   ],
   Decision: ['APPROVE', 'REJECT'],
@@ -107,6 +113,9 @@ const EXPECTED_ENUMS: Record<string, string[]> = {
 
 /** 02 契约 §2 关键 DTO 必需字段（以 TypeScript 定义为准） */
 const EXPECTED_DTO_FIELDS: Record<string, string[]> = {
+  ApprovalScope: ['organizationId', 'resourceCategories'],
+  AuthorizationInput: ['identity', 'roles', 'permissions', 'approvalScopes', 'managedResourceIds'],
+  ResourceEligibility: ['allowTeacher', 'allowStudent'],
   ActivityInput: ['title', 'description', 'expectedAttendees', 'registrationCapacity', 'staffUserIds', 'plan'],
   Plan: ['startAt', 'endAt', 'setupMinutes', 'teardownMinutes', 'venueId', 'equipment'],
   EquipmentNeed: ['resourceId', 'quantity'],
@@ -114,14 +123,14 @@ const EXPECTED_DTO_FIELDS: Record<string, string[]> = {
     'id', 'organizationId', 'ownerId', 'status', 'versionNo', 'effectiveVersionNo', 'lockVersion',
     'input', 'registrationCount', 'resourceRisk', 'activeChangeId', 'myRegistrationStatus', 'createdAt',
   ],
-  ResourceCreate: ['kind', 'name', 'category', 'capacity', 'quantity', 'openFrom', 'openTo'],
+  ResourceCreate: ['allowTeacher', 'allowStudent', 'kind', 'name', 'category', 'capacity', 'quantity', 'openFrom', 'openTo'],
   Conflict: ['code', 'resourceId', 'resourceName', 'startsAt', 'endsAt', 'required', 'available', 'message'],
   CheckResult: ['feasible', 'conflicts'],
   AlternativesView: ['items', 'evaluatedCount', 'truncated', 'offsetsMinutes', 'maxEvaluations'],
   ChangeCreate: ['baseVersionNo', 'targetPlan', 'expectedLockVersion', 'reason'],
   ChangeView: [
     'id', 'activityId', 'baseVersionNo', 'targetPlan', 'reason', 'status', 'impact', 'confirmations',
-    'teacherDecision', 'resourceDecision', 'lastConflicts', 'appliedVersionNo', 'createdBy', 'createdAt', 'updatedAt',
+    'approverDecision', 'resourceDecision', 'lastConflicts', 'appliedVersionNo', 'createdBy', 'createdAt', 'updatedAt',
   ],
   RegistrationCommand: ['action', 'expectedVersionNo'],
   NotificationView: ['id', 'eventId', 'activityId', 'versionNo', 'title', 'body', 'readAt', 'createdAt'],

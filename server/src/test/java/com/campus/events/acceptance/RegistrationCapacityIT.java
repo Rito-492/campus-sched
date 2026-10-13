@@ -39,6 +39,9 @@ import static org.junit.jupiter.api.Assertions.assertNull;
  * 活动 4101（OPEN、registrationCapacity=1）与 20 名 perf_s01—perf_s20 用于 TC-16-1/2/3。
  * 固定 Clock=2030-10-19T00:00:00Z、DEMO_DATE=2030-10-20（03 §1）。
  *
+ * <p>报名资格按账号 identity=STUDENT 判定，与 APPLICANT 角色独立（01 基线 §2）；
+ * 并发学生 perf_s01—perf_s20 均为 STUDENT 身份 APPLICANT。
+ *
  * <p>执行命令：{@code ./server/mvnw.cmd -f server/pom.xml "-Dit.test=RegistrationCapacityIT" verify}
  */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -77,13 +80,13 @@ class RegistrationCapacityIT {
     @Order(1)
     @DisplayName("D-AT-15 / TC-15-1 待处理改期冻结报名，终态恢复")
     void pendingChangeFreezesRegistrationUntilTerminal() {
-        String organizer = login("organizer_a");
+        String applicant = login("applicant_a");
         String studentAToken = login("student_a");
         String studentBToken = login("student_b");
         String staff = login("staff_a");
 
         // OPEN 活动 4001 创建待处理改期（staff_a 待确认 → AWAITING_CONFIRMATIONS）
-        HttpResult create = createChange(ACTIVITY_A, 1, currentLockVersion(ACTIVITY_A), organizer);
+        HttpResult create = createChange(ACTIVITY_A, 1, currentLockVersion(ACTIVITY_A), applicant);
         assertEquals(201, create.status(), "创建改期应成功：" + create.body());
         UUID changeId = UUID.fromString(create.body().path("data").path("id").asText());
         assertEquals("AWAITING_CONFIRMATIONS", changeStatus(changeId));

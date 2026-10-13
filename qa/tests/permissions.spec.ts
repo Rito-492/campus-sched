@@ -6,7 +6,7 @@
  * 契约依据：02 §2（CalendarEntry/ChangeView.impact）、§3（API-09/23/29/34/35、§3 可见性规则）、
  *           01 §3（角色范围：日历无权条目只显示「已占用」、资源及时间）。
  *
- * 角色隔离：student_a / organizer_a / staff_a 各自独立 context 或真实 REST 会话（非 Mock）。
+ * 角色隔离：student_a / applicant_a / staff_a 各自独立 context 或真实 REST 会话（非 Mock）。
  * 说明：报名名单与部分通知页元素在 05 §4 未定义 testid，使用可访问角色/语义定位并在注释标注
  *       「testid 待 UI 提供，见 handoff」；核心隔离断言以真实 API 数据为准（驱动页面渲染）。
  */
@@ -81,7 +81,7 @@ test.describe('D-AT-21 隐私与读取隔离', () => {
         }
         await expect(student.page.getByText(RESOURCES.venueA.name).first()).toBeVisible();
         await expect(student.page.getByText(ACTIVITIES.b.title)).toHaveCount(0);
-        await expect(student.page.getByText('组织者B（演示）')).toHaveCount(0);
+        await expect(student.page.getByText('申请人B（演示）')).toHaveCount(0);
       } finally {
         await closeSessions(sessions);
         await apiClose(apis);
@@ -99,7 +99,7 @@ test.describe('D-AT-21 隐私与读取隔离', () => {
         const studentApi = await apiLogin(USERS.studentA);
         apis.push(studentApi);
 
-        // API-23：仅所有者/同组织教师/资源管理员；活动 A 学生已报名仍无权看名单
+        // API-23：仅所有者/授权批准人/资源管理员；活动 A 学生已报名仍无权看名单
         const errA = await readError(
           await getRegistrations(studentApi, ACTIVITIES.a.id),
           403,
@@ -135,7 +135,7 @@ test.describe('D-AT-21 隐私与读取隔离', () => {
       const apis: ApiSession[] = [];
       const sessions: UiSession[] = [];
       try {
-        const organizerApi = await apiLogin(USERS.organizerA);
+        const organizerApi = await apiLogin(USERS.applicantA);
         const staffApi = await apiLogin(USERS.staffA);
         const studentApi = await apiLogin(USERS.studentA);
         apis.push(organizerApi, staffApi, studentApi);
@@ -185,7 +185,7 @@ test.describe('D-AT-21 隐私与读取隔离', () => {
     async () => {
       const apis: ApiSession[] = [];
       try {
-        const organizerApi = await apiLogin(USERS.organizerA);
+        const organizerApi = await apiLogin(USERS.applicantA);
         const staffApi = await apiLogin(USERS.staffA);
         apis.push(organizerApi, staffApi);
 

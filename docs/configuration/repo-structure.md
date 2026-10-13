@@ -10,7 +10,7 @@
 
 1. **任务包优先**：目录布局以 `agents/common/04-协作与集成规程.md` §1 的模块所有权表和 `taskbook.md` §6 的交付物路径为准；本指南与其一致，冲突时以任务包为基准。
 2. **单一职责**：每个目录有明确的"放什么/不放什么"，见 §3。
-3. **目录英文、文件名按归属定**：目录名英文小写 kebab-case；课程下发文档保留中文原文件名；任务包文件保持既有名称（总说明 `taskbook.md` 由 `agent.md` 更名，见 §5）；课程交付文档使用任务包规定的英文 kebab-case `.md` 文件名（见 §5）。
+3. **目录英文、文件名按归属定**：目录名英文小写 kebab-case；课程下发文档保留中文原文件名；总任务书为 `taskbook.md`，六份个人开发指令为 `agents/<学号>-<模块>/agent.md`；课程交付文档使用任务包规定的英文 kebab-case `.md` 文件名（见 §5）。
 4. **源与产物分离**：可编辑源文件（`.drawio`）放 `models/`，随文档评审的导出产物与文档放 `docs/` 对应目录；Figma 源在仓库外，只导出到 `docs/ui/prototype/`。
 5. **活文档与冻结文档分离**：`.md` 是持续维护的"活文档"（可 diff、可改）；`.docx/.xlsx` 是评审后冻结的课程材料（改版本 = 另存新文件名）。
 6. **骨架先行**：未启用的目录用 `.gitkeep` 占位；代码目录的内部结构由各模块负责人在 M0 按任务包文件清单创建。
@@ -149,7 +149,7 @@ campus-sched/
 |---|---|---|
 | 目录 | 英文小写 kebab-case | `docs/configuration/` |
 | 课程下发文档 | 原文件名，不改 | `项目组选题说明.docx` |
-| 任务包文件 | 固定名，不改不拆；总说明已由 `agent.md` 更名为 `taskbook.md`（避免与 `AGENTS.md` 大小写碰撞，内容未改） | `taskbook.md`、`agents/common/01-开发基线.md` |
+| 任务包文件 | 总说明 `taskbook.md`、公共契约 `agents/common/`、六份独立个人指令 `agents/<学号>-<模块>/agent.md`；变更需同步入口与链接 | `taskbook.md`、`agents/55230223-foundation/agent.md` |
 | 课程交付文档（.md） | 任务包规定的英文 kebab-case 名 | `test-plan.md`、`system-design.md` |
 | 其他新增文档 | `<类型>-<主题>-v<主>.<次>.<扩展名>` | `变更记录-2026-10.md` |
 | 原型导出 | `docs/ui/prototype/<迭代名>/` | `iter-1/资源日历.png` |
