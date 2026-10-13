@@ -89,3 +89,12 @@
 - 本轮实测：`java -version`、`javac -version` 均因命令不存在而失败；`Test-Path server/pom.xml`、`Test-Path server/mvnw.cmd` 均为 False；按个人任务书执行 `./server/mvnw.cmd test`，PowerShell 报命令不存在。因此 7 个 `ActivityStateMachineTest` 用例未执行，不能报告通过。
 - 后续任务：AN-02～04 的 repository、service/controller、ActivityPortAdapter、审批、报名并发及取消联调，等待 PM 的 Java 公共类型/构建、DS 的 v3 schema/SchedulingPort、CM 的 ChangePort/EventPort；仅修改 `activity/`、`registration/` 和本人需求文档，不改共享类型或他人模块。
 - 接收确认：尚未接收。
+
+## 最新main同步与后续依赖（2026-10-13）
+
+- 基准：已同步到 `origin/main` 的 `b96e4ca`（包含 DS-01 schema v3.0 与 CM-01 环境/配置计划/演示数据框架）；本人分支以 rebase 保留状态机两个提交，并明确不包含已被新版取代的 `bf0cef7` 旧需求提交。
+- 本次复核：`server/src/main/java` 仍只有活动状态机与 CM 的 dev 种子代码；`server/pom.xml`、Maven Wrapper、PM 的 `contract`/`foundation`/`auth` 生产类型均未进入 main。Activity/registration 持久层、控制器及 ActivityPort、SchedulingPort、ChangePort、EventPort 接口也未进入 main。
+- AN-01 已有状态机和测试源码、API 技术标识同步及本交接记录。Maven 命令仍无法实际执行：`server/mvnw.cmd` 与 `server/pom.xml` 不存在，且当前环境没有 `java`/`javac`；测试不得记为通过。
+- AN-02～04 不能在缺少 PM 的共享 record/端口、CommandExecutor 与 Maven 工程时安全实现并编译；AN-03/04 还依赖 DS 的 SchedulingPort 与 CM 的 ChangePort/EventPort。已由 DS 合入的 schema v3.0 不代替这些 Java 接口。
+- 下一步：PM 合入公共构建/DTO/端口后，先实现 API-12～17 与 ActivityPortAdapter；DS/CM 端口合入后实现 API-18～23 和取消事务，再运行本模块单测及真实 PostgreSQL IT。
+- 接收确认：尚未接收。
