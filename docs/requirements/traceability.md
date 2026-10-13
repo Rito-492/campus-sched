@@ -106,4 +106,4 @@ FR表示功能需求，NFR表示补充需求，BR表示业务规则，UC表示�
 | FR-11：资源确认后排期与发布 | `ActivityStateMachine.java`；ActivityPortAdapter/SchedulingPort 调用尚待实现 | D-AT-03/07；模块 IT 尚待实现 | 状态转换已定义；事务、资源检查和持久化尚无实现/证据 |
 | FR-12/13/21/24：报名、取消与版本关联 | 状态机只定义报名变更 lockVersion 和取消终态；报名/取消服务尚待实现 | D-AT-15/16/17/20；并发/竞争 IT 尚待实现 | 有取消不复活和lockVersion测试源码；尚未运行，业务行为尚未实现 |
 
-技术标识按 v3.0 使用 `PENDING_APPROVER` 与 API-18 `approver-decision`；共享 DTO/端口仍由 PM 维护。当前是否具备 JDK、Maven 构建和真实数据库集成能力，须以本轮实际命令检查为准；禁止把未执行项报告为通过。
+技术标识按 v3.0 使用 `PENDING_APPROVER` 与 API-18 `approver-decision`；共享 DTO/端口仍由 PM 维护。2026-10-13 实测没有 `java`、`javac`、`server/pom.xml` 或 `server/mvnw.cmd`，故模块测试未执行；禁止把未执行项报告为通过。

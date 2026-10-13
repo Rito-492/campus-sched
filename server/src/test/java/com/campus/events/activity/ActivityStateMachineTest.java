@@ -52,6 +52,8 @@ class ActivityStateMachineTest {
         var approved = ActivityStateMachine.decide(ActivityStateMachine.submit(ActivityStateMachine.create()), 1, APPROVE);
         var approvedWithdrawal = ActivityStateMachine.withdraw(approved);
         assertEquals(new ActivityStateMachine.State(DRAFT, 2, 3, null), approvedWithdrawal);
+        var resubmitted = ActivityStateMachine.submit(approvedWithdrawal);
+        assertEquals(new ActivityStateMachine.State(PENDING_APPROVER, 2, 4, 2), resubmitted);
     }
 
     @Test
@@ -65,6 +67,14 @@ class ActivityStateMachineTest {
                 () -> ActivityStateMachine.publish(cancelled));
         assertThrows(ActivityStateMachine.InvalidTransitionException.class,
                 () -> ActivityStateMachine.submit(cancelled));
+        assertThrows(ActivityStateMachine.InvalidTransitionException.class,
+                () -> ActivityStateMachine.edit(cancelled));
+        assertThrows(ActivityStateMachine.InvalidTransitionException.class,
+                () -> ActivityStateMachine.withdraw(cancelled));
+        assertThrows(ActivityStateMachine.InvalidTransitionException.class,
+                () -> ActivityStateMachine.decide(cancelled, 1, APPROVE));
+        assertThrows(ActivityStateMachine.InvalidTransitionException.class,
+                () -> ActivityStateMachine.resourceConfirmed(cancelled));
     }
 
     @Test
@@ -75,6 +85,17 @@ class ActivityStateMachineTest {
         assertSame(cancelled, ActivityStateMachine.cancel(cancelled));
         assertThrows(ActivityStateMachine.InvalidTransitionException.class,
                 () -> ActivityStateMachine.resourceConfirmed(cancelled));
+    }
+
+    @Test
+    void everyLifecycleStatusCanCancelAndCancellationNeverChangesContentVersion() {
+        for (var status : ActivityStateMachine.Status.values()) {
+            var approvalVersion = status == PENDING_APPROVER ? 1 : null;
+            var state = new ActivityStateMachine.State(status, 1, 7, approvalVersion);
+            var cancelled = ActivityStateMachine.cancel(state);
+            assertEquals(new ActivityStateMachine.State(CANCELLED, 1,
+                    status == CANCELLED ? 7 : 8, null), cancelled, status.name());
+        }
     }
 
     @Test
