@@ -1,0 +1,9 @@
+# 开发 profile：连 campus_dev；APP_DEMO_SEED=true 时导入演示数据（幂等）。
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:127.0.0.1}:${DB_PORT:5432}/${DB_NAME:campus_dev}
+    username: ${DB_USERNAME:campus_app}
+    password: ${DB_PASSWORD:campus_app_dev}
+
+app:
+  demo-seed: ${APP_DEMO_SEED:false}
