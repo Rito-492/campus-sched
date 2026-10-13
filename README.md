@@ -31,12 +31,12 @@
 | yhl | 55231031 | 配置经理 |
 | yc | 17231018 | 界面设计师 |
 
-六人同时承担的开发模块与交接关系见 [`taskbook.md`](taskbook.md) §3、§5。
+本轮基于main的六人开发安排见 [详细开发计划](docs/management/detailed-project-plan.md)。三角色、独立身份及资源申请资格统一采用新版v3.0；六人承担的开发模块与交接关系见 [`taskbook.md`](taskbook.md) §3、§5。
 
 ## 仓库结构
 
 ```text
-taskbook.md + agents/   开发任务包 v2.0（总说明、公共契约、六份个人任务书）
+taskbook.md + agents/   新版开发任务包 v3.0（总说明、公共契约、六份个人任务书）
 docs/                文档区（course / management / requirements / design / ui / testing / configuration）
 server/  web/  qa/   后端 · 前端 · E2E 测试工程
 test-data/ contracts/ infra/ scripts/ release/ artifacts/ models/
