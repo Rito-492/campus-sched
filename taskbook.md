@@ -22,12 +22,12 @@
 
 | 人员 | 课程岗位 | 编码责任 | 本人任务书 |
 |---|---|---|---|
-| 冀项阳 55230223 | 项目经理 | 后端构建、foundation/auth/contract、AccountPort、OpenAPI、集成与任务包 | [PM-01起](agents/55230223-项目经理.md) |
-| 冯玉琪 22220314 | 系统分析员 | activity/registration、ActivityPortAdapter及模块测试、需求文档 | [AN-01起](agents/22220314-系统分析员.md) |
-| 黄方勇 55230315 | 设计师 | resource/scheduling、全部数据库迁移、SchedulingPort、设计文档 | [DS-01起](agents/55230315-设计师.md) |
-| 汤雨润 55230316 | 测试经理 | qa、test-data、acceptance/support、测试文档和真实证据 | [QA-01起](agents/55230316-测试经理.md) |
-| 杨瀚霖 55231031 | 配置经理 | change/notification/audit/dev、环境/种子/配置/部署/CI、发布文档 | [CM-01起](agents/55231031-配置经理.md) |
-| 杨畅 17231018 | 界面设计师 | web全部、前端测试、原型、界面说明和用户手册 | [UI-01起](agents/17231018-界面设计师.md) |
+| 冀项阳 55230223 | 项目经理 | 后端构建、foundation/auth/contract、AccountPort、OpenAPI、集成与任务包 | [PM-01起](agents/55230223-foundation/agent.md) |
+| 冯玉琪 22220314 | 系统分析员 | activity/registration、ActivityPortAdapter及模块测试、需求文档 | [AN-01起](agents/22220314-activity/agent.md) |
+| 黄方勇 55230315 | 设计师 | resource/scheduling、全部数据库迁移、SchedulingPort、设计文档 | [DS-01起](agents/55230315-scheduling/agent.md) |
+| 汤雨润 55230316 | 测试经理 | qa、test-data、acceptance/support、测试文档和真实证据 | [QA-01起](agents/55230316-qa/agent.md) |
+| 杨瀚霖 55231031 | 配置经理 | change/notification/audit/dev、环境/种子/配置/部署/CI、发布文档 | [CM-01起](agents/55231031-change/agent.md) |
+| 杨畅 17231018 | 界面设计师 | web全部、前端测试、原型、界面说明和用户手册 | [UI-01起](agents/17231018-ui/agent.md) |
 
 每人交本人代码、本人模块测试和课程文档。QA负责跨模块和E2E验证，不代替各作者测试/修复；UI负责统一前端，后端成员负责交准确接口和失败示例。各人使用独立Git身份。
 
@@ -56,4 +56,4 @@ M0六人并行：PM工程/共享类型、DS迁移、CM数据库环境、QA数据
 
 40API真实接入11类页面；30验收场景有结果，关键权限/资格/并发/幂等/取消/回滚通过；刷新和重启数据一致；干净环境按发布说明可启动；核心页面3视口检查；需求→设计→代码→测试可追踪，文档/报告/手册对应实际发布commit。当前任务包完成不表示这些产品条件已经完成。
 
-成员直接使用本人任务书末尾的启动指令执行。不要自动启动或向其他成员的聊天发送任务。
+成员从 [六人 Agent 开发入口](agents/README.md) 选择本人的 `agents/<学号>-<模块>/agent.md`，直接使用文件末尾的启动指令执行。每份包含可编辑路径、第一批独立工作、逐项任务、本人检查和交接对象。不要自动启动或向其他成员的聊天发送任务。

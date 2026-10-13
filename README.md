@@ -46,6 +46,6 @@ test-data/ contracts/ infra/ scripts/ release/ artifacts/ models/
 
 ## 开始工作
 
-- **成员/agent 启动开发**：读 [`taskbook.md`](taskbook.md)（含可直接使用的启动指令与交付物对照）
+- **成员/agent 启动开发**：从 [六人开发入口](agents/README.md) 选择本人的 `agent.md`，复制文档末尾指令给开发助手；总分工见 [`taskbook.md`](taskbook.md)
 - **了解项目**：本 README → [`AGENTS.md`](AGENTS.md)（agent 与新成员指南）
 - **课程与分工文档**：`docs/course/`
