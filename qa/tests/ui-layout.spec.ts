@@ -57,7 +57,7 @@ test.describe('附表 界面与视觉核对（desktop / desktop-1920 / mobile-39
     async ({ browser }, testInfo) => {
       const sessions: UiSession[] = [];
       try {
-        const organizer = await openSession(browser, USERS.organizerA);
+        const organizer = await openSession(browser, USERS.applicantA);
         sessions.push(organizer);
         await organizer.page.goto('/activities');
         await expect(organizer.page.getByText(ACTIVITIES.a.title).first()).toBeVisible();
@@ -74,7 +74,7 @@ test.describe('附表 界面与视觉核对（desktop / desktop-1920 / mobile-39
     async ({ browser }, testInfo) => {
       const sessions: UiSession[] = [];
       try {
-        const organizer = await openSession(browser, USERS.organizerA);
+        const organizer = await openSession(browser, USERS.applicantA);
         sessions.push(organizer);
         await organizer.page.goto(activityPath(ACTIVITIES.a.id));
         await expect(organizer.page.getByTestId(TESTID.currentVersion)).toBeVisible();
@@ -91,7 +91,7 @@ test.describe('附表 界面与视觉核对（desktop / desktop-1920 / mobile-39
     async ({ browser }, testInfo) => {
       const sessions: UiSession[] = [];
       try {
-        const organizer = await openSession(browser, USERS.organizerA);
+        const organizer = await openSession(browser, USERS.applicantA);
         sessions.push(organizer);
         await organizer.page.goto(changeWorkbenchPath(ACTIVITIES.a.id));
         await expect(organizer.page.getByTestId(TESTID.changePreview)).toBeVisible();

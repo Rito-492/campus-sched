@@ -5,21 +5,136 @@
     { "id": "00000000-0000-0000-0000-000000001002", "name": "其他学院" }
   ],
   "users": [
-    { "id": "00000000-0000-0000-0000-000000002001", "username": "organizer_a", "displayName": "组织者A（演示）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["ORGANIZER"] },
-    { "id": "00000000-0000-0000-0000-000000002002", "username": "organizer_b", "displayName": "组织者B（演示）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["ORGANIZER"] },
-    { "id": "00000000-0000-0000-0000-000000002003", "username": "teacher_a", "displayName": "教师A（演示）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["TEACHER"] },
-    { "id": "00000000-0000-0000-0000-000000002004", "username": "resource_admin", "displayName": "资源管理员（演示）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["RESOURCE_ADMIN"] },
-    { "id": "00000000-0000-0000-0000-000000002005", "username": "student_a", "displayName": "学生A（演示）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
-    { "id": "00000000-0000-0000-0000-000000002006", "username": "staff_a", "displayName": "工作人员A（演示）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] },
-    { "id": "00000000-0000-0000-0000-000000002007", "username": "sys_admin", "displayName": "系统管理员（演示）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["SYS_ADMIN"] },
-    { "id": "00000000-0000-0000-0000-000000002008", "username": "teacher_other", "displayName": "外院教师（演示）", "organizationId": "00000000-0000-0000-0000-000000001002", "roles": ["TEACHER"] },
-    { "id": "00000000-0000-0000-0000-000000002009", "username": "student_b", "displayName": "学生B（演示）", "organizationId": "00000000-0000-0000-0000-000000001001", "roles": ["STUDENT"] }
+    {
+      "id": "00000000-0000-0000-0000-000000002001",
+      "username": "applicant_a",
+      "displayName": "申请人A（演示）",
+      "organizationId": "00000000-0000-0000-0000-000000001001",
+      "identity": "TEACHER",
+      "roles": ["APPLICANT"],
+      "permissions": [],
+      "approvalScopes": [],
+      "managedResourceIds": []
+    },
+    {
+      "id": "00000000-0000-0000-0000-000000002002",
+      "username": "applicant_b",
+      "displayName": "申请人B（演示）",
+      "organizationId": "00000000-0000-0000-0000-000000001001",
+      "identity": "STUDENT",
+      "roles": ["APPLICANT"],
+      "permissions": [],
+      "approvalScopes": [],
+      "managedResourceIds": []
+    },
+    {
+      "id": "00000000-0000-0000-0000-000000002003",
+      "username": "approver_a",
+      "displayName": "批准人A（演示）",
+      "organizationId": "00000000-0000-0000-0000-000000001001",
+      "identity": "TEACHER",
+      "roles": ["APPROVER"],
+      "permissions": [],
+      "approvalScopes": [
+        { "organizationId": "00000000-0000-0000-0000-000000001001", "resourceCategories": ["VENUE", "PROJECTOR"] }
+      ],
+      "managedResourceIds": []
+    },
+    {
+      "id": "00000000-0000-0000-0000-000000002004",
+      "username": "resource_admin",
+      "displayName": "资源管理员（演示）",
+      "organizationId": "00000000-0000-0000-0000-000000001001",
+      "identity": "TEACHER",
+      "roles": ["ADMIN"],
+      "permissions": ["RESOURCE_MANAGE", "RESOURCE_CONFIRM", "AUDIT_READ"],
+      "approvalScopes": [],
+      "managedResourceIds": [
+        "00000000-0000-0000-0000-000000003101",
+        "00000000-0000-0000-0000-000000003102",
+        "00000000-0000-0000-0000-000000003201",
+        "00000000-0000-0000-0000-000000003202",
+        "00000000-0000-0000-0000-000000003111",
+        "00000000-0000-0000-0000-000000003112",
+        "00000000-0000-0000-0000-000000003113",
+        "00000000-0000-0000-0000-000000003114",
+        "00000000-0000-0000-0000-000000003211",
+        "00000000-0000-0000-0000-000000003212",
+        "00000000-0000-0000-0000-000000003213",
+        "00000000-0000-0000-0000-000000003214"
+      ]
+    },
+    {
+      "id": "00000000-0000-0000-0000-000000002005",
+      "username": "student_a",
+      "displayName": "学生A（演示）",
+      "organizationId": "00000000-0000-0000-0000-000000001001",
+      "identity": "STUDENT",
+      "roles": ["APPLICANT"],
+      "permissions": [],
+      "approvalScopes": [],
+      "managedResourceIds": []
+    },
+    {
+      "id": "00000000-0000-0000-0000-000000002006",
+      "username": "staff_a",
+      "displayName": "工作人员A（演示）",
+      "organizationId": "00000000-0000-0000-0000-000000001001",
+      "identity": "STUDENT",
+      "roles": ["APPLICANT"],
+      "permissions": [],
+      "approvalScopes": [],
+      "managedResourceIds": []
+    },
+    {
+      "id": "00000000-0000-0000-0000-000000002007",
+      "username": "account_admin",
+      "displayName": "账号管理员（演示）",
+      "organizationId": "00000000-0000-0000-0000-000000001001",
+      "identity": "TEACHER",
+      "roles": ["ADMIN"],
+      "permissions": ["USER_MANAGE"],
+      "approvalScopes": [],
+      "managedResourceIds": []
+    },
+    {
+      "id": "00000000-0000-0000-0000-000000002008",
+      "username": "approver_other",
+      "displayName": "外院批准人（演示）",
+      "organizationId": "00000000-0000-0000-0000-000000001002",
+      "identity": "TEACHER",
+      "roles": ["APPROVER"],
+      "permissions": [],
+      "approvalScopes": [
+        { "organizationId": "00000000-0000-0000-0000-000000001002", "resourceCategories": ["VENUE", "PROJECTOR"] }
+      ],
+      "managedResourceIds": []
+    },
+    {
+      "id": "00000000-0000-0000-0000-000000002009",
+      "username": "student_b",
+      "displayName": "学生B（演示）",
+      "organizationId": "00000000-0000-0000-0000-000000001001",
+      "identity": "STUDENT",
+      "roles": ["APPLICANT"],
+      "permissions": [],
+      "approvalScopes": [],
+      "managedResourceIds": []
+    }
   ],
   "resources": [
-    { "id": "00000000-0000-0000-0000-000000003101", "kind": "VENUE", "name": "学术报告厅A", "category": "VENUE", "capacity": 80, "quantity": 1, "openFrom": "08:00", "openTo": "22:00", "createdAt": "${DEMO_DATE}T08:00:00+08:00" },
-    { "id": "00000000-0000-0000-0000-000000003102", "kind": "VENUE", "name": "多功能厅B", "category": "VENUE", "capacity": 120, "quantity": 1, "openFrom": "08:00", "openTo": "22:00", "createdAt": "${DEMO_DATE}T08:00:00+08:00" },
-    { "id": "00000000-0000-0000-0000-000000003201", "kind": "EQUIPMENT", "name": "投影设备组A", "category": "PROJECTOR", "capacity": null, "quantity": 2, "openFrom": "08:00", "openTo": "22:00", "createdAt": "${DEMO_DATE}T08:00:00+08:00" },
-    { "id": "00000000-0000-0000-0000-000000003202", "kind": "EQUIPMENT", "name": "投影设备组B", "category": "PROJECTOR", "capacity": null, "quantity": 2, "openFrom": "08:00", "openTo": "22:00", "createdAt": "${DEMO_DATE}T08:00:00+08:00" }
+    { "id": "00000000-0000-0000-0000-000000003101", "kind": "VENUE", "name": "学术报告厅A", "category": "VENUE", "capacity": 80, "quantity": 1, "openFrom": "08:00", "openTo": "22:00", "allowTeacher": true, "allowStudent": true, "createdAt": "${DEMO_DATE}T08:00:00+08:00" },
+    { "id": "00000000-0000-0000-0000-000000003102", "kind": "VENUE", "name": "多功能厅B", "category": "VENUE", "capacity": 120, "quantity": 1, "openFrom": "08:00", "openTo": "22:00", "allowTeacher": true, "allowStudent": true, "createdAt": "${DEMO_DATE}T08:00:00+08:00" },
+    { "id": "00000000-0000-0000-0000-000000003201", "kind": "EQUIPMENT", "name": "投影设备组A", "category": "PROJECTOR", "capacity": null, "quantity": 2, "openFrom": "08:00", "openTo": "22:00", "allowTeacher": true, "allowStudent": true, "createdAt": "${DEMO_DATE}T08:00:00+08:00" },
+    { "id": "00000000-0000-0000-0000-000000003202", "kind": "EQUIPMENT", "name": "投影设备组B", "category": "PROJECTOR", "capacity": null, "quantity": 2, "openFrom": "08:00", "openTo": "22:00", "allowTeacher": true, "allowStudent": true, "createdAt": "${DEMO_DATE}T08:00:00+08:00" },
+    { "id": "00000000-0000-0000-0000-000000003111", "kind": "VENUE", "name": "共享研讨室C", "category": "VENUE", "capacity": 80, "quantity": 1, "openFrom": "08:00", "openTo": "22:00", "allowTeacher": true, "allowStudent": true, "createdAt": "${DEMO_DATE}T08:00:00+08:00" },
+    { "id": "00000000-0000-0000-0000-000000003112", "kind": "VENUE", "name": "教师专用研讨室D", "category": "VENUE", "capacity": 80, "quantity": 1, "openFrom": "08:00", "openTo": "22:00", "allowTeacher": true, "allowStudent": false, "createdAt": "${DEMO_DATE}T08:00:00+08:00" },
+    { "id": "00000000-0000-0000-0000-000000003113", "kind": "VENUE", "name": "学生活动室E", "category": "VENUE", "capacity": 80, "quantity": 1, "openFrom": "08:00", "openTo": "22:00", "allowTeacher": false, "allowStudent": true, "createdAt": "${DEMO_DATE}T08:00:00+08:00" },
+    { "id": "00000000-0000-0000-0000-000000003114", "kind": "VENUE", "name": "封存测试厅F", "category": "VENUE", "capacity": 80, "quantity": 1, "openFrom": "08:00", "openTo": "22:00", "allowTeacher": false, "allowStudent": false, "createdAt": "${DEMO_DATE}T08:00:00+08:00" },
+    { "id": "00000000-0000-0000-0000-000000003211", "kind": "EQUIPMENT", "name": "投影设备组C", "category": "PROJECTOR", "capacity": null, "quantity": 2, "openFrom": "08:00", "openTo": "22:00", "allowTeacher": true, "allowStudent": true, "createdAt": "${DEMO_DATE}T08:00:00+08:00" },
+    { "id": "00000000-0000-0000-0000-000000003212", "kind": "EQUIPMENT", "name": "教师投影组D", "category": "PROJECTOR", "capacity": null, "quantity": 2, "openFrom": "08:00", "openTo": "22:00", "allowTeacher": true, "allowStudent": false, "createdAt": "${DEMO_DATE}T08:00:00+08:00" },
+    { "id": "00000000-0000-0000-0000-000000003213", "kind": "EQUIPMENT", "name": "学生投影组E", "category": "PROJECTOR", "capacity": null, "quantity": 2, "openFrom": "08:00", "openTo": "22:00", "allowTeacher": false, "allowStudent": true, "createdAt": "${DEMO_DATE}T08:00:00+08:00" },
+    { "id": "00000000-0000-0000-0000-000000003214", "kind": "EQUIPMENT", "name": "封存投影组F", "category": "PROJECTOR", "capacity": null, "quantity": 2, "openFrom": "08:00", "openTo": "22:00", "allowTeacher": false, "allowStudent": false, "createdAt": "${DEMO_DATE}T08:00:00+08:00" }
   ],
   "activities": [
     {

@@ -93,7 +93,7 @@ class ChangeRollbackIT {
     @Order(1)
     @DisplayName("D-AT-11 / TC-11-1 工作人员拒绝改期，A 原安排保留且报名解冻")
     void tc1101_staffRejectKeepsOriginalPlan() {
-        String owner = login("organizer_a");
+        String owner = login("applicant_a");
         String staff = login("staff_a");
         int version = readActivityVersion(owner, ACTIVITY_A.toString());
         int lockVersion = readActivityLockVersion(owner, ACTIVITY_A.toString());
@@ -132,11 +132,11 @@ class ChangeRollbackIT {
 
     @Test
     @Order(2)
-    @DisplayName("D-AT-11 / TC-11-2 教师驳回 PENDING_TEACHER 改期，A 原安排保留")
-    void tc1102_teacherRejectKeepsOriginalPlan() {
-        String owner = login("organizer_a");
+    @DisplayName("D-AT-11 / TC-11-2 批准人驳回 PENDING_APPROVER 改期，A 原安排保留")
+    void tc1102_approverRejectKeepsOriginalPlan() {
+        String owner = login("applicant_a");
         String staff = login("staff_a");
-        String teacher = login("teacher_a");
+        String approver = login("approver_a");
         int version = readActivityVersion(owner, ACTIVITY_A.toString());
         int lockVersion = readActivityLockVersion(owner, ACTIVITY_A.toString());
         String changeId = createPendingChange(owner, version, lockVersion,
@@ -145,18 +145,20 @@ class ChangeRollbackIT {
 
         HttpResult confirmed = confirmChange(staff, changeId, "APPROVE", "");
         assertEquals(200, confirmed.status(), () -> "工作人员同意失败：" + confirmed.body());
-        assertEquals("PENDING_TEACHER", getChangeStatus(owner, changeId));
+        assertEquals("PENDING_APPROVER", getChangeStatus(owner, changeId));
 
         Integer effectiveBefore = db.effectiveVersionNo(ACTIVITY_A);
         long activeBefore = db.activeReservationCount(ACTIVITY_A);
         long versionsBefore = countWhere("SELECT count(*) FROM activity_version WHERE activity_id = ?", ACTIVITY_A);
 
-        HttpResult rejected = teacherDecisionOnChange(teacher, changeId, "REJECT", "不同意（测试数据）");
-        assertEquals(200, rejected.status(), () -> "教师驳回失败：" + rejected.body());
+        HttpResult rejected = approverDecisionOnChange(approver, changeId, "REJECT", "不同意（测试数据）");
+        assertEquals(200, rejected.status(), () -> "批准人驳回失败：" + rejected.body());
         assertEquals("REJECTED", rejected.data().path("status").asText());
         assertEquals("REJECTED", getChangeStatus(owner, changeId));
-        assertNotNull(queryString("SELECT teacher_decision_json::text FROM change_request WHERE id = ?",
-                UUID.fromString(changeId)), "teacher_decision_json 应落库");
+        assertTrue(rejected.data().path("approverDecision").isObject(),
+                "ChangeView.approverDecision 应为批准决定对象");
+        assertNotNull(queryString("SELECT approver_decision_json::text FROM change_request WHERE id = ?",
+                UUID.fromString(changeId)), "approver_decision_json 应落库");
 
         assertEquals(effectiveBefore, db.effectiveVersionNo(ACTIVITY_A), "活动版本指针不得变化");
         assertEquals(activeBefore, db.activeReservationCount(ACTIVITY_A), "旧 ACTIVE 预约必须保留");
@@ -170,11 +172,11 @@ class ChangeRollbackIT {
     @Order(3)
     @DisplayName("D-AT-12 / TC-12-1 预览可行后被抢占，最终确认 CONFLICTED 且原安排保留")
     void tc1201_finalConfirmationConflictedWhenPreempted() {
-        String owner = login("organizer_a");
+        String owner = login("applicant_a");
         String staff = login("staff_a");
-        String teacher = login("teacher_a");
+        String approver = login("approver_a");
         String resource = login("resource_admin");
-        String organizerB = login("organizer_b");
+        String applicantB = login("applicant_b");
 
         int version = readActivityVersion(owner, ACTIVITY_A.toString());
         int lockVersion = readActivityLockVersion(owner, ACTIVITY_A.toString());
@@ -183,7 +185,7 @@ class ChangeRollbackIT {
                 VENUE_3102, EQUIP_3202, 2);
 
         assertEquals(200, confirmChange(staff, changeId, "APPROVE", "").status());
-        assertEquals(200, teacherDecisionOnChange(teacher, changeId, "APPROVE", "").status());
+        assertEquals(200, approverDecisionOnChange(approver, changeId, "APPROVE", "").status());
         assertEquals("PENDING_RESOURCE", getChangeStatus(owner, changeId));
 
         Integer effectiveBefore = db.effectiveVersionNo(ACTIVITY_A);
@@ -191,11 +193,11 @@ class ChangeRollbackIT {
         long versionsBefore = countWhere("SELECT count(*) FROM activity_version WHERE activity_id = ?", ACTIVITY_A);
 
         // 另一活动 Z 先占用候选资源 3102 + 3202×2（与改期目标完全重叠）
-        String zId = createApprovedUnreserved(organizerB, "抢占候选资源活动Z（测试数据）",
+        String zId = createApprovedUnreserved(applicantB, "抢占候选资源活动Z（测试数据）",
                 "2030-10-20T15:00:00+08:00", "2030-10-20T16:00:00+08:00", 30, 30,
                 VENUE_3102, EQUIP_3202, 2, 30, 20);
         HttpResult zConfirmed = call(HttpMethod.POST, "/api/v1/activities/" + zId + "/resource-confirm",
-                resource, idem(), toJson(versionCommand(readActivityLockVersion(organizerB, zId))));
+                resource, idem(), toJson(versionCommand(readActivityLockVersion(applicantB, zId))));
         assertEquals(200, zConfirmed.status(), () -> "Z 抢占资源失败：" + zConfirmed.body());
 
         HttpResult conflicted = resourceDecisionOnChange(resource, changeId, "APPROVE", idem(), "");
@@ -219,7 +221,7 @@ class ChangeRollbackIT {
     @Order(4)
     @DisplayName("D-AT-13 / TC-13-1 目标与自身旧占用重叠但排除自身后不误报")
     void tc1301_schedulePreviewExcludesSelf() {
-        String owner = login("organizer_a");
+        String owner = login("applicant_a");
         int baseVersion = readActivityVersion(owner, ACTIVITY_A.toString());
         long activeBefore = db.activeReservationCount(ACTIVITY_A);
         long changesBefore = countWhere("SELECT count(*) FROM change_request WHERE activity_id = ?", ACTIVITY_A);
@@ -251,9 +253,9 @@ class ChangeRollbackIT {
     @Order(5)
     @DisplayName("D-AT-14 / TC-14-1 replaceReservations 注入异常整体回滚，原 key 重试可继续")
     void tc1401_replaceReservationsFailureRollsBack() {
-        String owner = login("organizer_a");
+        String owner = login("applicant_a");
         String staff = login("staff_a");
-        String teacher = login("teacher_a");
+        String approver = login("approver_a");
         String resource = login("resource_admin");
 
         int version = readActivityVersion(owner, ACTIVITY_A.toString());
@@ -262,7 +264,7 @@ class ChangeRollbackIT {
                 "2030-10-20T18:00:00+08:00", "2030-10-20T19:00:00+08:00", 30, 30,
                 VENUE_3102, EQUIP_3202, 2);
         assertEquals(200, confirmChange(staff, changeId, "APPROVE", "").status());
-        assertEquals(200, teacherDecisionOnChange(teacher, changeId, "APPROVE", "").status());
+        assertEquals(200, approverDecisionOnChange(approver, changeId, "APPROVE", "").status());
         assertEquals("PENDING_RESOURCE", getChangeStatus(owner, changeId));
 
         Integer beforeEffectiveVersion = db.effectiveVersionNo(ACTIVITY_A);
@@ -323,11 +325,11 @@ class ChangeRollbackIT {
         return call(HttpMethod.POST, "/api/v1/changes/" + changeId + "/confirmation", token, idem(), toJson(body));
     }
 
-    private HttpResult teacherDecisionOnChange(String token, String changeId, String decision, String comment) {
+    private HttpResult approverDecisionOnChange(String token, String changeId, String decision, String comment) {
         ObjectNode body = MAPPER.createObjectNode();
         body.put("decision", decision);
         body.put("comment", comment);
-        return call(HttpMethod.POST, "/api/v1/changes/" + changeId + "/teacher-decision",
+        return call(HttpMethod.POST, "/api/v1/changes/" + changeId + "/approver-decision",
                 token, idem(), toJson(body));
     }
 
@@ -361,11 +363,11 @@ class ChangeRollbackIT {
                 ownerToken, idem(), toJson(versionCommand(lockVersion)));
         assertEquals(200, submitted.status(), () -> "提交活动失败：" + submitted.body());
 
-        String teacher = login("teacher_a");
-        HttpResult approved = call(HttpMethod.POST, "/api/v1/activities/" + activityId + "/teacher-decision",
-                teacher, idem(),
+        String approver = login("approver_a");
+        HttpResult approved = call(HttpMethod.POST, "/api/v1/activities/" + activityId + "/approver-decision",
+                approver, idem(),
                 toJson(decisionBody("APPROVE", "", submitted.data().path("lockVersion").asInt())));
-        assertEquals(200, approved.status(), () -> "教师审批失败：" + approved.body());
+        assertEquals(200, approved.status(), () -> "批准人审批失败：" + approved.body());
         assertEquals("APPROVED_UNRESERVED", approved.data().path("status").asText());
         return activityId;
     }

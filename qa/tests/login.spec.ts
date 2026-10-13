@@ -27,14 +27,14 @@ const HASH_KEY_PATTERN = /passwordHash|password_hash/i;
 
 test.describe('D-AT-01 登录、令牌与响应脱敏', () => {
   test(
-    'TC-01-1 organizer_a 正常登录进入主页，登录响应无密码字段、页面无散列信息',
+    'TC-01-1 applicant_a 正常登录进入主页，登录响应无密码字段、页面无散列信息',
     { annotation: [{ type: 'D-AT', description: 'D-AT-01' }, { type: 'TC', description: 'TC-01-1' }] },
     async ({ browser }) => {
       const context = await browser.newContext();
       const page = await context.newPage();
       try {
         await page.goto('/login');
-        await page.getByLabel(/账号|用户名/).fill(USERS.organizerA);
+        await page.getByLabel(/账号|用户名/).fill(USERS.applicantA);
         await page.getByLabel(/密码/).fill(DEMO_PASSWORD);
 
         const [loginResponse] = await Promise.all([
@@ -69,7 +69,7 @@ test.describe('D-AT-01 登录、令牌与响应脱敏', () => {
       const page = await context.newPage();
       try {
         await page.goto('/login');
-        await page.getByLabel(/账号|用户名/).fill(USERS.organizerA);
+        await page.getByLabel(/账号|用户名/).fill(USERS.applicantA);
         await page.getByLabel(/密码/).fill('wrong-password-for-dat01');
 
         const [failResponse] = await Promise.all([
@@ -113,7 +113,7 @@ test.describe('D-AT-01 登录、令牌与响应脱敏', () => {
       const page = await context.newPage();
       try {
         await page.goto('/login');
-        await page.getByLabel(/账号|用户名/).fill(USERS.organizerA);
+        await page.getByLabel(/账号|用户名/).fill(USERS.applicantA);
         await page.getByLabel(/密码/).fill(DEMO_PASSWORD);
         await page.getByTestId(TESTID.loginSubmit).click();
         await expect(page).toHaveURL(/\/activities(?:[/?#]|$)/);

@@ -39,7 +39,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * D-AT-01 / D-AT-02 / D-AT-08 / D-AT-20 / D-AT-21 集成验收测试（Permissions）。
  *
  * <p>对应设计：{@code docs/testing/test-design.md} 的 TC-01-1/2/3、TC-02-1/2/3、TC-08-1/2、
- * TC-20-1/2、TC-21-1/2/3。断言依据 02 数据与接口契约（字段名、错误码、响应包装、幂等键规则）
+ * TC-20-1/2、TC-21-1/2/3/4。断言依据 02 数据与接口契约（字段名、错误码、响应包装、幂等键规则、API-04 目录语义）
  * 与 01 开发基线（状态机、占用区间）。
  *
  * <p>装载数据：{@code test-data/demo.json}（固定 Clock=2030-10-19T00:00:00Z、DEMO_DATE=2030-10-20）。
@@ -57,14 +57,14 @@ class PermissionsIT {
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     private static final UUID ORG_1001 = UUID.fromString("00000000-0000-0000-0000-000000001001");
-    private static final UUID USER_ORGANIZER_A = UUID.fromString("00000000-0000-0000-0000-000000002001");
-    private static final UUID USER_ORGANIZER_B = UUID.fromString("00000000-0000-0000-0000-000000002002");
-    private static final UUID USER_TEACHER_A = UUID.fromString("00000000-0000-0000-0000-000000002003");
-    private static final UUID USER_RESOURCE_ADMIN = UUID.fromString("00000000-0000-0000-0000-000000002004");
+    private static final UUID USER_APPLICANT_A = UUID.fromString("00000000-0000-0000-0000-000000002001");
+    private static final UUID USER_APPLICANT_B = UUID.fromString("00000000-0000-0000-0000-000000002002");
+    private static final UUID USER_APPROVER_A = UUID.fromString("00000000-0000-0000-0000-000000002003");
+    private static final UUID USER_RES_ADMIN = UUID.fromString("00000000-0000-0000-0000-000000002004");
     private static final UUID USER_STUDENT_A = UUID.fromString("00000000-0000-0000-0000-000000002005");
     private static final UUID USER_STAFF_A = UUID.fromString("00000000-0000-0000-0000-000000002006");
-    private static final UUID USER_SYS_ADMIN = UUID.fromString("00000000-0000-0000-0000-000000002007");
-    private static final UUID USER_TEACHER_OTHER = UUID.fromString("00000000-0000-0000-0000-000000002008");
+    private static final UUID USER_ACCOUNT_ADMIN = UUID.fromString("00000000-0000-0000-0000-000000002007");
+    private static final UUID USER_APPROVER_OTHER = UUID.fromString("00000000-0000-0000-0000-000000002008");
     private static final UUID USER_STUDENT_B = UUID.fromString("00000000-0000-0000-0000-000000002009");
 
     private static final UUID ACTIVITY_A = UUID.fromString("00000000-0000-0000-0000-000000004001");
@@ -89,7 +89,7 @@ class PermissionsIT {
         long sessionsBefore = countWhere("SELECT count(*) FROM auth_session");
 
         HttpResult login = call(HttpMethod.POST, "/api/v1/auth/login", null, null,
-                toJson(loginBody("organizer_a", demoPassword())));
+                toJson(loginBody("applicant_a", demoPassword())));
         assertEquals(200, login.status(), () -> "登录失败：" + login.body());
         assertTrue(login.body().hasNonNull("requestId"));
         JsonNode data = login.data();
@@ -98,9 +98,14 @@ class PermissionsIT {
         assertDoesNotThrow(() -> OffsetDateTime.parse(data.path("expiresAt").asText()),
                 "expiresAt 应为带时区 ISO8601");
         JsonNode user = data.path("user");
-        assertEquals(USER_ORGANIZER_A.toString(), user.path("id").asText());
+        assertEquals(USER_APPLICANT_A.toString(), user.path("id").asText());
         assertEquals(ORG_1001.toString(), user.path("organizationId").asText());
-        assertTrue(rolesContain(user.path("roles"), "ORGANIZER"));
+        assertEquals("TEACHER", user.path("identity").asText(), "Actor 应含独立 identity");
+        assertTrue(user.path("enabled").asBoolean(), "Actor 应含 enabled");
+        assertTrue(rolesContain(user.path("roles"), "APPLICANT"));
+        assertTrue(user.path("permissions").isArray(), "Actor 应含 permissions 数组");
+        assertTrue(user.path("approvalScopes").isArray(), "Actor 应含 approvalScopes 数组");
+        assertTrue(user.path("managedResourceIds").isArray(), "Actor 应含 managedResourceIds 数组");
         assertNoSecretKeys(login.body());
 
         assertEquals(sessionsBefore + 1, countWhere("SELECT count(*) FROM auth_session"));
@@ -109,9 +114,10 @@ class PermissionsIT {
 
         HttpResult me = call(HttpMethod.GET, "/api/v1/auth/me", token, null, null);
         assertEquals(200, me.status(), () -> "/auth/me 失败：" + me.body());
-        assertEquals(USER_ORGANIZER_A.toString(), me.data().path("id").asText());
+        assertEquals(USER_APPLICANT_A.toString(), me.data().path("id").asText());
         assertEquals(ORG_1001.toString(), me.data().path("organizationId").asText());
-        assertTrue(rolesContain(me.data().path("roles"), "ORGANIZER"));
+        assertEquals("TEACHER", me.data().path("identity").asText(), "/auth/me 应含独立 identity");
+        assertTrue(rolesContain(me.data().path("roles"), "APPLICANT"));
         assertNoSecretKeys(me.body());
     }
 
@@ -121,7 +127,7 @@ class PermissionsIT {
         long sessionsBefore = countWhere("SELECT count(*) FROM auth_session");
 
         HttpResult bad = call(HttpMethod.POST, "/api/v1/auth/login", null, null,
-                toJson(loginBody("organizer_a", "wrong-password-" + UUID.randomUUID())));
+                toJson(loginBody("applicant_a", "wrong-password-" + UUID.randomUUID())));
         assertEquals(401, bad.status());
         assertEquals("UNAUTHENTICATED", bad.errorCode());
         assertTrue(bad.body().hasNonNull("requestId"));
@@ -134,7 +140,7 @@ class PermissionsIT {
                 "失败登录不应产生会话行");
 
         HttpResult good = call(HttpMethod.POST, "/api/v1/auth/login", null, null,
-                toJson(loginBody("organizer_a", demoPassword())));
+                toJson(loginBody("applicant_a", demoPassword())));
         assertEquals(200, good.status(), "账号不应被锁死，正确密码仍可登录");
         assertFalse(good.data().path("token").asText().isBlank());
     }
@@ -142,11 +148,11 @@ class PermissionsIT {
     @Test
     @DisplayName("D-AT-01 / TC-01-3 停用账号使旧令牌失效，末尾恢复启用")
     void tc0103_disabledAccountInvalidatesOldToken() {
-        String sysToken = login("sys_admin");
+        String adminToken = login("account_admin");
         String studentToken = login("student_a");
 
         HttpResult disabled = call(HttpMethod.PATCH, "/api/v1/users/" + USER_STUDENT_A + "/enabled",
-                sysToken, idem(), toJson(boolBody("enabled", false)));
+                adminToken, idem(), toJson(boolBody("enabled", false)));
         assertEquals(200, disabled.status(), () -> "停用失败：" + disabled.body());
         assertTrue(disabled.data().path("ok").asBoolean());
         assertFalse(queryBool("SELECT enabled FROM app_user WHERE id = ?", USER_STUDENT_A));
@@ -156,7 +162,7 @@ class PermissionsIT {
             assertEquals(401, me.status(), "停用后旧令牌必须 401");
         } finally {
             HttpResult restored = call(HttpMethod.PATCH, "/api/v1/users/" + USER_STUDENT_A + "/enabled",
-                    sysToken, idem(), toJson(boolBody("enabled", true)));
+                    adminToken, idem(), toJson(boolBody("enabled", true)));
             assertEquals(200, restored.status());
         }
         assertTrue(queryBool("SELECT enabled FROM app_user WHERE id = ?", USER_STUDENT_A),
@@ -166,30 +172,30 @@ class PermissionsIT {
     // ------------------------------------------------------------------ D-AT-02
 
     @Test
-    @DisplayName("D-AT-02 / TC-02-1 外院教师审批本组织活动 403")
-    void tc0201_teacherFromOtherOrgCannotDecide() {
-        String owner = login("organizer_a");
-        String teacherOther = login("teacher_other");
+    @DisplayName("D-AT-02 / TC-02-1 外院批准人审批本组织活动 403")
+    void tc0201_approverFromOtherOrgCannotDecide() {
+        String owner = login("applicant_a");
+        String approverOther = login("approver_other");
         ActivitySnapshot before = snapshotA();
         int lockVersion = readActivityLockVersion(owner, ACTIVITY_A.toString());
 
-        HttpResult r = call(HttpMethod.POST, "/api/v1/activities/" + ACTIVITY_A + "/teacher-decision",
-                teacherOther, idem(), toJson(decisionBody("APPROVE", "", lockVersion)));
+        HttpResult r = call(HttpMethod.POST, "/api/v1/activities/" + ACTIVITY_A + "/approver-decision",
+                approverOther, idem(), toJson(decisionBody("APPROVE", "", lockVersion)));
         assertEquals(403, r.status());
         assertEquals("FORBIDDEN", r.errorCode());
         assertAUnchanged(before);
     }
 
     @Test
-    @DisplayName("D-AT-02 / TC-02-2 SYS_ADMIN 无业务审批权 403")
-    void tc0202_sysAdminHasNoBusinessApproval() {
-        String owner = login("organizer_a");
-        String sysToken = login("sys_admin");
+    @DisplayName("D-AT-02 / TC-02-2 account_admin 无业务审批权 403")
+    void tc0202_accountAdminHasNoBusinessApproval() {
+        String owner = login("applicant_a");
+        String adminToken = login("account_admin");
         ActivitySnapshot before = snapshotA();
         int lockVersion = readActivityLockVersion(owner, ACTIVITY_A.toString());
 
-        HttpResult r = call(HttpMethod.POST, "/api/v1/activities/" + ACTIVITY_A + "/teacher-decision",
-                sysToken, idem(), toJson(decisionBody("APPROVE", "", lockVersion)));
+        HttpResult r = call(HttpMethod.POST, "/api/v1/activities/" + ACTIVITY_A + "/approver-decision",
+                adminToken, idem(), toJson(decisionBody("APPROVE", "", lockVersion)));
         assertEquals(403, r.status());
         assertEquals("FORBIDDEN", r.errorCode());
         assertAUnchanged(before);
@@ -198,8 +204,8 @@ class PermissionsIT {
     @Test
     @DisplayName("D-AT-02 / TC-02-3 非所有者编辑活动 403")
     void tc0203_nonOwnerCannotEdit() {
-        String owner = login("organizer_a");
-        String organizerB = login("organizer_b");
+        String owner = login("applicant_a");
+        String applicantB = login("applicant_b");
         ActivitySnapshot before = snapshotA();
         int lockVersion = readActivityLockVersion(owner, ACTIVITY_A.toString());
 
@@ -209,7 +215,7 @@ class PermissionsIT {
                 planNode("2030-10-20T10:00:00+08:00", "2030-10-20T11:00:00+08:00",
                         30, 30, VENUE_3101, EQUIP_3201, 2)));
         HttpResult r = call(HttpMethod.PATCH, "/api/v1/activities/" + ACTIVITY_A,
-                organizerB, idem(), toJson(edit));
+                applicantB, idem(), toJson(edit));
         assertEquals(403, r.status());
         assertEquals("FORBIDDEN", r.errorCode());
         assertAUnchanged(before);
@@ -220,7 +226,7 @@ class PermissionsIT {
     @Test
     @DisplayName("D-AT-08 / TC-08-1 同 key 同 body 重复资源确认不新增记录")
     void tc0801_replaySameKeySameBodyReturnsFirstResponse() {
-        String owner = login("organizer_a");
+        String owner = login("applicant_a");
         String resource = login("resource_admin");
         String activityId = createApprovedUnreserved(owner, "幂等确认活动（测试数据）",
                 "2030-10-20T13:00:00+08:00", "2030-10-20T14:00:00+08:00",
@@ -231,7 +237,7 @@ class PermissionsIT {
 
         long receiptsBefore = countWhere(
                 "SELECT count(*) FROM command_receipt WHERE actor_id = ? AND idempotency_key = ?",
-                USER_RESOURCE_ADMIN, key);
+                USER_RES_ADMIN, key);
         long reservationsBefore = countWhere("SELECT count(*) FROM reservation WHERE activity_id = ?",
                 UUID.fromString(activityId));
 
@@ -242,7 +248,7 @@ class PermissionsIT {
 
         long receiptsAfterFirst = countWhere(
                 "SELECT count(*) FROM command_receipt WHERE actor_id = ? AND idempotency_key = ?",
-                USER_RESOURCE_ADMIN, key);
+                USER_RES_ADMIN, key);
         long reservationsAfterFirst = countWhere("SELECT count(*) FROM reservation WHERE activity_id = ?",
                 UUID.fromString(activityId));
         assertEquals(receiptsBefore + 1, receiptsAfterFirst, "确认成功应写入 1 条 command_receipt");
@@ -257,7 +263,7 @@ class PermissionsIT {
                 "重放应保留首次 requestId");
         assertEquals(receiptsAfterFirst, countWhere(
                         "SELECT count(*) FROM command_receipt WHERE actor_id = ? AND idempotency_key = ?",
-                        USER_RESOURCE_ADMIN, key),
+                        USER_RES_ADMIN, key),
                 "重放不得新增 command_receipt");
         assertEquals(reservationsAfterFirst, countWhere("SELECT count(*) FROM reservation WHERE activity_id = ?",
                         UUID.fromString(activityId)),
@@ -267,7 +273,7 @@ class PermissionsIT {
     @Test
     @DisplayName("D-AT-08 / TC-08-2 同 key 不同 body 409 IDEMPOTENCY_KEY_REUSED")
     void tc0802_sameKeyDifferentBodyRejected() {
-        String owner = login("organizer_a");
+        String owner = login("applicant_a");
         String resource = login("resource_admin");
         String activityId = createApprovedUnreserved(owner, "幂等冲突活动（测试数据）",
                 "2030-10-20T13:00:00+08:00", "2030-10-20T14:00:00+08:00",
@@ -287,7 +293,7 @@ class PermissionsIT {
         assertEquals("IDEMPOTENCY_KEY_REUSED", reused.errorCode());
         assertEquals(1L, countWhere(
                         "SELECT count(*) FROM command_receipt WHERE actor_id = ? AND idempotency_key = ?",
-                        USER_RESOURCE_ADMIN, key),
+                        USER_RES_ADMIN, key),
                 "键只能对应 1 条 command_receipt");
         assertEquals(reservationsAfterFirst, countWhere("SELECT count(*) FROM reservation WHERE activity_id = ?",
                         UUID.fromString(activityId)),
@@ -299,7 +305,7 @@ class PermissionsIT {
     @Test
     @DisplayName("D-AT-20 / TC-20-1/2 旧 baseVersionNo 与旧 expectedLockVersion 均 409 STALE_VERSION")
     void tc2001And02_staleVersionProtection() {
-        String owner = login("organizer_a");
+        String owner = login("applicant_a");
 
         ObjectNode inputV1 = activityInput("陈旧版本保护活动（测试数据）", 5, 5, List.of(),
                 planNode("2030-10-20T17:00:00+08:00", "2030-10-20T18:00:00+08:00",
@@ -322,10 +328,10 @@ class PermissionsIT {
                 owner, idem(), toJson(versionCommand(edited.data().path("lockVersion").asInt())));
         assertEquals(200, submitted.status(), () -> "提交失败：" + submitted.body());
 
-        String teacher = login("teacher_a");
-        HttpResult approved = call(HttpMethod.POST, "/api/v1/activities/" + activityId + "/teacher-decision",
-                teacher, idem(), toJson(decisionBody("APPROVE", "", submitted.data().path("lockVersion").asInt())));
-        assertEquals(200, approved.status(), () -> "教师审批失败：" + approved.body());
+        String approver = login("approver_a");
+        HttpResult approved = call(HttpMethod.POST, "/api/v1/activities/" + activityId + "/approver-decision",
+                approver, idem(), toJson(decisionBody("APPROVE", "", submitted.data().path("lockVersion").asInt())));
+        assertEquals(200, approved.status(), () -> "批准人审批失败：" + approved.body());
 
         String resource = login("resource_admin");
         int confirmLock = readActivityLockVersion(owner, activityId);
@@ -413,7 +419,7 @@ class PermissionsIT {
     @Test
     @DisplayName("D-AT-21 / TC-21-3 工作人员读取变更详情名单裁剪但计数真实")
     void tc2103_changeViewRedactedForStaff() {
-        String owner = login("organizer_a");
+        String owner = login("applicant_a");
         String staff = login("staff_a");
         int version = readActivityVersion(owner, ACTIVITY_A.toString());
         int lockVersion = readActivityLockVersion(owner, ACTIVITY_A.toString());
@@ -438,6 +444,41 @@ class PermissionsIT {
         assertTrue(ownerImpact.path("registeredUserIds").size() > 0, "所有者视角 registeredUserIds 应非空");
         assertTrue(ownerImpact.path("notificationUserIds").size() > 0, "所有者视角 notificationUserIds 应非空");
         assertEquals(staffImpact.path("registeredCount").asInt(), ownerImpact.path("registeredCount").asInt());
+    }
+
+    @Test
+    @DisplayName("D-AT-21 / TC-21-4 账号列表 purpose=staff 与无 purpose 的权限差异（API-04）")
+    void tc2104_userDirectoryPurposePermissions() {
+        String applicant = login("applicant_a");
+        HttpResult staffList = call(HttpMethod.GET, "/api/v1/users?purpose=staff", applicant, null, null);
+        assertEquals(200, staffList.status(), () -> "申请人查询同组织启用账号应成功：" + staffList.body());
+        JsonNode staff = staffList.data();
+        assertTrue(staff.isArray(), "purpose=staff 应返回 StaffView 数组");
+        assertFalse(staff.isEmpty(), "应返回同组织启用账号");
+        for (JsonNode entry : staff) {
+            assertTrue(entry.hasNonNull("id"), "StaffView 应含 id");
+            assertTrue(entry.hasNonNull("displayName"), "StaffView 应含 displayName");
+            assertEquals(ORG_1001.toString(), entry.path("organizationId").asText(),
+                    "仅返回同组织账号：" + entry);
+            assertTrue(entry.path("enabled").asBoolean(), "仅返回启用账号：" + entry);
+            assertFalse(entry.has("roles"), "StaffView 不得以 Actor 形式泄露角色：" + entry);
+            assertFalse(entry.has("permissions"), "StaffView 不得泄露权限：" + entry);
+        }
+
+        HttpResult applicantNoPurpose = call(HttpMethod.GET, "/api/v1/users", applicant, null, null);
+        assertEquals(403, applicantNoPurpose.status(),
+                () -> "无 purpose 需 ADMIN+USER_MANAGE，申请人应 403：" + applicantNoPurpose.body());
+        assertEquals("FORBIDDEN", applicantNoPurpose.errorCode());
+
+        String accountAdmin = login("account_admin");
+        HttpResult adminNoPurpose = call(HttpMethod.GET, "/api/v1/users", accountAdmin, null, null);
+        assertEquals(200, adminNoPurpose.status(),
+                () -> "账号管理员查询 Actor 列表应成功：" + adminNoPurpose.body());
+        JsonNode actors = adminNoPurpose.data();
+        assertTrue(actors.isArray(), "无 purpose 应返回 Actor 数组");
+        assertFalse(actors.isEmpty(), "Actor 列表不应为空");
+        assertTrue(actors.get(0).has("identity"), "Actor 应含 identity");
+        assertTrue(actors.get(0).has("roles"), "Actor 应含 roles");
     }
 
     // ------------------------------------------------------------------ 支撑
@@ -478,11 +519,11 @@ class PermissionsIT {
                 ownerToken, idem(), toJson(versionCommand(lockVersion)));
         assertEquals(200, submitted.status(), () -> "提交活动失败：" + submitted.body());
 
-        String teacher = login("teacher_a");
-        HttpResult approved = call(HttpMethod.POST, "/api/v1/activities/" + activityId + "/teacher-decision",
-                teacher, idem(),
+        String approver = login("approver_a");
+        HttpResult approved = call(HttpMethod.POST, "/api/v1/activities/" + activityId + "/approver-decision",
+                approver, idem(),
                 toJson(decisionBody("APPROVE", "", submitted.data().path("lockVersion").asInt())));
-        assertEquals(200, approved.status(), () -> "教师审批失败：" + approved.body());
+        assertEquals(200, approved.status(), () -> "批准人审批失败：" + approved.body());
         assertEquals("APPROVED_UNRESERVED", approved.data().path("status").asText());
         return activityId;
     }

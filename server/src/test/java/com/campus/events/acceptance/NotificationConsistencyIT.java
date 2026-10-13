@@ -79,13 +79,13 @@ class NotificationConsistencyIT {
     @Test
     @DisplayName("D-AT-19 / TC-19-1 首次消费失败恢复且重复消费不重发")
     void consumerFailureRecoversAndDuplicateDeliveryIsIdempotent() {
-        String organizer = login("organizer_a");
+        String applicant = login("applicant_a");
         String staff = login("staff_a");
 
         assertEquals(0, totalNotifications(), "前置：当前 schema 内应无通知");
 
         // 业务提交（创建改期）与 outbox 同事务；随后注入的投递失败不得回滚已提交安排
-        HttpResult create = createChange(ACTIVITY_A, 1, currentLockVersion(ACTIVITY_A), organizer);
+        HttpResult create = createChange(ACTIVITY_A, 1, currentLockVersion(ACTIVITY_A), applicant);
         assertEquals(201, create.status(), "创建改期应成功：" + create.body());
         UUID changeId = UUID.fromString(create.body().path("data").path("id").asText());
         assertEquals("AWAITING_CONFIRMATIONS", changeStatus(changeId), "业务应已提交");

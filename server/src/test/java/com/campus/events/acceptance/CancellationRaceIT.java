@@ -68,18 +68,18 @@ class CancellationRaceIT {
     @Test
     @DisplayName("D-AT-17 / TC-17-1 取消两次不多释放、不复活")
     void cancelTwiceDoesNotOverReleaseNorRevive() {
-        String organizer = login("organizer_a");
+        String applicant = login("applicant_a");
         String staff = login("staff_a");
 
         // 先制造一个待处理改期：取消后必须作废，且其确认请求不得复活业务
-        HttpResult create = createChange(ACTIVITY_A, 1, currentLockVersion(ACTIVITY_A), organizer);
+        HttpResult create = createChange(ACTIVITY_A, 1, currentLockVersion(ACTIVITY_A), applicant);
         assertEquals(201, create.status(), "创建改期应成功：" + create.body());
         UUID changeId = UUID.fromString(create.body().path("data").path("id").asText());
         assertEquals("AWAITING_CONFIRMATIONS", changeStatus(changeId));
 
         int lock = currentLockVersion(ACTIVITY_A);
         String cancelKey = UUID.randomUUID().toString();
-        HttpResult first = cancel(ACTIVITY_A, lock, cancelKey, organizer);
+        HttpResult first = cancel(ACTIVITY_A, lock, cancelKey, applicant);
         assertEquals(200, first.status(), "首次取消应成功：" + first.body());
         assertEquals("CANCELLED", first.body().path("data").path("status").asText());
 
@@ -93,13 +93,13 @@ class CancellationRaceIT {
         assertEquals("CANCELLED", registrationStatus(ACTIVITY_A, STUDENT_A), "有效报名应转 CANCELLED");
 
         // 第二次：同 key 同 body 重放，返回首次结果且不得额外释放
-        HttpResult replay = cancel(ACTIVITY_A, lock, cancelKey, organizer);
+        HttpResult replay = cancel(ACTIVITY_A, lock, cancelKey, applicant);
         assertEquals(200, replay.status(), "同 key 重放应返回首次成功结果：" + replay.body());
         assertEquals(releasedAfterFirst, releasedReservationCount(ACTIVITY_A), "重放不得额外释放预约");
         assertEquals(totalAfterFirst, totalReservationCount(ACTIVITY_A));
 
         // 第三次：不同 key，活动已 CANCELLED，应被拒绝且不得再次释放
-        HttpResult other = cancel(ACTIVITY_A, currentLockVersion(ACTIVITY_A), UUID.randomUUID().toString(), organizer);
+        HttpResult other = cancel(ACTIVITY_A, currentLockVersion(ACTIVITY_A), UUID.randomUUID().toString(), applicant);
         assertEquals(409, other.status(), "已取消活动再次取消应 409：" + other.body());
         assertEquals(releasedAfterFirst, releasedReservationCount(ACTIVITY_A));
         assertEquals(totalAfterFirst, totalReservationCount(ACTIVITY_A));
@@ -109,7 +109,7 @@ class CancellationRaceIT {
         ObjectNode confirmBody = MAPPER.createObjectNode();
         confirmBody.put("expectedLockVersion", currentLockVersion(ACTIVITY_A));
         HttpResult confirm = call(HttpMethod.POST, "/api/v1/activities/" + ACTIVITY_A + "/resource-confirm",
-                organizer, UUID.randomUUID().toString(), confirmBody);
+                applicant, UUID.randomUUID().toString(), confirmBody);
         assertEquals(409, confirm.status(), "取消后资源确认应被拒：" + confirm.body());
         assertEquals(0, db.activeReservationCount(ACTIVITY_A));
 
@@ -131,28 +131,28 @@ class CancellationRaceIT {
     @Test
     @DisplayName("D-AT-17 / TC-17-2 取消与改期资源确认并发终态一致")
     void cancelRacesResourceDecisionToConsistentTerminalState() {
-        String organizerB = login("organizer_b");
-        String teacher = login("teacher_a");
+        String applicantB = login("applicant_b");
+        String approver = login("approver_a");
         String resourceAdmin = login("resource_admin");
 
-        // 让 4002 走到 PENDING_RESOURCE：无工作人员，创建后直接 PENDING_TEACHER
-        HttpResult create = createChange(ACTIVITY_B, 1, currentLockVersion(ACTIVITY_B), organizerB);
+        // 让 4002 走到 PENDING_RESOURCE：无工作人员，创建后直接 PENDING_APPROVER
+        HttpResult create = createChange(ACTIVITY_B, 1, currentLockVersion(ACTIVITY_B), applicantB);
         assertEquals(201, create.status(), "创建改期应成功：" + create.body());
         UUID changeId = UUID.fromString(create.body().path("data").path("id").asText());
-        assertEquals("PENDING_TEACHER", changeStatus(changeId), "无工作人员时改期应直接 PENDING_TEACHER");
+        assertEquals("PENDING_APPROVER", changeStatus(changeId), "无工作人员时改期应直接 PENDING_APPROVER");
 
         ObjectNode approve = MAPPER.createObjectNode();
         approve.put("decision", "APPROVE");
         approve.put("comment", "");
-        HttpResult teacherDecision = call(HttpMethod.POST, "/api/v1/changes/" + changeId + "/teacher-decision",
-                teacher, UUID.randomUUID().toString(), approve);
-        assertEquals(200, teacherDecision.status(), "教师同意应成功：" + teacherDecision.body());
+        HttpResult approverDecision = call(HttpMethod.POST, "/api/v1/changes/" + changeId + "/approver-decision",
+                approver, UUID.randomUUID().toString(), approve);
+        assertEquals(200, approverDecision.status(), "批准人同意应成功：" + approverDecision.body());
         assertEquals("PENDING_RESOURCE", changeStatus(changeId));
 
         int lock = currentLockVersion(ACTIVITY_B);
         String cancelKey = UUID.randomUUID().toString();
         List<ConcurrentRunner.DbTask<HttpResult>> tasks = List.of(
-                conn -> cancel(ACTIVITY_B, lock, cancelKey, organizerB),
+                conn -> cancel(ACTIVITY_B, lock, cancelKey, applicantB),
                 conn -> call(HttpMethod.POST, "/api/v1/changes/" + changeId + "/resource-decision",
                         resourceAdmin, UUID.randomUUID().toString(), approve));
         List<HttpResult> race = ConcurrentRunner.run(db.dataSource(), tasks);
@@ -163,7 +163,7 @@ class CancellationRaceIT {
         // 验证「取消始终可覆盖待处理改期」（01 §6），再断言联合终态。
         if (!"CANCELLED".equals(db.activityStatus(ACTIVITY_B))) {
             HttpResult retry = cancel(ACTIVITY_B, currentLockVersion(ACTIVITY_B),
-                    UUID.randomUUID().toString(), organizerB);
+                    UUID.randomUUID().toString(), applicantB);
             assertEquals(200, retry.status(), "资源确认先提交后取消仍应成功：" + retry.body());
         }
 
@@ -247,7 +247,7 @@ class CancellationRaceIT {
     private long pendingChangeCount(UUID activityId) {
         Long count = db.jdbc().queryForObject(
                 "SELECT count(*) FROM change_request WHERE activity_id = ? "
-                        + "AND status IN ('AWAITING_CONFIRMATIONS','PENDING_TEACHER','PENDING_RESOURCE')",
+                        + "AND status IN ('AWAITING_CONFIRMATIONS','PENDING_APPROVER','PENDING_RESOURCE')",
                 Long.class, activityId);
         return count == null ? 0 : count;
     }
