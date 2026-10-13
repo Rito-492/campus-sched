@@ -7,7 +7,7 @@
 | 编号 | 场景摘要 | 需求关联 | 主责 | QA 执行落点 | 状态 |
 |---|---|---|---|---|---|
 | D-AT-01 | 登录/错密码/停用后旧令牌 401；响应无 passwordHash | FR-01 | PM | PermissionsIT-01 + login.spec | ⬜ 未执行 |
-| D-AT-02 | approver_other/account_admin/applicant_b 越权均 403 无变化 | FR-02 | PM+AN | PermissionsIT-02 | ⬜ 未执行 |
+| D-AT-02 | approver_other/account_admin/applicant_b 越权均 403 无变化 | FR-02 | PM+AN | PermissionsIT（TC-02组） | ⬜ 未执行 |
 | D-AT-03 | 新建→编辑→提交→批准→资源确认→发布；首确前 0 ACTIVE | FR-03 | AN | AN自测 + happy.spec 复核 | ⬜ 未执行 |
 | D-AT-04 | 相邻占用可共存；布场 15 分钟产生边界冲突 | FR-04 | DS | DS自测 + Bench(SCH-05) | ⬜ 未执行 |
 | D-AT-05 | 错峰占用峰值恰 2，不得误算 3 | FR-05 | DS | DS自测 + Bench(SCH-06) | ⬜ 未执行 |
@@ -30,12 +30,12 @@
 | D-AT-22 | first-fit vs RANKED 300 候选对比 | NFR-评测 | DS+测试 | SchedulingBenchmarkIT + evaluate | ⬜ 未执行 |
 | D-AT-23 | 刷新/重启后状态来自真实持久化 | FR-23 | UI+配置 | happy.spec（reload 断言） | ⬜ 未执行 |
 | D-AT-24 | 干净环境按发布说明启动换角色答辩 | FR-24 | 全员 | 发布演练（check.ps1 + 人工） | ⬜ 未执行 |
-| N-AT-01 | 身份与角色分离：教师申请人/学生申请人/仅账号管理员调用审批复核 | 身份规则 | PM+AN | PermissionsIT-N01 | ⬜ 未执行 |
-| N-AT-02 | 两类身份×四种资源资格（3111-3114/3211-3214），UI+HTTP 双通道 | 资格规则 | DS+UI | PermissionsIT-N02 + conflict.spec | ⬜ 未执行 |
-| N-AT-03 | 候选过滤受限资源；强制提交仍拒绝；按所有者身份校验 | 资格规则 | DS | PermissionsIT-N03 + Bench | ⬜ 未执行 |
-| N-AT-04 | 提交后改身份/资格：未确认用最新设置；旧预约保留；新目标不合资格拒绝 | 资格规则 | AN+CM | PermissionsIT-N04 | ⬜ 未执行 |
-| N-AT-05 | 所有者兼任 APPROVER/RESOURCE_CONFIRM 对本人申请 4 种审核全拒 | 回避规则 | PM+AN | PermissionsIT-N05 | ⬜ 未执行 |
-| N-AT-06 | 审批范围/管理范围不全覆盖拒绝；停用工作人员拒绝不代签 | 范围规则 | PM+CM | PermissionsIT-N06 | ⬜ 未执行 |
+| N-AT-01 | 身份与角色分离：教师申请人/学生申请人/仅账号管理员调用审批复核 | 身份规则 | PM+AN | IdentityEligibilityIT.nat01 | ⬜ 未执行 |
+| N-AT-02 | 两类身份×四种资源资格（3111-3114/3211-3214），UI+HTTP 双通道 | 资格规则 | DS+UI | IdentityEligibilityIT.nat02 + conflict.spec | ⬜ 未执行 |
+| N-AT-03 | 候选过滤受限资源；强制提交仍拒绝；按所有者身份校验 | 资格规则 | DS | IdentityEligibilityIT.nat03 + Bench | ⬜ 未执行 |
+| N-AT-04 | 提交后改身份/资格：未确认用最新设置；旧预约保留；新目标不合资格拒绝 | 资格规则 | AN+CM | IdentityEligibilityIT.nat04 | ⬜ 未执行 |
+| N-AT-05 | 所有者兼任 APPROVER/RESOURCE_CONFIRM 对本人申请 4 种审核全拒 | 回避规则 | PM+AN | IdentityEligibilityIT.nat05 | ⬜ 未执行 |
+| N-AT-06 | 审批范围/管理范围不全覆盖拒绝；停用工作人员拒绝不代签 | 范围规则 | PM+CM | IdentityEligibilityIT.nat06 | ⬜ 未执行 |
 
 ## 需求追溯说明（QA-05 交付给 AN 的主表输入）
 

@@ -41,6 +41,10 @@ import java.util.regex.Pattern;
  * <p>约束（03 §3）：数据库固定 campus_test；schema 名严格匹配 {@code t_[0-9a-f]{32}}；
  * Flyway 迁移后载入独立数据；结束只清理自己创建的 schema；禁止对 campus_dev 或外部库清表。
  *
+ * <p>v3.0 表结构依据：账号授权按 02 契约 §4 拆分写入 app_user（含 identity）、user_role、
+ * user_permission、user_approval_scope、user_resource_scope；资源写入 resource 的
+ * allow_teacher/allow_student。数据文件错误在装载时自检并抛出 IllegalStateException。
+ *
  * <p>注意：schema 名与 {@code test.schema.name} 系统属性在 {@link #create} 时即生成并设置，
  * 早于 Spring 测试上下文加载；迁移与数据装载在 beforeAll 完成，首个查询前一切就绪。
  * 使用 @SpringBootTest 的集成测试请为每个类加 {@code @DirtiesContext(classMode = AFTER_CLASS)}，
@@ -141,8 +145,9 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
     // ---------------------------------------------------------------- 装载
 
     /**
-     * 装载 test-data/ 下的 JSON 数据文件（派生规则见 docs/testing/test-data-plan.md §5）。
-     * 可在单个测试方法内调用，例如装载并发报名场景数据。
+     * 装载 test-data/ 下的 JSON 数据文件（v3.0 表结构依据 02 §4；派生规则见 docs/testing/test-data-plan.md §5）。
+     * 账号授权拆分为 app_user/user_role/user_permission/user_approval_scope/user_resource_scope 写入，
+     * 资源含 allow_teacher/allow_student。可在单个测试方法内调用，例如装载并发报名场景数据。
      */
     public void loadTestData(String dataFile) {
         try {
@@ -160,22 +165,57 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
 
             JsonNode users = root.path("users");
             for (JsonNode n : users) {
-                jdbc.update("INSERT INTO app_user (id, organization_id, username, display_name, password_hash, enabled, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?)",
-                        uuid(n.get("id")), uuid(n.get("organizationId")), n.get("username").asText(),
-                        n.get("displayName").asText(), passwordHash, true, ts(), ts());
-                for (JsonNode role : n.get("roles")) {
+                UUID userId = uuid(n.get("id"));
+                String username = n.get("username").asText();
+                String identity = n.get("identity").asText();
+                if (!"TEACHER".equals(identity) && !"STUDENT".equals(identity)) {
+                    throw new IllegalStateException("用户 " + username
+                            + " 的 identity 必须为 TEACHER/STUDENT，实际为：" + identity);
+                }
+                List<String> roles = textValues(n.path("roles"));
+                JsonNode permissions = n.path("permissions");
+                JsonNode approvalScopes = n.path("approvalScopes");
+                JsonNode managedResourceIds = n.path("managedResourceIds");
+                if (permissions.size() > 0 && !roles.contains("ADMIN")) {
+                    throw new IllegalStateException("用户 " + username
+                            + " 配置了 permissions 但 roles 不含 ADMIN（02 三角色授权规则）");
+                }
+                if (approvalScopes.size() > 0 && !roles.contains("APPROVER")) {
+                    throw new IllegalStateException("用户 " + username
+                            + " 配置了 approvalScopes 但 roles 不含 APPROVER（02 三角色授权规则）");
+                }
+                jdbc.update("INSERT INTO app_user (id, organization_id, username, display_name, password_hash, enabled, identity, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?)",
+                        userId, uuid(n.get("organizationId")), username,
+                        n.get("displayName").asText(), passwordHash, true, identity, ts(), ts());
+                for (String role : roles) {
                     jdbc.update("INSERT INTO user_role (user_id, role, created_at) VALUES (?,?,?)",
-                            uuid(n.get("id")), role.asText(), ts());
+                            userId, role, ts());
+                }
+                for (JsonNode permission : permissions) {
+                    jdbc.update("INSERT INTO user_permission (user_id, permission, created_at) VALUES (?,?,?)",
+                            userId, permission.asText(), ts());
+                }
+                for (JsonNode scope : approvalScopes) {
+                    UUID scopeOrganizationId = uuid(scope.get("organizationId"));
+                    for (JsonNode category : scope.path("resourceCategories")) {
+                        jdbc.update("INSERT INTO user_approval_scope (user_id, organization_id, resource_category, created_at) VALUES (?,?,?,?)",
+                                userId, scopeOrganizationId, category.asText(), ts());
+                    }
+                }
+                for (JsonNode resourceId : managedResourceIds) {
+                    jdbc.update("INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)",
+                            userId, uuid(resourceId), ts());
                 }
             }
 
             JsonNode resources = root.path("resources");
             for (JsonNode n : resources) {
-                jdbc.update("INSERT INTO resource (id, kind, name, category, capacity, quantity, open_from, open_to, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?,?)",
+                jdbc.update("INSERT INTO resource (id, kind, name, category, capacity, quantity, open_from, open_to, allow_teacher, allow_student, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
                         uuid(n.get("id")), n.get("kind").asText(), n.get("name").asText(),
                         n.get("category").asText(),
                         n.has("capacity") && !n.get("capacity").isNull() ? n.get("capacity").asInt() : null,
                         n.get("quantity").asInt(), n.get("openFrom").asText(), n.get("openTo").asText(),
+                        n.get("allowTeacher").asBoolean(), n.get("allowStudent").asBoolean(),
                         ts(), ts());
             }
 
@@ -229,6 +269,14 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
     // ---------------------------------------------------------------- 辅助查询
     // 03 §2 关键断言示例所需；其余断言辅助查询按用例需要追加
 
+    /** 资源资格只读视图（02 §2 ResourceEligibility 的测试侧对应）。 */
+    public record ResourceEligibility(boolean allowTeacher, boolean allowStudent) {
+    }
+
+    /** 单条审批范围授权（02 §4 user_approval_scope 一行的测试侧对应）。 */
+    public record ApprovalScopeEntry(UUID organizationId, String resourceCategory) {
+    }
+
     /** 区间重叠的 ACTIVE 预约行数（03 §2：activeReservationsForVenueAndInterval 语义）。 */
     public long activeReservationsForVenueAndInterval(UUID venueId, Instant from, Instant to) {
         Long count = jdbc.queryForObject(
@@ -277,6 +325,36 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
         return count == null ? 0 : count;
     }
 
+    /** 账号身份（身份资格断言：TEACHER/STUDENT，02 §4 app_user.identity）。 */
+    public String identityOf(UUID userId) {
+        return jdbc.queryForObject("SELECT identity FROM app_user WHERE id = ?", String.class, userId);
+    }
+
+    /** 资源资格（D-AT 资格断言：allow_teacher/allow_student，02 §4 resource）。 */
+    public ResourceEligibility eligibilityOf(UUID resourceId) {
+        return jdbc.queryForObject(
+                "SELECT allow_teacher, allow_student FROM resource WHERE id = ?",
+                (rs, rowNum) -> new ResourceEligibility(
+                        rs.getBoolean("allow_teacher"), rs.getBoolean("allow_student")),
+                resourceId);
+    }
+
+    /** 账号资源管理范围条数（授权范围断言：02 §4 user_resource_scope）。 */
+    public long managedResourceCount(UUID userId) {
+        Long count = jdbc.queryForObject(
+                "SELECT count(*) FROM user_resource_scope WHERE user_id = ?", Long.class, userId);
+        return count == null ? 0 : count;
+    }
+
+    /** 账号审批范围（授权范围断言：02 §4 user_approval_scope，按组织与类别排序）。 */
+    public List<ApprovalScopeEntry> approvalScopeOf(UUID userId) {
+        return jdbc.query(
+                "SELECT organization_id, resource_category FROM user_approval_scope WHERE user_id = ? ORDER BY organization_id, resource_category",
+                (rs, rowNum) -> new ApprovalScopeEntry(
+                        rs.getObject("organization_id", UUID.class), rs.getString("resource_category")),
+                userId);
+    }
+
     // ---------------------------------------------------------------- 内部
 
     private static Path resolveDataFile(String dataFile) {
@@ -305,6 +383,14 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
 
     private static UUID uuid(JsonNode node) {
         return UUID.fromString(node.asText());
+    }
+
+    private static List<String> textValues(JsonNode array) {
+        List<String> values = new ArrayList<>();
+        for (JsonNode node : array) {
+            values.add(node.asText());
+        }
+        return values;
     }
 
     private static Timestamp ts() {

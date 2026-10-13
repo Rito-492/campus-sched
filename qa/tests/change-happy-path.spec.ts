@@ -7,10 +7,10 @@
  *           05 §3「确认与结果」、§4 公共 data-testid。
  *
  * 状态语义（02 契约 §2，页面中文文案由 UI 决定）：
- *   AWAITING_CONFIRMATIONS（staff_a 确认前）→ 确认 APPROVE 后 PENDING_TEACHER
- *   → 教师同意后 PENDING_RESOURCE → 资源确认后 APPLIED；活动 version 1→2。
+ *   AWAITING_CONFIRMATIONS（staff_a 确认前）→ 确认 APPROVE 后 PENDING_APPROVER
+ *   → 批准人同意后 PENDING_RESOURCE → 资源确认后 APPLIED；活动 version 1→2。
  *
- * 角色隔离：organizer_a / staff_a / teacher_a / resource_admin / student_a 各自独立 context。
+ * 角色隔离：applicant_a / staff_a / approver_a / resource_admin / student_a 各自独立 context。
  * 改期详情用确定性路由 /changes/{id}（05 §2）直达，避免依赖列表项在页面中的位置。
  * TC-23-1 说明：浏览器 reload 覆盖进程内持久化；`docker compose restart server` 属发布
  *   演练（D-AT-24）人工步骤，不在浏览器内执行——E2E 以真实后端写库 + reload 验证非内存结果。
@@ -35,7 +35,7 @@ import {
 
 test.describe('D-AT-10 / D-AT-23 改期成功主线与持久化', () => {
   test(
-    'TC-10-1 / TC-23-1 预览选首选方案→staff/teacher/resource 确认→version2→student 收到通知（含 reload 持久化）',
+    'TC-10-1 / TC-23-1 预览选首选方案→staff/approver/resource 确认→version2→student 收到通知（含 reload 持久化）',
     {
       annotation: [
         { type: 'D-AT', description: 'D-AT-10' },
@@ -47,8 +47,8 @@ test.describe('D-AT-10 / D-AT-23 改期成功主线与持久化', () => {
     async ({ browser }) => {
       const sessions: UiSession[] = [];
       try {
-        // 1) organizer_a 发起改期：目标 15:00—16:00，选首选替代方案（3102 + 3202×2）
-        const organizer = await openSession(browser, USERS.organizerA);
+        // 1) applicant_a 发起改期：目标 15:00—16:00，选首选替代方案（3102 + 3202×2）
+        const organizer = await openSession(browser, USERS.applicantA);
         sessions.push(organizer);
 
         await openChangeWorkbench(organizer.page, ACTIVITIES.a.id);
@@ -68,19 +68,19 @@ test.describe('D-AT-10 / D-AT-23 改期成功主线与持久化', () => {
         await organizer.page.reload();
         await expectChangeStatus(organizer.page, /AWAITING_CONFIRMATIONS|待确认/);
 
-        // 4) staff_a 确认同意 → PENDING_TEACHER
+        // 4) staff_a 确认同意 → PENDING_APPROVER
         const staff = await openSession(browser, USERS.staffA);
         sessions.push(staff);
         await staff.page.goto(`/changes/${changeId}`);
         await staff.page.getByTestId(TESTID.staffApprove).click();
-        await expectChangeStatus(staff.page, /PENDING_TEACHER|待教师审批/);
+        await expectChangeStatus(staff.page, /PENDING_APPROVER|待批准人审批/);
 
-        // 5) teacher_a 同意 → PENDING_RESOURCE
-        const teacher = await openSession(browser, USERS.teacherA);
-        sessions.push(teacher);
-        await teacher.page.goto(`/changes/${changeId}`);
-        await teacher.page.getByTestId(TESTID.teacherApprove).click();
-        await expectChangeStatus(teacher.page, /PENDING_RESOURCE|待资源确认/);
+        // 5) approver_a 同意 → PENDING_RESOURCE
+        const approver = await openSession(browser, USERS.approverA);
+        sessions.push(approver);
+        await approver.page.goto(`/changes/${changeId}`);
+        await approver.page.getByTestId(TESTID.approverApprove).click();
+        await expectChangeStatus(approver.page, /PENDING_RESOURCE|待资源确认/);
 
         // 6) resource_admin 确认 → APPLIED（原子切换，活动保留 OPEN）
         const resource = await openSession(browser, USERS.resourceAdmin);
@@ -89,7 +89,7 @@ test.describe('D-AT-10 / D-AT-23 改期成功主线与持久化', () => {
         await resource.page.getByTestId(TESTID.changeResourceApprove).click();
         await expectChangeStatus(resource.page, /APPLIED|已生效/);
 
-        // 7) organizer_a 看到当前版本 version2，且新安排为 多功能厅B / 15:00
+        // 7) applicant_a 看到当前版本 version2，且新安排为 多功能厅B / 15:00
         await organizer.page.goto(`/activities/${ACTIVITIES.a.id}`);
         await expectCurrentVersion(organizer.page, 2);
         await expect(organizer.page.getByText(RESOURCES.venueB.name).first()).toBeVisible();

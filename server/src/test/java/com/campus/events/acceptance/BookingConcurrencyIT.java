@@ -55,8 +55,8 @@ class BookingConcurrencyIT {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
-    private static final UUID USER_TEACHER_A = UUID.fromString("00000000-0000-0000-0000-000000002003");
-    private static final UUID USER_RESOURCE_ADMIN = UUID.fromString("00000000-0000-0000-0000-000000002004");
+    private static final UUID USER_APPROVER_A = UUID.fromString("00000000-0000-0000-0000-000000002003");
+    private static final UUID USER_RES_ADMIN = UUID.fromString("00000000-0000-0000-0000-000000002004");
 
     private static final UUID VENUE_3101 = UUID.fromString("00000000-0000-0000-0000-000000003101");
     private static final UUID EQUIP_3201 = UUID.fromString("00000000-0000-0000-0000-000000003201");
@@ -74,14 +74,14 @@ class BookingConcurrencyIT {
     @Test
     @DisplayName("D-AT-07 / TC-07-1 同步确认同场地同器材，恰 1 成功 1 RESOURCE_CONFLICT")
     void tc0701_concurrentResourceConfirmExactlyOneWins() {
-        String organizerA = login("organizer_a");
-        String organizerB = login("organizer_b");
+        String applicantA = login("applicant_a");
+        String applicantB = login("applicant_b");
         String resource = login("resource_admin");
 
-        String activityX = createApprovedUnreserved(organizerA, "并发确认活动X（测试数据）");
-        String activityY = createApprovedUnreserved(organizerB, "并发确认活动Y（测试数据）");
-        int lockX = readActivityLockVersion(organizerA, activityX);
-        int lockY = readActivityLockVersion(organizerB, activityY);
+        String activityX = createApprovedUnreserved(applicantA, "并发确认活动X（测试数据）");
+        String activityY = createApprovedUnreserved(applicantB, "并发确认活动Y（测试数据）");
+        int lockX = readActivityLockVersion(applicantA, activityX);
+        int lockY = readActivityLockVersion(applicantB, activityY);
 
         List<ConcurrentRunner.DbTask<HttpResult>> tasks = new ArrayList<>();
         tasks.add(conn -> confirmActivity(activityX, lockX, resource));
@@ -139,11 +139,11 @@ class BookingConcurrencyIT {
                 ownerToken, idem(), toJson(versionCommand(lockVersion)));
         assertEquals(200, submitted.status(), () -> "提交活动失败：" + submitted.body());
 
-        String teacher = login("teacher_a");
-        HttpResult approved = call(HttpMethod.POST, "/api/v1/activities/" + activityId + "/teacher-decision",
-                teacher, idem(),
+        String approver = login("approver_a");
+        HttpResult approved = call(HttpMethod.POST, "/api/v1/activities/" + activityId + "/approver-decision",
+                approver, idem(),
                 toJson(decisionBody("APPROVE", "", submitted.data().path("lockVersion").asInt())));
-        assertEquals(200, approved.status(), () -> "教师审批失败：" + approved.body());
+        assertEquals(200, approved.status(), () -> "批准人审批失败：" + approved.body());
         assertEquals("APPROVED_UNRESERVED", approved.data().path("status").asText());
         return activityId;
     }
