@@ -2,6 +2,29 @@
 
 > 维护：测试经理（55230316）。格式依据 `agents/common/04-协作与集成规程.md` §4 固定模板。运行时信息填真实值；**不能为了填满模板虚构结果**，未执行的检查如实标注。
 
+## 本次交付（2026-10-13 第三批，v3.0 对齐第一批）
+
+- 成员、学号、任务ID：汤雨润 55230316 / QA-01（新版数据）+ QA-02（契约脚本）首批
+- 基线：v3.0（任务包）；实际 main 基准：`5097af7`（已 merge 入 `work/55230316-qa`）；本人分支 @ 本地提交
+- 交付文件与接口：
+  - `test-data/demo.json` 重写：三角色（APPLICANT/APPROVER/ADMIN）+ 独立身份 + permissions/approvalScopes/managedResourceIds + 8 项资格资源（3111–3114/3211–3214 四组资格）
+  - `test-data/scenarios/registration-concurrency.json`：20 学生补 v3.0 字段
+  - `docs/testing/test-data-plan.md` v0.2：尾号表（资格资源段）、users/resources v3.0 格式
+  - `docs/testing/coverage-matrix.md`：**30 场景覆盖矩阵**（D-AT-01～24 + N-AT-01～06 ↔ 需求 ↔ QA 执行落点 ↔ 状态）
+  - `qa/scripts/check-contract.ts` 升级：40 API（API-18/31 approver-decision、API-39/40）、三角色/Identity/Permission 枚举、资格 DTO
+  - 课程测试课件 4 份归档 `docs/course/`（3.1/5.1/6.1/6.2，含老格式 .ppt 读取）
+- 实际运行命令与结果：
+  - ✅ v3.0 数据引用校验（Python 八组断言：顶层键/ID 唯一/角色权限范围规则/03§1 账号配置/资格四组/跨文件引用）全部通过
+  - ✅ `npx tsc --noEmit` 通过；check-contract 缺 openapi 退出码 1（正确）
+  - ⬜ **未执行**：IT/E2E/评测真实运行（服务未就绪）；test-design.md 旧断言的 v3.0 改造（teacher-decision→approver-decision、五角色→三角色断言消除）为下一步
+- 验收编号与证据路径：本批为数据/脚本/矩阵交付，无 D-AT 通过项；覆盖矩阵状态列全为「未执行」
+- 未完成项/外部依赖及负责人：
+  1. 40 API 的 openapi.yaml → jxy 55230223（PM）；到位后跑真实契约检查
+  2. IT/E2E 的 v3.0 断言改造 → 本人下一步；依赖 PM 公共工程编译验证
+  3. 课程课件模板要求（测试计划结构/正负用例/缺陷 A–D 等级/Tx·Ts 覆盖率公式）→ 并入 test-plan/test-design/report 后续版本
+- 下一接收人及其动作：jxy 提供 openapi.yaml 后通知我跑契约检查；yhl（CM）按 v3.0 demo.json 实现种子导入（DTO 同 02 §2）
+- 接收确认：尚未接收（仅真实收到反馈后更新）
+
 ## 本次交付（2026-09-26 第二批，QA-03/QA-04 脚本）
 
 - 成员、学号、任务ID：汤雨润 55230316 / QA-03（契约检查脚本部分）、QA-04（评测脚本部分）

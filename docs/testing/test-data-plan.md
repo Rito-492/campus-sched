@@ -1,7 +1,7 @@
-# 测试数据设计 v0.1
+# 测试数据设计 v0.2（对齐任务包 v3.0）
 
 > 归属：测试经理（55230316）。本文是 `test-data/` 目录的**数据格式唯一说明**，供配置经理的种子导入器、DbTestSupport 与策略评测共同遵守。
-> 依据：`agents/common/03-验收与演示数据.md` §1/§4、`agents/common/02-数据与接口契约.md` §2/§4。字段名、枚举与校验规则以契约为准，本文不另造第二套。
+> 依据：`agents/common/03-验收与演示数据.md` §1/§4（v3.0）、`agents/common/02-数据与接口契约.md` §2/§4（v3.0 三角色/资格）。字段名、枚举与校验规则以契约为准，本文不另造第二套。
 > 执行状态与结果另见 `docs/testing/test-report.md`（QA-05 产出），本文只定义格式与规则。
 
 ## 1. 文件清单与消费方
@@ -20,10 +20,12 @@
 | 尾号段 | 用途 | 数量 |
 |---|---|---|
 | 1001–1002 | 组织 | 2 |
-| 2001–2009 | 演示用户 | 9 |
+| 2001–2009 | 演示用户（applicant_a/b、approver_a/other、resource_admin、student_a/b、staff_a、account_admin） | 9 |
 | 2101–2120 | 并发测试学生（独立 ID） | 20 |
-| 3101–3102 | 场地 | 2 |
-| 3201–3202 | 器材 | 2 |
+| 3101–3102 | 基础场地（两类身份均允许） | 2 |
+| 3201–3202 | 基础器材（两类身份均允许） | 2 |
+| 3111–3114 | 资格演示场地：两者允许/仅教师/仅学生/均禁止 | 4 |
+| 3211–3214 | 资格演示器材：两者允许/仅教师/仅学生/均禁止 | 4 |
 | 4001–4002 | 演示活动（A/B） | 2 |
 | 4101 | 测试活动（并发报名） | 1 |
 | 5001–5012 | 评测场景占用活动（含被评估活动自身旧占用） | ≤12 |
@@ -44,12 +46,19 @@
 ### organizations
 `{id, name}`；name 全局唯一（02 §4）。
 
-### users
-`{id, username, displayName, organizationId, roles[]}`；roles 取 02 §2 `Role` 枚举值。无 password 字段（见 §3）。账号一律 enabled=true。
+### users（v3.0 三角色模型）
+`{id, username, displayName, organizationId, identity, roles[], permissions[], approvalScopes[], managedResourceIds[]}`（02 契约 AuthorizationInput/UserCreate）。
+- identity `TEACHER|STUDENT`：独立于角色，不自动赋予审批权；
+- roles `APPLICANT|APPROVER|ADMIN`；
+- permissions `USER_MANAGE|RESOURCE_MANAGE|RESOURCE_CONFIRM|AUDIT_READ`：仅 ADMIN 角色生效，单一权限不推导其他权限；
+- approvalScopes `[{organizationId, resourceCategories[]}]`：仅 APPROVER，按组织分组，禁止通配；
+- managedResourceIds：ADMIN 资源范围，03 §1 明确列出（resource_admin 覆盖 3101/3102/3201/3202+3111–3114/3211–3214）。
+**字段完整替换，不接受隐式全范围授权**；密码不写入 JSON（见 §3）。账号一律 enabled=true。
 
-### resources
-采用 02 §2 `ResourceView` 结构：`{id, kind, name, category, capacity, quantity, openFrom, openTo, createdAt}`。
+### resources（v3.0 含资格）
+采用 02 契约 §2 `ResourceView` 结构：`{id, kind, name, category, capacity, quantity, openFrom, openTo, allowTeacher, allowStudent, createdAt}`。
 
+- 资格 `allowTeacher/allowStudent`（ResourceEligibility）：基础资源（3101/3102/3201/3202）双 true；资格演示四组按 3111–3114 / 3211–3214 依序为 双true / 仅教师 / 仅学生 / 双false（03 §1）；场地固定 capacity80、器材 quantity2；
 - VENUE：capacity 为正整数、quantity=1、category 固定 `VENUE`；
 - EQUIPMENT：capacity=null、quantity 为正整数、category 非空（本数据集为 `PROJECTOR`）；
 - `createdAt` 使用确定性占位值 `${DEMO_DATE}T08:00:00+08:00`，便于测试断言。
