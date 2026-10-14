@@ -60,7 +60,15 @@
 - （如：IT 未编译验证，阻塞于 PM 基础工程——如实记录）
 ```
 
-## 7. 在 agent harness 中的运作方式
+## 7. 强制流程（无例外）
+
+**所有改动（含管理员、含 agent）必须走：work 分支提交 → push 分支 → 开 PR → 评审放行 → PR 页面合并。禁止直接 push main。**
+
+- 依据：AGENTS.md「合并 main 前走 PR 评审」；main 保护规则 Include administrators 必须勾选（否则管理员凭据可绕过）。
+- 2026-10-14 事故记录：QA 曾直接 push main（3e33e0f）绕过流程——因 Include administrators 未勾、管理员凭据绕过保护。已修正配置并立此规矩；本条修正的提交本身即走分支+PR 流程。
+- agent 的操作边界：agent 可以 commit/push **自己的 work 分支**、产出评审报告；PR 的创建与合并按钮由人在网页点击（或配置 gh CLI 后由 agent 代点，但评审与合并仍须交叉）。
+
+## 8. 在 agent harness 中的运作方式
 
 - agent 可完成**全部检查项**并产出上述评审报告；GitHub 的 Approve/Request Changes 按钮由人在网页点击（或配置 `gh` CLI 后由 agent 代点）。
 - **交叉评审原则**：自己参与的 PR 不自审——QA 分支的 PR 由 AN/DS/CM/UI/PM 之一批准；agent 产出的代码由人类成员或另一岗位的 agent 评审，评审痕迹如实署名。
