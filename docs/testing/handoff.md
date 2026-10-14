@@ -2,6 +2,34 @@
 
 > 维护：测试经理（55230316）。格式依据 `agents/common/04-协作与集成规程.md` §4 固定模板。运行时信息填真实值；**不能为了填满模板虚构结果**，未执行的检查如实标注。
 
+## 本次交付（2026-10-14 第五批，QA-04 补漏与验收裁决）
+
+- 成员、学号、任务ID：汤雨润 55230316 / QA-04（补漏）+ QA-02（接收）
+- 基线：baseline/task-package-v3.0（d07c967）；main 已含 PR#1-#3
+- 交付文件与接口：
+  - `acceptance/SchedulingBenchmarkIT.java` 补齐（QA-04 历史漏项）：8 场景→StrategyEvaluator（02 §8 四参签名，含 Identity）→160 行原始结果写 server/target/scheduling-evaluation.json
+  - `DbTestSupport.loadReferenceData()` 纯增量（评测只装载参考数据，不带演示活动，§7 规则）
+  - `test-data-plan.md` §9 新增：评测原始结果 JSON 格式（修复 handoff 悬空引用）
+  - `testid-requirements.md` 新增：12 公共 testid + 10 扩展项（交 UI）
+- 实际运行命令与结果：
+  - ✅ v3.0 §8 签名四参（含 applicantIdentity）实测核对——任务书旧口径三参已按契约修正
+  - ✅ javac 语法级：仅缺依赖级联错误（含 LinkedHashMap 推断=Jackson 缺失级联，已甄别）
+  - ✅ DbTestSupport 公共 API 稳定性核对：无缺失，纯增量
+  - ⬜ **未执行**：SchedulingBenchmarkIT 真实运行（等 PM 工程 + DS StrategyEvaluator）
+- 验收编号与证据路径：D-AT-22 通道待实测
+- 未完成项/外部依赖及负责人：
+  1. StrategyEvaluator/StrategyResult（02 §8）→ hfy 55230315（她 handoff 已注明等 PM contract 包）
+  2. PM 公共工程 → jxy（全链路编译）
+- 下一接收人及其动作：hfy 交付 StrategyEvaluator 后我跑评测全链路；yc 按 testid-requirements.md 提供标识
+- 接收确认：尚未接收
+
+### QA 验收记录（QA-02「接收各模块证据」）
+
+1. **CM 种子导入器（PR#2）接收：通过**。字段级核对：identity/roles/permissions/approvalScopes/managedResourceIds/allowTeacher/allowStudent 全部按 02 §2 解析落库；派生规则与 test-data-plan §5 逐条一致（version_no/effective_version_no/activity_version/reservation 区间含布撤场）；${DEMO_DATE} 占位替换；APP_DEMO_SEED 门禁；已存在幂等跳过；缺 DEMO_PASSWORD 跳过不造假。
+2. **`.env` 变量名分歧裁决（hfy 提出）：已解决**。证据：CM 配置用 TEST_DB_USERNAME/TEST_DB_PASSWORD，QA 侧原用 TEST_DATABASE_*。裁决：**以 CM 的 TEST_DB_* 为准**（改动面最小），DbTestSupport 改为 TEST_DB_* 优先并回退 TEST_DATABASE_* 兼容，两侧现在互通。请 yhl 在 .env.example 中只列 TEST_DB_* 一套。
+3. **PR#3（AN 状态机）接收：通过**（评审记录见合并提交 d07c967）。
+4. **PR#1（DS schema）接收：通过**（评审记录见合并提交 ed8c3bc）。
+
 ## 本次交付（2026-10-13 第四批，v3.0 测试代码全量改造）
 
 - 成员、学号、任务ID：汤雨润 55230316 / QA-02（改造）+ QA-03（跨模块+N-AT）+ QA-04（E2E）

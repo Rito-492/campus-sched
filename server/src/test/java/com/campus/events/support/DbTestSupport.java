@@ -1,5 +1,6 @@
 package com.campus.events.support;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.flywaydb.core.Flyway;
@@ -11,6 +12,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.Timestamp;
@@ -102,8 +104,8 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
     @Override
     public void beforeAll(ExtensionContext context) {
         String url = requireEnv("TEST_DATABASE_URL");
-        String user = requireEnv("TEST_DATABASE_USERNAME");
-        String password = requireEnv("TEST_DATABASE_PASSWORD");
+        String user = requireEnvAny("TEST_DB_USERNAME", "TEST_DATABASE_USERNAME");
+        String password = requireEnvAny("TEST_DB_PASSWORD", "TEST_DATABASE_PASSWORD");
         if (!url.contains("campus_test")) {
             throw new IllegalStateException(
                     "TEST_DATABASE_URL 必须指向 campus_test，当前为：" + url + "（禁止对 campus_dev 或外部库操作）");
@@ -135,8 +137,8 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
             return;
         }
         String url = requireEnv("TEST_DATABASE_URL");
-        String user = requireEnv("TEST_DATABASE_USERNAME");
-        String password = requireEnv("TEST_DATABASE_PASSWORD");
+        String user = requireEnvAny("TEST_DB_USERNAME", "TEST_DATABASE_USERNAME");
+        String password = requireEnvAny("TEST_DB_PASSWORD", "TEST_DATABASE_PASSWORD");
         // 只清理自己创建的 schema；名称已校验，无注入面
         DataSource admin = new DriverManagerDataSource(url, user, password);
         new JdbcTemplate(admin).execute("DROP SCHEMA IF EXISTS \"" + schemaName + "\" CASCADE");
@@ -151,98 +153,129 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
      */
     public void loadTestData(String dataFile) {
         try {
-            Path file = resolveDataFile(dataFile);
-            String raw = Files.readString(file).replace("${DEMO_DATE}", DEMO_DATE.toString());
-            JsonNode root = MAPPER.readTree(raw);
-            String demoPassword = requireEnv("DEMO_PASSWORD");
-            String passwordHash = ENCODER.encode(demoPassword);
-
-            JsonNode organizations = root.path("organizations");
-            for (JsonNode n : organizations) {
-                jdbc.update("INSERT INTO organization (id, name, created_at, updated_at) VALUES (?,?,?,?)",
-                        uuid(n.get("id")), n.get("name").asText(), ts(), ts());
-            }
-
-            JsonNode users = root.path("users");
-            for (JsonNode n : users) {
-                UUID userId = uuid(n.get("id"));
-                String username = n.get("username").asText();
-                String identity = n.get("identity").asText();
-                if (!"TEACHER".equals(identity) && !"STUDENT".equals(identity)) {
-                    throw new IllegalStateException("用户 " + username
-                            + " 的 identity 必须为 TEACHER/STUDENT，实际为：" + identity);
-                }
-                List<String> roles = textValues(n.path("roles"));
-                JsonNode permissions = n.path("permissions");
-                JsonNode approvalScopes = n.path("approvalScopes");
-                JsonNode managedResourceIds = n.path("managedResourceIds");
-                if (permissions.size() > 0 && !roles.contains("ADMIN")) {
-                    throw new IllegalStateException("用户 " + username
-                            + " 配置了 permissions 但 roles 不含 ADMIN（02 三角色授权规则）");
-                }
-                if (approvalScopes.size() > 0 && !roles.contains("APPROVER")) {
-                    throw new IllegalStateException("用户 " + username
-                            + " 配置了 approvalScopes 但 roles 不含 APPROVER（02 三角色授权规则）");
-                }
-                jdbc.update("INSERT INTO app_user (id, organization_id, username, display_name, password_hash, enabled, identity, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?)",
-                        userId, uuid(n.get("organizationId")), username,
-                        n.get("displayName").asText(), passwordHash, true, identity, ts(), ts());
-                for (String role : roles) {
-                    jdbc.update("INSERT INTO user_role (user_id, role, created_at) VALUES (?,?,?)",
-                            userId, role, ts());
-                }
-                for (JsonNode permission : permissions) {
-                    jdbc.update("INSERT INTO user_permission (user_id, permission, created_at) VALUES (?,?,?)",
-                            userId, permission.asText(), ts());
-                }
-                for (JsonNode scope : approvalScopes) {
-                    UUID scopeOrganizationId = uuid(scope.get("organizationId"));
-                    for (JsonNode category : scope.path("resourceCategories")) {
-                        jdbc.update("INSERT INTO user_approval_scope (user_id, organization_id, resource_category, created_at) VALUES (?,?,?,?)",
-                                userId, scopeOrganizationId, category.asText(), ts());
-                    }
-                }
-                for (JsonNode resourceId : managedResourceIds) {
-                    jdbc.update("INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)",
-                            userId, uuid(resourceId), ts());
-                }
-            }
-
-            JsonNode resources = root.path("resources");
-            for (JsonNode n : resources) {
-                jdbc.update("INSERT INTO resource (id, kind, name, category, capacity, quantity, open_from, open_to, allow_teacher, allow_student, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
-                        uuid(n.get("id")), n.get("kind").asText(), n.get("name").asText(),
-                        n.get("category").asText(),
-                        n.has("capacity") && !n.get("capacity").isNull() ? n.get("capacity").asInt() : null,
-                        n.get("quantity").asInt(), n.get("openFrom").asText(), n.get("openTo").asText(),
-                        n.get("allowTeacher").asBoolean(), n.get("allowStudent").asBoolean(),
-                        ts(), ts());
-            }
-
-            JsonNode activities = root.path("activities");
-            for (JsonNode n : activities) {
-                String status = n.get("status").asText();
-                int versionNo = n.get("versionNo").asInt();
-                boolean effective = "SCHEDULED".equals(status) || "OPEN".equals(status);
-                jdbc.update("INSERT INTO activity (id, organization_id, owner_id, status, version_no, effective_version_no, lock_version, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?)",
-                        uuid(n.get("id")), uuid(n.get("organizationId")), uuid(n.get("ownerId")),
-                        status, versionNo, effective ? versionNo : null, 0, ts(), ts());
-                jdbc.update("INSERT INTO activity_version (activity_id, version_no, input_json, created_by, created_at) VALUES (?,?,?,?,?)",
-                        uuid(n.get("id")), versionNo, MAPPER.writeValueAsString(n.get("input")),
-                        uuid(n.get("ownerId")), ts());
-                if (effective) {
-                    insertReservations(uuid(n.get("id")), versionNo, n.get("input").get("plan"));
-                }
-            }
-
-            JsonNode registrations = root.path("registrations");
-            for (JsonNode n : registrations) {
-                jdbc.update("INSERT INTO activity_registration (activity_id, user_id, status, version_no, created_at) VALUES (?,?,?,?,?)",
-                        uuid(n.get("activityId")), uuid(n.get("userId")),
-                        n.get("status").asText(), n.get("versionNo").asInt(), ts());
-            }
+            JsonNode root = readDataFile(dataFile);
+            insertReferenceTables(root, ENCODER.encode(requireEnv("DEMO_PASSWORD")));
+            insertActivities(root);
+            insertRegistrations(root);
         } catch (Exception e) {
             throw new IllegalStateException("装载测试数据失败：" + dataFile, e);
+        }
+    }
+
+    /**
+     * 仅装载组织/用户/资源（参考数据）；评测场景不装载演示活动与报名（test-data-plan §7）。
+     *
+     * <p>用于 SchedulingBenchmarkIT：评测环境 = {@code demo.json} 的 organizations/users/resources
+     * + {@code scenarios/scheduling.json} 场景数据；不装载演示活动 A/B 与报名，避免场景互相干扰。
+     * 只写 organization/app_user/user_role/user_permission/user_approval_scope/user_resource_scope/resource 表。
+     */
+    public void loadReferenceData(String dataFile) {
+        try {
+            JsonNode root = readDataFile(dataFile);
+            insertReferenceTables(root, ENCODER.encode(requireEnv("DEMO_PASSWORD")));
+        } catch (Exception e) {
+            throw new IllegalStateException("装载参考数据失败：" + dataFile, e);
+        }
+    }
+
+    /** 解析数据文件并替换 ${DEMO_DATE} 占位符（03 §1 固定演示日期）。 */
+    private JsonNode readDataFile(String dataFile) throws IOException {
+        Path file = resolveDataFile(dataFile);
+        String raw = Files.readString(file).replace("${DEMO_DATE}", DEMO_DATE.toString());
+        return MAPPER.readTree(raw);
+    }
+
+    /** organization/app_user/user_role/user_permission/user_approval_scope/user_resource_scope/resource 参考数据。 */
+    private void insertReferenceTables(JsonNode root, String passwordHash) {
+        JsonNode organizations = root.path("organizations");
+        for (JsonNode n : organizations) {
+            jdbc.update("INSERT INTO organization (id, name, created_at, updated_at) VALUES (?,?,?,?)",
+                    uuid(n.get("id")), n.get("name").asText(), ts(), ts());
+        }
+
+        JsonNode users = root.path("users");
+        for (JsonNode n : users) {
+            UUID userId = uuid(n.get("id"));
+            String username = n.get("username").asText();
+            String identity = n.get("identity").asText();
+            if (!"TEACHER".equals(identity) && !"STUDENT".equals(identity)) {
+                throw new IllegalStateException("用户 " + username
+                        + " 的 identity 必须为 TEACHER/STUDENT，实际为：" + identity);
+            }
+            List<String> roles = textValues(n.path("roles"));
+            JsonNode permissions = n.path("permissions");
+            JsonNode approvalScopes = n.path("approvalScopes");
+            JsonNode managedResourceIds = n.path("managedResourceIds");
+            if (permissions.size() > 0 && !roles.contains("ADMIN")) {
+                throw new IllegalStateException("用户 " + username
+                        + " 配置了 permissions 但 roles 不含 ADMIN（02 三角色授权规则）");
+            }
+            if (approvalScopes.size() > 0 && !roles.contains("APPROVER")) {
+                throw new IllegalStateException("用户 " + username
+                        + " 配置了 approvalScopes 但 roles 不含 APPROVER（02 三角色授权规则）");
+            }
+            jdbc.update("INSERT INTO app_user (id, organization_id, username, display_name, password_hash, enabled, identity, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?)",
+                    userId, uuid(n.get("organizationId")), username,
+                    n.get("displayName").asText(), passwordHash, true, identity, ts(), ts());
+            for (String role : roles) {
+                jdbc.update("INSERT INTO user_role (user_id, role, created_at) VALUES (?,?,?)",
+                        userId, role, ts());
+            }
+            for (JsonNode permission : permissions) {
+                jdbc.update("INSERT INTO user_permission (user_id, permission, created_at) VALUES (?,?,?)",
+                        userId, permission.asText(), ts());
+            }
+            for (JsonNode scope : approvalScopes) {
+                UUID scopeOrganizationId = uuid(scope.get("organizationId"));
+                for (JsonNode category : scope.path("resourceCategories")) {
+                    jdbc.update("INSERT INTO user_approval_scope (user_id, organization_id, resource_category, created_at) VALUES (?,?,?,?)",
+                            userId, scopeOrganizationId, category.asText(), ts());
+                }
+            }
+            for (JsonNode resourceId : managedResourceIds) {
+                jdbc.update("INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)",
+                        userId, uuid(resourceId), ts());
+            }
+        }
+
+        JsonNode resources = root.path("resources");
+        for (JsonNode n : resources) {
+            jdbc.update("INSERT INTO resource (id, kind, name, category, capacity, quantity, open_from, open_to, allow_teacher, allow_student, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+                    uuid(n.get("id")), n.get("kind").asText(), n.get("name").asText(),
+                    n.get("category").asText(),
+                    n.has("capacity") && !n.get("capacity").isNull() ? n.get("capacity").asInt() : null,
+                    n.get("quantity").asInt(), n.get("openFrom").asText(), n.get("openTo").asText(),
+                    n.get("allowTeacher").asBoolean(), n.get("allowStudent").asBoolean(),
+                    ts(), ts());
+        }
+    }
+
+    /** 演示活动及其版本、预约（仅装载测试数据时写入；评测参考数据不写入）。 */
+    private void insertActivities(JsonNode root) throws JsonProcessingException {
+        JsonNode activities = root.path("activities");
+        for (JsonNode n : activities) {
+            String status = n.get("status").asText();
+            int versionNo = n.get("versionNo").asInt();
+            boolean effective = "SCHEDULED".equals(status) || "OPEN".equals(status);
+            jdbc.update("INSERT INTO activity (id, organization_id, owner_id, status, version_no, effective_version_no, lock_version, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?)",
+                    uuid(n.get("id")), uuid(n.get("organizationId")), uuid(n.get("ownerId")),
+                    status, versionNo, effective ? versionNo : null, 0, ts(), ts());
+            jdbc.update("INSERT INTO activity_version (activity_id, version_no, input_json, created_by, created_at) VALUES (?,?,?,?,?)",
+                    uuid(n.get("id")), versionNo, MAPPER.writeValueAsString(n.get("input")),
+                    uuid(n.get("ownerId")), ts());
+            if (effective) {
+                insertReservations(uuid(n.get("id")), versionNo, n.get("input").get("plan"));
+            }
+        }
+    }
+
+    /** 报名记录（仅装载测试数据时写入；评测参考数据不写入）。 */
+    private void insertRegistrations(JsonNode root) {
+        JsonNode registrations = root.path("registrations");
+        for (JsonNode n : registrations) {
+            jdbc.update("INSERT INTO activity_registration (activity_id, user_id, status, version_no, created_at) VALUES (?,?,?,?,?)",
+                    uuid(n.get("activityId")), uuid(n.get("userId")),
+                    n.get("status").asText(), n.get("versionNo").asInt(), ts());
         }
     }
 
@@ -371,6 +404,15 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
             }
         }
         throw new IllegalStateException("找不到测试数据文件：" + dataFile + ".json，已查找 " + candidates);
+    }
+
+    /** 环境变量取名分歧的兼容读取：以 CM 配置的 TEST_DB_* 为准，回退 TEST_DATABASE_*（见 handoff 裁决记录）。 */
+    private static String requireEnvAny(String primary, String fallback) {
+        String value = System.getenv(primary);
+        if (value != null && !value.isBlank()) {
+            return value;
+        }
+        return requireEnv(fallback);
     }
 
     private static String requireEnv(String name) {

@@ -143,3 +143,25 @@ JSON 是唯一数据来源，以下记录由导入器推导写入：
   - 一般集成测试：`demo.json`；
   - RegistrationCapacityIT：`demo.json` + `registration-concurrency.json`；
   - SchedulingBenchmarkIT：按 §7 规则装载 `scheduling.json`（各场景独立，跑前重置场景数据）。
+
+## 9. 评测原始结果格式（server/target/scheduling-evaluation.json）
+
+SchedulingBenchmarkIT 写、`qa/scripts/evaluate-scheduling.ts` 读——QA-04 链路的中间契约：
+
+```json
+{
+  "schemaVersion": 1,
+  "generatedAt": "ISO8601",
+  "environment": { "machine": "…", "os": "…", "jdk": "…", "commit": "…", "demoDate": "2030-10-20", "clock": "2030-10-19T00:00:00Z" },
+  "timingScope": "候选生成、资源读取、约束检查及选择/排序（不含HTTP与文件输出）",
+  "runs": [ { "scenarioId": "SCH-01-TIME-CONFLICT", "strategy": "FIRST_FIT", "runIndex": 1,
+              "feasible": true, "timeShiftMinutes": -60, "venueChanged": false,
+              "replacedEquipmentLines": 0, "evaluatedCount": 36, "elapsedMs": 1.234 } ]
+}
+```
+
+- runs 行数 = 场景数 × 2 策略 × measuredRuns（当前 8×2×10=160）；预热行不写入（02 §8：每场景调用 11 次丢弃预热）
+- `elapsedMs = elapsedNanos / 1_000_000.0`（02 §8）；runIndex 1..measuredRuns
+- feasible=false 时三个代价字段写 **null**（02 §8，不伪造 0 代价）
+- environment 用真实值（os/jdk 取运行时），缺失写「未提供（构建时注入）」，不造数
+- 缺少本文件时 evaluate 脚本必须失败退出（03 §4）
