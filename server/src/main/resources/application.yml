@@ -1,0 +1,32 @@
+# 基础配置（配置经理拥有）。数据源与种子/时钟行为由各 profile 覆盖：
+#   dev   → campus_dev，可开种子导入
+#   test  → campus_test，独立 schema 由 DbTestSupport 动态设置
+#   e2e   → campus_test，固定时钟/固定演示日期（与 dev 叠加为 dev,e2e）
+spring:
+  application:
+    name: campus-events
+  datasource:
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      write-dates-as-timestamps: false
+
+server:
+  port: 8080
+  shutdown: graceful
+
+# 配置经理自定义配置（与 dev/DemoDataSeeder、固定时钟一致）
+app:
+  demo-seed: ${APP_DEMO_SEED:false}
+  demo-date: ${DEMO_DATE:}
+  demo-password: ${DEMO_PASSWORD:}
+  demo-seed-file: test-data/demo.json
+  test-now: ${APP_TEST_NOW:}
+
+logging:
+  level:
+    com.campus.events: INFO

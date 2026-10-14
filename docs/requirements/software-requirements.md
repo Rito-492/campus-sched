@@ -186,8 +186,8 @@ F节点中的资格失败不应写入预约；申请人需要变更内容时，�
 
 | 当前状态标识 | 中文含义 | 可导致状态变化的操作 |
 | --- | --- | --- |
-| DRAFT | 草稿 | 编辑产生新版本；提交→PENDING_TEACHER |
-| PENDING_TEACHER | 待业务审批 | 同意→APPROVED_UNRESERVED；驳回→DRAFT；撤回→新版本DRAFT |
+| DRAFT | 草稿 | 编辑产生新版本；提交→PENDING_APPROVER |
+| PENDING_APPROVER | 待业务审批 | 同意→APPROVED_UNRESERVED；驳回→DRAFT；撤回→新版本DRAFT |
 | APPROVED_UNRESERVED | 已审批待资源确认 | 联合预约成功→SCHEDULED；冲突保持；撤回→新版本DRAFT |
 | SCHEDULED | 已预约 | 发布→OPEN；可经改期切换有效安排并保持状态 |
 | OPEN | 已发布开放报名 | 报名、退出；可经改期切换有效安排并保持状态 |
@@ -217,8 +217,8 @@ flowchart TD
 
 | 改期状态 | 含义与规则 |
 | --- | --- |
-| AWAITING_CONFIRMATIONS | 等待工作人员确认，任一拒绝→REJECTED，全部同意→PENDING_TEACHER |
-| PENDING_TEACHER | 待业务复审；同意→PENDING_RESOURCE，拒绝→REJECTED |
+| AWAITING_CONFIRMATIONS | 等待工作人员确认，任一拒绝→REJECTED，全部同意→PENDING_APPROVER |
+| PENDING_APPROVER | 待业务复审；同意→PENDING_RESOURCE，拒绝→REJECTED |
 | PENDING_RESOURCE | 待资源最终复核；通过→APPLIED，拒绝→REJECTED，资源冲突→CONFLICTED |
 | APPLIED | 已生效，关联新有效版本 |
 | REJECTED | 被工作人员、批准人或资源复核管理员拒绝，保留原因 |
@@ -231,6 +231,8 @@ flowchart TD
 ## 7 外部接口与界面要求
 
 系统通过HTTP接口交换JSON数据，接口使用`/api/v1`前缀，统一请求、响应和错误结构。接口应覆盖认证、账号授权、资源资格、活动、审批、调度、报名、改期、通知和记录查询，并保持字段含义与业务规则一致。
+
+活动审批 API-18 的决定路径使用 `/activities/{id}/approver-decision`，活动与改期的待复审状态统一为 `PENDING_APPROVER`；审批主体须同时满足批准权限、组织/类别范围及本人申请回避规则。字段和完整接口定义以 `agents/common/02-数据与接口契约.md` 为准。
 
 登录外业务接口要求认证，健康检查例外；持久化写操作要求幂等键，登录／退出和只读预览例外。未登录401、越权403、不存在404、校验400、状态／资源冲突409、内部错误500。失败响应不包含SQL、堆栈或凭据。
 

@@ -79,3 +79,22 @@
 按用户要求生成三份独立 Word 文档：软件开发计划 v0.5、软件需求规约 v1.1、用户界面说明文档 v1.1。需求规约合并用例规约、补充规约及业务规则、需求追踪附录；界面说明保留设计示意图及文字说明。全文使用宋体，仅封面标题与各级标题加粗，正文、表格表头和图中文字不加粗；附封面、可更新目录与页码。原 Markdown 及旧版 Word 保留。
 
 检查记录：本机 Word 更新目录并导出预览，检查页面图像、分页、表格和示意图，修复封面装饰线、多余空白页及孤立表头。最终页数分别为20、55、17；文字字体与非标题加粗检查未发现异常。内置渲染工具因缺少 LibreOffice 未运行成功，改用 Word 预览。此轮仅迁移文档，未运行产品业务测试。
+
+## 系统分析员开发交接（2026-10-13）
+
+- 成员/任务：冯玉琪（22220314），AN-01～05；本轮起始基准为 `origin/main` 的 v3.0 任务包提交 `5097af7`。
+- 同步方式：以 rebase 将本分支状态机提交移植到 `origin/main`，明确未带入旧需求材料提交 `bf0cef7`；保留 main 上需求规约 v1.1、追踪矩阵及新增个人任务书。
+- 本轮状态机文件：`server/src/main/java/com/campus/events/activity/ActivityStateMachine.java`、`server/src/test/java/com/campus/events/activity/ActivityStateMachineTest.java`。按基线 v3.0 使用 `PENDING_APPROVER`；覆盖创建、草稿编辑、提交、批准、驳回回 DRAFT、待审/已批准撤回生成新版本、资源确认、发布、报名 lockVersion 递增、取消幂等和取消后所有业务转换均拒绝。
+- 验证：`git diff --check` 无错误。
+- 本轮实测：`java -version`、`javac -version` 均因命令不存在而失败；`Test-Path server/pom.xml`、`Test-Path server/mvnw.cmd` 均为 False；按个人任务书执行 `./server/mvnw.cmd test`，PowerShell 报命令不存在。因此 7 个 `ActivityStateMachineTest` 用例未执行，不能报告通过。
+- 后续任务：AN-02～04 的 repository、service/controller、ActivityPortAdapter、审批、报名并发及取消联调，等待 PM 的 Java 公共类型/构建、DS 的 v3 schema/SchedulingPort、CM 的 ChangePort/EventPort；仅修改 `activity/`、`registration/` 和本人需求文档，不改共享类型或他人模块。
+- 接收确认：尚未接收。
+
+## 最新main同步与后续依赖（2026-10-13）
+
+- 基准：已同步到 `origin/main` 的 `b96e4ca`（包含 DS-01 schema v3.0 与 CM-01 环境/配置计划/演示数据框架）；本人分支以 rebase 保留状态机两个提交，并明确不包含已被新版取代的 `bf0cef7` 旧需求提交。
+- 本次复核：`server/src/main/java` 仍只有活动状态机与 CM 的 dev 种子代码；`server/pom.xml`、Maven Wrapper、PM 的 `contract`/`foundation`/`auth` 生产类型均未进入 main。Activity/registration 持久层、控制器及 ActivityPort、SchedulingPort、ChangePort、EventPort 接口也未进入 main。
+- AN-01 已有状态机和测试源码、API 技术标识同步及本交接记录。Maven 命令仍无法实际执行：`server/mvnw.cmd` 与 `server/pom.xml` 不存在，且当前环境没有 `java`/`javac`；测试不得记为通过。
+- AN-02～04 不能在缺少 PM 的共享 record/端口、CommandExecutor 与 Maven 工程时安全实现并编译；AN-03/04 还依赖 DS 的 SchedulingPort 与 CM 的 ChangePort/EventPort。已由 DS 合入的 schema v3.0 不代替这些 Java 接口。
+- 下一步：PM 合入公共构建/DTO/端口后，先实现 API-12～17 与 ActivityPortAdapter；DS/CM 端口合入后实现 API-18～23 和取消事务，再运行本模块单测及真实 PostgreSQL IT。
+- 接收确认：尚未接收。

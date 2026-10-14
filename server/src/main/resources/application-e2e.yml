@@ -1,0 +1,12 @@
+# E2E profile（与 dev 叠加为 dev,e2e）：固定时钟 + 固定演示日期，只连 campus_test。
+# 禁止接真实部署库；APP_TEST_NOW / DEMO_DATE 由 compose.qa.yaml 固定（test-plan §3）。
+spring:
+  datasource:
+    url: ${TEST_DATABASE_URL:jdbc:postgresql://db:5432/campus_test}
+    username: ${TEST_DB_USERNAME:campus_app}
+    password: ${TEST_DB_PASSWORD:campus_app_dev}
+
+app:
+  test-now: ${APP_TEST_NOW:2030-10-19T00:00:00Z}
+  demo-date: ${DEMO_DATE:2030-10-20}
+  demo-seed: true

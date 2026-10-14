@@ -1,0 +1,66 @@
+# campus-sched 开发环境编排（配置经理拥有）
+# 项目名固定为 campus-events（04 协作规程 §4，避免中文目录名成为无效项目名）。
+# 端口：db 5432 / API 8080 / web 5173；演示部署入口 127.0.0.1:8088 见 release/README.md。
+# 启动数据库：. ./scripts/load-env.ps1 && docker compose up -d db
+# 完整启动（需 PM 后端 pom 与 UI web 工程就绪后）：docker compose up -d --build
+# 种子导入：仅当 APP_DEMO_SEED=true 且 server 以 dev profile 运行时执行（幂等，见 dev/DemoDataSeeder）。
+
+name: campus-events
+
+services:
+  db:
+    image: postgres:17
+    container_name: campus-events-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres_dev}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      # 首次初始化：创建 campus_dev / campus_test 与业务账号 campus_app
+      - ./infra/db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-postgres}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    container_name: campus-events-server
+    restart: unless-stopped
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_NAME: campus_dev
+      DB_USERNAME: ${DB_USERNAME:-campus_app}
+      DB_PASSWORD: ${DB_PASSWORD:-campus_app_dev}
+      DEMO_DATE: ${DEMO_DATE:-}
+      DEMO_PASSWORD: ${DEMO_PASSWORD:-}
+      APP_DEMO_SEED: ${APP_DEMO_SEED:-false}
+      APP_TEST_NOW: ""
+    ports:
+      - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+    container_name: campus-events-web
+    restart: unless-stopped
+    ports:
+      - "5173:80"
+    depends_on:
+      - server
+
+volumes:
+  db-data:

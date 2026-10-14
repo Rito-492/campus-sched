@@ -1,0 +1,66 @@
+# campus-sched E2E 独立测试编排（配置经理拥有）
+# 与开发环境完全隔离：独立项目名/卷/端口/测试库（04 协作规程 §4、docs/testing/test-plan.md §3）。
+# 项目名 campus-events-qa；宿主 db 5440 / API 8081 / web 8089；
+# 后端 dev,e2e profile 只连 campus_test；固定 APP_TEST_NOW 与 DEMO_DATE=2030-10-20；
+# 禁止接真实部署库（test-plan §3：后端与数据库必须真实，仅指测试环境自身真实）。
+# 启动：. ./scripts/load-env.ps1 && docker compose -f compose.qa.yaml up -d --build
+
+name: campus-events-qa
+
+services:
+  db:
+    image: postgres:17
+    container_name: campus-events-qa-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres_dev}
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
+    ports:
+      - "5440:5432"
+    volumes:
+      - db-data-qa:/var/lib/postgresql/data
+      - ./infra/db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-postgres}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    container_name: campus-events-qa-server
+    restart: unless-stopped
+    environment:
+      SPRING_PROFILES_ACTIVE: dev,e2e
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_NAME: campus_test
+      DB_USERNAME: ${TEST_DB_USERNAME:-campus_app}
+      DB_PASSWORD: ${TEST_DB_PASSWORD:-campus_app_dev}
+      # 固定值（test-plan §3 / test-data-plan §3），不随真实当天变化
+      DEMO_DATE: "2030-10-20"
+      DEMO_PASSWORD: ${DEMO_PASSWORD:-demo123}
+      APP_DEMO_SEED: "true"
+      APP_TEST_NOW: "2030-10-19T00:00:00Z"
+    ports:
+      - "8081:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  web:
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+    container_name: campus-events-qa-web
+    restart: unless-stopped
+    ports:
+      - "8089:80"
+    depends_on:
+      - server
+
+volumes:
+  db-data-qa:
