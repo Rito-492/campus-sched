@@ -1,6 +1,19 @@
 # 交接单（配置经理）
 
-## 本次交付
+## 本次交付（课程任务2：配置管理计划 + 建立配置库）
+
+- 成员、学号、任务ID：杨瀚霖、55231031、配置经理；课程分组任务2（配置管理计划、建立配置库）。
+- 交付文件：
+  - `docs/configuration/T08_配置管理计划.docx` —— 配置管理计划课程提交版（Word，参照 RUP 模板），含产品目录结构（§3.1.2）、配置项清单（附录 A）、基线清单（附录 B）。
+  - `docs/configuration/configuration-management-plan.md` —— 同步更新 v1.1：新增 §4.2 目录结构（产品目录结构），基线清单更新为「已建立」。
+  - `docs/configuration/configuration-index.md` —— 登记 CI-DOC-05（课程提交版 Word）；基线清单 `baseline/init-v1.0`、`baseline/task-package-v2.0` 状态更新为「已建立」。
+- 配置库（Git 仓库）现状：
+  - 产品目录结构已建立并写入配置管理计划（§3.1.2 / §4.2）。
+  - 项目相关文档已纳入版本库（docs/ 各岗位目录）。
+  - 已定型/已通过评审的产物已标识基线：`baseline/init-v1.0`、`baseline/task-package-v2.0`（tag 已存在）。
+- 网络问题：`git fetch/pull` 无法访问 github.com（连接被重置/超时，本机无代理），**未能拉取最新 origin 更新**；本地 `origin/main` 停留在 PR#2 合并（b96e4ca）。待网络恢复后需重新同步 main 再合并。
+
+## 历史交付（CM-01：M0 环境、配置计划、种子导入框架）
 
 - 成员、学号、任务ID：杨瀚霖、55231031、配置经理；任务 CM-01（M0 环境、配置计划、种子导入框架）
 - 基线：v3.0（2026-10-13）；基准 commit：`ed8c3bc`（main 最新：PR#1 DS-01 V1 schema 升级 v3.0）；本人分支 `work/55231031-change`（已从 origin/main 快进合并，未 reset，保留原未提交工作）

@@ -1,7 +1,7 @@
 # 配置项索引（Configuration Index）
 
 > 项目：campus-sched　负责人：杨瀚霖（55231031，配置经理）
-> 本文是"配置库"交付物（任务包 §6 交付物 10）的索引部分，只登记**真实纳入版本库**的配置项；未产生的内容不预登记。
+> 本文是"配置库"交付物（任务包 §5 交付物 10）的索引部分，只登记**真实纳入版本库**的配置项；未产生的内容不预登记。
 > 更新：随各模块交付与基线建立持续维护。
 
 ## 1. 说明
@@ -23,6 +23,7 @@
 | CI-DOC-02 | 项目名片 | `README.md` | 项目经理 | 受控 |
 | CI-DOC-03 | 仓库结构指南 | `docs/configuration/repo-structure.md` | 配置经理 | 受控 |
 | CI-DOC-04 | 配置管理计划 | `docs/configuration/configuration-management-plan.md` | 配置经理 | 受控 |
+| CI-DOC-05 | 配置管理计划（课程提交版，Word） | `docs/configuration/T08_配置管理计划.docx` | 配置经理 | 受控 |
 
 ### 2.2 课程下发材料（CI-DOC，只读）
 
@@ -69,6 +70,8 @@
 
 | 基线 | 内容 | 状态 |
 |---|---|---|
-| `baseline/init-v1.0` | 任务包并入 + 仓库结构定型 | 待补登（见配置管理计划 §8） |
+| `baseline/init-v1.0` | 任务包并入 + 仓库结构定型 | 已建立 |
+| `baseline/task-package-v2.0` | 任务包 v2.0 基线 | 已建立 |
+| `baseline/task-package-v3.0` | 任务包 v3.0 基线（含 AN 活动状态机对齐） | 已建立 |
 
 其余基线（requirements / design / release）随对应交付物评审通过后建立并在此登记。
