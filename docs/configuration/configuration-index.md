@@ -39,6 +39,10 @@
 | CI-DOC-20 | 测试计划 | `docs/testing/test-plan.md` | 测试经理 | 受控 |
 | CI-DOC-21 | 测试设计 | `docs/testing/test-design.md` | 测试经理 | 受控 |
 | CI-DOC-22 | 测试数据设计 | `docs/testing/test-data-plan.md` | 测试经理 | 受控 |
+| CI-DOC-23 | 测试 ID 需求清单 | `docs/testing/testid-requirements.md` | 测试经理 | 受控 |
+| CI-DOC-24 | 需求覆盖矩阵 | `docs/testing/coverage-matrix.md` | 测试经理 | 受控 |
+| CI-DOC-25 | 缺陷登记表 | `docs/testing/defect-register.md` | 测试经理 | 受控 |
+| CI-DOC-26 | PR 评审清单 | `docs/testing/pr-review-checklist.md` | 测试经理 | 受控 |
 | CI-DATA-01 | 演示数据集 v3.0 | `test-data/demo.json` | 测试经理 | 受控 |
 | CI-DATA-02 | 场景数据 | `test-data/scenarios/*.json` | 测试经理 | 受控 |
 | CI-SRC-30 | 后端测试支撑 | `server/src/test/.../support/` | 测试经理 | 受控 |
