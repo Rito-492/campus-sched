@@ -1,10 +1,11 @@
 # 配置管理计划（Configuration Management Plan）
 
 > 项目：面向校园活动的多资源协同调度与变更影响分析系统（campus-sched）
-> 版本：v1.0
+> 版本：v1.1
 > 负责人：杨瀚霖（55231031，配置经理）
-> 日期：2026-09-27
-> 对应交付物：任务包 §6 交付物 6
+> 日期：2026-10-16
+> 对应交付物：任务包 §5 交付物 6（配置管理计划）、交付物 10（配置库）
+> 课程提交版：`docs/configuration/T08_配置管理计划.docx`（Word，参照 RUP 模板，含产品目录结构、配置项与基线清单）
 
 ## 1. 引言
 
@@ -66,9 +67,50 @@
 
 - 远程仓库：GitHub `Rito-492/campus-sched`（公开）。
 - 本地仓库：成员通过 `git clone` 获取完整历史；以 `main` 为可集成分支。
-- 配置库同时承担课程"配置库"交付物（任务包 §6 交付物 10）的角色。
+- 配置库同时承担课程"配置库"交付物（任务包 §5 交付物 10）的角色。
 
-### 4.2 分支策略
+### 4.2 目录结构（产品目录结构）
+
+配置库即 Git 仓库，产品目录结构如下（与《仓库结构与目录指南》§2 一致，完整归属见该指南 §3）：
+
+```text
+campus-sched/
+├── AGENTS.md / README.md / .gitignore    # 仓库元文件（仅此三件）
+├── taskbook.md                           # 开发任务包总说明 v3.0
+├── agents/                               # 任务包：公共契约 + 六份个人任务书
+│   ├── common/                           #   01–05 公共契约
+│   ├── 55230223-foundation/              #   项目经理
+│   ├── 22220314-activity/                #   系统分析员
+│   ├── 55230315-scheduling/              #   设计师
+│   ├── 55230316-qa/                      #   测试经理
+│   ├── 55231031-change/                  #   配置经理
+│   └── 17231018-ui/                      #   界面设计师
+├── docs/                                 # 文档区
+│   ├── course/                           #   课程下发文档（只读）
+│   │   └── role-confirmations/           #     六份角色确认表
+│   ├── management/                       #   项目计划（项目经理）
+│   ├── requirements/                     #   需求文档（系统分析员）
+│   ├── design/                           #   设计文档（设计师）
+│   ├── ui/                               #   界面文档与原型（界面设计师）
+│   ├── testing/                          #   测试文档（测试经理）
+│   └── configuration/                    #   配置管理文档（配置经理）
+├── server/                               # Java 21 / Spring Boot 后端
+│   └── src/
+│       ├── main/java/com/campus/events/  #   生产代码（foundation/auth/…/change 等）
+│       ├── main/resources/               #   application*.yml、db/migration/
+│       └── test/java/com/campus/events/  #   模块测试 + acceptance/ + support/
+├── web/                                  # Vue 3 / TypeScript 前端
+├── qa/                                   # Playwright E2E 与契约检查
+├── test-data/                            # demo.json、scenarios/
+├── contracts/                            # openapi.yaml（OpenAPI 规范）
+├── infra/                                # db/init.sql、nginx/default.conf
+├── scripts/                              # load-env.ps1、check.ps1
+├── release/                              # 发布包、发布说明、manifest
+├── artifacts/                            # 验收证据（截图/测试结果/评测）
+└── models/                               # Drawio UML 源文件（use-case/、activity/）
+```
+
+### 4.3 分支策略
 
 | 分支 | 用途 |
 |---|---|
@@ -81,7 +123,7 @@
 - 合并冲突由对应模块所有者核对，禁止一律选择 ours/theirs。
 - 缺陷修复在对应模块分支上进行。
 
-### 4.3 提交信息
+### 4.4 提交信息
 
 格式：`feat|fix|docs|test|model: 摘要`；涉及缺陷时引用 GitHub Issue 编号，如 `fix: 修复并发预约重复提交 (#23)`。
 
@@ -95,7 +137,9 @@
 
 | 基线 | 触发时机 | 状态 |
 |---|---|---|
-| `baseline/init-v1.0` | 任务包并入仓库、仓库结构定型 | 待补登（见 §8） |
+| `baseline/init-v1.0` | 任务包并入仓库、仓库结构定型 | 已建立 |
+| `baseline/task-package-v2.0` | 任务包 v2.0 基线 | 已建立 |
+| `baseline/task-package-v3.0` | 任务包 v3.0 基线（含 AN 活动状态机对齐） | 已建立 |
 | `baseline/requirements-v1.0` | 需求规范评审通过 | 待建立 |
 | `baseline/design-v1.0` | 设计文档评审通过 | 待建立 |
 | `baseline/release-v1.0.0` | 最终交付 | 待建立 |
@@ -139,6 +183,6 @@
 
 ## 8. 待办与已知事项
 
-- `baseline/init-v1.0` 需在本计划对应的基线清单中补登（当前仓库已含任务包与 M0 初产物）。
 - 配置项索引（`configuration-index.md`）随各模块交付持续更新，当前仅登记已真实纳入的内容。
 - 环境搭建（`compose.yaml` 等）随 M0 逐步完成，本计划先于完整环境落地，作为过渡基准。
+- 需求/设计/发布基线待对应交付物评审通过后建立并登记。
