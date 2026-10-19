@@ -21,7 +21,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -110,16 +112,22 @@ public class DemoDataSeeder implements ApplicationRunner {
         for (var org : data.organizations()) {
             seedOrganization(org);
         }
-        // 先建用户基础资料/角色/权限/审批范围，再建资源，最后建资源管理范围授权：
-        // user_resource_scope.resource_id 有即时外键（V1__schema.sql §11），须在 resource 存在后插入。
+        // 先建用户基础资料/角色/权限/审批范围，再建资源，最后仅为本轮新建的用户插入资源管理范围授权：
+        // user_resource_scope.resource_id 有即时外键（V1__schema.sql §11），须在 resource 存在后插入；
+        // 已有用户整体跳过，不修补/重放其资源范围（不覆盖用户已修改数据，见 test-data-plan §5.6）。
+        Set<UUID> newUserIds = new HashSet<>();
         for (var user : data.users()) {
-            seedUserBase(user, passwordHash);
+            if (seedUserBase(user, passwordHash)) {
+                newUserIds.add(user.id());
+            }
         }
         for (var resource : data.resources()) {
             seedResource(resource);
         }
         for (var user : data.users()) {
-            seedUserResourceScopes(user);
+            if (newUserIds.contains(user.id())) {
+                seedUserResourceScopes(user);
+            }
         }
         for (var activity : data.activities()) {
             seedActivity(activity);
@@ -146,9 +154,9 @@ public class DemoDataSeeder implements ApplicationRunner {
         organizations++;
     }
 
-    private void seedUserBase(DemoData.User user, String passwordHash) {
+    private boolean seedUserBase(DemoData.User user, String passwordHash) {
         if (exists("SELECT count(*) FROM app_user WHERE id = ?", user.id())) {
-            return; // 已存在则跳过，不覆盖用户已修改数据
+            return false; // 已存在则跳过，不覆盖用户已修改数据
         }
         jdbc.update("""
                 INSERT INTO app_user (id, organization_id, username, display_name, password_hash, enabled, identity)
@@ -168,15 +176,13 @@ public class DemoDataSeeder implements ApplicationRunner {
             }
         }
         users++;
+        return true;
     }
 
     private void seedUserResourceScopes(DemoData.User user) {
+        // 仅对本轮新建用户调用（seed() 用 newUserIds 过滤）：其 user_resource_scope 尚不存在，直接插入 managedResourceIds。
         // 依赖 resource 已存在（user_resource_scope.resource_id 即时外键，V1__schema.sql §11），须在 seedResource 之后调用。
         for (UUID resourceId : user.managedResourceIds()) {
-            if (exists("SELECT count(*) FROM user_resource_scope WHERE user_id = ? AND resource_id = ?",
-                    user.id(), resourceId)) {
-                continue;
-            }
             jdbc.update("INSERT INTO user_resource_scope (user_id, resource_id) VALUES (?, ?)", user.id(), resourceId);
         }
     }
