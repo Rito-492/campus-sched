@@ -1,5 +1,53 @@
 # 项目经理交接单
 
+## 2026-10-19 提交交叉评审
+
+- 用户明确要求“提交给别人评审”，已授权提交及推送本人work分支并创建评审PR，不合并main。
+- 评审对象：设计师黄方勇（GitHub：Kimcra1），已根据既有DS分支提交与仓库协作者名单核实身份；重点核对共享类型/OpenAPI、事务与锁序、权限范围及幂等回滚。评审状态以GitHub实际请求和反馈为准，不自审、不预填放行。
+- 提交范围：PM公共工程/认证/契约及同包测试、40API OpenAPI、README、PM管理Markdown和本轮真实检查证据。现有三份T08 Word及三份历史计划Word不纳入；其他成员源码和课程原件不改动。
+- 验证沿用本轮最终代码的22项单元与19项真实PostgreSQL IT、契约检查；本次只补充提交与评审记录，不重复运行无代码变更的业务测试。默认test/verify的既有编译失败及完整依赖清单保留，不宣称全项目通过。
+- 提交前文件校验见`artifacts/test-results/pm-2026-10-19/source-manifest.json`与`check-summary.json`；实际commit由Git生成，PR创建后可直接对照分支提交。以下“本地未提交”是此前初次交付时的历史状态。
+- 证据日志入库时仅统一换行为LF并去除行尾空格，测试结果、错误、计数和时间均保留；原始运行日志仍保存在本地工作临时目录。源码校验清单按UTF-8/LF计算，便于跨平台核对PR文件内容。
+
+## 2026-10-19 项目经理实际开发与检查（当前交付）
+
+- 成员/学号/任务：冀项阳55230223；PM-01～03独立实现、PM-04接口协调与依赖核查、PM-05计划及过程记录；公共契约v3.0。
+- 实际主线基准：`2a9e94143296f5972e91bc2b7848b711762e01f4`，已fetch确认最新origin/main。本人分支`work/55230223-foundation`同步该基准；没有提交、推送、合并、PR、评审签字或发布标签。本轮文件快照见证据目录的source-manifest.json，不虚构commit。
+- 保留：用户已修改的三份T08 Word和未跟踪的初始计划v0.2/v0.3/v0.4 Word均未覆盖；docs/course原件未修改；他人源码和测试未修改。
+
+### 本轮交付
+
+1. `server/pom.xml`、`mvnw`/`mvnw.cmd`、`.mvn/wrapper/`、应用入口；Java21/Boot3.5.16、Maven3.9.11、发行包SHA-256、Surefire/Failsafe非零测试入口。
+2. `contract/`：按common/02展开全部共享record、枚举与Account/Activity/Scheduling/Change/Event五类端口；`contracts/openapi.yaml`包含40项API、请求、信封、认证、幂等键、枚举/字段及实现归属。没有改动公共任务包或DS迁移。
+3. `foundation/`：系统/e2e Clock、requestId、统一响应和异常、严格JSON、规范化请求hash及CommandExecutor。receipt先于业务锁；同key重放完整首次status/body/requestId；不同body或route拒绝；异常回滚，需提交的业务409作为返回结果。
+4. `auth/`：API-01～06/38/39与AccountPort，BCrypt密码、令牌哈希、8小时会话；停用撤销会话；完整授权替换与历史共事务；同组织staff裁剪、201项探测列表截断；最新权限、审批组织/类别、全部资源范围与本人回避策略。
+5. PM单元和真实PostgreSQL测试；初始计划v0.6、详细计划v3.1、接口登记、风险、决策、实际工作记录、集成日志及公共接入说明。实际工时未采集，不将预算或机器运行时间冒充人时。
+
+### 实际检查结果
+
+证据目录：`artifacts/test-results/pm-2026-10-19/`。测试数据库仅本轮本地campus_test，独立随机`t_<32hex>` schema，实际PostgreSQL17.6，经Flyway迁移，结束清理。环境Java21.0.12.1、Maven3.9.11、Node24.19.0。
+
+| 命令 | 实际结果 | 证据 |
+|---|---|---|
+| `./server/mvnw.cmd -f server/pom.xml test` | 退出1；CM DemoDataSeeder第118行受检异常，未进入测试 | full-test.log |
+| `./server/mvnw.cmd -f server/pom.xml verify` | 退出1；同一编译阻塞，未进入全量IT | full-verify.log |
+| `./server/mvnw.cmd -f server/pom.xml -Ppm-isolated clean verify` | 退出0；22项单元+19项真实PostgreSQL IT，0失败/0跳过 | pm-verify.log、五份测试摘要 |
+| `node qa/scripts/check-contract.ts` | 退出0；40API/9组枚举/15DTO无差异 | contract-check.log |
+| `git diff --check`、新增文本/本地链接/契约引用核查 | 最终结果见check-summary.json | check-summary.json |
+
+`pm-isolated`显式限定PM源码及PM测试，默认全量构建未排除任何测试；不得以隔离结果替代默认入口、全组验收或发布。真实库检查覆盖密码/会话、账号停用与退出、权限即时替换、范围输入、同组织裁剪、列表截断、同事务历史、MANDATORY端口、12并发同键一次执行、异请求409、异常回滚及业务409持久化重放。
+
+### 未完成、依赖与下一接收人
+
+- **CM 杨瀚霖**：修复`dev/DemoDataSeeder.java:118`的异常处理；CM与QA均需调整资源范围导入先后顺序。默认构建失败已有真实日志，PM未越权改动CM文件。
+- **DS 黄方勇**：接收共享类型后交付缺失的`StrategyEvaluator.java`、`StrategyResult.java`及SchedulingPort生产实现；现有SchedulingBenchmarkIT直接import这些类型。未以空实现或跳过测试伪造成功。
+- **QA 汤雨润**：核实DbTestSupport的外键顺序、活动/首版本共事务和jsonb绑定；原装载器本轮未运行，静态风险和实际失败在集成日志中分别列明。复验默认test/verify、30验收场景及E2E。
+- **AN 冯玉琪、CM、DS**：Activity/Scheduling/Change/Event生产适配器及业务API尚未交付；AN/CM在四种审核入口复用完整范围与本人回避策略，重要操作先锁操作者/所有者取最新身份。
+- **UI 杨畅**：web缺package.json与产品工程，前端typecheck/test:unit/build未执行，真实页面与浏览器E2E未验证。接入API及幂等重试示例见foundation-guide.md。
+- **PM**：独立实现与记录已交付；PM-01的全项目可编译条件及PM-04的M0/M2/M3依赖上述交付，尚未完成；课程实际日期和个人工时仍需核实。下一步按detailed-project-plan.md §7接收并复验，无虚构接收记录。
+
+验收口径：D-AT-01账号部分、D-AT-08幂等基础及N-AT-01/05/06公共策略有本模块证据；未把跨模块D-AT/N-AT整项标通过。M0/M2/M3/M4均未新增完成结论。**接收确认：AN/DS/CM/UI/QA均尚未接收；交叉评审尚未进行。**
+
 ## 提交前核实（2026-10-09，PM-01，v0.5 Markdown）
 
 - 用户授权：核实修改完整后提交到仓库。

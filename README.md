@@ -49,3 +49,9 @@ test-data/ contracts/ infra/ scripts/ release/ artifacts/ models/
 - **成员/agent 启动开发**：从 [六人开发入口](agents/README.md) 选择本人的 `agent.md`，复制文档末尾指令给开发助手；总分工见 [`taskbook.md`](taskbook.md)
 - **了解项目**：本 README → [`AGENTS.md`](AGENTS.md)（agent 与新成员指南）
 - **课程与分工文档**：`docs/course/`
+
+## 项目经理工作包（2026-10-19）
+
+已实现公共后端工程、共享DTO/五类端口、统一响应与时钟、账号认证/权限、AccountPort、幂等事务及40项[OpenAPI契约](contracts/openapi.yaml)。实际实现API-01～06、37～39；其余业务接口等待对应模块交付。接入方式、真实失败示例和锁规则见[公共模块说明](docs/management/foundation-guide.md)。
+
+需Java21；默认入口为`./server/mvnw.cmd -f server/pom.xml test`及`verify`。本轮默认全项目构建被种子导入源码错误阻塞，M0/M2/M3未达成。显式`-Ppm-isolated clean verify`仅验证PM工作包，已在真实PostgreSQL17上通过22项单元与19项集成测试，不能替代全量验收或发布。完整结果、证据、外部依赖及下一接收人见[PM交接单](docs/management/handoff.md)和[集成日志](docs/management/integration-log.md)。

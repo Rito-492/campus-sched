@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-19",
+  "projectFilesEnumerated": 244,
+  "pmSourceFilesChecked": 100,
+  "localMarkdownLinks": 20,
+  "openApiOperations": 40,
+  "openApiReferences": 357,
+  "tests": 41,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "defaultTestExit": 1,
+  "defaultVerifyExit": 1,
+  "pmIsolatedVerifyExit": 0,
+  "notes": [
+    "默认构建因CM种子代码异常处理失败",
+    "PM隔离结果不等于全项目验收",
+    "未修改用户Word与课程原件",
+    "当前为交叉评审提交前检查，未合并或发布"
+  ],
+  "problems": []
+}

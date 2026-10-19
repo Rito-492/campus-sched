@@ -1,0 +1,38 @@
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ----------------------< com.campus:campus-events >----------------------
+[INFO] Building 校园活动协同与资源调度系统 0.1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ campus-events ---
+[INFO] Copying 4 resources from src\main\resources to target\classes
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ campus-events ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 86 source files with javac [debug parameters release 21] to target\classes
+[INFO] /D:/JLU/软件综合实践/campus-sched/server/src/main/java/com/campus/events/foundation/CanonicalJson.java: D:\JLU\软件综合实践\campus-sched\server\src\main\java\com\campus\events\foundation\CanonicalJson.java使用或覆盖了已过时的 API。
+[INFO] /D:/JLU/软件综合实践/campus-sched/server/src/main/java/com/campus/events/foundation/CanonicalJson.java: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR :
+[INFO] -------------------------------------------------------------
+[ERROR] /D:/JLU/软件综合实践/campus-sched/server/src/main/java/com/campus/events/dev/DemoDataSeeder.java:[118,25] 未报告的异常错误java.lang.Exception; 必须对其进行捕获或声明以便抛出
+[INFO] 1 error
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.724 s
+[INFO] Finished at: 2026-10-19T15:30:36+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.1:compile (default-compile) on project campus-events: Compilation failure
+[ERROR] /D:/JLU/软件综合实践/campus-sched/server/src/main/java/com/campus/events/dev/DemoDataSeeder.java:[118,25] 未报告的异常错误java.lang.Exception; 必须对其进行捕获或声明以便抛出
+[ERROR] -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
