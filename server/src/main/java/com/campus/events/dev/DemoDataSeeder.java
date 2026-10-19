@@ -1,5 +1,6 @@
 package com.campus.events.dev;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -182,7 +184,7 @@ public class DemoDataSeeder implements ApplicationRunner {
         resources++;
     }
 
-    private void seedActivity(DemoData.Activity activity) throws Exception {
+    private void seedActivity(DemoData.Activity activity) {
         if (exists("SELECT count(*) FROM activity WHERE id = ?", activity.id())) {
             return;
         }
@@ -194,7 +196,12 @@ public class DemoDataSeeder implements ApplicationRunner {
                 activity.id(), activity.organizationId(), activity.ownerId(), activity.status(),
                 activity.versionNo(), effectiveVersion);
 
-        String inputJson = objectMapper.writeValueAsString(activity.input());
+        String inputJson;
+        try {
+            inputJson = objectMapper.writeValueAsString(activity.input());
+        } catch (JsonProcessingException e) {
+            throw new UncheckedIOException("序列化 activity.input 失败: " + activity.id(), e);
+        }
         jdbc.update("INSERT INTO activity_version (activity_id, version_no, input_json, created_by) VALUES (?, ?, ?::jsonb, ?)",
                 activity.id(), activity.versionNo(), inputJson, activity.ownerId());
         activities++;
