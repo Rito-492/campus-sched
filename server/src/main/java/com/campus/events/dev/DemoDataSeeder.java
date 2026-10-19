@@ -110,11 +110,16 @@ public class DemoDataSeeder implements ApplicationRunner {
         for (var org : data.organizations()) {
             seedOrganization(org);
         }
+        // 先建用户基础资料/角色/权限/审批范围，再建资源，最后建资源管理范围授权：
+        // user_resource_scope.resource_id 有即时外键（V1__schema.sql §11），须在 resource 存在后插入。
         for (var user : data.users()) {
-            seedUser(user, passwordHash);
+            seedUserBase(user, passwordHash);
         }
         for (var resource : data.resources()) {
             seedResource(resource);
+        }
+        for (var user : data.users()) {
+            seedUserResourceScopes(user);
         }
         for (var activity : data.activities()) {
             seedActivity(activity);
@@ -141,7 +146,7 @@ public class DemoDataSeeder implements ApplicationRunner {
         organizations++;
     }
 
-    private void seedUser(DemoData.User user, String passwordHash) {
+    private void seedUserBase(DemoData.User user, String passwordHash) {
         if (exists("SELECT count(*) FROM app_user WHERE id = ?", user.id())) {
             return; // 已存在则跳过，不覆盖用户已修改数据
         }
@@ -162,10 +167,18 @@ public class DemoDataSeeder implements ApplicationRunner {
                         user.id(), scope.organizationId(), category);
             }
         }
+        users++;
+    }
+
+    private void seedUserResourceScopes(DemoData.User user) {
+        // 依赖 resource 已存在（user_resource_scope.resource_id 即时外键，V1__schema.sql §11），须在 seedResource 之后调用。
         for (UUID resourceId : user.managedResourceIds()) {
+            if (exists("SELECT count(*) FROM user_resource_scope WHERE user_id = ? AND resource_id = ?",
+                    user.id(), resourceId)) {
+                continue;
+            }
             jdbc.update("INSERT INTO user_resource_scope (user_id, resource_id) VALUES (?, ?)", user.id(), resourceId);
         }
-        users++;
     }
 
     private void seedResource(DemoData.Resource resource) {
