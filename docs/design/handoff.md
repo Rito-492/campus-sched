@@ -2,6 +2,19 @@
 
 > 维护：设计师（55230315）。格式依据 `agents/common/04-协作与集成规程.md` §4 固定模板。运行时信息填真实值；未执行的检查如实标注，不虚构通过。
 
+## 最新交付（2026-10-19：DS-03/05 纯逻辑；DS-02～05 接入依赖核对）
+
+- 成员：黄方勇 55230315；基线 v3.0；实际 `origin/main=68158cf`。本人 `work/55230315-scheduling` 开始时干净，由 `bbeb984` 快进同步到 main，未 reset、未推送、未创建 PR、未向 main 合并。
+- 新增 scheduling 包 `TimeInterval.java`、`CapacitySweep.java`、`CandidateRanking.java` 及对应三个 `*Test.java`。实现半开区间/布撤场/上海日/开放时间、设备同时峰值与故障下限、候选代价及规范设备排序；不改 V1 schema/SchemaIT、公共 contract 或他人文件。
+- Java 21.0.6 `javac --release 21` 编译退出码 0；通过本机缓存 JUnit Jupiter 5.10.2 引擎直接运行，13 用例、0 失败、0 跳过，退出码 0。包含 200 组随机区间对照；完整命令、临时引擎启动器及输出见 [检查证据](scheduling-check-v1.0.md)。这不是 Maven 全工程或产品验收通过。
+- `./scripts/check.ps1 -Scope scheduling` 退出码 1：缺 PM pom/Wrapper；`./server/mvnw.cmd -f server/pom.xml test` 退出码 1：命令不存在。`git diff --check` 退出码 0。
+- 未执行数据库/SchemaIT/并发/回滚/HTTP/E2E/策略评测；30 个验收场景未执行。本轮不重复旧数据库烟测，不将旧 handoff 的历史结果当作新结果。
+- DS-02 资源资格及接口、DS-03 日历/完整 check、DS-04 SchedulingPort 事务实现、DS-05 完整候选生成及 StrategyEvaluator/StrategyResult 仍待公共工程/DTO。纯逻辑不定义替身，也不返回伪成功。
+- [接入清单](scheduling-progress-v1.0.md) 已一次列清 PM 所需文件/类型/签名、影响任务以及 AN/CM/QA 的交接点。实际 main 已有 CM Compose/check/load-env，旧记录中“脚本缺失”已不适用；本轮未验证数据库运行状态。
+- 下一接收人：PM 冀项阳交公共 contract/构建/认证与事务入口；DS 随后接真实资源、候选及端口，AN/CM 接预约端口，QA 交叉验证。接收确认：尚未接收。用户随后授权提交、推送本人分支并创建 PR；交叉评审尚未进行，不自审自批，不自动合并或联系其他成员。
+
+---
+
 ## 本次交付（2026-10-13 第二批：DS-01 升级 v3.0——22 表 schema + 烟测 + SchemaIT + 文档）
 
 - 成员、学号、任务ID：黄方勇 55230315 / DS-01（v3.0 契约升级）
