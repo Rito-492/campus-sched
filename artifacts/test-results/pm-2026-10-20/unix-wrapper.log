@@ -1,0 +1,6 @@
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+Apache Maven 3.9.11 (3e54c93a704957b63ee3494413a2b544fd3d825b)
+Maven home: C:\Users\admin\.m2\wrapper\dists\apache-maven-3.9.11\a2d47e15
+Java version: 21.0.12.1, vendor: Eclipse Adoptium, runtime: D:\JLU\软件综合实践\.doc-work\pm-tools\jdk-21.0.12.1+1
+Default locale: zh_CN, platform encoding: UTF-8
+OS name: "windows 11", version: "10.0", arch: "amd64", family: "windows"

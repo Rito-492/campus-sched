@@ -1,5 +1,16 @@
 # 项目经理交接单
 
+## 2026-10-20 评审退回修复与重新提交准备
+
+- 用户要求修复到测试通过再提交，并明确确认本轮以“项目经理模块及评审回归通过后重提”为准。随后要求先拉取最新项目：已fetch，origin/main仍为`2a9e941`、origin/work/55230223-foundation仍为`a5e0724`，同步检查均为Already up to date，未覆盖本地Word及修复。
+- 评审依据：PR #7的Kimcra1评审`5569691410`，R1为回执外键KEY SHARE与用户FOR UPDATE死锁，R2为server/mvnw缺Unix可执行位。原始DDL和公共契约保持不变。
+- 实际修复：AccountRepository及SessionService登录统一使用FOR NO KEY UPDATE；用户非键变更仍串行化，并与回执外键锁兼容。server/mvnw的Git模式由100644改为100755。
+- 新增回归：先复现两个失败（真实死锁及登录锁不兼容）；修复后全部通过。不同键测试使用两个独立事务、receipt插入后的屏障、真实AccountPort.lock及5轮并发；登录测试在回执外键持锁期间真实调用SessionService.login。原有同键、权限、会话、回滚等检查全部保留；关闭MockMvc自动打印，避免失败日志输出测试口令和令牌。
+- 本分支实际检查：22项单元＋21项真实PostgreSQL IT，0失败/0错误/0跳过；40API契约检查通过；Git Bash实际执行Unix脚本`./server/mvnw -v`成功。未使用Linux实机，不将Git Bash结果冒称Linux运行验证。
+- 证据：`artifacts/test-results/pm-2026-10-20/`，含修复前后日志、默认构建日志、Unix入口、契约、源文件校验与本轮摘要。修复前失败日志仅对测试密码和令牌脱敏，日志结果/堆栈/时间保留。
+- 集成检查：CM已提供`fix/demodataseeder-118`的`ee76c2a`，未合入main。临时集成副本接入该真实修复后，默认test从种子编译错误推进到DS缺失StrategyEvaluator/StrategyResult。临时PM＋CM隔离验证通过22单元＋24 IT（PM21＋CM3）；该副本范围配置不提交到本PR，不冒充默认构建通过。
+- 下一接收人：Kimcra1及Rito-492复核R1/R2；CM完成已有修复PR，DS交付真实策略类后再跑默认全工程入口。全项目及M0/M2/M3依然未通过；本轮不合并main、不自审或删除拒绝意见。详情见[修复记录](review-fixes-2026-10-20.md)。
+
 ## 2026-10-19 提交交叉评审
 
 - 用户明确要求“提交给别人评审”，已授权提交及推送本人work分支并创建评审PR，不合并main。

@@ -23,7 +23,7 @@ Java21、Spring Boot3.5.16、Maven3.9.11，Wrapper自带发行包SHA-256核对�
 node qa/scripts/check-contract.ts
 ```
 
-本轮该入口真实执行22项单元测试和19项真实PostgreSQL集成测试；不能将隔离生成的jar用于全项目发布，也不据此标记M0/M2/M3完成。PM测试为随机`t_<32hex>` schema，仅删除本次schema；不使用QA演示导入器，不能据此宣称后者已通过。正式全量检查在修复依赖后使用默认入口。
+2026-10-20该入口真实执行22项单元测试和21项真实PostgreSQL集成测试；不能将隔离生成的jar用于全项目发布，也不据此标记M0/M2/M3完成。PM测试为随机`t_<32hex>` schema，仅删除本次schema；不使用QA演示导入器，不能据此宣称后者已通过。正式全量检查在修复依赖后使用默认入口。
 
 Clock默认系统UTC，只有e2e profile读取APP_TEST_NOW；普通dev不受该值影响。测试可用@Primary Clock。Jackson保留契约要求的显式null，拒绝未知字段、缺失必需字段、原始类型null、重复JSON键和尾随内容。
 
@@ -71,5 +71,7 @@ AccountPort由PM实现，仅依赖账号Repository。get读取最新账号；loc
 AuthorizationPolicy提供role、permission、approval、resources、confirmation、registration。首次审批与改期复审共用approval：必须覆盖活动组织和主场地/所有设备类别，拒绝所有者本人。首次/改期资源复核共用confirmation：ADMIN及RESOURCE_CONFIRM，必须覆盖所有资源且非所有者。普通教师、USER_MANAGE管理员均无隐含审批权。AN/CM应在各自入口真实调用策略，PM单元测试不能替代这四个入口的N-AT-05验收。
 
 统一锁序为receipt→activity→change→按UUID字符串升序的user→按UUID字符串升序的resource。重要操作至少锁操作者与活动所有者，取其最新身份/范围；AccountPort不能自动猜测哪些用户需锁。Java UUID自然比较对高位有符号，跨模块统一使用UUID.toString的字典序，与PostgreSQL uuid排序一致。
+
+用户行锁统一使用`FOR NO KEY UPDATE`，登录路径同样如此。它仍互斥于其他用户写操作，但兼容command_receipt等外键的隐式KEY SHARE，避免同账号不同键的回执插入后再升级FOR UPDATE形成死锁。本版本不提供修改用户id/username等唯一键或删除账号的命令；未来新增这类操作必须重新检查锁策略，不能直接复用当前非键更新锁假设。详见[评审修复记录](review-fixes-2026-10-20.md)。
 
 ActivityPort、SchedulingPort、ChangePort、EventPort仅有统一接口和record，本轮未收到生产适配器。禁止反向依赖Controller，禁止在写端口中另开REQUIRES_NEW，禁止生产Mock。CM应先交仅依赖自身Repository的ChangePortAdapter和EventPort；AN、DS再按common/04接入，避免循环。

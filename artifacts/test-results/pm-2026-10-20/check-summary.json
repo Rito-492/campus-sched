@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-20",
+  "reviewedCommit": "a5e0724f45e3f5e49ac14a68cc2cc463c8eb6cc2",
+  "mainCommit": "2a9e94143296f5972e91bc2b7848b711762e01f4",
+  "userConfirmedScope": "项目经理模块及评审回归通过后重提",
+  "tests": 43,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "unitTests": 22,
+  "integrationTests": 21,
+  "beforeFixRegressionErrors": 2,
+  "pmVerifyExit": 0,
+  "contractCheckExit": 0,
+  "openApiOperations": 40,
+  "unixWrapperMode": "100755",
+  "unixScriptVersionExit": 0,
+  "unixExecutionEnvironment": "Windows Git Bash，未做Linux实机验证",
+  "defaultTestExit": 1,
+  "cmIntegrationDefaultTestExit": 1,
+  "cmFixCommit": "ee76c2a1641f47269f9ff8cdcaab3cf5b4b7ad90",
+  "temporaryPmCmVerification": {
+    "unitTests": 22,
+    "integrationTests": 24,
+    "exit": 0,
+    "scope": "仅临时副本的PM和CM独立工作包，不是默认全量"
+  },
+  "localMarkdownLinks": 23,
+  "sourceFiles": 101,
+  "problems": []
+}

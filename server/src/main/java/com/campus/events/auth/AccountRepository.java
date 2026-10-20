@@ -14,7 +14,8 @@ public class AccountRepository {
     private final JdbcTemplate jdbc;
     public AccountRepository(JdbcTemplate jdbc) { this.jdbc = jdbc; }
     public Actor get(UUID id, boolean lock) {
-        var rows = jdbc.query("SELECT id,organization_id,display_name,identity,enabled FROM app_user WHERE id=?" + (lock ? " FOR UPDATE" : ""),
+        // 用户命令不修改id/username等唯一键；NO KEY UPDATE仍串行化用户变更，且兼容回执外键的KEY SHARE。
+        var rows = jdbc.query("SELECT id,organization_id,display_name,identity,enabled FROM app_user WHERE id=?" + (lock ? " FOR NO KEY UPDATE" : ""),
                 (rs, i) -> new Actor(Identity.valueOf(rs.getString("identity")), List.of(), List.of(), List.of(), List.of(),
                         rs.getObject("id", UUID.class), rs.getString("display_name"), rs.getObject("organization_id", UUID.class), rs.getBoolean("enabled")), id);
         if (rows.isEmpty()) throw ApiException.notFound();

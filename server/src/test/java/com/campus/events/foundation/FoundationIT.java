@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /** PM真实PostgreSQL检查；不依赖其他业务端口，不使用数据库替身。 */
 @SpringBootTest(classes = CampusEventsApplication.class)
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc(print = org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrint.NONE)
 @Import(FoundationIT.FixedClock.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -51,6 +51,7 @@ class FoundationIT {
     @Autowired TransactionTemplate transactions;
     @Autowired PasswordEncoder encoder;
     @Autowired UserService users;
+    @Autowired SessionService sessions;
     private final UUID org = UUID.randomUUID(), otherOrg = UUID.randomUUID(), venue = UUID.randomUUID(), projector = UUID.randomUUID();
     private Actor admin;
     private String adminToken;
@@ -302,5 +303,51 @@ class FoundationIT {
         jdbc.update("DELETE FROM user_permission WHERE user_id=?", manager.id());
         var failure = assertThrows(ApiException.class, () -> transactions.executeWithoutResult(tx -> users.enabled(stale, stale.id(), false)));
         assertEquals(403, failure.status()); assertTrue(accountPort.get(stale.id()).enabled());
+    }
+    @Test void differentKeysForSameActorCanLockUserWithoutDeadlock() throws Exception {
+        // 屏障放在action入口：此时两笔独立事务均已插入/锁定不同receipt，外键KEY SHARE均已持有。
+        for (int round = 0; round < 5; round++) {
+            UUID counter = UUID.randomUUID(); jdbc.update("INSERT INTO pm_counter(id,value) VALUES (?,0)", counter);
+            var bothReceiptsInserted = new CyclicBarrier(2);
+            List<UUID> keys = List.of(UUID.randomUUID(), UUID.randomUUID());
+            try (var pool = Executors.newFixedThreadPool(2)) {
+                var futures = new ArrayList<Future<CommandResult>>();
+                for (UUID key : keys) futures.add(pool.submit(() -> commands.execute(admin, key, "POST /different-keys", "{}", () -> {
+                    awaitBarrier(bothReceiptsInserted);
+                    accountPort.lock(admin.id());
+                    jdbc.update("UPDATE pm_counter SET value=value+1 WHERE id=?", counter);
+                    return Responses.success(200, Map.of("ok", true));
+                })));
+                for (var future : futures) assertEquals(200, future.get(15, TimeUnit.SECONDS).httpStatus());
+            }
+            assertEquals(2, jdbc.queryForObject("SELECT value FROM pm_counter WHERE id=?", Integer.class, counter));
+            for (UUID key : keys) assertEquals(200, jdbc.queryForObject(
+                    "SELECT http_status FROM command_receipt WHERE actor_id=? AND idempotency_key=?", Integer.class, admin.id(), key.toString()));
+        }
+    }
+    @Test void loginUserLockIsCompatibleWithInFlightReceiptForeignKey() throws Exception {
+        Actor actor = createFixture(Identity.STUDENT, Role.APPLICANT);
+        var receiptInserted = new CountDownLatch(1); var loginCompleted = new CountDownLatch(1);
+        try (var pool = Executors.newFixedThreadPool(2)) {
+            var command = pool.submit(() -> commands.execute(actor, UUID.randomUUID(), "POST /login-race", "{}", () -> {
+                receiptInserted.countDown();
+                try { assertTrue(loginCompleted.await(8, TimeUnit.SECONDS), "登录用户锁应与在途回执外键的KEY SHARE兼容"); }
+                catch (InterruptedException ex) { Thread.currentThread().interrupt(); throw new IllegalStateException(ex); }
+                accountPort.lock(actor.id());
+                return Responses.success(200, Map.of("ok", true));
+            }));
+            var login = pool.submit(() -> {
+                assertTrue(receiptInserted.await(8, TimeUnit.SECONDS));
+                try { return sessions.login(new LoginInput(actor.id().toString(), PASSWORD)); }
+                finally { loginCompleted.countDown(); }
+            });
+            assertNotNull(login.get(15, TimeUnit.SECONDS).token());
+            assertEquals(200, command.get(15, TimeUnit.SECONDS).httpStatus());
+        }
+    }
+    private static void awaitBarrier(CyclicBarrier barrier) {
+        try { barrier.await(8, TimeUnit.SECONDS); }
+        catch (InterruptedException ex) { Thread.currentThread().interrupt(); throw new IllegalStateException(ex); }
+        catch (BrokenBarrierException | TimeoutException ex) { throw new IllegalStateException("回执插入屏障超时", ex); }
     }
 }

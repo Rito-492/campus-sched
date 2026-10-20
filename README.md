@@ -54,4 +54,4 @@ test-data/ contracts/ infra/ scripts/ release/ artifacts/ models/
 
 已实现公共后端工程、共享DTO/五类端口、统一响应与时钟、账号认证/权限、AccountPort、幂等事务及40项[OpenAPI契约](contracts/openapi.yaml)。实际实现API-01～06、37～39；其余业务接口等待对应模块交付。接入方式、真实失败示例和锁规则见[公共模块说明](docs/management/foundation-guide.md)。
 
-需Java21；默认入口为`./server/mvnw.cmd -f server/pom.xml test`及`verify`。本轮默认全项目构建被种子导入源码错误阻塞，M0/M2/M3未达成。显式`-Ppm-isolated clean verify`仅验证PM工作包，已在真实PostgreSQL17上通过22项单元与19项集成测试，不能替代全量验收或发布。完整结果、证据、外部依赖及下一接收人见[PM交接单](docs/management/handoff.md)和[集成日志](docs/management/integration-log.md)。
+需Java21；默认入口为`./server/mvnw.cmd -f server/pom.xml test`及`verify`。默认全项目构建被种子导入源码错误及未交付模块阻塞，M0/M2/M3未达成。显式`-Ppm-isolated clean verify`仅验证PM工作包，2026-10-20已在真实PostgreSQL17上通过22项单元与21项集成测试，包含评审发现的不同幂等键并发死锁回归；Unix Wrapper已设置可执行权限。隔离检查不能替代全量验收或发布。完整结果见[评审修复记录](docs/management/review-fixes-2026-10-20.md)、[PM交接单](docs/management/handoff.md)和[集成日志](docs/management/integration-log.md)。

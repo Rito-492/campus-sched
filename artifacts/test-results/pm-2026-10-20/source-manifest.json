@@ -1,0 +1,513 @@
+{
+  "date": "2026-10-20",
+  "contentNormalization": "UTF-8文本，CRLF转换为LF",
+  "baseCommit": "a5e0724f45e3f5e49ac14a68cc2cc463c8eb6cc2",
+  "unixWrapperMode": "100755",
+  "sourceFiles": [
+    {
+      "path": "README.md",
+      "bytes": 3605,
+      "sha256": "6339598a31cc484d1bae26bcb9f5c8e3ce3bdf09412853f7a0030b092b5665da"
+    },
+    {
+      "path": "contracts/openapi.yaml",
+      "bytes": 119857,
+      "sha256": "c9b0834d3145de928ee9c9c96d2860b4afbfcff5132f241f2ebe09ebe2493ec9"
+    },
+    {
+      "path": "docs/management/api-register.md",
+      "bytes": 4556,
+      "sha256": "3a13820ac4f29c781f4f07d0cd72c94aa77ab536957f168319318658abfb2727"
+    },
+    {
+      "path": "docs/management/decision-log.md",
+      "bytes": 2089,
+      "sha256": "e6f7cdcffbd8a6d433bca86dbd7ab60f84debed7217a0b583f3cc301e42292e4"
+    },
+    {
+      "path": "docs/management/detailed-project-plan.md",
+      "bytes": 10105,
+      "sha256": "c6ab4bf6faf63bb23aed32e5370ef4d5c8ae22e28ef06c16ea7b86cfbf2f294d"
+    },
+    {
+      "path": "docs/management/foundation-guide.md",
+      "bytes": 7094,
+      "sha256": "6907b7185facd93beb025e4b26b58cf3d6c9fd1b1ef1acef2bcbabaad46830f8"
+    },
+    {
+      "path": "docs/management/handoff.md",
+      "bytes": 19907,
+      "sha256": "670ca8cd8d88a969e44079a6138fcbb55918f5bc4ca899deed0a2a04614c161f"
+    },
+    {
+      "path": "docs/management/initial-project-plan.md",
+      "bytes": 33843,
+      "sha256": "4d5d1024bee7cf245e66c897d01ad0ae593a649b0db80b321b72e89075c4fe5f"
+    },
+    {
+      "path": "docs/management/integration-log.md",
+      "bytes": 4148,
+      "sha256": "acb903737ec8777e2ce384dffb4a408f0de0088e08454c8a26e8e1f0adc9eeae"
+    },
+    {
+      "path": "docs/management/review-fixes-2026-10-20.md",
+      "bytes": 4723,
+      "sha256": "eb4fd92ebd1a0e7af714c603adb6c5aa5dd522c5dc1e9116b84f54ec9da22f3d"
+    },
+    {
+      "path": "docs/management/risks.md",
+      "bytes": 2408,
+      "sha256": "611ebd357f949eebaba4f603f6319fe923dc45d22b9eba552810d8e34bbb5661"
+    },
+    {
+      "path": "docs/management/work-log.md",
+      "bytes": 1911,
+      "sha256": "7c3e008598bf2ddb2f4c5a150ffe96ae3c713a7548390736d090803597172d0e"
+    },
+    {
+      "path": "server/.mvn/wrapper/maven-wrapper.properties",
+      "bytes": 255,
+      "sha256": "bb0b8f16b2661c3676ed5a6a15f5b11d864460c4e77cfb50c583f54708f944e7"
+    },
+    {
+      "path": "server/mvnw",
+      "bytes": 11790,
+      "sha256": "cae96cef89ebea3531221f4ae17c23cf8edf67d00eae8306d4186ae1bbed4d02"
+    },
+    {
+      "path": "server/mvnw.cmd",
+      "bytes": 8292,
+      "sha256": "4a361e1374a3e5ad6d03e18e9adc0cf181ac5058ac6203b76f0ba3b456b56481"
+    },
+    {
+      "path": "server/pom.xml",
+      "bytes": 3425,
+      "sha256": "59801ba3c4f323978c75dd646a404c6c4420b967bd1ec20cb2998ed2d155ac6b"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/CampusEventsApplication.java",
+      "bytes": 441,
+      "sha256": "a6bcef65e0433b9380f4185dcea087542ca6da6157abae14ee972ee927472e29"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/auth/AccountPortAdapter.java",
+      "bytes": 1253,
+      "sha256": "8e8d4aca6ab223fbad2da25618b105c738f6d1babf87242a4f9387ece161e7dc"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/auth/AccountRepository.java",
+      "bytes": 3620,
+      "sha256": "d63a8f4d2fa6bcec24041e895ded3535ce642e12a51df08da70c2a40b5600e23"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/auth/AuthController.java",
+      "bytes": 1320,
+      "sha256": "1b49020a82858ca4250d5704f42296d2aeb813e7d6b13f28ebef1a46619e13a5"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/auth/AuthorizationPolicy.java",
+      "bytes": 2068,
+      "sha256": "47de37afd64e249c548a62aa5c04950985cffa3e7b270dda0710637f762bb280"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/auth/BearerFilter.java",
+      "bytes": 3295,
+      "sha256": "ccb696773761f5f09c55454ca8aa64d07e6a996e72294e96ae34c20ed10c08ca"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/auth/SecurityConfiguration.java",
+      "bytes": 2026,
+      "sha256": "335ca618926fc123949c255980d0f407d0bffcf4a1d50b2f94be5ee371d5027e"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/auth/SessionService.java",
+      "bytes": 3282,
+      "sha256": "a4e9f3ac457cf5fecec2ede65684cc591120cb2c29f1a15f4934e088d6d04e98"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/auth/UserController.java",
+      "bytes": 2473,
+      "sha256": "ee70ee3fd3aca6d82fa36894c42790894e7accc5ec02e04780687c47fb47d446"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/auth/UserService.java",
+      "bytes": 8139,
+      "sha256": "a17959effb4d1ecfd99e22217739d5dc1e3b175a7ca11a458de2ee7c97d37721"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/AccountPort.java",
+      "bytes": 297,
+      "sha256": "a1da2354e50fb5dba7bff35d73c734087a028e22c5099d38d312ae953c88a640"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ActivityEdit.java",
+      "bytes": 302,
+      "sha256": "116a27dbbeace59bedb67970d1683d867b4933365c26c46fe457f27c7f2d082f"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ActivityInput.java",
+      "bytes": 894,
+      "sha256": "8751ace76a0c11615d92a9b5cf13f90d5b8f65c6b5926f0df7ea992c897b54da"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ActivityPort.java",
+      "bytes": 414,
+      "sha256": "d6d837154c2dcb613d0556233667c500bc9ae9577625d4f63f7110732ced3ebf"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ActivitySnapshot.java",
+      "bytes": 297,
+      "sha256": "56977b7e192d215efc7ac91cf7ad6cbdc318452b7c12b16b66453a759b9f5dba"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ActivityStatus.java",
+      "bytes": 141,
+      "sha256": "b515158d35fe2805b6050c3bff6ede9ec889ed17a5f7e8af4f8b7f4133fc1ad7"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ActivityView.java",
+      "bytes": 591,
+      "sha256": "66fff9c1dcbf64b04e6e12f1c5797a1bf34161b561f376eda070a9235188b118"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Actor.java",
+      "bytes": 482,
+      "sha256": "c8e235be6772dc54914a35411a1c006ab64bc8746e4b8bd60ea4bfc72e28e833"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/AffectedActivity.java",
+      "bytes": 317,
+      "sha256": "feacc3618b6b58a889ecaf18c3261a79e1d47d05ccc395e90a5ab390db16dad0"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Alternative.java",
+      "bytes": 358,
+      "sha256": "acd5783f95a40c7b14f67b04cef03e3b163917f3c0e80f3bf2bc570cbe34648a"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/AlternativesView.java",
+      "bytes": 374,
+      "sha256": "e1d0ceed18f18508e87b3932b216b588c7bf7f5f209e2159fe1bcdfaa0386616"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ApprovalCommand.java",
+      "bytes": 569,
+      "sha256": "79eb1c33bab01effd6e7ce7fbac8c28f321678360be76d7d8e56de8bb963bae7"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ApprovalScope.java",
+      "bytes": 312,
+      "sha256": "f35b658faa679a90e9938fba058d7e89ccf2c1d840477fc14b77cb08dc57341d"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/AuditView.java",
+      "bytes": 377,
+      "sha256": "a8a0e1796582cfd0bba9b2e083faa80bcec78056e8c3803d5fb10b821a322a46"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/AuthorizationInput.java",
+      "bytes": 469,
+      "sha256": "95acb7d9d2816f48cf2200db7a4439d652acf98b864908758a85a4ceaec319f4"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/CalendarEntry.java",
+      "bytes": 413,
+      "sha256": "182195d0526bb8ed72917f6b5265f3d950d20e914195cdfa8cdbe7d2a70ee582"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/CalendarSegment.java",
+      "bytes": 99,
+      "sha256": "49d81dba60fffe930597f4c854ac3d09539ad3e83a73ad03ee86e9f8862cc27b"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ChangeCreate.java",
+      "bytes": 393,
+      "sha256": "d017fe9d83a2af8d3d2299babd5c4a68f568cc9fc856dec86f8754935657bf72"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ChangeDecision.java",
+      "bytes": 527,
+      "sha256": "0a12b9dd02b486ca8752599fbb9200c53b4e4d42a2c3ced30133a3d993e9dc92"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ChangePort.java",
+      "bytes": 333,
+      "sha256": "a7fd21b4054d02c1b246e4053536668cbb520b24d8bfd1a5c32450078a876a10"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ChangePreview.java",
+      "bytes": 306,
+      "sha256": "628c17aa40ae52981721c259cdaea293286ca1bbf6593432bbcbca86754ffbd2"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ChangeStatus.java",
+      "bytes": 190,
+      "sha256": "6b2d8413d7da21b9cf3a81bc13af928d5da7b45e6267322687b41cebdec452d9"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ChangeView.java",
+      "bytes": 657,
+      "sha256": "5697abeb00b07e55bab0a8a8f7afb7132adfe76c409474e9da7b041ad4475f48"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/CheckResult.java",
+      "bytes": 275,
+      "sha256": "a123a31f4439f182f2e7d085533c33a2c540d064e4cf211102d967fc0a211e09"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/CommandResult.java",
+      "bytes": 262,
+      "sha256": "1cf1573601bc5579aca94eeaf3138d783f91e6ad00cfd8480d74edf6f5cf75b6"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Confirmation.java",
+      "bytes": 315,
+      "sha256": "e547e66f43605b47ad531d4ea75902f26b4c585f7c45a52627a876fdc03ac31c"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Conflict.java",
+      "bytes": 420,
+      "sha256": "887d4c1730018db66ac916a560ae66261984cc56c36ea2c4d6ddf3348b48cf11"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ConflictCode.java",
+      "bytes": 148,
+      "sha256": "a1f3fb7a85d2bfbad1b073ca4080bcec03c5cd1bc83cf2b18a708c70c1bf2417"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Decision.java",
+      "bytes": 78,
+      "sha256": "9ca7c1537984bd8c15d4817dd8148f6b934ba72cb5711b714291e785b26584aa"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/DecisionRecord.java",
+      "bytes": 318,
+      "sha256": "404e7f048d5e8d8dab5e8e0e292f836a0621c22aee659736ae671f950b184cfc"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/EnabledInput.java",
+      "bytes": 241,
+      "sha256": "b2b06f417755baef7e2c18ad70e483912b4748bc255bf808a09601258f4354c3"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/EquipmentNeed.java",
+      "bytes": 281,
+      "sha256": "7734cd3d120afe4f99b3a202b9a9b2504987d1260f68d5cb9cb43faab0081301"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/EventDraft.java",
+      "bytes": 410,
+      "sha256": "4bd6d93a207655bdbfa20864203df836d5dd137d75dcb69fdda3e940f1710ae4"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/EventPort.java",
+      "bytes": 219,
+      "sha256": "a1c2235a1c7d43e1b686e1bd921d00f52c2b06d134e547ad43f5f5daa7a6d5ab"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/FaultInput.java",
+      "bytes": 612,
+      "sha256": "c9f4e3c17b03a6e573f6683b826cefebb002396a75abe9fdab07586af2699fde"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/FaultView.java",
+      "bytes": 410,
+      "sha256": "abfbbafb6f433a7c8a955eb125374d75e2f1401093614f0904e514e1d75c35eb"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Identity.java",
+      "bytes": 79,
+      "sha256": "f95e9b45d4f04a03fc7374e4c12832cb69b4df6f037575e22119a3f3645be29d"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Impact.java",
+      "bytes": 624,
+      "sha256": "9b1a43bc720d8a4b02f5b043cf98602f0294afae77855421498842a2900980e8"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/LoginInput.java",
+      "bytes": 302,
+      "sha256": "8bd1d94a4ba9bc1d23c5c8d8013c4bdc54315172f1032dee7515afca13ec1aef"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/LoginView.java",
+      "bytes": 282,
+      "sha256": "68805d751913657edbc99f67f93d641659c5931202039f94ce20ce51c3e823b0"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/NotificationView.java",
+      "bytes": 405,
+      "sha256": "21eea550f492661e47ba1225c6c9d569cea1ef3f605447ee3f7435cc847e1ced"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/OrganizationView.java",
+      "bytes": 258,
+      "sha256": "bd896b7da14881791e347028bf3efbf28a6c63a233bc776555f7b784bd9e6acf"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Permission.java",
+      "bytes": 123,
+      "sha256": "e55cb6982a8e9ff93f5ae72a9259b312746eb0163a6a488998aa4e8d5c732758"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Plan.java",
+      "bytes": 1428,
+      "sha256": "bc9662d4cebb94192c5030dad762bd8746f23506508eba34a5c0d0ce365916b6"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Proposal.java",
+      "bytes": 288,
+      "sha256": "20365dce66195019bb3d3a8d9474a3eeb3a2620c6d6efa57123a5ea7ef4c9411"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ReasonCommand.java",
+      "bytes": 318,
+      "sha256": "0ebdefd31b62c8427ce2ff747e1c4a29fef6976ceabb56ba610c2e1ab7e83695"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/RegistrationAction.java",
+      "bytes": 87,
+      "sha256": "8e3c89cca322ac8fdf3aa9b2aa2df3d13098c64e400fb812a648f19dd827346c"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/RegistrationCommand.java",
+      "bytes": 306,
+      "sha256": "df141ac5ba4a8a4b47b6139f8f96f7b10ddebfd77a23fd066dfd4fd3b3e601b9"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/RegistrationStatus.java",
+      "bytes": 101,
+      "sha256": "6502b741073a58a580e0a05f361fab644cac4286766196a01df611a9a05a783f"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/RegistrationView.java",
+      "bytes": 324,
+      "sha256": "27b0641a639d8ff179ab66116e9231985f6851d6135c1be768d1af962f5dc53f"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ResourceCreate.java",
+      "bytes": 1214,
+      "sha256": "8ebc96947e9a350c184e8cf26fd42daa2bfdbc64a2621e7a36636dcf81104d6f"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ResourceEligibility.java",
+      "bytes": 283,
+      "sha256": "76d7bb135bb41f302c5fac965c25ce502297f6d7622a82e7f45bc155999b3fd7"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ResourceKind.java",
+      "bytes": 83,
+      "sha256": "ecd5a4ca4dc20cdccf9cc1463f506dd9d104c80ee5d8cdbaa1d0fbdae174ace8"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ResourceView.java",
+      "bytes": 489,
+      "sha256": "97cc0558fee68cd3f1e614a4b7c917a7c8b671d9cbc709310c83d366d0ba5ae0"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Risk.java",
+      "bytes": 74,
+      "sha256": "9c291005f022b2fab5658790611de833858520fa07c02310288fa0107842107b"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Role.java",
+      "bytes": 85,
+      "sha256": "59a66de7492558463282824a06270b51d6a826c5d51e0535d7c8ba33df2ad43c"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/SchedulingPort.java",
+      "bytes": 695,
+      "sha256": "b1d2293610ca4c2028130b07edd91367b675115f769cc3ad9fb30ebf9c9d36d7"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/StaffView.java",
+      "bytes": 312,
+      "sha256": "7a27d68ad2b49d403d774f0040b8f8451386cdd826a18f4a03534e6d76de9ee3"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/UserCreate.java",
+      "bytes": 634,
+      "sha256": "e92c8ae816cf2d5872691548a2ed0230295c9824c3e034219a8b55a2f6666eaa"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/VersionCommand.java",
+      "bytes": 259,
+      "sha256": "4439a26a83daf49f78c023e3780f70bf027d9847b01f0e734ed7bdfa55f40efc"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/WithdrawInput.java",
+      "bytes": 204,
+      "sha256": "9793180c221ff8afa12ab3655fbf1e13c86f01473a5ee6b3b923b6e146a7f4c8"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/foundation/ApiException.java",
+      "bytes": 1093,
+      "sha256": "6ff36b70a0f40953f3081da557eed5857b0afd8031f2cae193ebee51019a9ac2"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/foundation/ApiExceptionHandler.java",
+      "bytes": 2189,
+      "sha256": "b18a640dee6a0a4d8f104a99dec2506d927b9ff98899b6e06df2cfb0909243f0"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/foundation/CanonicalJson.java",
+      "bytes": 2559,
+      "sha256": "614ca14ab9d179d87363d8c36b8e198e3d8fd1ed846e7ca4c3a400b11e405465"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/foundation/CommandExecutor.java",
+      "bytes": 3006,
+      "sha256": "5ae0631783e34e4eb6b1ce70b97188398b2867742bf6c30c079e0a33807879ab"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/foundation/FoundationConfiguration.java",
+      "bytes": 1769,
+      "sha256": "7eb81919d30828871d439a3b6efa3dc05782917429eac7c811e696f471291905"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/foundation/HealthController.java",
+      "bytes": 442,
+      "sha256": "2a60838f82df72b83296fe59fc813317403bec011fba05ea50aa48b9749adc3e"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/foundation/RequestIdFilter.java",
+      "bytes": 1029,
+      "sha256": "53be9e39ca6d59084f0ae9aa16784bb9bb701e3e1595aa03388b445b3a4636e8"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/foundation/RequestIds.java",
+      "bytes": 304,
+      "sha256": "6860f19b40adb36fcdf12d647c05e67c1d91662d3c3f113e305b3e18d8594398"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/foundation/Responses.java",
+      "bytes": 1073,
+      "sha256": "a58028fd1793cea0699f6d4987662aa0d9cbd51ae10d5e4bbc6019d8578a52d5"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/auth/AuthorizationPolicyTest.java",
+      "bytes": 3670,
+      "sha256": "0835ecba7901c80a33332a3773ec9489c43b1b83a7bf6ed983bfc68430fa967f"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/contract/ContractValidationTest.java",
+      "bytes": 3171,
+      "sha256": "d1632fdc021864d094485c34a46e3bc11d46233d2b2252e3f8a52f4ea963fddf"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/foundation/CanonicalJsonTest.java",
+      "bytes": 1549,
+      "sha256": "ebcee0b03925e3c1c337f3be19a31cb0b9889982d529967d40cffaa861bd9893"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/foundation/FoundationIT.java",
+      "bytes": 26798,
+      "sha256": "0eae1e679b7baf2854cd4046ad6d51bc880ba39eac0278993c816f1d4b3b9e41"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/foundation/ResponsesTest.java",
+      "bytes": 1311,
+      "sha256": "cfdc6fc550324fdad89a96e7577ecd39c63fca0fd63825d8507f71caa885a847"
+    }
+  ]
+}

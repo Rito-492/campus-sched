@@ -1,0 +1,265 @@
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ----------------------< com.campus:campus-events >----------------------
+[INFO] Building 校园活动协同与资源调度系统 0.1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ campus-events ---
+[INFO] Copying 4 resources from src\main\resources to target\classes
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ campus-events ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 80 source files with javac [debug parameters release 21] to target\classes
+[INFO] /D:/JLU/软件综合实践/campus-sched/server/src/main/java/com/campus/events/foundation/CanonicalJson.java: D:\JLU\软件综合实践\campus-sched\server\src\main\java\com\campus\events\foundation\CanonicalJson.java使用或覆盖了已过时的 API。
+[INFO] /D:/JLU/软件综合实践/campus-sched/server/src/main/java/com/campus/events/foundation/CanonicalJson.java: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ campus-events ---
+[INFO] skip non existing resourceDirectory D:\JLU\软件综合实践\campus-sched\server\src\test\resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ campus-events ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 5 source files with javac [debug parameters release 21] to target\test-classes
+[INFO]
+[INFO] --- surefire:3.5.6:test (default-test) @ campus-events ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+[INFO] Running com.campus.events.auth.AuthorizationPolicyTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.058 s -- in com.campus.events.auth.AuthorizationPolicyTest
+[INFO] Running com.campus.events.contract.ContractValidationTest
+14:05:50.123 [main] INFO org.hibernate.validator.internal.util.Version -- HV000001: Hibernate Validator 8.0.3.Final
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.266 s -- in com.campus.events.contract.ContractValidationTest
+[INFO] Running com.campus.events.foundation.CanonicalJsonTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.116 s -- in com.campus.events.foundation.CanonicalJsonTest
+[INFO] Running com.campus.events.foundation.ResponsesTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in com.campus.events.foundation.ResponsesTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 22, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ campus-events ---
+[INFO] Building jar: D:\JLU\软件综合实践\campus-sched\server\target\campus-events-0.1.0-SNAPSHOT.jar
+[INFO]
+[INFO] --- spring-boot:3.5.16:repackage (repackage) @ campus-events ---
+[INFO] Replacing main artifact D:\JLU\软件综合实践\campus-sched\server\target\campus-events-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to D:\JLU\软件综合实践\campus-sched\server\target\campus-events-0.1.0-SNAPSHOT.jar.original
+[INFO]
+[INFO] --- failsafe:3.5.6:integration-test (default) @ campus-events ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+[INFO] Running com.campus.events.foundation.FoundationIT
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-20T14:05:53.017+08:00  INFO 41668 --- [campus-events] [           main] c.campus.events.foundation.FoundationIT  : Starting FoundationIT using Java 21.0.12.1 with PID 41668 (started by admin in D:\JLU\软件综合实践\campus-sched\server)
+2026-10-20T14:05:53.019+08:00  INFO 41668 --- [campus-events] [           main] c.campus.events.foundation.FoundationIT  : No active profile set, falling back to 1 default profile: "default"
+2026-10-20T14:05:53.743+08:00  INFO 41668 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-20T14:05:53.780+08:00  INFO 41668 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2bd8f7db
+2026-10-20T14:05:53.781+08:00  INFO 41668 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-20T14:05:53.804+08:00  INFO 41668 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_5bd0481abcd440e7879b71a976b86eeb (PostgreSQL 17.6)
+2026-10-20T14:05:53.848+08:00  INFO 41668 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_5bd0481abcd440e7879b71a976b86eeb"."flyway_schema_history" does not exist yet
+2026-10-20T14:05:53.851+08:00  INFO 41668 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.016s)
+2026-10-20T14:05:53.873+08:00  INFO 41668 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_5bd0481abcd440e7879b71a976b86eeb"."flyway_schema_history" ...
+2026-10-20T14:05:53.961+08:00  INFO 41668 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_5bd0481abcd440e7879b71a976b86eeb": << Empty Schema >>
+2026-10-20T14:05:53.982+08:00  INFO 41668 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_5bd0481abcd440e7879b71a976b86eeb" to version "1 - schema"
+2026-10-20T14:05:54.123+08:00  INFO 41668 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_5bd0481abcd440e7879b71a976b86eeb", now at version v1 (execution time 00:00.133s)
+2026-10-20T14:05:54.824+08:00  INFO 41668 --- [campus-events] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-20T14:05:54.824+08:00  INFO 41668 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-20T14:05:54.825+08:00  INFO 41668 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-20T14:05:54.838+08:00  INFO 41668 --- [campus-events] [           main] c.campus.events.foundation.FoundationIT  : Started FoundationIT in 2.159 seconds (process running for 2.711)
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+WARNING: A Java agent has been loaded dynamically (C:\Users\admin\.m2\repository\net\bytebuddy\byte-buddy-agent\1.17.8\byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /api/v1/auth/login
+       Parameters = {}
+          Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"97"]
+             Body = {"username":"caf578bb-51e9-4015-8511-c8c3564fed97","password":"[已脱敏]"}
+    Session Attrs = {}
+
+Handler:
+             Type = com.campus.events.auth.AuthController
+           Method = com.campus.events.auth.AuthController#login(LoginInput)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = [X-Request-Id:"85241d0c-4455-4e09-898b-45af38847a6e", Content-Type:"application/json", X-Content-Type-Options:"nosniff", X-XSS-Protection:"0", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = application/json
+             Body = {"data":{"token":"[已脱敏]","expiresAt":"2030-10-19T08:00:00Z","user":{"identity":"TEACHER","roles":["ADMIN"],"permissions":["USER_MANAGE"],"approvalScopes":[],"managedResourceIds":[],"id":"caf578bb-51e9-4015-8511-c8c3564fed97","displayName":"PM测试账号","organizationId":"4886f2dc-0b49-4f2a-8cd5-a03b784b7a92","enabled":true}},"requestId":"85241d0c-4455-4e09-898b-45af38847a6e"}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+2026-10-20T14:06:05.124+08:00  INFO 41668 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-10-20T14:06:05.125+08:00  INFO 41668 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+[ERROR] Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 12.68 s <<< FAILURE! -- in com.campus.events.foundation.FoundationIT
+[ERROR] com.campus.events.foundation.FoundationIT.differentKeysForSameActorCanLockUserWithoutDeadlock -- Time elapsed: 1.421 s <<< ERROR!
+java.util.concurrent.ExecutionException:
+org.springframework.dao.PessimisticLockingFailureException: PreparedStatementCallback; SQL [SELECT id,organization_id,display_name,identity,enabled FROM app_user WHERE id=? FOR UPDATE]; ERROR: deadlock detected
+  详细：Process 12096 waits for ShareLock on transaction 1676; blocked by process 35596.
+Process 35596 waits for ShareLock on transaction 1677; blocked by process 12096.
+  建议：See server log for query details.
+  在位置：while locking tuple (0,1) in relation "app_user"
+	at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.campus.events.foundation.FoundationIT.differentKeysForSameActorCanLockUserWithoutDeadlock(FoundationIT.java:321)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: org.springframework.dao.PessimisticLockingFailureException: PreparedStatementCallback; SQL [SELECT id,organization_id,display_name,identity,enabled FROM app_user WHERE id=? FOR UPDATE]; ERROR: deadlock detected
+  详细：Process 12096 waits for ShareLock on transaction 1676; blocked by process 35596.
+Process 35596 waits for ShareLock on transaction 1677; blocked by process 12096.
+  建议：See server log for query details.
+  在位置：while locking tuple (0,1) in relation "app_user"
+	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:146)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1556)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:723)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:754)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:767)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:825)
+	at com.campus.events.auth.AccountRepository.get(AccountRepository.java:17)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
+	at com.campus.events.auth.AccountRepository$$SpringCGLIB$$0.get(<generated>)
+	at com.campus.events.auth.AccountPortAdapter.lock(AccountPortAdapter.java:18)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
+	at com.campus.events.auth.AccountPortAdapter$$SpringCGLIB$$0.lock(<generated>)
+	at com.campus.events.foundation.FoundationIT.lambda$differentKeysForSameActorCanLockUserWithoutDeadlock$26(FoundationIT.java:317)
+	at com.campus.events.foundation.CommandExecutor.lambda$execute$0(CommandExecutor.java:40)
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:140)
+	at com.campus.events.foundation.CommandExecutor.execute(CommandExecutor.java:27)
+	at com.campus.events.foundation.FoundationIT.lambda$differentKeysForSameActorCanLockUserWithoutDeadlock$27(FoundationIT.java:315)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.postgresql.util.PSQLException: ERROR: deadlock detected
+  详细：Process 12096 waits for ShareLock on transaction 1676; blocked by process 35596.
+Process 35596 waits for ShareLock on transaction 1677; blocked by process 12096.
+  建议：See server log for query details.
+  在位置：while locking tuple (0,1) in relation "app_user"
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2904)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2589)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:431)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:534)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:437)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:139)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java)
+	at org.springframework.jdbc.core.JdbcTemplate$1.doInPreparedStatement(JdbcTemplate.java:732)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)
+	... 34 more
+
+[ERROR] com.campus.events.foundation.FoundationIT.loginUserLockIsCompatibleWithInFlightReceiptForeignKey -- Time elapsed: 8.341 s <<< ERROR!
+java.util.concurrent.ExecutionException: org.opentest4j.AssertionFailedError: 登录用户锁应与在途回执外键的KEY SHARE兼容 ==> expected: <true> but was: <false>
+	at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:205)
+	at com.campus.events.foundation.FoundationIT.loginUserLockIsCompatibleWithInFlightReceiptForeignKey(FoundationIT.java:345)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: org.opentest4j.AssertionFailedError: 登录用户锁应与在途回执外键的KEY SHARE兼容 ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at com.campus.events.foundation.FoundationIT.lambda$loginUserLockIsCompatibleWithInFlightReceiptForeignKey$28(FoundationIT.java:334)
+	at com.campus.events.foundation.CommandExecutor.lambda$execute$0(CommandExecutor.java:40)
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:140)
+	at com.campus.events.foundation.CommandExecutor.execute(CommandExecutor.java:27)
+	at com.campus.events.foundation.FoundationIT.lambda$loginUserLockIsCompatibleWithInFlightReceiptForeignKey$29(FoundationIT.java:332)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[INFO]
+[INFO] Results:
+[INFO]
+[ERROR] Errors:
+[ERROR]   FoundationIT.differentKeysForSameActorCanLockUserWithoutDeadlock:321 » Execution org.springframework.dao.PessimisticLockingFailureException: PreparedStatementCallback; SQL [SELECT id,organization_id,display_name,identity,enabled FROM app_user WHERE id=? FOR UPDATE]; ERROR: deadlock detected
+  详细：Process 12096 waits for ShareLock on transaction 1676; blocked by process 35596.
+Process 35596 waits for ShareLock on transaction 1677; blocked by process 12096.
+  建议：See server log for query details.
+  在位置：while locking tuple (0,1) in relation "app_user"
+[ERROR]   FoundationIT.loginUserLockIsCompatibleWithInFlightReceiptForeignKey:345 » Execution org.opentest4j.AssertionFailedError: 登录用户锁应与在途回执外键的KEY SHARE兼容 ==> expected: <true> but was: <false>
+[INFO]
+[ERROR] Tests run: 2, Failures: 0, Errors: 2, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- failsafe:3.5.6:verify (default) @ campus-events ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  22.941 s
+[INFO] Finished at: 2026-10-20T14:06:05+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-failsafe-plugin:3.5.6:verify (default) on project campus-events:
+[ERROR]
+[ERROR] See D:\JLU\软件综合实践\campus-sched\server\target\failsafe-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

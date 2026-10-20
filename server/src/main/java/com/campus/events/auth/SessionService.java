@@ -29,7 +29,8 @@ public class SessionService {
     }
     public LoginView login(LoginInput input) {
         return transactions.execute(tx -> {
-            var users = jdbc.queryForList("SELECT id,password_hash FROM app_user WHERE username=? FOR UPDATE", input.username());
+            // 与AccountPort使用同一锁强度，避免登录排他锁与在途command_receipt外键形成等待环。
+            var users = jdbc.queryForList("SELECT id,password_hash FROM app_user WHERE username=? FOR NO KEY UPDATE", input.username());
             String hash = users.isEmpty() ? dummyHash : users.getFirst().get("password_hash").toString();
             boolean valid;
             try { valid = encoder.matches(input.password(), hash); } catch (IllegalArgumentException ex) { valid = false; }
