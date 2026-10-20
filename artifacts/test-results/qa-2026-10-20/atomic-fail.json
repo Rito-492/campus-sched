@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "organizations": [
+    { "id": "00000000-0000-0000-0000-000000006001", "name": "Atomic rollback probe" }
+  ],
+  "users": [
+    {
+      "id": "00000000-0000-0000-0000-000000006002",
+      "username": "atomic_probe",
+      "displayName": "Atomic Probe",
+      "organizationId": "00000000-0000-0000-0000-000000006001",
+      "identity": "TEACHER",
+      "roles": ["APPLICANT"],
+      "permissions": [],
+      "approvalScopes": [],
+      "managedResourceIds": []
+    }
+  ],
+  "resources": [
+    {
+      "id": "00000000-0000-0000-0000-000000006003",
+      "kind": "VENUE",
+      "name": "Probe venue",
+      "category": "VENUE",
+      "capacity": 80,
+      "quantity": 1,
+      "openFrom": "08:00:00",
+      "openTo": "20:00:00",
+      "allowTeacher": true,
+      "allowStudent": true
+    }
+  ],
+  "activities": [
+    {
+      "id": "00000000-0000-0000-0000-000000006004",
+      "ownerId": "00000000-0000-0000-0000-000000006002",
+      "organizationId": "00000000-0000-0000-0000-000000006001",
+      "status": "DRAFT",
+      "versionNo": 1,
+      "input": { "title": "Atomic rollback probe", "plan": {} }
+    }
+  ],
+  "registrations": [
+    {
+      "activityId": "00000000-0000-0000-0000-000000006004",
+      "userId": "00000000-0000-0000-0000-000000006099",
+      "status": "ACTIVE",
+      "versionNo": 1
+    }
+  ]
+}

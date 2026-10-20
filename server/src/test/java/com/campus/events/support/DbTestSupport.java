@@ -8,8 +8,10 @@ import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -18,6 +20,7 @@ import java.nio.file.Path;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
@@ -70,6 +73,7 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
     private final String schemaName;
     private DataSource dataSource;
     private JdbcTemplate jdbc;
+    private TransactionTemplate transactions;
 
     private DbTestSupport(List<String> dataFiles) {
         this.dataFiles = dataFiles;
@@ -125,6 +129,7 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
 
         this.dataSource = new DriverManagerDataSource(scopedUrl, user, password);
         this.jdbc = new JdbcTemplate(dataSource);
+        this.transactions = new TransactionTemplate(new DataSourceTransactionManager(dataSource));
 
         for (String file : dataFiles) {
             loadTestData(file);
@@ -154,9 +159,16 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
     public void loadTestData(String dataFile) {
         try {
             JsonNode root = readDataFile(dataFile);
-            insertReferenceTables(root, ENCODER.encode(requireEnv("DEMO_PASSWORD")));
-            insertActivities(root);
-            insertRegistrations(root);
+            String passwordHash = ENCODER.encode(requireEnv("DEMO_PASSWORD"));
+            transactions.executeWithoutResult(status -> {
+                insertReferenceTables(root, passwordHash);
+                try {
+                    insertActivities(root);
+                } catch (JsonProcessingException e) {
+                    throw new IllegalStateException("序列化活动 input 失败", e);
+                }
+                insertRegistrations(root);
+            });
         } catch (Exception e) {
             throw new IllegalStateException("装载测试数据失败：" + dataFile, e);
         }
@@ -172,7 +184,8 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
     public void loadReferenceData(String dataFile) {
         try {
             JsonNode root = readDataFile(dataFile);
-            insertReferenceTables(root, ENCODER.encode(requireEnv("DEMO_PASSWORD")));
+            String passwordHash = ENCODER.encode(requireEnv("DEMO_PASSWORD"));
+            transactions.executeWithoutResult(status -> insertReferenceTables(root, passwordHash));
         } catch (Exception e) {
             throw new IllegalStateException("装载参考数据失败：" + dataFile, e);
         }
@@ -187,6 +200,8 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
 
     /** organization/app_user/user_role/user_permission/user_approval_scope/user_resource_scope/resource 参考数据。 */
     private void insertReferenceTables(JsonNode root, String passwordHash) {
+        List<ManagedResourceScope> managedResourceScopes = new ArrayList<>();
+
         JsonNode organizations = root.path("organizations");
         for (JsonNode n : organizations) {
             jdbc.update("INSERT INTO organization (id, name, created_at, updated_at) VALUES (?,?,?,?)",
@@ -233,8 +248,7 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
                 }
             }
             for (JsonNode resourceId : managedResourceIds) {
-                jdbc.update("INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)",
-                        userId, uuid(resourceId), ts());
+                managedResourceScopes.add(new ManagedResourceScope(userId, uuid(resourceId)));
             }
         }
 
@@ -244,9 +258,16 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
                     uuid(n.get("id")), n.get("kind").asText(), n.get("name").asText(),
                     n.get("category").asText(),
                     n.has("capacity") && !n.get("capacity").isNull() ? n.get("capacity").asInt() : null,
-                    n.get("quantity").asInt(), n.get("openFrom").asText(), n.get("openTo").asText(),
+                    n.get("quantity").asInt(), LocalTime.parse(n.get("openFrom").asText()),
+                    LocalTime.parse(n.get("openTo").asText()),
                     n.get("allowTeacher").asBoolean(), n.get("allowStudent").asBoolean(),
                     ts(), ts());
+        }
+
+        // V1 对 resource_id 使用即时外键；范围授权必须在资源实际插入后写入。
+        for (ManagedResourceScope scope : managedResourceScopes) {
+            jdbc.update("INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)",
+                    scope.userId(), scope.resourceId(), ts());
         }
     }
 
@@ -260,7 +281,7 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
             jdbc.update("INSERT INTO activity (id, organization_id, owner_id, status, version_no, effective_version_no, lock_version, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?)",
                     uuid(n.get("id")), uuid(n.get("organizationId")), uuid(n.get("ownerId")),
                     status, versionNo, effective ? versionNo : null, 0, ts(), ts());
-            jdbc.update("INSERT INTO activity_version (activity_id, version_no, input_json, created_by, created_at) VALUES (?,?,?,?,?)",
+            jdbc.update("INSERT INTO activity_version (activity_id, version_no, input_json, created_by, created_at) VALUES (?,?,?::jsonb,?,?)",
                     uuid(n.get("id")), versionNo, MAPPER.writeValueAsString(n.get("input")),
                     uuid(n.get("ownerId")), ts());
             if (effective) {
@@ -389,6 +410,9 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
     }
 
     // ---------------------------------------------------------------- 内部
+
+    private record ManagedResourceScope(UUID userId, UUID resourceId) {
+    }
 
     private static Path resolveDataFile(String dataFile) {
         String dir = System.getProperty("test.data.dir", "");

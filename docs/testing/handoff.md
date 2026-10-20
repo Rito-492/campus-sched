@@ -2,6 +2,31 @@
 
 > 维护：测试经理（55230316）。格式依据 `agents/common/04-协作与集成规程.md` §4 固定模板。运行时信息填真实值；**不能为了填满模板虚构结果**，未执行的检查如实标注。
 
+## 本次工作（2026-10-20：PR #7 合并后 QA 支撑复核）
+
+- 成员、学号、任务ID：汤雨润 55230316 / QA-01 支撑复核 + QA-02 合同/数据校验
+- 基准：最新 `origin/main=4fbda0ecf4f155ef1e05c385a677ebe7d13b087d`（PR #7 已合并）；本地 `work/55230316-qa` 从 `7e365ff` 快进同步至该基准，保留既有工作。
+- 当前状态更正：`server/pom.xml`、Maven Wrapper、共享 contract、`V1__schema.sql`、CM Compose/check 脚本现已在 main。下文早期批次中“缺 server/pom.xml / Maven Wrapper”均为当时的历史阻塞，不代表当前状态。
+- DbTestSupport 复核发现并修复（仅修改 QA 所有的测试支撑代码，不改生产模块）：
+  1. `user_resource_scope.resource_id` 是 V1 即时外键；原装载顺序先写授权后写资源，真实 PostgreSQL 报外键错误。现先记录待写范围，写入资源后再写范围。
+  2. `activity` 的当前/有效版本外键为 `DEFERRABLE INITIALLY DEFERRED`；原装载器各次 `JdbcTemplate.update` 自动提交，活动行会在对应版本插入前提交。现将每个数据文件的装载放在单一事务中。
+  3. `activity_version.input_json` 为 jsonb；现 SQL 显式使用 `?::jsonb`。实测还发现资源 `open_from/open_to` 是 SQL `time` 列，原传 `String` 会失败，现改传 `LocalTime`。
+  4. 新增 `server/src/test/java/com/campus/events/support/DbTestSupportIT.java`，断言 demo 装载后的组织、用户、资源、资源范围、活动、版本及 JSONB 结构。
+- 本轮实际检查与结果：
+  - ✅ `node qa/scripts/check-contract.ts`（Node 26.12.0）：40 API、9 组枚举、15 个 DTO 全部通过。
+  - ✅ 测试数据引用校验：demo（2组织/9用户/12资源/2活动/1报名）、并发场景（20用户/1活动）和调度场景（8场景、2策略、300候选）引用完整。
+  - ✅ 临时 Docker `postgres:17`（实际 PostgreSQL 17.11，数据库 `campus_test`，随机隔离 schema、Flyway V1）：真实调用 DbTestSupport 的独立 Java 检查通过；demo 全数据装载、`loadReferenceData` 只装参考数据、故意制造无效报名外键失败后无部分数据残留，均通过。修复前曾真实复现资源范围外键错误；中间修复后又复现 `open_from` varchar→time 错误，现已修复。
+  - ✅ `DbTestSupport.java` 与新增 `DbTestSupportIT.java` 用 Maven 测试依赖完成 `javac` 编译；实际装载行为由同一支撑类的临时运行器直接调用验证。
+  - ⬜ **未执行**：通过 Maven Failsafe 正式运行 `DbTestSupportIT` 和全套 QA IT；默认全工程编译仍受主线 CM 种子导入旧代码及 DS 缺失的 `StrategyEvaluator`/`StrategyResult` 阻塞。临时运行器结果不记作 30 场景验收通过。
+- PR #8 验证边界：PM 提交的 `artifacts/test-results/pm-2026-10-20/pm-cm-isolated-verify.log` 记录临时 PM+CM 隔离副本 22 项单测和 24 项 IT 通过（其中 CM 3 项）；这是可查的实际数据库证据，但本轮 QA 未独立重跑该 Maven 套件，也不等于默认全量构建或 QA 验收。
+- 证据：`artifacts/test-results/qa-2026-10-20/`（合同检查、测试数据引用、真实 PostgreSQL 装载及运行环境记录）。临时数据库容器测试结束后停止；不使用 H2、生产库或业务 Mock。
+- 当前依赖及负责人：
+  1. CM PR #8 最新提交 `ee76c2a` 修复种子导入编译/导入顺序/授权重放；GitHub 显示 CLEAN/APPROVED，但已记录的正式评审提交是旧 head `52f3736`，仍需确认对最新 head 的评审并集成验证 → 杨瀚霖 55231031。
+  2. 主线缺 `StrategyEvaluator.java`、`StrategyResult.java`；CM 修复进入后默认测试编译仍会被这两个类型阻塞 → 黄方勇 55230315。
+  3. Activity/Registration、Scheduling、Change/Event 业务端口与 Controller 仍未形成完整主流程；web 尚无 `web/package.json` → 冯玉琪 22220314、黄方勇 55230315、杨瀚霖 55231031、杨畅 17231018 分别按所有权推进。
+  4. `coverage-matrix.md` 中 30 个 D-AT/N-AT 仍全部“未执行”；真实业务服务/E2E 尚未就绪 → QA 后续独立验收。
+- 下一接收人及动作：CM/DS 交付并集成后，QA 在标准 Maven/Failsafe 和真实 Compose 测试环境复验；每个场景有实际证据后才更新覆盖状态。接收确认：尚未接收。
+
 ## 本次交付（2026-10-14 第五批，QA-04 补漏与验收裁决）
 
 - 成员、学号、任务ID：汤雨润 55230316 / QA-04（补漏）+ QA-02（接收）
