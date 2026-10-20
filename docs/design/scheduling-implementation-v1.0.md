@@ -101,7 +101,7 @@ $env:MAVEN_USER_HOME='/c/Users/35049/Desktop/campus-sched/server/target/maven-ho
 
 模块测试替身仅存在于单测或测试局部构造中；生产资源 Repository、SchedulingPort、数据库、锁与事务均真实。没有宣称活动/改期/outbox 跨模块全链路已验收。
 
-证据目录：[ds-2026-10-20](../../artifacts/test-results/ds-2026-10-20/)。源文件 SHA-256 与代码 commit 在 [source-manifest.json](../../artifacts/test-results/ds-2026-10-20/source-manifest.json)，包括 V1 哈希。报告只保存文本和实际原始数据，未提交密码、构建缓存或数据库文件。
+证据目录：[ds-2026-10-20](../../artifacts/test-results/ds-2026-10-20/)。源文件 SHA-256 与代码 commit 在 [source-manifest.json](../../artifacts/test-results/ds-2026-10-20/source-manifest.json)，包括 V1 哈希。日志归档仅去除行尾空白以通过 diff 检查，没有改动测试结果或耗时。报告只保存文本和实际原始数据，未提交密码、构建缓存或数据库文件。
 
 ## 尚未解决的外部集成问题
 
