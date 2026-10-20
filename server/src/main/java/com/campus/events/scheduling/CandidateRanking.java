@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-/** 仅负责内部候选代价；Plan 生成、资格过滤及 300 次检查预算待公共 contract 接入。 */
+/** 内部候选代价；CandidateSearch复用此顺序与规范化设备表示。 */
 final class CandidateRanking {
     static final List<Integer> OFFSETS_MINUTES = List.of(0, -30, 30, -60, 60, -90, 90, -120, 120);
     // UUID.compareTo 使用带符号 long；以规范字符串保证与 PostgreSQL UUID 顺序一致。
