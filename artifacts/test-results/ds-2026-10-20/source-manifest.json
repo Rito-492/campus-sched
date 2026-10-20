@@ -1,0 +1,71 @@
+{
+  "sourceCommit": "91d306347277c2ed8cb5f42f585e9cb3f4abbdf6",
+  "baseCommit": "4fbda0ecf4f155ef1e05c385a677ebe7d13b087d",
+  "branch": "work/55230315-scheduling",
+  "files": [
+    {
+      "path": "server/src/main/java/com/campus/events/resource/ResourceController.java",
+      "sha256": "2c3151494d7eeda993707bad47254caaf30d354d3d80fb07cb7f6f2cf4e7f4f7"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/resource/ResourceRepository.java",
+      "sha256": "c0f3de483ce5135115a77eeff85ac3a97ca1ec24b39b5d7e70e00b6100f2076e"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/resource/ResourceService.java",
+      "sha256": "a0d986464fcb2067f3d079591dcba344e7d57c49b33914ccab69909d7eac0af0"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/scheduling/CandidateRanking.java",
+      "sha256": "df0d019cd525093e3881e01bfbb5f8c95f896e06b784b81b69f6dcc865a1214c"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/scheduling/CandidateSearch.java",
+      "sha256": "e3c0184d4c45945245dad3cec2a15649b4a48dc85f539d662c8616d37c214030"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/scheduling/ConstraintChecker.java",
+      "sha256": "91de7b2c7d9596b01058b1ee92f0ebc3752c923a96805a95cabf93536bc19bde"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/scheduling/ScheduleController.java",
+      "sha256": "031207b1f535182afcc79a96a2f413570ec1a45aea787128b4a42bf1a5b1ac4e"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/scheduling/ScheduleQueryService.java",
+      "sha256": "83f7e5d2f1e5cae74a8e48c3fe236d07dc8afa9004ed41ebe92ec94c5ae9aa04"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/scheduling/SchedulingPortAdapter.java",
+      "sha256": "64003f11a3f1fed0d6f63cc99e79834cfaad9742a63d5a16039c6ff9b010bab9"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/scheduling/StrategyEvaluator.java",
+      "sha256": "dfcb95e7bf01d488c3d6d6ca6e31d7783df6052cb32f973a8293f68c26fd11d9"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/scheduling/StrategyResult.java",
+      "sha256": "efac30b919934f02969ca132ec4f3c08d798f038ffcd448e6bc566acf42d65c6"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/resource/ResourceSchedulingIT.java",
+      "sha256": "4f951609f57469d4c23792a23d8fe33364ba5e6c978c178f0c646c8c7e24564b"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/resource/SchemaIT.java",
+      "sha256": "b8d2938477530dae37a9dc4b8ed49a92d899f69359569cd649ddb78726a94e45"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/scheduling/ScheduleQueryServiceTest.java",
+      "sha256": "ecf5fbf29b0c86471f04f366753703c8683cb880d65863ffeaa1368956941013"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/scheduling/StrategyEvaluatorTest.java",
+      "sha256": "9c60a0ceeca516c56e853a5913c6ed471b90855c491d311f8cc8e791d6707c93"
+    },
+    {
+      "path": "server/src/main/resources/db/migration/V1__schema.sql",
+      "sha256": "f05ff82fa0fcb3959f7a2031e25ed72d91e882224da0f5a68ed45b766d9f3a95"
+    }
+  ]
+}
