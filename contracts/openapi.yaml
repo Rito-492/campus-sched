@@ -1,0 +1,4181 @@
+openapi: 3.0.3
+info:
+  title: 校园活动协同与资源调度系统 API
+  version: 3.0.0
+  description: 开发任务包 v3.0 的40项契约；声明不表示业务接口已实现。RESOURCE_INELIGIBLE 返回403及受限资源/身份。
+servers:
+  - url: /api/v1
+security:
+  - bearerAuth: []
+paths:
+  /auth/login:
+    post:
+      operationId: API-01
+      summary: API-01 POST /auth/login
+      parameters: []
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/LoginView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginInput"
+      tags:
+        - PM
+      x-owner: PM
+      x-implementation-status: 已实现，PM隔离验证见交接单
+      description: 账号密码登录。仅保存令牌SHA-256；会话8小时；身份独立于角色。
+  /auth/me:
+    get:
+      operationId: API-02
+      summary: API-02 GET /auth/me
+      parameters: []
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/Actor"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      tags:
+        - PM
+      x-owner: PM
+      x-implementation-status: 已实现，PM隔离验证见交接单
+      description: 读取当前账号及最新身份、角色、权限和范围，不含口令。
+  /auth/logout:
+    post:
+      operationId: API-03
+      summary: API-03 POST /auth/logout
+      parameters: []
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/Ok"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      tags:
+        - PM
+      x-owner: PM
+      x-implementation-status: 已实现，PM隔离验证见交接单
+      description: 删除当前会话；不要求幂等键。
+  /users:
+    get:
+      operationId: API-04
+      summary: API-04 GET /users
+      parameters:
+        - name: purpose
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                  - truncated
+                properties:
+                  data:
+                    anyOf:
+                      - type: array
+                        items:
+                          $ref: "#/components/schemas/Actor"
+                        maxItems: 200
+                      - type: array
+                        items:
+                          $ref: "#/components/schemas/StaffView"
+                        maxItems: 200
+                  requestId:
+                    type: string
+                  truncated:
+                    type: boolean
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      tags:
+        - PM
+      x-owner: PM
+      x-implementation-status: 已实现，PM隔离验证见交接单
+      description: purpose=staff时仅APPLICANT查询同组织启用账号，返回StaffView[]；无purpose须ADMIN及USER_MANAGE，返回Actor[]。列表最多200项。
+    post:
+      operationId: API-05
+      summary: API-05 POST /users
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: 同一用户下唯一；重试须复用原键和请求体，异请求返回409
+      responses:
+        "201":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/Actor"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserCreate"
+      tags:
+        - PM
+      x-owner: PM
+      x-implementation-status: 已实现，PM隔离验证见交接单
+      description: 仅ADMIN及USER_MANAGE创建账号，引用现存组织/资源/类别。角色与范围完整提供，密码经BCrypt编码。
+  /users/{id}/enabled:
+    patch:
+      operationId: API-06
+      summary: API-06 PATCH /users/{id}/enabled
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: 同一用户下唯一；重试须复用原键和请求体，异请求返回409
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/Ok"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EnabledInput"
+      tags:
+        - PM
+      x-owner: PM
+      x-implementation-status: 已实现，PM隔离验证见交接单
+      description: 仅ADMIN及USER_MANAGE。停用同时删除全部会话，并与前后值历史共事务保存。重新启用不恢复旧令牌。
+  /resources:
+    get:
+      operationId: API-07
+      summary: API-07 GET /resources
+      parameters:
+        - name: kind
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - VENUE
+              - EQUIPMENT
+        - name: category
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                  - truncated
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ResourceView"
+                    maxItems: 200
+                  requestId:
+                    type: string
+                  truncated:
+                    type: boolean
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      tags:
+        - DS
+      x-owner: DS
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+    post:
+      operationId: API-08
+      summary: API-08 POST /resources
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: 同一用户下唯一；重试须复用原键和请求体，异请求返回409
+      responses:
+        "201":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/ResourceView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResourceCreate"
+      tags:
+        - DS
+      x-owner: DS
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /resources/calendar:
+    get:
+      operationId: API-09
+      summary: API-09 GET /resources/calendar
+      parameters:
+        - name: from
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: to
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: resourceId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                  - truncated
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/CalendarEntry"
+                    maxItems: 200
+                  requestId:
+                    type: string
+                  truncated:
+                    type: boolean
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      tags:
+        - DS
+      x-owner: DS
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /resources/{id}/faults:
+    post:
+      operationId: API-10
+      summary: API-10 POST /resources/{id}/faults
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: 同一用户下唯一；重试须复用原键和请求体，异请求返回409
+      responses:
+        "201":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/FaultView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/FaultInput"
+      tags:
+        - DS
+      x-owner: DS
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+    get:
+      operationId: API-11
+      summary: API-11 GET /resources/{id}/faults
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: from
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+        - name: to
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date-time
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                  - truncated
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/FaultView"
+                    maxItems: 200
+                  requestId:
+                    type: string
+                  truncated:
+                    type: boolean
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      tags:
+        - DS
+      x-owner: DS
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /activities:
+    post:
+      operationId: API-12
+      summary: API-12 POST /activities
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: 同一用户下唯一；重试须复用原键和请求体，异请求返回409
+      responses:
+        "201":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/ActivityView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ActivityInput"
+      tags:
+        - AN
+      x-owner: AN
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+    get:
+      operationId: API-13
+      summary: API-13 GET /activities
+      parameters:
+        - name: scope
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - mine
+              - public
+              - review
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                  - truncated
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ActivityView"
+                    maxItems: 200
+                  requestId:
+                    type: string
+                  truncated:
+                    type: boolean
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      tags:
+        - AN
+      x-owner: AN
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /activities/{id}:
+    get:
+      operationId: API-14
+      summary: API-14 GET /activities/{id}
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/ActivityView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      tags:
+        - AN
+      x-owner: AN
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+    patch:
+      operationId: API-15
+      summary: API-15 PATCH /activities/{id}
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: 同一用户下唯一；重试须复用原键和请求体，异请求返回409
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/ActivityView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ActivityEdit"
+      tags:
+        - AN
+      x-owner: AN
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /activities/{id}/submit:
+    post:
+      operationId: API-16
+      summary: API-16 POST /activities/{id}/submit
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: 同一用户下唯一；重试须复用原键和请求体，异请求返回409
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/ActivityView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VersionCommand"
+      tags:
+        - AN
+      x-owner: AN
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /activities/{id}/withdraw:
+    post:
+      operationId: API-17
+      summary: API-17 POST /activities/{id}/withdraw
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: 同一用户下唯一；重试须复用原键和请求体，异请求返回409
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/ActivityView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReasonCommand"
+      tags:
+        - AN
+      x-owner: AN
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /activities/{id}/approver-decision:
+    post:
+      operationId: API-18
+      summary: API-18 POST /activities/{id}/approver-decision
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: 同一用户下唯一；重试须复用原键和请求体，异请求返回409
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/ActivityView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ApprovalCommand"
+      tags:
+        - AN
+      x-owner: AN
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /activities/{id}/resource-confirm:
+    post:
+      operationId: API-19
+      summary: API-19 POST /activities/{id}/resource-confirm
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: 同一用户下唯一；重试须复用原键和请求体，异请求返回409
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/ActivityView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VersionCommand"
+      tags:
+        - AN
+      x-owner: AN
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /activities/{id}/publish:
+    post:
+      operationId: API-20
+      summary: API-20 POST /activities/{id}/publish
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: 同一用户下唯一；重试须复用原键和请求体，异请求返回409
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/ActivityView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VersionCommand"
+      tags:
+        - AN
+      x-owner: AN
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /activities/{id}/cancel:
+    post:
+      operationId: API-21
+      summary: API-21 POST /activities/{id}/cancel
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: 同一用户下唯一；重试须复用原键和请求体，异请求返回409
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/ActivityView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ReasonCommand"
+      tags:
+        - AN
+      x-owner: AN
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /activities/{id}/registration:
+    put:
+      operationId: API-22
+      summary: API-22 PUT /activities/{id}/registration
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: 同一用户下唯一；重试须复用原键和请求体，异请求返回409
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/RegistrationView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegistrationCommand"
+      tags:
+        - AN
+      x-owner: AN
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /activities/{id}/registrations:
+    get:
+      operationId: API-23
+      summary: API-23 GET /activities/{id}/registrations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                  - truncated
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/RegistrationView"
+                    maxItems: 200
+                  requestId:
+                    type: string
+                  truncated:
+                    type: boolean
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      tags:
+        - AN
+      x-owner: AN
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /activities/{id}/schedule-preview:
+    post:
+      operationId: API-24
+      summary: API-24 POST /activities/{id}/schedule-preview
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/CheckResult"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Proposal"
+      tags:
+        - DS
+      x-owner: DS
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /activities/{id}/alternatives:
+    post:
+      operationId: API-25
+      summary: API-25 POST /activities/{id}/alternatives
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/AlternativesView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Proposal"
+      tags:
+        - DS
+      x-owner: DS
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /activities/{id}/change-preview:
+    post:
+      operationId: API-26
+      summary: API-26 POST /activities/{id}/change-preview
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/ChangePreview"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Proposal"
+      tags:
+        - CM
+      x-owner: CM
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /activities/{id}/changes:
+    post:
+      operationId: API-27
+      summary: API-27 POST /activities/{id}/changes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: 同一用户下唯一；重试须复用原键和请求体，异请求返回409
+      responses:
+        "201":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/ChangeView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangeCreate"
+      tags:
+        - CM
+      x-owner: CM
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+    get:
+      operationId: API-28
+      summary: API-28 GET /activities/{id}/changes
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                  - truncated
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ChangeView"
+                    maxItems: 200
+                  requestId:
+                    type: string
+                  truncated:
+                    type: boolean
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      tags:
+        - CM
+      x-owner: CM
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /changes/{id}:
+    get:
+      operationId: API-29
+      summary: API-29 GET /changes/{id}
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/ChangeView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      tags:
+        - CM
+      x-owner: CM
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /changes/{id}/confirmation:
+    post:
+      operationId: API-30
+      summary: API-30 POST /changes/{id}/confirmation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: 同一用户下唯一；重试须复用原键和请求体，异请求返回409
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/ChangeView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangeDecision"
+      tags:
+        - CM
+      x-owner: CM
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /changes/{id}/approver-decision:
+    post:
+      operationId: API-31
+      summary: API-31 POST /changes/{id}/approver-decision
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: 同一用户下唯一；重试须复用原键和请求体，异请求返回409
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/ChangeView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangeDecision"
+      tags:
+        - CM
+      x-owner: CM
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /changes/{id}/resource-decision:
+    post:
+      operationId: API-32
+      summary: API-32 POST /changes/{id}/resource-decision
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: 同一用户下唯一；重试须复用原键和请求体，异请求返回409
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/ChangeView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangeDecision"
+      tags:
+        - CM
+      x-owner: CM
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /changes/{id}/withdraw:
+    post:
+      operationId: API-33
+      summary: API-33 POST /changes/{id}/withdraw
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: 同一用户下唯一；重试须复用原键和请求体，异请求返回409
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/ChangeView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WithdrawInput"
+      tags:
+        - CM
+      x-owner: CM
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /notifications:
+    get:
+      operationId: API-34
+      summary: API-34 GET /notifications
+      parameters:
+        - name: unreadOnly
+          in: query
+          required: false
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                  - truncated
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/NotificationView"
+                    maxItems: 200
+                  requestId:
+                    type: string
+                  truncated:
+                    type: boolean
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      tags:
+        - CM
+      x-owner: CM
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /notifications/{id}/read:
+    post:
+      operationId: API-35
+      summary: API-35 POST /notifications/{id}/read
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: 同一用户下唯一；重试须复用原键和请求体，异请求返回409
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/NotificationView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      tags:
+        - CM
+      x-owner: CM
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /activities/{id}/audit:
+    get:
+      operationId: API-36
+      summary: API-36 GET /activities/{id}/audit
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                  - truncated
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/AuditView"
+                    maxItems: 200
+                  requestId:
+                    type: string
+                  truncated:
+                    type: boolean
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      tags:
+        - CM
+      x-owner: CM
+      x-implementation-status: 待模块负责人交付
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /health:
+    get:
+      operationId: API-37
+      summary: API-37 GET /health
+      parameters: []
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/Health"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      security: []
+      tags:
+        - PM
+      x-owner: PM
+      x-implementation-status: 已实现，PM隔离验证见交接单
+      description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
+  /organizations:
+    get:
+      operationId: API-38
+      summary: API-38 GET /organizations
+      parameters: []
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                  - truncated
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/OrganizationView"
+                    maxItems: 200
+                  requestId:
+                    type: string
+                  truncated:
+                    type: boolean
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      tags:
+        - PM
+      x-owner: PM
+      x-implementation-status: 已实现，PM隔离验证见交接单
+      description: 仅ADMIN及USER_MANAGE查询种子建立的组织，最多200项，按createdAt降序、id升序。
+  /users/{id}/authorization:
+    patch:
+      operationId: API-39
+      summary: API-39 PATCH /users/{id}/authorization
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: 同一用户下唯一；重试须复用原键和请求体，异请求返回409
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/Actor"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthorizationInput"
+      tags:
+        - PM
+      x-owner: PM
+      x-implementation-status: 已实现，PM隔离验证见交接单
+      description: 仅ADMIN及USER_MANAGE。完整替换身份、角色、权限、按组织分组的审批类别和明确资源范围。移除ADMIN/APPROVER须同时清空对应范围；拒绝通配符/不存在引用。先锁用户，授权与历史共事务保存。
+  /resources/{id}/eligibility:
+    patch:
+      operationId: API-40
+      summary: API-40 PATCH /resources/{id}/eligibility
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: 同一用户下唯一；重试须复用原键和请求体，异请求返回409
+      responses:
+        "200":
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - data
+                  - requestId
+                properties:
+                  data:
+                    $ref: "#/components/schemas/ResourceView"
+                  requestId:
+                    type: string
+        "400":
+          description: 参数无效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "401":
+          description: 未登录或会话失效
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "403":
+          description: 权限或资格不足
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "404":
+          description: 对象不存在
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "409":
+          description: 状态、版本或幂等冲突
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+        "500":
+          description: 内部错误
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResourceEligibility"
+      tags:
+        - DS
+      x-owner: DS
+      x-implementation-status: 待模块负责人交付
+      description: 仅ADMIN及RESOURCE_MANAGE且资源在managedResourceIds内。记录资格前后值；已生效预约保留，未确认申请和改期目标按最新资格校验。
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    Role:
+      type: string
+      enum:
+        - APPLICANT
+        - APPROVER
+        - ADMIN
+    Identity:
+      type: string
+      enum:
+        - TEACHER
+        - STUDENT
+    Permission:
+      type: string
+      enum:
+        - USER_MANAGE
+        - RESOURCE_MANAGE
+        - RESOURCE_CONFIRM
+        - AUDIT_READ
+    ActivityStatus:
+      type: string
+      enum:
+        - DRAFT
+        - PENDING_APPROVER
+        - APPROVED_UNRESERVED
+        - SCHEDULED
+        - OPEN
+        - CANCELLED
+    ChangeStatus:
+      type: string
+      enum:
+        - AWAITING_CONFIRMATIONS
+        - PENDING_APPROVER
+        - PENDING_RESOURCE
+        - APPLIED
+        - REJECTED
+        - CONFLICTED
+        - WITHDRAWN
+        - CANCELLED_BY_ACTIVITY
+    Decision:
+      type: string
+      enum:
+        - APPROVE
+        - REJECT
+    Risk:
+      type: string
+      enum:
+        - NORMAL
+        - AT_RISK
+    ResourceKind:
+      type: string
+      enum:
+        - VENUE
+        - EQUIPMENT
+    ConflictCode:
+      type: string
+      enum:
+        - VENUE_CAPACITY
+        - OUTSIDE_HOURS
+        - VENUE_OCCUPIED
+        - EQUIPMENT_SHORTAGE
+        - RESOURCE_FAULT
+    RegistrationStatus:
+      type: string
+      enum:
+        - ACTIVE
+        - WITHDRAWN
+        - CANCELLED
+    CalendarSegment:
+      type: string
+      enum:
+        - SETUP
+        - EVENT
+        - TEARDOWN
+        - FAULT
+    RegistrationAction:
+      type: string
+      enum:
+        - JOIN
+        - WITHDRAW
+    ApprovalScope:
+      type: object
+      required:
+        - organizationId
+        - resourceCategories
+      properties:
+        organizationId:
+          type: string
+          format: uuid
+        resourceCategories:
+          type: array
+          items:
+            type: string
+    AuthorizationInput:
+      type: object
+      required:
+        - identity
+        - roles
+        - permissions
+        - approvalScopes
+        - managedResourceIds
+      properties:
+        identity:
+          $ref: "#/components/schemas/Identity"
+        roles:
+          type: array
+          items:
+            $ref: "#/components/schemas/Role"
+        permissions:
+          type: array
+          items:
+            $ref: "#/components/schemas/Permission"
+        approvalScopes:
+          type: array
+          items:
+            $ref: "#/components/schemas/ApprovalScope"
+        managedResourceIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+      description: 完整替换。identity不产生角色权限；ADMIN缺失时permissions/managedResourceIds须为空，APPROVER缺失时approvalScopes须为空；范围不接受通配符。
+    UserCreate:
+      type: object
+      required:
+        - identity
+        - roles
+        - permissions
+        - approvalScopes
+        - managedResourceIds
+        - username
+        - displayName
+        - password
+        - organizationId
+      properties:
+        identity:
+          $ref: "#/components/schemas/Identity"
+        roles:
+          type: array
+          items:
+            $ref: "#/components/schemas/Role"
+        permissions:
+          type: array
+          items:
+            $ref: "#/components/schemas/Permission"
+        approvalScopes:
+          type: array
+          items:
+            $ref: "#/components/schemas/ApprovalScope"
+        managedResourceIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        username:
+          type: string
+        displayName:
+          type: string
+        password:
+          type: string
+        organizationId:
+          type: string
+          format: uuid
+    ResourceEligibility:
+      type: object
+      required:
+        - allowTeacher
+        - allowStudent
+      properties:
+        allowTeacher:
+          type: boolean
+        allowStudent:
+          type: boolean
+    StaffView:
+      type: object
+      required:
+        - id
+        - displayName
+        - organizationId
+        - enabled
+      properties:
+        id:
+          type: string
+          format: uuid
+        displayName:
+          type: string
+        organizationId:
+          type: string
+          format: uuid
+        enabled:
+          type: boolean
+    Actor:
+      type: object
+      required:
+        - identity
+        - roles
+        - permissions
+        - approvalScopes
+        - managedResourceIds
+        - id
+        - displayName
+        - organizationId
+        - enabled
+      properties:
+        identity:
+          $ref: "#/components/schemas/Identity"
+        roles:
+          type: array
+          items:
+            $ref: "#/components/schemas/Role"
+        permissions:
+          type: array
+          items:
+            $ref: "#/components/schemas/Permission"
+        approvalScopes:
+          type: array
+          items:
+            $ref: "#/components/schemas/ApprovalScope"
+        managedResourceIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        id:
+          type: string
+          format: uuid
+        displayName:
+          type: string
+        organizationId:
+          type: string
+          format: uuid
+        enabled:
+          type: boolean
+    EquipmentNeed:
+      type: object
+      required:
+        - resourceId
+        - quantity
+      properties:
+        resourceId:
+          type: string
+          format: uuid
+        quantity:
+          type: integer
+          minimum: 1
+    Plan:
+      type: object
+      required:
+        - startAt
+        - endAt
+        - setupMinutes
+        - teardownMinutes
+        - venueId
+        - equipment
+      properties:
+        startAt:
+          type: string
+          format: date-time
+        endAt:
+          type: string
+          format: date-time
+        setupMinutes:
+          type: integer
+          minimum: 0
+          maximum: 120
+        teardownMinutes:
+          type: integer
+          minimum: 0
+          maximum: 120
+        venueId:
+          type: string
+          format: uuid
+        equipment:
+          type: array
+          items:
+            $ref: "#/components/schemas/EquipmentNeed"
+      description: 活动30分钟至6小时，时间为分钟精度；含布撤场的完整区间在同一上海自然日且位于资源开放区间；设备ID不得重复。
+    ActivityInput:
+      type: object
+      required:
+        - title
+        - description
+        - expectedAttendees
+        - registrationCapacity
+        - staffUserIds
+        - plan
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 100
+        description:
+          type: string
+          maxLength: 2000
+        expectedAttendees:
+          type: integer
+          minimum: 1
+        registrationCapacity:
+          type: integer
+          minimum: 1
+        staffUserIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        plan:
+          $ref: "#/components/schemas/Plan"
+    ActivityView:
+      type: object
+      required:
+        - id
+        - organizationId
+        - ownerId
+        - status
+        - versionNo
+        - effectiveVersionNo
+        - lockVersion
+        - input
+        - registrationCount
+        - resourceRisk
+        - activeChangeId
+        - myRegistrationStatus
+        - createdAt
+      properties:
+        id:
+          type: string
+          format: uuid
+        organizationId:
+          type: string
+          format: uuid
+        ownerId:
+          type: string
+          format: uuid
+        status:
+          $ref: "#/components/schemas/ActivityStatus"
+        versionNo:
+          type: integer
+        effectiveVersionNo:
+          type: integer
+          nullable: true
+        lockVersion:
+          type: integer
+        input:
+          $ref: "#/components/schemas/ActivityInput"
+        registrationCount:
+          type: integer
+        resourceRisk:
+          $ref: "#/components/schemas/Risk"
+        activeChangeId:
+          type: string
+          format: uuid
+          nullable: true
+        myRegistrationStatus:
+          allOf:
+            - $ref: "#/components/schemas/RegistrationStatus"
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+    VersionCommand:
+      type: object
+      required:
+        - expectedLockVersion
+      properties:
+        expectedLockVersion:
+          type: integer
+          minimum: 0
+    ReasonCommand:
+      type: object
+      required:
+        - expectedLockVersion
+        - reason
+      properties:
+        expectedLockVersion:
+          type: integer
+          minimum: 0
+        reason:
+          type: string
+          maxLength: 1000
+          minLength: 1
+    ActivityEdit:
+      type: object
+      required:
+        - expectedLockVersion
+        - input
+      properties:
+        expectedLockVersion:
+          type: integer
+          minimum: 0
+        input:
+          $ref: "#/components/schemas/ActivityInput"
+    ApprovalCommand:
+      type: object
+      required:
+        - expectedLockVersion
+        - decision
+        - comment
+      properties:
+        expectedLockVersion:
+          type: integer
+          minimum: 0
+        decision:
+          $ref: "#/components/schemas/Decision"
+        comment:
+          type: string
+          maxLength: 1000
+    ResourceCreate:
+      type: object
+      required:
+        - allowTeacher
+        - allowStudent
+        - kind
+        - name
+        - category
+        - capacity
+        - quantity
+        - openFrom
+        - openTo
+      properties:
+        allowTeacher:
+          type: boolean
+        allowStudent:
+          type: boolean
+        kind:
+          $ref: "#/components/schemas/ResourceKind"
+        name:
+          type: string
+        category:
+          type: string
+        capacity:
+          type: integer
+          nullable: true
+        quantity:
+          type: integer
+          minimum: 1
+        openFrom:
+          type: string
+          pattern: ^(?:[01][0-9]|2[0-3]):[0-5][0-9]$
+        openTo:
+          type: string
+          pattern: ^(?:[01][0-9]|2[0-3]):[0-5][0-9]$
+    ResourceView:
+      type: object
+      required:
+        - allowTeacher
+        - allowStudent
+        - kind
+        - name
+        - category
+        - capacity
+        - quantity
+        - openFrom
+        - openTo
+        - id
+        - createdAt
+      properties:
+        allowTeacher:
+          type: boolean
+        allowStudent:
+          type: boolean
+        kind:
+          $ref: "#/components/schemas/ResourceKind"
+        name:
+          type: string
+        category:
+          type: string
+        capacity:
+          type: integer
+          nullable: true
+        quantity:
+          type: integer
+          minimum: 1
+        openFrom:
+          type: string
+          pattern: ^(?:[01][0-9]|2[0-3]):[0-5][0-9]$
+        openTo:
+          type: string
+          pattern: ^(?:[01][0-9]|2[0-3]):[0-5][0-9]$
+        id:
+          type: string
+          format: uuid
+        createdAt:
+          type: string
+          format: date-time
+    FaultInput:
+      type: object
+      required:
+        - startAt
+        - endAt
+        - unavailableQuantity
+        - reason
+      properties:
+        startAt:
+          type: string
+          format: date-time
+        endAt:
+          type: string
+          format: date-time
+        unavailableQuantity:
+          type: integer
+        reason:
+          type: string
+          maxLength: 1000
+          minLength: 1
+    AffectedActivity:
+      type: object
+      required:
+        - activityId
+        - title
+        - versionNo
+        - resourceRisk
+      properties:
+        activityId:
+          type: string
+          format: uuid
+        title:
+          type: string
+        versionNo:
+          type: integer
+        resourceRisk:
+          $ref: "#/components/schemas/Risk"
+    FaultView:
+      type: object
+      required:
+        - startAt
+        - endAt
+        - unavailableQuantity
+        - reason
+        - id
+        - resourceId
+        - affectedActivities
+      properties:
+        startAt:
+          type: string
+          format: date-time
+        endAt:
+          type: string
+          format: date-time
+        unavailableQuantity:
+          type: integer
+        reason:
+          type: string
+          maxLength: 1000
+          minLength: 1
+        id:
+          type: string
+          format: uuid
+        resourceId:
+          type: string
+          format: uuid
+        affectedActivities:
+          type: array
+          items:
+            $ref: "#/components/schemas/AffectedActivity"
+    CalendarEntry:
+      type: object
+      required:
+        - resourceId
+        - startsAt
+        - endsAt
+        - quantity
+        - activityId
+        - label
+        - risk
+        - segment
+      properties:
+        resourceId:
+          type: string
+          format: uuid
+        startsAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+        quantity:
+          type: integer
+        activityId:
+          type: string
+          format: uuid
+          nullable: true
+        label:
+          type: string
+        risk:
+          $ref: "#/components/schemas/Risk"
+        segment:
+          $ref: "#/components/schemas/CalendarSegment"
+    Conflict:
+      type: object
+      required:
+        - code
+        - resourceId
+        - resourceName
+        - startsAt
+        - endsAt
+        - required
+        - available
+        - message
+      properties:
+        code:
+          $ref: "#/components/schemas/ConflictCode"
+        resourceId:
+          type: string
+          format: uuid
+        resourceName:
+          type: string
+        startsAt:
+          type: string
+          format: date-time
+        endsAt:
+          type: string
+          format: date-time
+        required:
+          type: integer
+          nullable: true
+        available:
+          type: integer
+          nullable: true
+        message:
+          type: string
+    CheckResult:
+      type: object
+      required:
+        - feasible
+        - conflicts
+      properties:
+        feasible:
+          type: boolean
+        conflicts:
+          type: array
+          items:
+            $ref: "#/components/schemas/Conflict"
+    Proposal:
+      type: object
+      required:
+        - baseVersionNo
+        - targetPlan
+      properties:
+        baseVersionNo:
+          type: integer
+        targetPlan:
+          $ref: "#/components/schemas/Plan"
+    Alternative:
+      type: object
+      required:
+        - plan
+        - timeShiftMinutes
+        - venueChanged
+        - replacedEquipmentLines
+        - explanation
+      properties:
+        plan:
+          $ref: "#/components/schemas/Plan"
+        timeShiftMinutes:
+          type: integer
+        venueChanged:
+          type: boolean
+        replacedEquipmentLines:
+          type: integer
+        explanation:
+          type: string
+    AlternativesView:
+      type: object
+      required:
+        - items
+        - evaluatedCount
+        - truncated
+        - offsetsMinutes
+        - maxEvaluations
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/Alternative"
+        evaluatedCount:
+          type: integer
+        truncated:
+          type: boolean
+        offsetsMinutes:
+          type: array
+          items:
+            type: integer
+        maxEvaluations:
+          type: integer
+    Impact:
+      type: object
+      required:
+        - oldPlan
+        - newPlan
+        - releasedResourceIds
+        - acquiredResourceIds
+        - retainedResourceIds
+        - requiredStaffUserIds
+        - registeredUserIds
+        - registeredCount
+        - notificationUserIds
+        - approvalReset
+        - originalResourceRisk
+        - changedFields
+      properties:
+        oldPlan:
+          $ref: "#/components/schemas/Plan"
+        newPlan:
+          $ref: "#/components/schemas/Plan"
+        releasedResourceIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        acquiredResourceIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        retainedResourceIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        requiredStaffUserIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        registeredUserIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        registeredCount:
+          type: integer
+        notificationUserIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        approvalReset:
+          type: boolean
+          enum:
+            - true
+        originalResourceRisk:
+          $ref: "#/components/schemas/Risk"
+        changedFields:
+          type: array
+          items:
+            type: string
+    ChangePreview:
+      type: object
+      required:
+        - check
+        - alternatives
+        - impact
+      properties:
+        check:
+          $ref: "#/components/schemas/CheckResult"
+        alternatives:
+          $ref: "#/components/schemas/AlternativesView"
+        impact:
+          $ref: "#/components/schemas/Impact"
+    ChangeCreate:
+      type: object
+      required:
+        - baseVersionNo
+        - targetPlan
+        - expectedLockVersion
+        - reason
+      properties:
+        baseVersionNo:
+          type: integer
+        targetPlan:
+          $ref: "#/components/schemas/Plan"
+        expectedLockVersion:
+          type: integer
+          minimum: 0
+        reason:
+          type: string
+          maxLength: 1000
+          minLength: 1
+    Confirmation:
+      type: object
+      required:
+        - userId
+        - decision
+        - comment
+        - decidedAt
+      properties:
+        userId:
+          type: string
+          format: uuid
+        decision:
+          allOf:
+            - $ref: "#/components/schemas/Decision"
+          nullable: true
+        comment:
+          type: string
+          maxLength: 1000
+        decidedAt:
+          type: string
+          format: date-time
+          nullable: true
+    ChangeDecision:
+      type: object
+      required:
+        - decision
+        - comment
+      properties:
+        decision:
+          $ref: "#/components/schemas/Decision"
+        comment:
+          type: string
+          maxLength: 1000
+    DecisionRecord:
+      type: object
+      required:
+        - decision
+        - comment
+        - actorId
+        - decidedAt
+      properties:
+        decision:
+          $ref: "#/components/schemas/Decision"
+        comment:
+          type: string
+          maxLength: 1000
+        actorId:
+          type: string
+          format: uuid
+        decidedAt:
+          type: string
+          format: date-time
+    ChangeView:
+      type: object
+      required:
+        - id
+        - activityId
+        - baseVersionNo
+        - targetPlan
+        - reason
+        - status
+        - impact
+        - confirmations
+        - approverDecision
+        - resourceDecision
+        - lastConflicts
+        - appliedVersionNo
+        - createdBy
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          format: uuid
+        activityId:
+          type: string
+          format: uuid
+        baseVersionNo:
+          type: integer
+        targetPlan:
+          $ref: "#/components/schemas/Plan"
+        reason:
+          type: string
+          maxLength: 1000
+          minLength: 1
+        status:
+          $ref: "#/components/schemas/ChangeStatus"
+        impact:
+          $ref: "#/components/schemas/Impact"
+        confirmations:
+          type: array
+          items:
+            $ref: "#/components/schemas/Confirmation"
+        approverDecision:
+          allOf:
+            - $ref: "#/components/schemas/DecisionRecord"
+          nullable: true
+        resourceDecision:
+          allOf:
+            - $ref: "#/components/schemas/DecisionRecord"
+          nullable: true
+        lastConflicts:
+          type: array
+          items:
+            $ref: "#/components/schemas/Conflict"
+        appliedVersionNo:
+          type: integer
+          nullable: true
+        createdBy:
+          type: string
+          format: uuid
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    RegistrationCommand:
+      type: object
+      required:
+        - action
+        - expectedVersionNo
+      properties:
+        action:
+          $ref: "#/components/schemas/RegistrationAction"
+        expectedVersionNo:
+          type: integer
+    RegistrationView:
+      type: object
+      required:
+        - activityId
+        - userId
+        - status
+        - versionNo
+      properties:
+        activityId:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        status:
+          $ref: "#/components/schemas/RegistrationStatus"
+        versionNo:
+          type: integer
+    NotificationView:
+      type: object
+      required:
+        - id
+        - eventId
+        - activityId
+        - versionNo
+        - title
+        - body
+        - readAt
+        - createdAt
+      properties:
+        id:
+          type: string
+          format: uuid
+        eventId:
+          type: string
+          format: uuid
+        activityId:
+          type: string
+          format: uuid
+          nullable: true
+        versionNo:
+          type: integer
+          nullable: true
+        title:
+          type: string
+        body:
+          type: string
+        readAt:
+          type: string
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+    AuditView:
+      type: object
+      required:
+        - id
+        - activityId
+        - actorId
+        - eventType
+        - versionNo
+        - summary
+        - createdAt
+      properties:
+        id:
+          type: string
+          format: uuid
+        activityId:
+          type: string
+          format: uuid
+        actorId:
+          type: string
+          format: uuid
+        eventType:
+          type: string
+        versionNo:
+          type: integer
+        summary:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    ActivitySnapshot:
+      type: object
+      required:
+        - activity
+        - activeRegistrationUserIds
+      properties:
+        activity:
+          $ref: "#/components/schemas/ActivityView"
+        activeRegistrationUserIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+    EventDraft:
+      type: object
+      required:
+        - activityId
+        - versionNo
+        - actorId
+        - eventType
+        - summary
+        - recipientIds
+        - title
+        - body
+      properties:
+        activityId:
+          type: string
+          format: uuid
+          nullable: true
+        versionNo:
+          type: integer
+        actorId:
+          type: string
+          format: uuid
+        eventType:
+          type: string
+        summary:
+          type: string
+        recipientIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        title:
+          type: string
+        body:
+          type: string
+    CommandResult:
+      type: object
+      required:
+        - httpStatus
+        - body
+      properties:
+        httpStatus:
+          type: integer
+        body:
+          type: object
+    LoginInput:
+      type: object
+      required:
+        - username
+        - password
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    LoginView:
+      type: object
+      required:
+        - token
+        - expiresAt
+        - user
+      properties:
+        token:
+          type: string
+        expiresAt:
+          type: string
+          format: date-time
+        user:
+          $ref: "#/components/schemas/Actor"
+    EnabledInput:
+      type: object
+      required:
+        - enabled
+      properties:
+        enabled:
+          type: boolean
+    OrganizationView:
+      type: object
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+    SuccessEnvelope:
+      type: object
+      required:
+        - data
+        - requestId
+      properties:
+        data: {}
+        requestId:
+          type: string
+    ErrorEnvelope:
+      type: object
+      required:
+        - error
+        - requestId
+      properties:
+        error:
+          type: object
+          required:
+            - code
+            - message
+            - details
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: object
+              additionalProperties: true
+        requestId:
+          type: string
+    Ok:
+      type: object
+      required:
+        - ok
+      properties:
+        ok:
+          type: boolean
+          enum:
+            - true
+    Health:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          enum:
+            - UP
+    WithdrawInput:
+      type: object
+      required:
+        - reason
+      properties:
+        reason:
+          type: string
+          minLength: 1
+          maxLength: 1000
