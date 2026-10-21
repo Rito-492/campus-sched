@@ -1,0 +1,123 @@
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ----------------------< com.campus:campus-events >----------------------
+[INFO] Building У԰�Эͬ����Դ����ϵͳ 0.1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ campus-events ---
+[INFO] Copying 5 resources from ..\..\src\main\resources to output\classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ campus-events ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 94 source files with javac [debug parameters release 21] to output\classes
+[INFO] /C:/Users/35049/Desktop/campus-sched/server/src/main/java/com/campus/events/foundation/CanonicalJson.java: C:\Users\35049\Desktop\campus-sched\server\src\main\java\com\campus\events\foundation\CanonicalJson.javaʹ�û򸲸����ѹ�ʱ�� API��
+[INFO] /C:/Users/35049/Desktop/campus-sched/server/src/main/java/com/campus/events/foundation/CanonicalJson.java: �й���ϸ��Ϣ, ��ʹ�� -Xlint:deprecation ���±��롣
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ campus-events ---
+[INFO] skip non existing resourceDirectory C:\Users\35049\Desktop\campus-sched\server\target\ds-build\src\test\resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ campus-events ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 24 source files with javac [debug parameters release 21] to output\test-classes
+[INFO]
+[INFO] --- surefire:3.5.6:test (default-test) @ campus-events ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.campus.events.scheduling.CandidateRankingTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.072 s -- in com.campus.events.scheduling.CandidateRankingTest
+[INFO] Running com.campus.events.scheduling.CapacitySweepTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.091 s -- in com.campus.events.scheduling.CapacitySweepTest
+[INFO] Running com.campus.events.scheduling.ScheduleQueryServiceTest
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+Java HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+WARNING: A Java agent has been loaded dynamically (C:\Users\35049\Desktop\campus-sched\server\target\maven-repository\net\bytebuddy\byte-buddy-agent\1.17.8\byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.679 s -- in com.campus.events.scheduling.ScheduleQueryServiceTest
+[INFO] Running com.campus.events.scheduling.StrategyEvaluatorTest
+10:05:34.819 [main] INFO org.hibernate.validator.internal.util.Version -- HV000001: Hibernate Validator 8.0.3.Final
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.222 s -- in com.campus.events.scheduling.StrategyEvaluatorTest
+[INFO] Running com.campus.events.scheduling.TimeIntervalTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.023 s -- in com.campus.events.scheduling.TimeIntervalTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 23, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ campus-events ---
+[INFO] Building jar: C:\Users\35049\Desktop\campus-sched\server\target\ds-build\output\campus-events-0.1.0-SNAPSHOT.jar
+[INFO]
+[INFO] --- spring-boot:3.5.16:repackage (repackage) @ campus-events ---
+[INFO] Replacing main artifact C:\Users\35049\Desktop\campus-sched\server\target\ds-build\output\campus-events-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\35049\Desktop\campus-sched\server\target\ds-build\output\campus-events-0.1.0-SNAPSHOT.jar.original
+[INFO]
+[INFO] --- failsafe:3.5.6:integration-test (default) @ campus-events ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.campus.events.resource.ResourceSchedulingIT
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-21T10:05:40.505+08:00  INFO 42584 --- [campus-events] [           main] c.c.e.resource.ResourceSchedulingIT      : Starting ResourceSchedulingIT using Java 21.0.6 with PID 42584 (started by 35049 in C:\Users\35049\Desktop\campus-sched\server\target\ds-build)
+2026-10-21T10:05:40.510+08:00  INFO 42584 --- [campus-events] [           main] c.c.e.resource.ResourceSchedulingIT      : No active profile set, falling back to 1 default profile: "default"
+2026-10-21T10:05:42.563+08:00  INFO 42584 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-21T10:05:42.648+08:00  INFO 42584 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@147cc940
+2026-10-21T10:05:42.652+08:00  INFO 42584 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-21T10:05:42.701+08:00  INFO 42584 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:5440/campus_test?currentSchema=t_339d5e4c30c04df9985e974d1195f0a3 (PostgreSQL 17.6)
+2026-10-21T10:05:42.762+08:00  INFO 42584 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_339d5e4c30c04df9985e974d1195f0a3"."flyway_schema_history" does not exist yet
+2026-10-21T10:05:42.767+08:00  INFO 42584 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.035s)
+2026-10-21T10:05:42.794+08:00  INFO 42584 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_339d5e4c30c04df9985e974d1195f0a3"."flyway_schema_history" ...
+2026-10-21T10:05:42.882+08:00  INFO 42584 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_339d5e4c30c04df9985e974d1195f0a3": << Empty Schema >>
+2026-10-21T10:05:42.950+08:00  INFO 42584 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_339d5e4c30c04df9985e974d1195f0a3" to version "1 - schema"
+2026-10-21T10:05:43.264+08:00  INFO 42584 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_339d5e4c30c04df9985e974d1195f0a3", now at version v1 (execution time 00:00.293s)
+2026-10-21T10:05:45.294+08:00  INFO 42584 --- [campus-events] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-21T10:05:45.294+08:00  INFO 42584 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-21T10:05:45.297+08:00  INFO 42584 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 3 ms
+2026-10-21T10:05:45.332+08:00  INFO 42584 --- [campus-events] [           main] c.c.e.resource.ResourceSchedulingIT      : Started ResourceSchedulingIT in 5.722 seconds (process running for 6.899)
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+Java HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+WARNING: A Java agent has been loaded dynamically (C:\Users\35049\Desktop\campus-sched\server\target\maven-repository\net\bytebuddy\byte-buddy-agent\1.17.8\byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+2026-10-21T10:06:11.303+08:00  INFO 42584 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-10-21T10:06:11.309+08:00  INFO 42584 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+[INFO] Tests run: 20, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 32.21 s -- in com.campus.events.resource.ResourceSchedulingIT
+[INFO] Running DS-01 V1 Ǩ����֤ v3.0��SchemaIT��
+2026-10-21T10:06:11.443+08:00  INFO 42584 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:5440/campus_test (PostgreSQL 17.6)
+2026-10-21T10:06:11.457+08:00  INFO 42584 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_abc67b81a019434ea4121f9ed26b07a5"."flyway_schema_history" does not exist yet
+2026-10-21T10:06:11.458+08:00  INFO 42584 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.008s)
+2026-10-21T10:06:11.468+08:00  INFO 42584 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_abc67b81a019434ea4121f9ed26b07a5"."flyway_schema_history" ...
+2026-10-21T10:06:11.544+08:00  INFO 42584 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_abc67b81a019434ea4121f9ed26b07a5": << Empty Schema >>
+2026-10-21T10:06:11.566+08:00  INFO 42584 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_abc67b81a019434ea4121f9ed26b07a5" to version "1 - schema"
+2026-10-21T10:06:11.816+08:00  INFO 42584 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_abc67b81a019434ea4121f9ed26b07a5", now at version v1 (execution time 00:00.241s)
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.09 s -- in DS-01 V1 Ǩ����֤ v3.0��SchemaIT��
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 28, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- failsafe:3.5.6:verify (default) @ campus-events ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:01 min
+[INFO] Finished at: 2026-10-21T10:06:21+08:00
+[INFO] ------------------------------------------------------------------------

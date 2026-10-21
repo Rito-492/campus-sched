@@ -3,9 +3,12 @@ package com.campus.events.resource;
 import com.campus.events.support.DbTestSupport;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -50,14 +53,19 @@ class SchemaIT {
         return db.jdbc();
     }
 
-    // ------------------------------------------------------------------ 1. 17 表齐全
+    @BeforeEach void resetFixture() {
+        jdbc().execute("TRUNCATE organization,resource CASCADE");
+        ensureBaseData();
+    }
+
+    // ------------------------------------------------------------------ 1. 22 张业务表齐全
 
     @Test
     @DisplayName("V1(v3.0) 迁移后 22 张表全部存在且无多余表")
-    void tc01_allSeventeenTablesExist() {
+    void tc01_allTwentyTwoBusinessTablesExist() {
         List<String> tables = jdbc().queryForList(
                 "SELECT table_name FROM information_schema.tables " +
-                        "WHERE table_schema = ? AND table_type = 'BASE TABLE' ORDER BY 1",
+                        "WHERE table_schema = ? AND table_type = 'BASE TABLE' AND table_name <> 'flyway_schema_history' ORDER BY 1",
                 String.class, jdbc().queryForObject("SELECT current_schema()", String.class));
         assertEquals(22, tables.size(), () -> "应为 22 张表，实际：" + tables);
         List.<String>of("organization", "app_user", "user_role", "user_permission",
@@ -93,7 +101,7 @@ class SchemaIT {
                 UUID.randomUUID(), ACTIVITY, VENUE);
 
         UUID eventId = UUID.randomUUID();
-        jdbc().update("INSERT INTO outbox_event (id, activity_id, version_no, event_type, payload_json) VALUES (?,?,1,?,?)",
+        jdbc().update("INSERT INTO outbox_event (id, activity_id, version_no, event_type, payload_json) VALUES (?,?,1,?,?::jsonb)",
                 eventId, ACTIVITY, "CHANGE_APPLIED", "{\"title\":\"x\"}");
         jdbc().update("INSERT INTO notification (id, event_id, recipient_id, title, body) VALUES (?,?,?,?,?)",
                 UUID.randomUUID(), eventId, USER, "t", "b");
@@ -162,7 +170,7 @@ class SchemaIT {
             try (PreparedStatement insertActivity = conn.prepareStatement(
                     "INSERT INTO activity (id, organization_id, owner_id, status, version_no, effective_version_no, lock_version) VALUES (?,?,?,?,?,NULL,0)");
                  PreparedStatement insertVersion = conn.prepareStatement(
-                         "INSERT INTO activity_version (activity_id, version_no, input_json, created_by) VALUES (?,?,?,?)")) {
+                         "INSERT INTO activity_version (activity_id, version_no, input_json, created_by) VALUES (?,?,?::jsonb,?)")) {
                 insertActivity.setObject(1, draftActivity);
                 insertActivity.setObject(2, ORG);
                 insertActivity.setObject(3, USER);
@@ -238,7 +246,7 @@ class SchemaIT {
                 UUID.randomUUID(), EQUIP, adminUser, "{\"allowTeacher\":true,\"allowStudent\":true}",
                 "{\"allowTeacher\":true,\"allowStudent\":false}");
         jdbc().update("UPDATE resource SET allow_student = false WHERE id = ?", EQUIP);
-        // 资格变更与记录同事务语义（同一连接无中间提交即已校验）；此处确认最终值
+        // 本用例仅检查结构可写和最终值；服务事务原子性由ResourceSchedulingIT验证。
         Boolean allowStudent = jdbc().queryForObject(
                 "SELECT allow_student FROM resource WHERE id = ?", Boolean.class, EQUIP);
         assertFalse(allowStudent, "资格变更后 allow_student 应为 false");
@@ -270,13 +278,13 @@ class SchemaIT {
     void tc06_immutabilityTriggersRejectIllegalUpdates() {
         ensureBaseData();
         assertTriggerRejected("activity_version 更新", "activity_version 不可修改",
-                "UPDATE activity_version SET input_json = ? WHERE activity_id = ?",
+                "UPDATE activity_version SET input_json = ?::jsonb WHERE activity_id = ?",
                 "{\"x\":1}", ACTIVITY);
 
         UUID changeId = UUID.randomUUID();
         insertChange(changeId, "PENDING_APPROVER");
         assertTriggerRejected("target_plan_json 更新", "target_plan_json 不可修改",
-                "UPDATE change_request SET target_plan_json = ? WHERE id = ?",
+                "UPDATE change_request SET target_plan_json = ?::jsonb WHERE id = ?",
                 "{\"x\":2}", changeId);
 
         UUID auditId = UUID.randomUUID();
@@ -289,7 +297,7 @@ class SchemaIT {
 
     // ------------------------------------------------------------------ 插入辅助
 
-    /** 类内测试共享一个 schema：基础数据只插入一次，后续测试幂等跳过。 */
+    /** 每用例重置本类schema；活动与首版本必须在同一事务中满足延迟外键。 */
     private static void ensureBaseData() {
         Integer orgCount = jdbc().queryForObject(
                 "SELECT count(*) FROM organization WHERE id = ?", Integer.class, ORG);
@@ -301,15 +309,17 @@ class SchemaIT {
                 USER, ORG, "organizer_a", "组织者A", "x");
         jdbc().update("INSERT INTO resource (id, kind, name, category, capacity, quantity, open_from, open_to, allow_teacher, allow_student) VALUES (?, 'VENUE', '学术报告厅A', 'VENUE', 80, 1, '08:00', '22:00', true, true)", VENUE);
         jdbc().update("INSERT INTO resource (id, kind, name, category, capacity, quantity, open_from, open_to, allow_teacher, allow_student) VALUES (?, 'EQUIPMENT', '投影设备组A', 'PROJECTOR', NULL, 2, '08:00', '22:00', true, true)", EQUIP);
-        jdbc().update("INSERT INTO activity (id, organization_id, owner_id, status, version_no, effective_version_no, lock_version) VALUES (?, ?, ?, 'SCHEDULED', 1, 1, 0)",
-                ACTIVITY, ORG, USER);
-        jdbc().update("INSERT INTO activity_version (activity_id, version_no, input_json, created_by) VALUES (?, 1, ?, ?)",
-                ACTIVITY, "{\"title\":\"A\"}", USER);
+        new TransactionTemplate(new DataSourceTransactionManager(db.dataSource())).executeWithoutResult(status -> {
+            jdbc().update("INSERT INTO activity (id, organization_id, owner_id, status, version_no, effective_version_no, lock_version) VALUES (?, ?, ?, 'SCHEDULED', 1, 1, 0)",
+                    ACTIVITY, ORG, USER);
+            jdbc().update("INSERT INTO activity_version (activity_id, version_no, input_json, created_by) VALUES (?, 1, ?::jsonb, ?)",
+                    ACTIVITY, "{\"title\":\"A\"}", USER);
+        });
     }
 
     private static void insertReservation(String reservationId, UUID activityId) {
         jdbc().update("INSERT INTO reservation (id, activity_id, version_no, resource_id, start_at, end_at, quantity, status) " +
-                "VALUES (?,?,?,?,?,?,1,'ACTIVE')", UUID.fromString(reservationId), activityId, VENUE,
+                "VALUES (?,?,1,?,?,?,1,'ACTIVE')", UUID.fromString(reservationId), activityId, VENUE,
                 OffsetDateTime.parse("2030-10-20T09:30:00+08:00"),
                 OffsetDateTime.parse("2030-10-20T11:30:00+08:00"));
     }

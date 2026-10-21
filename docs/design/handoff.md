@@ -2,7 +2,46 @@
 
 > 维护：设计师（55230315）。格式依据 `agents/common/04-协作与集成规程.md` §4 固定模板。运行时信息填真实值；未执行的检查如实标注，不虚构通过。
 
-## 最新交付（2026-10-19：DS-03/05 纯逻辑；DS-02～05 接入依赖核对）
+## 最新交付（2026-10-21：PR #9 隐私评审修复）
+
+- 成员：黄方勇 55230315；任务包 v3.0；DS-02/03。本人分支 `work/55230315-scheduling`，修复前 HEAD `622d6b8`，fetch 后 `origin/main=4fbda0ecf4f155ef1e05c385a677ebe7d13b087d`，已包含在本人分支，无新增 main 提交需要合并，开工时工作区干净。
+- 反馈：[PR #9 的 Rito-492 评审](https://github.com/Rito-492/campus-sched/pull/9#pullrequestreview-5587757375) 为 CHANGES_REQUESTED：API-11 泄露未授权活动信息、API-09 对遮蔽活动仍返回真实风险。该反馈已接收；修复是否放行仍待交叉复审，作者不自批。
+- 修改 `ResourceService`：故障清单复用现有活动查看策略逐项过滤，使用最新 Actor；API-10 返回值也采用同一过滤。内部故障事件独立使用完整影响清单，防止 HTTP 脱敏遗漏通知。遮蔽日历的风险固定为 NORMAL 占位，不查询真实活动风险；有权活动仍返回实时风险，FAULT 仍为 AT_RISK。
+- 修改 `ResourceSchedulingIT`：新增故障 HTTP 权限/范围/权限撤销回归、内部事件不受响应裁剪影响的测试、真实数据库列表/日历稳定排序测试；补齐日历风险及有权访问断言。测试替身仅记录 EventPort 调用，不声称 CM 事件持久化通过。缺四项环境变量在创建 schema 前明确报阻塞，不跳过真库测试。
+- 真实结果：新增/加强的三项隐私用例在旧生产代码上均失败；修复后隔离构建 **23 项单测、28 项真库 IT（20 项 ResourceSchedulingIT + 8 项 SchemaIT）通过，0 失败/错误/跳过**。标准 test 与 verify 仍失败于 CM `DemoDataSeeder.java:118`，未修改他人模块或共享 pom。排序 SQL 原本符合 createdAt DESC、id ASC，本次以回归测试确认，无需更改 SQL。
+- 证据和完整命令：[评审修复说明](scheduling-review-fix-v1.0.md)、[本轮证据](../../artifacts/test-results/ds-2026-10-21/)。对应 D-AT-21 隐私及 N-AT-06 范围的模块回归；不代表正式全链路验收通过。
+- 下一接收人：PM/QA 复审两个必须改项；UI 对 activityId=null 的“已占用”条目不得将 NORMAL 占位解释为该活动安全可用；CM 修复默认编译并交 EventPort，AN 交 ActivityPort 后再完成真实集成。既有 AN 状态机/QA 装载问题本轮未复跑，详见历史记录，不将旧结果当本轮结果。
+
+## 历史交付（2026-10-20：DS-02～05 持久化实现与策略评测）
+
+- 成员：黄方勇 55230315；任务包 v3.0。本人分支 `work/55230315-scheduling` 已从 `287673a` 快进同步 `origin/main=4fbda0ecf4f155ef1e05c385a677ebe7d13b087d`，交付前再次 fetch，main 未变化。代码提交 `91d3063`；保持既有 Git 身份，无他人未提交修改。
+- 保留已合并的 V1 22 表迁移及 TimeInterval、CapacitySweep、CandidateRanking 逻辑；V1、公共 DTO/端口、其他成员生产代码没有修改。CandidateRanking 仅更新过时注释；SchemaIT 修复真实执行暴露的测试装载问题。
+- 交付类：
+  - `scheduling/StrategyEvaluator`、`StrategyResult`：签名与 common/02 §8 一致，FIRST_FIT/RANKED 共用候选空间和约束；计时包含读取/生成/检查/排序，使用 `System.nanoTime`。
+  - `scheduling/CandidateSearch`、`ConstraintChecker`：资格过滤、9 个偏移、同类设备单项替换、规范化/去重/稳定排序、最多检查 300 个完整组合、最多 5 项、truncated；复用原有区间与峰值算法。
+  - `scheduling/SchedulingPortAdapter`：真实资源/故障/预约查询、最新持久化所有者身份、事务内 UUID 有序锁定新旧资源、成功检查凭据的事务隔离、原子替换/释放、实时风险。
+  - `resource/ResourceRepository`、`ResourceService`、`ResourceController`：资源创建及 AccountPort 授权、资格前后历史、故障与影响清单、日历三段和故障脱敏。写接口复用 CommandExecutor、Responses、认证及幂等。
+  - `scheduling/ScheduleQueryService`、`ScheduleController`：独立预览编排，避免 ActivityPort 与 SchedulingPort 循环依赖。
+- API 交付状态：API-07/08/09/11/40 已有真实实现；API-24/25 代码已接端口但运行依赖 AN 的 ActivityPort；API-10 代码已完成但成功提交依赖 CM 的 EventPort。缺少依赖明确返回 503，不提供生产替身、不伪造成功，故障不留部分写入。
+- 实际验证：Java 21.0.6、Maven Wrapper 3.9.11、Spring Boot 3.5.16、PostgreSQL 17.6；本机 `127.0.0.1:5440/campus_test`，每类随机 `t_<UUID>` schema，测试后清理并停止本轮便携实例。
+  - **DS 隔离验证通过**：23 项单测（原有 13 项、新增策略 6 项、查询权限 4 项）；25 项真库 IT（ResourceSchedulingIT 17 项、SchemaIT 8 项），失败/错误/跳过均为 0。
+  - 资格矩阵、峰值与端点、场地/设备并发恰一成功、无部分预约、最终身份重查、与资格更新争同一行锁、预约中途 SQL 异常回滚、资格不撤销既有预约、实时风险、日历脱敏/截断、HTTP 幂等和授权范围均有实际断言。事件异常测试替身仅在测试中抛错，验证故障回滚；不宣称 CM 事件链完成。
+  - **300 候选真实评测通过**：无解预算场景，两策略各预热 1 次、实测 10 次，共 20 条原始结果；每条 `evaluatedCount=300`、`feasible=false`、`choice=null`。FIRST_FIT 中位数 126.59 ms，RANKED 125.01 ms，仅为这一个场景，不推导全局性能结论。
+  - **默认构建失败**：最新 main 的 `dev/DemoDataSeeder.java:118` 未处理受检异常。Windows Wrapper 在获准访问构建缓存后也复现同一错误；早期沙箱中的 Wrapper 路径错误不是项目构建通过。CM 修复位于 `origin/fix/demodataseeder-118`（顶端 `ee76c2a`），尚未合入 main。
+  - **首次隔离全部单测失败**：48 项中 1 项失败，为 AN 的 `ActivityStateMachineTest.rejectionReturnsToDraftAndWithdrawalCreatesANewVersion:49`。本轮未修改 AN 实现或断言。
+  - **QA 八场景评测失败**：实际调用 SchedulingBenchmarkIT，在 main 的 `DbTestSupport` 装载参考数据时因先插 `user_resource_scope`、后建资源触发 `fk_user_resource_scope_resource`，尚未产生八场景测量行。QA 修复 `0bb9aac` 已在成员远端分支，但未合入 main；没有编造 `results.csv`。
+- 精确命令、临时隔离构建边界、文件哈希及原始日志见 [实现与验证说明](scheduling-implementation-v1.0.md) 和 [证据目录](../../artifacts/test-results/ds-2026-10-20/)。隔离构建仅在被忽略的 target 下复制 pom、排除 CM dev 包，仍编译全部测试源码；没有修改共享 pom 或默认测试入口。这不是全工程/M2/M3/E2E 通过。
+- 未完成项及下一接收人：
+  - **冀项阳（PM）/杨瀚霖（CM）**：通过交叉评审合入 CM 编译修复，再复跑默认 test/verify；本轮不替其他岗位合并分支。
+  - **冯玉琪（AN）**：交 ActivityPortAdapter 与首次确认/取消编排；调用 SchedulingPort 前持有活动锁及按 UUID 排序的操作者/所有者锁；修复上述既有状态机测试。
+  - **杨瀚霖（CM）**：交 EventPort、改期真实编排；接入已实现的 lockAndCheck/replace/release/risk，补活动版本/改期/outbox 整体回滚验收。
+  - **汤雨润（QA）**：交叉评审本 PR，合入测试装载修复后运行八场景评测及 D-AT/N-AT；本模块数据验证不能替代正式跨模块验收。
+  - **杨畅（UI）**：API-07/08/09/11/40 可接入；API-10/24/25 需上述端口到位，日历保留 truncated 和脱敏字段。
+- 已推送本人分支并创建 [草稿 PR #9](https://github.com/Rito-492/campus-sched/pull/9)，用于交叉评审与跟踪上述集成依赖。接收确认：尚未接收；作者不自审、不自批，不直接合并 main。
+
+---
+
+## 历史交付（2026-10-19：DS-03/05 纯逻辑；DS-02～05 接入依赖核对）
 
 - 成员：黄方勇 55230315；基线 v3.0；实际 `origin/main=68158cf`。本人 `work/55230315-scheduling` 开始时干净，由 `bbeb984` 快进同步到 main，未 reset、未推送、未创建 PR、未向 main 合并。
 - 新增 scheduling 包 `TimeInterval.java`、`CapacitySweep.java`、`CandidateRanking.java` 及对应三个 `*Test.java`。实现半开区间/布撤场/上海日/开放时间、设备同时峰值与故障下限、候选代价及规范设备排序；不改 V1 schema/SchemaIT、公共 contract 或他人文件。

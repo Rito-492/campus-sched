@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-21",
+  "baseMain": "4fbda0ecf4f155ef1e05c385a677ebe7d13b087d",
+  "previousHead": "622d6b8c72ce81e47582d7f5cab6311faf33ce3b",
+  "files": [
+    {
+      "path": "server/src/main/java/com/campus/events/resource/ResourceService.java",
+      "sha256": "218426ce539260bf409c757172dcfeaabf75bd01dbf633580b92f5a9a29c4516"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/resource/ResourceRepository.java",
+      "sha256": "c0f3de483ce5135115a77eeff85ac3a97ca1ec24b39b5d7e70e00b6100f2076e"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/resource/ResourceSchedulingIT.java",
+      "sha256": "75522328ff840aa044cc5782406a4aa3aaf0f2fb02cc5f8476c6babfb6ece28c"
+    },
+    {
+      "path": "server/src/main/resources/db/migration/V1__schema.sql",
+      "sha256": "f05ff82fa0fcb3959f7a2031e25ed72d91e882224da0f5a68ed45b766d9f3a95"
+    },
+    {
+      "path": "server/pom.xml",
+      "sha256": "59801ba3c4f323978c75dd646a404c6c4420b967bd1ec20cb2998ed2d155ac6b"
+    }
+  ]
+}

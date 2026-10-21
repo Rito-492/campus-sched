@@ -1,0 +1,668 @@
+{
+  "attendees" : 10000,
+  "plan" : {
+    "startAt" : "2030-10-20T02:00:00Z",
+    "endAt" : "2030-10-20T03:00:00Z",
+    "setupMinutes" : 0,
+    "teardownMinutes" : 0,
+    "venueId" : "f07059ac-1f62-4624-82a5-42f80226b225",
+    "equipment" : [ {
+      "resourceId" : "38e40a9a-4a5f-415f-9c30-fc671624d134",
+      "quantity" : 1
+    } ]
+  },
+  "database" : "PostgreSQL 17",
+  "runs" : [ {
+    "runIndex" : 1,
+    "result" : {
+      "strategy" : "FIRST_FIT",
+      "feasible" : false,
+      "choice" : null,
+      "evaluatedCount" : 300,
+      "elapsedNanos" : 193781600
+    }
+  }, {
+    "runIndex" : 1,
+    "result" : {
+      "strategy" : "RANKED",
+      "feasible" : false,
+      "choice" : null,
+      "evaluatedCount" : 300,
+      "elapsedNanos" : 295873100
+    }
+  }, {
+    "runIndex" : 2,
+    "result" : {
+      "strategy" : "FIRST_FIT",
+      "feasible" : false,
+      "choice" : null,
+      "evaluatedCount" : 300,
+      "elapsedNanos" : 150779700
+    }
+  }, {
+    "runIndex" : 2,
+    "result" : {
+      "strategy" : "RANKED",
+      "feasible" : false,
+      "choice" : null,
+      "evaluatedCount" : 300,
+      "elapsedNanos" : 128583000
+    }
+  }, {
+    "runIndex" : 3,
+    "result" : {
+      "strategy" : "FIRST_FIT",
+      "feasible" : false,
+      "choice" : null,
+      "evaluatedCount" : 300,
+      "elapsedNanos" : 170250200
+    }
+  }, {
+    "runIndex" : 3,
+    "result" : {
+      "strategy" : "RANKED",
+      "feasible" : false,
+      "choice" : null,
+      "evaluatedCount" : 300,
+      "elapsedNanos" : 154984700
+    }
+  }, {
+    "runIndex" : 4,
+    "result" : {
+      "strategy" : "FIRST_FIT",
+      "feasible" : false,
+      "choice" : null,
+      "evaluatedCount" : 300,
+      "elapsedNanos" : 204713000
+    }
+  }, {
+    "runIndex" : 4,
+    "result" : {
+      "strategy" : "RANKED",
+      "feasible" : false,
+      "choice" : null,
+      "evaluatedCount" : 300,
+      "elapsedNanos" : 148544800
+    }
+  }, {
+    "runIndex" : 5,
+    "result" : {
+      "strategy" : "FIRST_FIT",
+      "feasible" : false,
+      "choice" : null,
+      "evaluatedCount" : 300,
+      "elapsedNanos" : 115512000
+    }
+  }, {
+    "runIndex" : 5,
+    "result" : {
+      "strategy" : "RANKED",
+      "feasible" : false,
+      "choice" : null,
+      "evaluatedCount" : 300,
+      "elapsedNanos" : 121692900
+    }
+  }, {
+    "runIndex" : 6,
+    "result" : {
+      "strategy" : "FIRST_FIT",
+      "feasible" : false,
+      "choice" : null,
+      "evaluatedCount" : 300,
+      "elapsedNanos" : 134152300
+    }
+  }, {
+    "runIndex" : 6,
+    "result" : {
+      "strategy" : "RANKED",
+      "feasible" : false,
+      "choice" : null,
+      "evaluatedCount" : 300,
+      "elapsedNanos" : 119413600
+    }
+  }, {
+    "runIndex" : 7,
+    "result" : {
+      "strategy" : "FIRST_FIT",
+      "feasible" : false,
+      "choice" : null,
+      "evaluatedCount" : 300,
+      "elapsedNanos" : 115997400
+    }
+  }, {
+    "runIndex" : 7,
+    "result" : {
+      "strategy" : "RANKED",
+      "feasible" : false,
+      "choice" : null,
+      "evaluatedCount" : 300,
+      "elapsedNanos" : 120200100
+    }
+  }, {
+    "runIndex" : 8,
+    "result" : {
+      "strategy" : "FIRST_FIT",
+      "feasible" : false,
+      "choice" : null,
+      "evaluatedCount" : 300,
+      "elapsedNanos" : 119024900
+    }
+  }, {
+    "runIndex" : 8,
+    "result" : {
+      "strategy" : "RANKED",
+      "feasible" : false,
+      "choice" : null,
+      "evaluatedCount" : 300,
+      "elapsedNanos" : 116732100
+    }
+  }, {
+    "runIndex" : 9,
+    "result" : {
+      "strategy" : "FIRST_FIT",
+      "feasible" : false,
+      "choice" : null,
+      "evaluatedCount" : 300,
+      "elapsedNanos" : 115910500
+    }
+  }, {
+    "runIndex" : 9,
+    "result" : {
+      "strategy" : "RANKED",
+      "feasible" : false,
+      "choice" : null,
+      "evaluatedCount" : 300,
+      "elapsedNanos" : 115599000
+    }
+  }, {
+    "runIndex" : 10,
+    "result" : {
+      "strategy" : "FIRST_FIT",
+      "feasible" : false,
+      "choice" : null,
+      "evaluatedCount" : 300,
+      "elapsedNanos" : 116109200
+    }
+  }, {
+    "runIndex" : 10,
+    "result" : {
+      "strategy" : "RANKED",
+      "feasible" : false,
+      "choice" : null,
+      "evaluatedCount" : 300,
+      "elapsedNanos" : 128322300
+    }
+  } ],
+  "identity" : "TEACHER",
+  "scenario" : "DS-300-无解预算",
+  "resources" : [ {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "09096ef1-9946-44c6-877f-3441b874a184",
+    "createdAt" : "2026-10-20T14:32:47.635961Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "0cadeff0-22da-480f-8b94-f20625c69897",
+    "createdAt" : "2026-10-20T14:32:47.650483Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "0e8d42cf-ce98-4574-8934-81c0e9e42f01",
+    "createdAt" : "2026-10-20T14:32:47.652163Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "1a962573-e5a7-4482-84a4-6e1252bf2cce",
+    "createdAt" : "2026-10-20T14:32:47.631100Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "1ae17777-017d-43ed-8d7b-d591fe6776a3",
+    "createdAt" : "2026-10-20T14:32:47.651051Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "1ee794bf-86cf-48c8-b9f0-87b2b3b9f097",
+    "createdAt" : "2026-10-20T14:32:47.645798Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "2e4ec0b8-5426-4cb9-87a3-a67df5903d16",
+    "createdAt" : "2026-10-20T14:32:47.633502Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "30905b17-7dbe-465f-95e1-2874f6c4ad00",
+    "createdAt" : "2026-10-20T14:32:47.640121Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "338dcb94-ff2c-445a-9441-3fa2ef7b5dd6",
+    "createdAt" : "2026-10-20T14:32:47.638179Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "EQUIPMENT",
+    "name" : "DS测试资源",
+    "category" : "PROJECTOR",
+    "capacity" : null,
+    "quantity" : 2,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "38e40a9a-4a5f-415f-9c30-fc671624d134",
+    "createdAt" : "2026-10-20T14:32:47.495731Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "4413c63a-43a8-4db3-beee-66934327350d",
+    "createdAt" : "2026-10-20T14:32:47.643846Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "45230aaf-b54b-421d-b89d-e511ce0b9268",
+    "createdAt" : "2026-10-20T14:32:47.642714Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "4dcd8b1f-c419-4de3-80b1-1cd369c15851",
+    "createdAt" : "2026-10-20T14:32:47.641681Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "4f81fe95-0fe2-4951-ad5f-588120675ee3",
+    "createdAt" : "2026-10-20T14:32:47.648569Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "4f9b0bb8-d56e-41b8-9cf3-007fca41c239",
+    "createdAt" : "2026-10-20T14:32:47.652946Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "504f1718-7ee2-4a37-831a-691b68f3d240",
+    "createdAt" : "2026-10-20T14:32:47.633020Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "59028603-0d0e-4b80-a094-a4cd1ec1e75c",
+    "createdAt" : "2026-10-20T14:32:47.635370Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "5a6c8c97-61ae-476b-8c22-e513ed6633ed",
+    "createdAt" : "2026-10-20T14:32:47.634260Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "659a1cf4-048b-4d31-8732-5aa0c594dff0",
+    "createdAt" : "2026-10-20T14:32:47.629360Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "6b6b7b85-b1a0-454f-a8a3-981c736dbc10",
+    "createdAt" : "2026-10-20T14:32:47.638725Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "7456fc87-db2b-4808-a835-eb5d7affbf19",
+    "createdAt" : "2026-10-20T14:32:47.640740Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "955152f4-b407-44f3-8262-34e21f82f0f4",
+    "createdAt" : "2026-10-20T14:32:47.632434Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "9e3391d7-86f1-4b1b-ae81-95f020050624",
+    "createdAt" : "2026-10-20T14:32:47.644745Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "a2842937-c78a-4bfa-8103-58364c4ad5b8",
+    "createdAt" : "2026-10-20T14:32:47.648983Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "aaba1c4e-6844-42ae-a2d1-6d434ff446fd",
+    "createdAt" : "2026-10-20T14:32:47.639492Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "acc58272-1e8a-4d33-84af-342be724ef84",
+    "createdAt" : "2026-10-20T14:32:47.647196Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "b7a0d11f-74b6-4e63-954f-d87d20ecf8d2",
+    "createdAt" : "2026-10-20T14:32:47.634813Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "c4a1a4dd-34e4-4818-afc8-be4066a35cdd",
+    "createdAt" : "2026-10-20T14:32:47.649355Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "d098221c-cbe9-48d7-9c44-1d2aca0c0797",
+    "createdAt" : "2026-10-20T14:32:47.647794Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "d17eafa7-d5ff-4749-83e9-efebc51a49f3",
+    "createdAt" : "2026-10-20T14:32:47.646369Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "d64e786f-d088-47ae-8f6d-34012c539150",
+    "createdAt" : "2026-10-20T14:32:47.651520Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "d88bb8c8-53aa-4d25-b419-b8bc952b8095",
+    "createdAt" : "2026-10-20T14:32:47.649917Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "eedae514-36b5-498f-8a9c-edb6e45f481f",
+    "createdAt" : "2026-10-20T14:32:47.637368Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "ef293aee-f5b7-4e4a-a9a1-29ce0e4ea7bd",
+    "createdAt" : "2026-10-20T14:32:47.630323Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "ef4860f7-cc8e-4948-a994-b997a11f3775",
+    "createdAt" : "2026-10-20T14:32:47.643296Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "f07059ac-1f62-4624-82a5-42f80226b225",
+    "createdAt" : "2026-10-20T14:32:47.494879Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "f5ef2e43-cbfd-4c6c-98b4-7be8c70802c7",
+    "createdAt" : "2026-10-20T14:32:47.644294Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "f996c675-30f4-4987-a224-51fd184efdf1",
+    "createdAt" : "2026-10-20T14:32:47.636801Z"
+  }, {
+    "allowTeacher" : true,
+    "allowStudent" : true,
+    "kind" : "VENUE",
+    "name" : "DS测试资源",
+    "category" : "VENUE",
+    "capacity" : 80,
+    "quantity" : 1,
+    "openFrom" : "08:00",
+    "openTo" : "22:00",
+    "id" : "ff1b4635-36fe-4498-8cec-f5359e817c55",
+    "createdAt" : "2026-10-20T14:32:47.489279Z"
+  } ],
+  "warmupRuns" : 1
+}

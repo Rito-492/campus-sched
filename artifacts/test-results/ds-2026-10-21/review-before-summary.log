@@ -1,0 +1,14 @@
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.074 s -- in com.campus.events.scheduling.CandidateRankingTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.090 s -- in com.campus.events.scheduling.CapacitySweepTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.653 s -- in com.campus.events.scheduling.ScheduleQueryServiceTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.157 s -- in com.campus.events.scheduling.StrategyEvaluatorTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.033 s -- in com.campus.events.scheduling.TimeIntervalTest
+[INFO] Tests run: 23, Failures: 0, Errors: 0, Skipped: 0
+[ERROR] Tests run: 3, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 11.28 s <<< FAILURE! -- in com.campus.events.resource.ResourceSchedulingIT
+[ERROR]   ResourceSchedulingIT.calendarSegmentsAreRedactedAndHttpUsesCommonEnvelope:321->lambda$calendarSegmentsAreRedactedAndHttpUsesCommonEnvelope$37:325 expected: <NORMAL> but was: <AT_RISK>
+[ERROR]   ResourceSchedulingIT.faultHttpListFiltersEachActivityAndRechecksCurrentScope:353 expected: <0> but was: <2>
+[ERROR]   ResourceSchedulingIT.faultResponseRedactionDoesNotSuppressInternalActivityEvents:399 expected: <true> but was: <false>
+[ERROR] Tests run: 3, Failures: 3, Errors: 0, Skipped: 0
+[INFO] BUILD FAILURE
+[INFO] Total time:  21.592 s
+[INFO] Finished at: 2026-10-21T10:03:57+08:00
