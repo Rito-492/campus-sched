@@ -54,6 +54,10 @@ class ResourceSchedulingIT {
         return value;
     }
     @DynamicPropertySource static void database(DynamicPropertyRegistry properties) {
+        var missing = List.of("TEST_DATABASE_URL", "TEST_DB_USERNAME", "TEST_DB_PASSWORD", "DEMO_PASSWORD").stream()
+                .filter(key -> System.getenv(key) == null || System.getenv(key).isBlank()).toList();
+        if (!missing.isEmpty()) throw new IllegalStateException("DS真库HTTP测试阻塞：缺少 " + String.join(", ", missing)
+                + "；请在仓库根目录先执行 . ./scripts/load-env.ps1，再运行 Maven verify；不能跳过真库测试记通过");
         url = required("TEST_DATABASE_URL"); username = required("TEST_DB_USERNAME"); password = required("TEST_DB_PASSWORD");
         if (!url.matches("jdbc:postgresql://(?:127\\.0\\.0\\.1|localhost):[0-9]+/campus_test"))
             throw new IllegalStateException("DS测试只允许本机campus_test");
@@ -286,6 +290,7 @@ class ResourceSchedulingIT {
         assertEquals(ConflictCode.RESOURCE_FAULT, conflict.code());
         assertEquals(0, conflict.available());
         assertEquals(2, resources.active(id).size());
+        jdbc.update("INSERT INTO user_permission(user_id,permission) VALUES (?,'RESOURCE_CONFIRM')", admin);
         @SuppressWarnings("unchecked") var body = (Map<String, Object>) service.faults(accounts.get(admin), equipment, p.startAt(), p.endAt()).body();
         var views = (List<?>) body.get("data");
         assertEquals(id, ((FaultView) views.getFirst()).affectedActivities().getFirst().activityId());
@@ -317,11 +322,133 @@ class ResourceSchedulingIT {
         var entries = mapper.readTree(response).path("data");
         assertEquals(4, entries.size());
         var segments = new HashSet<String>();
-        entries.forEach(e -> { assertTrue(e.path("activityId").isNull()); segments.add(e.path("segment").asText()); });
+        entries.forEach(e -> {
+            assertTrue(e.path("activityId").isNull());
+            String segment = e.path("segment").asText();
+            segments.add(segment);
+            assertEquals(segment.equals("FAULT") ? "AT_RISK" : "NORMAL", e.path("risk").asText());
+            assertEquals(segment.equals("FAULT") ? "资源不可用" : "已占用", e.path("label").asText());
+        });
         assertEquals(Set.of("SETUP", "EVENT", "TEARDOWN", "FAULT"), segments);
+        assertEquals(Risk.AT_RISK, scheduling.risk(id));
+        String ownerResponse = http.perform(get("/api/v1/resources/calendar")
+                        .param("from", START.minusSeconds(1800).toString()).param("to", START.plusSeconds(5400).toString())
+                        .header("Authorization", "Bearer " + login(owner)))
+                .andExpect(status().isOk()).andReturn().getResponse().getContentAsString();
+        mapper.readTree(ownerResponse).path("data").forEach(e -> {
+            if (!e.path("segment").asText().equals("FAULT")) {
+                assertEquals(id.toString(), e.path("activityId").asText());
+                assertEquals("私有活动标题", e.path("label").asText());
+                assertEquals("AT_RISK", e.path("risk").asText());
+            }
+        });
         http.perform(get("/api/v1/resources/calendar").param("from", START.toString()).param("to", START.plusSeconds(8 * 86400).toString())
                 .header("Authorization", "Bearer " + token)).andExpect(status().isBadRequest());
     }
+
+    @Test void faultHttpListFiltersEachActivityAndRechecksCurrentScope() throws Exception {
+        var firstPlan = plan(venue, 0, 1, 1);
+        var secondPlan = plan(venue2, 0, 1, 1);
+        UUID first = activity(owner, firstPlan), second = activity(owner2, secondPlan);
+        assertTrue(book(first, firstPlan)); assertTrue(book(second, secondPlan));
+        fault(equipment, START, START.plusSeconds(3600), 2);
+        String token = login(admin);
+        String hidden = faultList(token);
+        assertEquals(0, mapper.readTree(hidden).path("data").get(0).path("affectedActivities").size());
+        assertFalse(hidden.contains(first.toString())); assertFalse(hidden.contains(second.toString()));
+        assertFalse(hidden.contains("私有活动标题")); assertFalse(hidden.contains("versionNo"));
+        assertFalse(hidden.contains("resourceRisk")); assertFalse(hidden.contains("AT_RISK"));
+
+        jdbc.update("INSERT INTO user_permission(user_id,permission) VALUES (?,'RESOURCE_CONFIRM')", admin);
+        jdbc.update("DELETE FROM user_resource_scope WHERE user_id=? AND resource_id=?", admin, venue2);
+        var visible = mapper.readTree(faultList(token)).path("data").get(0).path("affectedActivities");
+        assertEquals(1, visible.size());
+        assertEquals(first.toString(), visible.get(0).path("activityId").asText());
+        assertEquals("私有活动标题", visible.get(0).path("title").asText());
+        assertEquals(1, visible.get(0).path("versionNo").asInt());
+        assertEquals("AT_RISK", visible.get(0).path("resourceRisk").asText());
+
+        jdbc.update("INSERT INTO user_resource_scope(user_id,resource_id) VALUES (?,?)", admin, venue2);
+        assertEquals(2, mapper.readTree(faultList(token)).path("data").get(0).path("affectedActivities").size());
+        jdbc.update("DELETE FROM user_permission WHERE user_id=? AND permission='RESOURCE_CONFIRM'", admin);
+        assertEquals(0, mapper.readTree(faultList(token)).path("data").get(0).path("affectedActivities").size());
+        assertEquals(1, count("resource_fault")); assertEquals(4, count("reservation"));
+        assertEquals(Risk.AT_RISK, scheduling.risk(first)); assertEquals(Risk.AT_RISK, scheduling.risk(second));
+        http.perform(get("/api/v1/resources/" + equipment + "/faults")
+                        .param("from", START.toString()).param("to", START.plusSeconds(3600).toString())
+                        .header("Authorization", "Bearer " + login(owner)))
+                .andExpect(status().isForbidden());
+    }
+
+    String faultList(String token) throws Exception {
+        return http.perform(get("/api/v1/resources/" + equipment + "/faults")
+                        .param("from", START.toString()).param("to", START.plusSeconds(3600).toString())
+                        .header("Authorization", "Bearer " + token))
+                .andExpect(status().isOk()).andExpect(jsonPath("$.truncated").value(false))
+                .andExpect(jsonPath("$.data.length()").value(1))
+                .andReturn().getResponse().getContentAsString();
+    }
+
+    @Test void faultResponseRedactionDoesNotSuppressInternalActivityEvents() {
+        var p = plan(venue, 0, 1, 1);
+        UUID id = activity(owner, p); assertTrue(book(id, p));
+        var emitted = new ArrayList<EventDraft>();
+        var dependencies = new org.springframework.beans.factory.support.StaticListableBeanFactory();
+        // 仅记录端口调用的测试替身，不代表CM事件持久化已经验收。
+        dependencies.addBean("events", (EventPort) event -> { emitted.add(event); return UUID.randomUUID(); });
+        var isolated = new ResourceService(resources, accounts, scheduling, dependencies.getBeanProvider(EventPort.class),
+                new CanonicalJson(mapper), validator);
+        FaultView response = tx.execute(s -> isolated.fault(accounts.get(admin), equipment,
+                new FaultInput(START, START.plusSeconds(3600), 2, "测试故障")));
+        assertTrue(response.affectedActivities().isEmpty());
+        assertEquals(1, emitted.size());
+        assertEquals(id, emitted.getFirst().activityId());
+        assertEquals(1, emitted.getFirst().versionNo());
+        assertEquals(List.of(owner), emitted.getFirst().recipientIds());
+        assertEquals(1, count("resource_fault")); assertEquals(2, resources.active(id).size());
+        assertEquals(Risk.AT_RISK, scheduling.risk(id));
+    }
+    @Test void resourceListsAndCalendarUseStableCreationOrder() {
+        jdbc.update("UPDATE resource SET created_at=?", Timestamp.from(START));
+        jdbc.update("UPDATE resource SET created_at=? WHERE id=?", Timestamp.from(START.plusSeconds(60)), equipment);
+        var venues = List.of(venue, venue2).stream().sorted(Comparator.comparing(UUID::toString)).toList();
+        assertEquals(List.of(equipment, venues.get(0), venues.get(1)),
+                resources.list(null, null).stream().map(ResourceView::id).toList());
+
+        var p = new Plan(START, START.plusSeconds(3600), 30, 30, venue, List.of());
+        var q = new Plan(START.plusSeconds(7200), START.plusSeconds(10800), 30, 30, venue2, List.of());
+        UUID first = activity(owner, p), second = activity(owner2, q);
+        assertTrue(book(first, p)); assertTrue(book(second, q));
+        UUID faultId = UUID.fromString("00000000-0000-0000-0000-000000000001");
+        UUID secondId = UUID.fromString("00000000-0000-0000-0000-000000000002");
+        UUID firstId = UUID.fromString("00000000-0000-0000-0000-000000000003");
+        jdbc.update("UPDATE reservation SET id=?,created_at=? WHERE activity_id=?", firstId, Timestamp.from(START.minusSeconds(60)), first);
+        jdbc.update("UPDATE reservation SET id=?,created_at=? WHERE activity_id=?", secondId, Timestamp.from(START), second);
+        fault(venue, START, START.plusSeconds(60), 1);
+        jdbc.update("UPDATE resource_fault SET id=?,created_at=?", faultId, Timestamp.from(START));
+        var expected = new ArrayList<ResourceRepository.CalendarRow>();
+        expected.add(new ResourceRepository.CalendarRow(venue, START, START.plusSeconds(60), 1, null, null, CalendarSegment.FAULT));
+        // 相同createdAt按源记录UUID；同一预约再按分段开始时间排列。
+        for (var entry : List.of(Map.entry(second, q), Map.entry(first, p))) {
+            var plan = entry.getValue();
+            expected.add(new ResourceRepository.CalendarRow(plan.venueId(), plan.startAt().minusSeconds(1800), plan.startAt(), 1,
+                    entry.getKey(), 1, CalendarSegment.SETUP));
+            expected.add(new ResourceRepository.CalendarRow(plan.venueId(), plan.startAt(), plan.endAt(), 1,
+                    entry.getKey(), 1, CalendarSegment.EVENT));
+            expected.add(new ResourceRepository.CalendarRow(plan.venueId(), plan.endAt(), plan.endAt().plusSeconds(1800), 1,
+                    entry.getKey(), 1, CalendarSegment.TEARDOWN));
+        }
+        assertEquals(expected, resources.calendar(START.minusSeconds(1800), START.plusSeconds(12600), null));
+
+        fault(venue, START.plusSeconds(60), START.plusSeconds(120), 1);
+        fault(venue, START.plusSeconds(120), START.plusSeconds(180), 1);
+        jdbc.update("UPDATE resource_fault SET created_at=?", Timestamp.from(START));
+        jdbc.update("UPDATE resource_fault SET created_at=? WHERE id=?", Timestamp.from(START.plusSeconds(60)), faultId);
+        var others = jdbc.queryForList("SELECT id FROM resource_fault WHERE id<>? ORDER BY id", UUID.class, faultId);
+        assertEquals(List.of(faultId, others.get(0), others.get(1)),
+                resources.listFaults(venue, START, START.plusSeconds(3600)).stream().map(ResourceRepository.Fault::id).toList());
+    }
+
     @Test void calendarTruncationAndCandidateBudgetUseRealRows() throws Exception {
         for (int i = 0; i < 201; i++) fault(venue, START, START.plusSeconds(60), 1);
         @SuppressWarnings("unchecked") var result = (Map<String, Object>) service.calendar(accounts.get(owner2), START, START.plusSeconds(3600), venue).body();

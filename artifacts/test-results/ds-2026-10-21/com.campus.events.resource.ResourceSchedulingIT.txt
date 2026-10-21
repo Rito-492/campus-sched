@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.campus.events.resource.ResourceSchedulingIT
+-------------------------------------------------------------------------------
+Tests run: 20, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 32.21 s -- in com.campus.events.resource.ResourceSchedulingIT

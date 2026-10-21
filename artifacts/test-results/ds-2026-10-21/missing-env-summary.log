@@ -1,0 +1,7 @@
+Caused by: java.lang.IllegalStateException: DS���HTTP����������ȱ�� TEST_DATABASE_URL, TEST_DB_USERNAME, TEST_DB_PASSWORD, DEMO_PASSWORD�����ڲֿ��Ŀ¼��ִ�� . ./scripts/load-env.ps1�������� Maven verify���������������Լ�ͨ��
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.980 s <<< FAILURE! -- in com.campus.events.resource.ResourceSchedulingIT
+Caused by: java.lang.IllegalStateException: DS���HTTP����������ȱ�� TEST_DATABASE_URL, TEST_DB_USERNAME, TEST_DB_PASSWORD, DEMO_PASSWORD�����ڲֿ��Ŀ¼��ִ�� . ./scripts/load-env.ps1�������� Maven verify���������������Լ�ͨ��
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0
+[INFO] BUILD FAILURE
+[INFO] Total time:  5.725 s
+[INFO] Finished at: 2026-10-21T10:07:16+08:00

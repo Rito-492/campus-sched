@@ -2,7 +2,17 @@
 
 > 维护：设计师（55230315）。格式依据 `agents/common/04-协作与集成规程.md` §4 固定模板。运行时信息填真实值；未执行的检查如实标注，不虚构通过。
 
-## 最新交付（2026-10-20：DS-02～05 持久化实现与策略评测）
+## 最新交付（2026-10-21：PR #9 隐私评审修复）
+
+- 成员：黄方勇 55230315；任务包 v3.0；DS-02/03。本人分支 `work/55230315-scheduling`，修复前 HEAD `622d6b8`，fetch 后 `origin/main=4fbda0ecf4f155ef1e05c385a677ebe7d13b087d`，已包含在本人分支，无新增 main 提交需要合并，开工时工作区干净。
+- 反馈：[PR #9 的 Rito-492 评审](https://github.com/Rito-492/campus-sched/pull/9#pullrequestreview-5587757375) 为 CHANGES_REQUESTED：API-11 泄露未授权活动信息、API-09 对遮蔽活动仍返回真实风险。该反馈已接收；修复是否放行仍待交叉复审，作者不自批。
+- 修改 `ResourceService`：故障清单复用现有活动查看策略逐项过滤，使用最新 Actor；API-10 返回值也采用同一过滤。内部故障事件独立使用完整影响清单，防止 HTTP 脱敏遗漏通知。遮蔽日历的风险固定为 NORMAL 占位，不查询真实活动风险；有权活动仍返回实时风险，FAULT 仍为 AT_RISK。
+- 修改 `ResourceSchedulingIT`：新增故障 HTTP 权限/范围/权限撤销回归、内部事件不受响应裁剪影响的测试、真实数据库列表/日历稳定排序测试；补齐日历风险及有权访问断言。测试替身仅记录 EventPort 调用，不声称 CM 事件持久化通过。缺四项环境变量在创建 schema 前明确报阻塞，不跳过真库测试。
+- 真实结果：新增/加强的三项隐私用例在旧生产代码上均失败；修复后隔离构建 **23 项单测、28 项真库 IT（20 项 ResourceSchedulingIT + 8 项 SchemaIT）通过，0 失败/错误/跳过**。标准 test 与 verify 仍失败于 CM `DemoDataSeeder.java:118`，未修改他人模块或共享 pom。排序 SQL 原本符合 createdAt DESC、id ASC，本次以回归测试确认，无需更改 SQL。
+- 证据和完整命令：[评审修复说明](scheduling-review-fix-v1.0.md)、[本轮证据](../../artifacts/test-results/ds-2026-10-21/)。对应 D-AT-21 隐私及 N-AT-06 范围的模块回归；不代表正式全链路验收通过。
+- 下一接收人：PM/QA 复审两个必须改项；UI 对 activityId=null 的“已占用”条目不得将 NORMAL 占位解释为该活动安全可用；CM 修复默认编译并交 EventPort，AN 交 ActivityPort 后再完成真实集成。既有 AN 状态机/QA 装载问题本轮未复跑，详见历史记录，不将旧结果当本轮结果。
+
+## 历史交付（2026-10-20：DS-02～05 持久化实现与策略评测）
 
 - 成员：黄方勇 55230315；任务包 v3.0。本人分支 `work/55230315-scheduling` 已从 `287673a` 快进同步 `origin/main=4fbda0ecf4f155ef1e05c385a677ebe7d13b087d`，交付前再次 fetch，main 未变化。代码提交 `91d3063`；保持既有 Git 身份，无他人未提交修改。
 - 保留已合并的 V1 22 表迁移及 TimeInterval、CapacitySweep、CandidateRanking 逻辑；V1、公共 DTO/端口、其他成员生产代码没有修改。CandidateRanking 仅更新过时注释；SchemaIT 修复真实执行暴露的测试装载问题。

@@ -61,7 +61,8 @@ public class ResourceService {
     @Transactional(propagation = Propagation.MANDATORY)
     public FaultView fault(Actor actor, UUID resourceId, FaultInput input) {
         validate(input);
-        AuthorizationPolicy.resources(accounts.lock(actor.id()), Permission.RESOURCE_MANAGE, Set.of(resourceId));
+        Actor latest = accounts.lock(actor.id());
+        AuthorizationPolicy.resources(latest, Permission.RESOURCE_MANAGE, Set.of(resourceId));
         resources.lock(List.of(resourceId));
         if (input.unavailableQuantity() > resources.get(resourceId).quantity())
             throw ApiException.invalid("单条故障数量不能大于资源库存");
@@ -69,11 +70,12 @@ public class ResourceService {
         EventPort eventPort = events.getIfAvailable();
         if (eventPort == null) throw new ApiException(503, "INTERNAL_ERROR", "资源故障事件服务尚未就绪");
         var fault = resources.addFault(resourceId, actor.id(), input);
-        var view = view(fault);
-        if (view.affectedActivities().isEmpty())
+        // 内部事件覆盖全部受影响活动；HTTP裁剪不能改变通知收件范围。
+        var affectedActivities = affected(fault);
+        if (affectedActivities.isEmpty())
             eventPort.append(new EventDraft(null, 0, actor.id(), "RESOURCE_FAULT",
                     "登记资源故障", List.of(), "资源故障", "资源存在不可用时段"));
-        for (var affected : view.affectedActivities()) {
+        for (var affected : affectedActivities) {
             var activity = resources.activity(affected.activityId());
             var recipients = new TreeSet<UUID>(Comparator.comparing(UUID::toString));
             recipients.add(activity.ownerId());
@@ -83,22 +85,29 @@ public class ResourceService {
                     "活动预约资源出现故障", List.copyOf(recipients), "活动资源风险",
                     "活动预约资源出现故障，请查看资源风险并评估调整安排"));
         }
-        return view;
+        return view(latest, fault, affectedActivities);
     }
 
     public CommandResult faults(Actor actor, UUID resourceId, Instant from, Instant to) {
         range(from, to, false);
-        AuthorizationPolicy.resources(accounts.get(actor.id()), Permission.RESOURCE_MANAGE, Set.of(resourceId));
+        Actor latest = accounts.get(actor.id());
+        AuthorizationPolicy.resources(latest, Permission.RESOURCE_MANAGE, Set.of(resourceId));
         resources.get(resourceId);
         var rows = resources.listFaults(resourceId, from, to);
-        return Responses.list(rows.stream().limit(200).map(this::view).toList(), rows.size() > 200);
+        return Responses.list(rows.stream().limit(200).map(fault -> view(latest, fault, affected(fault))).toList(), rows.size() > 200);
     }
 
-    private FaultView view(ResourceRepository.Fault fault) {
+    private List<ResourceRepository.Occupancy> affected(ResourceRepository.Fault fault) {
         var byActivity = new TreeMap<UUID, ResourceRepository.Occupancy>(Comparator.comparing(UUID::toString));
         resources.reservations(fault.resourceId(), fault.start(), fault.end(), null)
                 .forEach(r -> byActivity.put(r.activityId(), r));
-        var affected = byActivity.values().stream().map(r -> new AffectedActivity(r.activityId(),
+        return List.copyOf(byActivity.values());
+    }
+
+    private FaultView view(Actor actor, ResourceRepository.Fault fault, List<ResourceRepository.Occupancy> occupancies) {
+        var affected = occupancies.stream()
+                .filter(r -> canRead(actor, resources.activity(r.activityId())))
+                .map(r -> new AffectedActivity(r.activityId(),
                 resources.version(r.activityId(), r.versionNo()).title(), r.versionNo(), scheduling.risk(r.activityId()))).toList();
         return new FaultView(fault.start(), fault.end(), fault.quantity(), fault.reason(), fault.id(), fault.resourceId(), affected);
     }
@@ -118,7 +127,8 @@ public class ResourceService {
             return new CalendarEntry(row.resourceId(), row.start(), row.end(), row.quantity(),
                     mayRead ? row.activityId() : null,
                     mayRead ? resources.version(row.activityId(), row.version()).title() : "已占用",
-                    risks.computeIfAbsent(row.activityId(), scheduling::risk), row.segment());
+                    // NORMAL为遮蔽活动的固定占位，不查询或暴露其真实风险；FAULT仍描述资源不可用量。
+                    mayRead ? risks.computeIfAbsent(row.activityId(), scheduling::risk) : Risk.NORMAL, row.segment());
         }).toList();
         return Responses.list(entries, rows.size() > 200);
     }
