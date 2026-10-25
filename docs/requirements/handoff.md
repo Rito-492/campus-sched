@@ -112,4 +112,5 @@
 - 覆盖：真实认证/回执重放及全部 API-12～23 HTTP 路由、版本追加/旧版本拒绝、当前范围/身份/资格、公开隐私、20 学生竞争 1 名额恰 1 成功、重复报名/退出、改期冻结、取消全链路回滚、改期版本回滚、活动行锁等待期间的新版本读取和取消后不可复活。对应 D-AT-03/15/16/17/20、N-AT-02/05/06 的本模块行为；不等同于 QA 全套验收通过。
 - 外部依赖：真实 SchedulingPortAdapter、AccountPort/CommandExecutor 已使用；**CM 的 ChangePort/EventPort 生产实现仍未进入 main**。测试源码中明确提供这两个端口的数据库测试替身；事件消费者/真实 CM 改期和通知集成未验证，不宣称 M2/M3/E2E 或应用重启全链路通过。生产缺所需端口返回 503 并回滚；草稿创建/编辑与未预约视图可独立使用，SCHEDULED/OPEN 视图须真实 ChangePort。
 - 下一接收：CM 杨瀚霖接 ActivityPortAdapter/取消编排；UI 杨畅、QA 汤雨润接 API-12～23/失败码；PM 冀项阳接公共工程集成。待 CM 修复种子编译并交付真实 ChangePort/EventPort 后，用默认构建和真实全部端口复验，继续 M2/M3。交叉评审后才可合并，未自审自批。
+- 实际交付：生产代码/测试提交 `9b76b2e` 已推送；以本人 GitHub 账号 `Damer-F` 创建 [PR #11](https://github.com/Rito-492/campus-sched/pull/11)，已实际请求 PM `Rito-492` 交叉评审，尚未评审或合并。
 - 接收确认：尚未接收。

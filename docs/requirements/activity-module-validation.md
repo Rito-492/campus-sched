@@ -1,6 +1,6 @@
 # AN 模块验证记录（2026-10-25）
 
-成员：冯玉琪（22220314）。main 基准：`34dc4d5`。测试源码位于 server/src/test/java/com/campus/events/activity；本次不修改状态机生产实现。
+成员：冯玉琪（22220314）。main 基准：`34dc4d5`，验证代码提交：`9b76b2e`。测试源码位于 server/src/test/java/com/campus/events/activity；本次不修改状态机生产实现。
 
 ## 真实结果及范围
 
