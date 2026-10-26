@@ -108,8 +108,17 @@ class DemoDataSeederIT {
         DemoDataSeeder seeder = new DemoDataSeeder(jdbc, mapper, new BCryptPasswordEncoder(), tx);
         setField(seeder, "demoSeedFile", demoJsonPath());
         setField(seeder, "demoDate", DbTestSupport.DEMO_DATE.toString());
-        setField(seeder, "demoPassword", "demo123");
+        setField(seeder, "demoPassword", requireDemoPassword());
         return seeder;
+    }
+
+    /** 演示口令从环境变量读取，不硬编码（03 §1/§3）；缺失时明确失败，不静默降级。 */
+    private static String requireDemoPassword() {
+        String value = System.getenv("DEMO_PASSWORD");
+        if (value == null || value.isBlank()) {
+            throw new IllegalStateException("缺少环境变量 DEMO_PASSWORD（先执行 scripts/load-env.ps1，03 §1/§3）");
+        }
+        return value;
     }
 
     private static void setField(Object target, String name, Object value) throws Exception {
