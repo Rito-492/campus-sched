@@ -1,5 +1,23 @@
 # 交接单（配置经理）
 
+## 本轮工作（2026-10-26）：修复 SeederIT 口令硬编码 + PR #10 文档逐项清阻塞
+
+- 成员、学号、任务ID：杨瀚霖、55231031、配置经理；CM-01 收尾 + 配置文档（PR #8/#10 评审整改）。
+- main 基准：远程 `origin/main` 已推进至 `34dc4d5`；本机 `git fetch` 失败（github.com:443 无法连接），本地 main 停留 `b994ad3`、无 `server/pom.xml`。PR #8 `fix/demodataseeder-118`（head ee76c2a / base 2a9e941）与 PR #10 `work/55231031-change`（head a6d734c / base 34dc4d5）二者的 DemoDataSeeder.java / DemoDataSeederIT.java 内容完全相同，均 CHANGES_REQUESTED。
+- 本轮改动：
+  - `server/src/test/java/com/campus/events/dev/DemoDataSeederIT.java`：移除第 111 行硬编码 `demo123`，改读必需环境变量 `DEMO_PASSWORD`（新增 `requireDemoPassword()`，缺失即抛 `IllegalStateException`，与 QA 侧 acceptance IT 同款约定）。验证：`DemoDataSeeder` 生产代码不硬编码口令、不打印口令（仅 warn 未配置 / info 计数）；`compose.qa.yaml`/`.env.example` 中 `demo123` 为演示默认值（模板标注“示例非秘密值”），非泄漏。
+  - `docs/configuration/configuration-management-plan.md` v1.4→v1.5：①§3.1 类别缩写“三位大写字母”→“2–5 位大写字母”（DATA=4 位/MODEL=5 位为英文整词）；②编号解剖示例 `CS-CI-DOC-04 v1.2`→`v1.5` 并补 DATA/MODEL 实例；③§5.2 基线清单区分 tag commit 时间 / tag 时间 / 授权时间，三条历史基线授权标“待核实（无追溯 CCB 记录）”，不补造、不倒造审批。
+  - `docs/configuration/configuration-index.md`：登记表新增“版本”列；顶部明示本索引为配置项与基线的“唯一登记处”；基线清单同步“待核实”与时间口径。
+  - `docs/configuration/T08_配置管理计划.docx` v1.4→v1.5：同步上述三处（类别缩写、v1.2 示例、历史基线授权“待核实”+时间口径），按配置规程以版本号留痕，不静默覆盖。
+- 实际检查（真实结果，非通过）：
+  - `git fetch origin`：❌ 失败（github.com:443 无法连接），未能取得 main=34dc4d5 与 PR 最新状态。
+  - 默认全量构建 `./server/mvnw test` / `verify`：❌ 无法执行——本分支与本地 main 均无 `server/pom.xml`、无 `mvnw*`、无 Maven（`mvn` 未安装）、无 Docker、无 PostgreSQL（psql）、无 pwsh；`DemoDataSeederIT` 无法运行，证据待后端工程（pom/Maven Wrapper，PM）就绪后补跑并保存报告。
+  - 契约约束（03 §1）：`DEMO_PASSWORD` 从环境变量读取、不写 JSON、不打印——已核对通过（源码 grep 无 `demo123` 硬编码于 Java 测试，仅模板默认值）。
+- PR 协调（需先与 PM 确认，本 agent 不自行批准/合并）：
+  - 建议：代码/IT 以 `work/55231031-change` 基于当前 main（34dc4d5）保留为**单一 PR**；PR #8 `fix/demodataseeder-118`（旧 base 2a9e941、非固定分支）作为重复 PR 关闭；配置文档变更纳入同一 PR 或拆分 PR，由 PM 裁定范围。待 PM 确认后再更新 PR 标题/描述并请求 PM/QA 复审。
+- 未完成项/外部依赖：后端工程（`server/pom.xml` + Maven Wrapper + contract 公共类型）由项目经理交付后方可编译运行 SeederIT；本机网络与 Docker/PostgreSQL 缺失需具备后补跑全量构建与真实库 IT。
+- 下一接收人：项目经理（冀项阳，55230223）确认单一 PR 与 PR #8 关闭方案、交付后端工程；测试经理（汤雨润，55230316）复审 SeederIT 与配置文档变更。
+
 ## 本次交付（课程任务2：配置管理计划 + 建立配置库）
 
 - 成员、学号、任务ID：杨瀚霖、55231031、配置经理；课程分组任务2（配置管理计划、建立配置库）。
