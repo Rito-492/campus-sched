@@ -88,3 +88,12 @@
 - 交付文件与接口：V1__schema.sql（17 表首形态）、SchemaIT.java（6 用例）、system-design/database-design/migration-register 初版
 - 实际运行命令与结果：✅ psql 等价烟测 14 项断言全部通过（PostgreSQL 17，campus_test 独立 schema）；⬜ Maven verify（阻塞 PM pom）
 - 后续：首形态从未进基线，已被本批 v3.0 形态**原地升级取代**（见本批）；验证记录保留于 migration-register.md 供追溯。
+
+## 2026-10-28 任务4软件设计文档交付
+
+- 成员：黄方勇 55230315；采用开发任务包 v3.0，对应学习通任务4。
+- 正式工件：software-design-task4.docx、software-design-task4.pdf、software-design-task4.md；按用户要求仅保留一套正式文件，不含编辑版本记录。
+- 内容：20 个用例、88 条备选/异常分支、45 张图（其中 41 张顺序图），包含子系统、类操作、页面边界及需求与测试追踪。
+- 实际检查：Microsoft Word 更新目录并导出 PDF；61 页、45 个目录项页码核对通过，已完成渲染和视觉检查。未运行产品测试，不新增 D-AT/N-AT 通过结论。
+- 本次提交范围仅为以上文档与本条交接记录；先前代码、测试及其交接改动不在本次提交内。
+- 下一接收人：项目经理及交叉评审成员；学习通截止 2026-10-31 23:59，尚未上传学习通，接收确认尚未取得。
