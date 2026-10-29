@@ -88,3 +88,19 @@
 - 交付文件与接口：V1__schema.sql（17 表首形态）、SchemaIT.java（6 用例）、system-design/database-design/migration-register 初版
 - 实际运行命令与结果：✅ psql 等价烟测 14 项断言全部通过（PostgreSQL 17，campus_test 独立 schema）；⬜ Maven verify（阻塞 PM pom）
 - 后续：首形态从未进基线，已被本批 v3.0 形态**原地升级取代**（见本批）；验证记录保留于 migration-register.md 供追溯。
+
+## 2026-10-28 任务4软件设计文档交付
+
+- 成员：黄方勇 55230315；采用开发任务包 v3.0，对应学习通任务4。
+- 正式工件：software-design-task4.docx、software-design-task4.pdf、software-design-task4.md；按用户要求仅保留一套正式文件，不含编辑版本记录。
+- 内容：20 个用例、88 条备选/异常分支、45 张图（其中 41 张顺序图），包含子系统、类操作、页面边界及需求与测试追踪。
+- 实际检查：Microsoft Word 更新目录并导出 PDF；61 页、45 个目录项页码核对通过，已完成渲染和视觉检查。未运行产品测试，不新增 D-AT/N-AT 通过结论。
+- 本次提交范围仅为以上文档与本条交接记录；先前代码、测试及其交接改动不在本次提交内。
+- 下一接收人：项目经理及交叉评审成员；学习通截止 2026-10-31 23:59，尚未上传学习通，接收确认尚未取得。
+
+## 2026-10-29 任务4 PR #12 评审修复
+
+- 针对 Rito-492 对 cca5652 的两项阻塞意见：移除 UC-04 页面直连 SchedulingPort，资格限制改由后续 API-16 提交场景中的 ActivityService 调用内部端口检查；资格管理仍允许双关闭并保留既有预约。
+- 全部用例顺序图补充 HTTP 适配边界，服务结果经响应返回；render、clearSession、selectPlan 均为页面本地操作。HttpController 明确为职责抽象，补齐 handle 和 ChangeDetailPage.render 的操作目录，不新增产品接口。
+- 同步更新正式 Markdown、Word 与 PDF。实际核验：20 个用例、88 条分支、41 张顺序图与嵌入图逐张一致、45 张总图、635 条消息边界检查、385 条调用操作目录检查通过；61 页、45 个目录项页码核对通过，完成全部页面渲染及视觉检查。
+- 本轮只修正文档，未运行产品测试，未宣称交叉评审通过；交由原评审人复审，尚未合并 main。
