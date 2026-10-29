@@ -246,7 +246,7 @@ class ActivityRegistrationIT {
         assertEquals(1,after.registrationCount()); assertNotNull(after.activeChangeId());
         assertEquals(2,jdbc.queryForObject("SELECT count(*) FROM reservation WHERE activity_id=? AND status='ACTIVE'",Integer.class,a.id()));
     }
-    @RepeatedTest(3) void cancellationAndPlanActivationCannotResurrectActivity() throws Exception {
+    @RepeatedTest(10) void cancellationAndPlanActivationCannotResurrectActivity() throws Exception {
         var a=open(); var pool=Executors.newFixedThreadPool(2); var gate=new CountDownLatch(1);
         try {
             var activation=pool.submit(()->{ assertTrue(gate.await(10,TimeUnit.SECONDS));
@@ -300,12 +300,85 @@ class ActivityRegistrationIT {
         } finally { commit.countDown(); pool.shutdownNow(); }
     }
     com.fasterxml.jackson.databind.JsonNode request(String method,String path,UUID actor,Object body,int expected) throws Exception {
+        return request(method,path,actor,body,expected,UUID.randomUUID());
+    }
+    com.fasterxml.jackson.databind.JsonNode request(String method,String path,UUID actor,Object body,int expected,UUID key) throws Exception {
         String token=sessions.login(new LoginInput(actor.toString(),loginPassword)).token();
         var builder=MockMvcRequestBuilders.request(HttpMethod.valueOf(method),"/api/v1/activities"+path)
                 .header("Authorization","Bearer "+token);
-        if(body!=null) builder.header("Idempotency-Key",UUID.randomUUID()).contentType("application/json").content(mapper.writeValueAsString(body));
+        if(body!=null) builder.header("Idempotency-Key",key).contentType("application/json").content(mapper.writeValueAsString(body));
         var response=http.perform(builder).andReturn().getResponse();
         var json=mapper.readTree(response.getContentAsString()); assertEquals(expected,response.getStatus(),json.toString()); return json;
+    }
+    void replay(String method,String path,UUID actor,Object body) throws Exception {
+        UUID key=UUID.randomUUID();
+        var first=request(method,path,actor,body,200,key);
+        // 重放必须恢复原信封，包括 requestId；不能重新执行业务后生成另一个成功响应。
+        assertEquals(first,request(method,path,actor,body,200,key));
+    }
+    @Test void everyWriteRouteReplaysWithoutDuplicatingVersionsReservationsOrEvents() throws Exception {
+        var a=create(); String path="/"+a.id();
+        replay("PATCH",path,owner,new ActivityEdit(0,input()));
+        replay("POST",path+"/submit",owner,new VersionCommand(1));
+        replay("POST",path+"/withdraw",owner,new ReasonCommand(2,"重建"));
+        replay("POST",path+"/submit",owner,new VersionCommand(3));
+        replay("POST",path+"/approver-decision",reviewer,new ApprovalCommand(4,Decision.APPROVE,""));
+        replay("POST",path+"/resource-confirm",admin,new VersionCommand(5));
+        replay("POST",path+"/publish",owner,new VersionCommand(6));
+        replay("PUT",path+"/registration",student,new RegistrationCommand(RegistrationAction.JOIN,3));
+        assertEquals(1,port.get(a.id()).activity().registrationCount());
+        replay("PUT",path+"/registration",student,new RegistrationCommand(RegistrationAction.WITHDRAW,3));
+        int eventsBefore=count("outbox_event",a.id());
+        replay("POST",path+"/cancel",owner,new ReasonCommand(9,"结束"));
+        assertEquals(eventsBefore+1,count("outbox_event",a.id()));
+        assertEquals(10,port.get(a.id()).activity().lockVersion());
+        assertEquals(3,count("activity_version",a.id()));
+        assertEquals(1,count("activity_approval",a.id()));
+        assertEquals(2,count("reservation",a.id()));
+        assertEquals(1,count("activity_registration",a.id()));
+        assertEquals(0,jdbc.queryForObject("SELECT count(*) FROM reservation WHERE activity_id=? AND status='ACTIVE'",Integer.class,a.id()));
+    }
+    @Test void registrationKeyCannotBeReusedForAnotherBodyOrRoute() throws Exception {
+        var a=open(); UUID key=UUID.randomUUID(); String path="/"+a.id();
+        var join=new RegistrationCommand(RegistrationAction.JOIN,1);
+        var original=request("PUT",path+"/registration",student,join,200,key);
+        var changed=request("PUT",path+"/registration",student,new RegistrationCommand(RegistrationAction.WITHDRAW,1),409,key);
+        assertEquals("IDEMPOTENCY_KEY_REUSED",changed.at("/error/code").asText());
+        var otherRoute=request("POST",path+"/cancel",student,new ReasonCommand(0,"不同路由"),409,key);
+        assertEquals("IDEMPOTENCY_KEY_REUSED",otherRoute.at("/error/code").asText());
+        assertEquals(original,request("PUT",path+"/registration",student,join,200,key));
+        assertEquals(1,port.get(a.id()).activity().registrationCount());
+        assertEquals(a.lockVersion()+1,port.get(a.id()).activity().lockVersion());
+    }
+    @Test void pastPlanCannotAcquireReservationsAtConfirmation() throws Exception {
+        var past=new ActivityInput("过去安排","",10,1,List.of(),new Plan(NOW.minusSeconds(3600),NOW,0,0,venue,List.of()));
+        var created=request("POST","",owner,past,201);
+        UUID id=UUID.fromString(created.at("/data/id").asText());
+        request("POST","/"+id+"/submit",owner,new VersionCommand(0),200);
+        request("POST","/"+id+"/approver-decision",reviewer,new ApprovalCommand(1,Decision.APPROVE,""),200);
+        int before=count("outbox_event",id);
+        var rejected=request("POST","/"+id+"/resource-confirm",admin,new VersionCommand(2),409);
+        assertEquals("INVALID_STATE",rejected.at("/error/code").asText());
+        assertEquals("活动已经开始",rejected.at("/error/message").asText());
+        assertEquals(ActivityStatus.APPROVED_UNRESERVED,port.get(id).activity().status());
+        assertEquals(2,port.get(id).activity().lockVersion());
+        assertEquals(0,count("reservation",id)); assertEquals(before,count("outbox_event",id));
+    }
+    @Test void invalidCapacityCreateAndEditLeaveNoPartialState() throws Exception {
+        var a=create();
+        for(int capacity:List.of(0,-1,11)) {
+            var invalid=new ActivityInput("非法容量","",10,capacity,List.of(),input().plan());
+            var createError=request("POST","",owner,invalid,400);
+            var editError=request("PATCH","/"+a.id(),owner,new ActivityEdit(0,invalid),400);
+            for(var response:List.of(createError,editError)) {
+                assertEquals("VALIDATION_ERROR",response.at("/error/code").asText());
+                assertFalse(response.at("/error/message").asText().isBlank());
+                assertTrue(response.hasNonNull("requestId")); assertFalse(response.has("data"));
+            }
+        }
+        assertEquals(1,jdbc.queryForObject("SELECT count(*) FROM activity",Integer.class));
+        assertEquals(1,count("activity_version",a.id())); assertEquals(0,port.get(a.id()).activity().lockVersion());
+        assertEquals(0,count("outbox_event",a.id()));
     }
     @Test void mineHttpUnionsOwnershipStaffAndEveryRegistrationHistoryWithoutDuplicates() throws Exception {
         UUID outsider=account("STUDENT","APPLICANT");

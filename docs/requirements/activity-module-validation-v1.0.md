@@ -65,3 +65,9 @@ CM 编译问题修复后，标准命令（先按仓库规则加载真实测试�
 - [最终verify日志](../../artifacts/test-results/an-2026-10-29/an-review-verify.log)、三份最终JUnit XML/TXT、实际隔离POM及源码SHA-256均归档在[本轮AN证据目录](../../artifacts/test-results/an-2026-10-29/)。原始统计由JUnit报告产生；检查证据未包含本轮数据库凭据。测试结束清理独立schema并停止本轮便携实例。
 
 没有重复运行未变化的全项目/E2E或声称真实CM端口通过。评审响应、仍需PM定口径的建议项见[交叉评审修复说明](activity-review-response-v1.0.md)。
+
+## 2026-10-29 后续边界与幂等回归
+
+新增 ActivityRegistrationIT 四项测试：其余写路由同键重放（编辑、提交、撤回、审批、确认、发布、报名/退出、取消），同键换请求体/路由拒绝，容量0/-1/大于预计人数时创建与编辑拒绝且无部分写入，过去安排在首次资源确认时拒绝且不写预约/事件。重放核对完整原响应信封，最终核对版本、审批、预约、报名及取消事件数量。取消/改期竞争由3次扩至10次；重复次数不等同于独立场景数。
+
+实际执行沿用上节隔离POM命令（只排除CM种子编译阻塞，未修改公共POM）：`./server/mvnw.cmd -B -ntp -f server/target/an-build/pom.xml -Dtest=ActivityStateMachineTest,ActivityServiceTest -Dit.test=ActivityRegistrationIT verify`，使用本机target Maven缓存和环境变量。2026-10-29 21:23退出0，25单测+33真实PostgreSQL IT，0失败/错误/跳过。测试schema清理完成，便携数据库已停止。原始日志、XML/TXT、隔离POM与源码SHA256见[本轮证据](../../artifacts/test-results/an-2026-10-29-followup/)。本轮没有重跑默认构建；此前CM种子编译阻塞仍是已知限制，CM两个端口仍为测试替身。

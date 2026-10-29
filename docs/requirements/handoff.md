@@ -124,3 +124,10 @@
 - 证据：原始日志、3份JUnit XML/TXT、实际隔离POM和源码SHA-256归档[artifacts/test-results/an-2026-10-29](../../artifacts/test-results/an-2026-10-29/)，未含本轮数据库凭据。命令和具体覆盖见[验证记录](activity-module-validation-v1.0.md)复验节；逐条建议处理见[评审修复说明](activity-review-response-v1.0.md)。
 - 文档交接：两份新增接口/验证文档补v1.0命名；UI/QA须使用mine并集、历史报名详情、发布不因改期阻断以及404分支的新说明。B/C/D/I及其他歧义留PM统一确认，未私改共享契约；完整CM端口、默认构建、E2E/重启恢复仍待集成。
 - 下一接收：PM/QA等非作者成员复核PR #11三条必须改；作者不自审自批或自动合并。接收确认：尚未接收。
+
+## AN-04/05 后续回归（2026-10-29）
+
+- 冯玉琪22220314；work/22220314-activity；本地origin/main基准34dc4d5。此次fetch遇到GitHub连接重置，不宣称已获取更新后的远端基准；未reset或改他人文件。
+- 仅扩展本人ActivityRegistrationIT：其余写路由幂等重放、同键异请求拒绝、非法容量创建/编辑回滚、过去安排资源确认拒绝；取消/改期竞争由3次增至10次。生产代码与公共契约无变更。
+- 隔离verify真实通过25单测+33 PostgreSQL IT，0失败/错误/跳过；证据见artifacts/test-results/an-2026-10-29-followup，复现入口见activity-module-validation-v1.0.md。默认构建本轮未重跑，不将隔离构建等同产品完整验收。
+- 下一接收：PM/QA复核PR #11；CM仍须交真实ChangePort/EventPort与种子编译修复。列表剩余N+1优化、PM契约待决项、默认构建及重启/E2E联调仍未完成。尚未接收。

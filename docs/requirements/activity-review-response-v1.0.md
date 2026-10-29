@@ -25,3 +25,7 @@
 B的review集合收紧、C的缺端口HTTP状态码配对、D的审核者DRAFT/CANCELLED读取范围、I的资源读取/加锁端口归属，以及工作人员裁剪/API-23授权口径，仍交PM统一确认。本轮不私改公共契约，也不将这些建议标记为已解决。E/L/M未完成部分可后续消化。
 
 默认编译仍被CM DemoDataSeeder.java:118阻断；CM ChangePort/EventPort仍为测试上下文替身，不能推断M2/M3/E2E或重启恢复通过。最终本模块隔离结果：25单测+22真实PostgreSQL IT，0失败/错误/跳过，见[验证记录](activity-module-validation-v1.0.md)。接收/复核确认：尚未接收。
+
+### 2026-10-29 后续测试补充
+
+建议L中其他写路由幂等重放、非法容量、过去安排确认已补HTTP/落库断言；取消/改期竞争扩为10次。新增4个独立测试，重复竞争增加7次执行，总计25单测+33真实PostgreSQL IT通过。建议E剩余N+1与PM待决事项不变。证据见[后续验证](activity-module-validation-v1.0.md)。
