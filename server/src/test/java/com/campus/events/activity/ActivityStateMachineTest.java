@@ -47,7 +47,7 @@ class ActivityStateMachineTest {
         var withdrawn = ActivityStateMachine.withdraw(pending);
         assertEquals(new ActivityStateMachine.State(DRAFT, 2, 2, null), withdrawn);
         assertThrows(ActivityStateMachine.InvalidTransitionException.class,
-                () -> ActivityStateMachine.decide(pending, 1, APPROVE));
+                () -> ActivityStateMachine.decide(withdrawn, 1, APPROVE));
 
         var approved = ActivityStateMachine.decide(ActivityStateMachine.submit(ActivityStateMachine.create()), 1, APPROVE);
         var approvedWithdrawal = ActivityStateMachine.withdraw(approved);

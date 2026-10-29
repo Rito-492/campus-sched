@@ -107,3 +107,26 @@ FR表示功能需求，NFR表示补充需求，BR表示业务规则，UC表示�
 | FR-12/13/21/24：报名、取消与版本关联 | 状态机只定义报名变更 lockVersion 和取消终态；报名/取消服务尚待实现 | D-AT-15/16/17/20；并发/竞争 IT 尚待实现 | 有取消不复活和lockVersion测试源码；尚未运行，业务行为尚未实现 |
 
 技术标识按 v3.0 使用 `PENDING_APPROVER` 与 API-18 `approver-decision`；共享 DTO/端口仍由 PM 维护。2026-10-13 实测没有 `java`、`javac`、`server/pom.xml` 或 `server/mvnw.cmd`，故模块测试未执行；禁止把未执行项报告为通过。
+
+## 8 AN-02～05 实现追踪（2026-10-25）
+
+以下为本轮新增实现和真实验证，替代第7节中“尚待实现/尚未运行”的当前状态；第7节保留为历史记录。
+
+| 需求/API | 代码位置 | 本轮实际验证 |
+|---|---|---|
+| FR-07～10 / API-12～18 | activity/ActivityRepository、ActivityService、ActivityController | 草稿持久化、不可变版本、旧版本拒绝、撤回克隆、审批完整范围与本人回避；HTTP及PostgreSQL断言 |
+| FR-11 / API-19～20 | ActivityService、真实 SchedulingPortAdapter | 首次联合预约、当前资格重查、发布前状态/时间/风险检查；CM事件使用测试端口 |
+| FR-12/13/21/24 / API-21～23 | ActivityService、registration/RegistrationRepository | 20抢1、重复报名/退出、有效版本、冻结、名单隐私、取消/版本切换竞争和事务回滚 |
+| CM内部端口 / ActivityPort | activity/ActivityPortAdapter、ActivityViews | 显式事务/行锁、完整快照、版本与报名同步、失败回滚、等待锁期间版本切换 |
+
+18项单测和17项PostgreSQL IT通过，0跳过；默认公共构建仍被CM种子编译错误阻断，CM的ChangePort/EventPort为测试源码替身。准确范围及命令见[模块验证记录](activity-module-validation-v1.0.md)；接口交接见[活动与报名模块接口交接](activity-api-handoff-v1.0.md)。不能由本模块验证推断M2/M3或E2E通过。
+
+### 2026-10-29 评审后覆盖补充
+
+API-13的mine并集/去重/当前角色、API-14取消后的报名历史豁免现有真实HTTP及落库断言。AN-03的发布门禁已执行Service层未开始、SCHEDULED和实时风险的负向回归；已开始及风险失败另有HTTP 409、错误信封和无变更断言。UC-09与AN-03明确要求无风险才发布，因此保留风险检查；无契约依据的“待改期禁止发布”已删除并加正向HTTP回归，报名/退出冻结仍保留。
+
+本轮隔离结果为25项单测+22项PostgreSQL IT，0失败/错误/跳过。证据与限制见[验证记录](activity-module-validation-v1.0.md)评审复验节；此结果不扩展为CM生产业务或全套验收结论。
+
+### 2026-10-29 后续验证增量
+
+AN-02～04/API-15～22：补齐其余写接口同键重放，验证原响应、不可变版本及预约/事件不重复；同键异请求体/异路由409。AN-02/API-12、15：容量0/-1/超过预计人数400且无部分写入。AN-03/API-19：过去安排409且预约/事件无新增。AN-04/D-AT-17：取消/改期竞争10次执行。实际隔离verify为25单测+33 PostgreSQL IT，详见activity-module-validation-v1.0.md；不宣称真实CM端口、默认构建或E2E通过。

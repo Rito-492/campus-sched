@@ -1,0 +1,42 @@
+[
+  {
+    "path": "server/src/main/java/com/campus/events/activity/ActivityController.java",
+    "sha256": "5a7807a17b796133e3d321a92cfa2bb28471bb503687703c196c76633acb5cf6"
+  },
+  {
+    "path": "server/src/main/java/com/campus/events/activity/ActivityPortAdapter.java",
+    "sha256": "549a2bc5e42150b92f0a4c30a00730b6abe2693301c49af82015678ea5ef4b6c"
+  },
+  {
+    "path": "server/src/main/java/com/campus/events/activity/ActivityRepository.java",
+    "sha256": "41d890c40db909af8dc63580bc9095f8266c46ccb30e8126bc9ba44da61218ea"
+  },
+  {
+    "path": "server/src/main/java/com/campus/events/activity/ActivityService.java",
+    "sha256": "fd594034bd79e4f4daf10c1cc8ea0b9f5ef828caae75686fe67665709c1e28c5"
+  },
+  {
+    "path": "server/src/main/java/com/campus/events/activity/ActivityStateMachine.java",
+    "sha256": "5167a319be954b9ed876cc236d1f90a74856dd42758b8d6ea8e3246935932cde"
+  },
+  {
+    "path": "server/src/main/java/com/campus/events/activity/ActivityViews.java",
+    "sha256": "8a8704058323cd477faedf9d64933bc3e8be1021717aa5bf2c70d3cce54c2ac3"
+  },
+  {
+    "path": "server/src/main/java/com/campus/events/registration/RegistrationRepository.java",
+    "sha256": "c86cb1060d33023aaed3a15c5ab27a89493b05621f0be4ccae7fddfe2652c73d"
+  },
+  {
+    "path": "server/src/test/java/com/campus/events/activity/ActivityRegistrationIT.java",
+    "sha256": "f1de322b847025dbd333ba75f070735f8fcb2498672f2a69b39858af73462716"
+  },
+  {
+    "path": "server/src/test/java/com/campus/events/activity/ActivityServiceTest.java",
+    "sha256": "15f07abc5c787f432fd04ab5c9ac408787872b1135034b93f4006fb8d1637cd8"
+  },
+  {
+    "path": "server/src/test/java/com/campus/events/activity/ActivityStateMachineTest.java",
+    "sha256": "878e715b88185e7fda95d27bee2529d1ca7b78e0a29d016473cb1a67fe382646"
+  }
+]
