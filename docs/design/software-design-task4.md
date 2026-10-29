@@ -43,6 +43,8 @@
 
 ### 2.1 分层与依赖
 
+图中HttpController是HTTP适配层的职责抽象，代表具体Controller及认证过滤链，不新增生产类或端点。页面的handle(API编号)表示发起该编号的HTTP请求；适配层在服务器内部调用服务，结果经虚线HTTP响应返回。render()、clearSession()和selectPlan()均由页面本地执行。API-02的authenticate()由认证过滤链执行，当前用户数据由AuthController读取。各操作对应的URL及参数沿用公共契约。
+
 系统部署为一个前端、一个Spring Boot应用和一个PostgreSQL数据库。子系统是逻辑职责边界，不意味着拆成多个微服务。界面依赖HTTP接口，业务编排依赖contract中的端口，端口适配器封装各模块数据访问。
 
 图2-1 子系统组成与分层
@@ -167,11 +169,11 @@ CandidateSearch按0、-30、+30、-60、+60、-90、+90、-120、+120分钟偏�
 
 需求与验收追踪：FR-01；BR-01、05；D-AT-01及N-AT-01；页面UI-01。
 
-参与类关系：LoginPage ..> SessionService；SessionService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
+参与类关系：LoginPage ..> HttpController；HttpController ..> SessionService；SessionService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
 
 #### UC-01 备选流与异常流
 
-分支编号与用例规约一致；每个alt片段为该条件下的独立执行轨迹，与基本流共享认证、版本检查和事务骨架。返回虚线是结果，不要求作为类操作。
+分支编号与用例规约一致；各alt片段共享认证、版本检查和事务骨架。页面经HTTP适配层访问业务服务，收到响应后在本地展示结果；返回虚线不表示方法调用。
 
 图4-01b 备选流顺序图
 
@@ -201,11 +203,11 @@ list、create、replace、enabled 是分别发起的操作；每项写操作独�
 
 需求与验收追踪：FR-02、03；BR-01、02；D-AT-01／02、N-AT-01／06；页面UI-11。
 
-参与类关系：UserAdminPage ..> UserService；UserService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
+参与类关系：UserAdminPage ..> HttpController；HttpController ..> UserService；UserService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
 
 #### UC-02 备选流与异常流
 
-分支编号与用例规约一致；每个alt片段为该条件下的独立执行轨迹，与基本流共享认证、版本检查和事务骨架。返回虚线是结果，不要求作为类操作。
+分支编号与用例规约一致；各alt片段共享认证、版本检查和事务骨架。页面经HTTP适配层访问业务服务，收到响应后在本地展示结果；返回虚线不表示方法调用。
 
 图4-02b 备选流顺序图
 
@@ -235,11 +237,11 @@ list、create、replace、enabled 是分别发起的操作；每项写操作独�
 
 需求与验收追踪：FR-06、11；BR-05、06、09；D-AT-04／05／18／21／23；页面UI-02／04／05。
 
-参与类关系：CalendarPage ..> ActivityQueryService；ActivityQueryService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
+参与类关系：CalendarPage ..> HttpController；HttpController ..> ActivityQueryService；ActivityQueryService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
 
 #### UC-03 备选流与异常流
 
-分支编号与用例规约一致；每个alt片段为该条件下的独立执行轨迹，与基本流共享认证、版本检查和事务骨架。返回虚线是结果，不要求作为类操作。
+分支编号与用例规约一致；各alt片段共享认证、版本检查和事务骨架。页面经HTTP适配层访问业务服务，收到响应后在本地展示结果；返回虚线不表示方法调用。
 
 图4-03b 备选流顺序图
 
@@ -271,11 +273,11 @@ list、create、replace、enabled 是分别发起的操作；每项写操作独�
 
 需求与验收追踪：FR-04、05；BR-03、04、08、10；N-AT-02／03／04／06；页面UI-06。
 
-参与类关系：ResourceAdminPage ..> ResourceService；ResourceService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
+参与类关系：ResourceAdminPage ..> HttpController；HttpController ..> ResourceService；ResourceService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
 
 #### UC-04 备选流与异常流
 
-分支编号与用例规约一致；每个alt片段为该条件下的独立执行轨迹，与基本流共享认证、版本检查和事务骨架。返回虚线是结果，不要求作为类操作。
+分支编号与用例规约一致；各alt片段共享认证、版本检查和事务骨架。页面经HTTP适配层访问业务服务，收到响应后在本地展示结果；返回虚线不表示方法调用。
 
 图4-04b 备选流顺序图
 
@@ -288,6 +290,8 @@ list、create、replace、enabled 是分别发起的操作；每项写操作独�
 5c  尝试修改创建后的容量、库存、时段、名称或类别，首版不给修改入口
 
 6a  两类均关闭时拒绝新增申请。
+
+资格管理说明：API-40允许将两类申请资格均关闭，保存资格变化但不撤销既有预约。5a表示后续提交或资源确认时由业务服务复核最新资格；6a在图中以ActivityEditPage发起API-16演示该后续场景，经ActivityService调用内部SchedulingPort.check()拒绝受限申请，不由资源管理页面调用内部端口。
 
 ### 4.5  UC-05 创建或编辑活动草稿
 
@@ -307,11 +311,11 @@ list、create、replace、enabled 是分别发起的操作；每项写操作独�
 
 需求与验收追踪：FR-07；BR-03、06～08、11；D-AT-03／20；页面UI-03。
 
-参与类关系：ActivityEditPage ..> ActivityService；ActivityService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
+参与类关系：ActivityEditPage ..> HttpController；HttpController ..> ActivityService；ActivityService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
 
 #### UC-05 备选流与异常流
 
-分支编号与用例规约一致；每个alt片段为该条件下的独立执行轨迹，与基本流共享认证、版本检查和事务骨架。返回虚线是结果，不要求作为类操作。
+分支编号与用例规约一致；各alt片段共享认证、版本检查和事务骨架。页面经HTTP适配层访问业务服务，收到响应后在本地展示结果；返回虚线不表示方法调用。
 
 图4-05b 备选流顺序图
 
@@ -343,11 +347,11 @@ list、create、replace、enabled 是分别发起的操作；每项写操作独�
 
 需求与验收追踪：FR-08；BR-03、11、12；D-AT-03／20、N-AT-02；页面UI-03／04。
 
-参与类关系：ActivityDetailPage ..> ActivityService；ActivityService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
+参与类关系：ActivityDetailPage ..> HttpController；HttpController ..> ActivityService；ActivityService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
 
 #### UC-06 备选流与异常流
 
-分支编号与用例规约一致；每个alt片段为该条件下的独立执行轨迹，与基本流共享认证、版本检查和事务骨架。返回虚线是结果，不要求作为类操作。
+分支编号与用例规约一致；各alt片段共享认证、版本检查和事务骨架。页面经HTTP适配层访问业务服务，收到响应后在本地展示结果；返回虚线不表示方法调用。
 
 图4-06b 备选流顺序图
 
@@ -377,11 +381,11 @@ list、create、replace、enabled 是分别发起的操作；每项写操作独�
 
 需求与验收追踪：FR-09；BR-01、02、11、12；D-AT-02／03／20、N-AT-01／06；页面UI-09／04。
 
-参与类关系：ReviewPage ..> ActivityService；ActivityService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
+参与类关系：ReviewPage ..> HttpController；HttpController ..> ActivityService；ActivityService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
 
 #### UC-07 备选流与异常流
 
-分支编号与用例规约一致；每个alt片段为该条件下的独立执行轨迹，与基本流共享认证、版本检查和事务骨架。返回虚线是结果，不要求作为类操作。
+分支编号与用例规约一致；各alt片段共享认证、版本检查和事务骨架。页面经HTTP适配层访问业务服务，收到响应后在本地展示结果；返回虚线不表示方法调用。
 
 图4-07b 备选流顺序图
 
@@ -409,11 +413,11 @@ list、create、replace、enabled 是分别发起的操作；每项写操作独�
 
 需求与验收追踪：FR-10；BR-03、08、09、13、29、30；D-AT-06／07／08、N-AT-04／05／06；页面UI-09／04。
 
-参与类关系：ReviewPage ..> ActivityService；ActivityService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
+参与类关系：ReviewPage ..> HttpController；HttpController ..> ActivityService；ActivityService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
 
 #### UC-08 备选流与异常流
 
-分支编号与用例规约一致；每个alt片段为该条件下的独立执行轨迹，与基本流共享认证、版本检查和事务骨架。返回虚线是结果，不要求作为类操作。
+分支编号与用例规约一致；各alt片段共享认证、版本检查和事务骨架。页面经HTTP适配层访问业务服务，收到响应后在本地展示结果；返回虚线不表示方法调用。
 
 图4-08b 备选流顺序图
 
@@ -447,11 +451,11 @@ list、create、replace、enabled 是分别发起的操作；每项写操作独�
 
 需求与验收追踪：FR-11；BR-05、14；D-AT-03／18／21；页面UI-04／02。
 
-参与类关系：ActivityDetailPage ..> ActivityService；ActivityService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
+参与类关系：ActivityDetailPage ..> HttpController；HttpController ..> ActivityService；ActivityService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
 
 #### UC-09 备选流与异常流
 
-分支编号与用例规约一致；每个alt片段为该条件下的独立执行轨迹，与基本流共享认证、版本检查和事务骨架。返回虚线是结果，不要求作为类操作。
+分支编号与用例规约一致；各alt片段共享认证、版本检查和事务骨架。页面经HTTP适配层访问业务服务，收到响应后在本地展示结果；返回虚线不表示方法调用。
 
 图4-09b 备选流顺序图
 
@@ -477,11 +481,11 @@ change接收JOIN或WITHDRAW。先锁活动，使同一活动的名额竞争串�
 
 需求与验收追踪：FR-12、13；BR-05、15、16、26；D-AT-15／16／20／21；页面UI-04。
 
-参与类关系：ActivityDetailPage ..> RegistrationService；RegistrationService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
+参与类关系：ActivityDetailPage ..> HttpController；HttpController ..> RegistrationService；RegistrationService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
 
 #### UC-10 备选流与异常流
 
-分支编号与用例规约一致；每个alt片段为该条件下的独立执行轨迹，与基本流共享认证、版本检查和事务骨架。返回虚线是结果，不要求作为类操作。
+分支编号与用例规约一致；各alt片段共享认证、版本检查和事务骨架。页面经HTTP适配层访问业务服务，收到响应后在本地展示结果；返回虚线不表示方法调用。
 
 图4-10b 备选流顺序图
 
@@ -517,11 +521,11 @@ preview的alternatives=false调用check，true调用alternatives，是两个只�
 
 需求与验收追踪：FR-14、15；BR-17～20、25；D-AT-04～06／09／13／22、N-AT-03；页面UI-07。
 
-参与类关系：ChangeWorkbenchPage ..> ScheduleQueryService；ScheduleQueryService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
+参与类关系：ChangeWorkbenchPage ..> HttpController；HttpController ..> ScheduleQueryService；ScheduleQueryService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
 
 #### UC-11 备选流与异常流
 
-分支编号与用例规约一致；每个alt片段为该条件下的独立执行轨迹，与基本流共享认证、版本检查和事务骨架。返回虚线是结果，不要求作为类操作。
+分支编号与用例规约一致；各alt片段共享认证、版本检查和事务骨架。页面经HTTP适配层访问业务服务，收到响应后在本地展示结果；返回虚线不表示方法调用。
 
 图4-11b 备选流顺序图
 
@@ -553,11 +557,11 @@ preview的alternatives=false调用check，true调用alternatives，是两个只�
 
 需求与验收追踪：FR-16、17；BR-20～22、26、27；D-AT-09／10／15／20、N-AT-03／04；页面UI-07。
 
-参与类关系：ChangeWorkbenchPage ..> ChangeService；ChangeService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
+参与类关系：ChangeWorkbenchPage ..> HttpController；HttpController ..> ChangeService；ChangeService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
 
 #### UC-12 备选流与异常流
 
-分支编号与用例规约一致；每个alt片段为该条件下的独立执行轨迹，与基本流共享认证、版本检查和事务骨架。返回虚线是结果，不要求作为类操作。
+分支编号与用例规约一致；各alt片段共享认证、版本检查和事务骨架。页面经HTTP适配层访问业务服务，收到响应后在本地展示结果；返回虚线不表示方法调用。
 
 图4-12b 备选流顺序图
 
@@ -589,11 +593,11 @@ preview的alternatives=false调用check，true调用alternatives，是两个只�
 
 需求与验收追踪：FR-18；BR-05、23、26、31；D-AT-10／11／19／21；页面UI-08。
 
-参与类关系：ChangeDetailPage ..> ChangeService；ChangeService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
+参与类关系：ChangeDetailPage ..> HttpController；HttpController ..> ChangeService；ChangeService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
 
 #### UC-13 备选流与异常流
 
-分支编号与用例规约一致；每个alt片段为该条件下的独立执行轨迹，与基本流共享认证、版本检查和事务骨架。返回虚线是结果，不要求作为类操作。
+分支编号与用例规约一致；各alt片段共享认证、版本检查和事务骨架。页面经HTTP适配层访问业务服务，收到响应后在本地展示结果；返回虚线不表示方法调用。
 
 图4-13b 备选流顺序图
 
@@ -625,11 +629,11 @@ preview的alternatives=false调用check，true调用alternatives，是两个只�
 
 需求与验收追踪：FR-19；BR-02、24、26；D-AT-10／11／20、N-AT-06；页面UI-08／09。
 
-参与类关系：ReviewPage ..> ChangeService；ChangeService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
+参与类关系：ReviewPage ..> HttpController；HttpController ..> ChangeService；ChangeService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
 
 #### UC-14 备选流与异常流
 
-分支编号与用例规约一致；每个alt片段为该条件下的独立执行轨迹，与基本流共享认证、版本检查和事务骨架。返回虚线是结果，不要求作为类操作。
+分支编号与用例规约一致；各alt片段共享认证、版本检查和事务骨架。页面经HTTP适配层访问业务服务，收到响应后在本地展示结果；返回虚线不表示方法调用。
 
 图4-14b 备选流顺序图
 
@@ -657,11 +661,11 @@ preview的alternatives=false调用check，true调用alternatives，是两个只�
 
 需求与验收追踪：FR-20；BR-24～27、30、31；D-AT-10／12～14／17～20、N-AT-04／05；页面UI-08／09。
 
-参与类关系：ReviewPage ..> ChangeService；ChangeService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
+参与类关系：ReviewPage ..> HttpController；HttpController ..> ChangeService；ChangeService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
 
 #### UC-15 备选流与异常流
 
-分支编号与用例规约一致；每个alt片段为该条件下的独立执行轨迹，与基本流共享认证、版本检查和事务骨架。返回虚线是结果，不要求作为类操作。
+分支编号与用例规约一致；各alt片段共享认证、版本检查和事务骨架。页面经HTTP适配层访问业务服务，收到响应后在本地展示结果；返回虚线不表示方法调用。
 
 图4-15b 备选流顺序图
 
@@ -697,11 +701,11 @@ preview的alternatives=false调用check，true调用alternatives，是两个只�
 
 需求与验收追踪：FR-17；BR-21、26、27、30；撤回及与最终确认竞争的检查场景；页面UI-08。
 
-参与类关系：ChangeDetailPage ..> ChangeService；ChangeService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
+参与类关系：ChangeDetailPage ..> HttpController；HttpController ..> ChangeService；ChangeService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
 
 #### UC-16 备选流与异常流
 
-分支编号与用例规约一致；每个alt片段为该条件下的独立执行轨迹，与基本流共享认证、版本检查和事务骨架。返回虚线是结果，不要求作为类操作。
+分支编号与用例规约一致；各alt片段共享认证、版本检查和事务骨架。页面经HTTP适配层访问业务服务，收到响应后在本地展示结果；返回虚线不表示方法调用。
 
 图4-16b 备选流顺序图
 
@@ -727,11 +731,11 @@ preview的alternatives=false调用check，true调用alternatives，是两个只�
 
 需求与验收追踪：FR-21；BR-28～31；D-AT-17／08；页面UI-04。
 
-参与类关系：ActivityDetailPage ..> ActivityService；ActivityService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
+参与类关系：ActivityDetailPage ..> HttpController；HttpController ..> ActivityService；ActivityService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
 
 #### UC-17 备选流与异常流
 
-分支编号与用例规约一致；每个alt片段为该条件下的独立执行轨迹，与基本流共享认证、版本检查和事务骨架。返回虚线是结果，不要求作为类操作。
+分支编号与用例规约一致；各alt片段共享认证、版本检查和事务骨架。页面经HTTP适配层访问业务服务，收到响应后在本地展示结果；返回虚线不表示方法调用。
 
 图4-17b 备选流顺序图
 
@@ -765,11 +769,11 @@ preview的alternatives=false调用check，true调用alternatives，是两个只�
 
 需求与验收追踪：FR-22；BR-09、10、27；D-AT-18；页面UI-06／05／04。
 
-参与类关系：ResourceAdminPage ..> ResourceService；ResourceService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
+参与类关系：ResourceAdminPage ..> HttpController；HttpController ..> ResourceService；ResourceService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
 
 #### UC-18 备选流与异常流
 
-分支编号与用例规约一致；每个alt片段为该条件下的独立执行轨迹，与基本流共享认证、版本检查和事务骨架。返回虚线是结果，不要求作为类操作。
+分支编号与用例规约一致；各alt片段共享认证、版本检查和事务骨架。页面经HTTP适配层访问业务服务，收到响应后在本地展示结果；返回虚线不表示方法调用。
 
 图4-18b 备选流顺序图
 
@@ -801,11 +805,11 @@ preview的alternatives=false调用check，true调用alternatives，是两个只�
 
 需求与验收追踪：FR-23；BR-05、31、32；D-AT-19／21／23；页面UI-10。
 
-参与类关系：NotificationPage ..> NotificationService；NotificationService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
+参与类关系：NotificationPage ..> HttpController；HttpController ..> NotificationService；NotificationService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
 
 #### UC-19 备选流与异常流
 
-分支编号与用例规约一致；每个alt片段为该条件下的独立执行轨迹，与基本流共享认证、版本检查和事务骨架。返回虚线是结果，不要求作为类操作。
+分支编号与用例规约一致；各alt片段共享认证、版本检查和事务骨架。页面经HTTP适配层访问业务服务，收到响应后在本地展示结果；返回虚线不表示方法调用。
 
 图4-19b 备选流顺序图
 
@@ -835,11 +839,11 @@ preview的alternatives=false调用check，true调用alternatives，是两个只�
 
 需求与验收追踪：FR-13、24；BR-05、11、16、22、31；D-AT-10／19／21／23；页面UI-04／08。
 
-参与类关系：ActivityDetailPage ..> ActivityQueryService；ActivityQueryService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
+参与类关系：ActivityDetailPage ..> HttpController；HttpController ..> ActivityQueryService；ActivityQueryService通过图中接口调用协作类。全部调用操作见第5章；实体关联与实现关系分别见图2-2、图2-3。
 
 #### UC-20 备选流与异常流
 
-分支编号与用例规约一致；每个alt片段为该条件下的独立执行轨迹，与基本流共享认证、版本检查和事务骨架。返回虚线是结果，不要求作为类操作。
+分支编号与用例规约一致；各alt片段共享认证、版本检查和事务骨架。页面经HTTP适配层访问业务服务，收到响应后在本地展示结果；返回虚线不表示方法调用。
 
 图4-20b 备选流顺序图
 
@@ -885,11 +889,12 @@ preview的alternatives=false调用check，true调用alternatives，是两个只�
 | ChangeRepository | 设计 | +insert(); +lock(); +markApplied(); +markConflicted(); +markWithdrawn(); +saveConfirmation(); +saveDecision() |
 | ChangeService | 设计 | +confirm(); +confirmResources(); +create(); +decide(); +list(); +preview(); +withdraw() |
 | ChangeWorkbenchPage | 设计 | +render(); +selectPlan() |
+| ChangeDetailPage | 设计 | +render() |
 | CommandExecutor | 已有 | +execute() |
 | CommandReceiptRepository | 职责抽象 | +lockReceipt(); +saveResult() |
 | ConstraintChecker | 已有 | +check(); +validate() |
 | EventPort | 接口 | +append() |
-| HttpController | 设计 | +respond() |
+| HttpController | HTTP适配职责抽象 | +handle(apiId); +respond() |
 | LoginPage | 设计 | +clearSession(); +render() |
 | NotificationPage | 设计 | +render() |
 | NotificationRepository | 设计 | +listByRecipient(); +markRead() |
@@ -1132,547 +1137,791 @@ sequenceDiagram
  CommandExecutor->>BusinessAction: run()
  BusinessAction->>EventPort: append()
  CommandExecutor->>CommandReceiptRepository: saveResult()
- CommandExecutor->>HttpController: respond()
+ CommandExecutor-->>HttpController: 命令结果
+ HttpController->>HttpController: respond()
 ```
 
 ```mermaid
 sequenceDiagram
  participant LoginPage
+ participant HttpController
  participant SessionService
  participant AccountRepository
- LoginPage->>SessionService: login()
+ LoginPage->>HttpController: handle(API-01)
+ HttpController->>SessionService: login()
  SessionService->>AccountRepository: get()
- SessionService->>LoginPage: render()
- LoginPage->>SessionService: authenticate()
- LoginPage->>SessionService: logout()
- SessionService->>LoginPage: clearSession()
+ SessionService-->>HttpController: 业务结果
+ HttpController-->>LoginPage: HTTP 响应
+ LoginPage->>LoginPage: render()
+ LoginPage->>HttpController: handle(API-02)
+ HttpController->>SessionService: authenticate()
+ SessionService-->>HttpController: 业务结果
+ HttpController-->>LoginPage: HTTP 响应
+ LoginPage->>LoginPage: render()
+ LoginPage->>HttpController: handle(API-03)
+ HttpController->>SessionService: logout()
+ SessionService-->>HttpController: 业务结果
+ HttpController-->>LoginPage: HTTP 响应
+ LoginPage->>LoginPage: clearSession()
 ```
 
 ```mermaid
 sequenceDiagram
  participant LoginPage
+ participant HttpController
  participant SessionService
  alt 2a 密码错误、账号停用或认证失败，显示统一认证错误且不建立会话
- LoginPage->>SessionService: login()
- SessionService-->>LoginPage: 2a 分支结果（见正文）
+ LoginPage->>HttpController: handle(API-01)
+ HttpController->>SessionService: login()
+ SessionService-->>HttpController: 2a 分支结果（见正文）
+ HttpController-->>LoginPage: HTTP 响应
  end
  alt 3a 会话过期或被停用，后续请求拒绝并要求重新登录
- LoginPage->>SessionService: authenticate()
- SessionService-->>LoginPage: 3a 分支结果（见正文）
+ LoginPage->>HttpController: handle(API-02)
+ HttpController->>SessionService: authenticate()
+ SessionService-->>HttpController: 3a 分支结果（见正文）
+ HttpController-->>LoginPage: HTTP 响应
  end
  alt 4a 刷新页面时校验当前会话，校验失败回登录
- LoginPage->>SessionService: authenticate()
- SessionService-->>LoginPage: 4a 分支结果（见正文）
+ LoginPage->>HttpController: handle(API-02)
+ HttpController->>SessionService: authenticate()
+ SessionService-->>HttpController: 4a 分支结果（见正文）
+ HttpController-->>LoginPage: HTTP 响应
  end
  alt 6a 退出网络结果不明确时，清除本地会话并提示服务器退出结果待核实，不展示虚假成功。
- LoginPage->>SessionService: logout()
- SessionService-->>LoginPage: 6a 分支结果（见正文）
+ LoginPage->>HttpController: handle(API-03)
+ HttpController->>SessionService: logout()
+ SessionService-->>HttpController: 6a 分支结果（见正文）
+ HttpController-->>LoginPage: HTTP 响应
  end
 ```
 
 ```mermaid
 sequenceDiagram
  participant UserAdminPage
+ participant HttpController
  participant UserService
  participant AccountPort
  participant AccountRepository
- UserAdminPage->>UserService: list()
- UserAdminPage->>UserService: create()
+ UserAdminPage->>HttpController: handle(API-04)
+ HttpController->>UserService: list()
+ UserService-->>HttpController: 业务结果
+ HttpController-->>UserAdminPage: HTTP 响应
+ UserAdminPage->>UserAdminPage: render()
+ UserAdminPage->>HttpController: handle(API-05)
+ HttpController->>UserService: create()
  UserService->>AccountPort: lock()
- UserAdminPage->>UserService: replace()
+ UserService-->>HttpController: 业务结果
+ HttpController-->>UserAdminPage: HTTP 响应
+ UserAdminPage->>UserAdminPage: render()
+ UserAdminPage->>HttpController: handle(API-39)
+ HttpController->>UserService: replace()
  UserService->>AccountRepository: replace()
- UserAdminPage->>UserService: enabled()
- UserService->>UserAdminPage: render()
+ UserService-->>HttpController: 业务结果
+ HttpController-->>UserAdminPage: HTTP 响应
+ UserAdminPage->>UserAdminPage: render()
+ UserAdminPage->>HttpController: handle(API-06)
+ HttpController->>UserService: enabled()
+ UserService-->>HttpController: 业务结果
+ HttpController-->>UserAdminPage: HTTP 响应
+ UserAdminPage->>UserAdminPage: render()
 ```
 
 ```mermaid
 sequenceDiagram
  participant UserAdminPage
+ participant HttpController
  participant UserService
  alt 4a 用户名重复、组织不存在、密码不足8位或授权字段无效，拒绝并保留输入
- UserAdminPage->>UserService: create()
- UserService-->>UserAdminPage: 4a 分支结果（见正文）
+ UserAdminPage->>HttpController: handle(API-05)
+ HttpController->>UserService: create()
+ UserService-->>HttpController: 4a 分支结果（见正文）
+ HttpController-->>UserAdminPage: HTTP 响应
  end
  alt 4b 只有资源权限的管理员尝试管理账号，拒绝
- UserAdminPage->>UserService: create()
- UserService-->>UserAdminPage: 4b 分支结果（见正文）
+ UserAdminPage->>HttpController: handle(API-05)
+ HttpController->>UserService: create()
+ UserService-->>HttpController: 4b 分支结果（见正文）
+ HttpController-->>UserAdminPage: HTTP 响应
  end
  alt 5a 停用使现存令牌失效
- UserAdminPage->>UserService: enabled()
- UserService-->>UserAdminPage: 5a 分支结果（见正文）
+ UserAdminPage->>HttpController: handle(API-06)
+ HttpController->>UserService: enabled()
+ UserService-->>HttpController: 5a 分支结果（见正文）
+ HttpController-->>UserAdminPage: HTTP 响应
  end
  alt 5b 授权变更后后续操作按最新权限检查；身份变更后，新的申请和待资源复核事项应重新检查申请资格。
- UserAdminPage->>UserService: replace()
- UserService-->>UserAdminPage: 5b 分支结果（见正文）
+ UserAdminPage->>HttpController: handle(API-39)
+ HttpController->>UserService: replace()
+ UserService-->>HttpController: 5b 分支结果（见正文）
+ HttpController-->>UserAdminPage: HTTP 响应
  end
 ```
 
 ```mermaid
 sequenceDiagram
  participant CalendarPage
+ participant HttpController
  participant ActivityQueryService
  participant ResourceService
  participant ResourceRepository
  participant SchedulingPort
- CalendarPage->>ActivityQueryService: list()
- CalendarPage->>ResourceService: list()
- CalendarPage->>ResourceService: calendar()
+ CalendarPage->>HttpController: handle(API-13)
+ HttpController->>ActivityQueryService: list()
+ ActivityQueryService-->>HttpController: 业务结果
+ HttpController-->>CalendarPage: HTTP 响应
+ CalendarPage->>CalendarPage: render()
+ CalendarPage->>HttpController: handle(API-07)
+ HttpController->>ResourceService: list()
+ ResourceService-->>HttpController: 业务结果
+ HttpController-->>CalendarPage: HTTP 响应
+ CalendarPage->>CalendarPage: render()
+ CalendarPage->>HttpController: handle(API-09)
+ HttpController->>ResourceService: calendar()
  ResourceService->>ResourceRepository: calendar()
- CalendarPage->>ActivityQueryService: get()
+ ResourceService-->>HttpController: 业务结果
+ HttpController-->>CalendarPage: HTTP 响应
+ CalendarPage->>CalendarPage: render()
+ CalendarPage->>HttpController: handle(API-14)
+ HttpController->>ActivityQueryService: get()
  ActivityQueryService->>SchedulingPort: risk()
- ActivityQueryService->>CalendarPage: render()
+ ActivityQueryService-->>HttpController: 业务结果
+ HttpController-->>CalendarPage: HTTP 响应
+ CalendarPage->>CalendarPage: render()
 ```
 
 ```mermaid
 sequenceDiagram
  participant CalendarPage
+ participant HttpController
  participant ActivityQueryService
  participant ResourceService
  alt 1a 无数据提供创建或调整筛选入口
- CalendarPage->>ActivityQueryService: list()
- ActivityQueryService-->>CalendarPage: 1a 分支结果（见正文）
+ CalendarPage->>HttpController: handle(API-13)
+ HttpController->>ActivityQueryService: list()
+ ActivityQueryService-->>HttpController: 1a 分支结果（见正文）
+ HttpController-->>CalendarPage: HTTP 响应
  end
  alt 1b 列表截断提示最多200项，不能显示为完整总数
- CalendarPage->>ActivityQueryService: list()
- ActivityQueryService-->>CalendarPage: 1b 分支结果（见正文）
+ CalendarPage->>HttpController: handle(API-13)
+ HttpController->>ActivityQueryService: list()
+ ActivityQueryService-->>HttpController: 1b 分支结果（见正文）
+ HttpController-->>CalendarPage: HTTP 响应
  end
  alt 2a 日历请求超过7天拒绝并提示调整范围
- CalendarPage->>ResourceService: calendar()
- ResourceService-->>CalendarPage: 2a 分支结果（见正文）
+ CalendarPage->>HttpController: handle(API-09)
+ HttpController->>ResourceService: calendar()
+ ResourceService-->>HttpController: 2a 分支结果（见正文）
+ HttpController-->>CalendarPage: HTTP 响应
  end
  alt 5a 无私有活动访问权限，只显示“已占用”并无私有详情链接
- CalendarPage->>ResourceService: calendar()
- ResourceService-->>CalendarPage: 5a 分支结果（见正文）
+ CalendarPage->>HttpController: handle(API-09)
+ HttpController->>ResourceService: calendar()
+ ResourceService-->>HttpController: 5a 分支结果（见正文）
+ HttpController-->>CalendarPage: HTTP 响应
  end
  alt 6a 不存在／无权限分别给出对应反馈，不泄露名单。
- CalendarPage->>ActivityQueryService: get()
- ActivityQueryService-->>CalendarPage: 6a 分支结果（见正文）
+ CalendarPage->>HttpController: handle(API-14)
+ HttpController->>ActivityQueryService: get()
+ ActivityQueryService-->>HttpController: 6a 分支结果（见正文）
+ HttpController-->>CalendarPage: HTTP 响应
  end
 ```
 
 ```mermaid
 sequenceDiagram
  participant ResourceAdminPage
+ participant HttpController
  participant ResourceService
  participant AccountPort
  participant ResourceRepository
- ResourceAdminPage->>ResourceService: create()
+ ResourceAdminPage->>HttpController: handle(API-08)
+ HttpController->>ResourceService: create()
  ResourceService->>AccountPort: lock()
  ResourceService->>ResourceRepository: create()
  ResourceService->>AccountPort: grantResource()
- ResourceAdminPage->>ResourceService: eligibility()
+ ResourceService-->>HttpController: 业务结果
+ HttpController-->>ResourceAdminPage: HTTP 响应
+ ResourceAdminPage->>ResourceAdminPage: render()
+ ResourceAdminPage->>HttpController: handle(API-40)
+ HttpController->>ResourceService: eligibility()
  ResourceService->>ResourceRepository: eligibility()
- ResourceService->>ResourceAdminPage: render()
+ ResourceService-->>HttpController: 业务结果
+ HttpController-->>ResourceAdminPage: HTTP 响应
+ ResourceAdminPage->>ResourceAdminPage: render()
 ```
 
 ```mermaid
 sequenceDiagram
  participant ResourceAdminPage
+ participant HttpController
  participant ResourceService
+ participant ActivityEditPage
+ participant ActivityService
  participant SchedulingPort
  alt 3a 场地quantity不为1、容量非正、设备capacity非空、库存非正或开放时间逆序，拒绝
- ResourceAdminPage->>ResourceService: create()
- ResourceService-->>ResourceAdminPage: 3a 分支结果（见正文）
+ ResourceAdminPage->>HttpController: handle(API-08)
+ HttpController->>ResourceService: create()
+ ResourceService-->>HttpController: 3a 分支结果（见正文）
+ HttpController-->>ResourceAdminPage: HTTP 响应
  end
  alt 5a 调整资格后待确认申请按最新资格检查
- ResourceAdminPage->>ResourceService: eligibility()
- ResourceService-->>ResourceAdminPage: 5a 分支结果（见正文）
+ ResourceAdminPage->>HttpController: handle(API-40)
+ HttpController->>ResourceService: eligibility()
+ ResourceService-->>HttpController: 5a 分支结果（见正文）
+ HttpController-->>ResourceAdminPage: HTTP 响应
  end
  alt 5b 已生效预约保留
- ResourceAdminPage->>ResourceService: eligibility()
- ResourceService-->>ResourceAdminPage: 5b 分支结果（见正文）
+ ResourceAdminPage->>HttpController: handle(API-40)
+ HttpController->>ResourceService: eligibility()
+ ResourceService-->>HttpController: 5b 分支结果（见正文）
+ HttpController-->>ResourceAdminPage: HTTP 响应
  end
  alt 5c 尝试修改创建后的容量、库存、时段、名称或类别，首版不给修改入口
- ResourceAdminPage->>ResourceService: eligibility()
- ResourceService-->>ResourceAdminPage: 5c 分支结果（见正文）
+ Note over ResourceAdminPage: 无修改入口，不发送请求
  end
  alt 6a 两类均关闭时拒绝新增申请。
- ResourceAdminPage->>SchedulingPort: check()
- SchedulingPort-->>ResourceAdminPage: 6a 分支结果（见正文）
+ Note over ActivityEditPage,ActivityService: 后续活动提交场景，资格更新本身允许双关闭
+ ActivityEditPage->>HttpController: handle(API-16)
+ HttpController->>ActivityService: submit()
+ ActivityService->>SchedulingPort: check()
+ SchedulingPort-->>ActivityService: 资格受限
+ ActivityService-->>HttpController: 拒绝提交
+ HttpController-->>ActivityEditPage: HTTP 403 / RESOURCE_INELIGIBLE
  end
 ```
 
 ```mermaid
 sequenceDiagram
  participant ActivityEditPage
+ participant HttpController
  participant ActivityService
  participant ActivityRepository
  participant ScheduleQueryService
- ActivityEditPage->>ActivityService: create()
+ ActivityEditPage->>HttpController: handle(API-12)
+ HttpController->>ActivityService: create()
  ActivityService->>ActivityRepository: insertVersion()
- ActivityEditPage->>ActivityService: edit()
+ ActivityService-->>HttpController: 业务结果
+ HttpController-->>ActivityEditPage: HTTP 响应
+ ActivityEditPage->>ActivityEditPage: render()
+ ActivityEditPage->>HttpController: handle(API-15)
+ HttpController->>ActivityService: edit()
  ActivityService->>ActivityRepository: lock()
  ActivityService->>ActivityRepository: insertVersion()
- ActivityEditPage->>ScheduleQueryService: preview()
- ActivityService->>ActivityEditPage: render()
+ ActivityService-->>HttpController: 业务结果
+ HttpController-->>ActivityEditPage: HTTP 响应
+ ActivityEditPage->>ActivityEditPage: render()
+ ActivityEditPage->>HttpController: handle(API-24/25)
+ HttpController->>ScheduleQueryService: preview()
+ ScheduleQueryService-->>HttpController: 业务结果
+ HttpController-->>ActivityEditPage: HTTP 响应
+ ActivityEditPage->>ActivityEditPage: render()
 ```
 
 ```mermaid
 sequenceDiagram
  participant ActivityEditPage
+ participant HttpController
  participant ActivityService
  participant ScheduleQueryService
  alt 4a 时间在过去、时长越界、人数不符、资源类型错误或人员无效，贴近字段提示
- ActivityEditPage->>ActivityService: create()
- ActivityService-->>ActivityEditPage: 4a 分支结果（见正文）
+ ActivityEditPage->>HttpController: handle(API-12)
+ HttpController->>ActivityService: create()
+ ActivityService-->>HttpController: 4a 分支结果（见正文）
+ HttpController-->>ActivityEditPage: HTTP 响应
  end
  alt 4b 资源受限显示原因，提交前必须更换
- ActivityEditPage->>ActivityService: create()
- ActivityService-->>ActivityEditPage: 4b 分支结果（见正文）
+ ActivityEditPage->>HttpController: handle(API-12)
+ HttpController->>ActivityService: create()
+ ActivityService-->>HttpController: 4b 分支结果（见正文）
+ HttpController-->>ActivityEditPage: HTTP 响应
  end
  alt 5a 非草稿禁止直接修改，已预约活动提示改期入口
- ActivityEditPage->>ActivityService: edit()
- ActivityService-->>ActivityEditPage: 5a 分支结果（见正文）
+ ActivityEditPage->>HttpController: handle(API-15)
+ HttpController->>ActivityService: edit()
+ ActivityService-->>HttpController: 5a 分支结果（见正文）
+ HttpController-->>ActivityEditPage: HTTP 响应
  end
  alt 5b 旧lockVersion返回STALE_VERSION，保留输入并加载最新状态
- ActivityEditPage->>ActivityService: edit()
- ActivityService-->>ActivityEditPage: 5b 分支结果（见正文）
+ ActivityEditPage->>HttpController: handle(API-15)
+ HttpController->>ActivityService: edit()
+ ActivityService-->>HttpController: 5b 分支结果（见正文）
+ HttpController-->>ActivityEditPage: HTTP 响应
  end
  alt 6a 存在资源占用冲突可保存符合输入约束的草稿，但不得称为已预约。
- ActivityEditPage->>ScheduleQueryService: preview()
- ScheduleQueryService-->>ActivityEditPage: 6a 分支结果（见正文）
+ ActivityEditPage->>HttpController: handle(API-24/25)
+ HttpController->>ScheduleQueryService: preview()
+ ScheduleQueryService-->>HttpController: 6a 分支结果（见正文）
+ HttpController-->>ActivityEditPage: HTTP 响应
  end
 ```
 
 ```mermaid
 sequenceDiagram
  participant ActivityDetailPage
+ participant HttpController
  participant ActivityService
  participant ActivityRepository
  participant AccountPort
  participant SchedulingPort
  participant EventPort
- ActivityDetailPage->>ActivityService: submit()
+ ActivityDetailPage->>HttpController: handle(API-16)
+ HttpController->>ActivityService: submit()
  ActivityService->>ActivityRepository: lock()
  ActivityService->>AccountPort: lock()
  ActivityService->>SchedulingPort: check()
  ActivityService->>ActivityRepository: saveState()
  ActivityService->>EventPort: append()
- ActivityDetailPage->>ActivityService: withdraw()
+ ActivityService-->>HttpController: 业务结果
+ HttpController-->>ActivityDetailPage: HTTP 响应
+ ActivityDetailPage->>ActivityDetailPage: render()
+ ActivityDetailPage->>HttpController: handle(API-17)
+ HttpController->>ActivityService: withdraw()
+ ActivityService-->>HttpController: 业务结果
+ HttpController-->>ActivityDetailPage: HTTP 响应
+ ActivityDetailPage->>ActivityDetailPage: render()
 ```
 
 ```mermaid
 sequenceDiagram
  participant ActivityDetailPage
+ participant HttpController
  participant ActivityService
  alt 2a 任一资源资格受限拒绝提交且不占资源
- ActivityDetailPage->>ActivityService: submit()
- ActivityService-->>ActivityDetailPage: 2a 分支结果（见正文）
+ ActivityDetailPage->>HttpController: handle(API-16)
+ HttpController->>ActivityService: submit()
+ ActivityService-->>HttpController: 2a 分支结果（见正文）
+ HttpController-->>ActivityDetailPage: HTTP 响应
  end
  alt 2b 并发审批或他人更新导致版本过期，刷新后重新选择操作
- ActivityDetailPage->>ActivityService: submit()
- ActivityService-->>ActivityDetailPage: 2b 分支结果（见正文）
+ ActivityDetailPage->>HttpController: handle(API-16)
+ HttpController->>ActivityService: submit()
+ ActivityService-->>HttpController: 2b 分支结果（见正文）
+ HttpController-->>ActivityDetailPage: HTTP 响应
  end
  alt 5a 已预约或已发布禁止此撤回方式，应改期或取消
- ActivityDetailPage->>ActivityService: withdraw()
- ActivityService-->>ActivityDetailPage: 5a 分支结果（见正文）
+ ActivityDetailPage->>HttpController: handle(API-17)
+ HttpController->>ActivityService: withdraw()
+ ActivityService-->>HttpController: 5a 分支结果（见正文）
+ HttpController-->>ActivityDetailPage: HTTP 响应
  end
  alt 5b 旧审批保留历史但不对新版本有效。
- ActivityDetailPage->>ActivityService: withdraw()
- ActivityService-->>ActivityDetailPage: 5b 分支结果（见正文）
+ ActivityDetailPage->>HttpController: handle(API-17)
+ HttpController->>ActivityService: withdraw()
+ ActivityService-->>HttpController: 5b 分支结果（见正文）
+ HttpController-->>ActivityDetailPage: HTTP 响应
  end
 ```
 
 ```mermaid
 sequenceDiagram
  participant ReviewPage
+ participant HttpController
  participant ActivityService
  participant ActivityRepository
  participant AccountPort
  participant AuthorizationPolicy
  participant EventPort
- ReviewPage->>ActivityService: decide()
+ ReviewPage->>HttpController: handle(API-18)
+ HttpController->>ActivityService: decide()
  ActivityService->>ActivityRepository: lock()
  ActivityService->>AccountPort: lock()
  ActivityService->>AuthorizationPolicy: approval()
  ActivityService->>ActivityRepository: saveApproval()
  ActivityService->>EventPort: append()
- ActivityService->>ReviewPage: render()
+ ActivityService-->>HttpController: 业务结果
+ HttpController-->>ReviewPage: HTTP 响应
+ ReviewPage->>ReviewPage: render()
 ```
 
 ```mermaid
 sequenceDiagram
  participant ReviewPage
+ participant HttpController
  participant ActivityService
  alt 2a 驳回必须说明理由，记录后回DRAFT
- ReviewPage->>ActivityService: decide()
- ActivityService-->>ReviewPage: 2a 分支结果（见正文）
+ ReviewPage->>HttpController: handle(API-18)
+ HttpController->>ActivityService: decide()
+ ActivityService-->>HttpController: 2a 分支结果（见正文）
+ HttpController-->>ReviewPage: HTTP 响应
  end
  alt 3a 仅有教师身份、组织不符、类别不在范围或本人活动均拒绝
- ReviewPage->>ActivityService: decide()
- ActivityService-->>ReviewPage: 3a 分支结果（见正文）
+ ReviewPage->>HttpController: handle(API-18)
+ HttpController->>ActivityService: decide()
+ ActivityService-->>HttpController: 3a 分支结果（见正文）
+ HttpController-->>ReviewPage: HTTP 响应
  end
  alt 3b 已撤回或其他人已处理，禁止覆盖，显示当前状态。
- ReviewPage->>ActivityService: decide()
- ActivityService-->>ReviewPage: 3b 分支结果（见正文）
+ ReviewPage->>HttpController: handle(API-18)
+ HttpController->>ActivityService: decide()
+ ActivityService-->>HttpController: 3b 分支结果（见正文）
+ HttpController-->>ReviewPage: HTTP 响应
  end
 ```
 
 ```mermaid
 sequenceDiagram
  participant ReviewPage
+ participant HttpController
  participant ActivityService
  participant ActivityRepository
  participant AccountPort
  participant SchedulingPort
  participant EventPort
- ReviewPage->>ActivityService: confirmResources()
+ ReviewPage->>HttpController: handle(API-19)
+ HttpController->>ActivityService: confirmResources()
  ActivityService->>ActivityRepository: lock()
  ActivityService->>AccountPort: lock()
  ActivityService->>SchedulingPort: lockAndCheck()
  ActivityService->>SchedulingPort: replaceReservations()
  ActivityService->>ActivityRepository: markScheduled()
  ActivityService->>EventPort: append()
+ ActivityService-->>HttpController: 业务结果
+ HttpController-->>ReviewPage: HTTP 响应
+ ReviewPage->>ReviewPage: render()
 ```
 
 ```mermaid
 sequenceDiagram
  participant ReviewPage
+ participant HttpController
  participant ActivityService
  alt 3a 任一资源冲突，返回详细冲突，保持APPROVED_UNRESERVED、无部分预约
- ReviewPage->>ActivityService: confirmResources()
- ActivityService-->>ReviewPage: 3a 分支结果（见正文）
+ ReviewPage->>HttpController: handle(API-19)
+ HttpController->>ActivityService: confirmResources()
+ ActivityService-->>HttpController: 3a 分支结果（见正文）
+ HttpController-->>ReviewPage: HTTP 响应
  end
  alt 3b 资格已调整或权限不足，拒绝，不产生预约
- ReviewPage->>ActivityService: confirmResources()
- ActivityService-->>ReviewPage: 3b 分支结果（见正文）
+ ReviewPage->>HttpController: handle(API-19)
+ HttpController->>ActivityService: confirmResources()
+ ActivityService-->>HttpController: 3b 分支结果（见正文）
+ HttpController-->>ReviewPage: HTTP 响应
  end
  alt 3c 两个活动同时抢相同场地，最多一个成功，另一得到冲突
- ReviewPage->>ActivityService: confirmResources()
- ActivityService-->>ReviewPage: 3c 分支结果（见正文）
+ ReviewPage->>HttpController: handle(API-19)
+ HttpController->>ActivityService: confirmResources()
+ ActivityService-->>HttpController: 3c 分支结果（见正文）
+ HttpController-->>ReviewPage: HTTP 响应
  end
  alt 4a 数据库异常整体回滚
- ReviewPage->>ActivityService: confirmResources()
- ActivityService-->>ReviewPage: 4a 分支结果（见正文）
+ ReviewPage->>HttpController: handle(API-19)
+ HttpController->>ActivityService: confirmResources()
+ ActivityService-->>HttpController: 4a 分支结果（见正文）
+ HttpController-->>ReviewPage: HTTP 响应
  end
  alt 6a 重复相同命令重放原结果，不重复占用。
- ReviewPage->>ActivityService: confirmResources()
- ActivityService-->>ReviewPage: 6a 分支结果（见正文）
+ ReviewPage->>HttpController: handle(API-19)
+ HttpController->>ActivityService: confirmResources()
+ ActivityService-->>HttpController: 6a 分支结果（见正文）
+ HttpController-->>ReviewPage: HTTP 响应
  end
 ```
 
 ```mermaid
 sequenceDiagram
  participant ActivityDetailPage
+ participant HttpController
  participant ActivityService
  participant ActivityRepository
  participant AccountPort
  participant SchedulingPort
  participant EventPort
- ActivityDetailPage->>ActivityService: publish()
+ ActivityDetailPage->>HttpController: handle(API-20)
+ HttpController->>ActivityService: publish()
  ActivityService->>ActivityRepository: lock()
  ActivityService->>AccountPort: lock()
  ActivityService->>SchedulingPort: risk()
  ActivityService->>ActivityRepository: saveState()
  ActivityService->>EventPort: append()
- ActivityService->>ActivityDetailPage: render()
+ ActivityService-->>HttpController: 业务结果
+ HttpController-->>ActivityDetailPage: HTTP 响应
+ ActivityDetailPage->>ActivityDetailPage: render()
 ```
 
 ```mermaid
 sequenceDiagram
  participant ActivityDetailPage
+ participant HttpController
  participant ActivityService
  alt 3a 未确认资源、已开始、故障风险或无权限，拒绝并说明
- ActivityDetailPage->>ActivityService: publish()
- ActivityService-->>ActivityDetailPage: 3a 分支结果（见正文）
+ ActivityDetailPage->>HttpController: handle(API-20)
+ HttpController->>ActivityService: publish()
+ ActivityService-->>HttpController: 3a 分支结果（见正文）
+ HttpController-->>ActivityDetailPage: HTTP 响应
  end
  alt 3b 状态已变化，刷新后展示最新结果。
- ActivityDetailPage->>ActivityService: publish()
- ActivityService-->>ActivityDetailPage: 3b 分支结果（见正文）
+ ActivityDetailPage->>HttpController: handle(API-20)
+ HttpController->>ActivityService: publish()
+ ActivityService-->>HttpController: 3b 分支结果（见正文）
+ HttpController-->>ActivityDetailPage: HTTP 响应
  end
 ```
 
 ```mermaid
 sequenceDiagram
  participant ActivityDetailPage
+ participant HttpController
  participant RegistrationService
  participant ActivityPort
  participant ChangePort
  participant AccountPort
  participant RegistrationRepository
- ActivityDetailPage->>RegistrationService: change()
+ ActivityDetailPage->>HttpController: handle(API-22)
+ HttpController->>RegistrationService: change()
  RegistrationService->>ActivityPort: lock()
  RegistrationService->>ChangePort: hasPending()
  RegistrationService->>AccountPort: lock()
  RegistrationService->>RegistrationRepository: countActive()
  RegistrationService->>RegistrationRepository: save()
  RegistrationService->>ActivityPort: bumpLockVersion()
+ RegistrationService-->>HttpController: 业务结果
+ HttpController-->>ActivityDetailPage: HTTP 响应
+ ActivityDetailPage->>ActivityDetailPage: render()
 ```
 
 ```mermaid
 sequenceDiagram
  participant ActivityDetailPage
+ participant HttpController
  participant RegistrationService
  alt 3a 满额为CAPACITY_FULL，不新增报名
- ActivityDetailPage->>RegistrationService: change()
- RegistrationService-->>ActivityDetailPage: 3a 分支结果（见正文）
+ ActivityDetailPage->>HttpController: handle(API-22)
+ HttpController->>RegistrationService: change()
+ RegistrationService-->>HttpController: 3a 分支结果（见正文）
+ HttpController-->>ActivityDetailPage: HTTP 响应
  end
  alt 3b 20个不同学生抢1名额，恰1成功
- ActivityDetailPage->>RegistrationService: change()
- RegistrationService-->>ActivityDetailPage: 3b 分支结果（见正文）
+ ActivityDetailPage->>HttpController: handle(API-22)
+ HttpController->>RegistrationService: change()
+ RegistrationService-->>HttpController: 3b 分支结果（见正文）
+ HttpController-->>ActivityDetailPage: HTTP 响应
  end
  alt 3c 待改期返回CHANGE_PENDING，说明冻结原因
- ActivityDetailPage->>RegistrationService: change()
- RegistrationService-->>ActivityDetailPage: 3c 分支结果（见正文）
+ ActivityDetailPage->>HttpController: handle(API-22)
+ HttpController->>RegistrationService: change()
+ RegistrationService-->>HttpController: 3c 分支结果（见正文）
+ HttpController-->>ActivityDetailPage: HTTP 响应
  end
  alt 3d 有效版本已变返回STALE_VERSION，要求查看新安排后操作
- ActivityDetailPage->>RegistrationService: change()
- RegistrationService-->>ActivityDetailPage: 3d 分支结果（见正文）
+ ActivityDetailPage->>HttpController: handle(API-22)
+ HttpController->>RegistrationService: change()
+ RegistrationService-->>HttpController: 3d 分支结果（见正文）
+ HttpController-->>ActivityDetailPage: HTTP 响应
  end
  alt 4a 本人已ACTIVE重复JOIN返回原记录
- ActivityDetailPage->>RegistrationService: change()
- RegistrationService-->>ActivityDetailPage: 4a 分支结果（见正文）
+ ActivityDetailPage->>HttpController: handle(API-22)
+ HttpController->>RegistrationService: change()
+ RegistrationService-->>HttpController: 4a 分支结果（见正文）
+ HttpController-->>ActivityDetailPage: HTTP 响应
  end
  alt 6a 已WITHDRAWN重复退出返回原记录，无历史退出为INVALID_STATE
- ActivityDetailPage->>RegistrationService: change()
- RegistrationService-->>ActivityDetailPage: 6a 分支结果（见正文）
+ ActivityDetailPage->>HttpController: handle(API-22)
+ HttpController->>RegistrationService: change()
+ RegistrationService-->>HttpController: 6a 分支结果（见正文）
+ HttpController-->>ActivityDetailPage: HTTP 响应
  end
  alt 6b 退出后重新报名需重新检查名额。
- ActivityDetailPage->>RegistrationService: change()
- RegistrationService-->>ActivityDetailPage: 6b 分支结果（见正文）
+ ActivityDetailPage->>HttpController: handle(API-22)
+ HttpController->>RegistrationService: change()
+ RegistrationService-->>HttpController: 6b 分支结果（见正文）
+ HttpController-->>ActivityDetailPage: HTTP 响应
  end
 ```
 
 ```mermaid
 sequenceDiagram
  participant ChangeWorkbenchPage
+ participant HttpController
  participant ScheduleQueryService
  participant ActivityPort
  participant AccountPort
  participant SchedulingPort
- ChangeWorkbenchPage->>ScheduleQueryService: preview()
+ ChangeWorkbenchPage->>HttpController: handle(API-24/25)
+ HttpController->>ScheduleQueryService: preview()
  ScheduleQueryService->>ActivityPort: get()
  ScheduleQueryService->>AccountPort: get()
  ScheduleQueryService->>SchedulingPort: check()
  ScheduleQueryService->>SchedulingPort: alternatives()
- ScheduleQueryService->>ChangeWorkbenchPage: render()
+ ScheduleQueryService-->>HttpController: 业务结果
+ HttpController-->>ChangeWorkbenchPage: HTTP 响应
+ ChangeWorkbenchPage->>ChangeWorkbenchPage: render()
  ChangeWorkbenchPage->>ChangeWorkbenchPage: selectPlan()
 ```
 
 ```mermaid
 sequenceDiagram
  participant ChangeWorkbenchPage
+ participant HttpController
  participant ScheduleQueryService
  alt 2a 排除同一活动自身旧预约，不能误判自身为竞争者
- ChangeWorkbenchPage->>ScheduleQueryService: preview()
- ScheduleQueryService-->>ChangeWorkbenchPage: 2a 分支结果（见正文）
+ ChangeWorkbenchPage->>HttpController: handle(API-24/25)
+ HttpController->>ScheduleQueryService: preview()
+ ScheduleQueryService-->>HttpController: 2a 分支结果（见正文）
+ HttpController-->>ChangeWorkbenchPage: HTTP 响应
  end
  alt 4a 无方案时说明仅当前搜索范围未找到，引导人工调整
- ChangeWorkbenchPage->>ScheduleQueryService: preview()
- ScheduleQueryService-->>ChangeWorkbenchPage: 4a 分支结果（见正文）
+ ChangeWorkbenchPage->>HttpController: handle(API-24/25)
+ HttpController->>ScheduleQueryService: preview()
+ ScheduleQueryService-->>HttpController: 4a 分支结果（见正文）
+ HttpController-->>ChangeWorkbenchPage: HTTP 响应
  end
  alt 4b 候选不足300仍可返回，达预算截断要说明
- ChangeWorkbenchPage->>ScheduleQueryService: preview()
- ScheduleQueryService-->>ChangeWorkbenchPage: 4b 分支结果（见正文）
+ ChangeWorkbenchPage->>HttpController: handle(API-24/25)
+ HttpController->>ScheduleQueryService: preview()
+ ScheduleQueryService-->>HttpController: 4b 分支结果（见正文）
+ HttpController-->>ChangeWorkbenchPage: HTTP 响应
  end
  alt 4c 同类替换资源无申请资格应过滤
- ChangeWorkbenchPage->>ScheduleQueryService: preview()
- ScheduleQueryService-->>ChangeWorkbenchPage: 4c 分支结果（见正文）
+ ChangeWorkbenchPage->>HttpController: handle(API-24/25)
+ HttpController->>ScheduleQueryService: preview()
+ ScheduleQueryService-->>HttpController: 4c 分支结果（见正文）
+ HttpController-->>ChangeWorkbenchPage: HTTP 响应
  end
  alt 7a 选择不代表占位，不直接预约；目标有冲突仍可按BR-20创建改期，但页面必须持续提示最终复核风险。
- ChangeWorkbenchPage->>ScheduleQueryService: preview()
- ScheduleQueryService-->>ChangeWorkbenchPage: 7a 分支结果（见正文）
+ ChangeWorkbenchPage->>HttpController: handle(API-24/25)
+ HttpController->>ScheduleQueryService: preview()
+ ScheduleQueryService-->>HttpController: 7a 分支结果（见正文）
+ HttpController-->>ChangeWorkbenchPage: HTTP 响应
  end
 ```
 
 ```mermaid
 sequenceDiagram
  participant ChangeWorkbenchPage
+ participant HttpController
  participant ChangeService
  participant SchedulingPort
  participant ActivityPort
  participant AccountPort
  participant ChangeRepository
  participant EventPort
- ChangeWorkbenchPage->>ChangeService: preview()
+ ChangeWorkbenchPage->>HttpController: handle(API-26)
+ HttpController->>ChangeService: preview()
  ChangeService->>SchedulingPort: check()
- ChangeWorkbenchPage->>ChangeService: create()
+ ChangeService-->>HttpController: 业务结果
+ HttpController-->>ChangeWorkbenchPage: HTTP 响应
+ ChangeWorkbenchPage->>ChangeWorkbenchPage: render()
+ ChangeWorkbenchPage->>HttpController: handle(API-27)
+ HttpController->>ChangeService: create()
  ChangeService->>ActivityPort: lock()
  ChangeService->>AccountPort: lock()
  ChangeService->>ChangeRepository: insert()
  ChangeService->>ActivityPort: bumpLockVersion()
  ChangeService->>EventPort: append()
+ ChangeService-->>HttpController: 业务结果
+ HttpController-->>ChangeWorkbenchPage: HTTP 响应
+ ChangeWorkbenchPage->>ChangeWorkbenchPage: render()
 ```
 
 ```mermaid
 sequenceDiagram
  participant ChangeWorkbenchPage
+ participant HttpController
  participant ChangeService
  alt 3a 选择了新备选必须重新计算，不能提交此前目标
- ChangeWorkbenchPage->>ChangeService: preview()
- ChangeService-->>ChangeWorkbenchPage: 3a 分支结果（见正文）
+ ChangeWorkbenchPage->>HttpController: handle(API-26)
+ HttpController->>ChangeService: preview()
+ ChangeService-->>HttpController: 3a 分支结果（见正文）
+ HttpController-->>ChangeWorkbenchPage: HTTP 响应
  end
  alt 6a 报名或其他操作导致lockVersion过期，返回STALE_VERSION并重新展示最新影响
- ChangeWorkbenchPage->>ChangeService: create()
- ChangeService-->>ChangeWorkbenchPage: 6a 分支结果（见正文）
+ ChangeWorkbenchPage->>HttpController: handle(API-27)
+ HttpController->>ChangeService: create()
+ ChangeService-->>HttpController: 6a 分支结果（见正文）
+ HttpController-->>ChangeWorkbenchPage: HTTP 响应
  end
  alt 6b 已有改期或目标资源资格受限，拒绝
- ChangeWorkbenchPage->>ChangeService: create()
- ChangeService-->>ChangeWorkbenchPage: 6b 分支结果（见正文）
+ ChangeWorkbenchPage->>HttpController: handle(API-27)
+ HttpController->>ChangeService: create()
+ ChangeService-->>HttpController: 6b 分支结果（见正文）
+ HttpController-->>ChangeWorkbenchPage: HTTP 响应
  end
  alt 6c 目标资源仍有冲突可创建，但应明确未占位、最终可能失败
- ChangeWorkbenchPage->>ChangeService: create()
- ChangeService-->>ChangeWorkbenchPage: 6c 分支结果（见正文）
+ ChangeWorkbenchPage->>HttpController: handle(API-27)
+ HttpController->>ChangeService: create()
+ ChangeService-->>HttpController: 6c 分支结果（见正文）
+ HttpController-->>ChangeWorkbenchPage: HTTP 响应
  end
  alt 7a 数据库异常整体回滚，不遗留冻结。
- ChangeWorkbenchPage->>ChangeService: create()
- ChangeService-->>ChangeWorkbenchPage: 7a 分支结果（见正文）
+ ChangeWorkbenchPage->>HttpController: handle(API-27)
+ HttpController->>ChangeService: create()
+ ChangeService-->>HttpController: 7a 分支结果（见正文）
+ HttpController-->>ChangeWorkbenchPage: HTTP 响应
  end
 ```
 
 ```mermaid
 sequenceDiagram
  participant ChangeDetailPage
+ participant HttpController
  participant ChangeService
  participant ActivityPort
  participant ChangeRepository
  participant AccountPort
  participant EventPort
- ChangeDetailPage->>ChangeService: confirm()
+ ChangeDetailPage->>HttpController: handle(API-30)
+ HttpController->>ChangeService: confirm()
  ChangeService->>ActivityPort: lock()
  ChangeService->>ChangeRepository: lock()
  ChangeService->>AccountPort: lock()
  ChangeService->>ChangeRepository: saveConfirmation()
  ChangeService->>ActivityPort: bumpLockVersion()
  ChangeService->>EventPort: append()
+ ChangeService-->>HttpController: 业务结果
+ HttpController-->>ChangeDetailPage: HTTP 响应
+ ChangeDetailPage->>ChangeDetailPage: render()
 ```
 
 ```mermaid
 sequenceDiagram
  participant ChangeDetailPage
+ participant HttpController
  participant ChangeService
  alt 2a 拒绝需理由，改期REJECTED并解除冻结，原安排保留
- ChangeDetailPage->>ChangeService: confirm()
- ChangeService-->>ChangeDetailPage: 2a 分支结果（见正文）
+ ChangeDetailPage->>HttpController: handle(API-30)
+ HttpController->>ChangeService: confirm()
+ ChangeService-->>HttpController: 2a 分支结果（见正文）
+ HttpController-->>ChangeDetailPage: HTTP 响应
  end
  alt 3a 重复相同决定返回当前结果，无重复事件
- ChangeDetailPage->>ChangeService: confirm()
- ChangeService-->>ChangeDetailPage: 3a 分支结果（见正文）
+ ChangeDetailPage->>HttpController: handle(API-30)
+ HttpController->>ChangeService: confirm()
+ ChangeService-->>HttpController: 3a 分支结果（见正文）
+ HttpController-->>ChangeDetailPage: HTTP 响应
  end
  alt 3b 已决定后反向决定为ALREADY_DECIDED
- ChangeDetailPage->>ChangeService: confirm()
- ChangeService-->>ChangeDetailPage: 3b 分支结果（见正文）
+ ChangeDetailPage->>HttpController: handle(API-30)
+ HttpController->>ChangeService: confirm()
+ ChangeService-->>HttpController: 3b 分支结果（见正文）
+ HttpController-->>ChangeDetailPage: HTTP 响应
  end
  alt 3c 非名单人员或替别人确认拒绝
- ChangeDetailPage->>ChangeService: confirm()
- ChangeService-->>ChangeDetailPage: 3c 分支结果（见正文）
+ ChangeDetailPage->>HttpController: handle(API-30)
+ HttpController->>ChangeService: confirm()
+ ChangeService-->>HttpController: 3c 分支结果（见正文）
+ HttpController-->>ChangeDetailPage: HTTP 响应
  end
  alt 3d 活动已取消或申请已终结，不接受新决定。
- ChangeDetailPage->>ChangeService: confirm()
- ChangeService-->>ChangeDetailPage: 3d 分支结果（见正文）
+ ChangeDetailPage->>HttpController: handle(API-30)
+ HttpController->>ChangeService: confirm()
+ ChangeService-->>HttpController: 3d 分支结果（见正文）
+ HttpController-->>ChangeDetailPage: HTTP 响应
  end
 ```
 
 ```mermaid
 sequenceDiagram
  participant ReviewPage
+ participant HttpController
  participant ChangeService
  participant ActivityPort
  participant ChangeRepository
  participant AccountPort
  participant AuthorizationPolicy
  participant EventPort
- ReviewPage->>ChangeService: decide()
+ ReviewPage->>HttpController: handle(API-31)
+ HttpController->>ChangeService: decide()
  ChangeService->>ActivityPort: lock()
  ChangeService->>ChangeRepository: lock()
  ChangeService->>AccountPort: lock()
@@ -1680,36 +1929,48 @@ sequenceDiagram
  ChangeService->>ChangeRepository: saveDecision()
  ChangeService->>ActivityPort: bumpLockVersion()
  ChangeService->>EventPort: append()
+ ChangeService-->>HttpController: 业务结果
+ HttpController-->>ReviewPage: HTTP 响应
+ ReviewPage->>ReviewPage: render()
 ```
 
 ```mermaid
 sequenceDiagram
  participant ReviewPage
+ participant HttpController
  participant ChangeService
  alt 2a 驳回并说明理由，REJECTED，原预约保留且解除冻结
- ReviewPage->>ChangeService: decide()
- ChangeService-->>ReviewPage: 2a 分支结果（见正文）
+ ReviewPage->>HttpController: handle(API-31)
+ HttpController->>ChangeService: decide()
+ ChangeService-->>HttpController: 2a 分支结果（见正文）
+ HttpController-->>ReviewPage: HTTP 响应
  end
  alt 3a 申请已撤回、被取消或越权，拒绝
- ReviewPage->>ChangeService: decide()
- ChangeService-->>ReviewPage: 3a 分支结果（见正文）
+ ReviewPage->>HttpController: handle(API-31)
+ HttpController->>ChangeService: decide()
+ ChangeService-->>HttpController: 3a 分支结果（见正文）
+ HttpController-->>ReviewPage: HTTP 响应
  end
  alt 4a 目标变化需要新申请，旧意见不能复用。
- ReviewPage->>ChangeService: decide()
- ChangeService-->>ReviewPage: 4a 分支结果（见正文）
+ ReviewPage->>HttpController: handle(API-31)
+ HttpController->>ChangeService: decide()
+ ChangeService-->>HttpController: 4a 分支结果（见正文）
+ HttpController-->>ReviewPage: HTTP 响应
  end
 ```
 
 ```mermaid
 sequenceDiagram
  participant ReviewPage
+ participant HttpController
  participant ChangeService
  participant ActivityPort
  participant ChangeRepository
  participant AccountPort
  participant SchedulingPort
  participant EventPort
- ReviewPage->>ChangeService: confirmResources()
+ ReviewPage->>HttpController: handle(API-32)
+ HttpController->>ChangeService: confirmResources()
  ChangeService->>ActivityPort: lock()
  ChangeService->>ChangeRepository: lock()
  ChangeService->>AccountPort: lock()
@@ -1718,72 +1979,99 @@ sequenceDiagram
  ChangeService->>SchedulingPort: replaceReservations()
  ChangeService->>ChangeRepository: markApplied()
  ChangeService->>EventPort: append()
+ ChangeService-->>HttpController: 业务结果
+ HttpController-->>ReviewPage: HTTP 响应
+ ReviewPage->>ReviewPage: render()
 ```
 
 ```mermaid
 sequenceDiagram
  participant ReviewPage
+ participant HttpController
  participant ChangeService
  alt 2a 管理员拒绝并说明理由，REJECTED、原安排不变
- ReviewPage->>ChangeService: confirmResources()
- ChangeService-->>ReviewPage: 2a 分支结果（见正文）
+ ReviewPage->>HttpController: handle(API-32)
+ HttpController->>ChangeService: confirmResources()
+ ChangeService-->>HttpController: 2a 分支结果（见正文）
+ HttpController-->>ReviewPage: HTTP 响应
  end
  alt 3a 预览后资源被抢占，持久化CONFLICTED及冲突，返回RESOURCE_CONFLICT，原版本和预约保留
- ReviewPage->>ChangeService: confirmResources()
- ChangeService-->>ReviewPage: 3a 分支结果（见正文）
+ ReviewPage->>HttpController: handle(API-32)
+ HttpController->>ChangeService: confirmResources()
+ ChangeService-->>HttpController: 3a 分支结果（见正文）
+ HttpController-->>ReviewPage: HTTP 响应
  end
  alt 3b 最新资格不符，拒绝切换，说明受限资源及原因，原有效安排保留
- ReviewPage->>ChangeService: confirmResources()
- ChangeService-->>ReviewPage: 3b 分支结果（见正文）
+ ReviewPage->>HttpController: handle(API-32)
+ HttpController->>ChangeService: confirmResources()
+ ChangeService-->>HttpController: 3b 分支结果（见正文）
+ HttpController-->>ReviewPage: HTTP 响应
  end
  alt 3c 取消已生效或基础版本过期，拒绝旧请求
- ReviewPage->>ChangeService: confirmResources()
- ChangeService-->>ReviewPage: 3c 分支结果（见正文）
+ ReviewPage->>HttpController: handle(API-32)
+ HttpController->>ChangeService: confirmResources()
+ ChangeService-->>HttpController: 3c 分支结果（见正文）
+ HttpController-->>ReviewPage: HTTP 响应
  end
  alt 5a 任一步数据库异常，版本、预约、报名、改期、审计和outbox全部回滚
- ReviewPage->>ChangeService: confirmResources()
- ChangeService-->>ReviewPage: 5a 分支结果（见正文）
+ ReviewPage->>HttpController: handle(API-32)
+ HttpController->>ChangeService: confirmResources()
+ ChangeService-->>HttpController: 5a 分支结果（见正文）
+ HttpController-->>ReviewPage: HTTP 响应
  end
  alt 7a 通知投递失败独立重试，不撤回已提交安排。
- ReviewPage->>ChangeService: confirmResources()
- ChangeService-->>ReviewPage: 7a 分支结果（见正文）
+ ReviewPage->>HttpController: handle(API-32)
+ HttpController->>ChangeService: confirmResources()
+ ChangeService-->>HttpController: 7a 分支结果（见正文）
+ HttpController-->>ReviewPage: HTTP 响应
  end
 ```
 
 ```mermaid
 sequenceDiagram
  participant ChangeDetailPage
+ participant HttpController
  participant ChangeService
  participant ActivityPort
  participant ChangeRepository
  participant AccountPort
  participant EventPort
- ChangeDetailPage->>ChangeService: withdraw()
+ ChangeDetailPage->>HttpController: handle(API-33)
+ HttpController->>ChangeService: withdraw()
  ChangeService->>ActivityPort: lock()
  ChangeService->>ChangeRepository: lock()
  ChangeService->>AccountPort: lock()
  ChangeService->>ChangeRepository: markWithdrawn()
  ChangeService->>ActivityPort: bumpLockVersion()
  ChangeService->>EventPort: append()
+ ChangeService-->>HttpController: 业务结果
+ HttpController-->>ChangeDetailPage: HTTP 响应
+ ChangeDetailPage->>ChangeDetailPage: render()
 ```
 
 ```mermaid
 sequenceDiagram
  participant ChangeDetailPage
+ participant HttpController
  participant ChangeService
  alt 3a 已生效／已拒绝／已冲突等终态不能撤回，提示当前状态
- ChangeDetailPage->>ChangeService: withdraw()
- ChangeService-->>ChangeDetailPage: 3a 分支结果（见正文）
+ ChangeDetailPage->>HttpController: handle(API-33)
+ HttpController->>ChangeService: withdraw()
+ ChangeService-->>HttpController: 3a 分支结果（见正文）
+ HttpController-->>ChangeDetailPage: HTTP 响应
  end
  alt 3b 与最终确认并发时以一致性检查后的状态处理，不撤销已提交的新安排。
- ChangeDetailPage->>ChangeService: withdraw()
- ChangeService-->>ChangeDetailPage: 3b 分支结果（见正文）
+ ChangeDetailPage->>HttpController: handle(API-33)
+ HttpController->>ChangeService: withdraw()
+ ChangeService-->>HttpController: 3b 分支结果（见正文）
+ HttpController-->>ChangeDetailPage: HTTP 响应
  end
 ```
 
 ```mermaid
 sequenceDiagram
  participant ActivityDetailPage
+ participant HttpController
  participant ActivityService
  participant ActivityRepository
  participant ChangePort
@@ -1791,7 +2079,8 @@ sequenceDiagram
  participant SchedulingPort
  participant RegistrationRepository
  participant EventPort
- ActivityDetailPage->>ActivityService: cancel()
+ ActivityDetailPage->>HttpController: handle(API-21)
+ HttpController->>ActivityService: cancel()
  ActivityService->>ActivityRepository: lock()
  ActivityService->>ChangePort: cancelPending()
  ActivityService->>AccountPort: lock()
@@ -1799,148 +2088,221 @@ sequenceDiagram
  ActivityService->>RegistrationRepository: cancelActive()
  ActivityService->>ActivityRepository: saveState()
  ActivityService->>EventPort: append()
+ ActivityService-->>HttpController: 业务结果
+ HttpController-->>ActivityDetailPage: HTTP 响应
+ ActivityDetailPage->>ActivityDetailPage: render()
 ```
 
 ```mermaid
 sequenceDiagram
  participant ActivityDetailPage
+ participant HttpController
  participant ActivityService
  opt 2a 用户放弃
  Note over ActivityDetailPage: 不发送取消命令
  end
  alt 3a 其他人取消或已开始拒绝
- ActivityDetailPage->>ActivityService: cancel()
- ActivityService-->>ActivityDetailPage: 3a 分支结果（见正文）
+ ActivityDetailPage->>HttpController: handle(API-21)
+ HttpController->>ActivityService: cancel()
+ ActivityService-->>HttpController: 3a 分支结果（见正文）
+ HttpController-->>ActivityDetailPage: HTTP 响应
  end
  alt 4a 与改期最终确认竞争，最终取消不得被旧请求恢复，不能残留预约或待改期
- ActivityDetailPage->>ActivityService: cancel()
- ActivityService-->>ActivityDetailPage: 4a 分支结果（见正文）
+ ActivityDetailPage->>HttpController: handle(API-21)
+ HttpController->>ActivityService: cancel()
+ ActivityService-->>HttpController: 4a 分支结果（见正文）
+ HttpController-->>ActivityDetailPage: HTTP 响应
  end
  alt 4b 合法所有者再次取消返回当前结果，不增加释放和通知
- ActivityDetailPage->>ActivityService: cancel()
- ActivityService-->>ActivityDetailPage: 4b 分支结果（见正文）
+ ActivityDetailPage->>HttpController: handle(API-21)
+ HttpController->>ActivityService: cancel()
+ ActivityService-->>HttpController: 4b 分支结果（见正文）
+ HttpController-->>ActivityDetailPage: HTTP 响应
  end
  alt 4c 执行异常整体回滚，可检查后重试。
- ActivityDetailPage->>ActivityService: cancel()
- ActivityService-->>ActivityDetailPage: 4c 分支结果（见正文）
+ ActivityDetailPage->>HttpController: handle(API-21)
+ HttpController->>ActivityService: cancel()
+ ActivityService-->>HttpController: 4c 分支结果（见正文）
+ HttpController-->>ActivityDetailPage: HTTP 响应
  end
 ```
 
 ```mermaid
 sequenceDiagram
  participant ResourceAdminPage
+ participant HttpController
  participant ResourceService
  participant AccountPort
  participant ResourceRepository
  participant SchedulingPort
  participant EventPort
- ResourceAdminPage->>ResourceService: fault()
+ ResourceAdminPage->>HttpController: handle(API-10)
+ HttpController->>ResourceService: fault()
  ResourceService->>AccountPort: lock()
  ResourceService->>ResourceRepository: lock()
  ResourceService->>ResourceRepository: addFault()
  ResourceService->>SchedulingPort: risk()
  ResourceService->>EventPort: append()
- ResourceService->>ResourceAdminPage: render()
+ ResourceService-->>HttpController: 业务结果
+ HttpController-->>ResourceAdminPage: HTTP 响应
+ ResourceAdminPage->>ResourceAdminPage: render()
 ```
 
 ```mermaid
 sequenceDiagram
  participant ResourceAdminPage
+ participant HttpController
  participant ResourceService
  alt 2a 数量≤0、超过库存或场地数量不是1，拒绝
- ResourceAdminPage->>ResourceService: fault()
- ResourceService-->>ResourceAdminPage: 2a 分支结果（见正文）
+ ResourceAdminPage->>HttpController: handle(API-10)
+ HttpController->>ResourceService: fault()
+ ResourceService-->>HttpController: 2a 分支结果（见正文）
+ HttpController-->>ResourceAdminPage: HTTP 响应
  end
  alt 4a 无受影响活动展示空清单
- ResourceAdminPage->>ResourceService: fault()
- ResourceService-->>ResourceAdminPage: 4a 分支结果（见正文）
+ ResourceAdminPage->>HttpController: handle(API-10)
+ HttpController->>ResourceService: fault()
+ ResourceService-->>HttpController: 4a 分支结果（见正文）
+ HttpController-->>ResourceAdminPage: HTTP 响应
  end
  alt 4b 重叠故障可用量最低0
- ResourceAdminPage->>ResourceService: fault()
- ResourceService-->>ResourceAdminPage: 4b 分支结果（见正文）
+ ResourceAdminPage->>HttpController: handle(API-10)
+ HttpController->>ResourceService: fault()
+ ResourceService-->>HttpController: 4b 分支结果（见正文）
+ HttpController-->>ResourceAdminPage: HTTP 响应
  end
  alt 5a 普通用户日历只见“资源不可用”而非私有原因
- ResourceAdminPage->>ResourceService: fault()
- ResourceService-->>ResourceAdminPage: 5a 分支结果（见正文）
+ ResourceAdminPage->>HttpController: handle(API-10)
+ HttpController->>ResourceService: fault()
+ ResourceService-->>HttpController: 5a 分支结果（见正文）
+ HttpController-->>ResourceAdminPage: HTTP 响应
  end
  alt 6a 后续改期失败，原预约仍保留风险。
- ResourceAdminPage->>ResourceService: fault()
- ResourceService-->>ResourceAdminPage: 6a 分支结果（见正文）
+ ResourceAdminPage->>HttpController: handle(API-10)
+ HttpController->>ResourceService: fault()
+ ResourceService-->>HttpController: 6a 分支结果（见正文）
+ HttpController-->>ResourceAdminPage: HTTP 响应
  end
 ```
 
 ```mermaid
 sequenceDiagram
  participant NotificationPage
+ participant HttpController
  participant NotificationService
  participant NotificationRepository
  participant ActivityQueryService
- NotificationPage->>NotificationService: list()
+ NotificationPage->>HttpController: handle(API-34)
+ HttpController->>NotificationService: list()
  NotificationService->>NotificationRepository: listByRecipient()
- NotificationPage->>NotificationService: markRead()
+ NotificationService-->>HttpController: 业务结果
+ HttpController-->>NotificationPage: HTTP 响应
+ NotificationPage->>NotificationPage: render()
+ NotificationPage->>HttpController: handle(API-35)
+ HttpController->>NotificationService: markRead()
  NotificationService->>NotificationRepository: markRead()
- NotificationService->>NotificationPage: render()
- NotificationPage->>ActivityQueryService: get()
+ NotificationService-->>HttpController: 业务结果
+ HttpController-->>NotificationPage: HTTP 响应
+ NotificationPage->>NotificationPage: render()
+ NotificationPage->>HttpController: handle(API-14)
+ HttpController->>ActivityQueryService: get()
+ ActivityQueryService-->>HttpController: 业务结果
+ HttpController-->>NotificationPage: HTTP 响应
+ NotificationPage->>NotificationPage: render()
 ```
 
 ```mermaid
 sequenceDiagram
  participant NotificationPage
+ participant HttpController
  participant NotificationService
  alt 1a 无通知展示空状态
- NotificationPage->>NotificationService: list()
- NotificationService-->>NotificationPage: 1a 分支结果（见正文）
+ NotificationPage->>HttpController: handle(API-34)
+ HttpController->>NotificationService: list()
+ NotificationService-->>HttpController: 1a 分支结果（见正文）
+ HttpController-->>NotificationPage: HTTP 响应
  end
  alt 3a 他人通知拒绝访问
- NotificationPage->>NotificationService: markRead()
- NotificationService-->>NotificationPage: 3a 分支结果（见正文）
+ NotificationPage->>HttpController: handle(API-35)
+ HttpController->>NotificationService: markRead()
+ NotificationService-->>HttpController: 3a 分支结果（见正文）
+ HttpController-->>NotificationPage: HTTP 响应
  end
  alt 4a 重复已读不改变审批或确认
- NotificationPage->>NotificationService: markRead()
- NotificationService-->>NotificationPage: 4a 分支结果（见正文）
+ NotificationPage->>HttpController: handle(API-35)
+ HttpController->>NotificationService: markRead()
+ NotificationService-->>HttpController: 4a 分支结果（见正文）
+ HttpController-->>NotificationPage: HTTP 响应
  end
  alt 5a 权限已变化或对象不可访问，解释原因，不因消息跳转绕过授权；消息尚未送达时可刷新，不能伪造通知列表。
- NotificationPage->>NotificationService: list()
- NotificationService-->>NotificationPage: 5a 分支结果（见正文）
+ NotificationPage->>HttpController: handle(API-34)
+ HttpController->>NotificationService: list()
+ NotificationService-->>HttpController: 5a 分支结果（见正文）
+ HttpController-->>NotificationPage: HTTP 响应
  end
 ```
 
 ```mermaid
 sequenceDiagram
  participant ActivityDetailPage
+ participant HttpController
  participant ActivityQueryService
  participant RegistrationService
  participant AuditService
- participant ChangeService
  participant AuditRepository
- ActivityDetailPage->>ActivityQueryService: get()
- ActivityDetailPage->>RegistrationService: list()
- ActivityDetailPage->>AuditService: list()
- ActivityDetailPage->>ChangeService: list()
+ participant ChangeService
+ ActivityDetailPage->>HttpController: handle(API-14)
+ HttpController->>ActivityQueryService: get()
+ ActivityQueryService-->>HttpController: 业务结果
+ HttpController-->>ActivityDetailPage: HTTP 响应
+ ActivityDetailPage->>ActivityDetailPage: render()
+ ActivityDetailPage->>HttpController: handle(API-23)
+ HttpController->>RegistrationService: list()
+ RegistrationService-->>HttpController: 业务结果
+ HttpController-->>ActivityDetailPage: HTTP 响应
+ ActivityDetailPage->>ActivityDetailPage: render()
+ ActivityDetailPage->>HttpController: handle(API-36)
+ HttpController->>AuditService: list()
  AuditService->>AuditRepository: listByActivity()
- ActivityQueryService->>ActivityDetailPage: render()
+ AuditService-->>HttpController: 业务结果
+ HttpController-->>ActivityDetailPage: HTTP 响应
+ ActivityDetailPage->>ActivityDetailPage: render()
+ ActivityDetailPage->>HttpController: handle(API-28)
+ HttpController->>ChangeService: list()
+ ChangeService-->>HttpController: 业务结果
+ HttpController-->>ActivityDetailPage: HTTP 响应
+ ActivityDetailPage->>ActivityDetailPage: render()
 ```
 
 ```mermaid
 sequenceDiagram
  participant ActivityDetailPage
+ participant HttpController
  participant RegistrationService
  participant ChangeService
  participant AuditService
  alt 2a 普通学生只看本人报名，不能请求全名单
- ActivityDetailPage->>RegistrationService: list()
- RegistrationService-->>ActivityDetailPage: 2a 分支结果（见正文）
+ ActivityDetailPage->>HttpController: handle(API-23)
+ HttpController->>RegistrationService: list()
+ RegistrationService-->>HttpController: 2a 分支结果（见正文）
+ HttpController-->>ActivityDetailPage: HTTP 响应
  end
  alt 2b 工作人员只看到确认所需内容
- ActivityDetailPage->>ChangeService: list()
- ChangeService-->>ActivityDetailPage: 2b 分支结果（见正文）
+ ActivityDetailPage->>HttpController: handle(API-28)
+ HttpController->>ChangeService: list()
+ ChangeService-->>HttpController: 2b 分支结果（见正文）
+ HttpController-->>ActivityDetailPage: HTTP 响应
  end
  alt 3a 列表达到200项提示截断，人数使用真实计数
- ActivityDetailPage->>RegistrationService: list()
- RegistrationService-->>ActivityDetailPage: 3a 分支结果（见正文）
+ ActivityDetailPage->>HttpController: handle(API-23)
+ HttpController->>RegistrationService: list()
+ RegistrationService-->>HttpController: 3a 分支结果（见正文）
+ HttpController-->>ActivityDetailPage: HTTP 响应
  end
  alt 4a 无记录说明尚无操作，不能展示示例为真实历史。
- ActivityDetailPage->>AuditService: list()
- AuditService-->>ActivityDetailPage: 4a 分支结果（见正文）
+ ActivityDetailPage->>HttpController: handle(API-36)
+ HttpController->>AuditService: list()
+ AuditService-->>HttpController: 4a 分支结果（见正文）
+ HttpController-->>ActivityDetailPage: HTTP 响应
  end
 ```
