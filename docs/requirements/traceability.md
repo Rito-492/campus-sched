@@ -119,4 +119,10 @@ FR表示功能需求，NFR表示补充需求，BR表示业务规则，UC表示�
 | FR-12/13/21/24 / API-21～23 | ActivityService、registration/RegistrationRepository | 20抢1、重复报名/退出、有效版本、冻结、名单隐私、取消/版本切换竞争和事务回滚 |
 | CM内部端口 / ActivityPort | activity/ActivityPortAdapter、ActivityViews | 显式事务/行锁、完整快照、版本与报名同步、失败回滚、等待锁期间版本切换 |
 
-18项单测和17项PostgreSQL IT通过，0跳过；默认公共构建仍被CM种子编译错误阻断，CM的ChangePort/EventPort为测试源码替身。准确范围及命令见[模块验证记录](activity-module-validation.md)；接口交接见[活动与报名模块接口交接](activity-api-handoff.md)。不能由本模块验证推断M2/M3或E2E通过。
+18项单测和17项PostgreSQL IT通过，0跳过；默认公共构建仍被CM种子编译错误阻断，CM的ChangePort/EventPort为测试源码替身。准确范围及命令见[模块验证记录](activity-module-validation-v1.0.md)；接口交接见[活动与报名模块接口交接](activity-api-handoff-v1.0.md)。不能由本模块验证推断M2/M3或E2E通过。
+
+### 2026-10-29 评审后覆盖补充
+
+API-13的mine并集/去重/当前角色、API-14取消后的报名历史豁免现有真实HTTP及落库断言。AN-03的发布门禁已执行Service层未开始、SCHEDULED和实时风险的负向回归；已开始及风险失败另有HTTP 409、错误信封和无变更断言。UC-09与AN-03明确要求无风险才发布，因此保留风险检查；无契约依据的“待改期禁止发布”已删除并加正向HTTP回归，报名/退出冻结仍保留。
+
+本轮隔离结果为25项单测+22项PostgreSQL IT，0失败/错误/跳过。证据与限制见[验证记录](activity-module-validation-v1.0.md)评审复验节；此结果不扩展为CM生产业务或全套验收结论。

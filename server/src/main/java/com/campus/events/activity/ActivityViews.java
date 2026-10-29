@@ -22,17 +22,21 @@ public class ActivityViews {
         return port;
     }
     public ActivitySnapshot snapshot(ActivityRepository.Row row) {
+        var ids=registrations.activeIds(row.id());
+        return new ActivitySnapshot(view(row,ids.size(),null),ids);
+    }
+    private ActivityView view(ActivityRepository.Row row,int count,RegistrationStatus mine) {
         boolean reserved=row.status()==ActivityStatus.SCHEDULED || row.status()==ActivityStatus.OPEN;
         // 未预约阶段不允许创建改期，因此无待处理改期是生命周期保证。
         UUID pending=reserved ? changes().pendingId(row.id()) : null;
-        var ids=registrations.activeIds(row.id());
-        return new ActivitySnapshot(new ActivityView(row.id(),row.organizationId(),row.ownerId(),row.status(),row.versionNo(),
-                row.effectiveVersionNo(),row.lockVersion(),row.input(),ids.size(),scheduling.risk(row.id()),pending,null,row.createdAt()),ids);
+        return new ActivityView(row.id(),row.organizationId(),row.ownerId(),row.status(),row.versionNo(),
+                row.effectiveVersionNo(),row.lockVersion(),row.input(),count,scheduling.risk(row.id()),pending,mine,row.createdAt());
     }
     public ActivityView http(ActivityRepository.Row row, Actor actor, boolean privileged) {
-        var full=snapshot(row).activity(); var input=full.input();
-        if(!privileged) input=new ActivityInput(input.title(),input.description(),input.expectedAttendees(),input.registrationCapacity(),List.of(),input.plan());
         var mine=registrations.get(row.id(),actor.id());
+        // HTTP只需要真实人数；仅内部快照为CM装载完整ACTIVE名单。
+        var full=view(row,registrations.count(row.id()),mine==null ? null : mine.status()); var input=full.input();
+        if(!privileged) input=new ActivityInput(input.title(),input.description(),input.expectedAttendees(),input.registrationCapacity(),List.of(),input.plan());
         return new ActivityView(full.id(),full.organizationId(),full.ownerId(),full.status(),full.versionNo(),full.effectiveVersionNo(),
                 full.lockVersion(),input,full.registrationCount(),full.resourceRisk(),full.activeChangeId(),mine==null ? null : mine.status(),full.createdAt());
     }

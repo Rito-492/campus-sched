@@ -9,14 +9,14 @@
 | API | 方法与路径 | 请求类型 | 实现及外部依赖 |
 |---|---|---|---|
 | 12 | POST /activities | ActivityInput | 创建 DRAFT 和完整不可变首版本；AccountPort、真实数据库 |
-| 13 | GET /activities?scope=mine/public/review&status=… | 无 | SQL 先按归属/状态/当前授权范围过滤，再取 201 条；最多返回 200 |
-| 14 | GET /activities/{id} | 无 | 所有者、当前范围内审核人、工作人员或 OPEN 的认证用户；公开/普通工作人员视图隐藏 staffUserIds |
+| 13 | GET /activities?scope=mine/public/review&status=… | 无 | mine要求当前APPLICANT，返回所有者/工作人员/任意报名历史并集且去重；SQL过滤状态/权限后取201条，最多返回200 |
+| 14 | GET /activities/{id} | 无 | 所有者、当前范围内审核人、工作人员、有任意报名历史的本人或OPEN的认证用户；历史报名者不因此取得名单权限，公开/普通工作人员视图隐藏staffUserIds |
 | 15 | PATCH /activities/{id} | ActivityEdit | 仅所有者 DRAFT；旧 lockVersion 拒绝；保存产生新版本 |
 | 16 | POST /activities/{id}/submit | VersionCommand | 最新所有者身份、资源资格及工作人员有效性；SchedulingPort.check、EventPort |
 | 17 | POST /activities/{id}/withdraw | ReasonCommand | 待审或已批准未预约时克隆新 DRAFT，保留旧版本；EventPort |
 | 18 | POST /activities/{id}/approver-decision | ApprovalCommand | 当前 APPROVER 角色、组织及全部必要类别授权、本人回避；按版本保存审批；EventPort |
 | 19 | POST /activities/{id}/resource-confirm | VersionCommand | 当前 ADMIN/RESOURCE_CONFIRM、全部资源范围、本人回避；SchedulingPort 联合检查与预约，EventPort、ChangePort 查询 |
-| 20 | POST /activities/{id}/publish | VersionCommand | 所有者、SCHEDULED、未开始、无待处理改期、资源无风险；SchedulingPort、ChangePort、EventPort |
+| 20 | POST /activities/{id}/publish | VersionCommand | 所有者、SCHEDULED、未开始、资源无风险（UC-09及AN-03）；不因待改期额外阻断；SchedulingPort、ChangePort视图查询、EventPort |
 | 21 | POST /activities/{id}/cancel | ReasonCommand | 先关待处理改期，再释放预约、取消 ACTIVE 报名和活动，写收件人快照；ChangePort、SchedulingPort、EventPort |
 | 22 | PUT /activities/{id}/registration | RegistrationCommand | 本人 APPLICANT/STUDENT；OPEN、未开始、有效版本匹配、无待处理改期、剩余容量；ChangePort |
 | 23 | GET /activities/{id}/registrations | 无 | 所有者、范围完整的批准人或资源复核管理员；普通学生/工作人员无名单访问权 |
@@ -44,9 +44,10 @@ API-12 创建结果为 versionNo=1、lockVersion=0、effectiveVersionNo=null。�
 | 401 UNAUTHENTICATED | 当前账号停用或未认证 | 重新登录 |
 | 403 FORBIDDEN | 最新身份/权限/范围不足，或本人审批/复核 | 禁用对应操作并说明 |
 | 403 RESOURCE_INELIGIBLE | 活动所有者当前身份不允许使用某资源 | 展示 details 中的受限资源，调整方案 |
+| 404 NOT_FOUND | 活动、资源或工作人员账号不存在；工作人员不存在由AccountPort读取产生404，不统一转为400 | 刷新相关选择或实体；不只处理人员参数400 |
 | 409 STALE_VERSION | lockVersion 或有效安排版本已变化 | GET 最新实体后确认操作 |
 | 409 INVALID_STATE | 非法状态、活动已开始或无报名可退出 | 刷新状态和按钮 |
-| 409 CHANGE_PENDING | 改期冻结报名/退出，或待改期时尝试发布 | 展示改期入口与冻结原因 |
+| 409 CHANGE_PENDING | 改期冻结报名/退出 | 展示改期入口与冻结原因；发布不增加此额外门禁 |
 | 409 CAPACITY_FULL | 事务内真实人数已达容量 | 展示满额，不保留虚假成功 |
 | 409 RESOURCE_CONFLICT | 联合确认或发布风险检查失败 | 展示 conflicts/资源风险 |
 | 503 INTERNAL_ERROR | 所需 EventPort/ChangePort 实现尚未接入 | 展示服务未就绪，保留请求与幂等键 |

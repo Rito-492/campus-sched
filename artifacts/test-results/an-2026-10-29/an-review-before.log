@@ -1,0 +1,113 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.campus:campus-events >----------------------
+[INFO] Building У԰�Эͬ����Դ����ϵͳ 0.1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ campus-events ---
+[INFO] Copying 5 resources from ..\..\src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ campus-events ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ campus-events ---
+[INFO] skip non existing resourceDirectory C:\Users\Lenovo\Desktop\Files\Code\Code_vsc\campus\campus-sched\server\target\an-build\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ campus-events ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 3 source files with javac [debug parameters release 21] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ campus-events ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.campus.events.activity.ActivityServiceTest
+21:01:27.825 [main] INFO org.hibernate.validator.internal.util.Version -- HV000001: Hibernate Validator 8.0.3.Final
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (C:\Users\Lenovo\Desktop\Files\Code\Code_vsc\campus\campus-sched\server\target\maven-repository\net\bytebuddy\byte-buddy-agent\1.17.8\byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[ERROR] Tests run: 18, Failures: 2, Errors: 2, Skipped: 0, Time elapsed: 3.302 s <<< FAILURE! -- in com.campus.events.activity.ActivityServiceTest
+[ERROR] com.campus.events.activity.ActivityServiceTest.mineScopeRequiresCurrentApplicantRole -- Time elapsed: 0.052 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Expected com.campus.events.foundation.ApiException to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+	at com.campus.events.activity.ActivityServiceTest.error(ActivityServiceTest.java:41)
+	at com.campus.events.activity.ActivityServiceTest.mineScopeRequiresCurrentApplicantRole(ActivityServiceTest.java:117)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.activity.ActivityServiceTest.pastRegistrationAllowsCancelledDetailsButNotParticipantRoster -- Time elapsed: 0.010 s <<< ERROR!
+com.campus.events.foundation.ApiException: ��Ȩִ�д˲���
+	at com.campus.events.foundation.ApiException.forbidden(ApiException.java:17)
+	at com.campus.events.activity.ActivityService.get(ActivityService.java:98)
+	at com.campus.events.activity.ActivityServiceTest.pastRegistrationAllowsCancelledDetailsButNotParticipantRoster(ActivityServiceTest.java:127)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.activity.ActivityServiceTest.pendingChangeDoesNotAddAnUndocumentedPublishRestriction -- Time elapsed: 0.006 s <<< ERROR!
+com.campus.events.foundation.ApiException: ���ڴ���������
+	at com.campus.events.activity.ActivityService.publish(ActivityService.java:149)
+	at com.campus.events.activity.ActivityServiceTest.pendingChangeDoesNotAddAnUndocumentedPublishRestriction(ActivityServiceTest.java:153)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.activity.ActivityServiceTest.nonOwnerEditAndSubmitRejectBeforeLockingSuppliedStaff -- Time elapsed: 0.012 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <com.campus.events.foundation.ApiException> but was: <java.lang.NullPointerException>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+	at com.campus.events.activity.ActivityServiceTest.error(ActivityServiceTest.java:41)
+	at com.campus.events.activity.ActivityServiceTest.nonOwnerEditAndSubmitRejectBeforeLockingSuppliedStaff(ActivityServiceTest.java:159)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: java.lang.NullPointerException: Cannot invoke "com.campus.events.contract.Actor.enabled()" because "user" is null
+	at com.campus.events.activity.ActivityService.staff(ActivityService.java:48)
+	at com.campus.events.activity.ActivityService.edit(ActivityService.java:105)
+	at com.campus.events.activity.ActivityServiceTest.lambda$nonOwnerEditAndSubmitRejectBeforeLockingSuppliedStaff$21(ActivityServiceTest.java:159)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	... 7 more
+
+[INFO] Running com.campus.events.activity.ActivityStateMachineTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.043 s -- in com.campus.events.activity.ActivityStateMachineTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   ActivityServiceTest.mineScopeRequiresCurrentApplicantRole:117->error:41 Expected com.campus.events.foundation.ApiException to be thrown, but nothing was thrown.
+[ERROR]   ActivityServiceTest.nonOwnerEditAndSubmitRejectBeforeLockingSuppliedStaff:159->error:41 Unexpected exception type thrown, expected: <com.campus.events.foundation.ApiException> but was: <java.lang.NullPointerException>
+[ERROR] Errors: 
+[ERROR]   ActivityServiceTest.pastRegistrationAllowsCancelledDetailsButNotParticipantRoster:127 ? Api ��Ȩִ�д˲���
+[ERROR]   ActivityServiceTest.pendingChangeDoesNotAddAnUndocumentedPublishRestriction:153 ? Api ���ڴ���������
+[INFO] 
+[ERROR] Tests run: 25, Failures: 2, Errors: 2, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  25.573 s
+[INFO] Finished at: 2026-10-29T21:01:31+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.6:test (default-test) on project campus-events: There are test failures.
+[ERROR] 
+[ERROR] See C:\Users\Lenovo\Desktop\Files\Code\Code_vsc\campus\campus-sched\server\target\an-build\target\surefire-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

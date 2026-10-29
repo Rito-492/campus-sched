@@ -112,4 +112,52 @@ class ActivityServiceTest {
         verify(registrations).activate(id,2); verifyNoInteractions(events);
         error(()->adapter.activatePlan(id,2,target,owner),"STALE_VERSION");
     }
+    @Test void mineScopeRequiresCurrentApplicantRole() {
+        when(accounts.get(student)).thenReturn(admin(student,List.of(Permission.USER_MANAGE)));
+        error(()->service.list(applicant(student,Identity.STUDENT),"mine",null),"FORBIDDEN");
+        verify(activities,never()).list(any(),any(),any());
+    }
+    @Test void pastRegistrationAllowsCancelledDetailsButNotParticipantRoster() {
+        var cancelled=row(ActivityStatus.CANCELLED);
+        // 与当前工作人员无关：报名历史本身就是详情读取依据。
+        cancelled=new ActivityRepository.Row(id,org,owner,cancelled.status(),1,1,3,
+                new ActivityInput("测试活动","",10,1,List.of(),plan),now);
+        when(activities.get(id)).thenReturn(cancelled);
+        when(registrations.get(id,student)).thenReturn(new RegistrationView(id,student,RegistrationStatus.CANCELLED,1));
+        assertEquals(ActivityStatus.CANCELLED,service.get(applicant(student,Identity.STUDENT),id).status());
+        error(()->service.registrations(applicant(student,Identity.STUDENT),id),"FORBIDDEN");
+    }
+    @Test void publishRejectsStartedActivityWithoutStateOrEventWrites() {
+        var past=new Plan(now.minusSeconds(3600),now,0,0,venue,List.of());
+        var scheduled=row(ActivityStatus.SCHEDULED);
+        when(activities.lock(id)).thenReturn(new ActivityRepository.Row(id,org,owner,ActivityStatus.SCHEDULED,1,1,3,
+                new ActivityInput("已开始","",10,1,List.of(),past),scheduled.createdAt()));
+        var ex=error(()->service.publish(applicant(owner,Identity.TEACHER),id,new VersionCommand(3)),"INVALID_STATE");
+        assertEquals(409,ex.status()); assertEquals("活动已经开始",ex.getMessage());
+        verify(activities,never()).update(any(),any(),anyInt(),any()); verifyNoInteractions(events);
+    }
+    @Test void publishRejectsWrongServiceStateWithoutStateOrEventWrites() {
+        when(activities.lock(id)).thenReturn(row(ActivityStatus.DRAFT));
+        assertEquals(409,error(()->service.publish(applicant(owner,Identity.TEACHER),id,new VersionCommand(3)),"INVALID_STATE").status());
+        verify(activities,never()).update(any(),any(),anyInt(),any()); verifyNoInteractions(events);
+    }
+    @Test void publishRejectsCurrentResourceRiskWithoutStateOrEventWrites() {
+        when(activities.lock(id)).thenReturn(row(ActivityStatus.SCHEDULED)); when(scheduling.risk(id)).thenReturn(Risk.AT_RISK);
+        var ex=error(()->service.publish(applicant(owner,Identity.TEACHER),id,new VersionCommand(3)),"RESOURCE_CONFLICT");
+        assertEquals(409,ex.status()); assertEquals("活动资源存在风险",ex.getMessage());
+        verify(activities,never()).update(any(),any(),anyInt(),any()); verifyNoInteractions(events);
+    }
+    @Test void pendingChangeDoesNotAddAnUndocumentedPublishRestriction() {
+        when(activities.lock(id)).thenReturn(row(ActivityStatus.SCHEDULED));
+        when(changes.hasPending(id)).thenReturn(true);
+        service.publish(applicant(owner,Identity.TEACHER),id,new VersionCommand(3));
+        verify(activities).update(any(),eq(ActivityStatus.OPEN),eq(1),eq(1));
+    }
+    @Test void nonOwnerEditAndSubmitRejectBeforeLockingSuppliedStaff() {
+        var arbitraryStaff=UUID.randomUUID(); when(activities.lock(id)).thenReturn(row(ActivityStatus.DRAFT));
+        var input=new ActivityInput("测试活动","",10,1,List.of(arbitraryStaff),plan);
+        error(()->service.edit(applicant(student,Identity.STUDENT),id,new ActivityEdit(3,input)),"FORBIDDEN");
+        error(()->service.submit(applicant(student,Identity.STUDENT),id,new VersionCommand(3)),"FORBIDDEN");
+        verify(accounts,never()).lock(any());
+    }
 }

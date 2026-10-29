@@ -104,13 +104,23 @@
 - 成员：冯玉琪（22220314），系统分析员；分支 `work/22220314-activity`，实际 main 基准 `34dc4d5`。以 fast-forward 同步 main，PR #3 状态机生产实现保持原样；旧需求提交 `bf0cef7` 未重新引入。
 - 生产交付：`activity/ActivityRepository.java`、`ActivityService.java`、`ActivityController.java`、`ActivityViews.java`、`ActivityPortAdapter.java`，以及 `registration/RegistrationRepository.java`。API-12～23 及 ActivityPort get/lock/activatePlan/bumpLockVersion 已有生产实现。使用现有共享 DTO、认证、幂等回执和响应，无公共类型/迁移/他人模块改动。
 - 业务：草稿与不可变版本；数据库先过滤后截断的本人/公开/审核列表；HTTP 工作人员与名单裁剪；最新用户身份/审批组织及类别/资源复核范围与本人回避；提交资格重查、首次联合预约、发布风险检查；活动锁下报名容量与重复操作；取消关闭改期、释放预约、取消 ACTIVE 报名、收件人快照及事件共事务。
-- 适配器：MANDATORY 写入口与显式活动锁要求；切换计划只复制元数据/替换计划、推进 current/effective 与 ACTIVE 报名版本，不写预约或通知。独立组件不依赖上层 Service，供 CM 调用；接口细节、API 请求和失败码见 [activity-api-handoff.md](activity-api-handoff.md)。
+- 适配器：MANDATORY 写入口与显式活动锁要求；切换计划只复制元数据/替换计划、推进 current/effective 与 ACTIVE 报名版本，不写预约或通知。独立组件不依赖上层 Service，供 CM 调用；接口细节、API 请求和失败码见 [activity-api-handoff-v1.0.md](activity-api-handoff-v1.0.md)。
 - 本次修复：真实并发测试暴露活动/版本 JOIN 在锁等待期间切换版本可能误报不存在，已改为先锁活动主行、再以新语句读取版本；确定性 PostgreSQL 锁等待回归与 3 次取消/切换竞争通过。旧 `ActivityStateMachineTest:49` 原本错误检查撤回前不可变快照，改为检查撤回后的新 DRAFT；不改状态机生产代码。
 - 实际环境：本轮下载微软官方便携 JDK 21.0.12.1 与 PostgreSQL 17.6，在被忽略的 target 中使用；Maven Wrapper 3.9.11。真实库仅 `127.0.0.1:5440/campus_test` 随机 `an_<UUID>` schema；每轮清理 schema，结束停止本轮便携 PostgreSQL 实例。
 - 默认检查：`./server/mvnw.cmd -B -ntp -f server/pom.xml -Dtest=ActivityStateMachineTest,ActivityServiceTest test` 退出 1，现有 CM `dev/DemoDataSeeder.java:118` 未处理 `seedActivity` 声明的受检异常；尚未进入默认测试。没有代改该文件或公共 POM。
-- 模块实际检查：以 `server/target/an-build/pom.xml` 临时复制公共 POM，源码仍指向真实 server/src；仅排除上述 CM `DemoDataSeeder.java`，测试编译仅包含 activity/registration。执行 `./server/mvnw.cmd -B -ntp -f server/target/an-build/pom.xml -Dtest=ActivityStateMachineTest,ActivityServiceTest -Dit.test=ActivityRegistrationIT verify`（本地仓库缓存参数同本机 target 配置），退出 0：**18 项单测 + 17 项真实 PostgreSQL IT，0 失败、0 错误、0 跳过**。运行日志：本地 `server/target/an-default-test.log`、`an-verify.log`；Surefire/Failsafe 报告在 `server/target/an-build/target/`。详情和隔离构建复现说明见 [activity-module-validation.md](activity-module-validation.md)。`git diff --check` 无错误。
+- 模块实际检查：以 `server/target/an-build/pom.xml` 临时复制公共 POM，源码仍指向真实 server/src；仅排除上述 CM `DemoDataSeeder.java`，测试编译仅包含 activity/registration。执行 `./server/mvnw.cmd -B -ntp -f server/target/an-build/pom.xml -Dtest=ActivityStateMachineTest,ActivityServiceTest -Dit.test=ActivityRegistrationIT verify`（本地仓库缓存参数同本机 target 配置），退出 0：**18 项单测 + 17 项真实 PostgreSQL IT，0 失败、0 错误、0 跳过**。运行日志：本地 `server/target/an-default-test.log`、`an-verify.log`；Surefire/Failsafe 报告在 `server/target/an-build/target/`。详情和隔离构建复现说明见 [activity-module-validation-v1.0.md](activity-module-validation-v1.0.md)。`git diff --check` 无错误。
 - 覆盖：真实认证/回执重放及全部 API-12～23 HTTP 路由、版本追加/旧版本拒绝、当前范围/身份/资格、公开隐私、20 学生竞争 1 名额恰 1 成功、重复报名/退出、改期冻结、取消全链路回滚、改期版本回滚、活动行锁等待期间的新版本读取和取消后不可复活。对应 D-AT-03/15/16/17/20、N-AT-02/05/06 的本模块行为；不等同于 QA 全套验收通过。
 - 外部依赖：真实 SchedulingPortAdapter、AccountPort/CommandExecutor 已使用；**CM 的 ChangePort/EventPort 生产实现仍未进入 main**。测试源码中明确提供这两个端口的数据库测试替身；事件消费者/真实 CM 改期和通知集成未验证，不宣称 M2/M3/E2E 或应用重启全链路通过。生产缺所需端口返回 503 并回滚；草稿创建/编辑与未预约视图可独立使用，SCHEDULED/OPEN 视图须真实 ChangePort。
 - 下一接收：CM 杨瀚霖接 ActivityPortAdapter/取消编排；UI 杨畅、QA 汤雨润接 API-12～23/失败码；PM 冀项阳接公共工程集成。待 CM 修复种子编译并交付真实 ChangePort/EventPort 后，用默认构建和真实全部端口复验，继续 M2/M3。交叉评审后才可合并，未自审自批。
 - 实际交付：生产代码/测试提交 `9b76b2e` 已推送；以本人 GitHub 账号 `Damer-F` 创建 [PR #11](https://github.com/Rito-492/campus-sched/pull/11)，已实际请求 PM `Rito-492` 交叉评审，尚未评审或合并。
 - 接收确认：尚未接收。
+
+## PR #11 交叉评审修复（2026-10-29）
+
+- 评审被审提交：9b76b2e、0886c8b；本轮fetch后main仍为34dc4d5。作者冯玉琪（22220314），Damer-F，继续在work/22220314-activity修复。
+- 三条阻塞项：API-13补齐当前APPLICANT与所有者/工作人员/任意报名历史SQL并集及去重；API-14允许历史报名者读取对应私有/取消活动详情，仍裁剪人员并拒绝名单；发布的时间/状态/风险Service门禁补足负向断言及真实HTTP失败证据，追踪矩阵已更新。
+- 关联建议：按A移除无依据的待改期禁止发布，保留UC-09和AN-03要求的无风险发布；按F先核对归属再锁工作人员；HTTP人数改count(*)、审批版本不变量补注释、404人员缺失文档补齐。原状态机生产实现不变。
+- 实测：先运行新增单测复现旧代码问题（25项中2失败、2错误、0跳过）；修复后隔离verify退出0，25单测+22真实PostgreSQL17.6 IT，0失败/错误/跳过。默认test仍退出1于CM种子第118行，不报告默认构建通过。测试后清理schema并停止本轮实例。
+- 证据：原始日志、3份JUnit XML/TXT、实际隔离POM和源码SHA-256归档[artifacts/test-results/an-2026-10-29](../../artifacts/test-results/an-2026-10-29/)，未含本轮数据库凭据。命令和具体覆盖见[验证记录](activity-module-validation-v1.0.md)复验节；逐条建议处理见[评审修复说明](activity-review-response-v1.0.md)。
+- 文档交接：两份新增接口/验证文档补v1.0命名；UI/QA须使用mine并集、历史报名详情、发布不因改期阻断以及404分支的新说明。B/C/D/I及其他歧义留PM统一确认，未私改共享契约；完整CM端口、默认构建、E2E/重启恢复仍待集成。
+- 下一接收：PM/QA等非作者成员复核PR #11三条必须改；作者不自审自批或自动合并。接收确认：尚未接收。

@@ -78,7 +78,11 @@ public class ActivityRepository {
     /** 授权在SQL中先过滤，再读取201行，避免截断之前漏掉有权查看的数据。 */
     public List<Row> list(Actor actor, String scope, ActivityStatus status) {
         String filter = switch (scope) {
-            case "mine" -> "a.owner_id=?";
+            case "mine" -> """
+                (a.owner_id=? OR jsonb_exists(v.input_json->'staffUserIds',?::text)
+                  OR EXISTS(SELECT 1 FROM activity_registration registration
+                    WHERE registration.activity_id=a.id AND registration.user_id=?))
+                """;
             case "public" -> "a.status='OPEN' AND ?::uuid IS NOT NULL";
             case "review" -> """
                 a.owner_id<>? AND a.status IN ('PENDING_APPROVER','APPROVED_UNRESERVED','SCHEDULED','OPEN') AND (
@@ -96,7 +100,8 @@ public class ActivityRepository {
             default -> throw ApiException.invalid("scope必须为mine/public/review");
         };
         var args = new ArrayList<Object>();
-        for (int i = 0; i < (scope.equals("review") ? 6 : 1); i++) args.add(actor.id());
+        int actorArguments = switch (scope) { case "review" -> 6; case "mine" -> 3; default -> 1; };
+        for (int i = 0; i < actorArguments; i++) args.add(actor.id());
         args.add(status == null ? null : status.name()); args.add(status == null ? null : status.name());
         return jdbc.query(SELECT + "WHERE " + filter + " AND (?::text IS NULL OR a.status=?) ORDER BY a.created_at DESC,a.id LIMIT 201", this::row, args.toArray());
     }

@@ -307,4 +307,70 @@ class ActivityRegistrationIT {
         var response=http.perform(builder).andReturn().getResponse();
         var json=mapper.readTree(response.getContentAsString()); assertEquals(expected,response.getStatus(),json.toString()); return json;
     }
+    @Test void mineHttpUnionsOwnershipStaffAndEveryRegistrationHistoryWithoutDuplicates() throws Exception {
+        UUID outsider=account("STUDENT","APPLICANT");
+        var owned=create(); // owner 分支。
+        var staffActivity=tx.execute(s->service.create(actor(outsider),new ActivityInput("工作人员活动","",10,1,List.of(owner),input().plan())));
+        var historyActivity=tx.execute(s->service.create(actor(outsider),new ActivityInput("历史报名活动","",10,1,List.of(),input().plan())));
+        jdbc.update("INSERT INTO activity_registration(activity_id,user_id,status,version_no) VALUES (?,?,'WITHDRAWN',1),(?,?,'ACTIVE',1)",historyActivity.id(),owner,owned.id(),owner);
+        create(); // 另一场本人活动仍应显示。
+        tx.execute(s->service.create(actor(outsider),new ActivityInput("无关活动","",10,1,List.of(),input().plan())));
+        var result=request("GET","?scope=mine",owner,null,200);
+        var ids=new HashSet<String>(); result.get("data").forEach(item->ids.add(item.get("id").asText()));
+        assertEquals(4,result.get("data").size()); assertEquals(4,ids.size());
+        assertTrue(ids.containsAll(List.of(owned.id().toString(),staffActivity.id().toString(),historyActivity.id().toString())));
+        var forbidden=request("GET","?scope=mine",admin,null,403);
+        assertEquals("FORBIDDEN",forbidden.at("/error/code").asText());
+        var filtered=request("GET","?scope=mine&status=OPEN",owner,null,200); assertEquals(0,filtered.get("data").size());
+    }
+    @Test void cancelledRegistrantCanReadDetailsAndMyListButNotRosterOrUnrelatedPrivateActivities() throws Exception {
+        UUID participant=account("STUDENT","APPLICANT"); var a=open();
+        tx.execute(s->service.registration(actor(participant),a.id(),new RegistrationCommand(RegistrationAction.JOIN,1)));
+        var current=port.get(a.id()).activity(); tx.execute(s->service.cancel(actor(owner),a.id(),new ReasonCommand(current.lockVersion(),"取消")));
+        var detail=request("GET","/"+a.id(),participant,null,200);
+        assertEquals("CANCELLED",detail.at("/data/status").asText()); assertEquals("CANCELLED",detail.at("/data/myRegistrationStatus").asText());
+        assertEquals(0,detail.at("/data/input/staffUserIds").size());
+        var mine=request("GET","?scope=mine",participant,null,200); assertEquals(a.id().toString(),mine.at("/data/0/id").asText());
+        request("GET","/"+a.id()+"/registrations",participant,null,403);
+        var privateDraft=create(); request("GET","/"+privateDraft.id(),participant,null,403);
+    }
+    @Test void httpPublishPastActivityAndRiskAreRejectedWithErrorEnvelopesAndNoMutation() throws Exception {
+        var a=confirmed(approved(submit(create())));
+        jdbc.update("INSERT INTO resource_fault(id,resource_id,start_at,end_at,unavailable_quantity,reason,created_by) VALUES (?,?,?, ?,1,'发布风险测试',?)",
+                UUID.randomUUID(),venue,java.sql.Timestamp.from(input().plan().startAt()),java.sql.Timestamp.from(input().plan().endAt()),admin);
+        var risk=request("POST","/"+a.id()+"/publish",owner,new VersionCommand(a.lockVersion()),409);
+        assertEquals("RESOURCE_CONFLICT",risk.at("/error/code").asText()); assertTrue(risk.at("/error/details").isObject());
+        assertTrue(risk.hasNonNull("requestId")); assertFalse(risk.has("data")); assertFalse(risk.at("/error/message").asText().isBlank());
+        assertEquals(a.lockVersion(),port.get(a.id()).activity().lockVersion()); assertEquals(ActivityStatus.SCHEDULED,port.get(a.id()).activity().status());
+        // 仅在独立测试表中追加过去版本，不修改现有不可变版本。
+        var past=new ActivityInput("过去活动","",10,1,List.of(),new Plan(NOW.minusSeconds(3600),NOW,0,0,venue,List.of()));
+        UUID pastId=UUID.randomUUID();
+        tx.executeWithoutResult(s->{ jdbc.update("INSERT INTO activity(id,organization_id,owner_id,status,version_no,effective_version_no,lock_version) VALUES (?,?,?,'SCHEDULED',1,1,0)",pastId,org,owner);
+            try { jdbc.update("INSERT INTO activity_version(activity_id,version_no,input_json,created_by) VALUES (?,1,?::jsonb,?)",pastId,mapper.writeValueAsString(past),owner); }
+            catch(com.fasterxml.jackson.core.JsonProcessingException e) { throw new IllegalStateException(e); }
+        });
+        var started=request("POST","/"+pastId+"/publish",owner,new VersionCommand(0),409);
+        assertEquals("INVALID_STATE",started.at("/error/code").asText()); assertEquals("活动已经开始",started.at("/error/message").asText());
+        assertEquals(0,count("outbox_event",pastId));
+    }
+    @Test void pendingChangeAllowsPublishAndRemainsVisibleButFreezesRegistration() throws Exception {
+        var a=confirmed(approved(submit(create()))); pending(a.id());
+        var published=request("POST","/"+a.id()+"/publish",owner,new VersionCommand(a.lockVersion()),200);
+        assertEquals("OPEN",published.at("/data/status").asText()); assertTrue(published.at("/data/activeChangeId").isTextual());
+        var frozen=request("PUT","/"+a.id()+"/registration",student,new RegistrationCommand(RegistrationAction.JOIN,1),409);
+        assertEquals("CHANGE_PENDING",frozen.at("/error/code").asText()); assertTrue(frozen.at("/error/details").isObject()); assertFalse(frozen.has("data"));
+        var publicList=request("GET","?scope=public",student,null,200); assertEquals(a.id().toString(),publicList.at("/data/0/id").asText());
+        var reviewList=request("GET","?scope=review",reviewer,null,200); assertEquals(a.id().toString(),reviewList.at("/data/0/id").asText());
+    }
+    @Test void resourceConfirmConflictHttpIncludesStructuredConflictsWithoutPartialReservation() throws Exception {
+        var first=confirmed(approved(submit(create()))); var second=approved(submit(create()));
+        var conflict=request("POST","/"+second.id()+"/resource-confirm",admin,new VersionCommand(second.lockVersion()),409);
+        assertEquals("RESOURCE_CONFLICT",conflict.at("/error/code").asText()); assertFalse(conflict.at("/error/message").asText().isBlank());
+        assertTrue(conflict.hasNonNull("requestId")); assertFalse(conflict.has("data"));
+        var conflicts=conflict.at("/error/details/conflicts"); assertTrue(conflicts.isArray()); assertTrue(conflicts.size()>0);
+        assertEquals("VENUE_OCCUPIED",conflicts.get(0).get("code").asText()); assertEquals(venue.toString(),conflicts.get(0).get("resourceId").asText());
+        assertTrue(conflicts.get(0).hasNonNull("startsAt")); assertTrue(conflicts.get(0).hasNonNull("endsAt"));
+        assertEquals(0,count("reservation",second.id())); assertEquals(2,count("reservation",first.id()));
+        assertEquals(ActivityStatus.APPROVED_UNRESERVED,port.get(second.id()).activity().status());
+    }
 }

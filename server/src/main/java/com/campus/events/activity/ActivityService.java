@@ -90,25 +90,32 @@ public class ActivityService {
         port.append(new EventDraft(row.id(),row.versionNo(),actor.id(),type,summary,List.copyOf(recipients),row.input().title(),summary));
     }
     @Transactional(readOnly=true) public CommandResult list(Actor actor,String scope,ActivityStatus status) {
-        actor=current(actor); var rows=activities.list(actor,scope,status); Actor latest=actor;
+        actor=current(actor);
+        if("mine".equals(scope)) AuthorizationPolicy.role(actor,Role.APPLICANT);
+        var rows=activities.list(actor,scope,status); Actor latest=actor;
         return Responses.list(rows.stream().limit(200).map(row->http(row,latest)).toList(),rows.size()>200);
     }
     @Transactional(readOnly=true) public ActivityView get(Actor actor,UUID id) {
         actor=current(actor); var row=activities.get(id); boolean allowed=privileged(row,actor);
-        if(!allowed && row.status()!=ActivityStatus.OPEN && !row.input().staffUserIds().contains(actor.id())) throw ApiException.forbidden();
+        if(!allowed && row.status()!=ActivityStatus.OPEN && !row.input().staffUserIds().contains(actor.id())
+                && registrations.get(id,actor.id())==null) throw ApiException.forbidden();
         return views.http(row,actor,allowed);
     }
     @Transactional(propagation=Propagation.MANDATORY) public ActivityView create(Actor actor,ActivityInput input) {
         validate(input); var latest=staff(actor,input); UUID id=activities.create(latest,input); return http(activities.get(id),latest);
     }
     @Transactional(propagation=Propagation.MANDATORY) public ActivityView edit(Actor actor,UUID id,ActivityEdit command) {
-        validate(command); var row=activities.lock(id); var latest=staff(actor,command.input()); owner(row,latest); version(row,command.expectedLockVersion());
+        validate(command); var row=activities.lock(id);
+        if(!row.ownerId().equals(actor.id())) throw ApiException.forbidden();
+        var latest=staff(actor,command.input()); owner(row,latest); version(row,command.expectedLockVersion());
         if(row.status()!=ActivityStatus.DRAFT) throw new ApiException(409,"INVALID_STATE","仅草稿可编辑");
         activities.version(id,row.versionNo()+1,command.input(),latest.id()); transition(row,ActivityStateMachine::edit,null);
         return http(activities.get(id),latest);
     }
     @Transactional(propagation=Propagation.MANDATORY) public ActivityView submit(Actor actor,UUID id,VersionCommand command) {
-        validate(command); var row=activities.lock(id); var latest=staff(actor,row.input()); owner(row,latest); version(row,command.expectedLockVersion());
+        validate(command); var row=activities.lock(id);
+        if(!row.ownerId().equals(actor.id())) throw ApiException.forbidden();
+        var latest=staff(actor,row.input()); owner(row,latest); version(row,command.expectedLockVersion());
         if(row.status()!=ActivityStatus.DRAFT) throw new ApiException(409,"INVALID_STATE","仅草稿可提交");
         resources.lock(resourceIds(row.input()));
         // 检查资格与安排合法性；资源冲突留待最终联合确认，不在提交时占位。
@@ -127,6 +134,8 @@ public class ActivityService {
     @Transactional(propagation=Propagation.MANDATORY) public ActivityView decide(Actor actor,UUID id,ApprovalCommand command) {
         validate(command); var row=activities.lock(id); var latest=lockActor(row,actor);
         AuthorizationPolicy.approval(latest,row.ownerId(),row.organizationId(),categories(row.input())); version(row,command.expectedLockVersion());
+        // PENDING期间禁止内容编辑；编辑/撤回只在DRAFT追加版本。活动锁及lockVersion校验
+        // 保证此处读取的versionNo就是提交时冻结的版本，不从客户端接受另一个审批版本。
         transition(row,s->ActivityStateMachine.decide(s,row.versionNo(),ActivityStateMachine.Decision.valueOf(command.decision().name())),null);
         activities.approval(row,latest.id(),command);
         event(row,latest,command.decision()==Decision.APPROVE?"ACTIVITY_APPROVED":"ACTIVITY_REJECTED",command.comment(),List.of());
@@ -146,7 +155,6 @@ public class ActivityService {
     @Transactional(propagation=Propagation.MANDATORY) public ActivityView publish(Actor actor,UUID id,VersionCommand command) {
         validate(command); var row=activities.lock(id); var latest=lockActor(row,actor); owner(row,latest); version(row,command.expectedLockVersion()); future(row);
         if(row.status()!=ActivityStatus.SCHEDULED) throw new ApiException(409,"INVALID_STATE","仅已预约活动可发布");
-        if(views.changes().hasPending(id)) throw new ApiException(409,"CHANGE_PENDING","存在待处理改期");
         resources.lock(resourceIds(row.input()));
         if(scheduling.risk(id)!=Risk.NORMAL) throw new ApiException(409,"RESOURCE_CONFLICT","活动资源存在风险");
         transition(row,ActivityStateMachine::publish,row.effectiveVersionNo()); event(row,latest,"ACTIVITY_PUBLISHED","活动已发布",List.of());

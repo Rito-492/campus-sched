@@ -54,3 +54,14 @@ CM 编译问题修复后，标准命令（先按仓库规则加载真实测试�
 - 事件写入后注入异常，核对活动/预约/报名/改期/审计/outbox 及 receipt 整体回滚；改期 activatePlan 后故障核对版本指针与 ACTIVE 报名版本回滚。
 
 上述为模块证据。真实 CM 端口、通知消费者、跨模块改期业务、应用重启恢复、QA 全套验收和 E2E 尚未完成。
+
+## PR #11 评审修复复验（2026-10-29）
+
+实际基准仍为 main `34dc4d5`（本轮fetch完成，无新main）；被修复提交 `9b76b2e`、`0886c8b`。采用上述同一便携JDK/PG17.6和隔离POM，没有更改公共构建或生产端口替身约束。
+
+- 先在旧实现运行新增回归：25项单测中2失败、2错误、0跳过，暴露mine角色、取消报名详情、非所有者提前锁人员和发布额外改期门禁；保留[修复前日志](../../artifacts/test-results/an-2026-10-29/an-review-before.log)。
+- 修复后同一隔离verify：**25项单测（ActivityServiceTest 18、原状态机7）+22项真实PostgreSQL IT，0失败/错误/跳过**；日志BUILD SUCCESS。新增mine的所有者/工作人员/历史并集去重、状态筛选和非申请人403；无工作人员关系的报名者在取消后读详情/本人列表、名单仍403；Service层已开始/错误状态/资源风险发布负向；HTTP失败信封及资源冲突details；待改期发布成功且报名继续冻结，public/review HTTP可见。
+- 默认公共POM模块test本轮仍退出1：CM DemoDataSeeder.java:118受检异常未处理；默认测试未运行，不计通过。见[默认日志](../../artifacts/test-results/an-2026-10-29/an-review-default.log)。
+- [最终verify日志](../../artifacts/test-results/an-2026-10-29/an-review-verify.log)、三份最终JUnit XML/TXT、实际隔离POM及源码SHA-256均归档在[本轮AN证据目录](../../artifacts/test-results/an-2026-10-29/)。原始统计由JUnit报告产生；检查证据未包含本轮数据库凭据。测试结束清理独立schema并停止本轮便携实例。
+
+没有重复运行未变化的全项目/E2E或声称真实CM端口通过。评审响应、仍需PM定口径的建议项见[交叉评审修复说明](activity-review-response-v1.0.md)。
