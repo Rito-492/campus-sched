@@ -1,5 +1,22 @@
 # 交接单（配置经理）
 
+## 本轮工作（2026-10-30）：补全 T08 DOCX 的 DATA/MODEL 实例与三口径时间 + 修复结构指南笔误
+
+- 成员、学号、任务ID：杨瀚霖、55231031、配置经理；CM-01 收尾 + PR #10 配置文档清阻塞（续）。
+- main 基准：仍无法 `git fetch`（github.com:443 无法连接），本地 main 停留 `b994ad3`、无 `server/pom.xml`；远程 main=34dc4d5、PR #8/#10 最新状态均无法在线核对。
+- 复核勘误（对上轮 2026-10-26 记录的修正）：`T08_配置管理计划.docx` v1.5 同步不完整——上轮只改了"2–5 位大写字母"与 `v1.2→v1.5` 示例，漏了三处：①§3.1.1 未补"DATA/MODEL 为英文整词（4/5 位），与三位缩写并存"说明；②§3.1.1 编号解剖示例未补 `CS-CI-DATA-01` / `CS-CI-MODEL-01` 实例；③§3.1.2 仅"建立时间/授权时间"二口径，未区分 commit 时间 / tag 时间 / 授权时间三口径。
+- 本轮改动：
+  - `docs/configuration/T08_配置管理计划.docx`（二进制，按配置规程保留版本记录，仍为 v1.5 补全同一轮整改，不静默覆盖）：补齐上述三处，使 DOCX 与 `configuration-management-plan.md` §3.1/§5.2、`configuration-index.md` 一致。
+  - `docs/configuration/repo-structure.md`：`server/` 根包笔误 `com.campus/events` → `com.campus.events`。
+  - 三口径时间按 `git` 核实：`baseline/init-v1.0` commit=tag=2026-09-25 22:15:33、`baseline/task-package-v2.0` commit=tag=2026-09-26 19:59:40、`baseline/task-package-v3.0` commit 2026-10-14 15:44:47 / tag 15:54:57（注解 tag，commit≠tag），与计划/索引一致，未臆造、未倒造审批。
+- 实际检查（真实结果）：
+  - `git fetch origin` / `git ls-remote origin`：❌ 失败（github.com:443 无法连接），仍无法取得 34dc4d5 与 PR 最新状态、无法推送或回复评审。
+  - 默认全量构建 / `DemoDataSeederIT`：❌ 无法执行（无 `server/pom.xml`、无 Maven、无 Docker、无 PostgreSQL），依赖项目经理交付后端工程后补跑并保存真实报告。
+  - DOCX 校验：✅ `python-docx` 可打开（126 段 / 10 表）、`word/document.xml` 良构、zip 完整，新增内容（DATA/MODEL 说明与实例、三口径时间）逐项核验通过。
+  - 密钥/日志：✅ 源码无 `demo123` 硬编码、不打印口令（仅 warn 未配置 / info 计数）；`DEMO_PASSWORD` 缺失时 `DemoDataSeederIT` 明确失败（`IllegalStateException`）。
+- 未完成项/外部依赖：同 2026-10-26 表；核心阻塞为项目经理后端工程（pom/Maven Wrapper/contract）与本机网络（GitHub 不可达）。
+- 下一接收人：项目经理（确认单一 PR 与 PR #8 关闭方案、交付后端工程）；测试经理（复审 SeederIT 与配置文档变更）。
+
 ## 本轮工作（2026-10-26）：修复 SeederIT 口令硬编码 + PR #10 文档逐项清阻塞
 
 - 成员、学号、任务ID：杨瀚霖、55231031、配置经理；CM-01 收尾 + 配置文档（PR #8/#10 评审整改）。
