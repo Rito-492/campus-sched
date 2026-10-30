@@ -41,7 +41,6 @@ import java.util.UUID;
  *   5. 幂等：已存在同 id 记录则校验一致后跳过，不覆盖用户已修改数据。
  *
  * 依赖：PM 后端工程（pom/JdbcTemplate/TransactionTemplate/Spring Security BCrypt PasswordEncoder/Jackson JavaTime）。
- * 编译阻塞：server/pom.xml 尚未交付（PM M0），本文件与 DemoData.java 待其就绪后编译。
  */
 @Component
 @Profile("dev")

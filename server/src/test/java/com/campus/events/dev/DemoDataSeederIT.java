@@ -36,9 +36,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * {@code demoSeedFile}/{@code demoDate}/{@code demoPassword} 三个 @Value 字段，事务用
  * DataSourceTransactionManager 绑定到 DbTestSupport 的独立 schema。
  *
- * <p>运行前置：{@code TEST_DATABASE_URL} 指向 campus_test（先执行 scripts/load-env.ps1）。
- * 待 PM 基础工程 pom/mvnw 进入主线后可运行：
- * {@code ./server/mvnw.cmd -f server/pom.xml "-Dit.test=DemoDataSeederIT" verify}
+ * <p>运行前置：{@code TEST_DATABASE_URL} 指向 campus_test、{@code DEMO_PASSWORD} 已设置（先执行 scripts/load-env.ps1）。
+ * 运行：{@code ./server/mvnw.cmd -f server/pom.xml "-Dit.test=DemoDataSeederIT" verify}
  */
 @DisplayName("CM-01 DemoDataSeeder 导入顺序与幂等回归")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
