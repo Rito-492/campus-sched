@@ -4,7 +4,7 @@
 
 - 成员、学号、任务ID：杨瀚霖、55231031、配置经理；CM-01 收尾 + PR #8/#10 评审整改（续）。
 - main 基准：VPN 恢复后 `git fetch` 成功；`origin/main` 现为 `c9c757b`（PR #12 合并，2026-10-29），已远超任务起点 34dc4d5。本分支 `work/55231031-change` 已 rebase 到 `c9c757b`（无冲突）。
-- PR 状态（GitHub API 在线核对）：PR #8 `fix/demodataseeder-118`（head ee76c2a / base 2a9e941，非固定分支）与 PR #10 `work/55231031-change`（head a6d734c / base 34dc4d5）均 CHANGES_REQUESTED。DS（黄方勇）2026-10-26 复现证据：main=34dc4d5 默认全量构建（compile/test/verify）均退出 1，首个错误 `DemoDataSeeder.java:118 seedActivity() throws Exception` 未捕获，96 个生产源文件编译停止——即 main 上 Seeder 仍是旧坏版本，修复被卡在 PR #8/#10，本分支的 seedActivity 修复正对其。
+- PR 状态（GitHub API 在线核对，开始整改时）：PR #8 `fix/demodataseeder-118`（head ee76c2a / base 2a9e941，非固定分支）与 PR #10 `work/55231031-change`（head a6d734c / base 34dc4d5）均 CHANGES_REQUESTED；本轮整改后 PR #10 已推至 head 81a40f5 / base c9c757b。DS（黄方勇）2026-10-26 复现证据：main=34dc4d5 默认全量构建（compile/test/verify）均退出 1，首个错误 `DemoDataSeeder.java:118 seedActivity() throws Exception` 未捕获，96 个生产源文件编译停止——即 main 上 Seeder 仍是旧坏版本，修复被卡在 PR #8/#10，本分支的 seedActivity 修复正对其。
 - 复核勘误（对上轮 2026-10-26 记录的修正）：`T08_配置管理计划.docx` v1.5 同步不完整——上轮漏了三处：①§3.1.1 未补"DATA/MODEL 为英文整词（4/5 位），与三位缩写并存"；②编号解剖示例未补 `CS-CI-DATA-01` / `CS-CI-MODEL-01` 实例；③§3.1.2 仅"建立时间/授权时间"二口径，未区分 commit / tag / 授权三口径。
 - 本轮改动（已提交并推送到 PR #10，work/55231031-change → 37e8b15）：
   - `DemoDataSeederIT.java`：移除硬编码 `demo123`，改读必需环境变量 `DEMO_PASSWORD`（缺失抛 `IllegalStateException`）；修正过期的"待 PM pom 进入主线"运行说明。
@@ -17,7 +17,7 @@
   - 默认全量构建 / `DemoDataSeederIT`：❌ 本机无 Java 21（仅 1.8/23）、无 Maven、无 Docker、无 PostgreSQL，无法本地复跑；DS 已用仓库 mvnw+Java21 复现 main 编译错误，本分支 seedActivity 修复正对该错误；真库 SeederIT 三条场景此前已在 PM 集成日志记录 24 项真 PostgreSQL IT 通过（含 DemoDataSeederIT 3 项，隔离运行，非 PR CI）。
   - DOCX 校验：✅ `python-docx` 可打开（126 段 / 10 表）、`word/document.xml` 良构、zip 完整，新增内容逐项核验通过。
   - 密钥/日志：✅ 源码无 `demo123` 硬编码、不打印口令（仅 warn 未配置 / info 计数）。
-  - 推送与 PR 更新：✅ `--force-with-lease` 强推成功；PR #10 标题/正文已更新（列全量 diff、说明取代 PR #8）；PR #8/#10 已逐条回复评审并请求复审。PR #8 关闭与合并待 PM 确认（本 agent 不自行批准/合并）。
+  - 推送与 PR 更新：✅ `--force-with-lease` 强推成功（work/55231031-change → 81a40f5，base c9c757b）；PR #10 标题/正文已更新（列全量 diff、说明取代 PR #8）；PR #8/#10 已逐条回复评审并请求复审。PR #8 关闭与合并待 PM 确认（本 agent 不自行批准/合并）。
 - 未完成项/外部依赖：本机缺 Java 21/Docker/PostgreSQL → 真库 SeederIT 需在集成环境（PM/QA）复跑并保存真实报告；单一 PR 与 PR #8 关闭方案待 PM 确认。
 - 下一接收人：项目经理（确认单一 PR 与 PR #8 关闭方案、组织集成环境复跑构建+真库 IT）；测试经理（复审 SeederIT 与配置文档变更）。
 
