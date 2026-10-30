@@ -1,10 +1,11 @@
 # 配置管理计划（Configuration Management Plan）
 
 > 项目：面向校园活动的多资源协同调度与变更影响分析系统（campus-sched）
-> 版本：v1.0
+> 版本：v1.5
 > 负责人：杨瀚霖（55231031，配置经理）
-> 日期：2026-09-27
-> 对应交付物：任务包 §6 交付物 6
+> 日期：2026-10-26
+> 对应交付物：任务包 §5 交付物 6（配置管理计划）、交付物 10（配置库）
+> 课程提交版：`docs/configuration/T08_配置管理计划.docx`（Word，参照 RUP 模板，含产品目录结构、配置项与基线清单）
 
 ## 1. 引言
 
@@ -45,16 +46,35 @@
 
 ### 3.1 配置项分类与编号
 
-| 编号前缀 | 类别 | 说明 |
+| 类别缩写 | 类别 | 说明 |
 |---|---|---|
-| CI-SRC | 源代码 | 后端 `server/`、前端 `web/`、E2E `qa/` |
-| CI-DOC | 文档 | `docs/` 下各岗位文档、`AGENTS.md`、`README.md`、`taskbook.md` |
-| CI-PKG | 任务包 | `agents/`（公共契约 + 个人任务书，开发基线） |
-| CI-DATA | 数据 | `test-data/`（demo.json、scenarios） |
-| CI-ENV | 环境配置 | `compose.yaml`、`.env.example`、`infra/`、`scripts/`、`application*.yml` |
-| CI-MODEL | 模型图 | `models/`（Drawio 源文件） |
-| CI-REL | 发布产物 | `release/` |
-| CI-ART | 验收证据 | `artifacts/`（截图、测试结果、评测） |
+| SRC | 源代码 | 后端 `server/`、前端 `web/`、E2E `qa/` |
+| DOC | 文档 | `docs/` 下各岗位文档、`AGENTS.md`、`README.md`、`taskbook.md` |
+| PKG | 任务包 | `agents/`（公共契约 + 个人任务书，开发基线） |
+| DATA | 数据 | `test-data/`（demo.json、scenarios） |
+| ENV | 环境配置 | `compose.yaml`、`.env.example`、`infra/`、`scripts/`、`application*.yml` |
+| MODEL | 模型图 | `models/`（Drawio 源文件） |
+| REL | 发布产物 | `release/` |
+| ART | 验收证据 | `artifacts/`（截图、测试结果、评测） |
+
+每个配置项的完整标识由「编号 + 名称 + 版本」三部分组成：编号是机器检索的唯一 ID，名称是沟通与追溯用的中文工件名，版本追踪内容演化。
+
+**编号规则**——统一格式为 `CS-CI-<类别缩写>-<序号>`，四段以连字符连接：
+
+- `CS`：项目标识（campus-sched 的缩写），用于区分本项目与其他项目的配置项；
+- `CI`：配置项（Configuration Item）固定前缀，标识该工件已纳入配置管理；
+- `<类别缩写>`：大写字母（2–5 位，见上表），表示配置项类别（如 SRC=源代码、DOC=文档、ENV=环境配置、DATA=数据、MODEL=模型图；DATA/MODEL 为英文整词，位数分别为 4/5，与三位缩写并存）；
+- `<序号>`：两位数字，同一类别内唯一、登记后不复用；按登记顺序递增，可按岗位/模块预留号段。
+
+编号解剖示例：`CS-CI-DOC-04` = CS（项目 campus-sched）＋ CI（配置项）＋ DOC（文档类）＋ 04（文档类第 4 号），对应配置项"配置管理计划"；需要指到具体版本时写作 `CS-CI-DOC-04 v1.5`。同类实例：`CS-CI-DATA-01` = 数据类第 1 号（对应"演示数据集 v3.0"）；`CS-CI-MODEL-01` = 模型图类第 1 号（类别已定义，待 `models/` 产出真实图源后登记）。
+
+**名称命名规则**——配置项名称即《配置项索引》"配置项"列的中文名，采用"<模块/范围> + <工件类型或用途>"的格式，要求唯一、见名知义，并与编号一一对应：
+
+- 文档类：按"岗位/主题 + 文档类型"命名，如"配置管理计划""测试计划""系统设计"；
+- 数据类：按"用途 + 数据集"命名，如"演示数据集 v3.0""场景数据"；
+- 环境类：按"环境/用途 + 组件"命名，如"开发 Compose""QA/E2E Compose""环境变量模板"。
+
+含版本的名称写作"名称 + v版本"（如"演示数据集 v3.0"）。版本号不写入配置项编号，单独用 §5.3 的版本号规则管理。
 
 ### 3.2 配置项清单
 
@@ -66,9 +86,50 @@
 
 - 远程仓库：GitHub `Rito-492/campus-sched`（公开）。
 - 本地仓库：成员通过 `git clone` 获取完整历史；以 `main` 为可集成分支。
-- 配置库同时承担课程"配置库"交付物（任务包 §6 交付物 10）的角色。
+- 配置库同时承担课程"配置库"交付物（任务包 §5 交付物 10）的角色。
 
-### 4.2 分支策略
+### 4.2 目录结构（产品目录结构）
+
+配置库即 Git 仓库，产品目录结构如下（与《仓库结构与目录指南》§2 一致，完整归属见该指南 §3）：
+
+```text
+campus-sched/
+├── AGENTS.md / README.md / .gitignore    # 仓库元文件（仅此三件）
+├── taskbook.md                           # 开发任务包总说明 v3.0
+├── agents/                               # 任务包：公共契约 + 六份个人任务书
+│   ├── common/                           #   01–05 公共契约
+│   ├── 55230223-foundation/              #   项目经理
+│   ├── 22220314-activity/                #   系统分析员
+│   ├── 55230315-scheduling/              #   设计师
+│   ├── 55230316-qa/                      #   测试经理
+│   ├── 55231031-change/                  #   配置经理
+│   └── 17231018-ui/                      #   界面设计师
+├── docs/                                 # 文档区
+│   ├── course/                           #   课程下发文档（只读）
+│   │   └── role-confirmations/           #     六份角色确认表
+│   ├── management/                       #   项目计划（项目经理）
+│   ├── requirements/                     #   需求文档（系统分析员）
+│   ├── design/                           #   设计文档（设计师）
+│   ├── ui/                               #   界面文档与原型（界面设计师）
+│   ├── testing/                          #   测试文档（测试经理）
+│   └── configuration/                    #   配置管理文档（配置经理）
+├── server/                               # Java 21 / Spring Boot 后端
+│   └── src/
+│       ├── main/java/com/campus/events/  #   生产代码（foundation/auth/…/change 等）
+│       ├── main/resources/               #   application*.yml、db/migration/
+│       └── test/java/com/campus/events/  #   模块测试 + acceptance/ + support/
+├── web/                                  # Vue 3 / TypeScript 前端
+├── qa/                                   # Playwright E2E 与契约检查
+├── test-data/                            # demo.json、scenarios/
+├── contracts/                            # openapi.yaml（OpenAPI 规范）
+├── infra/                                # db/init.sql、nginx/default.conf
+├── scripts/                              # load-env.ps1、check.ps1
+├── release/                              # 发布包、发布说明、manifest
+├── artifacts/                            # 验收证据（截图/测试结果/评测）
+└── models/                               # Drawio UML 源文件（use-case/、activity/）
+```
+
+### 4.3 分支策略
 
 | 分支 | 用途 |
 |---|---|
@@ -81,7 +142,7 @@
 - 合并冲突由对应模块所有者核对，禁止一律选择 ours/theirs。
 - 缺陷修复在对应模块分支上进行。
 
-### 4.3 提交信息
+### 4.4 提交信息
 
 格式：`feat|fix|docs|test|model: 摘要`；涉及缺陷时引用 GitHub Issue 编号，如 `fix: 修复并发预约重复提交 (#23)`。
 
@@ -93,12 +154,18 @@
 
 ### 5.2 基线计划
 
-| 基线 | 触发时机 | 状态 |
-|---|---|---|
-| `baseline/init-v1.0` | 任务包并入仓库、仓库结构定型 | 待补登（见 §8） |
-| `baseline/requirements-v1.0` | 需求规范评审通过 | 待建立 |
-| `baseline/design-v1.0` | 设计文档评审通过 | 待建立 |
-| `baseline/release-v1.0.0` | 最终交付 | 待建立 |
+| 基线 | 内容/触发时机 | tag commit 时间 | 授权（CCB） | 状态 |
+|---|---|---|---|---|
+| `baseline/init-v1.0` | 任务包并入仓库、仓库结构定型 | 2026-09-25 22:15:33（commit=tag） | 待核实（无追溯 CCB 记录） | 已建立（tag 存在） |
+| `baseline/task-package-v2.0` | 任务包 v2.0 基线 | 2026-09-26 19:59:40（commit=tag） | 待核实（无追溯 CCB 记录） | 已建立（tag 存在） |
+| `baseline/task-package-v3.0` | 任务包 v3.0 基线（含 AN 活动状态机对齐） | commit 2026-10-14 15:44:47 / tag 15:54:57 | 待核实（无追溯 CCB 记录） | 已建立（tag 存在） |
+| `baseline/requirements-v1.0` | 需求规范评审通过 | — | 项目经理（CCB）· 冀项阳 | 待建立 |
+| `baseline/design-v1.0` | 设计文档评审通过 | — | 项目经理（CCB）· 冀项阳 | 待建立 |
+| `baseline/release-v1.0.0` | 最终交付 | — | 项目经理（CCB）· 冀项阳 | 待建立 |
+
+时间口径（三者不可混同）：**tag commit 时间** = 基线 tag 指向提交的提交时间（git 可查、可复现）；**tag 时间** = tag 对象的创建时间（轻量 tag 与 commit 相同，注解 tag 可单独记录）；**授权时间** = CCB 评审批准时间，须有可追溯记录（评审记录/决策日志）方可填写。"待建立"基线在对应交付物评审通过后补充时间。
+
+**基线授权**：基线由配置经理负责建立、登记并打 tag，经项目经理（CCB，冀项阳）评审批准后正式冻结生效；未经授权不得变更已冻结基线。本计划编制前已存在的三条历史基线（init-v1.0 / task-package-v2.0 / task-package-v3.0）tag 已建立，但当时尚未形成书面的 CCB 评审记录，故其"授权（CCB）"暂标"待核实"，待补充可追溯记录后更新——**不补造、不倒造审批**。
 
 ### 5.3 版本号规则
 
@@ -139,6 +206,6 @@
 
 ## 8. 待办与已知事项
 
-- `baseline/init-v1.0` 需在本计划对应的基线清单中补登（当前仓库已含任务包与 M0 初产物）。
 - 配置项索引（`configuration-index.md`）随各模块交付持续更新，当前仅登记已真实纳入的内容。
 - 环境搭建（`compose.yaml` 等）随 M0 逐步完成，本计划先于完整环境落地，作为过渡基准。
+- 需求/设计/发布基线待对应交付物评审通过后建立并登记。

@@ -86,11 +86,11 @@ campus-sched/
 
 | 目录 | 定位 | 所有者 |
 |---|---|---|
-| `server/` | Java 21 / Spring Boot 单体后端，根包 `com.campus/events`（foundation、auth、contract、activity、registration、resource、scheduling、change、notification、audit、dev）；`pom.xml`、`mvnw*`、`.mvn/` 由项目经理所有；`db/migration/` 由设计师所有 | 按包归属各成员 |
+| `server/` | Java 21 / Spring Boot 单体后端，根包 `com.campus.events`（foundation、auth、contract、activity、registration、resource、scheduling、change、notification、audit、dev）；`pom.xml`、`mvnw*`、`.mvn/` 由项目经理所有；`db/migration/` 由设计师所有 | 按包归属各成员 |
 | `web/` | Vue 3 / TypeScript 前端全部（含 package.json 及锁文件、测试、样式、API 客户端） | 界面设计师 |
 | `qa/` | Playwright E2E、契约检查、策略评测脚本工程 | 测试经理 |
 | `test-data/` | `demo.json`、`scenarios/*.json`（测试经理编写格式，配置经理实现导入） | 测试经理 |
-| `contracts/` | `openapi.yaml`（OpenAPI 3.0.3，38 个接口） | 项目经理 |
+| `contracts/` | `openapi.yaml`（OpenAPI 3.0.3，40 个接口） | 项目经理 |
 | `infra/` | `db/init.sql`、`nginx/default.conf` | 配置经理 |
 | `scripts/` | `load-env.ps1`、`check.ps1`、`retry-notifications.ps1` 等 | 配置经理 |
 | `release/` | 发布包、`README.md`（发布说明）、`manifest.json` | 配置经理 |
