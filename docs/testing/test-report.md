@@ -7,7 +7,7 @@
 - 日期：2026-10-31（Asia/Shanghai）
 - QA测试分支：`work/55230316-qa`；最终全量verify及D-AT-21 URI编码测试commit=`514b8dcce2d3666ff0fc9f15c3bae7826656c60e`；文档/证据更新随后继续随Draft PR提交。
 - main基线：`origin/main=feb0d70e2ff9da1669eb9c4c3e4beeb592a43ae9`；QA分支已变基到该基线。
-- PR状态：#8 CLOSED；#10/#11/#12 MERGED；main仍为feb0d70，#13/#14/#15仍OPEN且未合入；QA Draft PR #16 OPEN，分支`work/55230316-qa-feb0d70`、base `feb0d70`。
+- PR状态：#8 CLOSED；#10/#11/#12 MERGED；main仍为feb0d70；#13 AN/#14 PM OPEN且review required，#15 DS已非Draft（head `7521511`，含SchedulingPortAdapter等变更）但仍待评审，均未合入main；QA Draft PR #16 OPEN，分支`work/55230316-qa-feb0d70`、base `feb0d70`。
 - 同步前修改和未跟踪文件已备份于`.git/qa-pre-sync-backup-2026-10-31/`，SHA256校验通过；`.review-tmp/`保持未跟踪、未纳入QA改动。
 - Maven运行环境：JDK 27.0.1.0.3（Arch Linux/WSL2），项目编译目标Java 21；**与基线JDK 21不一致，发布前仍需在JDK 21复验**。
 - 数据库：临时PostgreSQL 17 `campus_test`，本机55439端口、按测试类隔离schema；DB密码及`DEMO_PASSWORD`随机生成于当前进程，未写入源码/日志；测试后按容器名/标签/镜像校验并清理。
