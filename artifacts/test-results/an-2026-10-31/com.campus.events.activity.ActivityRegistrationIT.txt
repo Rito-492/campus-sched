@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.campus.events.activity.ActivityRegistrationIT
+-------------------------------------------------------------------------------
+Tests run: 35, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 75.43 s -- in com.campus.events.activity.ActivityRegistrationIT
