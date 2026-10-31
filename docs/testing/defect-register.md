@@ -14,7 +14,7 @@
 | DEF-QA-2026-04 | D-AT-02/03/07/08/16/20、N-AT提交阻塞 / EventPort | 汤雨润（55230316） | B | 2026-10-31 | assign（CM） |
 | DEF-QA-2026-05 | D-AT-02/10-17/19/21、N-AT候选/待处理阻塞 / ChangePort | 汤雨润（55230316） | B | 2026-10-31 | assign（CM） |
 | DEF-QA-2026-06 | D-AT-21 API-09 offset calendar query 返回400 | 汤雨润（55230316） | C | 2026-10-31 | assign（DS核实） |
-| DEF-QA-2026-07 | D-AT-22 评测实测与场景期望不一致 | 汤雨润（55230316） | C | 2026-10-31 | assign（DS+QA核查） |
+| DEF-QA-2026-07 | D-AT-22 demo资源扩展污染候选集合 | 汤雨润（55230316） | C | 2026-10-31 | close（benchmark参考集隔离后复验通过） |
 
 ## 明细
 
@@ -70,12 +70,12 @@ PR #8/#10的重复Seeder源码已由PR #10作为唯一权威合并，PR #8关闭
 - 责任接收人：DS黄方勇（55230315，calendar API）；PM协调契约口径。复测待分析/修复后执行。
 
 ### DEF-QA-2026-07
-- 概要：D-AT-22真实策略评测生成完整160条测量行，但评测期望对照发现SCH-01、SCH-04、SCH-08各自两策略实测代价与test-data/scenarios/scheduling.json的expected不一致；因此evaluate退出1。
-- 再现步骤：先运行真实PostgreSQL Failsafe `SchedulingBenchmarkIT`生成原始JSON，再执行`npm --prefix qa run evaluate`。
-- 隔离：QA commit `a697d90871c6126bf6f42f26c938be9a1e9792cc`、PostgreSQL 17 campus_test、固定D=2030-10-20/Clock=2030-10-19T00:00:00Z；FIRST_FIT/RANKED各场景各10次，evaluatedCount均未超过300。
-- 预期 vs 实际：8场景中5场景的两策略代价对照一致；SCH-01预期(-60,0,0)而实测(0,1,0)，SCH-04预期无解而两策略实测可行(0,1,0)，SCH-08两策略预期不同但实测均为(0,1,1)。不修改expected迎合实现；需核场景几何/策略实现/排序契约。
-- 证据：`artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/scheduling-evaluation.json`、`artifacts/evaluation/summary.md`、`artifacts/evaluation/results.csv`、`artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/evaluate.log`。
-- 责任接收人：DS黄方勇（55230315）复核调度行为；QA汤雨润（55230316）复核scenario fixture/expected。回归待评审裁决后复测。
+- 概要：原D-AT-22评测从canonical `demo.json`加载所有资源，教师申请人可用的N-AT扩展资源3111/3112/3211/3212也进入CandidateSearch候选集合，超出`scheduling.json`只描述的3101/3102/3201/3202几何，造成SCH-01/04/08与expected不一致。
+- 再现步骤：原配置真实PG Failsafe `SchedulingBenchmarkIT`后执行`npm --prefix qa run evaluate`，产生SCH-01/04/08 mismatch；随后将Benchmark reference数据隔离为基线资源集重跑。
+- 隔离：旧结果commit a697d90、PostgreSQL 17；`CandidateSearch.search`从`resources.all()`枚举所有符合identity的资源。并非生产策略算法改动。
+- 预期 vs 实际：旧fixture下expected与实测不同；QA新增benchmark-only `scheduling-reference.json`（仅3101/3102/3201/3202，resource_admin仅此4项scope，不是canonical demo用户快照），不改expected。commit `7ad9cfe`真实PG BenchmarkIT 1/1且evaluate exit0，commit `c3a4a2c`进一步记录reference/scenario路径及SHA-256，8场景×2策略×10测量仍全部一致。
+- 证据：旧mismatch快照`artifacts/test-results/qa-2026-10-31/benchmark-reference-rerun/evaluation-prior-mismatch/summary.md`；带SHA-256的复验`artifacts/test-results/qa-2026-10-31/benchmark-hash-rerun/scheduling-evaluation.json`、`evaluate.log`；最终`artifacts/evaluation/summary.md`与`results.csv`。
+- 责任接收人：QA汤雨润（55230316）隔离评测fixture；DS黄方勇（55230315）可复核候选语义。复验通过，缺陷关闭；未修改任何expected或生产代码。
 
 ```markdown
 ### DEF-xxx

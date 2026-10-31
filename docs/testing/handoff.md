@@ -6,23 +6,23 @@
 
 - 成员/任务：汤雨润（55230316）/ QA-01数据支撑、QA-02模块接收、QA-03跨模块DB验收、QA-04评测、QA-05覆盖与报告。
 - 变更保全：同步前tracked差异、59项未跟踪路径和全部文件归档于 `.git/qa-pre-sync-backup-2026-10-31/`，SHA256校验通过；本地备份分支`backup/qa-pre-sync-20261031`保留旧HEAD。`.review-tmp/`未清理、未提交。未执行reset。
-- 基线：QA分支已变基到`origin/main=feb0d70e2ff9da1669eb9c4c3e4beeb592a43ae9`，main是QA PR分支祖先；真实默认verify运行源码commit=`a697d90871c6126bf6f42f26c938be9a1e9792cc`。原唯一QA领先提交0bb9aac的DbTestSupport修复重放为db3ea4f；本轮另增加`98796ed`（test profile/scoped DB及Benchmark装载事务修复）、`a697d90`（Seeder整体回滚IT）、`825718f`（覆盖与证据更新）。
+- 基线：QA分支已变基到`origin/main=feb0d70e2ff9da1669eb9c4c3e4beeb592a43ae9`，main是QA PR分支祖先；最终全量verify运行源码commit=`c3a4a2c6418b6ed4859c64a1b5da9b1b9fd82f6f`，D-AT-22哈希元数据专项复验commit=`c3a4a2c6418b6ed4859c64a1b5da9b1b9fd82f6f`。原唯一QA领先提交0bb9aac的DbTestSupport修复重放为db3ea4f；本轮另增加`98796ed`（test profile/scoped DB及Benchmark装载事务修复）、`a697d90`（Seeder回滚IT）、`825718f`（覆盖证据更新）、`7ad9cfe`（评测reference fixture隔离）。
 - PR状态（本轮GitHub实时查询；origin/main仍为feb0d70）：#8 CLOSED；#10 MERGED（feb0d70，Seeder/IT唯一权威）；#11 MERGED（73c2bcc）；#12 MERGED（c9c757b）；#13 AN、#14 PM、#15 DS仍OPEN且review/merge受阻（均未合入main）；本QA工作已由Draft PR #16承载，分支`work/55230316-qa-feb0d70`、base=`feb0d70`。
 - 备份后复核`0bb9aac`：每数据文件事务、资源后写user_resource_scope、`LocalTime`绑定SQL time、`::jsonb`绑定和新增DbTestSupportIT。最终真实库`DbTestSupportIT`通过；另有`SeederRollbackIT`验证末尾报名FK失败后organization/user/resource/activity/version/reservation/registration全回滚。
 - 正式Seeder：默认verify中`DemoDataSeederIT` 3/3通过（首次授权、撤权不重放、删用户后新用户授权）；QA新增`SeederRollbackIT` 1/1通过，PostgreSQL 17，`DEMO_PASSWORD`与DB密码为运行时随机值，未写入源码/日志。
-- 最终默认Maven：`./server/mvnw -f server/pom.xml verify`，源码和测试均编译成功；Surefire 70/70通过；Failsafe 120项=93通过、25失败、2错误、0跳过，命令退出1。运行时JDK为27.0.1（目标Java21），需在JDK21重验。完整真实DB结果见`artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/`。失败主要是生产EventPort/ChangePort缺失；D-AT-16诊断复验20/20 JOIN均503 INTERNAL_ERROR（ChangePort缺失）；calendar offset查询400；D-AT-22对照不一致；其余各项映射见coverage-matrix/defect-register。
-- D-AT-22：SchedulingBenchmarkIT在修复QA测试装载后通过并生成160行真实评测结果；独立`npm --prefix qa run evaluate`退出1，SCH-01/04/08的实际代价与场景期望不一致，已登记交DS+QA核查，不修改期望值迎合结果。原始JSON、CSV、摘要和命令日志均归档。
+- 最终默认Maven：`./server/mvnw -f server/pom.xml verify`，源码和测试均编译成功；Surefire 70/70通过；Failsafe 120项=93通过、25失败、2错误、0跳过，命令退出1。运行时JDK为27.0.1（目标Java21），需在JDK21重验。全量结果见`artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/`。失败主要是生产EventPort/ChangePort缺失；D-AT-16诊断复验20/20 JOIN均503 INTERNAL_ERROR（ChangePort缺失）；calendar offset查询400；其余各项映射见coverage-matrix/defect-register。
+- D-AT-22：初始不一致由canonical demo中的N-AT资格扩展资源污染候选空间导致。QA使用仅含3101/3102/3201/3202的Benchmark-only reference fixture，expected未改；commit `c3a4a2c`专项真PG复验输出reference/scenario路径及SHA-256，BenchmarkIT 1/1且evaluate exit 0，160行与全部expected一致。旧mismatch快照仍归档备查。
 - 其余支撑检查：40 API合同、demo/并发/调度引用、QA TypeScript、Playwright 29项列举通过；这些不计产品验收/E2E。`web/package.json`缺失且本机无`docker compose`插件，未运行真实浏览器E2E/发布演练。
-- 覆盖：30项已逐项更新；3项DS模块真实PG场景通过，17项部分覆盖，7项被生产端口/交付阻塞，2项未执行，D-AT-16和D-AT-22存在明确失败/比较差异。具体状态、Tx/Ts口径及责任人见`coverage-matrix.md`和`test-report.md`。这不表示M0–M4完成。
+- 覆盖：30项已逐项更新；4项通过（其中D-AT-04/05/06仅限DS模块真实PG范围，D-AT-22基准评测全expected一致），17项部分覆盖，7项被生产端口/交付阻塞，2项未执行，当前无D-AT/N-AT计为失败。具体状态、Tx/Ts口径及责任人见`coverage-matrix.md`和`test-report.md`。这不表示M0–M4完成。
 - PR与接收：按用户授权未改写旧远端固定分支，新建远端`work/55230316-qa-feb0d70`并已创建Draft PR #16（base feb0d70）；URL：https://github.com/Rito-492/campus-sched/pull/16。原`origin/work/55230316-qa`保持不动。PM/CM/AN/UI接收确认仍未收到。
 
 | 检查 | 当前结果 | 证据 |
 |---|---|---|
 | 备份/同步 | 完成；QA基于feb0d70，备份SHA256通过 | `.git/qa-pre-sync-backup-2026-10-31/`、本地备份分支 |
 | PR #8/#10/#11/#12 | #8关闭；#10/#11/#12合并 | GitHub PR状态及合并commit |
-| SeederIT / SeederRollbackIT / DbTestSupportIT | 全部真实PG Failsafe通过 | `artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-reports/` |
-| 默认Maven verify | 70 Surefire pass；120 Failsafe=93 pass/25 fail/2 error；exit 1 | 同目录`default-verify.exit`、`failsafe-summary.xml`与Surefire/Failsafe XML；stdout原始日志保留本地 |
-| 评测汇总 | 160测量行；evaluate exit 1，3场景期望不一致 | `artifacts/evaluation/summary.md`、`artifacts/evaluation/results.csv`、`artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/evaluate.log` |
+| SeederIT / SeederRollbackIT / DbTestSupportIT | 全部真实PG Failsafe通过 | `artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/` |
+| 默认Maven verify | 70 Surefire pass；120 Failsafe=93 pass/25 fail/2 error；exit 1 | `artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/default-verify.exit`、`failsafe-reports/failsafe-summary.xml`与结构化XML；stdout原始日志保留本地 |
+| 评测汇总 | 160测量行；D-AT-22 evaluate exit 0、expected全匹配 | `artifacts/test-results/qa-2026-10-31/benchmark-hash-rerun/evaluate.log`、`artifacts/evaluation/summary.md`、`artifacts/evaluation/results.csv` |
 | 契约/数据/TypeScript/Playwright列举 | 静态检查通过；29 tests列出但未执行浏览器 | `artifacts/test-results/qa-2026-10-31/static/` |
 | D-AT/N-AT | 状态已按真实运行逐项更新 | `coverage-matrix.md`、`test-report.md` |
 
