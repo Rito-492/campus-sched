@@ -2,7 +2,16 @@
 
 > 维护：设计师（55230315）。格式依据 `agents/common/04-协作与集成规程.md` §4 固定模板。运行时信息填真实值；未执行的检查如实标注，不虚构通过。
 
-## 最新交付（2026-10-31：main=feb0d70 标准复验与联调）
+## 最新续验（2026-10-31：QA原始修复接收与评审交付）
+
+- 黄方勇55230315，DS-03～05；本人分支work/55230315-scheduling；fetch后main仍为feb0d70，本地历史工件和stash保留。
+- 读取QA原始分支work/55230316-qa-feb0d70提交4681e4e5ee4eade6725582b4bce23a1af20cb903；独立detached工作区叠加DS生产修复bee9805及旧版29项资源IT。未在本人分支合入或改写QA文件。
+- 本机Java21.0.6 / 标准Maven3.9.11 / 原始pom / PostgreSQL17.6：QA组合verify退出0，70单测及39项IT无失败/错误/跳过。SchedulingBenchmarkIT产出160行，原QA汇总脚本退出0，16组期望一致，FIRST_FIT/RANKED均7/8可行。DS确认QA专用4资源fixture的场景几何与生产策略一致；这是该源码组合的D-AT-22专项复验通过，非main或整机验收。
+- 修正自身测试表达：拆开CM缺失保护与真实切换成功测试。本人最终代码标准verify：70单测通过；38项IT中37通过、1明确skipped（缺真实ChangePort，切换/回滚未执行），无失败/错误；退出0不作为完整联调通过。CM EventPort/ChangePort及UI/E2E仍未到位。
+- 证据：artifacts/test-results/ds-2026-10-31-followup/，含运行日志、退出码、160行原始JSON、CSV、摘要、源文件SHA-256。旧轮失败与建议实验保留为历史；详情integration-validation-v1.0.md。
+- PR #15更新后进入Ready for review，交叉评审及合并仍未完成；QA分支合入目标后由QA复跑，不自动合并main、不自动联系其他聊天。课程平台仍无提交回执。下一接收人：QA汤雨润、PM冀项阳、AN冯玉琪、CM杨瀚霖；尚未取得接收确认。
+
+## 前次交付（2026-10-31：main=feb0d70 标准复验与联调）
 
 - 黄方勇 55230315；DS-01～05；任务包 v3.0；分支 work/55230315-scheduling，main 基准 feb0d70e2ff9da1669eb9c4c3e4beeb592a43ae9。同步前 stash -u，快进后 apply，本地修改全部保留，备份 stash 未删除。
 - PR #9 调度实现与 PR #12 任务4设计文档均已合入。课程正式工件仍为 software-design-task4.md/.docx/.pdf；学习通提交尚无回执，状态“尚未确认提交”，截止沿用 2026-10-31 23:59（上海时间）。本轮未覆盖已评审 Office 工件。

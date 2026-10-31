@@ -626,20 +626,26 @@ class ResourceSchedulingIT {
     @Autowired ActivityPort activities;
     @Autowired org.springframework.beans.factory.ObjectProvider<ChangePort> changePorts;
 
+    @Test void missingChangePortRejectsActivityLockWithoutPartialWrites() {
+        Assumptions.assumeTrue(changePorts.getIfAvailable() == null, "CM端口已到位，改跑真实切换测试");
+        var original = plan(venue, 0, 1, 1);
+        UUID id = activity(owner, original);
+        assertTrue(book(id, original));
+        jdbc.update("UPDATE activity SET status='SCHEDULED',effective_version_no=1 WHERE id=?", id);
+        var error = assertThrows(ApiException.class, () -> tx.executeWithoutResult(status -> activities.lock(id)));
+        assertEquals(503, error.status());
+        assertEquals(1, jdbc.queryForObject("SELECT effective_version_no FROM activity WHERE id=?", Integer.class, id));
+        assertEquals(2, resources.active(id).size());
+        assertTrue(resources.active(id).stream().allMatch(r -> r.versionNo() == 1));
+    }
+
     @Test void realActivityPortAndSchedulingPortSwitchAndRollbackTogether() {
+        Assumptions.assumeTrue(changePorts.getIfAvailable() != null, "阻塞：CM真实ChangePort尚未交付，不能记切换通过");
         var original = plan(venue, 0, 1, 1);
         var target = plan(venue2, 120, 1, 1);
         UUID id = activity(owner, original);
         assertTrue(book(id, original));
         jdbc.update("UPDATE activity SET status='SCHEDULED',effective_version_no=1 WHERE id=?", id);
-        if (changePorts.getIfAvailable() == null) {
-            // main当前缺CM模块：真实端口拒绝必须留下原预约；不装生产替身。
-            var error = assertThrows(ApiException.class, () -> tx.executeWithoutResult(status -> activities.lock(id)));
-            assertEquals(503, error.status());
-            assertEquals(1, jdbc.queryForObject("SELECT effective_version_no FROM activity WHERE id=?", Integer.class, id));
-            assertTrue(resources.active(id).stream().allMatch(r -> r.versionNo() == 1));
-            return;
-        }
         assertThrows(IllegalStateException.class, () -> tx.executeWithoutResult(status -> {
             activities.lock(id);
             accounts.lock(owner);

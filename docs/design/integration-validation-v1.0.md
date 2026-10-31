@@ -38,4 +38,16 @@ main 尚无 change/notification/audit 实现，CM 分支最新提交仍为配置
 任务4正式文件为 software-design-task4.md/.docx/.pdf，PR #12 已合入；本轮不改写已评审 Office/PDF。尚无学习通上传回执，课程平台状态记为“尚未确认提交”。截止时间沿用既有记录：2026-10-31 23:59（Asia/Shanghai），不伪造上传、接收或评审记录。
 
 接收人：AN 冯玉琪核对活动版本/预约联合事务；CM 杨瀚霖交付真实 EventPort/ChangePort 及改期编排；QA 汤雨润接收正式评测阻塞证据；PM 冀项阳组织交叉评审。均尚未取得接收确认。
-`日志入库仅规范UTF-8和行尾空白，不改变测试结果。`
+日志入库仅规范UTF-8和行尾空白，不改变测试结果。
+
+## 续验（2026-10-31，QA原始修复分支）
+
+继续 fetch 后 main 仍为 feb0d70；QA 已推送 work/55230316-qa-feb0d70，实际提交 4681e4e。本次建立独立 detached 工作区直接使用该提交的原始 DbTestSupport、SchedulingBenchmarkIT、评测数据和汇总脚本，仅叠加 DS 的 SchedulingPortAdapter 与资源模块测试，不再应用此前建议补丁。参考集明确标注为四资源策略评测环境，生产候选生成器保持不变；不能用该范围证明全量 demo 的几何预期。
+
+修正测试表达：将“CM缺失时拒绝”与“真实跨端口成功切换/回滚”拆为两个测试。缺失保护独立断言503及原版本/预约不变；成功测试在真实 ChangePort 缺失时明确报告 skipped 和阻塞原因，不再在一个成功名称的测试中提前返回。跳过项不计通过，不据 Maven 退出0宣称完整联调完成。
+
+本次证据单独存放 artifacts/test-results/ds-2026-10-31-followup/，此前失败与建议实验保留为历史。PR #15交付自身可评审改动，外部依赖和验收限制继续列明；Ready for review不代表允许合并或整机通过。
+
+QA原始修复分支的本机复验结果：标准Maven verify退出0，70单测、39项IT（SchedulingBenchmarkIT 1、旧版ResourceSchedulingIT 29、SchemaIT 8、DbTestSupportIT 1）无失败/错误/跳过。旧版29项包含此前的条件探针，不据此计成功切换通过。原始QA脚本汇总退出0，160行、8场景×2策略各10次，16组期望对照一致，FIRST_FIT/RANKED均7/8场景可行；无解代价保留null，参考集和场景SHA-256随JSON/摘要输出。
+
+该结果记为“QA 4681e4e + DS bee9805生产修复的D-AT-22专项复验通过”，不是main已通过，也不是CM改期或整机验收；QA分支未合入main，合并后须由QA在目标提交复跑。测试账号及4资源范围来自QA正式专用fixture，未改生产搜索或canonical demo资源。DS确认几何预期一致，不替QA审批合并或确认课程上传。
