@@ -27,6 +27,7 @@ import java.time.OffsetDateTime;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -377,9 +378,14 @@ class PermissionsIT {
     void tc2101_calendarRedactsUnauthorizedActivityTitles() {
         String student = login("student_a");
         String url = UriComponentsBuilder.fromPath("/api/v1/resources/calendar")
-                .queryParam("from", "2030-10-20T00:00:00+08:00")
-                .queryParam("to", "2030-10-21T00:00:00+08:00")
-                .build().encode().toUriString();
+                .queryParam("from", "{from}")
+                .queryParam("to", "{to}")
+                .encode()
+                .buildAndExpand(Map.of(
+                        "from", "2030-10-20T00:00:00+08:00",
+                        "to", "2030-10-21T00:00:00+08:00"))
+                .toUriString();
+        assertTrue(url.contains("%2B"), "query中的UTC偏移+必须编码，避免表单解码将其解释为空格：" + url);
 
         HttpResult r = call(HttpMethod.GET, url, student, null, null);
         assertEquals(200, r.status(), () -> "日历请求GET " + url + " 失败：" + r.body());
