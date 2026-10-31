@@ -1,0 +1,14 @@
+QA 独立默认编译探测
+日期：2026-10-26（Asia/Shanghai）
+仓库分支：work/55230316-qa
+目标基准：origin/main 34dc4d5abd3d859e3a63ff476228593555f2e03b
+实际源码路径：当前 QA 分支（其 DemoDataSeeder 与 origin/main 此处一致）
+命令：./server/mvnw -f server/pom.xml -DskipTests compile
+数据库：未连接；TEST_DB_* 环境变量均未设置（编译不依赖数据库）
+DEMO_PASSWORD：未设置；测试代码/日志中未注入或输出任何密码
+结果：失败，退出码 1；未进入测试。完整 Maven 输出另存 `default-test.log`（命令为默认 `test`，同一编译失败）。
+关键输出：
+[ERROR] /.../server/src/main/java/com/campus/events/dev/DemoDataSeeder.java:[118,25] unreported exception java.lang.Exception; must be caught or declared to be thrown
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.1:compile ... Compilation failure
+
+说明：此证据仅证明默认主线源码编译阻塞，不是Seeder PR选定后版本的构建结果，也不是任何D-AT/N-AT执行证据。PR #8/#10涉及重复Seeder副本，等待PM/CM确定唯一权威来源后，使用无日志暴露的环境变量方式提供DEMO_PASSWORD再运行正式测试。

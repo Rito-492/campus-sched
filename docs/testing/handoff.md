@@ -2,6 +2,34 @@
 
 > 维护：测试经理（55230316）。格式依据 `agents/common/04-协作与集成规程.md` §4 固定模板。运行时信息填真实值；**不能为了填满模板虚构结果**，未执行的检查如实标注。
 
+## 本次工作（2026-10-26：PR状态、Seeder构建及环境复核）
+
+- 成员/任务：汤雨润（55230316）/ QA-02 合同与模块接收、QA-03/04/05 前置验证与证据更新。
+- 分支：`work/55230316-qa`，HEAD `0bb9aac`；工作区原有未跟踪目录 `.review-tmp/` 保留，未查看/修改其内容。无已跟踪文件预存改动。
+- 基准核实：fetch 后 `origin/main=34dc4d5abd3d859e3a63ff476228593555f2e03b`（PR #9 合入）。QA分支尚未同步该最新基准；本轮构建在QA分支执行；可直接读取的server/pom.xml及CM Seeder源码与当前main对应文件一致。未自动合并，避免改变个人分支状态。
+- PR最新状态（2026-10-26，GitHub `gh pr view`）：PR #8 head `ee76c2a` OPEN/CHANGES_REQUESTED/BLOCKED；PR #10 head `a6d734c` OPEN/CHANGES_REQUESTED/BLOCKED，review显示其包含与#8重复的Seeder源码与IT且测试存在硬编码密码；PM/CM尚未指定唯一权威来源，不对两个副本重复记证据。PR #11 head `0886c8b` OPEN/CHANGES_REQUESTED/BLOCKED，评审指出API-13 scope=mine缺工作人员/报名历史并集、API-14缺本人报名历史详情授权；责任AN，未合并代码不得记验收通过。
+- 环境：`TEST_DB_*`变量未设置；5440/5432/8081/8080/8089/5173端口均未监听。Docker CLI Server 29.9.2可用，但本轮未启动测试Compose。
+- 默认构建：`./server/mvnw -f server/pom.xml -DskipTests compile` 失败（退出1），`DemoDataSeeder.java:118` 未处理`seedActivity()`声明的受检`Exception`；`-DskipTests test-compile`同样停在main源码编译阶段。证据 `artifacts/test-results/qa-2026-10-26/default-compile.log`（完整默认`test`输出为同目录`default-test.log`），缺陷`DEF-QA-2026-01`分派CM杨瀚霖。未进入任何测试。
+- Seeder验证计划：待PM/CM选定#8/#10唯一权威后，仅对该来源跑默认构建和正式Failsafe `DemoDataSeederIT`，验证首次导入、撤权后重导不恢复、新用户授权正确、失败整体回滚。`DEMO_PASSWORD`必需且只能安全环境注入，日志不得回显。本轮未有唯一来源、DB凭据或运行数据库，故未运行Seeder IT；不以临时runner/隔离测试作为证据。
+- 30个D-AT/N-AT仍全为“未执行”。默认编译失败是构建/缺陷证据，不将D-AT-24记失败或通过。API合同/权限、首次预约、资格、并发报名/取消回滚及E2E均未实际执行。
+- 本轮修复测试计划中38→40 API及TEST_DB_*变量说明；修正coverage/test-design/test-data-plan中的真实E2E/IT类名与v3.0术语，移除qa helpers.ts中硬编码密码默认值（登录用例仅在运行时读取必需环境变量）；新增test-report.md和本轮测试数据/列举证据。未修改生产模块。
+- 后续依赖：PM冀项阳+CM杨瀚霖决定PR #8/#10唯一Seeder权威、处理PR #8分支落后主线问题并消除IT硬编码密码；CM修复默认构建及Compose/环境入口。PR #9已把Scheduling/StrategyEvaluator/StrategyResult合入main，不再列作待交付依赖；QA分支需先同步main才能编译SchedulingBenchmarkIT。AN冯玉琪修复PR #11评审指出的API-13 `scope=mine`缺并集、API-14本人报名历史详情授权缺口，合并后QA复验。UI杨畅目前`web/`仍只有Dockerfile与.gitkeep，缺package.json，E2E等前端工程。当前测试环境需显式安全提供`DEMO_PASSWORD`；代码仍有TEST_DATABASE_URL与TEST_DB_*分开读取的口径，待CM统一。接收确认：尚未接收。
+
+| 检查 | 结果 | 证据 |
+|---|---|---|
+| `git fetch origin --prune`/分支核对 | 完成，QA HEAD `0bb9aac`，origin/main `34dc4d5` | 本次命令记录 |
+| `gh pr view 8/10/11` | 完成，均OPEN且BLOCKED/CHANGES_REQUESTED | GitHub当前状态及#10评论 |
+| TEST_DB_*与服务端口 | 未配置/未监听 | 本次环境检查；未记录秘密值 |
+| `node qa/scripts/check-contract.ts` | 通过 | 40 API、9组枚举、15 DTO全部通过；输出 `artifacts/test-results/qa-2026-10-26/contract-check.log` |
+| 数据引用脚本 | 通过 | `data-reference-check.py` 核对demo、并发、调度数据集；结论在本轮复核记录，未更改原历史脚本输出 |
+| `npx tsc --noEmit`（qa） | 通过 | Playwright TypeScript类型检查 |
+| `npx playwright test --list`（qa） | 通过 | 29 tests / 7 files；测试列举不是执行/E2E通过 |
+| `python3 artifacts/test-results/qa-2026-10-20/data-reference-check.py` | 通过 | demo、并发、调度数据集引用完整；本轮明细见`artifacts/test-results/qa-2026-10-26/data-reference-check.log` |
+| 默认compile / test-compile | 失败，退出1；未进入测试 | `artifacts/test-results/qa-2026-10-26/default-compile.log` |
+| Seeder Failsafe/契约/E2E/全量验收 | 未执行 | 唯一来源未决且无数据库/API/UI服务 |
+
+历史批次记录如下，所述基准/阻塞是当时观察，不代表本轮现状：
+
 ## 本次工作（2026-10-20：PR #7 合并后 QA 支撑复核）
 
 - 成员、学号、任务ID：汤雨润 55230316 / QA-01 支撑复核 + QA-02 合同/数据校验

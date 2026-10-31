@@ -34,8 +34,14 @@ export const API_PREFIX = '/api/v1';
 /** 自动测试固定演示日期（test-data-plan §3）；禁止依赖实际当天。 */
 export const DEMO_DATE = process.env.DEMO_DATE ?? '2030-10-20';
 
-/** 演示口令经环境变量提供，仓库不写入口令（test-data-plan §3、03 §1）。 */
-export const DEMO_PASSWORD = process.env.DEMO_PASSWORD ?? 'demo-password';
+/** 演示口令由运行环境安全注入；仅实际登录测试读取，不在模块加载时强制要求。 */
+export function demoPassword(): string {
+  const value = process.env.DEMO_PASSWORD;
+  if (!value || value.trim().length === 0) {
+    throw new Error('必须通过环境变量安全提供 DEMO_PASSWORD；请勿在源码或日志中写入口令。');
+  }
+  return value;
+}
 
 /** 02 契约 §2 / test-data-plan §2：ID 前缀与尾号。 */
 const UUID_PREFIX = '00000000-0000-0000-0000-';
@@ -164,7 +170,7 @@ export interface UiSession {
  * 05 §4 仅定义 login-submit；账号/密码输入框与错误提示 testid 待 UI 提供，见 handoff，
  * 使用可访问名称定位。
  */
-export async function login(page: Page, username: string, password: string = DEMO_PASSWORD): Promise<void> {
+export async function login(page: Page, username: string, password: string = demoPassword()): Promise<void> {
   await page.goto('/login');
   await page.getByLabel(/账号|用户名/).fill(username);
   await page.getByLabel(/密码/).fill(password);
@@ -278,7 +284,7 @@ export interface ApiSession {
   client: APIRequestContext;
 }
 
-export async function apiLogin(username: string, password: string = DEMO_PASSWORD): Promise<ApiSession> {
+export async function apiLogin(username: string, password: string = demoPassword()): Promise<ApiSession> {
   const client = await request.newContext({ baseURL: BASE_URL });
   const res = await client.post(`${API_PREFIX}/auth/login`, {
     data: { username, password },

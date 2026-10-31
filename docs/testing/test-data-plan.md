@@ -79,7 +79,7 @@ JSON 是唯一数据来源，以下记录由导入器推导写入：
 4. `reservation`：status ∈ SCHEDULED/OPEN 的活动按 input.plan 派生 ACTIVE 预约（区间为 `[startAt−setupMinutes, endAt+teardownMinutes)`，01 基线 §4）：
    - 场地行：(venueId, quantity=1, 该区间)；
    - 器材行：每条 equipment 一行 (resourceId, quantity, 同区间)。
-   - DRAFT/PENDING_TEACHER/APPROVED_UNRESERVED 活动不派生预约（首次确认前 0 条 ACTIVE，D-AT-03）。
+   - DRAFT/PENDING_APPROVER/APPROVED_UNRESERVED 活动不派生预约（首次确认前 0 条 ACTIVE，D-AT-03）。
 5. 幂等：已存在同 id 记录则校验一致后跳过，不覆盖用户已修改数据（03 §1）。
 6. 运行门禁：仅 dev profile 且 `APP_DEMO_SEED=true` 时运行（03 §1）。重新演示使用新数据库或明确授权的重置流程。
 
