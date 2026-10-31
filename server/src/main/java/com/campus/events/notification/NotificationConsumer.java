@@ -33,8 +33,13 @@ public class NotificationConsumer {
         for (var row : batch) {
             try {
                 transactions.executeWithoutResult(tx -> { deliver(row); });
+            } catch (ClaimLostException lost) {
+                // 租约过期已被他人重认领：本次认领作废，不记账、不重试，交由新认领者完成。
             } catch (RuntimeException ex) {
-                transactions.executeWithoutResult(tx -> { events.recordFailure(row.id(), ex.getMessage()); });
+                transactions.executeWithoutResult(tx -> {
+                    // 返回 false 表示记账时也已丢失所有权：静默放弃，不影响新认领者。
+                    events.recordFailure(row.id(), row.claimToken(), ex.getMessage());
+                });
             }
         }
     }
@@ -45,6 +50,14 @@ public class NotificationConsumer {
             notifications.insert(row.id(), recipient, row.activityId(), row.versionNo(),
                     row.payload().title(), row.payload().body());
         }
-        events.markDone(row.id());
+        // markDone 若影响 0 行说明所有权已转移：本次投递不得作为成功提交，抛异常回滚通知写入。
+        if (!events.markDone(row.id(), row.claimToken())) {
+            throw ClaimLostException.INSTANCE;
+        }
+    }
+
+    /** 认领所有权已转移给他人：用于回滚本次投递并静默放弃，不当作投递失败重试。 */
+    private static final class ClaimLostException extends RuntimeException {
+        static final ClaimLostException INSTANCE = new ClaimLostException();
     }
 }
