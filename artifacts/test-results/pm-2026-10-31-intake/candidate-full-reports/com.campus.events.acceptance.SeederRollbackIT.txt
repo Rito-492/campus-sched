@@ -1,0 +1,1 @@
+{"class":"com.campus.events.acceptance.SeederRollbackIT","tests":1,"failures":0,"errors":0,"skipped":0}

@@ -1,0 +1,1 @@
+{"class":"com.campus.events.foundation.FoundationIT","tests":22,"failures":0,"errors":0,"skipped":0}

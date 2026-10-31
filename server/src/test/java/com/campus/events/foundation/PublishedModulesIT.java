@@ -1,6 +1,7 @@
 package com.campus.events.foundation;
 
 import com.campus.events.contract.*;
+import com.campus.events.contract.Role;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.nio.charset.StandardCharsets;
@@ -76,7 +77,7 @@ class PublishedModulesIT {
                 VALUES (?,?,?,?,?,'TEACHER')
                 """, id, org, id.toString(), "集成测试账号", encoder.encode(required("DEMO_PASSWORD")));
         jdbc.update("INSERT INTO user_role(user_id,role) VALUES (?,'APPLICANT'),(?,'ADMIN')", owner, admin);
-        jdbc.update("INSERT INTO user_permission(user_id,permission) VALUES (?,'RESOURCE_MANAGE')", admin);
+        jdbc.update("INSERT INTO user_permission(user_id,permission) VALUES (?,'RESOURCE_MANAGE'),(?,'USER_MANAGE')", admin, admin);
         ownerToken = login(owner); adminToken = login(admin);
         venue = resource("集成测试场地");
     }
@@ -94,7 +95,8 @@ class PublishedModulesIT {
         return new Result(response.getStatus(), mapper.readTree(response.getContentAsString(StandardCharsets.UTF_8)));
     }
     String login(UUID id) throws Exception {
-        var result = call("POST", "/auth/login", null, null, new LoginInput(id.toString(), required("DEMO_PASSWORD")));
+        String username = jdbc.queryForObject("SELECT username FROM app_user WHERE id=?", String.class, id);
+        var result = call("POST", "/auth/login", null, null, new LoginInput(username, required("DEMO_PASSWORD")));
         assertEquals(200, result.status()); return result.data().path("token").asText();
     }
     UUID resource(String name) throws Exception {
@@ -143,5 +145,51 @@ class PublishedModulesIT {
         assertEquals(503, result.status(), result.body().toString());
         assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM resource_fault WHERE resource_id=?", Integer.class, venue));
         assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM command_receipt WHERE actor_id=? AND idempotency_key=?", Integer.class, admin, key.toString()));
+    }
+    UUID user(Identity identity, List<Role> roles, List<Permission> permissions) throws Exception {
+        var result = call("POST", "/users", adminToken, UUID.randomUUID(),
+                new UserCreate(identity, roles, permissions, List.of(), List.of(), UUID.randomUUID().toString(),
+                        "跨模块授权回归", required("DEMO_PASSWORD"), org));
+        assertEquals(201, result.status(), result.body().toString());
+        return UUID.fromString(result.data().path("id").asText());
+    }
+    @Test void identityReplacementImmediatelyAffectsRealPreviewAndDisabledSessionIsRejected() throws Exception {
+        UUID applicant = user(Identity.TEACHER, List.of(Role.APPLICANT), List.of());
+        String token = login(applicant);
+        var created = call("POST", "/resources", adminToken, UUID.randomUUID(),
+                new ResourceCreate(false, true, ResourceKind.VENUE, "仅学生可用", "VENUE", 80, 1, "08:00", "22:00"));
+        assertEquals(201, created.status()); UUID resource = UUID.fromString(created.data().path("id").asText());
+        Plan target = new Plan(plan().startAt(), plan().endAt(), 0, 0, resource, List.of());
+        var draft = call("POST", "/activities", token, UUID.randomUUID(),
+                new ActivityInput("身份变更联调", "", 60, 20, List.of(), target));
+        assertEquals(201, draft.status()); UUID activity = UUID.fromString(draft.data().path("id").asText());
+        String path = "/activities/" + activity + "/schedule-preview";
+        var denied = call("POST", path, token, null, new Proposal(1, target));
+        assertEquals(403, denied.status()); assertEquals("RESOURCE_INELIGIBLE", denied.body().path("error").path("code").asText());
+        var replacement = call("PATCH", "/users/" + applicant + "/authorization", adminToken, UUID.randomUUID(),
+                new AuthorizationInput(Identity.STUDENT, List.of(Role.APPLICANT), List.of(), List.of(), List.of()));
+        assertEquals(200, replacement.status());
+        assertEquals("STUDENT", call("GET", "/auth/me", token, null, null).data().path("identity").asText());
+        var allowed = call("POST", path, token, null, new Proposal(1, target));
+        assertEquals(200, allowed.status()); assertTrue(allowed.data().path("feasible").asBoolean());
+        assertEquals(200, call("PATCH", "/users/" + applicant + "/enabled", adminToken, UUID.randomUUID(), new EnabledInput(false)).status());
+        assertEquals(401, call("POST", path, token, null, new Proposal(1, target)).status());
+        assertEquals(0, count("reservation", activity)); assertEquals(0, count("outbox_event", activity));
+    }
+    @Test void resourceScopeRevocationIsEnforcedAcrossModulesUsingTheExistingSession() throws Exception {
+        UUID manager = user(Identity.TEACHER, List.of(Role.ADMIN), List.of(Permission.RESOURCE_MANAGE));
+        String token = login(manager);
+        var created = call("POST", "/resources", token, UUID.randomUUID(),
+                new ResourceCreate(true, true, ResourceKind.VENUE, "资源授权撤销联调", "VENUE", 80, 1, "08:00", "22:00"));
+        assertEquals(201, created.status()); UUID resource = UUID.fromString(created.data().path("id").asText());
+        assertTrue(accounts.get(manager).managedResourceIds().contains(resource));
+        var revoked = call("PATCH", "/users/" + manager + "/authorization", adminToken, UUID.randomUUID(),
+                new AuthorizationInput(Identity.TEACHER, List.of(Role.ADMIN), List.of(Permission.RESOURCE_MANAGE), List.of(), List.of()));
+        assertEquals(200, revoked.status()); UUID key = UUID.randomUUID();
+        var rejected = call("PATCH", "/resources/" + resource + "/eligibility", token, key, new ResourceEligibility(false, false));
+        assertEquals(403, rejected.status()); assertEquals("FORBIDDEN", rejected.body().path("error").path("code").asText());
+        assertTrue(jdbc.queryForObject("SELECT allow_teacher AND allow_student FROM resource WHERE id=?", Boolean.class, resource));
+        assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM resource_eligibility_change WHERE resource_id=?", Integer.class, resource));
+        assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM command_receipt WHERE actor_id=? AND idempotency_key=?", Integer.class, manager, key.toString()));
     }
 }

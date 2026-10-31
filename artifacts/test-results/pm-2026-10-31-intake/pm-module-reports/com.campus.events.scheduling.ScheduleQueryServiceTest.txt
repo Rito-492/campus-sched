@@ -1,0 +1,1 @@
+{"class":"com.campus.events.scheduling.ScheduleQueryServiceTest","tests":4,"failures":0,"errors":0,"skipped":0}

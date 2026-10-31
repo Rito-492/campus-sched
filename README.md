@@ -52,6 +52,6 @@ test-data/ contracts/ infra/ scripts/ release/ artifacts/ models/
 
 ## 项目经理工作包（2026-10-31）
 
-已实现公共后端工程、共享DTO/五类端口、统一响应与时钟、账号认证/权限、AccountPort、幂等事务及40项[OpenAPI契约](contracts/openapi.yaml)。最新主线已接收AN活动与DS调度，29项API已有生产Controller；CM的11项API、ChangePort/EventPort生产实现及前端工程仍待交付。本轮补齐新建密码最少8字符、标准IT随机schema绑定及真实模块联测。接入方式见[公共模块说明](docs/management/foundation-guide.md)。
+已实现公共后端工程、共享DTO/五类端口、统一响应与时钟、账号认证/权限、AccountPort、幂等事务及40项[OpenAPI契约](contracts/openapi.yaml)。main=c4f3d41已接收AN和DS，29项API已有Controller；CM的11项API及ChangePort/EventPort仍缺失。QA PR #16与UI PR #17已有原始候选交付，并在PM独立组合中实际复验，尚未合入main。接入方式见[公共模块说明](docs/management/foundation-guide.md)。
 
-需Java21；默认入口为`./server/mvnw.cmd -f server/pom.xml test`及`verify`。标准构建模块检查通过76项单元、30项指定真实数据库IT；默认全量verify仍在QA数据装载阶段失败，不能算全项目通过。M0/M2/M3未放行；隔离配置不替代全量验收。最新门槛、责任人与接收条件见[集成核查](docs/management/integration-status-2026-10-31.md)和[PM交接单](docs/management/handoff.md)。
+需Java21；默认入口为`./server/mvnw.cmd -f server/pom.xml test`及`verify`。PM指定模块76项单元、32项IT通过；当前分支全量仍有8项QA初始化错误及1跳过。叠加QA/UI/AN候选后，76单元通过、142 IT中24失败/2错误/1跳过；UI类型、78项unit、构建、5项局部真浏览器和1项重启检查通过。全部范围、160行评测及依赖审计见[候选接收记录](docs/management/integration-intake-2026-10-31-v1.0.md)，不等同全组验收或发布。

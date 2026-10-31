@@ -1,5 +1,13 @@
 # 集成日志
 
+## 2026-10-31同日续作：c4f3d41与QA/UI候选接收
+
+安全普通merge最新main=c4f3d41，已接收DS PR #15。PM新增身份/范围变更作用于既有会话的两项真实跨模块IT；标准指定集合76单元+32 IT全通过、0跳过。PM分支默认verify为76单元通过、113 IT中8初始化错误/1跳过，exit 1。
+
+独立工作区依次组合原作者QA e1e175c、UI fork a327b16、AN 86b15c0及PM测试：76单元通过、142 IT=115通过/24失败/2错误/1跳过。Java21上原QA装载/回滚及160行评测通过、16组expected一致；UI在Node22.23上类型/78项unit/build、5项真实局部浏览器及1项关闭播种后的重启检查通过。独立组合未推送或合入main，CM端口和11接口仍缺，未放行M0～M4。
+
+npm audit报告8项（6 moderate/2 critical，critical为开发测试链），交UI整改。访问矩阵、review发现解释及D/I提案见[协调方案](access-coordination-v1.0.md)；全部SHA、接收范围和失败证据见[候选接收记录](integration-intake-2026-10-31-v1.0.md)及artifacts/test-results/pm-2026-10-31-intake。原始评测未注入构建commit，外部source-manifest固定了本次来源，未人工改写原JSON。服务、UI随机schema及本轮PostgreSQL已停止清理。
+
 ## 2026-10-31：标准工程复验与真实模块接收
 
 从`34dc4d5`安全快进至最新`origin/main=feb0d70`，保留本地计划v3.2～v3.5、所有Word及已有handoff追加。AN活动、DS调度及CM种子修复均已进入主线；Account/Activity/Scheduling三类实现已有实际接收代码。Change/Event及CM的11个HTTP操作未交付，web工程未交付。

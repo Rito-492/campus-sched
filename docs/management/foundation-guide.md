@@ -87,3 +87,7 @@ AuthorizationPolicy提供role、permission、approval、resources、confirmation
 用户行锁统一使用`FOR NO KEY UPDATE`，登录路径同样如此。它仍互斥于其他用户写操作，但兼容command_receipt等外键的隐式KEY SHARE，避免同账号不同键的回执插入后再升级FOR UPDATE形成死锁。本版本不提供修改用户id/username等唯一键或删除账号的命令；未来新增这类操作必须重新检查锁策略，不能直接复用当前非键更新锁假设。详见[评审修复记录](review-fixes-2026-10-20.md)。
 
 2026-10-31已接收AN ActivityPortAdapter和DS SchedulingPortAdapter；ChangePort/EventPort仍仅有定义。禁止反向依赖Controller，禁止在写端口中另开REQUIRES_NEW，禁止生产Mock。CM应先交仅依赖自身Repository的ChangePortAdapter和EventPort，再由AN/DS接入，避免循环。接收状态及尚未统一的评审建议见[契约协调记录](contract-coordination-2026-10-31.md)。
+
+## 5 最新跨模块接收（2026-10-31同日续作）
+
+main=c4f3d41已同步。PublishedModulesIT新增通过真实API创建独立账号与资源，验证API-39身份改变立即作用于旧会话的AN/DS预览、API-06停用拒绝旧会话，以及撤销资源范围后API-40拒绝且无资格/历史/回执写入。6项真实跨模块测试均无CM替身；标准PM集合共76单元+32 IT全通过。QA/UI候选及完整失败边界见[最新候选接收记录](integration-intake-2026-10-31-v1.0.md)；接口协调见[访问与资源边界方案](access-coordination-v1.0.md)。
