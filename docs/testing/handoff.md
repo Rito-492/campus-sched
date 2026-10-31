@@ -7,7 +7,7 @@
 - 成员/任务：汤雨润（55230316）/ QA-01数据支撑、QA-02模块接收、QA-03跨模块DB验收、QA-04评测、QA-05覆盖与报告。
 - 变更保全：同步前tracked差异、59项未跟踪路径和全部文件归档于 `.git/qa-pre-sync-backup-2026-10-31/`，SHA256校验通过；本地备份分支`backup/qa-pre-sync-20261031`保留旧HEAD。`.review-tmp/`未清理、未提交。未执行reset。
 - 基线：QA分支已变基到`origin/main=feb0d70e2ff9da1669eb9c4c3e4beeb592a43ae9`，main是QA PR分支祖先；真实默认verify运行源码commit=`a697d90871c6126bf6f42f26c938be9a1e9792cc`。原唯一QA领先提交0bb9aac的DbTestSupport修复重放为db3ea4f；本轮另增加`98796ed`（test profile/scoped DB及Benchmark装载事务修复）、`a697d90`（Seeder整体回滚IT）、`825718f`（覆盖与证据更新）。
-- PR状态（2026-10-31 GitHub实时查询）：#8 CLOSED；#10 MERGED（feb0d70，Seeder/IT唯一权威）；#11 MERGED（73c2bcc）；#12 MERGED（c9c757b）。
+- PR状态（本轮GitHub实时查询；origin/main仍为feb0d70）：#8 CLOSED；#10 MERGED（feb0d70，Seeder/IT唯一权威）；#11 MERGED（73c2bcc）；#12 MERGED（c9c757b）；#13 AN、#14 PM、#15 DS仍OPEN且review/merge受阻（均未合入main）；本QA工作已由Draft PR #16承载，分支`work/55230316-qa-feb0d70`、base=`feb0d70`。
 - 备份后复核`0bb9aac`：每数据文件事务、资源后写user_resource_scope、`LocalTime`绑定SQL time、`::jsonb`绑定和新增DbTestSupportIT。最终真实库`DbTestSupportIT`通过；另有`SeederRollbackIT`验证末尾报名FK失败后organization/user/resource/activity/version/reservation/registration全回滚。
 - 正式Seeder：默认verify中`DemoDataSeederIT` 3/3通过（首次授权、撤权不重放、删用户后新用户授权）；QA新增`SeederRollbackIT` 1/1通过，PostgreSQL 17，`DEMO_PASSWORD`与DB密码为运行时随机值，未写入源码/日志。
 - 最终默认Maven：`./server/mvnw -f server/pom.xml verify`，源码和测试均编译成功；Surefire 70/70通过；Failsafe 120项=93通过、25失败、2错误、0跳过，命令退出1。运行时JDK为27.0.1（目标Java21），需在JDK21重验。完整真实DB结果见`artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/`。失败主要是生产EventPort/ChangePort缺失；D-AT-16 HTTP JOIN 0/20成功；calendar offset查询400；D-AT-22对照不一致；其余各项映射见coverage-matrix/defect-register。
