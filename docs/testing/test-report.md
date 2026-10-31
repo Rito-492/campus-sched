@@ -23,6 +23,7 @@
 | 调度算法 | `SchedulingBenchmarkIT` | 1/1通过；8场景×2策略×10次，160条真实测量行，最多检查候选数不超过300 | `artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/scheduling-evaluation.json`及`failsafe-reports/TEST-com.campus.events.acceptance.SchedulingBenchmarkIT.xml` |
 | 期望值评测 | `npm --prefix qa run evaluate` | **exit 1**；SCH-01、SCH-04、SCH-08实测代价与场景期望不一致；未修改期望值迎合结果 | `artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/evaluate.log`、`artifacts/evaluation/summary.md`、`results.csv` |
 | 模块真库回归 | ResourceSchedulingIT / ActivityRegistrationIT / FoundationIT / SchemaIT | 20/20、33/33、21/21、8/8通过；AN IT使用测试上下文的ChangePort/EventPort替身，只是模块级部分证据 | final run逐类Failsafe XML（结构化结果） |
+| D-AT-16诊断复验 | `-Dit.test=RegistrationCapacityIT verify`，QA commit `37a1ac1` | 真实PG运行；20个并发JOIN全部HTTP 503 / `INTERNAL_ERROR`，后续两个用例因无中签者级联Error；ActivityService在容量判断前因ChangePort缺失拒绝请求 | `artifacts/test-results/qa-2026-10-31/d-at16-diagnostic/TEST-com.campus.events.acceptance.RegistrationCapacityIT.xml` |
 | 静态支撑 | API合同、数据引用、`npx tsc --noEmit`、`npx playwright test --list` | 通过：40 API/9枚举/15 DTO；数据引用完整；Playwright列出29项/7文件，仅列举未执行 | `artifacts/test-results/qa-2026-10-31/static/` |
 
 ## DbTestSupport与Seeder判定
@@ -35,7 +36,7 @@
 
 - 依据[覆盖矩阵](coverage-matrix.md)：RfT=30；完整通过3项（D-AT-04/05/06，限DS真实PG模块测试范围）、部分覆盖17项、阻塞7项、未执行2项（D-AT-09/23）、失败1项（D-AT-22评测期望不一致）。
 - 按“至少有一个目标断言实际运行”口径Tx=21（通过+部分+失败），Ts=3（完整成功且无缺陷）；Tx/RfT=70%，Ts/RfT=10%。阻塞/未执行不计入Tx。
-- D-AT-16真实HTTP并发JOIN观察到0/20个200，但ChangePort缺失使请求在`hasPending`前置返回服务不可用，需端口交付后重验，不能据此判容量算法错误。D-AT-21日历offset参数400待DS核实。
+- D-AT-16诊断重跑commit `37a1ac1`确认20/20个JOIN均返回503 `INTERNAL_ERROR`；`ActivityService.registration`在容量判断前调用ChangePort `hasPending`，因此当前证据支持“缺端口阻塞”，不判为容量算法错误；待ChangePort合入后复测。D-AT-21日历offset参数400待DS核实。
 - 多个测试虽使用真实PostgreSQL，ActivityRegistrationIT中的CM端口是测试替身；它们只作为部分模块证据，不能推出M0–M4或完整产品已通过。
 
 ## 主要未完成项与提供者

@@ -21,7 +21,7 @@
 | D-AT-13 | 自身旧占用排除，不自竞争 | FR-13 | DS+CM | DS自测 + Bench(SCH-01) | 🟨 部分：DS ResourceSchedulingIT自占用排除通过；改期HTTP测试被ChangePort阻塞 |
 | D-AT-14 | 预约替换中注入异常整体回滚 | FR-14 | CM | ChangeRollbackIT-14 | 🟨 部分：DS/AN模块回滚子项通过；改期+outbox整体回滚未到断言 |
 | D-AT-15 | 改期期间报名冻结 CHANGE_PENDING | FR-15 | AN+CM | RegistrationCapacityIT-15 | 🟨 部分：AN模块冻结测试通过；真实改期创建返回404 |
-| D-AT-16 | 容量 1 对 20 并发 JOIN 恰 1 ACTIVE | FR-16 | AN | RegistrationCapacityIT-16 | ⛔ 阻塞：真实HTTP并发0/20成功；ChangePort缺失阻断hasPending前置，AN服务级并发子项通过 |
+| D-AT-16 | 容量 1 对 20 并发 JOIN 恰 1 ACTIVE | FR-16 | AN | RegistrationCapacityIT-16 | ⛔ 阻塞：commit 37a1ac1诊断复验20/20均503 INTERNAL_ERROR；ChangePort缺失在hasPending前置阻断，AN服务级并发子项通过 |
 | D-AT-17 | 取消两次不多释放；取消与改期竞争一致终态 | FR-17 | AN+CM | CancellationRaceIT | 🟨 部分：AN取消状态子项通过；真实取消/改期竞态因创建改期404阻塞 |
 | D-AT-18 | 故障 → AT_RISK，页面不谎报原安排可用 | FR-18 | DS+UI | DS自测 + conflict.spec | 🟨 部分：DS真实PG风险/故障断言通过；UI提示未运行 |
 | D-AT-19 | 通知消费失败恢复 + 重复消费去重 | FR-19 | CM | NotificationConsistencyIT | ⛔ 阻塞：创建改期404，通知消费/去重断言未运行 |

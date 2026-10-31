@@ -57,8 +57,8 @@ PR #8/#10的重复Seeder源码已由PR #10作为唯一权威合并，PR #8关闭
 - 概要：生产ChangePort/改期API尚未就绪；活动详情等读取在ChangePort缺失时返回503“改期端口尚未就绪”，新建改期端点返回404；报名冻结路径因此也无法完成。
 - 再现步骤：默认verify运行ChangeRollbackIT、CancellationRaceIT、NotificationConsistencyIT或RegistrationCapacityIT。
 - 隔离：feb0d70产品基线，PostgreSQL 17.11；活动显示/报名冻结需要change查询，缺失时按fail-closed行为停止。
-- 预期 vs 实际：预期改期详情/确认工作流及冻结检查可用；实际相关测试在准备阶段遇503或创建改期遇404。D-AT-02、10-15、17、19/21等跨模块观察点未完成；D-AT-16接口并发JOIN实测0个200、但因缺ChangePort在检查待处理状态前即返回服务不可用，需修复端口后重验，不能归因为容量算法。
-- 证据：`artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-reports/TEST-com.campus.events.acceptance.ChangeRollbackIT.xml`、`TEST-com.campus.events.acceptance.RegistrationCapacityIT.xml`、`TEST-com.campus.events.acceptance.CancellationRaceIT.xml`、`TEST-com.campus.events.acceptance.NotificationConsistencyIT.xml`。
+- 预期 vs 实际：预期改期详情/确认工作流及冻结检查可用；实际相关测试在准备阶段遇503或创建改期遇404。D-AT-02、10-15、17、19/21等跨模块观察点未完成；D-AT-16诊断复验commit `37a1ac1`确认20/20 JOIN均为503 `INTERNAL_ERROR`，ActivityService在容量判断前因ChangePort缺失无法读取hasPending，需端口就绪后复测，不归因为容量算法。
+- 证据：`artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-reports/TEST-com.campus.events.acceptance.ChangeRollbackIT.xml`、`TEST-com.campus.events.acceptance.RegistrationCapacityIT.xml`、`TEST-com.campus.events.acceptance.CancellationRaceIT.xml`、`TEST-com.campus.events.acceptance.NotificationConsistencyIT.xml`；D-AT-16分布诊断见`artifacts/test-results/qa-2026-10-31/d-at16-diagnostic/TEST-com.campus.events.acceptance.RegistrationCapacityIT.xml`。
 - 责任接收人：CM杨瀚霖（55231031，ChangePort/改期API）；回归待实现后由QA执行。
 
 ### DEF-QA-2026-06
