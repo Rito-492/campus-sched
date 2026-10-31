@@ -1,0 +1,42 @@
+{
+  "baseMain": "feb0d70e2ff9da1669eb9c4c3e4beeb592a43ae9",
+  "qaCommit": "4681e4e5ee4eade6725582b4bce23a1af20cb903",
+  "dsProductionCommit": "bee98055ffa8eb5f86495e9c06a9a407a7ea3a75",
+  "environment": "Windows / Java21.0.6 / Maven3.9.11 / PostgreSQL17.6",
+  "scope": "QA原始分支加DS生产修复及旧版29项ResourceSchedulingIT；DS最终分支另跑拆分后的30项ResourceSchedulingIT",
+  "qaIntegrationFiles": [
+    {
+      "path": "server/pom.xml",
+      "sha256": "59801ba3c4f323978c75dd646a404c6c4420b967bd1ec20cb2998ed2d155ac6b"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/scheduling/SchedulingPortAdapter.java",
+      "sha256": "fa8a69fbd82e0385fc6c814ee319f758d9a27b902b6b00874ae6b2d4da583d73"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/resource/ResourceSchedulingIT.java",
+      "sha256": "0a91481cbb0779886507bc6518b39cf9ad551706ef314bd8271d7b63a59d1c3b"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/acceptance/SchedulingBenchmarkIT.java",
+      "sha256": "3792f9daa636c324b2df1e6f9f0414c83130d6ed4018118b750370841fb5f7e2"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/support/DbTestSupport.java",
+      "sha256": "ba5e90d8e361238c31ad08d81b4114f57bd1342e9d6baa05d541f69c0d1fd6b4"
+    },
+    {
+      "path": "test-data/scenarios/scheduling-reference.json",
+      "sha256": "c7e9785b30c22e416fd5bdf3a0cde2b1803cd08267583b36cccf446b292df540"
+    },
+    {
+      "path": "test-data/scenarios/scheduling.json",
+      "sha256": "57b647328e15b868488d96ae0075e7f13e235ce3bc1cb01cd2e4d3053b184278"
+    },
+    {
+      "path": "qa/scripts/evaluate-scheduling.ts",
+      "sha256": "c4d2b7708aa472854f6548e9545ab419350df32f818af30f4f5b0d3556bb1109"
+    }
+  ],
+  "dsFinalTestSha256": "dc79adbdf7c617b00cc803724b97cb5ac9fe12e61edb763195ec40941c01cfd7"
+}

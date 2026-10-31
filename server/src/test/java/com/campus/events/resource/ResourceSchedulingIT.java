@@ -21,6 +21,7 @@ import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.IllegalTransactionStateException;
+import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.support.TransactionTemplate;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -46,6 +47,7 @@ class ResourceSchedulingIT {
     @Autowired MockMvc http;
     @Autowired PasswordEncoder encoder;
     @Autowired jakarta.validation.Validator validator;
+    @Autowired org.springframework.beans.factory.ObjectProvider<EventPort> eventPorts;
     UUID org, owner, owner2, admin, venue, venue2, equipment;
 
     static String required(String key) {
@@ -164,6 +166,46 @@ class ResourceSchedulingIT {
         assertEquals(ConflictCode.VENUE_OCCUPIED, conflicts.getFirst().code());
         assertEquals(next.startAt().minusSeconds(900), conflicts.getFirst().startsAt());
         assertEquals(next.startAt(), conflicts.getFirst().endsAt());
+    }
+
+    @Test void demoConflictReturnsSameTimeVenueAndEquipmentReplacementWithoutWrites() {
+        UUID alternativeEquipment = resource(ResourceKind.EQUIPMENT);
+        var original = new Plan(START, START.plusSeconds(3600), 30, 30, venue, List.of(new EquipmentNeed(equipment, 2)));
+        UUID subject = activity(owner, original);
+        assertTrue(book(subject, original));
+        var busy = new Plan(START.plusSeconds(16200), START.plusSeconds(23400), 0, 0, venue,
+                List.of(new EquipmentNeed(equipment, 1)));
+        assertTrue(book(activity(owner2, busy), busy));
+        var target = new Plan(START.plusSeconds(18000), START.plusSeconds(21600), 30, 30, venue,
+                List.of(new EquipmentNeed(equipment, 2)));
+        var before = resources.active(subject);
+        var check = scheduling.check(target, 60, subject, Identity.TEACHER);
+        assertFalse(check.feasible());
+        assertEquals(Set.of(ConflictCode.VENUE_OCCUPIED, ConflictCode.EQUIPMENT_SHORTAGE),
+                new HashSet<>(check.conflicts().stream().map(Conflict::code).toList()));
+        var choice = scheduling.alternatives(target, 60, subject, Identity.TEACHER).items().getFirst();
+        assertEquals(0, choice.timeShiftMinutes());
+        assertTrue(choice.venueChanged());
+        assertEquals(1, choice.replacedEquipmentLines());
+        assertEquals(venue2, choice.plan().venueId());
+        assertEquals(List.of(new EquipmentNeed(alternativeEquipment, 2)), choice.plan().equipment());
+        assertEquals(before, resources.active(subject));
+        assertEquals(4, count("reservation"));
+    }
+
+    @Test void databaseConstraintsIncludeCapacityOpeningHoursAndInvalidShanghaiDay() {
+        var early = new Plan(START.minusSeconds(7200), START.minusSeconds(3600), 30, 0, venue, List.of());
+        var conflicts = scheduling.check(early, 81, null, Identity.TEACHER).conflicts();
+        assertEquals(Set.of(ConflictCode.OUTSIDE_HOURS, ConflictCode.VENUE_CAPACITY),
+                new HashSet<>(conflicts.stream().map(Conflict::code).toList()));
+        var hours = conflicts.stream().filter(c -> c.code() == ConflictCode.OUTSIDE_HOURS).findFirst().orElseThrow();
+        assertNull(hours.required()); assertNull(hours.available());
+        var midnight = Instant.parse("2030-10-20T15:30:00Z");
+        var crossDay = new Plan(midnight, midnight.plusSeconds(3600), 0, 0, venue, List.of());
+        assertEquals(400, assertThrows(ApiException.class, () -> scheduling.check(crossDay, 60, null, Identity.TEACHER)).status());
+        var seconds = new Plan(START.plusSeconds(1), START.plusSeconds(3601), 0, 0, venue, List.of());
+        assertEquals(400, assertThrows(ApiException.class, () -> scheduling.check(seconds, 60, null, Identity.TEACHER)).status());
+        assertEquals(0, count("reservation"));
     }
     @Test void twoActivitiesCompeteExactlyOneSucceedsWithoutPartialReservations() throws Exception {
         var p = plan(venue, 0, 1, 2);
@@ -295,6 +337,106 @@ class ResourceSchedulingIT {
         var views = (List<?>) body.get("data");
         assertEquals(id, ((FaultView) views.getFirst()).affectedActivities().getFirst().activityId());
         assertEquals(Risk.AT_RISK, ((FaultView) views.getFirst()).affectedActivities().getFirst().resourceRisk());
+    }
+
+    @Test void mutableEquipmentCannotChangeThePlanAfterResourceLocksWereTaken() {
+        var lines = new ArrayList<>(List.of(new EquipmentNeed(equipment, 1)));
+        var target = new Plan(START, START.plusSeconds(3600), 0, 0, venue, lines);
+        UUID id = activity(owner, target);
+        UUID replacement = resource(ResourceKind.EQUIPMENT);
+        assertThrows(IllegalStateException.class, () -> tx.executeWithoutResult(s -> {
+            lock(id);
+            assertTrue(scheduling.lockAndCheck(id, target, 60, Identity.TEACHER).feasible());
+            // Plan是共享record，但equipment集合可能可变；不能让凭据随调用方的列表一起改变。
+            lines.set(0, new EquipmentNeed(replacement, 1));
+            version(id, 2, owner, target);
+            scheduling.replaceReservations(id, 2, target);
+        }));
+        assertEquals(0, count("reservation"));
+        assertEquals(1, count("activity_version"));
+    }
+
+    @Test void suspendedTransactionDoesNotLendItsCheckToAnotherTransaction() {
+        var p = plan(venue, 0, 1, 1);
+        UUID id = activity(owner, p);
+        var independent = new TransactionTemplate(Objects.requireNonNull(tx.getTransactionManager()));
+        independent.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRES_NEW);
+        tx.executeWithoutResult(s -> {
+            lock(id);
+            assertTrue(scheduling.lockAndCheck(id, p, 60, Identity.TEACHER).feasible());
+            assertThrows(IllegalStateException.class, () -> independent.executeWithoutResult(inner ->
+                    scheduling.replaceReservations(id, 1, p)));
+            // 原事务恢复后仍持有自己的凭据；内层结束不能清走外层状态。
+            scheduling.replaceReservations(id, 1, p);
+        });
+        assertEquals(2, resources.active(id).size());
+    }
+
+    @Test void eligibilityHistoryFailureRollsBackFlagsAndKeepsReservations() {
+        var p = plan(venue, 0, 1, 1);
+        UUID id = activity(owner, p);
+        assertTrue(book(id, p));
+        var before = resources.active(id);
+        jdbc.execute("""
+                CREATE FUNCTION ds_fail_eligibility_history() RETURNS trigger LANGUAGE plpgsql AS $$
+                BEGIN RAISE EXCEPTION 'DS测试资格历史写入失败'; END $$
+                """);
+        jdbc.execute("CREATE TRIGGER ds_fail_history BEFORE INSERT ON resource_eligibility_change FOR EACH ROW EXECUTE FUNCTION ds_fail_eligibility_history()");
+        try {
+            assertThrows(org.springframework.dao.DataAccessException.class, () -> tx.executeWithoutResult(s ->
+                    service.eligibility(accounts.get(admin), equipment, new ResourceEligibility(false, false))));
+            assertTrue(resources.get(equipment).allowTeacher());
+            assertTrue(resources.get(equipment).allowStudent());
+            assertEquals(0, count("resource_eligibility_change"));
+            assertEquals(before, resources.active(id));
+        } finally {
+            jdbc.execute("DROP TRIGGER ds_fail_history ON resource_eligibility_change");
+            jdbc.execute("DROP FUNCTION ds_fail_eligibility_history()");
+        }
+    }
+
+    @Test void replaceRechecksFaultsAndRollsBackTheNewVersion() {
+        var old = plan(venue, 0, 1, 1);
+        UUID id = activity(owner, old);
+        assertTrue(book(id, old));
+        var before = resources.active(id);
+        var target = plan(venue2, 1, 1, 2);
+        var failure = assertThrows(ApiException.class, () -> tx.executeWithoutResult(s -> {
+            lock(id);
+            assertTrue(scheduling.lockAndCheck(id, target, 60, Identity.TEACHER).feasible());
+            // 同一事务内后续操作也可能改变资源状态；replace不能只信任此前的可行结论。
+            resources.addFault(equipment, admin, new FaultInput(target.startAt(), target.endAt(), 2, "最终重查测试"));
+            version(id, 2, owner, target);
+            scheduling.replaceReservations(id, 2, target);
+        }));
+        assertEquals("RESOURCE_CONFLICT", failure.code());
+        assertEquals(before, resources.active(id));
+        assertEquals(1, count("activity_version"));
+        assertEquals(0, count("resource_fault"));
+    }
+
+    @Test void eligibilityHttpRechecksScopeAndRejectsReusedKeyWithChangedBody() throws Exception {
+        var p = plan(venue, 0, 1, 1);
+        UUID id = activity(owner, p);
+        assertTrue(book(id, p));
+        var before = resources.active(id);
+        String token = login(admin), key = UUID.randomUUID().toString();
+        String route = "/api/v1/resources/" + equipment + "/eligibility";
+        http.perform(patch(route).header("Authorization", "Bearer " + token).header("Idempotency-Key", key)
+                        .contentType("application/json").content("{\"allowTeacher\":false,\"allowStudent\":true}"))
+                .andExpect(status().isOk());
+        http.perform(patch(route).header("Authorization", "Bearer " + token).header("Idempotency-Key", key)
+                        .contentType("application/json").content("{\"allowTeacher\":true,\"allowStudent\":true}"))
+                .andExpect(status().isConflict()).andExpect(jsonPath("$.error.code").value("IDEMPOTENCY_KEY_REUSED"));
+        jdbc.update("DELETE FROM user_resource_scope WHERE user_id=? AND resource_id=?", admin, equipment);
+        http.perform(patch(route).header("Authorization", "Bearer " + token).header("Idempotency-Key", UUID.randomUUID())
+                        .contentType("application/json").content("{\"allowTeacher\":true,\"allowStudent\":true}"))
+                .andExpect(status().isForbidden());
+        assertEquals(before, resources.active(id));
+        assertFalse(resources.get(equipment).allowTeacher());
+        assertEquals(1, count("resource_eligibility_change"));
+        assertEquals(admin, jdbc.queryForObject("SELECT actor_id FROM resource_eligibility_change", UUID.class));
+        assertEquals(1, count("command_receipt"));
     }
     @Test void resourceCreateGrantsScopeAndRangeViolationsDoNotWrite() {
         Actor actor = accounts.get(admin);
@@ -481,6 +623,53 @@ class ResourceSchedulingIT {
                 "scenario", "DS-300-无解预算", "database", "PostgreSQL 17", "identity", Identity.TEACHER,
                 "attendees", 10000, "plan", requested, "resources", resources.all(), "warmupRuns", 1, "runs", measured));
     }
+    @Autowired ActivityPort activities;
+    @Autowired org.springframework.beans.factory.ObjectProvider<ChangePort> changePorts;
+
+    @Test void missingChangePortRejectsActivityLockWithoutPartialWrites() {
+        Assumptions.assumeTrue(changePorts.getIfAvailable() == null, "CM端口已到位，改跑真实切换测试");
+        var original = plan(venue, 0, 1, 1);
+        UUID id = activity(owner, original);
+        assertTrue(book(id, original));
+        jdbc.update("UPDATE activity SET status='SCHEDULED',effective_version_no=1 WHERE id=?", id);
+        var error = assertThrows(ApiException.class, () -> tx.executeWithoutResult(status -> activities.lock(id)));
+        assertEquals(503, error.status());
+        assertEquals(1, jdbc.queryForObject("SELECT effective_version_no FROM activity WHERE id=?", Integer.class, id));
+        assertEquals(2, resources.active(id).size());
+        assertTrue(resources.active(id).stream().allMatch(r -> r.versionNo() == 1));
+    }
+
+    @Test void realActivityPortAndSchedulingPortSwitchAndRollbackTogether() {
+        Assumptions.assumeTrue(changePorts.getIfAvailable() != null, "阻塞：CM真实ChangePort尚未交付，不能记切换通过");
+        var original = plan(venue, 0, 1, 1);
+        var target = plan(venue2, 120, 1, 1);
+        UUID id = activity(owner, original);
+        assertTrue(book(id, original));
+        jdbc.update("UPDATE activity SET status='SCHEDULED',effective_version_no=1 WHERE id=?", id);
+        assertThrows(IllegalStateException.class, () -> tx.executeWithoutResult(status -> {
+            activities.lock(id);
+            accounts.lock(owner);
+            assertTrue(scheduling.lockAndCheck(id, target, 60, Identity.TEACHER).feasible());
+            int next = activities.activatePlan(id, 1, target, owner);
+            scheduling.replaceReservations(id, next, target);
+            throw new IllegalStateException("跨端口切换后的测试异常");
+        }));
+        assertEquals(1, activities.get(id).activity().effectiveVersionNo());
+        assertEquals(1, jdbc.queryForObject("SELECT count(*) FROM activity_version WHERE activity_id=?", Integer.class, id));
+        assertTrue(resources.active(id).stream().allMatch(r -> r.versionNo() == 1));
+        tx.executeWithoutResult(status -> {
+            activities.lock(id);
+            accounts.lock(owner);
+            assertTrue(scheduling.lockAndCheck(id, target, 60, Identity.TEACHER).feasible());
+            int next = activities.activatePlan(id, 1, target, owner);
+            scheduling.replaceReservations(id, next, target);
+        });
+        assertEquals(2, activities.get(id).activity().effectiveVersionNo());
+        assertEquals(target, activities.get(id).activity().input().plan());
+        assertEquals(2, resources.active(id).size());
+        assertTrue(resources.active(id).stream().allMatch(r -> r.versionNo() == 2));
+    }
+
     @Test void absentEventPortDoesNotCommitFault() {
         // 只在本用例构造空依赖容器；不依赖main是否已经合入CM，也不注册生产替身。
         var noEvents = new org.springframework.beans.factory.support.StaticListableBeanFactory().getBeanProvider(EventPort.class);
@@ -504,6 +693,42 @@ class ResourceSchedulingIT {
         assertEquals(0, count("resource_fault"));
         assertEquals(2, resources.active(id).size());
         assertEquals(Risk.NORMAL, scheduling.risk(id));
+    }
+
+    @Test void faultHttpReportsActualEventDependencyAndNeverCommitsPartialWork() throws Exception {
+        var p = plan(venue, 0, 1, 1);
+        UUID id = activity(owner, p);
+        assertTrue(book(id, p));
+        jdbc.update("INSERT INTO user_permission(user_id,permission) VALUES (?,'RESOURCE_CONFIRM')", admin);
+        String token = login(admin), route = "/api/v1/resources/" + equipment + "/faults";
+        var input = new FaultInput(START, START.plusSeconds(3600), 2, "故障API测试");
+        var response = http.perform(post(route).header("Authorization", "Bearer " + token)
+                        .header("Idempotency-Key", UUID.randomUUID()).contentType("application/json").content(json(input)))
+                .andReturn().getResponse();
+        boolean ready = eventPorts.getIfAvailable() != null;
+        assertEquals(ready ? 201 : 503, response.getStatus());
+        var body = mapper.readTree(response.getContentAsString());
+        if (ready) {
+            assertEquals(id.toString(), body.path("data").path("affectedActivities").get(0).path("activityId").asText());
+            assertEquals(1, count("resource_fault"));
+            assertEquals(1, count("audit_log"));
+            assertEquals(1, count("outbox_event"));
+            assertEquals(Risk.AT_RISK, scheduling.risk(id));
+        } else {
+            assertEquals("INTERNAL_ERROR", body.path("error").path("code").asText());
+            assertEquals(0, count("resource_fault"));
+            assertEquals(0, count("command_receipt"));
+            assertEquals(0, count("audit_log"));
+            assertEquals(0, count("outbox_event"));
+            assertEquals(Risk.NORMAL, scheduling.risk(id));
+        }
+        assertEquals(2, resources.active(id).size());
+        var destination = java.nio.file.Path.of(System.getProperty("test.output.dir", "target"), "ds-fault-api.json");
+        java.nio.file.Files.createDirectories(destination.toAbsolutePath().getParent());
+        mapper.writerWithDefaultPrettyPrinter().writeValue(destination.toFile(), Map.of(
+                "realEventPortPresent", ready, "httpStatus", response.getStatus(),
+                "faultRows", count("resource_fault"), "activeReservations", resources.active(id).size(),
+                "acceptanceStatus", ready ? "真实EventPort故障API路径通过" : "成功链路阻塞；503及无部分提交通过"));
     }
 
     @Test void resourceHttpWritesReuseSharedIdempotencyAndPersistScopeAndHistory() throws Exception {
