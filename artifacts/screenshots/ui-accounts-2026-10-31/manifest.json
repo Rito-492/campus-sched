@@ -1,0 +1,32 @@
+{
+  "baseline": "feb0d70",
+  "baseUiCommit": "e100e0b",
+  "localChanges": true,
+  "date": "2026-10-31",
+  "browser": "Edge 152.0.4191.66",
+  "node": "22.23.0",
+  "data": "仅开发预览账号、无真实登录及写入",
+  "sourceSha256": {
+    "web/src/components/UsersPanel.vue": "161ad49d077112e2310a0de69d464bda6bf11db2fc99f3ae1503a0f66e8b1fca",
+    "web/src/components/AuthorizationEditor.vue": "f71c42019f247093f911e7df409aea46653c70a768772232e9096768cf8e1188",
+    "web/src/composables/useUserAdmin.ts": "6f341f09bb38b70e2789b729b35ccbf452d1d0b04625ad87ebf3b8d22e9024a4",
+    "web/src/domain/authorization.ts": "0b4ccab2c9fa46c30b7833e8f6b93282161babb19934aca42674658645c35cb7",
+    "web/src/pages/UsersPage.vue": "5c1e44a30a4c1c3009c8d317c5ff46b6a16c4ab1dfa3213ba571235a072114fa",
+    "web/src/dev/WorkspacePreview.vue": "e340a968ca444795210e47106b07fbb3012ef8de1be57125cf3fc1f8333bcf02",
+    "web/src/router.ts": "d1dd05d69fde29a3d571a5f4542660cd9f9189b79b70e77ea43eb8b557aadb91",
+    "web/tests/browser/users-preview.spec.ts": "71726d1425d91c333a9e0c5c02305b6ca893d7ffd783db1da4acf82d0ab1d3f5",
+    "web/tests/authorization.test.ts": "bcf42c86de2010770aa0bc90db038c2ce0f89f8d2c52c5f9d66b857f67521743",
+    "web/tests/user-admin.test.ts": "c9b0f279d20d761d8f540fd678dc4841aab8a05fcb2704e61b3c4c4716aeb8c3",
+    "web/tests/users-panel.test.ts": "eb4a16ee71da210b274e4cbef2488ee703446a2dd2f09dc28cff32630efd8340"
+  },
+  "screenshots": {
+    "accounts-1366x768.png": "eafef44f5652d250c3ca5df8358155c22248f6a8ac72603699074ab2d85a9c66",
+    "accounts-1920x1080.png": "4ffed0c6b409efdc70fa081949bd2ad638c232e3f91def039e3a4225da0ccb66",
+    "accounts-390x844.png": "fbb409a477101d414ed125da5614dd71be9191ec1ab81903f86c6feafd045fde",
+    "authorization-1366x768.png": "999f15a194f979e4b438051efae64d2a3fab610426ce4da5a07a4a17fea3eb05",
+    "authorization-1920x1080.png": "b434b2faffa4cdf3e3466f7a250a81e263a9f736f14363f0b1e34581f50f2b54",
+    "authorization-390x844.png": "c55b8c8470d1ed725f4f46b9290e8e4be9da784ceacdc4760d4f2c40db8cab8b"
+  },
+  "unitReport": "artifacts/test-results/ui-accounts-2026-10-31/unit-results.json",
+  "unitReportSha256": "93a75a181828c029d55947fa3fb545c4232fb009f9616b53fe439d7646c88c53"
+}

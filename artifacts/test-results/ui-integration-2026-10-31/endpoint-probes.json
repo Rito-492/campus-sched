@@ -1,0 +1,109 @@
+{
+  "time": "2026-10-31T08:42:29.514Z",
+  "baseline": "feb0d70",
+  "report": [
+    {
+      "method": "GET",
+      "path": "/activities?scope=public",
+      "status": 503,
+      "requestId": "d3daa69c-a62d-4bc0-83f8-497ef36a966e",
+      "error": {
+        "code": "INTERNAL_ERROR",
+        "details": {},
+        "message": "改期端口尚未就绪"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/notifications?unreadOnly=false",
+      "status": 404,
+      "requestId": "80f1b80b-c3c8-43e0-9538-79e9b5346df2",
+      "error": {
+        "code": "NOT_FOUND",
+        "details": {},
+        "message": "记录不存在"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/activities/e572db0c-61e0-46ba-9342-870e2cc8ef4b/changes",
+      "status": 404,
+      "requestId": "48b441e2-255b-4d8a-8352-e9d7ec24304c",
+      "error": {
+        "code": "NOT_FOUND",
+        "details": {},
+        "message": "记录不存在"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/activities/e572db0c-61e0-46ba-9342-870e2cc8ef4b/audit",
+      "status": 404,
+      "requestId": "85ca4490-6317-407a-b57b-015acfdf6bbb",
+      "error": {
+        "code": "NOT_FOUND",
+        "details": {},
+        "message": "记录不存在"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/activities/e572db0c-61e0-46ba-9342-870e2cc8ef4b/change-preview",
+      "body": {
+        "baseVersionNo": 3,
+        "targetPlan": {
+          "startAt": "2030-10-21T02:00:00Z",
+          "endAt": "2030-10-21T03:00:00Z",
+          "setupMinutes": 0,
+          "teardownMinutes": 0,
+          "venueId": "3c62fd71-357d-4d41-9b71-bf4910cd12fd",
+          "equipment": []
+        }
+      },
+      "status": 404,
+      "requestId": "10d65761-2a3b-4095-94ce-84d54db73a5b",
+      "error": {
+        "code": "NOT_FOUND",
+        "details": {},
+        "message": "记录不存在"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/activities/e572db0c-61e0-46ba-9342-870e2cc8ef4b/submit",
+      "body": {
+        "expectedLockVersion": 2
+      },
+      "status": 503,
+      "requestId": "5754274e-9876-4a99-ac41-fac604bcfdb1",
+      "error": {
+        "code": "INTERNAL_ERROR",
+        "details": {},
+        "message": "活动事件端口尚未就绪"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/resources/3c62fd71-357d-4d41-9b71-bf4910cd12fd/faults",
+      "body": {
+        "startAt": "2030-10-21T10:00:00+08:00",
+        "endAt": "2030-10-21T11:00:00+08:00",
+        "unavailableQuantity": 1,
+        "reason": "UI隔离环境验证服务缺口"
+      },
+      "status": 503,
+      "requestId": "2473784c-3141-4aef-86b1-31216981b475",
+      "error": {
+        "code": "INTERNAL_ERROR",
+        "details": {},
+        "message": "资源故障事件服务尚未就绪"
+      }
+    }
+  ],
+  "draftAfterFailure": {
+    "id": "e572db0c-61e0-46ba-9342-870e2cc8ef4b",
+    "status": "DRAFT",
+    "lockVersion": 2
+  },
+  "unchanged": true
+}

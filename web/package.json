@@ -1,0 +1,39 @@
+{
+  "name": "campus-sched-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18.0 <23"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "typecheck": "vue-tsc --noEmit",
+    "test:unit": "vitest run",
+    "build": "vue-tsc --noEmit && vite build && node scripts/check-production.mjs",
+    "preview": "vite preview --host 127.0.0.1",
+    "types:sync": "node scripts/sync-types.mjs",
+    "types:check": "node scripts/sync-types.mjs --check",
+    "test:layout": "playwright test",
+    "test:integration": "playwright test --config playwright.integration.config.ts real-service.spec.ts",
+    "test:persistence": "playwright test --config playwright.integration.config.ts persistence.spec.ts"
+  },
+  "dependencies": {
+    "element-plus": "^2.11.5",
+    "pinia": "^3.0.3",
+    "vue": "^3.5.22",
+    "vue-router": "^4.6.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^22.18.0",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^26.1.0",
+    "typescript": "~5.9.3",
+    "vite": "^7.1.10",
+    "vitest": "^3.2.4",
+    "vue-tsc": "^3.1.1",
+    "yaml": "^2.8.1"
+  }
+}
