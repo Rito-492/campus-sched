@@ -13,3 +13,15 @@
 | PM-D07 | 用户明确要求提交给别人评审，提交并推送本人work分支，创建面向main的PR并请求Kimcra1交叉评审 | 保留真实失败日志；不混入用户Word、不自审、不合并main，实际状态以GitHub反馈为准 |
 
 技术核查来源：[Spring Boot 3.5.16发布说明](https://spring.io/blog/2026/06/25/spring-boot-3-5-16-available-now/)、[Apache Maven Wrapper说明](https://maven.apache.org/tools/wrapper/index.html)、[Zonky PostgreSQL二进制项目](https://github.com/zonkyio/embedded-postgres-binaries)。后者只用于本次临时测试环境，未添加到生产依赖。
+
+## 2026-10-31 补充决定
+
+| 编号 | 本轮落实 | 影响及限制 |
+|---|---|---|
+| PM-D08 | 新建密码落实已存在的NFR-08，至少8字符且UTF-8不超过72字节 | API-05及UI/QA输入；不改字段/表/端口，不改变既有登录门禁；HTTP及直接Service均检查 |
+| PM-D09 | 已实现接口缺必需依赖采用现行503 INTERNAL_ERROR及统一信封 | 同步common/02与OpenAPI；错误整体回滚，未实现控制器不冒充可用；AN/DS既有实现不改名 |
+| PM-D10 | 标准Failsafe独立test环境、运行期随机schema绑定，缺配置失败 | 外置properties保留Spring占位符；动态模块配置优先，不回落开发库/public；真实schema回归验证 |
+| PM-D11 | 通过的模块集合与失败的默认全量分别记录 | 不排除默认验收，不以mock或指定集合宣称M0/M2/M3/M4通过；保留本轮全部实际错误 |
+| PM-D12 | 保留用户本地详细计划及Word，不自动发布到课程平台 | 仓库计划只作执行增补；实际工时/容量、评审与接收未提供时不编造 |
+
+AN建议B/D/I及名单裁剪的后续范围见[契约协调记录](contract-coordination-2026-10-31.md)，没有将未确认建议误记为已实施。

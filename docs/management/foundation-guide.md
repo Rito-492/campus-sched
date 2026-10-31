@@ -12,7 +12,7 @@ Java21、Spring Boot3.5.16、Maven3.9.11，Wrapper自带发行包SHA-256核对�
 ./server/mvnw.cmd -f server/pom.xml verify
 ```
 
-以上默认命令目前被CM种子代码编译错误阻塞。`-Dtest=...`只筛选执行，不会解决其他源码或测试源码的编译依赖。不要通过skipTests、空实现或删除验收规避。
+2026-10-31已解除CM种子及DS类型编译阻塞，默认test可运行全部源码和当前单元集；全量verify仍因QA fixture装载顺序失败。`-Dtest=...`只筛选执行，不会解决其他源码或测试源码的编译依赖。不要通过skipTests、空实现或删除验收规避。
 
 其他模块未就绪时，PM专用检查可明确隔离源码和测试范围：
 
@@ -22,6 +22,16 @@ Java21、Spring Boot3.5.16、Maven3.9.11，Wrapper自带发行包SHA-256核对�
 ./server/mvnw.cmd -f server/pom.xml -Ppm-isolated clean verify
 node qa/scripts/check-contract.ts
 ```
+
+已接收AN/DS后，当前推荐在标准POM上执行明确模块集合：
+
+```powershell
+./server/mvnw.cmd -f server/pom.xml "-Dit.test=FoundationIT,PublishedModulesIT,StandardMavenSchemaIT,DemoDataSeederIT" clean verify
+```
+
+本轮该命令通过76项全体单元和30项指定真库IT。它是有范围的模块验证，默认全量verify另有失败日志。PublishedModulesIT显式选真实PM/AN/DS且不装配CM，验证缺依赖的错误与回滚，不使用端口替身；StandardMavenSchemaIT验证标准Spring/Flyway与QA扩展使用同一随机schema。这两项跨模块测试不编译进历史pm-isolated配置，默认构建仍包括它们。
+
+Failsafe从`.mvn/integration-test.properties`读取test配置和运行期占位符：TEST_DATABASE_URL由环境提供，test.schema.name由QA扩展发布；不能把尚未生成的schema名提前写死或回落public。各模块显式DynamicPropertySource仍优先。本轮没有修改QA装载器，数据外键/事务问题仍需原作者修复。
 
 2026-10-20该入口真实执行22项单元测试和21项真实PostgreSQL集成测试；不能将隔离生成的jar用于全项目发布，也不据此标记M0/M2/M3完成。PM测试为随机`t_<32hex>` schema，仅删除本次schema；不使用QA演示导入器，不能据此宣称后者已通过。正式全量检查在修复依赖后使用默认入口。
 
@@ -36,6 +46,8 @@ Clock默认系统UTC，只有e2e profile读取APP_TEST_NOW；普通dev不受该�
 `GET /users?purpose=staff`仅申请人可查同组织启用账号，返回StaffView；`GET /users`与`GET /organizations`需ADMIN及USER_MANAGE。列表按createdAt降序、id升序取201项，仅返回前200项并给出truncated。UI须保留该标志。
 
 `PATCH /users/{id}/authorization`必须提供identity、roles、permissions、approvalScopes、managedResourceIds全部五项。删除ADMIN时清空permissions和managedResourceIds，删除APPROVER时清空approvalScopes。角色不推导身份，身份不产生权限；审批类别必须来自现存资源，组织与资源必须存在，通配符和重复值返回400。
+
+API-05新建密码按NFR-08至少8个字符且UTF-8最多72字节；HTTP DTO和账号Service均检查，错误400且不创建用户或回执。该创建规则不新增既有账号登录的长度门禁。UI表单、QA数据与接口说明需保持一致，口令不写入交接日志。
 
 真实失败示例（requestId由每次请求产生）：
 
@@ -74,4 +86,4 @@ AuthorizationPolicy提供role、permission、approval、resources、confirmation
 
 用户行锁统一使用`FOR NO KEY UPDATE`，登录路径同样如此。它仍互斥于其他用户写操作，但兼容command_receipt等外键的隐式KEY SHARE，避免同账号不同键的回执插入后再升级FOR UPDATE形成死锁。本版本不提供修改用户id/username等唯一键或删除账号的命令；未来新增这类操作必须重新检查锁策略，不能直接复用当前非键更新锁假设。详见[评审修复记录](review-fixes-2026-10-20.md)。
 
-ActivityPort、SchedulingPort、ChangePort、EventPort仅有统一接口和record，本轮未收到生产适配器。禁止反向依赖Controller，禁止在写端口中另开REQUIRES_NEW，禁止生产Mock。CM应先交仅依赖自身Repository的ChangePortAdapter和EventPort；AN、DS再按common/04接入，避免循环。
+2026-10-31已接收AN ActivityPortAdapter和DS SchedulingPortAdapter；ChangePort/EventPort仍仅有定义。禁止反向依赖Controller，禁止在写端口中另开REQUIRES_NEW，禁止生产Mock。CM应先交仅依赖自身Repository的ChangePortAdapter和EventPort，再由AN/DS接入，避免循环。接收状态及尚未统一的评审建议见[契约协调记录](contract-coordination-2026-10-31.md)。

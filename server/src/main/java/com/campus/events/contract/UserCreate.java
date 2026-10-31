@@ -14,6 +14,6 @@ public record UserCreate(
         @NotNull @Valid List<UUID> managedResourceIds,
         @NotNull @NotBlank String username,
         @NotNull @NotBlank String displayName,
-        @NotNull @NotBlank String password,
+        @NotNull @NotBlank @Size(min = 8, max = 72) String password,
         @NotNull UUID organizationId) {
 }

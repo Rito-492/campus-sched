@@ -1,5 +1,17 @@
 # 项目经理交接单
 
+## 2026-10-31 项目经理续作与最新主线集成
+
+- 成员/任务：冀项阳55230223，PM-01～05。保留所有本地Word、详细计划v3.2～v3.5草案及本文件已有追加，从`34dc4d5`安全快进至`origin/main=feb0d70`；未覆盖其他成员源码或课程原件。
+- 本轮实际完成：修复NFR-08新建密码最少8字符缺口，DTO与UserService双层校验UTF-8最多72字节；新增6项PasswordPolicy单测及HTTP真库边界回归。旧实现实测短密码201，修复后400且无账号/回执落库，不改变既有账号登录门禁。
+- PM工程：Failsafe外置properties绑定test配置和QA随机schema；新增StandardMavenSchemaIT真实确认Spring/Flyway与QA扩展使用同一schema、22表且无演示数据。保留运行期占位符，不能提前插值为空或回落public。
+- PM-04：接收Account/Activity/Scheduling生产实现；PublishedModulesIT用真实PM/AN/DS和PostgreSQL，显式不装配CM且不创建替身，验证资源自动授权、草稿/内部快照/预览及提交/故障缺EventPort时503与共同回滚。同步API-05/503契约、OpenAPI、29/40实现登记；AN建议B/D/I及可见性矩阵待后续接收，未假称解决。
+- 实际检查：基线标准clean test为70项单元通过；本轮最终标准模块集合verify为76项单元＋30项指定IT通过（22项Foundation、4项已发布模块联测、1项schema绑定、3项CM种子），0失败/错误/跳过。PM独立兼容配置28单元＋22 IT通过。最终默认全量verify为76单元通过、99 IT中8项初始化错误，退出1；失败集中QA资源范围外键装载顺序，未排除或删除这些原验收类。
+- 证据目录：`artifacts/test-results/pm-2026-10-31/`，按通过的模块报告和失败的全量报告分组，含密码修复前负向日志、契约、源码校验和检查摘要。日志仅去行尾空格、统一换行及按需脱敏认证字段；不改测试结果。使用Java21.0.12.1/Maven3.9.11/PostgreSQL17.6/Node24.19.0，独立campus_test随机schema；没有前端或业务生产Mock通过结论。
+- PM-05：更新初始/详细登记计划、风险、工作量实际记录、决定、接口和集成日志；保留本地另存计划和所有Word，不虚构实际工时、容量、接收、签字、课程平台提交或发布基线。协调细节见[契约记录](contract-coordination-2026-10-31.md)，完整节点见[集成核查](integration-status-2026-10-31.md)。
+- 未完成与下一接收人：QA修DbTestSupport装载顺序并复验事务/jsonb；CM提供ChangePortAdapter、EventPort及改期/通知/审计真实实现；UI提供package.json、锁文件、11页面及真实接入。AN/DS接收统一规则及CM端口后复验。M0/M1/M2/M3/M4均未因此次模块通过而放行，默认全量、30场景、E2E、160行策略评测和安装恢复尚未达标。
+- 提交边界：只提交本轮PM源码、共享契约、Markdown与证据，本文件此前本地追加及未跟踪计划/Word不混入。接收/交叉评审状态以真实反馈为准，不自审自批或自动合并main。
+
 ## 2026-10-20 评审退回修复与重新提交准备
 
 - 用户要求修复到测试通过再提交，并明确确认本轮以“项目经理模块及评审回归通过后重提”为准。随后要求先拉取最新项目：已fetch，origin/main仍为`2a9e941`、origin/work/55230223-foundation仍为`a5e0724`，同步检查均为Already up to date，未覆盖本地Word及修复。

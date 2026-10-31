@@ -50,8 +50,8 @@ test-data/ contracts/ infra/ scripts/ release/ artifacts/ models/
 - **了解项目**：本 README → [`AGENTS.md`](AGENTS.md)（agent 与新成员指南）
 - **课程与分工文档**：`docs/course/`
 
-## 项目经理工作包（2026-10-19）
+## 项目经理工作包（2026-10-31）
 
-已实现公共后端工程、共享DTO/五类端口、统一响应与时钟、账号认证/权限、AccountPort、幂等事务及40项[OpenAPI契约](contracts/openapi.yaml)。实际实现API-01～06、37～39；其余业务接口等待对应模块交付。接入方式、真实失败示例和锁规则见[公共模块说明](docs/management/foundation-guide.md)。
+已实现公共后端工程、共享DTO/五类端口、统一响应与时钟、账号认证/权限、AccountPort、幂等事务及40项[OpenAPI契约](contracts/openapi.yaml)。最新主线已接收AN活动与DS调度，29项API已有生产Controller；CM的11项API、ChangePort/EventPort生产实现及前端工程仍待交付。本轮补齐新建密码最少8字符、标准IT随机schema绑定及真实模块联测。接入方式见[公共模块说明](docs/management/foundation-guide.md)。
 
-需Java21；默认入口为`./server/mvnw.cmd -f server/pom.xml test`及`verify`。默认全项目构建被种子导入源码错误及未交付模块阻塞，M0/M2/M3未达成。显式`-Ppm-isolated clean verify`仅验证PM工作包，2026-10-20已在真实PostgreSQL17上通过22项单元与21项集成测试，包含评审发现的不同幂等键并发死锁回归；Unix Wrapper已设置可执行权限。隔离检查不能替代全量验收或发布。完整结果见[评审修复记录](docs/management/review-fixes-2026-10-20.md)、[PM交接单](docs/management/handoff.md)和[集成日志](docs/management/integration-log.md)。
+需Java21；默认入口为`./server/mvnw.cmd -f server/pom.xml test`及`verify`。标准构建模块检查通过76项单元、30项指定真实数据库IT；默认全量verify仍在QA数据装载阶段失败，不能算全项目通过。M0/M2/M3未放行；隔离配置不替代全量验收。最新门槛、责任人与接收条件见[集成核查](docs/management/integration-status-2026-10-31.md)和[PM交接单](docs/management/handoff.md)。

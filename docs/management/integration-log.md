@@ -1,5 +1,15 @@
 # 集成日志
 
+## 2026-10-31：标准工程复验与真实模块接收
+
+从`34dc4d5`安全快进至最新`origin/main=feb0d70`，保留本地计划v3.2～v3.5、所有Word及已有handoff追加。AN活动、DS调度及CM种子修复均已进入主线；Account/Activity/Scheduling三类实现已有实际接收代码。Change/Event及CM的11个HTTP操作未交付，web工程未交付。
+
+本轮补齐NFR-08新建密码最少8字符规则、OpenAPI的503缺依赖信封及标准Failsafe随机schema绑定；新增PM/AN/DS真实模块联测，无CM替身。密码回归在旧代码上实际出现400期望/201实际的失败，修复后通过；schema绑定使用标准入口实测同一随机schema及22表。
+
+指定模块标准verify执行76项单元＋30项真库IT通过。默认全量verify另行实际运行，QA acceptance/benchmark八类在fixture装载阶段出现资源外键错误；不关闭原场景或用新测试代替它们。原始命令、全部计数、通过/失败摘要及源码清单见`artifacts/test-results/pm-2026-10-31/`。责任与节点结论见[集成状态](integration-status-2026-10-31.md)，合同影响及AN待决建议见[协调记录](contract-coordination-2026-10-31.md)。
+
+前端typecheck/test:unit/build、E2E、正式八场景策略评测、安装恢复和30场景整体未通过；不创建发布标签或批准合并。源码及本轮管理材料可交叉评审，其他成员仍负责本人生产实现和缺陷修复。
+
 ## 2026-10-19：PM-01～05本地工作包
 
 成员：冀项阳55230223。公共基线v3.0，实际`origin/main`为`2a9e94143296f5972e91bc2b7848b711762e01f4`。先fetch核实，再将没有额外提交的本人分支同步主线，切换`work/55230223-foundation`；保留三份用户Word修改及三份未跟踪历史Word。没有提交、推送、PR、合并或发布。
