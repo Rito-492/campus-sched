@@ -13,7 +13,7 @@
 | DEF-QA-2026-03 | D-AT-22 SchedulingBenchmarkIT 场景装载 | 汤雨润（55230316） | C | 2026-10-31 | close（最终verify通过该IT） |
 | DEF-QA-2026-04 | D-AT-02/03/07/08/16/20、N-AT提交阻塞 / EventPort | 汤雨润（55230316） | B | 2026-10-31 | assign（CM） |
 | DEF-QA-2026-05 | D-AT-02/10-17/19/21、N-AT候选/待处理阻塞 / ChangePort | 汤雨润（55230316） | B | 2026-10-31 | assign（CM） |
-| DEF-QA-2026-06 | D-AT-21 API-09 offset calendar query 返回400 | 汤雨润（55230316） | C | 2026-10-31 | assign（DS核实） |
+| DEF-QA-2026-06 | D-AT-21 calendar URI偏移编码 | 汤雨润（55230316） | C | 2026-10-31 | close（QA修正URI编码，真实PG子用例通过） |
 | DEF-QA-2026-07 | D-AT-22 demo资源扩展污染候选集合 | 汤雨润（55230316） | C | 2026-10-31 | close（benchmark参考集隔离后复验通过） |
 
 ## 明细
@@ -62,12 +62,12 @@ PR #8/#10的重复Seeder源码已由PR #10作为唯一权威合并，PR #8关闭
 - 责任接收人：CM杨瀚霖（55231031，ChangePort/改期API）；回归待实现后由QA执行。
 
 ### DEF-QA-2026-06
-- 概要：D-AT-21日历HTTP用例以带`+08:00`偏移的ISO8601 `from/to` 调用API-09时返回400 `VALIDATION_ERROR`，而非预期200。
-- 再现步骤：PermissionsIT.tc2101_calendarRedactsUnauthorizedActivityTitles，学生账号请求`GET /api/v1/resources/calendar?from=2030-10-20T00:00:00+08:00&to=2030-10-21T00:00:00+08:00`（查询字符串经UriComponentsBuilder编码）。
-- 隔离：feb0d70、PostgreSQL 17.11；请求实际抵达ResourceController `Instant`参数绑定/校验，其他PermissionsIT用例不受同一异常影响。
-- 预期 vs 实际：全局契约要求时间ISO8601带时区，API-09要求必填from/to；本例是合法带偏移时间，实际返回VALIDATION_ERROR。需核验是实现拒绝有效offset还是测试URI编码不符合参数绑定，不预设根因。
-- 证据：`artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-reports/TEST-com.campus.events.acceptance.PermissionsIT.xml`；用例`server/src/test/java/com/campus/events/acceptance/PermissionsIT.java:377-385`。
-- 责任接收人：DS黄方勇（55230315，calendar API）；PM协调契约口径。复测待分析/修复后执行。
+- 概要：D-AT-21 calendar HTTP用例起初带`+08:00`偏移的`from/to`返回400 `VALIDATION_ERROR`；根因是QA测试把含原始`+`的String交给RestTemplate URI模板处理，服务器表单解码将`+`解释为空格，并非API拒绝合法offset。
+- 再现步骤：旧PermissionsIT.tc2101使用`UriComponentsBuilder...build().encode().toUriString()`后以String调用`rest.exchange`；日志中可见原始`+08:00`。
+- 隔离：feb0d70、PostgreSQL 17；改为URI变量严格编码`+`为`%2B`，再通过绝对URI对象发送，避免RestTemplate二次模板编码。
+- 预期 vs 实际：原测试URL返回400；QA commit `514b8dc`加入URI编码断言并用URI重载发送后，`tc2101_calendarRedactsUnauthorizedActivityTitles`真实PG通过，日历脱敏断言到达。PermissionsIT其余7项仍因EventPort/ChangePort返回503阻塞。
+- 证据：旧失败URL及400响应见`artifacts/test-results/qa-2026-10-31/d-at21-url-diagnostic/TEST-com.campus.events.acceptance.PermissionsIT.xml`；修复后真实PG结果见`artifacts/test-results/qa-2026-10-31/d-at21-uri-object-rerun/TEST-com.campus.events.acceptance.PermissionsIT.xml`和`context.txt`。
+- 责任接收人：QA汤雨润（55230316）；这是测试客户端编码缺陷，非DS API缺陷。已修复并复验，关闭。
 
 ### DEF-QA-2026-07
 - 概要：原D-AT-22评测从canonical `demo.json`加载所有资源，教师申请人可用的N-AT扩展资源3111/3112/3211/3212也进入CandidateSearch候选集合，超出`scheduling.json`只描述的3101/3102/3201/3202几何，造成SCH-01/04/08与expected不一致。

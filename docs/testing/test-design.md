@@ -34,7 +34,7 @@
 | D-AT-18 | TC-18-1 | ResourceSchedulingIT + conflict.spec | DS+UI | 🟨 部分覆盖：DS真实PG风险过；UI风险提示未运行 |
 | D-AT-19 | TC-19-1 | NotificationConsistencyIT | CM | ⛔ 阻塞：创建改期404，通知消费/去重未执行 |
 | D-AT-20 | TC-20-1/2 | PermissionsIT / ActivityRegistrationIT | AN+CM | 🟨 部分覆盖：AN陈旧版本子项过；PermissionsIT提交前EventPort 503 |
-| D-AT-21 | TC-21-1/2/3 | PermissionsIT + perm.spec | 全员 | 🟨 部分/混合：名单权限通过；calendar offset 400；改期详情503；E2E未跑 |
+| D-AT-21 | TC-21-1/2/3 | PermissionsIT + perm.spec | 全员 | 🟨 部分：日历脱敏与名单403通过；改期详情仍被ChangePort阻塞；E2E未跑 |
 | D-AT-22 | TC-22-1 | SchedulingBenchmarkIT + evaluate | DS+测试 | ✅ 通过：Benchmark-only参考集隔离后8×2×10测量与全部expected一致；输出记录输入文件SHA-256 |
 | D-AT-23 | TC-23-1 | `change-happy-path.spec.ts` | UI+配置 | ⬜ 未执行：未跑浏览器刷新/服务重启恢复 |
 | D-AT-24 | TC-24-1 | 发布演练（人工+check.ps1） | 全员 | ⛔ 阻塞/未执行：无干净环境演练；verify整体exit 1 |

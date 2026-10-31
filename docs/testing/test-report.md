@@ -1,11 +1,11 @@
-# 测试报告 v0.6（feb0d70基线真实数据库回归）
+# 测试报告 v0.7（feb0d70基线真实数据库回归）
 
 > 归属：测试经理（55230316）。仅按真实运行且可查证据统计；静态检查、用例列举、代码存在和模块替身测试均不冒充完整跨模块验收。
 
 ## 基本信息
 
 - 日期：2026-10-31（Asia/Shanghai）
-- QA测试分支：`work/55230316-qa`；最终全量verify与D-AT-22哈希元数据源码commit=`c3a4a2c6418b6ed4859c64a1b5da9b1b9fd82f6f`；文档/证据更新随后继续随Draft PR提交。
+- QA测试分支：`work/55230316-qa`；最终全量verify及D-AT-21 URI编码测试commit=`514b8dcce2d3666ff0fc9f15c3bae7826656c60e`；文档/证据更新随后继续随Draft PR提交。
 - main基线：`origin/main=feb0d70e2ff9da1669eb9c4c3e4beeb592a43ae9`；QA分支已变基到该基线。
 - PR状态：#8 CLOSED；#10/#11/#12 MERGED；main仍为feb0d70，#13/#14/#15仍OPEN且未合入；QA Draft PR #16 OPEN，分支`work/55230316-qa-feb0d70`、base `feb0d70`。
 - 同步前修改和未跟踪文件已备份于`.git/qa-pre-sync-backup-2026-10-31/`，SHA256校验通过；`.review-tmp/`保持未跟踪、未纳入QA改动。
@@ -16,14 +16,15 @@
 
 | 类别 | 命令/观察 | 结果 | 证据 |
 |---|---|---|---|
-| 默认Maven验收 | `./server/mvnw -f server/pom.xml verify` | 编译通过；Surefire 70/70通过；Failsafe 120项：93通过、25失败、2错误、0跳过；整体exit 1 | `artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/default-verify.exit`、`artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/failsafe-summary.xml`及逐类XML；原始stdout留在本地工作区 |
-| Seeder首次导入/幂等 | `DemoDataSeederIT` | 3/3通过：首次授权、撤权后重导不恢复、删用户重导新授权正确 | `artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/TEST-com.campus.events.dev.DemoDataSeederIT.xml` |
-| Seeder失败整体回滚 | QA新增`SeederRollbackIT` | 1/1通过：末尾报名FK故障后组织、用户、角色、资源、范围、活动、版本、预约、报名全部无残留 | `artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/TEST-com.campus.events.acceptance.SeederRollbackIT.xml` |
-| DbTestSupport | `DbTestSupportIT` | 1/1通过，真实PostgreSQL/隔离schema；授权、活动版本、jsonb断言通过 | `artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/TEST-com.campus.events.support.DbTestSupportIT.xml` |
-| 调度算法 | `SchedulingBenchmarkIT` | commit c3a4下1/1通过；8场景×2策略×10次，160条真实测量行，候选数≤300；输出记录reference/scenario路径及SHA-256 | `artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/scheduling-evaluation.json`及`artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/TEST-com.campus.events.acceptance.SchedulingBenchmarkIT.xml` |
-| 期望值评测 | `npm --prefix qa run evaluate` | **exit 0**；隔离评测参考集后8场景×2策略与全部expected一致；未修改expected | `artifacts/test-results/qa-2026-10-31/benchmark-hash-rerun/evaluate.log`、`artifacts/evaluation/summary.md`、`artifacts/evaluation/results.csv` |
+| 默认Maven验收 | `./server/mvnw -f server/pom.xml verify` | 编译通过；Surefire 70/70通过；Failsafe 120项：94通过、24失败、2错误、0跳过；整体exit 1 | `artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/default-verify.exit`、`artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/failsafe-reports/failsafe-summary.xml`及逐类XML；原始stdout留在本地工作区 |
+| Seeder首次导入/幂等 | `DemoDataSeederIT` | 3/3通过：首次授权、撤权后重导不恢复、删用户重导新授权正确 | `artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/failsafe-reports/TEST-com.campus.events.dev.DemoDataSeederIT.xml` |
+| Seeder失败整体回滚 | QA新增`SeederRollbackIT` | 1/1通过：末尾报名FK故障后组织、用户、角色、资源、范围、活动、版本、预约、报名全部无残留 | `artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/failsafe-reports/TEST-com.campus.events.acceptance.SeederRollbackIT.xml` |
+| DbTestSupport | `DbTestSupportIT` | 1/1通过，真实PostgreSQL/隔离schema；授权、活动版本、jsonb断言通过 | `artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/failsafe-reports/TEST-com.campus.events.support.DbTestSupportIT.xml` |
+| 调度算法 | `SchedulingBenchmarkIT` | commit 514b8dc下1/1通过；8场景×2策略×10次，160条真实测量行，候选数≤300；输出记录reference/scenario路径及SHA-256 | `artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/scheduling-evaluation.json`及`artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/failsafe-reports/TEST-com.campus.events.acceptance.SchedulingBenchmarkIT.xml` |
+| 期望值评测 | `npm --prefix qa run evaluate` | **exit 0**；隔离评测参考集后8场景×2策略与全部expected一致；未修改expected | `artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/evaluate.log`、`artifacts/evaluation/summary.md`、`artifacts/evaluation/results.csv` |
 | 模块真库回归 | ResourceSchedulingIT / ActivityRegistrationIT / FoundationIT / SchemaIT | 20/20、33/33、21/21、8/8通过；AN IT使用测试上下文的ChangePort/EventPort替身，只是模块级部分证据 | final run逐类Failsafe XML（结构化结果） |
 | D-AT-16诊断复验 | `-Dit.test=RegistrationCapacityIT verify`，QA commit `37a1ac1` | 真实PG运行；20个并发JOIN全部HTTP 503 / `INTERNAL_ERROR`，后续两个用例因无中签者级联Error；ActivityService在容量判断前因ChangePort缺失拒绝请求 | `artifacts/test-results/qa-2026-10-31/d-at16-diagnostic/TEST-com.campus.events.acceptance.RegistrationCapacityIT.xml` |
+| D-AT-21日历URI专项复验 | `-Dit.test=PermissionsIT verify`，QA commit `514b8dc` | `tc2101_calendarRedactsUnauthorizedActivityTitles`真实PG通过；原始400由RestTemplate String模板将+未编码地传输；改用%2B并以绝对URI对象发送；PermissionsIT整类仍有7项EventPort/ChangePort阻塞 | `artifacts/test-results/qa-2026-10-31/d-at21-uri-object-rerun/TEST-com.campus.events.acceptance.PermissionsIT.xml` |
 | 静态支撑 | API合同、数据引用、`npx tsc --noEmit`、`npx playwright test --list` | 通过：40 API/9枚举/15 DTO；数据引用完整；Playwright列出29项/7文件，仅列举未执行 | `artifacts/test-results/qa-2026-10-31/static/` |
 
 ## DbTestSupport与Seeder判定
@@ -36,13 +37,13 @@
 
 - 依据[覆盖矩阵](coverage-matrix.md)：RfT=30；完整通过4项（D-AT-04/05/06为DS真实PG模块范围，D-AT-22为Benchmark+evaluate对照通过）、部分覆盖17项、阻塞7项、未执行2项（D-AT-09/23）、失败0项。
 - 按“至少有一个目标断言实际运行”口径Tx=21（通过+部分），Ts=4（完整成功且无缺陷）；Tx/RfT=70%，Ts/RfT=13.3%。阻塞/未执行不计入Tx。
-- D-AT-16诊断重跑commit `37a1ac1`确认20/20个JOIN均返回503 `INTERNAL_ERROR`；`ActivityService.registration`在容量判断前调用ChangePort `hasPending`，因此当前证据支持“缺端口阻塞”，不判为容量算法错误；待ChangePort合入后复测。D-AT-21日历offset参数400待DS核实。
+- D-AT-16诊断重跑commit `37a1ac1`确认20/20个JOIN均返回503 `INTERNAL_ERROR`；`ActivityService.registration`在容量判断前调用ChangePort `hasPending`，不判为容量算法错误，待端口合入后复测。D-AT-21原400由QA将`+08:00`直接放入RestTemplate模板导致；commit `514b8dc`改为编码变量+绝对URI后，真实PG `tc2101_calendarRedactsUnauthorizedActivityTitles`通过；名单403通过，改期详情仍被ChangePort阻塞、E2E未跑。
 - 多个测试虽使用真实PostgreSQL，ActivityRegistrationIT中的CM端口是测试替身；它们只作为部分模块证据，不能推出M0–M4或完整产品已通过。
 
 ## 主要未完成项与提供者
 
 1. CM杨瀚霖（55231031）：提供生产EventPort、ChangePort/改期通知API；解除多项真实HTTP验收503/404阻塞，完成后QA回归。
-2. DS黄方勇（55230315）：核查API-09带时区offset的`from/to`为何400。SCH-01/04/08原mismatch已定位为canonical demo含教师可用的N-AT资格资源改变候选集合；QA改用Benchmark专用参考集后评测通过、expected未改，保留旧mismatch快照作审计。
+2. DS黄方勇（55230315）：PR #15调度改动仍未合入main，需按评审流程接收。D-AT-22原mismatch已定位为canonical demo资格资源污染候选集合，Benchmark专用参考集复验通过、expected未改；D-AT-21 calendar 400系QA URI编码问题，编码修复后真实PG子用例通过。
 3. UI杨畅（17231018）：当前`web/package.json`缺失且本机没有`docker compose`插件，Playwright真实E2E、视觉验收及D-AT-23/24未执行。
 4. CM/全组：SeederIT现有三项加QA新回滚项均已跑；生产端口、干净发布环境及Java 21基线复验仍未完成。
 
