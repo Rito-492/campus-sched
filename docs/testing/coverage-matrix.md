@@ -14,7 +14,7 @@
 | D-AT-06 | 缺件冲突指出 [11,12) 缺 1，无部分占用 | FR-06 | DS | DS自测 | ✅ 通过（ResourceSchedulingIT真实PG模块断言） |
 | D-AT-07 | 两批准活动抢同资源，恰 1 成功 1 冲突，无部分预约 | FR-07 | DS+AN | BookingConcurrencyIT | 🟨 部分：DS底层竞态IT通过；HTTP BookingConcurrencyIT被EventPort 503阻断 |
 | D-AT-08 | 幂等：同 key 同 body 重放 / 同 key 不同 body 409 | FR-08 | PM | PermissionsIT-08 | 🟨 部分：AN模块重放测试通过；PermissionsIT前置被EventPort 503阻断 |
-| D-AT-09 | 改期预览两类冲突 + 首选 3102+3202×2 代价 (0,1,1) | FR-09 | DS+UI | DS自测 + conflict.spec | ⬜ 未执行：本轮没有对应首选方案/UI断言证据 |
+| D-AT-09 | 改期预览两类冲突 + 首选 3102+3202×2 代价 (0,1,1) | FR-09 | DS+UI | DS自测 + conflict.spec | 🟨 部分：PR #15合入后真实PG的demoConflictReturnsSameTimeVenueAndEquipmentReplacementWithoutWrites通过，两类冲突、同时间替代场地+设备×2、代价(0,1,1)及预览不写库均已断言；UI未运行，模块资源为独立UUID而非固定3102/3202 |
 | D-AT-10 | 改期确认链 staff→approver→resource，version2 原子切换 | FR-10 | CM+AN | `change-happy-path.spec.ts` + ChangeRollbackIT 前置 | ⛔ 阻塞：无生产ChangePort/改期闭环，E2E未运行 |
 | D-AT-11 | 工作人员/批准人拒绝 → REJECTED 原安排完整 | FR-11 | CM | ChangeRollbackIT-11 | ⛔ 阻塞：两项在GET活动阶段ChangePort 503，未到拒绝断言 |
 | D-AT-12 | 预览后被抢占 → CONFLICTED，原安排保留 | FR-12 | CM+DS | ChangeRollbackIT-12 + conflict.spec | ⛔ 阻塞：ChangePort缺失，抢占后确认断言未到 |
@@ -37,7 +37,16 @@
 | N-AT-05 | 所有者兼任 APPROVER/RESOURCE_CONFIRM 对本人申请 4 种审核全拒 | 回避规则 | PM+AN | IdentityEligibilityIT.nat05 | 🟨 部分：AN真实PG自审拒绝子项通过；集成测试提交遇EventPort 503 |
 | N-AT-06 | 审批范围/管理范围不全覆盖拒绝；停用工作人员拒绝不代签 | 范围规则 | PM+CM | IdentityEligibilityIT.nat06 | 🟨 部分：Foundation/DS/AN范围子项通过；完整停用工作人员流程遇EventPort 503 |
 
-## 2026-10-31 执行证据与统计
+## 2026-10-31 PR #15 合并后续验
+
+- PR #15 已合并，main=`c4f3d413fa1214d127bfff1b3cca0e1ed4b68ddd`；QA普通merge提交=`54d976dfe3c34eaede14391a77deaba17673bbe5`，无冲突，未reset、未强推；原提交和未跟踪证据保留。
+- 默认 `./server/mvnw -f server/pom.xml verify` 已完成：Surefire 70/70；Failsafe 132项=105通过、24失败、2错误、1跳过，exit 1。ResourceSchedulingIT 30项=29通过/1跳过；DsStrategyBenchmarkIT 2/2；SchedulingBenchmarkIT 1/1，evaluate exit 0，160测量行、16组expected全匹配；SeederIT 3/3、SeederRollbackIT 1/1、DbTestSupportIT 1/1。与PR15前相比增加11通过及1跳过，24失败/2错误仍由CM生产端口缺失的503/404及其级联导致；D-AT-16仍为20/20 JOIN返回503。
+- 真库新增直接证据：ResourceSchedulingIT 的计划可变列表保护、跨事务凭据隔离、缺失ChangePort时503且无部分写入通过。真实ActivityPort+SchedulingPort成功切换/回滚测试因CM ChangePort缺失明确skipped，不计通过。
+- D-AT-09由未执行改为部分：模块真实PG断言两类冲突、同时间替代场地及设备×2、代价(0,1,1)、预览不写库通过；独立UUID数据不冒充固定3102/3202演示，UI仍未执行。
+- 最新30项统计：4通过、18部分、7阻塞、1未执行（D-AT-23）、0失败；Tx=22/30=73.3%，Ts=4/30=13.3%。这是分层覆盖台账，不表示全量Maven或产品验收通过。
+- 原始结果归档：`artifacts/test-results/qa-2026-10-31/post-pr15-merge/`；下节保留PR15前历史执行快照，不代表最新基准。
+
+## 2026-10-31 执行证据与统计（PR15前历史）
 
 - main基线：`feb0d70e2ff9da1669eb9c4c3e4beeb592a43ae9`；完整verify代码commit=`514b8dc`；D-AT-22参考数据哈希追溯与目标复验commit=`c3a4a2c6418b6ed4859c64a1b5da9b1b9fd82f6f`；改动已同步到Draft PR #16。
 - 默认命令：`./server/mvnw -f server/pom.xml verify`；最终复验commit=`514b8dc`；PostgreSQL 17隔离容器，`campus_test`，测试schema按类生成；DB密码和`DEMO_PASSWORD`运行时随机注入且未入代码/日志。容器已按名称、标签、镜像校验后停止移除。

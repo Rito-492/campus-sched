@@ -16,6 +16,10 @@
 | DEF-QA-2026-06 | D-AT-21 calendar URI偏移编码 | 汤雨润（55230316） | C | 2026-10-31 | close（QA修正URI编码，真实PG子用例通过） |
 | DEF-QA-2026-07 | D-AT-22 demo资源扩展污染候选集合 | 汤雨润（55230316） | C | 2026-10-31 | close（benchmark参考集隔离后复验通过） |
 
+## PR #15 合并后复验（2026-10-31）
+
+main `c4f3d41`，QA测试提交`54d976d`，真实PostgreSQL默认verify仍有24失败/2错误，DEF-QA-2026-04/05保持assign（CM），不得因DS PR合并关闭。D-AT-16仍20/20 JOIN为503；真实跨端口成功切换测试因缺ChangePort明确skipped，缺依赖时503且不写库保护通过。DEF-QA-2026-01/02/03/06/07相关Seeder、支撑、日历编码及隔离基准评测继续通过，保持关闭。证据：`artifacts/test-results/qa-2026-10-31/post-pr15-merge/result-summary.json`及Failsafe XML。未修改生产代码或expected。
+
 ## 明细
 
 ### DEF-QA-2026-01

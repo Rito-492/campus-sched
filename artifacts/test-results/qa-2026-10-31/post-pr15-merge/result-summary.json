@@ -1,0 +1,240 @@
+{
+  "surefire": {
+    "totals": {
+      "tests": 70,
+      "passed": 70,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "classes": [
+      {
+        "class": "com.campus.events.activity.ActivityServiceTest",
+        "tests": 18,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 18
+      },
+      {
+        "class": "com.campus.events.activity.ActivityStateMachineTest",
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 7
+      },
+      {
+        "class": "com.campus.events.auth.AuthorizationPolicyTest",
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 8
+      },
+      {
+        "class": "com.campus.events.contract.ContractValidationTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 6
+      },
+      {
+        "class": "com.campus.events.foundation.CanonicalJsonTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 6
+      },
+      {
+        "class": "com.campus.events.foundation.ResponsesTest",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 2
+      },
+      {
+        "class": "com.campus.events.scheduling.CandidateRankingTest",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 3
+      },
+      {
+        "class": "com.campus.events.scheduling.CapacitySweepTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 6
+      },
+      {
+        "class": "com.campus.events.scheduling.ScheduleQueryServiceTest",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4
+      },
+      {
+        "class": "com.campus.events.scheduling.StrategyEvaluatorTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 6
+      },
+      {
+        "class": "com.campus.events.scheduling.TimeIntervalTest",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 4
+      }
+    ]
+  },
+  "failsafe": {
+    "totals": {
+      "tests": 132,
+      "passed": 105,
+      "failures": 24,
+      "errors": 2,
+      "skipped": 1
+    },
+    "classes": [
+      {
+        "class": "com.campus.events.acceptance.BookingConcurrencyIT",
+        "tests": 1,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 0
+      },
+      {
+        "class": "com.campus.events.acceptance.CancellationRaceIT",
+        "tests": 2,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 0
+      },
+      {
+        "class": "com.campus.events.acceptance.ChangeRollbackIT",
+        "tests": 5,
+        "failures": 5,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 0
+      },
+      {
+        "class": "com.campus.events.acceptance.IdentityEligibilityIT",
+        "tests": 6,
+        "failures": 6,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 0
+      },
+      {
+        "class": "com.campus.events.acceptance.NotificationConsistencyIT",
+        "tests": 1,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 0
+      },
+      {
+        "class": "com.campus.events.acceptance.PermissionsIT",
+        "tests": 13,
+        "failures": 7,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 6
+      },
+      {
+        "class": "com.campus.events.acceptance.RegistrationCapacityIT",
+        "tests": 4,
+        "failures": 2,
+        "errors": 2,
+        "skipped": 0,
+        "passed": 0
+      },
+      {
+        "class": "com.campus.events.acceptance.SchedulingBenchmarkIT",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 1
+      },
+      {
+        "class": "com.campus.events.acceptance.SeederRollbackIT",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 1
+      },
+      {
+        "class": "com.campus.events.activity.ActivityRegistrationIT",
+        "tests": 33,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 33
+      },
+      {
+        "class": "com.campus.events.dev.DemoDataSeederIT",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 3
+      },
+      {
+        "class": "com.campus.events.foundation.FoundationIT",
+        "tests": 21,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 21
+      },
+      {
+        "class": "com.campus.events.resource.ResourceSchedulingIT",
+        "tests": 30,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1,
+        "passed": 29
+      },
+      {
+        "class": "com.campus.events.resource.SchemaIT",
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 8
+      },
+      {
+        "class": "com.campus.events.scheduling.DsStrategyBenchmarkIT",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 2
+      },
+      {
+        "class": "com.campus.events.support.DbTestSupportIT",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 1
+      }
+    ]
+  }
+}

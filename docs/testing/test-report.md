@@ -1,6 +1,17 @@
-# 测试报告 v0.7（feb0d70基线真实数据库回归）
+# 测试报告 v0.8（PR15集成后真实数据库回归）
 
 > 归属：测试经理（55230316）。仅按真实运行且可查证据统计；静态检查、用例列举、代码存在和模块替身测试均不冒充完整跨模块验收。
+
+## 最新续验：PR #15 已合并
+
+- GitHub确认PR #15 MERGED，合并提交`c4f3d41`；QA以普通merge合入，测试源码提交`54d976dfe3c34eaede14391a77deaba17673bbe5`。备份分支`backup/qa-before-pr15-20261031`保留原HEAD `291b31d`，所有未跟踪日志保持，不reset、不覆盖、不强推。
+- 默认 `./server/mvnw -f server/pom.xml verify` 已完成：Surefire 70/70；Failsafe 132项=105通过、24失败、2错误、1跳过，exit 1。ResourceSchedulingIT 30项=29通过/1跳过；DsStrategyBenchmarkIT 2/2；SchedulingBenchmarkIT 1/1，evaluate exit 0，160测量行、16组expected全匹配；SeederIT 3/3、SeederRollbackIT 1/1、DbTestSupportIT 1/1。与PR15前相比增加11通过及1跳过，24失败/2错误仍由CM生产端口缺失的503/404及其级联导致；D-AT-16仍为20/20 JOIN返回503。
+- DS新增真实库测试接收：D-AT-09两类冲突、同时间替代场地+设备×2、代价(0,1,1)及预览无写入断言通过，因此由未执行调整为部分；其独立UUID模块数据不等同固定ID演示，UI仍未执行。
+- 最新30场景：4通过、18部分、7阻塞、1未执行（D-AT-23），0失败；Tx=22/30=73.3%，Ts=4/30=13.3%。CM缺失时503无部分写入测试通过不等于成功链路通过；真正跨端口切换/回滚明确skipped。
+- 合同检查40 API/9枚举/15 DTO通过，QA TypeScript及Playwright列举通过；`web/package.json`仍缺失，`docker compose version`实际退出1（插件缺失），未执行浏览器E2E。本机仅JDK27，Java21仍待复验。
+- PR13/14仍OPEN；PR15不再是待合并依赖。剩余主阻塞为CM生产EventPort、ChangePort/改期/通知闭环及UI/发布环境。原始证据：`artifacts/test-results/qa-2026-10-31/post-pr15-merge/`。
+
+以下为PR15前历史执行快照，保留用于前后对照，不代表最新main状态。
 
 ## 基本信息
 
@@ -51,4 +62,4 @@
 
 本地QA分支已基于feb0d70；按用户授权新建远端分支`work/55230316-qa-feb0d70`并创建Draft PR #16（base=`feb0d70`，URL：https://github.com/Rito-492/campus-sched/pull/16）。原固定远端分支`work/55230316-qa`未被覆盖。接收确认尚未收到。
 
-本报告是2026-10-31执行快照，不是最终课程验收报告。待CM端口、DS日历修复、UI工程及Java 21环境到位后逐项复验coverage-matrix并更新证据。
+本报告是2026-10-31执行快照，不是最终课程验收报告。待CM端口、UI工程及Java 21环境到位后逐项复验coverage-matrix并更新证据。

@@ -2,6 +2,17 @@
 
 > 维护：测试经理（55230316）。格式依据 `agents/common/04-协作与集成规程.md` §4 固定模板。运行时信息填真实值；**不能为了填满模板虚构结果**，未执行的检查如实标注。
 
+## 最新续验（2026-10-31：PR #15 合并后）
+
+- 成员/任务：汤雨润55230316 / QA-02接收DS、QA-03真库回归、QA-04评测、QA-05覆盖。
+- PR #15已合并，main=`c4f3d41`；QA普通merge提交`54d976dfe3c34eaede14391a77deaba17673bbe5`。无冲突，未reset、未强推；原HEAD `291b31d`保留于`backup/qa-before-pr15-20261031`，原未跟踪内容未动。
+- 默认 `./server/mvnw -f server/pom.xml verify` 已完成：Surefire 70/70；Failsafe 132项=105通过、24失败、2错误、1跳过，exit 1。ResourceSchedulingIT 30项=29通过/1跳过；DsStrategyBenchmarkIT 2/2；SchedulingBenchmarkIT 1/1，evaluate exit 0，160测量行、16组expected全匹配；SeederIT 3/3、SeederRollbackIT 1/1、DbTestSupportIT 1/1。与PR15前相比增加11通过及1跳过，24失败/2错误仍由CM生产端口缺失的503/404及其级联导致；D-AT-16仍为20/20 JOIN返回503。
+- D-AT-09新增真库模块直接证据，改记部分；仍缺固定ID演示/UI。30项当前为4通过、18部分、7阻塞、1未执行；Tx=73.3%，Ts=13.3%。真实跨端口成功切换测试因CM ChangePort缺失明确skipped，不能记通过。
+- 证据目录：`artifacts/test-results/qa-2026-10-31/post-pr15-merge/`；本机JDK27，Java21待复验；合同/TypeScript/Playwright列举通过，E2E未运行。
+- PR13/14仍OPEN；DS PR15已解除待合并依赖，剩余CM生产EventPort/ChangePort/通知与UI/发布环境。接收确认尚未收到；下一接收人CM杨瀚霖提供生产端口，UI杨畅提供前端入口，QA随后复测。
+
+以下保留历史记录，不将其中旧PR状态作为当前状态。
+
 ## 本次工作（2026-10-31：同步feb0d70、真库验证与交接）
 
 - 成员/任务：汤雨润（55230316）/ QA-01数据支撑、QA-02模块接收、QA-03跨模块DB验收、QA-04评测、QA-05覆盖与报告。

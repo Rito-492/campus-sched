@@ -1,0 +1,31 @@
+Listing tests:
+  [desktop] › booking.spec.ts:67:3 › D-AT-03 首次预约主线（新建→编辑→提交→批准→资源确认→发布→报名） › TC-03-1 applicant_a 新建并提交，approver_a 同意、resource_admin 确认、发布后 student_a 报名成功
+  [desktop] › change-conflict.spec.ts:122:3 › D-AT-09 改期冲突与替代方案（UI） › TC-09-2 预览同时展示场地占用与器材缺件，首选替代为 3102+3202×2 同时间
+  [desktop] › change-conflict.spec.ts:163:3 › D-AT-11 拒绝改期（原安排保护） › TC-11-1 staff_a 拒绝 → REJECTED，原安排与版本完全保留
+  [desktop] › change-conflict.spec.ts:199:3 › D-AT-11 拒绝改期（原安排保护） › TC-11-2 批准人驳回 → REJECTED，版本指针不变且意见落库
+  [desktop] › change-conflict.spec.ts:236:3 › D-AT-12 预览后被抢占（最终确认冲突） › TC-12-1 候选资源被占 → 409 RESOURCE_CONFLICT、改期 CONFLICTED、原安排保留
+  [desktop] › change-conflict.spec.ts:304:3 › D-AT-18 资源故障与风险提示 › TC-18-1 故障使 A 原安排标 AT_RISK，页面展示风险提示且不谎报可用
+  [desktop] › change-happy-path.spec.ts:37:3 › D-AT-10 / D-AT-23 改期成功主线与持久化 › TC-10-1 / TC-23-1 预览选首选方案→staff/approver/resource 确认→version2→student 收到通知（含 reload 持久化）
+  [desktop] › eligibility.spec.ts:62:3 › N-AT-02 资格限制（仅教师资源） › N-AT-02 applicant_b（STUDENT）UI 提交仅教师资源被拒，错误区展示具体受限资源
+  [desktop] › eligibility.spec.ts:99:3 › N-AT-02 资格限制（仅教师资源） › N-AT-02 applicant_a（TEACHER）同目标可走到下一步（对照，按 identity 判断）
+  [desktop] › eligibility.spec.ts:134:3 › N-AT-02 资格限制（仅教师资源） › N-AT-02 applicant_b 直接 HTTP 提交同目标 → 403 RESOURCE_INELIGIBLE 且无写入
+  [desktop] › login.spec.ts:29:3 › D-AT-01 登录、令牌与响应脱敏 › TC-01-1 applicant_a 正常登录进入主页，登录响应无密码字段、页面无散列信息
+  [desktop] › login.spec.ts:64:3 › D-AT-01 登录、令牌与响应脱敏 › TC-01-2 错误密码返回 401 并显示错误提示，停留登录页，随后正确密码仍可登录
+  [desktop] › login.spec.ts:108:3 › D-AT-01 登录、令牌与响应脱敏 › D-AT-01 登录后页面与浏览器存储不出现密码散列或明文口令
+  [desktop] › permissions.spec.ts:47:3 › D-AT-21 隐私与读取隔离 › TC-21-1 学生日历只显示无权限占用信息，不泄露活动名称/组织者/名单
+  [desktop] › permissions.spec.ts:92:3 › D-AT-21 隐私与读取隔离 › TC-21-2 学生读取他人活动报名名单被拒 403，UI 不展示名单
+  [desktop] › permissions.spec.ts:131:3 › D-AT-21 隐私与读取隔离 › TC-21-2 学生只能查看自己的通知，读取他人通知被拒
+  [desktop] › permissions.spec.ts:182:3 › D-AT-21 隐私与读取隔离 › TC-21-3 staff_a 读取改期详情时名单字段被裁剪但计数真实
+  [desktop] › ui-layout.spec.ts:38:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 登录页：无横向溢出、无错误横幅、文字可读并留存截图
+  [desktop] › ui-layout.spec.ts:54:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动列表：无横向溢出、无错误横幅、文字可读并留存截图
+  [desktop] › ui-layout.spec.ts:71:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动详情：无横向溢出、无错误横幅、文字可读并留存截图
+  [desktop] › ui-layout.spec.ts:88:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 改期工作台：无横向溢出、无错误横幅、文字可读并留存截图
+  [desktop-1920] › ui-layout.spec.ts:38:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 登录页：无横向溢出、无错误横幅、文字可读并留存截图
+  [desktop-1920] › ui-layout.spec.ts:54:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动列表：无横向溢出、无错误横幅、文字可读并留存截图
+  [desktop-1920] › ui-layout.spec.ts:71:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动详情：无横向溢出、无错误横幅、文字可读并留存截图
+  [desktop-1920] › ui-layout.spec.ts:88:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 改期工作台：无横向溢出、无错误横幅、文字可读并留存截图
+  [mobile-390] › ui-layout.spec.ts:38:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 登录页：无横向溢出、无错误横幅、文字可读并留存截图
+  [mobile-390] › ui-layout.spec.ts:54:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动列表：无横向溢出、无错误横幅、文字可读并留存截图
+  [mobile-390] › ui-layout.spec.ts:71:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动详情：无横向溢出、无错误横幅、文字可读并留存截图
+  [mobile-390] › ui-layout.spec.ts:88:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 改期工作台：无横向溢出、无错误横幅、文字可读并留存截图
+Total: 29 tests in 7 files
