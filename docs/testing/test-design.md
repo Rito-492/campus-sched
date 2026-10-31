@@ -29,13 +29,13 @@
 | D-AT-13 | TC-13-1 | ResourceSchedulingIT + ChangeRollbackIT | DS+CM | 🟨 部分覆盖：DS排除自身旧占用通过；改期HTTP受ChangePort阻塞 |
 | D-AT-14 | TC-14-1 | ChangeRollbackIT / AN、DS模块IT | CM | 🟨 部分覆盖：模块回滚子项过；改期/outbox整体回滚阻塞 |
 | D-AT-15 | TC-15-1 | RegistrationCapacityIT / ActivityRegistrationIT | AN+CM | 🟨 部分覆盖：AN模块冻结过；真实改期创建返回404 |
-| D-AT-16 | TC-16-1/2/3 | RegistrationCapacityIT / ActivityRegistrationIT | AN | ⛔ 阻塞：真实HTTP 0/20成功，ChangePort缺失挡住容量断言；AN服务级并发过 |
+| D-AT-16 | TC-16-1/2/3 | RegistrationCapacityIT / ActivityRegistrationIT | AN | ⛔ 阻塞：诊断复验确认20/20真实JOIN均503 INTERNAL_ERROR；ChangePort缺失挡住容量断言；AN服务级并发过 |
 | D-AT-17 | TC-17-1/2 | CancellationRaceIT / ActivityRegistrationIT | AN+CM | 🟨 部分覆盖：AN取消子项过；真实改期竞争因创建改期404阻塞 |
 | D-AT-18 | TC-18-1 | ResourceSchedulingIT + conflict.spec | DS+UI | 🟨 部分覆盖：DS真实PG风险过；UI风险提示未运行 |
 | D-AT-19 | TC-19-1 | NotificationConsistencyIT | CM | ⛔ 阻塞：创建改期404，通知消费/去重未执行 |
 | D-AT-20 | TC-20-1/2 | PermissionsIT / ActivityRegistrationIT | AN+CM | 🟨 部分覆盖：AN陈旧版本子项过；PermissionsIT提交前EventPort 503 |
 | D-AT-21 | TC-21-1/2/3 | PermissionsIT + perm.spec | 全员 | 🟨 部分/混合：名单权限通过；calendar offset 400；改期详情503；E2E未跑 |
-| D-AT-22 | TC-22-1 | SchedulingBenchmarkIT + evaluate | DS+测试 | ❌ 失败：160行已实测；SCH-01/04/08期望对照不一致 |
+| D-AT-22 | TC-22-1 | SchedulingBenchmarkIT + evaluate | DS+测试 | ✅ 通过：Benchmark-only参考集隔离后8×2×10测量与全部expected一致；输出记录输入文件SHA-256 |
 | D-AT-23 | TC-23-1 | `change-happy-path.spec.ts` | UI+配置 | ⬜ 未执行：未跑浏览器刷新/服务重启恢复 |
 | D-AT-24 | TC-24-1 | 发布演练（人工+check.ps1） | 全员 | ⛔ 阻塞/未执行：无干净环境演练；verify整体exit 1 |
 
