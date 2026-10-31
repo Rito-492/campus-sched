@@ -1,5 +1,27 @@
 # 交接单（配置经理）
 
+## 本轮工作（2026-10-31）：交付改期/通知/审计/发件箱生产实现 + 便携 PostgreSQL 复跑 SeederIT 并定位改期/通知验收阻塞
+
+- 成员、学号、任务ID：杨瀚霖、55231031、配置经理；CM 改期 API-26～36 与事件/通知基础设施交付（续 PR #10 合入后）。
+- main 基准：`origin/main` 现为 `c4f3d41`（PR #15 调度合并）；PR #10（Seeder + 配置文档）已于 `feb0d70` 合入。本分支 `work/55231031-change` 当前 `c4f3d41`，与 main 一致，仅保留未提交的 change/notification 生产代码（本地修改已保留、未覆盖、未推送）。
+- 本轮交付（生产实现，非测试替身；统一锁序 receipt→activity→change→user→resource，单事务 MANDATORY）：
+  - `server/.../change/`：ChangeService（API-26 预览/27 创建/28 列表/29 详情/30 人员确认/31 批准/32 资源复核原子切换/33 撤回）、ChangeController、ChangeRepository、ChangePortAdapter。
+  - `server/.../notification/`：EventRepository（audit_log + outbox_event）、EventPortAdapter、NotificationRepository、NotificationService（API-34 列表/35 读取/36 审计）、NotificationController、NotificationConsumer（@Scheduled 2s，claim FOR UPDATE SKIP LOCKED，指数退避 2/4/8/16/32s，5 次 FAILED）、NotificationConfiguration（@EnableScheduling）、NotificationDeliveryProbe + Noop 实现。
+  - 逐字段核对 V1__schema.sql 与 02 契约记录构造顺序（change_request/change_confirmation/audit_log/outbox_event/notification 及 Impact/EventDraft/ChangeView/DecisionRecord/ChangeCreate/ChangePreview），SQL 与记录字段序全部一致，无字段改名或越过端口直写。
+- 过期配置状态更新：`server/pom.xml` + Maven Wrapper（mvnw.cmd）已随 PM 进入 main，本机可用 `D:\Java\jdk-23` + `--release 21` 编译运行，上轮「后端工程未就绪（缺 pom/Maven Wrapper）」旧条目已作废；契约要求 Java 21，本机仅 1.8/23，用 jdk-23 --release 21 满足（非阻塞）。
+- 实际检查（真实结果，均本机便携 PostgreSQL 17.4 独立 campus_test + 安全 DEMO_PASSWORD 环境变量）：
+  - `compile` + `test-compile`：✅ BUILD SUCCESS（28 个测试源文件编译通过）。
+  - 单元测试（Surefire *Test）：✅ 70/70 通过（ActivityService 18 / ActivityStateMachine 7 / AuthorizationPolicy 8 / ContractValidation 6 / CanonicalJson 6 / Responses 2 / CandidateRanking 3 / CapacitySweep 6 / ScheduleQueryService 4 / StrategyEvaluator 6 / TimeInterval 4）。
+  - `DemoDataSeederIT`：✅ 3/3 通过（首次 12 项授权 / 撤销不重放 / 删除重建后 12 项），Flyway 迁移 + 演示数据导入在独立 schema t_<32hex> 完成。
+  - `ChangeRollbackIT` / `NotificationConsistencyIT`：❌ 阻塞于 QA 测试支撑 `DbTestSupport.insertReferenceTables` 装载顺序缺陷——`user_resource_scope`（managedResourceIds）先于 `resource` 插入，触发 `fk_user_resource_scope_resource` 外键违约（resource_id=3101 不存在），发生在 beforeAll 数据装载阶段、本模块业务代码尚未执行；非本模块生产代码问题。
+- 复跑方式（本机无 Docker/psql，已用便携二进制）：下载 PostgreSQL 17.4 Windows 二进制至 `D:\campus-pg-tmp\`（未装系统服务），`initdb -A trust` 后 `pg_ctl start`，建 `campus_test`；env：`TEST_DATABASE_URL=jdbc:postgresql://127.0.0.1:5432/campus_test`、`TEST_DB_USERNAME=postgres`、`TEST_DB_PASSWORD=postgres`、`DEMO_PASSWORD=demo123`、`JAVA_HOME=D:/Java/jdk-23`；命令 `./mvnw.cmd "-Dit.test=DemoDataSeederIT" verify`。验证结束已 `pg_ctl stop` 干净关闭。
+- QA 需修（本 agent 不越权改 QA 测试代码，仅如实记录）：
+  1. `DbTestSupport.insertReferenceTables`：`managedResourceIds`→`user_resource_scope` 需移到 `resource` 建表之后（同 PR #8 对生产 `DemoDataSeeder` 的修复，测试支撑未同步）。
+  2. `NotificationConsistencyIT`：声明嵌套接口 `NotificationDeliveryProbe` 并以 `@Primary` 注册该嵌套类型 bean，未覆盖生产 `com.campus.events.notification.NotificationDeliveryProbe`，消费者仍走 Noop、attempts 恒 0；应改为 import 生产接口。
+  3. `NotificationConsistencyIT` 读取通知调用传 `null` `Idempotency-Key`，而 `POST /notifications/{id}/read` 按契约要求该头（BearerFilter 仅豁免 login/logout 与 schedule-preview/alternatives/change-preview），预期 400；应补传 UUID。
+- 未完成项/外部依赖：改期回滚（D-AT-14）与通知一致性（D-AT-19）验收 IT 需 QA 先修上述 1（及 2/3）后复跑；单一 PR 交付与合并待授权（本 agent 不自行提交/推送/合并）。
+- 下一接收人：测试经理（汤雨润，55230316）修复 `DbTestSupport` 装载顺序并复审 NotificationConsistencyIT 两处；项目经理（冀项阳，55230223）确认 PR 交付范围与合并授权。
+
 ## 本轮工作（2026-10-30）：基于当前 main 重基线 + 补全 T08 DOCX 三口径 + 修复 SeederIT 口令与过期表述
 
 - 成员、学号、任务ID：杨瀚霖、55231031、配置经理；CM-01 收尾 + PR #8/#10 评审整改（续）。
