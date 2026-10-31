@@ -48,9 +48,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * 汇总为 {@code artifacts/evaluation/results.csv} 与 {@code summary.md}（03 §4）。本测试只产出原始
  * 测量行，不判定结论、不补齐缺失行、不填充占位数值。
  *
- * <p>装载规则（test-data-plan §7）：评测环境 = {@code demo.json} 的 organizations/users/resources
- * 参考数据 + {@code scenarios/scheduling.json} 场景数据；<b>不装载演示活动 A/B 与报名</b>，避免场景
- * 互相干扰。{@code blockers} 合成 SCHEDULED、versionNo=1 的占用活动及其 ACTIVE 预约行
+ * <p>装载规则（test-data-plan §7）：评测环境 = {@code scenarios/scheduling-reference.json} 中仅用于评测的
+ * organizations/users/基础resources + {@code scenarios/scheduling.json} 场景数据；不加载demo里的N-AT资格扩展资源，
+ * 避免额外候选改变固定几何预期；<b>不装载演示活动 A/B 与报名</b>，避免场景互相干扰。{@code blockers} 合成 SCHEDULED、versionNo=1 的占用活动及其 ACTIVE 预约行
  * （区间取 reservations 原值，quantity 按行）；{@code faults} 写 {@code resource_fault}；
  * {@code request.subjectTail} 为被评估活动，作为 {@link StrategyEvaluator#evaluateStrategies} 的
  * {@code excludeActivityId}（02 §8）。每个场景跑前重置场景数据（保留参考数据）。
@@ -90,10 +90,10 @@ class SchedulingBenchmarkIT {
     @Autowired
     private StrategyEvaluator evaluator;
 
-    /** 先装载参考数据（demo 的组织/用户/资源），场景数据在各测试方法内按场景装载。 */
+    /** 先装载评测专用基础组织/账号/资源；场景数据在各测试方法内按场景事务装载。 */
     @BeforeAll
     static void loadReferenceData() {
-        db.loadReferenceData("demo");
+        db.loadReferenceData("scenarios/scheduling-reference");
     }
 
     @Test

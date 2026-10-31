@@ -128,7 +128,7 @@ JSON 是唯一数据来源，以下记录由导入器推导写入：
 
 装载与语义规则：
 
-- **资源与组织来自 `demo.json`**：评测装载 = demo.json 的 organizations/users/resources + 本文件场景数据；**不装载**演示活动 A/B 与报名，避免场景互相干扰。
+- **评测专用基础数据来自 `scenarios/scheduling-reference.json`**：仅包含组织1001/1002、`applicant_a`、`resource_admin`及基线资源3101/3102/3201/3202，再叠加本文件的场景数据；不加载demo.json中的N-AT资格扩展资源3111-3114/3211-3214，因为教师申请人可使用其中部分资源，会改变固定场景候选空间与expected几何。**不装载**演示活动A/B与报名，避免场景互相干扰。该文件仍使用同一JSON DTO/派生规则，非生产数据接口变更。
 - `blockers` 生成「占用活动」（SCHEDULED、versionNo=1）及其 ACTIVE 预约行；input_json 由装载器合成（title=blocker.title，expectedAttendees=registrationCapacity=1，staffUserIds=[]，plan 的 venueId 取 blocker 的场地预约行、无场地行时取 request.plan.venueId，setup/teardown=0）。**实际占用以 reservations 为准**，合成 input 仅为满足不可变输入结构（02 §4）。
 - `faults` 写入 `resource_fault`（02 §2 FaultInput）。场地故障 unavailableQuantity=1（01 基线 §8）。
 - `request.plan` 为被评估目标计划；`subjectTail` 为被评估活动（即 evaluateStrategies 的 excludeActivityId，02 契约 §8）。blockers 中同 subjectTail 的预约表示**该活动自身旧占用**，用于覆盖「排除自身旧占用」（D-AT-13）。
