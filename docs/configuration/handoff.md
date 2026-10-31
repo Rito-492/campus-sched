@@ -1,5 +1,18 @@
 # 交接单（配置经理）
 
+## 评审整改（2026-10-31）：修复 P1 改期目标未来复核 + P2 发件箱认领互斥
+
+独立 AI 交叉评审（非自审）对 PR #18 提出两项「必须改」，已修复并补回归，重新推送待复审：
+
+- P1（改期目标未来复核）：`ChangeService.resourceDecision` 资源 APPROVE 分支在最终检查/激活前，按当前 Clock 重查 `targetFuture(change.targetPlan())`（与写入同事务）。原活动仍在未来但改期目标在复核时已过去，改为 409 `INVALID_STATE`，不再把有效版本/预约回写到过去；REJECT 分支不受此约束。依据 01 §3「改期目标须在未来」。
+- P2（发件箱认领互斥）：`EventRepository.claimNext` 由「SELECT FOR UPDATE」改为原子 `UPDATE…RETURNING`，在同一语句把 `next_attempt_at` 推到未来作为持久化认领租约（60s，超时/崩溃自动恢复可重认领），事务提交后另一实例因租约未到期而跳过，互斥覆盖后续投递与记账；`markDone`/`recordFailure` 均加 `status='PENDING'` 守卫，晚到结果不得覆盖 DONE/FAILED 终态。依据 01 §5 / 02 §5。
+
+- 回归与验证（真实执行，本机便携 PostgreSQL 17.4 + jdk-23 --release 21）：
+  - `ChangeServiceTest`（1 用例）：资源 APPROVE 目标已过去 → 409 INVALID_STATE，且未进入调度锁检查。
+  - `OutboxClaimIT`（3 用例）：认领租约使第二消费者无法重复认领同一事件；markDone 后 recordFailure 不覆盖 DONE、不重复递增 attempts；失败按指数退避并保持 PENDING。
+  - 单元测试 71/71 通过（新增 ChangeServiceTest 1 例）；OutboxClaimIT 3/3 通过。
+  - 未触碰 QA 测试支撑；`DbTestSupport` 资源范围先于资源插入的既有缺陷（及 open_from/open_to TIME 绑定问题）仍待 QA 修复，非本 PR 引入、不据此打回。
+
 ## 本轮工作（2026-10-31）：交付改期/通知/审计/发件箱生产实现 + 便携 PostgreSQL 复跑 SeederIT 并定位改期/通知验收阻塞
 
 - 成员、学号、任务ID：杨瀚霖、55231031、配置经理；CM 改期 API-26～36 与事件/通知基础设施交付（续 PR #10 合入后）。

@@ -60,14 +60,29 @@ public class EventRepository {
         return id;
     }
 
-    /** 认领一批到期待处理事件；SKIP LOCKED 避免多实例重复认领。 */
+    /** 认领租约秒数：认领即把 next_attempt_at 推到未来，投递与记账应在租约内完成，超时/崩溃后自动恢复重认领。 */
+    private static final int LEASE_SECONDS = 60;
+
+    /**
+     * 原子认领一批到期待处理事件：以 FOR UPDATE SKIP LOCKED 选出待处理行，并在同一语句把 next_attempt_at
+     * 推后作为「认领租约」。事务提交后租约持久化，另一实例的 claimNext 因 next_attempt_at 未到期而跳过，
+     * 保证认领互斥覆盖后续的投递与记账（01 §5、02 §5）；不再依赖 SELECT 后锁未释放期间投递。
+     */
     public List<OutboxRow> claimNext(int limit) {
         return jdbc.query("""
-                SELECT id, activity_id, version_no, payload_json, attempts FROM outbox_event
-                WHERE status='PENDING' AND next_attempt_at <= now()
-                ORDER BY next_attempt_at, id
-                FOR UPDATE SKIP LOCKED LIMIT ?
-                """, this::row, limit);
+                WITH claimed AS (
+                    SELECT id FROM outbox_event
+                    WHERE status='PENDING' AND next_attempt_at <= now()
+                    ORDER BY next_attempt_at, id
+                    FOR UPDATE SKIP LOCKED
+                    LIMIT ?
+                )
+                UPDATE outbox_event o
+                SET next_attempt_at = now() + (?::int * interval '1 second')
+                FROM claimed c
+                WHERE o.id = c.id
+                RETURNING o.id, o.activity_id, o.version_no, o.payload_json, o.attempts
+                """, this::row, limit, LEASE_SECONDS);
     }
 
     private OutboxRow row(ResultSet rs, int n) throws SQLException {
@@ -75,21 +90,21 @@ public class EventRepository {
                 (Integer) rs.getObject("version_no"), payload(rs.getString("payload_json")), rs.getInt("attempts"));
     }
 
-    /** 投递成功：计入一次尝试并置 DONE。 */
+    /** 投递成功：计入一次尝试并置 DONE；仅对仍为 PENDING 的事件生效，晚到结果不得覆盖已终态（DONE/FAILED）。 */
     public void markDone(UUID id) {
         jdbc.update("""
                 UPDATE outbox_event SET status='DONE', attempts=attempts+1, last_error=NULL, updated_at=now()
-                WHERE id=?
+                WHERE id=? AND status='PENDING'
                 """, id);
     }
 
-    /** 投递失败：指数退避 2/4/8/16/32s，第 5 次失败后置 FAILED。 */
+    /** 投递失败：指数退避 2/4/8/16/32s，第 5 次失败后置 FAILED；仅对仍为 PENDING 的事件生效，避免覆盖终态。 */
     public void recordFailure(UUID id, String error) {
         jdbc.update("""
                 UPDATE outbox_event SET attempts=attempts+1,
                        next_attempt_at=now()+(power(2, attempts+1)::int * interval '1 second'),
                        last_error=?, status=CASE WHEN attempts+1>=? THEN 'FAILED' ELSE 'PENDING' END,
-                       updated_at=now() WHERE id=?
+                       updated_at=now() WHERE id=? AND status='PENDING'
                 """, error, MAX_ATTEMPTS, id);
     }
 

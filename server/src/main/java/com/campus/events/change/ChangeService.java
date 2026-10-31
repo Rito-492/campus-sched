@@ -314,6 +314,10 @@ public class ChangeService {
             return Responses.success(200, view(changes.get(changeId), true));
         }
 
+        // 最终复核：改期目标此刻仍须在未来（01 §3）。预览/创建时目标可能在未来，但资源复核可能发生在目标已过去之后，
+        // 若不重查会把有效版本与预约回写到过去；REJECT 分支不受此约束。
+        targetFuture(change.targetPlan());
+
         var check = scheduling.lockAndCheck(activity.id(), change.targetPlan(), activity.input().expectedAttendees(), ownerIdentity);
         if (!check.feasible()) {
             var record = new DecisionRecord(Decision.APPROVE, command.comment(), operator.id(), clock.instant());
