@@ -1,0 +1,7 @@
+{
+  "activeReservations" : 2,
+  "realEventPortPresent" : false,
+  "httpStatus" : 503,
+  "acceptanceStatus" : "成功链路阻塞；503及无部分提交通过",
+  "faultRows" : 0
+}
