@@ -1,0 +1,3 @@
+npm notice run campus-sched-qa@0.1.0 npx
+npm notice run 'tsc' --noEmit
+exit_code=0

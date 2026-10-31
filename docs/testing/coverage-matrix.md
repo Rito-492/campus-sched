@@ -4,38 +4,57 @@
 > 用途：QA-02/03 的测试改造对照表与 QA-05 覆盖判定的执行台账（判定规则见 `test-plan.md` §4.1）。
 > **执行状态初始全部「未执行」**；每轮执行后更新状态列并附证据路径。主责列指模块自测负责人，QA 列为跨模块验收落点。
 
-| 编号 | 场景摘要 | 需求关联 | 主责 | QA 执行落点 | 状态 |
+| 编号 | 场景摘要 | 需求关联 | 主责 | QA 执行落点 | 状态（2026-10-31真实PG/Failsafe） |
 |---|---|---|---|---|---|
-| D-AT-01 | 登录/错密码/停用后旧令牌 401；响应无 passwordHash | FR-01 | PM | PermissionsIT-01 + login.spec | ⬜ 未执行 |
-| D-AT-02 | approver_other/account_admin/applicant_b 越权均 403 无变化 | FR-02 | PM+AN | PermissionsIT（TC-02组） | ⬜ 未执行 |
-| D-AT-03 | 新建→编辑→提交→批准→资源确认→发布；首确前 0 ACTIVE | FR-03 | AN | AN自测 + happy.spec 复核 | ⬜ 未执行 |
-| D-AT-04 | 相邻占用可共存；布场 15 分钟产生边界冲突 | FR-04 | DS | DS自测 + Bench(SCH-05) | ⬜ 未执行 |
-| D-AT-05 | 错峰占用峰值恰 2，不得误算 3 | FR-05 | DS | DS自测 + Bench(SCH-06) | ⬜ 未执行 |
-| D-AT-06 | 缺件冲突指出 [11,12) 缺 1，无部分占用 | FR-06 | DS | DS自测 | ⬜ 未执行 |
-| D-AT-07 | 两批准活动抢同资源，恰 1 成功 1 冲突，无部分预约 | FR-07 | DS+AN | BookingConcurrencyIT | ⬜ 未执行 |
-| D-AT-08 | 幂等：同 key 同 body 重放 / 同 key 不同 body 409 | FR-08 | PM | PermissionsIT-08 | ⬜ 未执行 |
-| D-AT-09 | 改期预览两类冲突 + 首选 3102+3202×2 代价 (0,1,1) | FR-09 | DS+UI | DS自测 + conflict.spec | ⬜ 未执行 |
-| D-AT-10 | 改期确认链 staff→approver→resource，version2 原子切换 | FR-10 | CM+AN | happy.spec + ChangeRollbackIT 前置 | ⬜ 未执行 |
-| D-AT-11 | 工作人员/批准人拒绝 → REJECTED 原安排完整 | FR-11 | CM | ChangeRollbackIT-11 | ⬜ 未执行 |
-| D-AT-12 | 预览后被抢占 → CONFLICTED，原安排保留 | FR-12 | CM+DS | ChangeRollbackIT-12 + conflict.spec | ⬜ 未执行 |
-| D-AT-13 | 自身旧占用排除，不自竞争 | FR-13 | DS+CM | DS自测 + Bench(SCH-01) | ⬜ 未执行 |
-| D-AT-14 | 预约替换中注入异常整体回滚 | FR-14 | CM | ChangeRollbackIT-14 | ⬜ 未执行 |
-| D-AT-15 | 改期期间报名冻结 CHANGE_PENDING | FR-15 | AN+CM | RegCapacityIT-15 | ⬜ 未执行 |
-| D-AT-16 | 容量 1 对 20 并发 JOIN 恰 1 ACTIVE | FR-16 | AN | RegCapacityIT-16 | ⬜ 未执行 |
-| D-AT-17 | 取消两次不多释放；取消与改期竞争一致终态 | FR-17 | AN+CM | CancellationRaceIT | ⬜ 未执行 |
-| D-AT-18 | 故障 → AT_RISK，页面不谎报原安排可用 | FR-18 | DS+UI | DS自测 + conflict.spec | ⬜ 未执行 |
-| D-AT-19 | 通知消费失败恢复 + 重复消费去重 | FR-19 | CM | NotifyConsistIT | ⬜ 未执行 |
-| D-AT-20 | 旧 baseVersion/lockVersion → STALE_VERSION | FR-20 | AN+CM | PermissionsIT-20 | ⬜ 未执行 |
-| D-AT-21 | 日历脱敏/名单与他人通知 403 | FR-21 | 全员 | PermissionsIT-21 + permissions.spec | ⬜ 未执行 |
-| D-AT-22 | first-fit vs RANKED 300 候选对比 | NFR-评测 | DS+测试 | SchedulingBenchmarkIT + evaluate | ⬜ 未执行 |
-| D-AT-23 | 刷新/重启后状态来自真实持久化 | FR-23 | UI+配置 | happy.spec（reload 断言） | ⬜ 未执行 |
-| D-AT-24 | 干净环境按发布说明启动换角色答辩 | FR-24 | 全员 | 发布演练（check.ps1 + 人工） | ⬜ 未执行 |
-| N-AT-01 | 身份与角色分离：教师申请人/学生申请人/仅账号管理员调用审批复核 | 身份规则 | PM+AN | IdentityEligibilityIT.nat01 | ⬜ 未执行 |
-| N-AT-02 | 两类身份×四种资源资格（3111-3114/3211-3214），UI+HTTP 双通道 | 资格规则 | DS+UI | IdentityEligibilityIT.nat02 + conflict.spec | ⬜ 未执行 |
-| N-AT-03 | 候选过滤受限资源；强制提交仍拒绝；按所有者身份校验 | 资格规则 | DS | IdentityEligibilityIT.nat03 + Bench | ⬜ 未执行 |
-| N-AT-04 | 提交后改身份/资格：未确认用最新设置；旧预约保留；新目标不合资格拒绝 | 资格规则 | AN+CM | IdentityEligibilityIT.nat04 | ⬜ 未执行 |
-| N-AT-05 | 所有者兼任 APPROVER/RESOURCE_CONFIRM 对本人申请 4 种审核全拒 | 回避规则 | PM+AN | IdentityEligibilityIT.nat05 | ⬜ 未执行 |
-| N-AT-06 | 审批范围/管理范围不全覆盖拒绝；停用工作人员拒绝不代签 | 范围规则 | PM+CM | IdentityEligibilityIT.nat06 | ⬜ 未执行 |
+| D-AT-01 | 登录/错密码/停用后旧令牌 401；响应无 passwordHash | FR-01 | PM | PermissionsIT-01 + login.spec | 🟨 部分：PermissionsIT三项通过；login.spec未运行 |
+| D-AT-02 | approver_other/account_admin/applicant_b 越权均 403 无变化 | FR-02 | PM+AN | PermissionsIT（TC-02组） | ⛔ 阻塞：三项在读取活动时ChangePort 503，越权断言未到 |
+| D-AT-03 | 新建→编辑→提交→批准→资源确认→发布；首确前 0 ACTIVE | FR-03 | AN | AN自测 + `booking.spec.ts` | 🟨 部分：ActivityRegistrationIT全生命周期通过，但CM端口为测试替身；E2E未运行 |
+| D-AT-04 | 相邻占用可共存；布场 15 分钟产生边界冲突 | FR-04 | DS | DS自测 + Bench(SCH-05) | ✅ 通过（ResourceSchedulingIT真实PG模块断言） |
+| D-AT-05 | 错峰占用峰值恰 2，不得误算 3 | FR-05 | DS | DS自测 + Bench(SCH-06) | ✅ 通过（ResourceSchedulingIT真实PG模块断言） |
+| D-AT-06 | 缺件冲突指出 [11,12) 缺 1，无部分占用 | FR-06 | DS | DS自测 | ✅ 通过（ResourceSchedulingIT真实PG模块断言） |
+| D-AT-07 | 两批准活动抢同资源，恰 1 成功 1 冲突，无部分预约 | FR-07 | DS+AN | BookingConcurrencyIT | 🟨 部分：DS底层竞态IT通过；HTTP BookingConcurrencyIT被EventPort 503阻断 |
+| D-AT-08 | 幂等：同 key 同 body 重放 / 同 key 不同 body 409 | FR-08 | PM | PermissionsIT-08 | 🟨 部分：AN模块重放测试通过；PermissionsIT前置被EventPort 503阻断 |
+| D-AT-09 | 改期预览两类冲突 + 首选 3102+3202×2 代价 (0,1,1) | FR-09 | DS+UI | DS自测 + conflict.spec | 🟨 部分：PR #15合入后真实PG的demoConflictReturnsSameTimeVenueAndEquipmentReplacementWithoutWrites通过，两类冲突、同时间替代场地+设备×2、代价(0,1,1)及预览不写库均已断言；UI未运行，模块资源为独立UUID而非固定3102/3202 |
+| D-AT-10 | 改期确认链 staff→approver→resource，version2 原子切换 | FR-10 | CM+AN | `change-happy-path.spec.ts` + ChangeRollbackIT 前置 | ⛔ 阻塞：无生产ChangePort/改期闭环，E2E未运行 |
+| D-AT-11 | 工作人员/批准人拒绝 → REJECTED 原安排完整 | FR-11 | CM | ChangeRollbackIT-11 | ⛔ 阻塞：两项在GET活动阶段ChangePort 503，未到拒绝断言 |
+| D-AT-12 | 预览后被抢占 → CONFLICTED，原安排保留 | FR-12 | CM+DS | ChangeRollbackIT-12 + conflict.spec | ⛔ 阻塞：ChangePort缺失，抢占后确认断言未到 |
+| D-AT-13 | 自身旧占用排除，不自竞争 | FR-13 | DS+CM | DS自测 + Bench(SCH-01) | 🟨 部分：DS ResourceSchedulingIT自占用排除通过；改期HTTP测试被ChangePort阻塞 |
+| D-AT-14 | 预约替换中注入异常整体回滚 | FR-14 | CM | ChangeRollbackIT-14 | 🟨 部分：DS/AN模块回滚子项通过；改期+outbox整体回滚未到断言 |
+| D-AT-15 | 改期期间报名冻结 CHANGE_PENDING | FR-15 | AN+CM | RegistrationCapacityIT-15 | 🟨 部分：AN模块冻结测试通过；真实改期创建返回404 |
+| D-AT-16 | 容量 1 对 20 并发 JOIN 恰 1 ACTIVE | FR-16 | AN | RegistrationCapacityIT-16 | ⛔ 阻塞：commit 37a1ac1诊断复验20/20均503 INTERNAL_ERROR；ChangePort缺失在hasPending前置阻断，AN服务级并发子项通过 |
+| D-AT-17 | 取消两次不多释放；取消与改期竞争一致终态 | FR-17 | AN+CM | CancellationRaceIT | 🟨 部分：AN取消状态子项通过；真实取消/改期竞态因创建改期404阻塞 |
+| D-AT-18 | 故障 → AT_RISK，页面不谎报原安排可用 | FR-18 | DS+UI | DS自测 + conflict.spec | 🟨 部分：DS真实PG风险/故障断言通过；UI提示未运行 |
+| D-AT-19 | 通知消费失败恢复 + 重复消费去重 | FR-19 | CM | NotificationConsistencyIT | ⛔ 阻塞：创建改期404，通知消费/去重断言未运行 |
+| D-AT-20 | 旧 baseVersion/lockVersion → STALE_VERSION | FR-20 | AN+CM | PermissionsIT-20 | 🟨 部分：AN模块陈旧编辑子项通过；PermissionsIT提交前置EventPort 503 |
+| D-AT-21 | 日历脱敏/名单与他人通知 403 | FR-21 | 全员 | PermissionsIT-21 + permissions.spec | 🟨 部分：日历脱敏请求（+08:00按URI编码）及名单403通过；改期详情被ChangePort阻塞；E2E未运行 |
+| D-AT-22 | first-fit vs RANKED 300 候选对比 | NFR-评测 | DS+测试 | SchedulingBenchmarkIT + evaluate | ✅ 通过：调度基准专用资源集隔离后，8×2×10真实测量与全部expected一致；候选数≤300 |
+| D-AT-23 | 刷新/重启后状态来自真实持久化 | FR-23 | UI+配置 | `change-happy-path.spec.ts`（reload 断言） | ⬜ 未执行：本轮无前端/浏览器刷新与重启验收 |
+| D-AT-24 | 干净环境按发布说明启动换角色答辩 | FR-24 | 全员 | 发布演练（check.ps1 + 人工） | ⛔ 阻塞/未执行：无发布演练；默认verify整体失败 |
+| N-AT-01 | 身份与角色分离：教师申请人/学生申请人/仅账号管理员调用审批复核 | 身份规则 | PM+AN | IdentityEligibilityIT.nat01 | 🟨 部分：Foundation/AN身份子项通过；集成测试提交遇EventPort 503 |
+| N-AT-02 | 两类身份×四种资源资格（3111-3114/3211-3214），UI+HTTP 双通道 | 资格规则 | DS+UI | IdentityEligibilityIT.nat02 + conflict.spec | 🟨 部分：DS真实PG资格矩阵通过；HTTP身份矩阵/界面未完成 |
+| N-AT-03 | 候选过滤受限资源；强制提交仍拒绝；按所有者身份校验 | 资格规则 | DS | IdentityEligibilityIT.nat03 + Bench | 🟨 部分：DS资格检查子项通过；应用候选读取因ChangePort 503阻塞 |
+| N-AT-04 | 提交后改身份/资格：未确认用最新设置；旧预约保留；新目标不合资格拒绝 | 资格规则 | AN+CM | IdentityEligibilityIT.nat04 | 🟨 部分：AN当前资格/身份重查子项通过；真实pending-change链未完成 |
+| N-AT-05 | 所有者兼任 APPROVER/RESOURCE_CONFIRM 对本人申请 4 种审核全拒 | 回避规则 | PM+AN | IdentityEligibilityIT.nat05 | 🟨 部分：AN真实PG自审拒绝子项通过；集成测试提交遇EventPort 503 |
+| N-AT-06 | 审批范围/管理范围不全覆盖拒绝；停用工作人员拒绝不代签 | 范围规则 | PM+CM | IdentityEligibilityIT.nat06 | 🟨 部分：Foundation/DS/AN范围子项通过；完整停用工作人员流程遇EventPort 503 |
+
+## 2026-10-31 PR #15 合并后续验
+
+- PR #15 已合并，main=`c4f3d413fa1214d127bfff1b3cca0e1ed4b68ddd`；QA普通merge提交=`54d976dfe3c34eaede14391a77deaba17673bbe5`，无冲突，未reset、未强推；原提交和未跟踪证据保留。
+- 默认 `./server/mvnw -f server/pom.xml verify` 已完成：Surefire 70/70；Failsafe 132项=105通过、24失败、2错误、1跳过，exit 1。ResourceSchedulingIT 30项=29通过/1跳过；DsStrategyBenchmarkIT 2/2；SchedulingBenchmarkIT 1/1，evaluate exit 0，160测量行、16组expected全匹配；SeederIT 3/3、SeederRollbackIT 1/1、DbTestSupportIT 1/1。与PR15前相比增加11通过及1跳过，24失败/2错误仍由CM生产端口缺失的503/404及其级联导致；D-AT-16仍为20/20 JOIN返回503。
+- 真库新增直接证据：ResourceSchedulingIT 的计划可变列表保护、跨事务凭据隔离、缺失ChangePort时503且无部分写入通过。真实ActivityPort+SchedulingPort成功切换/回滚测试因CM ChangePort缺失明确skipped，不计通过。
+- D-AT-09由未执行改为部分：模块真实PG断言两类冲突、同时间替代场地及设备×2、代价(0,1,1)、预览不写库通过；独立UUID数据不冒充固定3102/3202演示，UI仍未执行。
+- 最新30项统计：4通过、18部分、7阻塞、1未执行（D-AT-23）、0失败；Tx=22/30=73.3%，Ts=4/30=13.3%。这是分层覆盖台账，不表示全量Maven或产品验收通过。
+- 原始结果归档：`artifacts/test-results/qa-2026-10-31/post-pr15-merge/`；下节保留PR15前历史执行快照，不代表最新基准。
+
+## 2026-10-31 执行证据与统计（PR15前历史）
+
+- main基线：`feb0d70e2ff9da1669eb9c4c3e4beeb592a43ae9`；完整verify代码commit=`514b8dc`；D-AT-22参考数据哈希追溯与目标复验commit=`c3a4a2c6418b6ed4859c64a1b5da9b1b9fd82f6f`；改动已同步到Draft PR #16。
+- 默认命令：`./server/mvnw -f server/pom.xml verify`；最终复验commit=`514b8dc`；PostgreSQL 17隔离容器，`campus_test`，测试schema按类生成；DB密码和`DEMO_PASSWORD`运行时随机注入且未入代码/日志。容器已按名称、标签、镜像校验后停止移除。
+- 结果：Surefire 70/70通过；Failsafe 120项，94通过、24失败、2错误、0跳过，`verify`退出1。SeederIT 3项、QA新增SeederRollbackIT 1项、DbTestSupportIT 1项、DS ResourceSchedulingIT 20项、SchemaIT 8项、FoundationIT 21项、AN ActivityRegistrationIT 33项通过；ActivityRegistrationIT 的CM端口用测试替身，只算部分覆盖。
+- D-AT-22：commit `514b8dc` 全量真PG Failsafe中的SchedulingBenchmarkIT 1/1通过，生成160行；reference/scenario路径及SHA-256写入JSON；`npm --prefix qa run evaluate` exit 0，8场景×2策略全部expected一致。评测reference仅3101/3102/3201/3202，未改expected；旧demo错差源于N-AT扩展资源进入CandidateSearch，原始对照留作历史证据。
+- D-AT-21：commit `514b8dc`下真实PG `tc2101_calendarRedactsUnauthorizedActivityTitles`通过；用例修正`+08:00`编码并通过绝对URI发送，避免RestTemplate模板二次处理；PermissionsIT其余端口流程仍有7个503；报告见`artifacts/test-results/qa-2026-10-31/d-at21-uri-object-rerun/TEST-com.campus.events.acceptance.PermissionsIT.xml`。
+- 统计：RfT=30；Tx=21（4通过、17部分、0失败），7项阻塞于缺失生产端口或交付，2项未执行（D-AT-09、D-AT-23）；Ts=4。执行覆盖率Tx/RfT=70%，完全成功率Ts/RfT=13.3%。阻塞不计Tx，模块级通过不推导M0-M4完成。
+- 完整全量verify报告：`artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/`；带SHA-256的Benchmark复验：`artifacts/test-results/qa-2026-10-31/benchmark-hash-rerun/`、`artifacts/evaluation/summary.md`、`artifacts/evaluation/results.csv`；旧demo参考集mismatch备份：`artifacts/test-results/qa-2026-10-31/benchmark-reference-rerun/evaluation-prior-mismatch/`。
 
 ## 需求追溯说明（QA-05 交付给 AN 的主表输入）
 

@@ -1,0 +1,8 @@
+date=2026-10-31 Asia/Shanghai
+branch=work/55230316-qa
+commit=a697d90871c6126bf6f42f26c938be9a1e9792cc
+main=feb0d70e2ff9da1669eb9c4c3e4beeb592a43ae9
+postgres=17/campus_test/127.0.0.1:55439
+TEST_DB_USERNAME=set; DB password and DEMO_PASSWORD ephemeral/not logged
+default_verify_exit=1
+temporary PostgreSQL removed after exact name/label/image check

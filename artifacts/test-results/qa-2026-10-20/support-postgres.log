@@ -1,0 +1,24 @@
+19:19:46.431 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:postgresql://127.0.0.1:55439/campus_test (PostgreSQL 17.11)
+19:19:46.459 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Schema history table "t_a5c686c3120f4e789194c35142c6e6d4"."flyway_schema_history" does not exist yet
+19:19:46.462 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 1 migration (execution time 00:00.012s)
+19:19:46.474 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Creating Schema History table "t_a5c686c3120f4e789194c35142c6e6d4"."flyway_schema_history" ...
+19:19:46.510 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "t_a5c686c3120f4e789194c35142c6e6d4": << Empty Schema >>
+19:19:46.536 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "t_a5c686c3120f4e789194c35142c6e6d4" to version "1 - schema"
+19:19:46.615 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 1 migration to schema "t_a5c686c3120f4e789194c35142c6e6d4", now at version v1 (execution time 00:00.063s)
+DEMO_LOAD_OK org=2 users=9 resources=12 resourceScopes=12 activities=2 versions=2 jsonb=object
+19:19:46.892 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:postgresql://127.0.0.1:55439/campus_test (PostgreSQL 17.11)
+19:19:46.901 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Schema history table "t_d9dd9f8ecc854f2ea283f73db5d9f448"."flyway_schema_history" does not exist yet
+19:19:46.902 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 1 migration (execution time 00:00.003s)
+19:19:46.910 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Creating Schema History table "t_d9dd9f8ecc854f2ea283f73db5d9f448"."flyway_schema_history" ...
+19:19:46.930 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "t_d9dd9f8ecc854f2ea283f73db5d9f448": << Empty Schema >>
+19:19:46.940 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "t_d9dd9f8ecc854f2ea283f73db5d9f448" to version "1 - schema"
+19:19:47.003 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 1 migration to schema "t_d9dd9f8ecc854f2ea283f73db5d9f448", now at version v1 (execution time 00:00.052s)
+REFERENCE_LOAD_OK org=2 users=9 resources=12 activities=0 registrations=0
+19:19:47.182 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:postgresql://127.0.0.1:55439/campus_test (PostgreSQL 17.11)
+19:19:47.192 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Schema history table "t_7cc9f6ace2bc46c48e8d107da02b3d6a"."flyway_schema_history" does not exist yet
+19:19:47.193 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 1 migration (execution time 00:00.003s)
+19:19:47.200 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Creating Schema History table "t_7cc9f6ace2bc46c48e8d107da02b3d6a"."flyway_schema_history" ...
+19:19:47.216 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "t_7cc9f6ace2bc46c48e8d107da02b3d6a": << Empty Schema >>
+19:19:47.223 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "t_7cc9f6ace2bc46c48e8d107da02b3d6a" to version "1 - schema"
+19:19:47.283 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 1 migration to schema "t_7cc9f6ace2bc46c48e8d107da02b3d6a", now at version v1 (execution time 00:00.048s)
+ATOMIC_ROLLBACK_OK invalid FK failure left no partial rows

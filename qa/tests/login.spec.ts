@@ -9,7 +9,7 @@
  * 时序：状态/跳转一律 expect 轮询，不用 page.waitForTimeout。
  */
 import { expect, test } from '@playwright/test';
-import { DEMO_PASSWORD, TESTID, USERS } from './helpers.js';
+import { demoPassword, TESTID, USERS } from './helpers.js';
 
 /** 递归扫描 JSON 任意层级是否出现 password/passwordHash 键（TC-01-1 观察点）。 */
 function findPasswordKeys(value: unknown, path = '$'): string[] {
@@ -35,7 +35,7 @@ test.describe('D-AT-01 登录、令牌与响应脱敏', () => {
       try {
         await page.goto('/login');
         await page.getByLabel(/账号|用户名/).fill(USERS.applicantA);
-        await page.getByLabel(/密码/).fill(DEMO_PASSWORD);
+        await page.getByLabel(/密码/).fill(demoPassword());
 
         const [loginResponse] = await Promise.all([
           page.waitForResponse((res) => res.url().includes('/api/v1/auth/login')),
@@ -92,7 +92,7 @@ test.describe('D-AT-01 登录、令牌与响应脱敏', () => {
         await expect(page.getByRole('alert').filter({ hasText: /密码|账号|认证|失败/ })).toBeVisible();
 
         // 账号未被锁死：正确密码再次登录 200
-        await page.getByLabel(/密码/).fill(DEMO_PASSWORD);
+        await page.getByLabel(/密码/).fill(demoPassword());
         const [okResponse] = await Promise.all([
           page.waitForResponse((res) => res.url().includes('/api/v1/auth/login')),
           page.getByTestId(TESTID.loginSubmit).click(),
@@ -114,7 +114,7 @@ test.describe('D-AT-01 登录、令牌与响应脱敏', () => {
       try {
         await page.goto('/login');
         await page.getByLabel(/账号|用户名/).fill(USERS.applicantA);
-        await page.getByLabel(/密码/).fill(DEMO_PASSWORD);
+        await page.getByLabel(/密码/).fill(demoPassword());
         await page.getByTestId(TESTID.loginSubmit).click();
         await expect(page).toHaveURL(/\/activities(?:[/?#]|$)/);
 
@@ -126,7 +126,7 @@ test.describe('D-AT-01 登录、令牌与响应脱敏', () => {
         expect(html, '页面不得出现 BCrypt 散列').not.toMatch(BCRYPT_PATTERN);
         expect(storage, '浏览器存储不得出现 BCrypt 散列').not.toMatch(BCRYPT_PATTERN);
         expect(storage, '浏览器存储不得出现 passwordHash/password_hash').not.toMatch(HASH_KEY_PATTERN);
-        expect(html, '页面不得出现明文演示口令').not.toContain(DEMO_PASSWORD);
+        expect(html, '页面不得出现明文演示口令').not.toContain(demoPassword());
       } finally {
         await context.close();
       }

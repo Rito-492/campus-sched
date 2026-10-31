@@ -3,41 +3,41 @@
 > **正负面配对（课件 5.1）**：每个测试需求至少一正一负两个用例——正面证明需求满足，负面用不可接受/反常条件论证仅在所需条件下满足。各 IT 的 @DisplayName 中【正】【负】标记对应关系。
 > **测试过程五要素（课件 6.1）**：本设计每条用例的「前置条件/输入/步骤/预期/观察点」即课件的前置条件、输入条件、要执行的操作、预期结果、验证预期结果的方法；「清理」为环境复位附加项。
 
-> 归属：测试经理（55230316）。依据 `agents/common/03-验收与演示数据.md` §2 的 24 项 D-AT 场景逐条转写。
+> 归属：测试经理（55230316）。依据 `agents/common/03-验收与演示数据.md` §2 的 24 项 D-AT 与 6 项 N-AT 场景逐条转写。
 > 断言依据：`agents/common/02-数据与接口契约.md`（字段/枚举/状态码）、`agents/common/01-开发基线.md`（业务规则/状态机）。
-> **执行状态初始均为「未执行」**（03 §1）；实际结果只能由真实运行产生，汇总于 `docs/testing/test-report.md`。
+> 用例状态初始均为「未执行」（03 §1）；执行状态按真实证据回填，下表为2026-10-31结果，详细覆盖口径见 `coverage-matrix.md` 与 `docs/testing/test-report.md`。
 > 每条记录对应 D-AT 编号（03 §2 映射职责）；数据用 `test-data/demo.json` 统一尾号，装载规则见 `test-data-plan.md` §5/§8。
 
 ## 0. 用例与 D-AT 映射总表
 
-执行位置缩写：`Permissions/Booking/ChangeRollback/CancelRace/RegCapacity/NotifyConsist` = `server/src/test/java/com/campus/events/acceptance/` 下六个 IT；`login/happy/conflict/perm/layout` = `qa/tests/` 下五个 E2E spec；`Bench` = `acceptance/SchedulingBenchmarkIT`；`AN自测/DS自测` = 模块负责人自己的测试（QA 维护状态汇总，不代跑）。
+执行位置：`PermissionsIT`、`BookingConcurrencyIT`、`ChangeRollbackIT`、`CancellationRaceIT`、`RegistrationCapacityIT`、`NotificationConsistencyIT`及`IdentityEligibilityIT`均位于`server/src/test/java/com/campus/events/acceptance/`；E2E位于`qa/tests/`；`SchedulingBenchmarkIT`为评测IT；AN/DS自测作为模块级证据单独标注，不能替代真实跨模块端口验收。
 
-| D-AT | 用例 | 执行位置 | 主责 | 状态 |
+| D-AT | 用例 | 执行位置 | 主责 | 状态（2026-10-31） |
 |---|---|---|---|---|
-| D-AT-01 | TC-01-1/2/3 | Permissions + login.spec | PM | ⬜ 未执行 |
-| D-AT-02 | TC-02-1/2/3 | Permissions | PM+AN | ⬜ 未执行 |
-| D-AT-03 | TC-03-1 | AN自测 + happy.spec 复核 | AN | ⬜ 未执行 |
-| D-AT-04 | TC-04-1/2 | DS自测 + Bench间接 | DS | ⬜ 未执行 |
-| D-AT-05 | TC-05-1 | DS自测 + Bench(SCH-06) | DS | ⬜ 未执行 |
-| D-AT-06 | TC-06-1 | DS自测 | DS | ⬜ 未执行 |
-| D-AT-07 | TC-07-1 | Booking | DS+AN | ⬜ 未执行 |
-| D-AT-08 | TC-08-1/2 | Permissions | PM | ⬜ 未执行 |
-| D-AT-09 | TC-09-1/2 | DS自测 + conflict.spec | DS+UI | ⬜ 未执行 |
-| D-AT-10 | TC-10-1 | happy.spec + ChangeRollback前置复核 | CM+AN | ⬜ 未执行 |
-| D-AT-11 | TC-11-1/2 | ChangeRollback | CM | ⬜ 未执行 |
-| D-AT-12 | TC-12-1 | ChangeRollback + conflict.spec | CM+DS | ⬜ 未执行 |
-| D-AT-13 | TC-13-1 | DS自测 + Bench(SCH-01) | DS+CM | ⬜ 未执行 |
-| D-AT-14 | TC-14-1 | ChangeRollback | CM | ⬜ 未执行 |
-| D-AT-15 | TC-15-1 | RegCapacity | AN+CM | ⬜ 未执行 |
-| D-AT-16 | TC-16-1/2/3 | RegCapacity | AN | ⬜ 未执行 |
-| D-AT-17 | TC-17-1/2 | CancelRace | AN+CM | ⬜ 未执行 |
-| D-AT-18 | TC-18-1 | DS自测 + conflict.spec | DS+UI | ⬜ 未执行 |
-| D-AT-19 | TC-19-1 | NotifyConsist | CM | ⬜ 未执行 |
-| D-AT-20 | TC-20-1/2 | Permissions | AN+CM | ⬜ 未执行 |
-| D-AT-21 | TC-21-1/2/3 | Permissions + perm.spec | 全员 | ⬜ 未执行 |
-| D-AT-22 | TC-22-1 | Bench + `qa/scripts/evaluate-scheduling.ts` | DS+测试 | ⬜ 未执行 |
-| D-AT-23 | TC-23-1 | happy.spec | UI+配置 | ⬜ 未执行 |
-| D-AT-24 | TC-24-1 | 发布演练（人工+check.ps1） | 全员 | ⬜ 未执行 |
+| D-AT-01 | TC-01-1/2/3 | PermissionsIT + login.spec | PM | 🟨 部分覆盖：PermissionsIT登录/错密/停用通过，E2E未运行 |
+| D-AT-02 | TC-02-1/2/3 | PermissionsIT | PM+AN | ⛔ 阻塞：三项因ChangePort读取活动503而未达越权断言 |
+| D-AT-03 | TC-03-1 | AN自测 + `booking.spec.ts` | AN | 🟨 部分覆盖：ActivityRegistrationIT流程过，但CM端口为测试替身；E2E未跑 |
+| D-AT-04 | TC-04-1/2 | ResourceSchedulingIT + Bench间接 | DS | ✅ 通过（DS真实PG模块断言） |
+| D-AT-05 | TC-05-1 | ResourceSchedulingIT + Bench(SCH-06) | DS | ✅ 通过（DS真实PG峰值断言） |
+| D-AT-06 | TC-06-1 | ResourceSchedulingIT | DS | ✅ 通过（DS真实PG缺件/无部分预约断言） |
+| D-AT-07 | TC-07-1 | BookingConcurrencyIT / ResourceSchedulingIT | DS+AN | 🟨 部分覆盖：DS底层竞态通过；HTTP验收被EventPort 503阻塞 |
+| D-AT-08 | TC-08-1/2 | PermissionsIT / ActivityRegistrationIT | PM | 🟨 部分覆盖：AN模块重放过；PermissionsIT被EventPort 503阻塞 |
+| D-AT-09 | TC-09-1/2 | DS自测 + conflict.spec | DS+UI | ⬜ 未执行：无该组合冲突及首选方案的完整证据 |
+| D-AT-10 | TC-10-1 | `change-happy-path.spec.ts` + ChangeRollbackIT | CM+AN | ⛔ 阻塞：生产ChangePort/改期闭环缺失，E2E未跑 |
+| D-AT-11 | TC-11-1/2 | ChangeRollbackIT | CM | ⛔ 阻塞：测试前置读取活动遇ChangePort 503 |
+| D-AT-12 | TC-12-1 | ChangeRollbackIT + conflict.spec | CM+DS | ⛔ 阻塞：ChangePort缺失，抢占确认未到目标断言 |
+| D-AT-13 | TC-13-1 | ResourceSchedulingIT + ChangeRollbackIT | DS+CM | 🟨 部分覆盖：DS排除自身旧占用通过；改期HTTP受ChangePort阻塞 |
+| D-AT-14 | TC-14-1 | ChangeRollbackIT / AN、DS模块IT | CM | 🟨 部分覆盖：模块回滚子项过；改期/outbox整体回滚阻塞 |
+| D-AT-15 | TC-15-1 | RegistrationCapacityIT / ActivityRegistrationIT | AN+CM | 🟨 部分覆盖：AN模块冻结过；真实改期创建返回404 |
+| D-AT-16 | TC-16-1/2/3 | RegistrationCapacityIT / ActivityRegistrationIT | AN | ⛔ 阻塞：诊断复验确认20/20真实JOIN均503 INTERNAL_ERROR；ChangePort缺失挡住容量断言；AN服务级并发过 |
+| D-AT-17 | TC-17-1/2 | CancellationRaceIT / ActivityRegistrationIT | AN+CM | 🟨 部分覆盖：AN取消子项过；真实改期竞争因创建改期404阻塞 |
+| D-AT-18 | TC-18-1 | ResourceSchedulingIT + conflict.spec | DS+UI | 🟨 部分覆盖：DS真实PG风险过；UI风险提示未运行 |
+| D-AT-19 | TC-19-1 | NotificationConsistencyIT | CM | ⛔ 阻塞：创建改期404，通知消费/去重未执行 |
+| D-AT-20 | TC-20-1/2 | PermissionsIT / ActivityRegistrationIT | AN+CM | 🟨 部分覆盖：AN陈旧版本子项过；PermissionsIT提交前EventPort 503 |
+| D-AT-21 | TC-21-1/2/3 | PermissionsIT + perm.spec | 全员 | 🟨 部分：日历脱敏与名单403通过；改期详情仍被ChangePort阻塞；E2E未跑 |
+| D-AT-22 | TC-22-1 | SchedulingBenchmarkIT + evaluate | DS+测试 | ✅ 通过：Benchmark-only参考集隔离后8×2×10测量与全部expected一致；输出记录输入文件SHA-256 |
+| D-AT-23 | TC-23-1 | `change-happy-path.spec.ts` | UI+配置 | ⬜ 未执行：未跑浏览器刷新/服务重启恢复 |
+| D-AT-24 | TC-24-1 | 发布演练（人工+check.ps1） | 全员 | ⛔ 阻塞/未执行：无干净环境演练；verify整体exit 1 |
 
 通用断言规则（03 §2/§3）：不只检查 HTTP 200，必须核对持久化状态与数量；并发用独立连接/事务 + 起跑屏障；预期失败的请求是断言对象而非「测试失败」；失败注入只在测试上下文替换 bean/挂钩，**不提供公网故障接口**。
 
@@ -71,7 +71,7 @@
 
 ## D-AT-02 越权访问（403）
 
-### TC-02-1/2/3 跨组织审批、SYS_ADMIN 无业务审批权、非所有者编辑（PermissionsIT）
+### TC-02-1/2/3 跨组织审批、account_admin 无业务审批权、非所有者编辑（PermissionsIT）
 - **前置**：A（4001，OPEN，owner=applicant_a，组织1001）已装载。
 - **输入**：① approver_other（组织1002）`POST /activities/{4001}/approver-decision {decision:"APPROVE",comment:"",expectedLockVersion:0}`；② account_admin 同请求；③ applicant_b `PATCH /activities/{4001}`（ActivityEdit）。
 - **步骤**：三个请求依次执行，各自用对应账号令牌。
@@ -79,9 +79,9 @@
 - **观察点**：A 的 status 仍 OPEN、lock_version 不变；`activity_approval` 无新增行；`reservation` 状态计数不变；403 详情不泄露无权查看的对象信息（02 §3）。
 - **清理**：无写入。
 
-## D-AT-03 首次预约生命周期（AN 自测为主，happy.spec 复核状态标签）
+## D-AT-03 首次预约生命周期（AN 自测为主，`booking.spec.ts`复核首次预约链路）
 
-### TC-03-1 新建→编辑→提交→教师同意→资源确认→发布
+### TC-03-1 新建→编辑→提交→批准人同意→资源确认→发布
 - **前置**：空活动数据（组织 1001 账号齐全）。
 - **输入**：API-12 新建（ActivityInput：30 分钟活动、场地 3101、器材 3201×1）→ API-15 编辑 → API-16 提交 → API-18 approver_a 同意 → API-19 resource_admin 确认 → API-20 发布。全部写操作带各自 `Idempotency-Key`。
 - **步骤**：逐步推进并在每步后 GET /activities/{id}。
@@ -172,7 +172,7 @@
 - **观察点**：用公共 data-testid 断言（不靠按钮位置，QA-03）；截图存 `artifacts/screenshots/`。
 - **清理**：E2E 独立环境，不清理共享库。
 
-## D-AT-10 改期成功主线（happy.spec + 前置库断言）
+## D-AT-10 改期成功主线（`change-happy-path.spec.ts` + 前置库断言）
 
 ### TC-10-1 确认链走完并原子切换到 version2
 - **前置**：A（OPEN）+ TC-09 的目标/首选方案。
@@ -229,7 +229,7 @@
 - **观察点**：`assertEquals(beforeEffectiveVersion, afterEffectiveVersion)`、`beforeActiveReservations==after`、`beforeOutboxCount==after`（03 §2 示例，查库比较而非只看 HTTP）。
 - **清理**：移除故障挂钩；schema 级自动清理。
 
-## D-AT-15 改期期间报名冻结（RegCapacityIT）
+## D-AT-15 改期期间报名冻结（RegistrationCapacityITIT）
 
 ### TC-15-1 待处理 409、终态恢复
 - **前置**：OPEN 活动存在待处理改期（AWAITING_CONFIRMATIONS/PENDING_APPROVER/PENDING_RESOURCE 之一）。
@@ -239,7 +239,7 @@
 - **观察点**：`activity_registration` 在冻结期无变化；终态后 JOIN/WITHDRAW 正常落库。
 - **清理**：schema 级自动清理。
 
-## D-AT-16 并发报名容量（RegCapacityIT）
+## D-AT-16 并发报名容量（RegistrationCapacityITIT）
 
 ### TC-16-1 容量 1 对 20 并发 JOIN
 - **前置**：装载 demo.json + registration-concurrency.json（活动 4101 容量 1、20 名 perf_s 学生）。
@@ -291,7 +291,7 @@
 - **观察点**：`resource_fault` 落库且数量 ≤ 资源 quantity；`ActivityView.resourceRisk` 是查询时计算（02 §4）；日历 FAULT 条目 quantity=故障数、activityId=null、label=「资源不可用」、不泄露登记者与私有原因（02 §3）；E2E 截图佐证页面提示。
 - **清理**：删除故障记录（或 schema 级清理）。
 
-## D-AT-19 通知一致性（NotifyConsistIT）
+## D-AT-19 通知一致性（NotificationConsistencyITIT）
 
 ### TC-19-1 消费失败恢复 + 重复消费不重发
 - **前置**：一次产生通知事件的业务提交（如改期创建）；通知消费者可注入首次失败（测试上下文）。
@@ -342,14 +342,14 @@
 ## D-AT-22 策略对比评测（Bench + evaluate-scheduling.ts）
 
 ### TC-22-1 FIRST_FIT vs RANKED 可复现评测
-- **前置**：装载 `test-data/scenarios/scheduling.json`（8 场景，见 test-data-plan.md §7）。
+- **前置**：在独立schema先装载`test-data/scenarios/scheduling-reference.json`（仅基准场地3101/3102和器材3201/3202，不含N-AT资格扩展资源），再装载`test-data/scenarios/scheduling.json`（8场景；见test-data-plan.md §7）。
 - **输入**：DS 的 `StrategyEvaluator.evaluateStrategies(plan, attendees, excludeActivityId)`（02 §8，仅供测试调用）。
 - **步骤**：每场景每策略预热 1 次、测量 10 次（03 §4）；`SchedulingBenchmarkIT` 写 `server/target/scheduling-evaluation.json`；`npm --prefix qa run evaluate` 读取生成 `artifacts/evaluation/results.csv` + 环境说明。
 - **预期**：相同数据/候选/约束下两策略各自的真实成功情况、代价与耗时**如实记录**；无解场景明确搜索范围；SCH-08 断言两策略选择不同（FIRST_FIT=(-30,换场地,0)、RANKED=(+30,不换,替换1)，见场景文件 expected）。
-- **观察点**：CSV 列 = scenarioId、strategy、feasible、timeShiftMinutes、venueChanged、replacedEquipmentLines、evaluatedCount、elapsedMs（03 §4）；无可行方案的三个代价字段写 **null 不造 0**；elapsedNanos/1_000_000.0；记录机器、版本、数据与计时范围；**缺原始结果时脚本失败**。
+- **观察点**：CSV 列 = scenarioId、strategy、feasible、timeShiftMinutes、venueChanged、replacedEquipmentLines、evaluatedCount、elapsedMs（03 §4）；无可行方案的三个代价字段写 **null 不造 0**；elapsedNanos/1_000_000.0；记录机器、版本、`scheduling-reference.json`和`scheduling.json`路径及SHA-256、计时范围；**缺原始结果时脚本失败**。
 - **清理**：schema 级自动清理；评测产物只增不改历史。
 
-## D-AT-23 持久化与恢复（happy.spec）
+## D-AT-23 持久化与恢复（`change-happy-path.spec.ts`）
 
 ### TC-23-1 刷新与重启后状态来自真实持久化
 - **前置**：E2E 独立 Compose 环境（dev,e2e profile、campus_test、端口 8089、固定 APP_TEST_NOW/DEMO_DATE）。
@@ -375,7 +375,7 @@
 
 | 项 | 内容 | 状态 |
 |---|---|---|
-| 契约检查 | `qa/scripts/check-contract.ts` 读 `contracts/openapi.yaml`，核对 38 接口、必需字段、枚举、响应包装、认证与 Idempotency-Key；发现差异交实现者或 PM，**不私自改契约迎合实现** | ⬜ 未执行 |
+| 契约检查 | `qa/scripts/check-contract.ts` 读 `contracts/openapi.yaml`，核对 40 接口、必需字段、枚举、响应包装、认证与 Idempotency-Key；发现差异交实现者或 PM，**不私自改契约迎合实现** | ⬜ 未执行 |
 | 视觉核对 | `ui-layout.spec.ts` 按 05 界面规范检查 1366/1920 桌面与 390 移动视口，自动查溢出/错误，人工审查层次/文本/对比；截图不等于「自动证明美观」 | ⬜ 未执行 |
 | E2E 通则 | 每角色独立浏览器 context 登录；公共 data-testid；`expect` 轮询业务状态，不用长 sleep | ⬜ 未执行 |
 
