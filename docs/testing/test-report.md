@@ -47,6 +47,6 @@
 
 ## PR与接收状态
 
-本地QA分支已基于feb0d70并提交QA支撑、评测数据装载和Seeder回滚测试；**未推送、未创建远端PR**。固定远端QA分支仍指向旧历史，更新需要force-with-lease；考虑用户要求保留/不覆盖且未获明确强推确认，先暂停远端操作。接收确认尚未收到。
+本地QA分支已基于feb0d70；按用户授权新建远端分支`work/55230316-qa-feb0d70`并创建Draft PR #16（base=`feb0d70`，URL：https://github.com/Rito-492/campus-sched/pull/16）。原固定远端分支`work/55230316-qa`未被覆盖。接收确认尚未收到。
 
 本报告是2026-10-31执行快照，不是最终课程验收报告。待CM端口、DS日历修复、UI工程及Java 21环境到位后逐项复验coverage-matrix并更新证据。
