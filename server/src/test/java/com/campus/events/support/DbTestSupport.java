@@ -83,6 +83,23 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
         }
         // 提前发布，供 Spring 测试配置的 DataSource 在上下文创建时读取
         System.setProperty("test.schema.name", schemaName);
+        configureSpringDataSource(schemaName);
+    }
+
+    /**
+     * 为使用 @SpringBootTest 的验收用例启用test profile，并绑定本类独立schema。
+     * application-test.yml提供TEST_DB_*凭据；这里仅写入不含密码的URL/schema系统属性。
+     */
+    private static void configureSpringDataSource(String schemaName) {
+        String url = requireEnv("TEST_DATABASE_URL");
+        if (!url.contains("campus_test")) {
+            throw new IllegalStateException("TEST_DATABASE_URL 必须指向 campus_test（禁止使用开发库/外部库）");
+        }
+        String scopedUrl = url + (url.contains("?") ? "&" : "?") + "currentSchema=" + schemaName;
+        System.setProperty("spring.profiles.active", "test");
+        System.setProperty("spring.datasource.url", scopedUrl);
+        System.setProperty("spring.flyway.schemas", schemaName);
+        System.setProperty("spring.flyway.default-schema", schemaName);
     }
 
     /** 创建支撑实例；参数为 test-data/ 下的数据文件（省略 .json 后缀），如 "demo"、"scenarios/registration-concurrency"。 */

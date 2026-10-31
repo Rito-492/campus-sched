@@ -18,9 +18,12 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.Timestamp;
@@ -188,6 +191,22 @@ class SchedulingBenchmarkIT {
     }
 
     private static void loadScenario(JsonNode scenario) throws IOException {
+        TransactionTemplate transaction = new TransactionTemplate(new DataSourceTransactionManager(db.dataSource()));
+        try {
+            transaction.executeWithoutResult(status -> {
+                try {
+                    insertScenarioRows(scenario);
+                } catch (IOException e) {
+                    throw new UncheckedIOException("构造评测占用活动 input_json 失败", e);
+                }
+            });
+        } catch (UncheckedIOException e) {
+            throw e.getCause();
+        }
+    }
+
+    /** activity 与首个 activity_version 受延迟外键约束，场景数据必须同事务插入。 */
+    private static void insertScenarioRows(JsonNode scenario) throws IOException {
         UUID fallbackVenue = uuid(scenario.path("request").path("plan").path("venueId").asText());
         for (JsonNode blocker : scenario.path("blockers")) {
             UUID activityId = uuid(blocker.path("tail").asLong());
@@ -207,7 +226,7 @@ class SchedulingBenchmarkIT {
             String inputJson = blockerInputJson(blocker, venueId, start, end);
             db.jdbc().update("INSERT INTO activity (id, organization_id, owner_id, status, version_no, effective_version_no, lock_version, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?)",
                     activityId, ORG_1001, USER_APPLICANT_A, "SCHEDULED", 1, 1, 0, ts(), ts());
-            db.jdbc().update("INSERT INTO activity_version (activity_id, version_no, input_json, created_by, created_at) VALUES (?,?,?,?,?)",
+            db.jdbc().update("INSERT INTO activity_version (activity_id, version_no, input_json, created_by, created_at) VALUES (?,?,?::jsonb,?,?)",
                     activityId, 1, inputJson, USER_APPLICANT_A, ts());
             for (JsonNode reservation : blocker.path("reservations")) {
                 db.jdbc().update("INSERT INTO reservation (id, activity_id, version_no, resource_id, start_at, end_at, quantity, status, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?,?)",
