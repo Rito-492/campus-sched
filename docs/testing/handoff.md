@@ -2,7 +2,31 @@
 
 > 维护：测试经理（55230316）。格式依据 `agents/common/04-协作与集成规程.md` §4 固定模板。运行时信息填真实值；**不能为了填满模板虚构结果**，未执行的检查如实标注。
 
-## 本次工作（2026-10-26：PR状态、Seeder构建及环境复核）
+## 本次工作（2026-10-31：同步feb0d70、真库验证与交接）
+
+- 成员/任务：汤雨润（55230316）/ QA-01数据支撑、QA-02模块接收、QA-03跨模块DB验收、QA-04评测、QA-05覆盖与报告。
+- 变更保全：同步前tracked差异、59项未跟踪路径和全部文件归档于 `.git/qa-pre-sync-backup-2026-10-31/`，SHA256校验通过；本地备份分支`backup/qa-pre-sync-20261031`保留旧HEAD。`.review-tmp/`未清理、未提交。未执行reset。
+- 基线：QA分支已变基到`origin/main=feb0d70e2ff9da1669eb9c4c3e4beeb592a43ae9`，main是当前HEAD祖先；当前本地HEAD=`a697d90871c6126bf6f42f26c938be9a1e9792cc`。原唯一QA领先提交0bb9aac的DbTestSupport修复重放为db3ea4f；本轮另增加`98796ed`（test profile/scoped DB及Benchmark装载事务修复）、`a697d90`（Seeder整体回滚IT）。
+- PR状态（2026-10-31 GitHub实时查询）：#8 CLOSED；#10 MERGED（feb0d70，Seeder/IT唯一权威）；#11 MERGED（73c2bcc）；#12 MERGED（c9c757b）。
+- 备份后复核`0bb9aac`：每数据文件事务、资源后写user_resource_scope、`LocalTime`绑定SQL time、`::jsonb`绑定和新增DbTestSupportIT。最终真实库`DbTestSupportIT`通过；另有`SeederRollbackIT`验证末尾报名FK失败后organization/user/resource/activity/version/reservation/registration全回滚。
+- 正式Seeder：默认verify中`DemoDataSeederIT` 3/3通过（首次授权、撤权不重放、删用户后新用户授权）；QA新增`SeederRollbackIT` 1/1通过，PostgreSQL 17，`DEMO_PASSWORD`与DB密码为运行时随机值，未写入源码/日志。
+- 最终默认Maven：`./server/mvnw -f server/pom.xml verify`，源码和测试均编译成功；Surefire 70/70通过；Failsafe 120项=93通过、25失败、2错误、0跳过，命令退出1。运行时JDK为27.0.1（目标Java21），需在JDK21重验。完整真实DB结果见`artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/`。失败主要是生产EventPort/ChangePort缺失；D-AT-16 HTTP JOIN 0/20成功；calendar offset查询400；D-AT-22对照不一致；其余各项映射见coverage-matrix/defect-register。
+- D-AT-22：SchedulingBenchmarkIT在修复QA测试装载后通过并生成160行真实评测结果；独立`npm --prefix qa run evaluate`退出1，SCH-01/04/08的实际代价与场景期望不一致，已登记交DS+QA核查，不修改期望值迎合结果。原始JSON、CSV、摘要和命令日志均归档。
+- 其余支撑检查：40 API合同、demo/并发/调度引用、QA TypeScript、Playwright 29项列举通过；这些不计产品验收/E2E。`web/package.json`缺失且本机无`docker compose`插件，未运行真实浏览器E2E/发布演练。
+- 覆盖：30项已逐项更新；3项DS模块真实PG场景通过，17项部分覆盖，7项被生产端口/交付阻塞，2项未执行，D-AT-16和D-AT-22存在明确失败/比较差异。具体状态、Tx/Ts口径及责任人见`coverage-matrix.md`和`test-report.md`。这不表示M0–M4完成。
+- 接收确认：尚未收到PM/CM/AN/UI确认。远端`origin/work/55230316-qa`仍是旧历史；本地变基后更新固定远端分支需要force-with-lease。本轮未推送、未创建PR，以免在“不可覆盖”要求下擅自改写远端；待确认更新远端方式后再提交PR。
+
+| 检查 | 当前结果 | 证据 |
+|---|---|---|
+| 备份/同步 | 完成；QA基于feb0d70，备份SHA256通过 | `.git/qa-pre-sync-backup-2026-10-31/`、本地备份分支 |
+| PR #8/#10/#11/#12 | #8关闭；#10/#11/#12合并 | GitHub PR状态及合并commit |
+| SeederIT / SeederRollbackIT / DbTestSupportIT | 全部真实PG Failsafe通过 | `artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-reports/` |
+| 默认Maven verify | 70 Surefire pass；120 Failsafe=93 pass/25 fail/2 error；exit 1 | 同目录`default-verify.exit`、`failsafe-summary.xml`与Surefire/Failsafe XML；stdout原始日志保留本地 |
+| 评测汇总 | 160测量行；evaluate exit 1，3场景期望不一致 | `artifacts/evaluation/summary.md`、`artifacts/evaluation/results.csv`、`artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/evaluate.log` |
+| 契约/数据/TypeScript/Playwright列举 | 静态检查通过；29 tests列出但未执行浏览器 | `artifacts/test-results/qa-2026-10-31/static/` |
+| D-AT/N-AT | 状态已按真实运行逐项更新 | `coverage-matrix.md`、`test-report.md` |
+
+## 历史工作（截至2026-10-26：PR状态、Seeder构建及环境复核）
 
 - 成员/任务：汤雨润（55230316）/ QA-02 合同与模块接收、QA-03/04/05 前置验证与证据更新。
 - 分支：`work/55230316-qa`，HEAD `0bb9aac`；工作区原有未跟踪目录 `.review-tmp/` 保留，未查看/修改其内容。无已跟踪文件预存改动。
