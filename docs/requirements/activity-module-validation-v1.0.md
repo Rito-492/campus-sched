@@ -71,3 +71,7 @@ CM 编译问题修复后，标准命令（先按仓库规则加载真实测试�
 新增 ActivityRegistrationIT 四项测试：其余写路由同键重放（编辑、提交、撤回、审批、确认、发布、报名/退出、取消），同键换请求体/路由拒绝，容量0/-1/大于预计人数时创建与编辑拒绝且无部分写入，过去安排在首次资源确认时拒绝且不写预约/事件。重放核对完整原响应信封，最终核对版本、审批、预约、报名及取消事件数量。取消/改期竞争由3次扩至10次；重复次数不等同于独立场景数。
 
 实际执行沿用上节隔离POM命令（只排除CM种子编译阻塞，未修改公共POM）：`./server/mvnw.cmd -B -ntp -f server/target/an-build/pom.xml -Dtest=ActivityStateMachineTest,ActivityServiceTest -Dit.test=ActivityRegistrationIT verify`，使用本机target Maven缓存和环境变量。2026-10-29 21:23退出0，25单测+33真实PostgreSQL IT，0失败/错误/跳过。测试schema清理完成，便携数据库已停止。原始日志、XML/TXT、隔离POM与源码SHA256见[本轮证据](../../artifacts/test-results/an-2026-10-29-followup/)。本轮没有重跑默认构建；此前CM种子编译阻塞仍是已知限制，CM两个端口仍为测试替身。
+
+## 2026-10-31 标准POM复验
+
+基线feb0d70已包含Seeder修复。本轮使用标准server/pom.xml执行AN测试集合，25单测+35真实PostgreSQL IT通过，0失败/错误/跳过。此前隔离POM记录仅为历史证据。CM真端口仍缺失，测试替身仍保留；完整命令、覆盖与阻塞见[接入检查](activity-cm-integration-v1.0.md)，证据见[an-2026-10-31](../../artifacts/test-results/an-2026-10-31/)。
