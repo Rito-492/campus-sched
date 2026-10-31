@@ -4,6 +4,8 @@
 
 ## PR提交准备与最新main同步（2026-10-31）
 
+**已交付草稿PR：[Rito-492/campus-sched#17](https://github.com/Rito-492/campus-sched/pull/17)**，当前OPEN/Draft，未合并。功能与证据提交为`ee843b3`，已推送个人fork的`work/17231018-ui`；本段记录另以文档提交补入同一PR。等待交叉评审，接收状态仍为尚未接收。
+
 杨畅已明确授权提交PR。原始开发/首轮联调基准保留为feb0d70；本次fetch发现main已推进到`c4f3d413fa1214d127bfff1b3cca0e1ed4b68ddd`（调度检查一致性更新），已通过合并安全同步，未reset或覆盖本地修改。PR目标为`Rito-492/campus-sched:main`，源为`ychangz1/campus-sched:work/17231018-ui`；原仓库无写权限，通过已有fork交付，保持草稿供交叉评审，不自动合并。
 
 提交检查修正了资格联调用例对前一用例/旧运行状态的依赖：现在经真实API创建独立资源和草稿，持久化检查单独记录草稿场地。最新main上的前端types:check/typecheck、78项unit、build、5项真实局部联调与1项后端重启检查均通过，记录放在`artifacts/test-results/ui-pr-2026-10-31/`，截图另存`artifacts/screenshots/ui-pr-2026-10-31/`。先前截图与日志保留，不改写为本次基线证据。

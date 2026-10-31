@@ -1,5 +1,7 @@
 # PR提交说明（草稿评审，不自动合并）
 
+实际PR：[Rito-492/campus-sched#17](https://github.com/Rito-492/campus-sched/pull/17)，已于2026-10-31创建为OPEN/Draft，未合并。功能与验证证据提交`ee843b3`；源分支`ychangz1:work/17231018-ui`，目标`Rito-492:main`。
+
 建议标题：`feat: 交付UI前端工程及活动、资源和改期页面`
 
 main=feb0d70中的web目录只有容器入口，缺少可构建的产品前端。本变更提供Vue3/TypeScript/Router/Pinia/Element Plus/Vitest工程、锁文件、11个产品路由、统一API客户端与公共DTO消费。
