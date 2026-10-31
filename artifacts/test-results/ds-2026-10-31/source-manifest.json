@@ -1,0 +1,52 @@
+{
+  "baseCommit": "feb0d70e2ff9da1669eb9c4c3e4beeb592a43ae9",
+  "branch": "work/55230315-scheduling",
+  "java": "21.0.6",
+  "maven": "3.9.11",
+  "postgresql": "17.6",
+  "qaSupportCommit": "0bb9aacba5dbf41cd38e44b9cc6b819141800d4a",
+  "files": [
+    {
+      "path": "server/pom.xml",
+      "sha256": "59801ba3c4f323978c75dd646a404c6c4420b967bd1ec20cb2998ed2d155ac6b"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/scheduling/SchedulingPortAdapter.java",
+      "sha256": "fa8a69fbd82e0385fc6c814ee319f758d9a27b902b6b00874ae6b2d4da583d73"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/resource/ResourceSchedulingIT.java",
+      "sha256": "0a91481cbb0779886507bc6518b39cf9ad551706ef314bd8271d7b63a59d1c3b"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/scheduling/DsStrategyBenchmarkIT.java",
+      "sha256": "37013e4c34064b7e42c46a81734d8778164edd947fa8487fb124af0d438b0c2e"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/support/DbTestSupport.java",
+      "sha256": "c9ac5b077f26d5b00667dd60ff440c7aaf26c9194ad70a1683fed96b39944427"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/acceptance/SchedulingBenchmarkIT.java",
+      "sha256": "a548689d4e1ad6bea7f0f8864172526b2b67773852c3015eed383a87ddc7b0d4"
+    },
+    {
+      "path": "test-data/demo.json",
+      "sha256": "b29450bf4d40473f5d6db8e33b40f9d2d203af07f8f8f6a4b1476fc8936d8130"
+    },
+    {
+      "path": "test-data/scenarios/scheduling.json",
+      "sha256": "57b647328e15b868488d96ae0075e7f13e235ce3bc1cb01cd2e4d3053b184278"
+    }
+  ],
+  "integrationFiles": [
+    {
+      "path": "server\\src\\test\\java\\com\\campus\\events\\support\\DbTestSupport.java",
+      "sha256": "36a5e20d7fcf88d28f6a75ba2611de7608bb95d8d937d578909d2a1478cfa448"
+    },
+    {
+      "path": "server\\src\\test\\java\\com\\campus\\events\\acceptance\\SchedulingBenchmarkIT.java",
+      "sha256": "611c44ab45dfdcfb3e42a6d8fa5cea630a3eb12c9e6bc9a83c46011798c7310f"
+    }
+  ]
+}
