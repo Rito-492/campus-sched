@@ -3,7 +3,7 @@
 ## 本轮工作（2026-10-31）：交付改期/通知/审计/发件箱生产实现 + 便携 PostgreSQL 复跑 SeederIT 并定位改期/通知验收阻塞
 
 - 成员、学号、任务ID：杨瀚霖、55231031、配置经理；CM 改期 API-26～36 与事件/通知基础设施交付（续 PR #10 合入后）。
-- main 基准：`origin/main` 现为 `c4f3d41`（PR #15 调度合并）；PR #10（Seeder + 配置文档）已于 `feb0d70` 合入。本分支 `work/55231031-change` 当前 `c4f3d41`，与 main 一致，仅保留未提交的 change/notification 生产代码（本地修改已保留、未覆盖、未推送）。
+- main 基准：`origin/main` 现为 `c4f3d41`（PR #15 调度合并）；PR #10（Seeder + 配置文档）已于 `feb0d70` 合入。本分支 `work/55231031-change` 已提交并推送（`a924d0c` feat + `ad70129` docs），交付见 **PR #18**（base main=c4f3d41，2 commit / 14 文件 / +1081，含 13 生产文件 + 1 交接单）。
 - 本轮交付（生产实现，非测试替身；统一锁序 receipt→activity→change→user→resource，单事务 MANDATORY）：
   - `server/.../change/`：ChangeService（API-26 预览/27 创建/28 列表/29 详情/30 人员确认/31 批准/32 资源复核原子切换/33 撤回）、ChangeController、ChangeRepository、ChangePortAdapter。
   - `server/.../notification/`：EventRepository（audit_log + outbox_event）、EventPortAdapter、NotificationRepository、NotificationService（API-34 列表/35 读取/36 审计）、NotificationController、NotificationConsumer（@Scheduled 2s，claim FOR UPDATE SKIP LOCKED，指数退避 2/4/8/16/32s，5 次 FAILED）、NotificationConfiguration（@EnableScheduling）、NotificationDeliveryProbe + Noop 实现。
@@ -19,8 +19,8 @@
   1. `DbTestSupport.insertReferenceTables`：`managedResourceIds`→`user_resource_scope` 需移到 `resource` 建表之后（同 PR #8 对生产 `DemoDataSeeder` 的修复，测试支撑未同步）。
   2. `NotificationConsistencyIT`：声明嵌套接口 `NotificationDeliveryProbe` 并以 `@Primary` 注册该嵌套类型 bean，未覆盖生产 `com.campus.events.notification.NotificationDeliveryProbe`，消费者仍走 Noop、attempts 恒 0；应改为 import 生产接口。
   3. `NotificationConsistencyIT` 读取通知调用传 `null` `Idempotency-Key`，而 `POST /notifications/{id}/read` 按契约要求该头（BearerFilter 仅豁免 login/logout 与 schedule-preview/alternatives/change-preview），预期 400；应补传 UUID。
-- 未完成项/外部依赖：改期回滚（D-AT-14）与通知一致性（D-AT-19）验收 IT 需 QA 先修上述 1（及 2/3）后复跑；单一 PR 交付与合并待授权（本 agent 不自行提交/推送/合并）。
-- 下一接收人：测试经理（汤雨润，55230316）修复 `DbTestSupport` 装载顺序并复审 NotificationConsistencyIT 两处；项目经理（冀项阳，55230223）确认 PR 交付范围与合并授权。
+- 未完成项/外部依赖：改期回滚（D-AT-14）与通知一致性（D-AT-19）验收 IT 需 QA 先修上述 1（及 2/3）后复跑；交付已通过 PR #18 提交，合并待评审授权（本 agent 不自行批准/合并）。
+- 下一接收人：测试经理（汤雨润，55230316）修复 `DbTestSupport` 装载顺序并复审 NotificationConsistencyIT 两处；项目经理（冀项阳，55230223）评审 PR #18（改期/通知/审计/发件箱生产交付）并授权合并。
 
 ## 本轮工作（2026-10-30）：基于当前 main 重基线 + 补全 T08 DOCX 三口径 + 修复 SeederIT 口令与过期表述
 
