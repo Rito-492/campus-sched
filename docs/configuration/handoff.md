@@ -1,5 +1,43 @@
 # 交接单（配置经理）
 
+## 评审整改（2026-10-31）：P1 改期目标未来复核已关闭；P2 发件箱租约所有权/恢复修复
+
+独立 AI 交叉评审（非自审）对 PR #18 提出「必须改」，经两轮整改，本轮仅补完剩余一项（租约所有权/恢复），不扩大整改范围，重新推送待复审：
+
+- P1（改期目标未来复核）：已关闭。`ChangeService.resourceDecision` 资源 APPROVE 分支在最终检查/激活前，按当前 Clock 重查 `targetFuture(change.targetPlan())`（与写入同事务）。原活动仍在未来但改期目标在复核时已过去，改为 409 `INVALID_STATE`，不再把有效版本/预约回写到过去；REJECT 分支不受此约束。依据 01 §3「改期目标须在未来」。
+- P2（发件箱认领互斥 → 租约所有权/恢复）：
+  - 第一轮（短期竞态，评审已认可）：`EventRepository.claimNext` 由「SELECT FOR UPDATE」改为原子 `UPDATE…RETURNING`，在同一语句把 `next_attempt_at` 推到未来作为持久化认领租约（60s，超时/崩溃自动恢复可重认领）；`markDone`/`recordFailure` 加 `status='PENDING'` 守卫，晚到结果不得覆盖 DONE/FAILED 终态。
+  - 第二轮（本轮：租约过期所有权/恢复）：新增 `claim_token uuid` 列（Flyway `V2__outbox_claim_token.sql`；`outbox_event` 写入方为 CM，非跨模块共享表，无需 DS/PM 改表协调）。`claimNext` 每次认领以 `gen_random_uuid()` 换发唯一令牌并随 `OutboxRow` 返回；`markDone(id, token)`/`recordFailure(id, token, error)` 的 WHERE 增加 `claim_token=?`，仅对仍持有本次令牌的 PENDING 事件记账，并返回是否实际生效（boolean）。租约过期被他人重认领后，旧认领者的晚到成功/失败记账因令牌不匹配而影响 0 行，不再篡改新认领者的状态与重试预算；`NotificationConsumer` 以「0 行 = 丢失所有权」处理——成功路径回滚通知写入、失败路径静默放弃，不把成功投递与无效 markDone 一起提交，也不把旧认领者的失败计到新认领者头上。依据 01 §5 / 02 §5。
+
+- 回归与验证（真实执行，本机便携 PostgreSQL 17.4 + jdk-23 --release 21）：
+  - `ChangeServiceTest`（1 用例）：资源 APPROVE 目标已过去 → 409 INVALID_STATE，且未进入调度锁检查。
+  - `OutboxClaimIT`（4 用例，新增 1）：认领租约使第二消费者无法重复认领同一事件；markDone 后 recordFailure 不覆盖 DONE、不重复递增 attempts；失败按指数退避并保持 PENDING；**旧租约→重认领→旧晚到失败→新成功**，旧认领者 recordFailure 返回 false 且不改状态/不消耗预算，新认领者 markDone 正常置 DONE。
+  - 单元测试 71/71 通过；OutboxClaimIT 4/4 通过；`SchemaIT` 8/8（验证 V2 迁移与 22 表断言）、`FoundationIT` 21/21、`DemoDataSeederIT` 3/3、`ResourceSchedulingIT` 30（跳过 1）、`DsStrategyBenchmarkIT` 2 均通过。
+  - 全量 `verify`（77 运行 / 0 失败 / 9 错误 / 跳过 1）仍余 9 个 QA 测试支撑错误：8 个验收 IT 因 `DbTestSupport` 资源范围先于资源插入的外键缺陷在 beforeAll 装载阶段报错，`ActivityRegistrationIT` 因测试侧 mock 的 `EventPort` bean 与生产 `EventPortAdapter` 双 bean 冲突（缺 `@Primary`）——均非本租约所有权修复引入，属 QA 测试支撑待修项（见下「本轮工作」QA 需修清单），不据此打回本项修复。
+
+## 本轮工作（2026-10-31）：交付改期/通知/审计/发件箱生产实现 + 便携 PostgreSQL 复跑 SeederIT 并定位改期/通知验收阻塞
+
+- 成员、学号、任务ID：杨瀚霖、55231031、配置经理；CM 改期 API-26～36 与事件/通知基础设施交付（续 PR #10 合入后）。
+- main 基准：`origin/main` 现为 `c4f3d41`（PR #15 调度合并）；PR #10（Seeder + 配置文档）已于 `feb0d70` 合入。本分支 `work/55231031-change` 已提交并推送（`a924d0c` feat + `ad70129` docs），交付见 **PR #18**（base main=c4f3d41，2 commit / 14 文件 / +1081，含 13 生产文件 + 1 交接单）。
+- 本轮交付（生产实现，非测试替身；统一锁序 receipt→activity→change→user→resource，单事务 MANDATORY）：
+  - `server/.../change/`：ChangeService（API-26 预览/27 创建/28 列表/29 详情/30 人员确认/31 批准/32 资源复核原子切换/33 撤回）、ChangeController、ChangeRepository、ChangePortAdapter。
+  - `server/.../notification/`：EventRepository（audit_log + outbox_event）、EventPortAdapter、NotificationRepository、NotificationService（API-34 列表/35 读取/36 审计）、NotificationController、NotificationConsumer（@Scheduled 2s，claim FOR UPDATE SKIP LOCKED，指数退避 2/4/8/16/32s，5 次 FAILED）、NotificationConfiguration（@EnableScheduling）、NotificationDeliveryProbe + Noop 实现。
+  - 逐字段核对 V1__schema.sql 与 02 契约记录构造顺序（change_request/change_confirmation/audit_log/outbox_event/notification 及 Impact/EventDraft/ChangeView/DecisionRecord/ChangeCreate/ChangePreview），SQL 与记录字段序全部一致，无字段改名或越过端口直写。
+- 过期配置状态更新：`server/pom.xml` + Maven Wrapper（mvnw.cmd）已随 PM 进入 main，本机可用 `D:\Java\jdk-23` + `--release 21` 编译运行，上轮「后端工程未就绪（缺 pom/Maven Wrapper）」旧条目已作废；契约要求 Java 21，本机仅 1.8/23，用 jdk-23 --release 21 满足（非阻塞）。
+- 实际检查（真实结果，均本机便携 PostgreSQL 17.4 独立 campus_test + 安全 DEMO_PASSWORD 环境变量）：
+  - `compile` + `test-compile`：✅ BUILD SUCCESS（28 个测试源文件编译通过）。
+  - 单元测试（Surefire *Test）：✅ 70/70 通过（ActivityService 18 / ActivityStateMachine 7 / AuthorizationPolicy 8 / ContractValidation 6 / CanonicalJson 6 / Responses 2 / CandidateRanking 3 / CapacitySweep 6 / ScheduleQueryService 4 / StrategyEvaluator 6 / TimeInterval 4）。
+  - `DemoDataSeederIT`：✅ 3/3 通过（首次 12 项授权 / 撤销不重放 / 删除重建后 12 项），Flyway 迁移 + 演示数据导入在独立 schema t_<32hex> 完成。
+  - `ChangeRollbackIT` / `NotificationConsistencyIT`：❌ 阻塞于 QA 测试支撑 `DbTestSupport.insertReferenceTables` 装载顺序缺陷——`user_resource_scope`（managedResourceIds）先于 `resource` 插入，触发 `fk_user_resource_scope_resource` 外键违约（resource_id=3101 不存在），发生在 beforeAll 数据装载阶段、本模块业务代码尚未执行；非本模块生产代码问题。
+- 复跑方式（本机无 Docker/psql，已用便携二进制）：下载 PostgreSQL 17.4 Windows 二进制至 `D:\campus-pg-tmp\`（未装系统服务），`initdb -A trust` 后 `pg_ctl start`，建 `campus_test`；env：`TEST_DATABASE_URL=jdbc:postgresql://127.0.0.1:5432/campus_test`、`TEST_DB_USERNAME=postgres`、`TEST_DB_PASSWORD=postgres`、`DEMO_PASSWORD=demo123`、`JAVA_HOME=D:/Java/jdk-23`；命令 `./mvnw.cmd "-Dit.test=DemoDataSeederIT" verify`。验证结束已 `pg_ctl stop` 干净关闭。
+- QA 需修（本 agent 不越权改 QA 测试代码，仅如实记录）：
+  1. `DbTestSupport.insertReferenceTables`：`managedResourceIds`→`user_resource_scope` 需移到 `resource` 建表之后（同 PR #8 对生产 `DemoDataSeeder` 的修复，测试支撑未同步）。
+  2. `NotificationConsistencyIT`：声明嵌套接口 `NotificationDeliveryProbe` 并以 `@Primary` 注册该嵌套类型 bean，未覆盖生产 `com.campus.events.notification.NotificationDeliveryProbe`，消费者仍走 Noop、attempts 恒 0；应改为 import 生产接口。
+  3. `NotificationConsistencyIT` 读取通知调用传 `null` `Idempotency-Key`，而 `POST /notifications/{id}/read` 按契约要求该头（BearerFilter 仅豁免 login/logout 与 schedule-preview/alternatives/change-preview），预期 400；应补传 UUID。
+  4. `ActivityRegistrationIT`：测试侧 mock 的 `EventPort` bean 与生产 `EventPortAdapter` 形成双 bean，Spring 注入 `NoUniqueBeanDefinitionException`（`expected single matching bean but found 2: eventPortAdapter,eventPort`）；应给测试 mock 加 `@Primary` 或改用 `@MockBean`（同第 2 项的生产接口覆盖问题，随生产端口实现交付而显现）。
+- 未完成项/外部依赖：改期回滚（D-AT-14）与通知一致性（D-AT-19）验收 IT 需 QA 先修上述 1（及 2/3）后复跑；交付已通过 PR #18 提交，合并待评审授权（本 agent 不自行批准/合并）。
+- 下一接收人：测试经理（汤雨润，55230316）修复 `DbTestSupport` 装载顺序并复审 NotificationConsistencyIT 两处；项目经理（冀项阳，55230223）评审 PR #18（改期/通知/审计/发件箱生产交付）并授权合并。
+
 ## 本轮工作（2026-10-30）：基于当前 main 重基线 + 补全 T08 DOCX 三口径 + 修复 SeederIT 口令与过期表述
 
 - 成员、学号、任务ID：杨瀚霖、55231031、配置经理；CM-01 收尾 + PR #8/#10 评审整改（续）。
