@@ -382,7 +382,7 @@ class PermissionsIT {
                 .build().encode().toUriString();
 
         HttpResult r = call(HttpMethod.GET, url, student, null, null);
-        assertEquals(200, r.status(), () -> "日历读取失败：" + r.body());
+        assertEquals(200, r.status(), () -> "日历请求GET " + url + " 失败：" + r.body());
         JsonNode entries = r.data();
         assertTrue(entries.isArray(), "data 应为数组");
         assertTrue(r.body().has("truncated"), "列表响应应含 truncated");
