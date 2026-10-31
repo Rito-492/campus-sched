@@ -1,0 +1,361 @@
+{
+  "date": "2026-10-31",
+  "baseCommit": "feb0d70e2ff9da1669eb9c4c3e4beeb592a43ae9",
+  "runtime": {
+    "java": "21.0.12.1",
+    "maven": "3.9.11",
+    "postgresql": "17.6",
+    "node": "24.19.0"
+  },
+  "moduleCheck": {
+    "command": "./server/mvnw.cmd -f server/pom.xml -Dit.test=FoundationIT,PublishedModulesIT,StandardMavenSchemaIT,DemoDataSeederIT clean verify",
+    "unitTests": 76,
+    "integrationTests": 30,
+    "exit": 0,
+    "tests": 106,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "classes": [
+      {
+        "class": "com.campus.events.activity.ActivityServiceTest",
+        "tests": 18,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.activity.ActivityStateMachineTest",
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.auth.AuthorizationPolicyTest",
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.auth.PasswordPolicyTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.contract.ContractValidationTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.dev.DemoDataSeederIT",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.foundation.CanonicalJsonTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.foundation.FoundationIT",
+        "tests": 22,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.foundation.PublishedModulesIT",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.foundation.ResponsesTest",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.foundation.StandardMavenSchemaIT",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.scheduling.CandidateRankingTest",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.scheduling.CapacitySweepTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.scheduling.ScheduleQueryServiceTest",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.scheduling.StrategyEvaluatorTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.scheduling.TimeIntervalTest",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ]
+  },
+  "defaultCheck": {
+    "command": "./server/mvnw.cmd -f server/pom.xml clean verify",
+    "unitTests": 76,
+    "integrationTests": 99,
+    "exit": 1,
+    "tests": 175,
+    "failures": 0,
+    "errors": 8,
+    "skipped": 0,
+    "classes": [
+      {
+        "class": "com.campus.events.acceptance.BookingConcurrencyIT",
+        "tests": 1,
+        "failures": 0,
+        "errors": 1,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.acceptance.CancellationRaceIT",
+        "tests": 1,
+        "failures": 0,
+        "errors": 1,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.acceptance.ChangeRollbackIT",
+        "tests": 1,
+        "failures": 0,
+        "errors": 1,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.acceptance.IdentityEligibilityIT",
+        "tests": 1,
+        "failures": 0,
+        "errors": 1,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.acceptance.NotificationConsistencyIT",
+        "tests": 1,
+        "failures": 0,
+        "errors": 1,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.acceptance.PermissionsIT",
+        "tests": 1,
+        "failures": 0,
+        "errors": 1,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.acceptance.RegistrationCapacityIT",
+        "tests": 1,
+        "failures": 0,
+        "errors": 1,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.acceptance.SchedulingBenchmarkIT",
+        "tests": 1,
+        "failures": 0,
+        "errors": 1,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.activity.ActivityRegistrationIT",
+        "tests": 33,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.activity.ActivityServiceTest",
+        "tests": 18,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.activity.ActivityStateMachineTest",
+        "tests": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.auth.AuthorizationPolicyTest",
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.auth.PasswordPolicyTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.contract.ContractValidationTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.dev.DemoDataSeederIT",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.foundation.CanonicalJsonTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.foundation.FoundationIT",
+        "tests": 22,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.foundation.PublishedModulesIT",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.foundation.ResponsesTest",
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.foundation.StandardMavenSchemaIT",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.resource.ResourceSchedulingIT",
+        "tests": 20,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.resource.SchemaIT",
+        "tests": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.scheduling.CandidateRankingTest",
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.scheduling.CapacitySweepTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.scheduling.ScheduleQueryServiceTest",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.scheduling.StrategyEvaluatorTest",
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "class": "com.campus.events.scheduling.TimeIntervalTest",
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ]
+  },
+  "pmIsolated": {
+    "unitTests": 28,
+    "integrationTests": 22,
+    "exit": 0
+  },
+  "passwordBeforeFix": {
+    "expectedHttp": 400,
+    "actualHttp": 201,
+    "failures": 1
+  },
+  "contractCheck": {
+    "apis": 40,
+    "enums": 9,
+    "dto": 15,
+    "exit": 0
+  },
+  "scope": "模块通过不等于全项目/30场景/M0-M4通过；未改QA装载器、CM实现或UI文件",
+  "staticChecks": {
+    "localMarkdownLinks": 33,
+    "openApiReferences": 369,
+    "implementedRoutes": 29,
+    "contractRoutes": 40,
+    "stagedSourceFiles": 23,
+    "preservedUserHandoffAppend": true,
+    "problems": []
+  }
+}

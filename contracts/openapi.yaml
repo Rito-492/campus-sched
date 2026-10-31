@@ -347,7 +347,7 @@ paths:
         - PM
       x-owner: PM
       x-implementation-status: 已实现，PM隔离验证见交接单
-      description: 仅ADMIN及USER_MANAGE创建账号，引用现存组织/资源/类别。角色与范围完整提供，密码经BCrypt编码。
+      description: 仅ADMIN及USER_MANAGE创建账号，引用现存组织/资源/类别。角色与范围完整提供，密码经BCrypt编码。 新建密码至少8个字符且UTF-8最多72字节，失败400且不创建账号/历史/回执。
   /users/{id}/enabled:
     patch:
       operationId: API-06
@@ -506,7 +506,7 @@ paths:
       tags:
         - DS
       x-owner: DS
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
     post:
       operationId: API-08
@@ -579,7 +579,7 @@ paths:
       tags:
         - DS
       x-owner: DS
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /resources/calendar:
     get:
@@ -664,7 +664,7 @@ paths:
       tags:
         - DS
       x-owner: DS
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /resources/{id}/faults:
     post:
@@ -735,6 +735,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorEnvelope"
+        "503":
+          description: 必需内部端口未就绪；统一错误信封，持久化业务与回执整体回滚
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
       requestBody:
         required: true
         content:
@@ -744,7 +750,7 @@ paths:
       tags:
         - DS
       x-owner: DS
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
     get:
       operationId: API-11
@@ -828,7 +834,7 @@ paths:
       tags:
         - DS
       x-owner: DS
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities:
     post:
@@ -902,7 +908,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
     get:
       operationId: API-13
@@ -979,10 +985,16 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorEnvelope"
+        "503":
+          description: 必需内部端口未就绪；统一错误信封，持久化业务与回执整体回滚
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}:
     get:
@@ -1046,10 +1058,16 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorEnvelope"
+        "503":
+          description: 必需内部端口未就绪；统一错误信封，持久化业务与回执整体回滚
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
     patch:
       operationId: API-15
@@ -1128,7 +1146,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/submit:
     post:
@@ -1199,6 +1217,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorEnvelope"
+        "503":
+          description: 必需内部端口未就绪；统一错误信封，持久化业务与回执整体回滚
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
       requestBody:
         required: true
         content:
@@ -1208,7 +1232,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/withdraw:
     post:
@@ -1279,6 +1303,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorEnvelope"
+        "503":
+          description: 必需内部端口未就绪；统一错误信封，持久化业务与回执整体回滚
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
       requestBody:
         required: true
         content:
@@ -1288,7 +1318,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/approver-decision:
     post:
@@ -1359,6 +1389,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorEnvelope"
+        "503":
+          description: 必需内部端口未就绪；统一错误信封，持久化业务与回执整体回滚
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
       requestBody:
         required: true
         content:
@@ -1368,7 +1404,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/resource-confirm:
     post:
@@ -1439,6 +1475,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorEnvelope"
+        "503":
+          description: 必需内部端口未就绪；统一错误信封，持久化业务与回执整体回滚
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
       requestBody:
         required: true
         content:
@@ -1448,7 +1490,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/publish:
     post:
@@ -1519,6 +1561,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorEnvelope"
+        "503":
+          description: 必需内部端口未就绪；统一错误信封，持久化业务与回执整体回滚
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
       requestBody:
         required: true
         content:
@@ -1528,7 +1576,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/cancel:
     post:
@@ -1599,6 +1647,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorEnvelope"
+        "503":
+          description: 必需内部端口未就绪；统一错误信封，持久化业务与回执整体回滚
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
       requestBody:
         required: true
         content:
@@ -1608,7 +1662,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/registration:
     put:
@@ -1679,6 +1733,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorEnvelope"
+        "503":
+          description: 必需内部端口未就绪；统一错误信封，持久化业务与回执整体回滚
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
       requestBody:
         required: true
         content:
@@ -1688,7 +1748,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/registrations:
     get:
@@ -1761,7 +1821,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/schedule-preview:
     post:
@@ -1825,6 +1885,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorEnvelope"
+        "503":
+          description: 必需内部端口未就绪；统一错误信封，持久化业务与回执整体回滚
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
       requestBody:
         required: true
         content:
@@ -1834,7 +1900,7 @@ paths:
       tags:
         - DS
       x-owner: DS
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/alternatives:
     post:
@@ -1898,6 +1964,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorEnvelope"
+        "503":
+          description: 必需内部端口未就绪；统一错误信封，持久化业务与回执整体回滚
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorEnvelope"
       requestBody:
         required: true
         content:
@@ -1907,7 +1979,7 @@ paths:
       tags:
         - DS
       x-owner: DS
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/change-preview:
     post:
@@ -3027,7 +3099,7 @@ paths:
       tags:
         - DS
       x-owner: DS
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
       description: 仅ADMIN及RESOURCE_MANAGE且资源在managedResourceIds内。记录资格前后值；已生效预约保留，未确认申请和改期目标按最新资格校验。
 components:
   securitySchemes:
@@ -3194,6 +3266,9 @@ components:
           type: string
         password:
           type: string
+          minLength: 8
+          maxLength: 72
+          description: 新建密码至少8个字符且UTF-8不超过72字节（NFR-08/BCrypt）；不会返回口令或哈希。
         organizationId:
           type: string
           format: uuid

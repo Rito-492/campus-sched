@@ -1,0 +1,122 @@
+{
+  "date": "2026-10-31",
+  "baseCommit": "feb0d70e2ff9da1669eb9c4c3e4beeb592a43ae9",
+  "content": "Git暂存区文件内容；handoff只含本轮前缀，不含用户既有追加",
+  "sourceFiles": [
+    {
+      "path": "README.md",
+      "bytes": 3547,
+      "sha256": "b9f0cbafecbc8be3eeae518d120c11b5ffb64bf68248ae884f4502009ba7b3d9"
+    },
+    {
+      "path": "agents/common/02-数据与接口契约.md",
+      "bytes": 31740,
+      "sha256": "5b30b49ff130d23cc4a3a1bdeba28673f2ee61e4d47813b0471fb75a7bb9d33f"
+    },
+    {
+      "path": "contracts/openapi.yaml",
+      "bytes": 124303,
+      "sha256": "e24d8c4d9f21f14d38a50f9337c383c70315176f4e7aa6ef2e344fcdf0682954"
+    },
+    {
+      "path": "docs/management/api-register.md",
+      "bytes": 5343,
+      "sha256": "e90e4fe4312e7f9bfa1f7674573f46277cdb4162e04fb6040312b8acfc1cd867"
+    },
+    {
+      "path": "docs/management/contract-coordination-2026-10-31.md",
+      "bytes": 3584,
+      "sha256": "29c1fc73c8a53f1084132dc2e550f133e508198a91bc9e315d34ee9b5b29af86"
+    },
+    {
+      "path": "docs/management/decision-log.md",
+      "bytes": 3305,
+      "sha256": "ab05686a394d9a5f73c5499d23feff1212633b20b6a84b92fc39bbbadbdf1a97"
+    },
+    {
+      "path": "docs/management/detailed-project-plan.md",
+      "bytes": 12335,
+      "sha256": "97d6d696df1089481b110e1249e905733a26f963a54b3b10eebbc6f20c0e1145"
+    },
+    {
+      "path": "docs/management/foundation-guide.md",
+      "bytes": 8567,
+      "sha256": "9d395e9c213ae2d259f5f6f9ef8d0981d967dd0ea39aeab12ff82c506046ec8c"
+    },
+    {
+      "path": "docs/management/handoff.md",
+      "bytes": 22985,
+      "sha256": "78a4c6a148019f0b287c7ad398bbd3de01569b702e88f826b8e56f61237b32d0"
+    },
+    {
+      "path": "docs/management/initial-project-plan.md",
+      "bytes": 34475,
+      "sha256": "8b1c453c903fcb61ffd2455f3bb1aaa716ecccfc826eaa07ddb090392babc1f8"
+    },
+    {
+      "path": "docs/management/integration-log.md",
+      "bytes": 5601,
+      "sha256": "b257977f2bc7fdf7097f63622d79181ff0831938096f4b2aa347d6d85a1d17d0"
+    },
+    {
+      "path": "docs/management/integration-status-2026-10-31.md",
+      "bytes": 4750,
+      "sha256": "e9d5095890beefdc79d1ac87094951feaed05611ca307146e75076cc7aed2b4b"
+    },
+    {
+      "path": "docs/management/risks.md",
+      "bytes": 2950,
+      "sha256": "96530b539a53686d24d685349cbb8d662c55d9761c9b9836c0a9800119ebe968"
+    },
+    {
+      "path": "docs/management/work-log.md",
+      "bytes": 2902,
+      "sha256": "53ebd38217e8508782ef757c98d0bb7731dfe872cbf530e03264dedeed89838d"
+    },
+    {
+      "path": "server/.mvn/integration-test.properties",
+      "bytes": 196,
+      "sha256": "8a661505b038b85db90371fdfbb5f7a217af2f4ad94d32ba10f92c2208c75d59"
+    },
+    {
+      "path": "server/pom.xml",
+      "bytes": 4034,
+      "sha256": "a0968dd22c5e0952dbc465ff7aa2a0c028dfd82c5006d090b1ea70dc2147568a"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/auth/PasswordPolicy.java",
+      "bytes": 679,
+      "sha256": "64a2b3ca415e8d2fabcc8f1858623c13e0cea8f0b805b299f34f364aa812642d"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/auth/UserService.java",
+      "bytes": 8007,
+      "sha256": "5c687e473dda4c05c9787d50680fee0cbfe0b3daea684c11eab90a1be2e8eca2"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/UserCreate.java",
+      "bytes": 659,
+      "sha256": "65c157a2f56df7005df6f5a32b6a6e9b1f545ccf2227edcdf57a408781cfd452"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/auth/PasswordPolicyTest.java",
+      "bytes": 1529,
+      "sha256": "c8561c0427027b98bb4f177b322ea6a1ebf632fd058dcf8d2e179f37c8903b15"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/foundation/FoundationIT.java",
+      "bytes": 28280,
+      "sha256": "4415e57b8ebaa54224cb141e05ee2d906eda3d5038ab6d4f955ab03a38d73781"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/foundation/PublishedModulesIT.java",
+      "bytes": 9770,
+      "sha256": "c16e6017a5e7d2528baa90e6d507ed472fab33e20b795bb7b7263b434772bf2e"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/foundation/StandardMavenSchemaIT.java",
+      "bytes": 1487,
+      "sha256": "6bba4a47b58bbcd9f1220776c76c6bac69ae23513933bb55531b93968356e70f"
+    }
+  ]
+}
