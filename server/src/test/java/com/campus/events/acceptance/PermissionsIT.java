@@ -14,6 +14,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -23,6 +24,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.time.OffsetDateTime;
 import java.util.Iterator;
 import java.util.List;
@@ -81,6 +83,9 @@ class PermissionsIT {
 
     @Autowired
     private TestRestTemplate rest;
+
+    @LocalServerPort
+    private int port;
 
     // ------------------------------------------------------------------ D-AT-01
 
@@ -387,8 +392,9 @@ class PermissionsIT {
                 .toUriString();
         assertTrue(url.contains("%2B"), "query中的UTC偏移+必须编码，避免表单解码将其解释为空格：" + url);
 
-        HttpResult r = call(HttpMethod.GET, url, student, null, null);
-        assertEquals(200, r.status(), () -> "日历请求GET " + url + " 失败：" + r.body());
+        URI calendarUri = URI.create("http://127.0.0.1:" + port + url);
+        HttpResult r = call(HttpMethod.GET, calendarUri, student, null, null);
+        assertEquals(200, r.status(), () -> "日历请求GET " + calendarUri + " 失败：" + r.body());
         JsonNode entries = r.data();
         assertTrue(entries.isArray(), "data 应为数组");
         assertTrue(r.body().has("truncated"), "列表响应应含 truncated");
@@ -500,6 +506,20 @@ class PermissionsIT {
         }
         HttpEntity<String> entity = new HttpEntity<>(jsonBody, headers);
         ResponseEntity<String> response = rest.exchange(path, method, entity, String.class);
+        return new HttpResult(response.getStatusCode().value(), parse(response.getBody()));
+    }
+
+    private HttpResult call(HttpMethod method, URI uri, String token, String idempotencyKey, String jsonBody) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        if (token != null) {
+            headers.setBearerAuth(token);
+        }
+        if (idempotencyKey != null) {
+            headers.set("Idempotency-Key", idempotencyKey);
+        }
+        HttpEntity<String> entity = new HttpEntity<>(jsonBody, headers);
+        ResponseEntity<String> response = rest.exchange(uri, method, entity, String.class);
         return new HttpResult(response.getStatusCode().value(), parse(response.getBody()));
     }
 
