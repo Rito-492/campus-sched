@@ -16,7 +16,13 @@ public class SchedulingPortAdapter implements SchedulingPort {
     private final ConstraintChecker checker;
     private final CandidateSearch candidates;
     private final Object checkedPlansKey = new Object();
-    private record Checked(Plan plan, int attendees) {}
+    private record Checked(Plan plan, int attendees) {
+        Checked {
+            // 共享Plan的设备List可能可变；凭据必须固定为实际检查并加锁的资源集合。
+            plan = new Plan(plan.startAt(), plan.endAt(), plan.setupMinutes(), plan.teardownMinutes(),
+                    plan.venueId(), List.copyOf(plan.equipment()));
+        }
+    }
 
     public SchedulingPortAdapter(ResourceRepository resources, ConstraintChecker checker, CandidateSearch candidates) {
         this.resources = resources;

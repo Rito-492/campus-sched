@@ -2,7 +2,56 @@
 
 > 维护：设计师（55230315）。格式依据 `agents/common/04-协作与集成规程.md` §4 固定模板。运行时信息填真实值；未执行的检查如实标注，不虚构通过。
 
-## 最新交付（2026-10-21：PR #9 隐私评审修复）
+## 最新交付（2026-10-31：main=feb0d70 标准复验与联调）
+
+- 黄方勇 55230315；DS-01～05；任务包 v3.0；分支 work/55230315-scheduling，main 基准 feb0d70e2ff9da1669eb9c4c3e4beeb592a43ae9。同步前 stash -u，快进后 apply，本地修改全部保留，备份 stash 未删除。
+- PR #9 调度实现与 PR #12 任务4设计文档均已合入。课程正式工件仍为 software-design-task4.md/.docx/.pdf；学习通提交尚无回执，状态“尚未确认提交”，截止沿用 2026-10-31 23:59（上海时间）。本轮未覆盖已评审 Office 工件。
+- 标准 Maven 3.9.11、Java 21.0.6、真实 PostgreSQL 17.6：70 单测通过；SchemaIT 8、ResourceSchedulingIT 28、DS 独立策略评测2通过。包含正式 SchedulingBenchmarkIT 的 verify 整体失败，不能记整机通过。证据 artifacts/test-results/ds-2026-10-31/standard-verify.log；独立策略两份160行原始JSON同目录。
+- 新增真实 AN/DS 端口探针：ActivityPort.lock 依赖 CM ChangePort，当前503；按成功链路执行的失败日志保留，补充明确依赖拒绝断言后70单测及1项探针通过。只证明缺依赖无部分写入；跨端口成功切换/回滚分支尚未执行。CM EventPort 同样缺失，故障API实测503且无故障/outbox写入。
+- QA 修复 0bb9aac 的 DbTestSupport 已在临时 detached 集成工作区接入复验，不混入本人的源码提交；AN ActivityRegistrationIT 33项通过（含CM测试替身，仅模块结果）。正式 D-AT-22 仍复现评测器自身 activity/version 自动提交外键失败；提供场景事务及JSONB转换建议补丁，详见 integration-validation-v1.0.md 与同目录日志。
+- 建议补丁实验：标准 Maven 的70单测及 SchedulingBenchmarkIT 1项通过，生成160行真实测量；原QA汇总脚本退出1，SCH-01/04/08两策略共6组预期不一致。补丁、原始JSON、results.csv、summary.md一并交QA；D-AT-22仍不记通过，非整机验收。
+- 下一接收人：AN 冯玉琪核对端口；CM 杨瀚霖交付 EventPort/ChangePort 后复跑成功链路；QA 汤雨润接收补丁与真实数据偏差；PM 冀项阳组织交叉评审。接收确认：尚未接收。通过本人分支 PR 交付，不合并main。
+
+## 历史交付（2026-10-26：DS-02～05 真库闭环、预约锁修复及评测差异）
+
+- 成员：黄方勇 55230315；任务包 v3.0；本人分支 `work/55230315-scheduling`。开工工作区干净，Git 身份 `Kimcra1`；fetch 后最新 main 为 `34dc4d5abd3d859e3a63ff476228593555f2e03b`，从 `bc8e7cf` 快进同步。同步前相对 main ahead/behind=0/1、相对本人远端=0/0；同步后分别为0/0、1/0。本轮代码/文档/证据未提交、未推送，未合并main。
+- **生产修复**：`SchedulingPortAdapter.Checked` 保存不可变的设备列表快照，防止检查后调用方修改 Plan.equipment，使 replace 写入未锁资源。真库回归在旧代码实际失败，修复后通过。未改共享Plan/端口、02契约、V1或其他模块。
+- **新增验证**：ResourceSchedulingIT 增加8项真实数据库/API/事务测试；DsStrategyBenchmarkIT 增加完整参考资源与四资源对照两个评测环境。已有资源资格/历史、日历/硬约束、资格行锁竞争、预约竞争/替换/释放/风险及300预算均真实复跑，不重复实现纯逻辑。
+- **最终结果**：隔离构建 `23项DS单测 + 38项PostgreSQL IT`（资源28、迁移8、独立评测2），退出0，失败/错误/跳过均0。仅本机campus_test随机schema；全部清理，public无表，本轮PostgreSQL实例已停止。
+- **默认入口**：先执行Windows默认compile/test/verify，均在Wrapper启动失败；使用Unix Wrapper与Java21后，三个默认入口仍在CM `DemoDataSeeder.java:118` 未处理Exception处失败。隔离全部单测52项仍有AN `ActivityStateMachineTest:49` 1项失败。原日志及每个首个失败保留，没有排除失败测试来宣称默认全过。
+- **真实依赖状态**：main仍无AN ActivityPortAdapter和CM EventPort。API-10实测503，0故障/回执/审计/outbox、原预约保留；API-24/25成功HTTP链路待ActivityPort。现有测试中EventPort调用记录/故障注入替身仍仅限测试，不代表CM持久化通过。
+- **策略结果**：每环境8场景×2策略×10次=160条原始行，各预热1次。全部12资源的参考环境两策略均8/8成功，但SCH-01/04/08各两策略共6组偏离原预期；四资源对照两策略均7/8成功，八场景预期全部匹配。300无解预算另有20条实测，FIRST_FIT/RANKED中位数199.50/181.35ms。无解choice/代价为null。正式SchedulingBenchmarkIT实际失败于DbTestSupport:236资源范围外键顺序，尚无正式测量结果；不以DS输出冒充QA results.csv。
+- 证据：[验证说明与完整命令](scheduling-validation-v1.1.md)、[日志/原始测量/汇总](../../artifacts/test-results/ds-2026-10-26/)、[最终源码SHA-256](../../artifacts/test-results/ds-2026-10-26/source-manifest.json)。临时pom只隔离dev生产包，全部测试源码仍编译；最终命令明确选择DS测试，默认共享pom不变。
+- 按用户明确授权，已向PM/CM发布 [PR #8构建阻塞证据](https://github.com/Rito-492/campus-sched/pull/8#issuecomment-6413505371)；[评论全文](ds-build-blocker-v1.0.md)。其他交接与所有接收确认：**尚未接收**；作者未自审自批。
+
+### 本轮逐项验收状态
+
+下表“模块通过”仅指列出的实际断言；待真实HTTP/端口/页面联调的场景不登记为完整验收通过。
+
+| 编号 | 本轮实际状态与证据 | 尚缺的真实集成与接收人 |
+|---|---|---|
+| D-AT-04 | **DS模块通过**：adjacentLoadsUsePeakAndSetupOverlapConflicts验证相邻可共存、15分钟布场精确冲突区间；独立评测SCH-05验证边界 | AN实际活动调用链、UI呈现/QA验收 |
+| D-AT-05 | **DS模块通过**：错峰预约峰值恰2，不误累加；独立评测SCH-06 | AN首次确认实际HTTP |
+| D-AT-06 | **DS模块通过**：conflictAndMissingResourceLeaveNoPartialReservation核对精确缺量、输方无新增预约 | AN复核HTTP错误信封与状态 |
+| D-AT-07 | **端口并发通过，整场景待联调**：两个独立事务经栅栏竞争场地恰1成功；跨场地共享设备不超额 | AN真实已审批活动、最终确认HTTP与DS联合运行 |
+| D-AT-08 | **部分覆盖**：资源创建/资格复用统一幂等，重复无新增、异体同key为409；原预约保留 | PM+AN确认接口同key同body/异body正式验收，不能用资源接口替代 |
+| D-AT-09 | **DS模块通过**：新增演示时间的联合场地/器材冲突；首选同时间换另场地+同类设备×2，代价(0,1,1)，数据库未改 | AN ActivityPort支撑API-24/25；UI方案选择、QA E2E |
+| D-AT-13 | **DS端口通过**：replaceExcludesOwnOccupancyAndReleaseIsRepeatable；四资源SCH-01排除自身旧占用 | CM真实改期与AN activatePlan的版本/报名联动 |
+| D-AT-18 | **部分覆盖**：实时AT_RISK、故障叠加可用量下限0、原预约保留及影响清单/隐私通过；API-10实际503、成功链路阻塞 | CM EventPort、失败改期仍保留风险；UI风险条 |
+| D-AT-22 | **DS独立评测完成，正式验收阻塞**：两环境各160行+300预算20行；完整参考环境6组预期差异如实记录 | QA修复装载；PM/QA裁决四资源fixture或完整资源重构场景；正式入口复跑 |
+| N-AT-02 | **资格模块通过**：两身份×四资格×场地/设备，受限403且不写预约；资格HTTP历史原子性通过 | AN/UI直接提交和页面8组资格矩阵；真实活动HTTP尚未到位 |
+| N-AT-03 | **模块覆盖**：候选资格过滤/同类替换单测及最终端口持久化身份重查通过 | AN/CM真正强制提交受限目标、最终复核HTTP验证 |
+| N-AT-04 | **DS模块通过**：最新身份覆盖旧预览参数；资格写锁等待后拒绝；既有预约不删；历史失败回滚；replace最终重查 | AN提交、CM改期创建/最终确认完整使用最新用户锁与身份 |
+| N-AT-06 | **部分覆盖**：资源管理范围撤销后HTTP拒绝；完整活动范围过滤故障清单；查询批准人范围单测通过 | AN完整首次审核、CM复核/停用工作人员确认/撤回重建；不宣称人员流程已验收 |
+
+### 下一接收人与待办
+
+1. **PM冀项阳 / CM杨瀚霖**：处理已发布的默认编译证据，按PR #8既有评审要求集成修复；复跑默认compile/test/verify。不要将隔离结果记为全工程通过。
+2. **AN冯玉琪 / CM杨瀚霖**：交ActivityPort/EventPort/真实首次确认、取消、改期编排；按activity→change→user→resource锁序调用SchedulingPort，同事务创建版本后replace，异常向外传播。资源冲突返回时CM需提交CONFLICTED且保留原安排。M2/M3、活动/改期/报名/outbox整体回滚尚待联调。
+3. **QA汤雨润 / PM**：修复DbTestSupport装载顺序与正式评测schema绑定，核对活动/版本事务及JSONB；决定策略资源全集，不私改02；按本表正式复验D-AT/N-AT并做交叉评审。
+4. **UI杨畅**：对接现有API-07/08/09/11/40；API-10/24/25等待真实端口。保留truncated、隐私占位和故障风险说明；页面验收本轮未执行。
+
+## 历史交付（2026-10-21：PR #9 隐私评审修复）
 
 - 成员：黄方勇 55230315；任务包 v3.0；DS-02/03。本人分支 `work/55230315-scheduling`，修复前 HEAD `622d6b8`，fetch 后 `origin/main=4fbda0ecf4f155ef1e05c385a677ebe7d13b087d`，已包含在本人分支，无新增 main 提交需要合并，开工时工作区干净。
 - 反馈：[PR #9 的 Rito-492 评审](https://github.com/Rito-492/campus-sched/pull/9#pullrequestreview-5587757375) 为 CHANGES_REQUESTED：API-11 泄露未授权活动信息、API-09 对遮蔽活动仍返回真实风险。该反馈已接收；修复是否放行仍待交叉复审，作者不自批。

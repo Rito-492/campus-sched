@@ -1,0 +1,4020 @@
+{
+  "schemaVersion" : 1,
+  "generatedAt" : "2026-10-31T05:51:41.256840500Z",
+  "entrypoint" : "DsStrategyBenchmarkIT（DS独立路径，非QA正式入口）",
+  "resourceUniverse" : "scenario-core",
+  "identity" : "TEACHER",
+  "warmupRuns" : 1,
+  "measuredRuns" : 10,
+  "resourceCount" : 4,
+  "timingScope" : "候选生成、资源读取、约束检查及选择/排序；不含HTTP与文件输出",
+  "environment" : {
+    "database" : "PostgreSQL 17.6 on x86_64-windows, compiled by msvc-19.44.35213, 64-bit",
+    "schema" : "t_2a220b87e64e4430a4e87db29f229f9f",
+    "jdk" : "21.0.6",
+    "os" : "Windows 11/amd64",
+    "baseCommit" : "未提供"
+  },
+  "runs" : [ {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 1,
+    "feasible" : true,
+    "evaluatedCount" : 13,
+    "elapsedMs" : 32.1969,
+    "timeShiftMinutes" : -60,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186884E+9,
+        "endAt" : 1.918692E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -60,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "RANKED",
+    "runIndex" : 1,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 57.3346,
+    "timeShiftMinutes" : -60,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186884E+9,
+        "endAt" : 1.918692E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -60,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 2,
+    "feasible" : true,
+    "evaluatedCount" : 13,
+    "elapsedMs" : 35.8763,
+    "timeShiftMinutes" : -60,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186884E+9,
+        "endAt" : 1.918692E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -60,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "RANKED",
+    "runIndex" : 2,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 58.6247,
+    "timeShiftMinutes" : -60,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186884E+9,
+        "endAt" : 1.918692E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -60,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 3,
+    "feasible" : true,
+    "evaluatedCount" : 13,
+    "elapsedMs" : 29.2943,
+    "timeShiftMinutes" : -60,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186884E+9,
+        "endAt" : 1.918692E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -60,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "RANKED",
+    "runIndex" : 3,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 45.7049,
+    "timeShiftMinutes" : -60,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186884E+9,
+        "endAt" : 1.918692E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -60,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 4,
+    "feasible" : true,
+    "evaluatedCount" : 13,
+    "elapsedMs" : 35.5557,
+    "timeShiftMinutes" : -60,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186884E+9,
+        "endAt" : 1.918692E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -60,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "RANKED",
+    "runIndex" : 4,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 62.3899,
+    "timeShiftMinutes" : -60,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186884E+9,
+        "endAt" : 1.918692E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -60,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 5,
+    "feasible" : true,
+    "evaluatedCount" : 13,
+    "elapsedMs" : 23.0286,
+    "timeShiftMinutes" : -60,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186884E+9,
+        "endAt" : 1.918692E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -60,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "RANKED",
+    "runIndex" : 5,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 41.0989,
+    "timeShiftMinutes" : -60,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186884E+9,
+        "endAt" : 1.918692E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -60,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 6,
+    "feasible" : true,
+    "evaluatedCount" : 13,
+    "elapsedMs" : 26.8667,
+    "timeShiftMinutes" : -60,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186884E+9,
+        "endAt" : 1.918692E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -60,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "RANKED",
+    "runIndex" : 6,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 41.8588,
+    "timeShiftMinutes" : -60,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186884E+9,
+        "endAt" : 1.918692E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -60,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 7,
+    "feasible" : true,
+    "evaluatedCount" : 13,
+    "elapsedMs" : 32.5537,
+    "timeShiftMinutes" : -60,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186884E+9,
+        "endAt" : 1.918692E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -60,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "RANKED",
+    "runIndex" : 7,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 57.0833,
+    "timeShiftMinutes" : -60,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186884E+9,
+        "endAt" : 1.918692E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -60,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 8,
+    "feasible" : true,
+    "evaluatedCount" : 13,
+    "elapsedMs" : 38.5384,
+    "timeShiftMinutes" : -60,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186884E+9,
+        "endAt" : 1.918692E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -60,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "RANKED",
+    "runIndex" : 8,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 65.5201,
+    "timeShiftMinutes" : -60,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186884E+9,
+        "endAt" : 1.918692E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -60,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 9,
+    "feasible" : true,
+    "evaluatedCount" : 13,
+    "elapsedMs" : 31.5175,
+    "timeShiftMinutes" : -60,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186884E+9,
+        "endAt" : 1.918692E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -60,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "RANKED",
+    "runIndex" : 9,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 52.6655,
+    "timeShiftMinutes" : -60,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186884E+9,
+        "endAt" : 1.918692E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -60,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 10,
+    "feasible" : true,
+    "evaluatedCount" : 13,
+    "elapsedMs" : 19.9166,
+    "timeShiftMinutes" : -60,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186884E+9,
+        "endAt" : 1.918692E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -60,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "RANKED",
+    "runIndex" : 10,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 34.8226,
+    "timeShiftMinutes" : -60,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186884E+9,
+        "endAt" : 1.918692E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -60,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 1,
+    "feasible" : true,
+    "evaluatedCount" : 3,
+    "elapsedMs" : 13.208,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "RANKED",
+    "runIndex" : 1,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 47.3755,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 2,
+    "feasible" : true,
+    "evaluatedCount" : 3,
+    "elapsedMs" : 21.898,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "RANKED",
+    "runIndex" : 2,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 56.6623,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 3,
+    "feasible" : true,
+    "evaluatedCount" : 3,
+    "elapsedMs" : 19.2961,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "RANKED",
+    "runIndex" : 3,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 61.6104,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 4,
+    "feasible" : true,
+    "evaluatedCount" : 3,
+    "elapsedMs" : 14.4716,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "RANKED",
+    "runIndex" : 4,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 59.7551,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 5,
+    "feasible" : true,
+    "evaluatedCount" : 3,
+    "elapsedMs" : 20.1912,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "RANKED",
+    "runIndex" : 5,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 63.4233,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 6,
+    "feasible" : true,
+    "evaluatedCount" : 3,
+    "elapsedMs" : 18.5597,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "RANKED",
+    "runIndex" : 6,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 54.8719,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 7,
+    "feasible" : true,
+    "evaluatedCount" : 3,
+    "elapsedMs" : 17.2337,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "RANKED",
+    "runIndex" : 7,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 70.1357,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 8,
+    "feasible" : true,
+    "evaluatedCount" : 3,
+    "elapsedMs" : 17.8442,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "RANKED",
+    "runIndex" : 8,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 58.1318,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 9,
+    "feasible" : true,
+    "evaluatedCount" : 3,
+    "elapsedMs" : 26.7339,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "RANKED",
+    "runIndex" : 9,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 71.7043,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 10,
+    "feasible" : true,
+    "evaluatedCount" : 3,
+    "elapsedMs" : 13.8612,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "RANKED",
+    "runIndex" : 10,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 49.8906,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 1,
+    "feasible" : true,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 10.9202,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "RANKED",
+    "runIndex" : 1,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 53.6868,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 2,
+    "feasible" : true,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 27.6089,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "RANKED",
+    "runIndex" : 2,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 74.4132,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 3,
+    "feasible" : true,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 18.618,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "RANKED",
+    "runIndex" : 3,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 57.951,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 4,
+    "feasible" : true,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 11.1359,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "RANKED",
+    "runIndex" : 4,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 43.6442,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 5,
+    "feasible" : true,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 13.9076,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "RANKED",
+    "runIndex" : 5,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 54.7433,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 6,
+    "feasible" : true,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 13.9791,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "RANKED",
+    "runIndex" : 6,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 68.2632,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 7,
+    "feasible" : true,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 18.2436,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "RANKED",
+    "runIndex" : 7,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 31.6279,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 8,
+    "feasible" : true,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 13.4793,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "RANKED",
+    "runIndex" : 8,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 45.9172,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 9,
+    "feasible" : true,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 12.9898,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "RANKED",
+    "runIndex" : 9,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 50.7242,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 10,
+    "feasible" : true,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 13.9977,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "RANKED",
+    "runIndex" : 10,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 54.9936,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 1,
+    "feasible" : false,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 59.7316,
+    "timeShiftMinutes" : null,
+    "venueChanged" : null,
+    "replacedEquipmentLines" : null,
+    "choice" : null
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "RANKED",
+    "runIndex" : 1,
+    "feasible" : false,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 54.047,
+    "timeShiftMinutes" : null,
+    "venueChanged" : null,
+    "replacedEquipmentLines" : null,
+    "choice" : null
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 2,
+    "feasible" : false,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 68.6654,
+    "timeShiftMinutes" : null,
+    "venueChanged" : null,
+    "replacedEquipmentLines" : null,
+    "choice" : null
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "RANKED",
+    "runIndex" : 2,
+    "feasible" : false,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 54.9468,
+    "timeShiftMinutes" : null,
+    "venueChanged" : null,
+    "replacedEquipmentLines" : null,
+    "choice" : null
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 3,
+    "feasible" : false,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 59.9089,
+    "timeShiftMinutes" : null,
+    "venueChanged" : null,
+    "replacedEquipmentLines" : null,
+    "choice" : null
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "RANKED",
+    "runIndex" : 3,
+    "feasible" : false,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 53.3122,
+    "timeShiftMinutes" : null,
+    "venueChanged" : null,
+    "replacedEquipmentLines" : null,
+    "choice" : null
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 4,
+    "feasible" : false,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 66.6773,
+    "timeShiftMinutes" : null,
+    "venueChanged" : null,
+    "replacedEquipmentLines" : null,
+    "choice" : null
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "RANKED",
+    "runIndex" : 4,
+    "feasible" : false,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 55.0227,
+    "timeShiftMinutes" : null,
+    "venueChanged" : null,
+    "replacedEquipmentLines" : null,
+    "choice" : null
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 5,
+    "feasible" : false,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 62.7663,
+    "timeShiftMinutes" : null,
+    "venueChanged" : null,
+    "replacedEquipmentLines" : null,
+    "choice" : null
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "RANKED",
+    "runIndex" : 5,
+    "feasible" : false,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 52.1658,
+    "timeShiftMinutes" : null,
+    "venueChanged" : null,
+    "replacedEquipmentLines" : null,
+    "choice" : null
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 6,
+    "feasible" : false,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 82.0166,
+    "timeShiftMinutes" : null,
+    "venueChanged" : null,
+    "replacedEquipmentLines" : null,
+    "choice" : null
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "RANKED",
+    "runIndex" : 6,
+    "feasible" : false,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 57.2692,
+    "timeShiftMinutes" : null,
+    "venueChanged" : null,
+    "replacedEquipmentLines" : null,
+    "choice" : null
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 7,
+    "feasible" : false,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 70.9815,
+    "timeShiftMinutes" : null,
+    "venueChanged" : null,
+    "replacedEquipmentLines" : null,
+    "choice" : null
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "RANKED",
+    "runIndex" : 7,
+    "feasible" : false,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 51.4068,
+    "timeShiftMinutes" : null,
+    "venueChanged" : null,
+    "replacedEquipmentLines" : null,
+    "choice" : null
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 8,
+    "feasible" : false,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 82.8882,
+    "timeShiftMinutes" : null,
+    "venueChanged" : null,
+    "replacedEquipmentLines" : null,
+    "choice" : null
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "RANKED",
+    "runIndex" : 8,
+    "feasible" : false,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 57.4915,
+    "timeShiftMinutes" : null,
+    "venueChanged" : null,
+    "replacedEquipmentLines" : null,
+    "choice" : null
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 9,
+    "feasible" : false,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 55.8224,
+    "timeShiftMinutes" : null,
+    "venueChanged" : null,
+    "replacedEquipmentLines" : null,
+    "choice" : null
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "RANKED",
+    "runIndex" : 9,
+    "feasible" : false,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 41.3532,
+    "timeShiftMinutes" : null,
+    "venueChanged" : null,
+    "replacedEquipmentLines" : null,
+    "choice" : null
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 10,
+    "feasible" : false,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 50.3727,
+    "timeShiftMinutes" : null,
+    "venueChanged" : null,
+    "replacedEquipmentLines" : null,
+    "choice" : null
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "RANKED",
+    "runIndex" : 10,
+    "feasible" : false,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 30.6016,
+    "timeShiftMinutes" : null,
+    "venueChanged" : null,
+    "replacedEquipmentLines" : null,
+    "choice" : null
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 1,
+    "feasible" : true,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 10.5634,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186956E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "RANKED",
+    "runIndex" : 1,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 52.6213,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186956E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 2,
+    "feasible" : true,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 14.661,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186956E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "RANKED",
+    "runIndex" : 2,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 57.8556,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186956E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 3,
+    "feasible" : true,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 8.3757,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186956E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "RANKED",
+    "runIndex" : 3,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 24.3904,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186956E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 4,
+    "feasible" : true,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 9.3218,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186956E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "RANKED",
+    "runIndex" : 4,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 45.8695,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186956E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 5,
+    "feasible" : true,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 10.8255,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186956E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "RANKED",
+    "runIndex" : 5,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 44.7747,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186956E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 6,
+    "feasible" : true,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 10.2839,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186956E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "RANKED",
+    "runIndex" : 6,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 46.8702,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186956E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 7,
+    "feasible" : true,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 18.5448,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186956E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "RANKED",
+    "runIndex" : 7,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 62.9912,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186956E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 8,
+    "feasible" : true,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 10.1525,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186956E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "RANKED",
+    "runIndex" : 8,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 52.7696,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186956E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 9,
+    "feasible" : true,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 11.747,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186956E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "RANKED",
+    "runIndex" : 9,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 60.8295,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186956E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 10,
+    "feasible" : true,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 18.5313,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186956E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "RANKED",
+    "runIndex" : 10,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 45.8358,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186956E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 1,
+    "feasible" : true,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 10.864,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "RANKED",
+    "runIndex" : 1,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 42.3976,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 2,
+    "feasible" : true,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 13.1226,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "RANKED",
+    "runIndex" : 2,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 64.3951,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 3,
+    "feasible" : true,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 10.3681,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "RANKED",
+    "runIndex" : 3,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 46.9392,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 4,
+    "feasible" : true,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 9.7941,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "RANKED",
+    "runIndex" : 4,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 33.0386,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 5,
+    "feasible" : true,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 9.8928,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "RANKED",
+    "runIndex" : 5,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 48.9649,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 6,
+    "feasible" : true,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 11.9617,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "RANKED",
+    "runIndex" : 6,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 50.1518,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 7,
+    "feasible" : true,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 9.0775,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "RANKED",
+    "runIndex" : 7,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 27.336,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 8,
+    "feasible" : true,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 14.7895,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "RANKED",
+    "runIndex" : 8,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 25.7076,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 9,
+    "feasible" : true,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 9.8806,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "RANKED",
+    "runIndex" : 9,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 22.5572,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 10,
+    "feasible" : true,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 11.5992,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "RANKED",
+    "runIndex" : 10,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 18.3286,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186992E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 1
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 1,
+    "feasible" : true,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 17.2838,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "RANKED",
+    "runIndex" : 1,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 52.736,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 2,
+    "feasible" : true,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 16.8822,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "RANKED",
+    "runIndex" : 2,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 63.7109,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 3,
+    "feasible" : true,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 20.1279,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "RANKED",
+    "runIndex" : 3,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 72.5382,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 4,
+    "feasible" : true,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 11.9375,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "RANKED",
+    "runIndex" : 4,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 51.4518,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 5,
+    "feasible" : true,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 12.4518,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "RANKED",
+    "runIndex" : 5,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 36.0152,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 6,
+    "feasible" : true,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 14.3264,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "RANKED",
+    "runIndex" : 6,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 23.509,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 7,
+    "feasible" : true,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 12.0335,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "RANKED",
+    "runIndex" : 7,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 49.7278,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 8,
+    "feasible" : true,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 13.693,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "RANKED",
+    "runIndex" : 8,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 59.938,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 9,
+    "feasible" : true,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 15.3398,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "RANKED",
+    "runIndex" : 9,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 53.5203,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 10,
+    "feasible" : true,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 12.1726,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "RANKED",
+    "runIndex" : 10,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 52.6775,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.918692E+9,
+        "endAt" : 1.9186956E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 0,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 1,
+    "feasible" : true,
+    "evaluatedCount" : 7,
+    "elapsedMs" : 20.6015,
+    "timeShiftMinutes" : -30,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186902E+9,
+        "endAt" : 1.9186938E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -30,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "RANKED",
+    "runIndex" : 1,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 53.3908,
+    "timeShiftMinutes" : 30,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186938E+9,
+        "endAt" : 1.9186974E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 30,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 2,
+    "feasible" : true,
+    "evaluatedCount" : 7,
+    "elapsedMs" : 20.4342,
+    "timeShiftMinutes" : -30,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186902E+9,
+        "endAt" : 1.9186938E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -30,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "RANKED",
+    "runIndex" : 2,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 54.7612,
+    "timeShiftMinutes" : 30,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186938E+9,
+        "endAt" : 1.9186974E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 30,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 3,
+    "feasible" : true,
+    "evaluatedCount" : 7,
+    "elapsedMs" : 22.479,
+    "timeShiftMinutes" : -30,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186902E+9,
+        "endAt" : 1.9186938E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -30,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "RANKED",
+    "runIndex" : 3,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 56.5851,
+    "timeShiftMinutes" : 30,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186938E+9,
+        "endAt" : 1.9186974E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 30,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 4,
+    "feasible" : true,
+    "evaluatedCount" : 7,
+    "elapsedMs" : 22.0484,
+    "timeShiftMinutes" : -30,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186902E+9,
+        "endAt" : 1.9186938E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -30,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "RANKED",
+    "runIndex" : 4,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 57.9097,
+    "timeShiftMinutes" : 30,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186938E+9,
+        "endAt" : 1.9186974E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 30,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 5,
+    "feasible" : true,
+    "evaluatedCount" : 7,
+    "elapsedMs" : 20.559,
+    "timeShiftMinutes" : -30,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186902E+9,
+        "endAt" : 1.9186938E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -30,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "RANKED",
+    "runIndex" : 5,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 57.5325,
+    "timeShiftMinutes" : 30,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186938E+9,
+        "endAt" : 1.9186974E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 30,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 6,
+    "feasible" : true,
+    "evaluatedCount" : 7,
+    "elapsedMs" : 25.8958,
+    "timeShiftMinutes" : -30,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186902E+9,
+        "endAt" : 1.9186938E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -30,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "RANKED",
+    "runIndex" : 6,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 63.9462,
+    "timeShiftMinutes" : 30,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186938E+9,
+        "endAt" : 1.9186974E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 30,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 7,
+    "feasible" : true,
+    "evaluatedCount" : 7,
+    "elapsedMs" : 21.0449,
+    "timeShiftMinutes" : -30,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186902E+9,
+        "endAt" : 1.9186938E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -30,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "RANKED",
+    "runIndex" : 7,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 44.0227,
+    "timeShiftMinutes" : 30,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186938E+9,
+        "endAt" : 1.9186974E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 30,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 8,
+    "feasible" : true,
+    "evaluatedCount" : 7,
+    "elapsedMs" : 20.0564,
+    "timeShiftMinutes" : -30,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186902E+9,
+        "endAt" : 1.9186938E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -30,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "RANKED",
+    "runIndex" : 8,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 49.5851,
+    "timeShiftMinutes" : 30,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186938E+9,
+        "endAt" : 1.9186974E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 30,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 9,
+    "feasible" : true,
+    "evaluatedCount" : 7,
+    "elapsedMs" : 21.4649,
+    "timeShiftMinutes" : -30,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186902E+9,
+        "endAt" : 1.9186938E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -30,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "RANKED",
+    "runIndex" : 9,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 56.2706,
+    "timeShiftMinutes" : 30,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186938E+9,
+        "endAt" : 1.9186974E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 30,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 10,
+    "feasible" : true,
+    "evaluatedCount" : 7,
+    "elapsedMs" : 24.4546,
+    "timeShiftMinutes" : -30,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186902E+9,
+        "endAt" : 1.9186938E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003102",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003201",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : -30,
+      "venueChanged" : true,
+      "replacedEquipmentLines" : 0,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "RANKED",
+    "runIndex" : 10,
+    "feasible" : true,
+    "evaluatedCount" : 36,
+    "elapsedMs" : 76.7792,
+    "timeShiftMinutes" : 30,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "choice" : {
+      "plan" : {
+        "startAt" : 1.9186938E+9,
+        "endAt" : 1.9186974E+9,
+        "setupMinutes" : 0,
+        "teardownMinutes" : 0,
+        "venueId" : "00000000-0000-0000-0000-000000003101",
+        "equipment" : [ {
+          "resourceId" : "00000000-0000-0000-0000-000000003202",
+          "quantity" : 2
+        } ]
+      },
+      "timeShiftMinutes" : 30,
+      "venueChanged" : false,
+      "replacedEquipmentLines" : 1,
+      "explanation" : "在±120分钟、同类设备单项替换范围内通过资格及容量检查；确认时需重新检查"
+    }
+  } ],
+  "expectedDifferences" : [ ]
+}
