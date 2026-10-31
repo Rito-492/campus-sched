@@ -17,4 +17,11 @@ export function formatTime(instant: string) {
     hour12: false,
   }).format(new Date(instant))
 }
-export const shanghaiInput = (input: string) => `${input}:00+08:00`
+export const shanghaiInput = (input: string) =>
+  input ? `${input}:00+08:00` : ''
+export const shanghaiLocal = (instant: string) => {
+  const time = Date.parse(instant)
+  return Number.isFinite(time)
+    ? new Date(time + 8 * 3600000).toISOString().slice(0, 16)
+    : ''
+}

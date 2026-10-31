@@ -80,7 +80,7 @@ async function submit() {
           >登录工作台</el-button
         >
       </form>
-      <ApiFeedback :error="error" @retry="submit" />
+      <ApiFeedback :error="error" test-id="login-error" @retry="submit" />
       <p class="caption">账号身份与审批权限独立。需要账号时，请联系管理员。</p>
     </section>
   </main>

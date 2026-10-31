@@ -1,45 +1,51 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onBeforeUnmount, ref, watch } from 'vue'
+import { onBeforeRouteLeave } from 'vue-router'
 import { api } from '../api'
 import type { NotificationView } from '../types/api'
 import { formatTime } from '../domain/format'
 import ApiFeedback from '../components/ApiFeedback.vue'
+import MutationFeedback from '../components/MutationFeedback.vue'
+import { useMutation } from '../composables/useMutation'
 const items = ref<NotificationView[]>([]),
   unread = ref(false),
   loading = ref(false),
   error = ref<unknown>(null),
   truncated = ref(false)
-let pending: ReturnType<typeof api.readNotification> | null = null
-async function load() {
+let generation = 0
+const mutation = useMutation({
+  confirmed: () => load(true),
+  conflict: () => load(true),
+})
+async function load(rethrow = false) {
+  const turn = ++generation
   loading.value = true
   error.value = null
+  items.value = []
   try {
     const r = await api.notifications(unread.value)
+    if (turn !== generation) return
     items.value = r.data
     truncated.value = !!r.truncated
   } catch (e) {
-    error.value = e
+    if (turn === generation) error.value = e
+    if (rethrow) throw e
   } finally {
-    loading.value = false
+    if (turn === generation) loading.value = false
   }
 }
-async function mark(id?: string) {
-  if (loading.value) return
-  if (id) pending = api.readNotification(id)
-  if (!pending) return
-  loading.value = true
-  error.value = null
-  try {
-    await pending.run()
-    pending = null
-    await load()
-  } catch (e) {
-    error.value = e
-  } finally {
-    loading.value = false
-  }
+async function mark(id: string) {
+  if (loading.value || mutation.locked.value) return
+  await mutation.execute(api.readNotification(id))
 }
-onMounted(load)
+watch(unread, () => load(), { immediate: true })
+onBeforeUnmount(() => generation++)
+onBeforeRouteLeave(
+  (to) =>
+    to.path === '/login' ||
+    !mutation.uncertain.value ||
+    window.confirm('标记已读结果尚未确认，确定离开？'),
+)
 </script>
 <template>
   <section class="page-heading">
@@ -49,18 +55,19 @@ onMounted(load)
   </section>
   <section class="panel">
     <div class="toolbar">
-      <el-switch
-        v-model="unread"
-        active-text="只看未读"
-        @change="load"
-      /><el-button :disabled="loading" @click="load">刷新</el-button>
+      <el-switch v-model="unread" active-text="只看未读" /><el-button
+        :disabled="loading || mutation.busy.value"
+        @click="load()"
+        >刷新</el-button
+      >
     </div>
     <ApiFeedback
       :error="error"
       :loading="loading"
       :truncated="truncated"
-      @retry="pending ? mark() : load()"
+      @retry="load()"
     />
+    <MutationFeedback :mutation="mutation" @refresh="load()" />
     <p v-if="!loading && !error && !items.length" class="empty-state">
       暂无通知。
     </p>
@@ -83,7 +90,8 @@ onMounted(load)
           >查看活动</RouterLink
         ><el-button
           v-if="!item.readAt"
-          :disabled="loading"
+          :disabled="loading || mutation.locked.value"
+          data-testid="notification-read"
           @click="mark(item.id)"
           >标为已读</el-button
         >

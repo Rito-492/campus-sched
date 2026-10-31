@@ -31,28 +31,25 @@ export const productRoutes: RouteRecordRaw[] = [
   },
   {
     path: '/resources/manage',
-    component: () => import('./pages/PendingPage.vue'),
+    component: () => import('./pages/ResourceManagePage.vue'),
     meta: {
       title: '资源管理',
-      dependency: '资源建档、故障登记及申请资格编辑正在接入。',
       allow: (a: Actor | null) => hasPermission(a, 'RESOURCE_MANAGE'),
     },
   },
   {
     path: '/activities/:id/change',
-    component: () => import('./pages/PendingPage.vue'),
+    component: () => import('./pages/ChangeWorkspacePage.vue'),
     meta: {
       title: '申请改期',
-      dependency: '改期预览、备选方案与影响清单正在接入。',
       allow: isApplicant,
     },
   },
   {
     path: '/changes/:id',
-    component: () => import('./pages/PendingPage.vue'),
+    component: () => import('./pages/ChangeDetailPage.vue'),
     meta: {
       title: '改期进度',
-      dependency: '人员确认、复审与资源确认正在接入。',
     },
   },
   {
@@ -67,10 +64,9 @@ export const productRoutes: RouteRecordRaw[] = [
   },
   {
     path: '/admin/users',
-    component: () => import('./pages/PendingPage.vue'),
+    component: () => import('./pages/UsersPage.vue'),
     meta: {
       title: '账号与授权',
-      dependency: '账号创建、启停和授权范围编辑正在接入。',
       allow: (a: Actor | null) => hasPermission(a, 'USER_MANAGE'),
     },
   },
@@ -109,12 +105,18 @@ export const router = createRouter({
   ],
   scrollBehavior: () => ({ top: 0 }),
 })
-if (import.meta.env.DEV)
+if (import.meta.env.DEV) {
   router.addRoute({
     path: '/__prototype',
     component: () => import('./dev/PrototypePage.vue'),
     meta: { title: '组件开发原型', public: true },
   })
+  router.addRoute({
+    path: '/__prototype/workspace',
+    component: () => import('./dev/WorkspacePreview.vue'),
+    meta: { title: '登录后界面预览', public: true },
+  })
+}
 router.beforeEach(async (to) => {
   if (to.meta.public) return true
   if (!readToken()) return { path: '/login', query: { redirect: to.fullPath } }

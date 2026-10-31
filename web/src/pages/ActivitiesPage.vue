@@ -1,39 +1,73 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { api } from '../api'
-import type { ActivityView } from '../types/api'
+import type { ActivityView, ChangeView } from '../types/api'
+import { mapSettled } from '../domain/queue'
+import { pendingChange, changeLabels } from '../domain/change'
 import { useSession } from '../stores/session'
 import { isApplicant } from '../domain/access'
-import { formatTime, statusLabels } from '../domain/format'
+import { statusLabels } from '../domain/format'
+import ActivityList from '../components/ActivityList.vue'
 import ApiFeedback from '../components/ApiFeedback.vue'
 const reviews = computed(() => useRouteValue.path === '/reviews')
 const useRouteValue = useRoute(),
   session = useSession()
-const scope = ref<'mine' | 'public'>('mine'),
+const scope = ref<'mine' | 'public'>(
+    isApplicant(session.actor) ? 'mine' : 'public',
+  ),
   status = ref(''),
   items = ref<ActivityView[]>([]),
   loading = ref(false),
   error = ref<unknown>(null),
-  truncated = ref(false)
+  truncated = ref(false),
+  changes = ref<ChangeView[]>([]),
+  partial = ref<string[]>([])
+let generation = 0
 async function load() {
+  const turn = ++generation
   loading.value = true
   error.value = null
   items.value = []
+  changes.value = []
+  partial.value = []
+  truncated.value = false
   try {
     const result = await api.activities(
       reviews.value ? 'review' : scope.value,
       status.value,
     )
+    if (turn !== generation) return
     items.value = result.data
     truncated.value = !!result.truncated
+    if (reviews.value) {
+      const targets = result.data.slice(0, 200).filter((a) => a.activeChangeId)
+      const related = await mapSettled(
+        targets,
+        (a) => api.changes(a.id),
+        () => turn === generation,
+      )
+      if (turn !== generation) return
+      related.forEach((r, index) => {
+        if (r.status === 'fulfilled') {
+          changes.value.push(
+            ...r.value.data.filter((c) => pendingChange(c.status)),
+          )
+          truncated.value ||= !!r.value.truncated
+        } else
+          partial.value.push(
+            `${targets[index].input.title}：${r.reason instanceof Error ? r.reason.message : '改期记录加载失败'}`,
+          )
+      })
+    }
   } catch (e) {
-    error.value = e
+    if (turn === generation) error.value = e
   } finally {
-    loading.value = false
+    if (turn === generation) loading.value = false
   }
 }
-onMounted(load)
+watch([scope, status, reviews], load, { immediate: true })
+onBeforeUnmount(() => generation++)
 </script>
 <template>
   <section class="page-heading row">
@@ -58,12 +92,9 @@ onMounted(load)
   </section>
   <section class="panel">
     <div class="toolbar">
-      <el-radio-group
-        v-if="!reviews"
-        v-model="scope"
-        aria-label="活动范围"
-        @change="load"
-        ><el-radio-button value="mine">我的活动</el-radio-button
+      <el-radio-group v-if="!reviews" v-model="scope" aria-label="活动范围"
+        ><el-radio-button v-if="isApplicant(session.actor)" value="mine"
+          >我的活动</el-radio-button
         ><el-radio-button value="public"
           >公开活动</el-radio-button
         ></el-radio-group
@@ -73,7 +104,6 @@ onMounted(load)
         clearable
         aria-label="活动状态"
         class="filter-select"
-        @change="load"
         ><el-option
           v-for="(label, value) in statusLabels"
           :key="value"
@@ -91,37 +121,37 @@ onMounted(load)
       <h2>{{ reviews ? '暂无待处理事项' : '暂无活动' }}</h2>
       <p>调整筛选条件，或稍后刷新。</p>
     </div>
-    <div class="activity-list" data-testid="activity-list">
-      <article v-for="item in items" :key="item.id" class="activity-row">
-        <div class="date-tile">
-          {{ formatTime(item.input.plan.startAt).split(' ')[0] }}
-        </div>
-        <div class="grow">
-          <span class="badge">{{ statusLabels[item.status] }}</span>
-          <h2>
-            <RouterLink :to="`/activities/${item.id}`">{{
-              item.input.title
-            }}</RouterLink>
-          </h2>
-          <p class="muted">
-            {{ formatTime(item.input.plan.startAt) }} —
-            {{ formatTime(item.input.plan.endAt) }} ·
-            {{ item.registrationCount }}/{{
-              item.input.registrationCapacity
-            }}
-            人报名
-          </p>
-          <p v-if="item.resourceRisk === 'AT_RISK'" class="risk-text">
-            ⚠ 资源受故障影响
-          </p>
-          <RouterLink
-            v-if="item.activeChangeId"
-            :to="`/changes/${item.activeChangeId}`"
-            >查看待处理改期</RouterLink
-          >
-        </div>
-        <RouterLink :to="`/activities/${item.id}`">查看详情 →</RouterLink>
+    <ActivityList :items="items" />
+    <template v-if="reviews">
+      <h2>待处理改期</h2>
+      <p class="caption">
+        包含已开放报名活动的改期。进入后按当前职责确认；已读通知不会推进此流程。
+      </p>
+      <div v-if="partial.length" class="feedback warning">
+        <p>部分改期未能加载，以下活动的待办尚未核对：</p>
+        <ul>
+          <li v-for="text in partial" :key="text">{{ text }}</li>
+        </ul>
+        <el-button :disabled="loading" @click="load">重新查询</el-button>
+      </div>
+      <article
+        v-for="c in changes"
+        :key="c.id"
+        class="notification"
+        data-testid="review-change"
+      >
+        <RouterLink :to="`/changes/${c.id}`"
+          >{{ items.find((a) => a.id === c.activityId)?.input.title }} ·
+          {{ changeLabels[c.status] }}</RouterLink
+        >
+        <p>{{ c.reason }}</p>
       </article>
-    </div>
+      <p
+        v-if="!loading && !error && !partial.length && !changes.length"
+        class="muted"
+      >
+        当前已返回活动中暂无待处理改期。
+      </p>
+    </template>
   </section>
 </template>

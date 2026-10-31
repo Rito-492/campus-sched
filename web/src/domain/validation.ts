@@ -1,4 +1,4 @@
-import type { ActivityInput } from '../types/api'
+import type { ActivityInput, Plan } from '../types/api'
 export function validateActivity(
   input: ActivityInput,
   now = Date.now(),
@@ -14,8 +14,11 @@ export function validateActivity(
     input.expectedAttendees < input.registrationCapacity
   )
     errors.push('预计人数须大于等于报名容量，且容量为正整数')
-  const { plan } = input,
-    start = Date.parse(plan.startAt),
+  return [...errors, ...validatePlan(input.plan, now)]
+}
+export function validatePlan(plan: Plan, now = Date.now()): string[] {
+  const errors: string[] = []
+  const start = Date.parse(plan.startAt),
     end = Date.parse(plan.endAt)
   if (
     !Number.isFinite(start) ||
@@ -25,6 +28,12 @@ export function validateActivity(
     end - start > 6 * 3600000
   )
     errors.push('请选择未来时间，活动时长为30分钟至6小时')
+  if (
+    Number.isFinite(start) &&
+    Number.isFinite(end) &&
+    (start % 60000 !== 0 || end % 60000 !== 0)
+  )
+    errors.push('活动时间须精确到分钟')
   if (
     ![plan.setupMinutes, plan.teardownMinutes].every(
       (n) => Number.isInteger(n) && n >= 0 && n <= 120,
@@ -36,6 +45,9 @@ export function validateActivity(
   if (
     Number.isFinite(start) &&
     Number.isFinite(end) &&
+    [plan.setupMinutes, plan.teardownMinutes].every(
+      (n) => Number.isInteger(n) && n >= 0 && n <= 120,
+    ) &&
     day(start - plan.setupMinutes * 60000) !==
       day(end + plan.teardownMinutes * 60000 - 1)
   )

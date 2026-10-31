@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onBeforeUnmount, ref, watch } from 'vue'
 import { api } from '../api'
 import type { CalendarEntry, ResourceView } from '../types/api'
 import ApiFeedback from '../components/ApiFeedback.vue'
@@ -18,10 +18,17 @@ const resourceId = ref(''),
   error = ref<unknown>(null),
   loading = ref(false),
   truncated = ref(false)
+let generation = 0
 async function load() {
+  const turn = ++generation
   loading.value = true
   error.value = null
   entries.value = []
+  if (!date.value) {
+    error.value = new Error('请选择查询日期')
+    loading.value = false
+    return
+  }
   try {
     const from = `${date.value}T00:00:00+08:00`,
       to = new Date(Date.parse(from) + 86400000).toISOString()
@@ -29,16 +36,18 @@ async function load() {
       api.resources(),
       api.calendar(from, to, resourceId.value),
     ])
+    if (turn !== generation) return
     resources.value = r.data
     entries.value = c.data
     truncated.value = !!r.truncated || !!c.truncated
   } catch (e) {
-    error.value = e
+    if (turn === generation) error.value = e
   } finally {
-    loading.value = false
+    if (turn === generation) loading.value = false
   }
 }
-onMounted(load)
+watch([date, resourceId], load, { immediate: true })
+onBeforeUnmount(() => generation++)
 </script>
 <template>
   <section class="page-heading">
@@ -47,20 +56,14 @@ onMounted(load)
     <p class="muted">先查看安排，再规划活动。查询不会产生预约。</p>
   </section>
   <section class="panel">
-    <div class="toolbar">
+    <div class="toolbar" data-testid="calendar-nav">
       <label for="calendar-date">日期</label
-      ><input
-        id="calendar-date"
-        v-model="date"
-        type="date"
-        @change="load"
-      /><el-select
+      ><input id="calendar-date" v-model="date" type="date" /><el-select
         v-model="resourceId"
         clearable
         placeholder="全部资源"
         aria-label="筛选资源"
         class="filter-select"
-        @change="load"
         ><el-option
           v-for="r in resources"
           :key="r.id"
@@ -80,9 +83,10 @@ onMounted(load)
         resourceId ? resources.filter((r) => r.id === resourceId) : resources
       "
       :entries="entries"
+      :truncated="truncated"
     />
     <p class="caption">
-      当前提供占用分段及数量明细；设备同时用量汇总、故障叠加可用量仍在开发，不能依据此视图承诺可预约。
+      设备用量按同时发生的占用计算；数据可能在查看后变化，最终预约仍需服务端检查。
     </p>
   </section>
 </template>

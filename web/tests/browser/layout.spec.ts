@@ -1,7 +1,9 @@
 import { test, expect } from '@playwright/test'
 import { mkdirSync } from 'node:fs'
 import { resolve } from 'node:path'
-const evidence = resolve('../artifacts/screenshots/ui-2026-10-31')
+const evidence = resolve(
+  process.env.UI_EVIDENCE_DIR || '../artifacts/screenshots/ui-2026-10-31',
+)
 mkdirSync(evidence, { recursive: true })
 // 本套仅验证真实登录外壳和显著标注的开发组件原型，不是业务E2E，不伪造API成功。
 for (const [width, height] of [
@@ -36,7 +38,12 @@ for (const [width, height] of [
     await expect(page.getByTestId('change-status')).toHaveText(
       '等待工作人员确认',
     )
-    expect(await page.locator('.alternative-card').first().evaluate(el => Number.parseFloat(getComputedStyle(el).lineHeight))).toBeGreaterThan(14)
+    expect(
+      await page
+        .locator('.alternative-card')
+        .first()
+        .evaluate((el) => Number.parseFloat(getComputedStyle(el).lineHeight)),
+    ).toBeGreaterThan(14)
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth,

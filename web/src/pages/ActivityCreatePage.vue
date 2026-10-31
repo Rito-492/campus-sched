@@ -86,18 +86,23 @@ async function save(retry = false) {
   error.value = null
   try {
     const result: ActivityView = (await pending.run()).data
+    pending = null
     completed.value = true
+    uncertain.value = false
     await router.push(`/activities/${result.id}`)
   } catch (e) {
     error.value = e
     uncertain.value =
-      !(e instanceof ApiError) || e.status === 0 || e.status >= 500
+      !completed.value &&
+      (!(e instanceof ApiError) || e.status === 0 || e.status >= 500)
+    if (!uncertain.value) pending = null
   } finally {
     busy.value = false
   }
 }
 onBeforeRouteLeave(
-  () =>
+  (to) =>
+    to.path === '/login' ||
     completed.value ||
     !uncertain.value ||
     window.confirm(
@@ -122,13 +127,18 @@ onMounted(load)
     <ApiFeedback
       :loading="loading"
       :error="error"
+      :resources="resources"
       :truncated="truncated"
       @retry="pending ? save(true) : load()"
     />
     <p v-if="uncertain" class="feedback warning">
       上次保存结果尚未确认，表单已锁定。请使用原请求重试；不要另建一份申请。
     </p>
-    <form class="activity-form" @submit.prevent="save()">
+    <el-form
+      class="activity-form"
+      :disabled="busy || uncertain"
+      @submit.prevent="save()"
+    >
       <fieldset :disabled="busy || uncertain">
         <div v-show="step === 0">
           <label for="title">活动名称</label
@@ -252,7 +262,9 @@ onMounted(load)
           </p>
           <el-checkbox-group v-model="input.staffUserIds"
             ><el-checkbox
-              v-for="person in staff.filter((s) => s.id !== session.actor?.id)"
+              v-for="person in staff.filter(
+                (s) => s.enabled && s.id !== session.actor?.id,
+              )"
               :key="person.id"
               :value="person.id"
               >{{ person.displayName }}</el-checkbox
@@ -295,6 +307,6 @@ onMounted(load)
           >
         </div>
       </fieldset>
-    </form>
+    </el-form>
   </section>
 </template>

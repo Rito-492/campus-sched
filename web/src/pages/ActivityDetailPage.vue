@@ -1,9 +1,16 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { computed, onMounted, ref, watch } from 'vue'
+import { onBeforeRouteLeave, useRoute } from 'vue-router'
 import { api } from '../api'
 import { ApiError, type Envelope } from '../api/client'
-import type { ActivityView, ResourceView, CheckResult } from '../types/api'
+import type {
+  ActivityView,
+  ResourceView,
+  CheckResult,
+  Conflict,
+  AlternativesView,
+  Plan,
+} from '../types/api'
 import { useSession } from '../stores/session'
 import {
   isApplicant,
@@ -14,18 +21,42 @@ import {
 import { formatTime, statusLabels } from '../domain/format'
 import ApiFeedback from '../components/ApiFeedback.vue'
 import ConflictList from '../components/ConflictList.vue'
+import DraftEditor from '../components/DraftEditor.vue'
+import ActivityRecords from '../components/ActivityRecords.vue'
+import MutationFeedback from '../components/MutationFeedback.vue'
+import { useMutation } from '../composables/useMutation'
+import AlternativesPanel from '../components/AlternativesPanel.vue'
 const route = useRoute(),
   session = useSession(),
   item = ref<ActivityView | null>(null),
   resources = ref<ResourceView[]>([])
 const loading = ref(false),
-  busy = ref(false),
+  previewBusy = ref(false),
   error = ref<unknown>(null),
   actionError = ref<unknown>(null),
-  message = ref(''),
   comment = ref(''),
   check = ref<CheckResult | null>(null),
-  uncertain = ref(false)
+  editing = ref(false),
+  draftLocked = ref(false),
+  truncated = ref(false)
+const alternatives = ref<AlternativesView | null>(null),
+  seedPlan = ref<Plan | undefined>()
+const mutation = useMutation({
+  confirmed: async () => {
+    check.value = null
+    await load(true)
+  },
+  conflict: () => load(true),
+})
+const uncertain = mutation.uncertain
+const busy = computed(
+  () =>
+    mutation.busy.value ||
+    previewBusy.value ||
+    loading.value ||
+    editing.value ||
+    !!error.value,
+)
 const owner = computed(
   () => item.value?.ownerId === session.actor?.id && isApplicant(session.actor),
 )
@@ -35,47 +66,48 @@ const registrationReason = computed(() =>
 const future = computed(
   () => !!item.value && Date.parse(item.value.input.plan.startAt) > Date.now(),
 )
-let pending: { run: () => Promise<Envelope<unknown>> } | null = null
-async function load() {
+async function load(rethrow = false) {
+  check.value = null
+  alternatives.value = null
   loading.value = true
   error.value = null
-  item.value = null
   try {
-    item.value = (await api.activity(String(route.params.id))).data
-    resources.value = (await api.resources()).data
+    const [a, r] = await Promise.all([
+      api.activity(String(route.params.id)),
+      api.resources(),
+    ])
+    item.value = a.data
+    resources.value = r.data
+    truncated.value = !!r.truncated
   } catch (e) {
     error.value = e
+    if (rethrow) throw e
   } finally {
     loading.value = false
   }
 }
 async function execute(command?: { run: () => Promise<Envelope<unknown>> }) {
-  if (busy.value || (uncertain.value && command)) return
-  if (command) pending = command
-  if (!pending) return
-  busy.value = true
-  actionError.value = null
-  message.value = ''
-  try {
-    await pending.run()
-    pending = null
-    uncertain.value = false
-    message.value = '操作已由服务端确认，正在刷新当前状态。'
-    await load()
-  } catch (e) {
-    actionError.value = e
-    uncertain.value =
-      !(e instanceof ApiError) || e.status === 0 || e.status >= 500
-    if (e instanceof ApiError && e.status === 409) await load()
-  } finally {
-    busy.value = false
-  }
+  if (!busy.value) await mutation.execute(command)
 }
+watch(mutation.error, (e) => {
+  if (
+    e instanceof ApiError &&
+    e.status === 409 &&
+    e.details &&
+    typeof e.details === 'object' &&
+    'conflicts' in e.details &&
+    Array.isArray(e.details.conflicts)
+  )
+    check.value = {
+      feasible: false,
+      conflicts: e.details.conflicts as Conflict[],
+    }
+})
 async function preview() {
   if (!item.value || busy.value) return
-  pending = null
   check.value = null
-  busy.value = true
+  alternatives.value = null
+  previewBusy.value = true
   actionError.value = null
   try {
     check.value = (
@@ -84,13 +116,52 @@ async function preview() {
         targetPlan: item.value.input.plan,
       })
     ).data
+    if (!check.value.feasible)
+      alternatives.value = (
+        await api.alternatives(item.value.id, {
+          baseVersionNo: item.value.versionNo,
+          targetPlan: item.value.input.plan,
+        })
+      ).data
   } catch (e) {
     actionError.value = e
+    if (e instanceof ApiError && e.status === 409) await load()
   } finally {
-    busy.value = false
+    previewBusy.value = false
   }
 }
+function selectAlternative(index: number) {
+  if (
+    busy.value ||
+    uncertain.value ||
+    !owner.value ||
+    item.value?.status !== 'DRAFT'
+  )
+    return
+  const plan = alternatives.value?.items[index]?.plan
+  if (plan) {
+    seedPlan.value = plan
+    editing.value = true
+  }
+}
+function toggleDraftEditor() {
+  seedPlan.value = undefined
+  editing.value = !editing.value
+}
+function draftSaved(saved: ActivityView) {
+  item.value = saved
+  editing.value = false
+  draftLocked.value = false
+  check.value = null
+  alternatives.value = null
+}
 onMounted(load)
+onBeforeRouteLeave(
+  (to) =>
+    to.path === '/login' ||
+    !uncertain.value ||
+    window.confirm('操作结果尚未确认。离开后请先核对活动状态，确定离开？'),
+)
 </script>
 <template>
   <section class="page-heading">
@@ -98,9 +169,18 @@ onMounted(load)
     <h1>{{ item?.input.title || '活动详情' }}</h1>
     <p class="muted">当前安排、审批与报名状态以服务端最新记录为准。</p>
   </section>
-  <ApiFeedback :error="error" :loading="loading" @retry="load" />
+  <ApiFeedback
+    :error="error"
+    :loading="loading"
+    :truncated="truncated"
+    @retry="load()"
+  />
   <template v-if="item">
-    <p v-if="item.resourceRisk === 'AT_RISK'" class="feedback warning">
+    <p
+      v-if="item.resourceRisk === 'AT_RISK'"
+      class="feedback warning"
+      data-testid="risk-banner"
+    >
       ⚠ 当前资源受故障影响。原安排仍保留，请联系负责人调整资源。
     </p>
     <div class="detail-grid">
@@ -149,17 +229,25 @@ onMounted(load)
           :to="`/changes/${item.activeChangeId}`"
           >查看改期进度（报名暂停）</RouterLink
         >
-        <p v-if="message" class="feedback success" role="status">
-          {{ message }}
-        </p>
+        <MutationFeedback
+          :mutation="mutation"
+          :resources="resources"
+          @refresh="load()"
+        />
         <ApiFeedback
           :error="actionError"
-          @retry="pending ? execute() : preview()"
+          :resources="resources"
+          test-id="preview-error"
+          @retry="preview"
         />
         <p v-if="uncertain" class="feedback warning">
           操作结果尚未确认。请刷新核对，或使用上方“重试”重放原请求。
         </p>
-        <el-button :disabled="loading || busy" @click="load"
+        <el-button
+          :disabled="
+            loading || mutation.busy.value || previewBusy || draftLocked
+          "
+          @click="load()"
           >刷新状态</el-button
         >
       </section>
@@ -194,6 +282,25 @@ onMounted(load)
         >
       </section>
     </div>
+    <div v-if="owner && (item.status === 'DRAFT' || editing)" class="toolbar">
+      <el-button
+        :disabled="uncertain || mutation.busy.value || draftLocked || loading"
+        data-testid="draft-edit"
+        @click="toggleDraftEditor"
+        >{{ editing ? '关闭草稿编辑' : '编辑草稿' }}</el-button
+      >
+    </div>
+    <DraftEditor
+      v-if="editing && session.actor"
+      :activity="item"
+      :actor="session.actor"
+      :resources="resources"
+      :disabled="loading || !!error"
+      :refresh="() => load(true)"
+      :initial-plan="seedPlan"
+      @locked="draftLocked = $event"
+      @saved="draftSaved"
+    />
     <section class="panel">
       <h2>办理活动</h2>
       <p class="muted">
@@ -203,6 +310,7 @@ onMounted(load)
         <el-button
           v-if="owner && item.status === 'DRAFT'"
           :disabled="busy || uncertain"
+          data-testid="activity-preview"
           @click="preview"
           >检查资源</el-button
         >
@@ -248,12 +356,28 @@ onMounted(load)
           >确认联合预约</el-button
         >
         <RouterLink
-          v-if="owner && ['SCHEDULED', 'OPEN'].includes(item.status) && future"
+          v-if="
+            owner &&
+            ['SCHEDULED', 'OPEN'].includes(item.status) &&
+            future &&
+            !item.activeChangeId
+          "
           :to="`/activities/${item.id}/change`"
-          >改期工作台</RouterLink
+          data-testid="change-entry"
+          >发起改期</RouterLink
         >
       </div>
       <ConflictList v-if="check" :conflicts="check.conflicts" />
+      <template v-if="alternatives"
+        ><p class="caption">
+          选择候选会填入草稿编辑器，保存修改后再检查资源及提交审批；选择不会预约。
+        </p>
+        <AlternativesPanel
+          :alternatives="alternatives"
+          :resources="resources"
+          :disabled="busy || uncertain"
+          @select="selectAlternative"
+      /></template>
       <template
         v-if="
           (owner && item.status !== 'CANCELLED') ||
@@ -339,5 +463,10 @@ onMounted(load)
         </div></template
       >
     </section>
+    <ActivityRecords
+      :activity="item"
+      :actor="session.actor"
+      :resources="resources"
+    />
   </template>
 </template>
