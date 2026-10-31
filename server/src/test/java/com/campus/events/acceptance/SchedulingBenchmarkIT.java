@@ -26,10 +26,13 @@ import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.HexFormat;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -94,6 +97,10 @@ class SchedulingBenchmarkIT {
     @BeforeAll
     static void loadReferenceData() {
         db.loadReferenceData("scenarios/scheduling-reference");
+        assertEquals(4L, db.jdbc().queryForObject("SELECT count(*) FROM resource", Long.class),
+                "benchmark专用参考集必须只有两场地和两器材，避免资格扩展资源进入候选空间");
+        assertEquals(4L, db.managedResourceCount(USER_RESOURCE_ADMIN),
+                "benchmark-only resource_admin范围应与隔离参考资源一致，不代表canonical demo范围");
     }
 
     @Test
@@ -329,7 +336,7 @@ class SchedulingBenchmarkIT {
 
     // ---------------------------------------------------------------- 输出
 
-    private static ObjectNode buildOutput(List<ObjectNode> runs) {
+    private static ObjectNode buildOutput(List<ObjectNode> runs) throws IOException {
         ObjectNode output = MAPPER.createObjectNode();
         output.put("schemaVersion", 1);
         output.put("generatedAt", Instant.now().toString());
@@ -342,7 +349,7 @@ class SchedulingBenchmarkIT {
         return output;
     }
 
-    private static ObjectNode buildEnvironment() {
+    private static ObjectNode buildEnvironment() throws IOException {
         String machine = System.getenv("MACHINE");
         if (machine == null || machine.isBlank()) {
             machine = System.getProperty("os.name", "unknown") + "/" + System.getProperty("os.arch", "unknown");
@@ -358,6 +365,10 @@ class SchedulingBenchmarkIT {
         environment.put("commit", commit == null || commit.isBlank() ? "未提供（构建时注入）" : commit);
         environment.put("demoDate", DEMO_DATE);
         environment.put("clock", "2030-10-19T00:00:00Z");
+        environment.put("referenceData", "test-data/scenarios/scheduling-reference.json");
+        environment.put("referenceDataSha256", sha256(resolveReferenceDataFile()));
+        environment.put("scenarioData", "test-data/scenarios/scheduling.json");
+        environment.put("scenarioDataSha256", sha256(resolveScenarioFile()));
         return environment;
     }
 
@@ -383,6 +394,28 @@ class SchedulingBenchmarkIT {
             }
         }
         throw new IllegalStateException("找不到评测场景文件 scenarios/scheduling.json，已查找 " + candidates);
+    }
+
+    private static Path resolveReferenceDataFile() {
+        String dir = System.getProperty("test.data.dir", "");
+        List<Path> candidates = new ArrayList<>();
+        if (!dir.isEmpty()) {
+            candidates.add(Path.of(dir, "scenarios", "scheduling-reference.json"));
+        }
+        candidates.add(Path.of("test-data", "scenarios", "scheduling-reference.json"));
+        candidates.add(Path.of("..", "test-data", "scenarios", "scheduling-reference.json"));
+        for (Path candidate : candidates) {
+            if (Files.isRegularFile(candidate)) return candidate;
+        }
+        throw new IllegalStateException("找不到评测参考数据 scenarios/scheduling-reference.json，已查找 " + candidates);
+    }
+
+    private static String sha256(Path path) throws IOException {
+        try {
+            return HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(Files.readAllBytes(path)));
+        } catch (NoSuchAlgorithmException e) {
+            throw new IllegalStateException("当前JDK不支持SHA-256", e);
+        }
     }
 
     private static Path resolveOutputFile() {

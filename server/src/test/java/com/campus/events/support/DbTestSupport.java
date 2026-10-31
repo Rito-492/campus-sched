@@ -194,9 +194,11 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
     /**
      * 仅装载组织/用户/资源（参考数据）；评测场景不装载演示活动与报名（test-data-plan §7）。
      *
-     * <p>用于 SchedulingBenchmarkIT：评测环境 = {@code demo.json} 的 organizations/users/resources
-     * + {@code scenarios/scheduling.json} 场景数据；不装载演示活动 A/B 与报名，避免场景互相干扰。
-     * 只写 organization/app_user/user_role/user_permission/user_approval_scope/user_resource_scope/resource 表。
+     * <p>SchedulingBenchmarkIT单独传入{@code scenarios/scheduling-reference.json}作为基线参考集，
+     * 再按每个场景装载{@code scenarios/scheduling.json}中的占用/故障；不使用canonical demo.json的N-AT资格扩展资源，
+     * 也不装载演示活动A/B与报名，避免额外候选污染固定场景几何。只写
+     * organization/app_user/user_role/user_permission/user_approval_scope/user_resource_scope/resource表。
+     * 此参考集是独立schema内的Benchmark-only快照，不代表canonical demo账号授权范围。
      */
     public void loadReferenceData(String dataFile) {
         try {

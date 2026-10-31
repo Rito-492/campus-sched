@@ -342,11 +342,11 @@
 ## D-AT-22 策略对比评测（Bench + evaluate-scheduling.ts）
 
 ### TC-22-1 FIRST_FIT vs RANKED 可复现评测
-- **前置**：装载 `test-data/scenarios/scheduling.json`（8 场景，见 test-data-plan.md §7）。
+- **前置**：在独立schema先装载`test-data/scenarios/scheduling-reference.json`（仅基准场地3101/3102和器材3201/3202，不含N-AT资格扩展资源），再装载`test-data/scenarios/scheduling.json`（8场景；见test-data-plan.md §7）。
 - **输入**：DS 的 `StrategyEvaluator.evaluateStrategies(plan, attendees, excludeActivityId)`（02 §8，仅供测试调用）。
 - **步骤**：每场景每策略预热 1 次、测量 10 次（03 §4）；`SchedulingBenchmarkIT` 写 `server/target/scheduling-evaluation.json`；`npm --prefix qa run evaluate` 读取生成 `artifacts/evaluation/results.csv` + 环境说明。
 - **预期**：相同数据/候选/约束下两策略各自的真实成功情况、代价与耗时**如实记录**；无解场景明确搜索范围；SCH-08 断言两策略选择不同（FIRST_FIT=(-30,换场地,0)、RANKED=(+30,不换,替换1)，见场景文件 expected）。
-- **观察点**：CSV 列 = scenarioId、strategy、feasible、timeShiftMinutes、venueChanged、replacedEquipmentLines、evaluatedCount、elapsedMs（03 §4）；无可行方案的三个代价字段写 **null 不造 0**；elapsedNanos/1_000_000.0；记录机器、版本、数据与计时范围；**缺原始结果时脚本失败**。
+- **观察点**：CSV 列 = scenarioId、strategy、feasible、timeShiftMinutes、venueChanged、replacedEquipmentLines、evaluatedCount、elapsedMs（03 §4）；无可行方案的三个代价字段写 **null 不造 0**；elapsedNanos/1_000_000.0；记录机器、版本、`scheduling-reference.json`和`scheduling.json`路径及SHA-256、计时范围；**缺原始结果时脚本失败**。
 - **清理**：schema 级自动清理；评测产物只增不改历史。
 
 ## D-AT-23 持久化与恢复（`change-happy-path.spec.ts`）

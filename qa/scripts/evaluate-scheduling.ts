@@ -231,7 +231,8 @@ const summary = `# 策略评测摘要
 - 生成时间：${input.generatedAt ?? new Date().toISOString()}
 - 机器：${pick('machine')} / ${pick('os')}
 - JDK：${pick('jdk')}；被测构建：${pick('commit')}
-- 场景数据：test-data/scenarios/scheduling.json（DEMO_DATE=${pick('demoDate')}，Clock=${pick('clock')}）
+- 参考数据：${pick('referenceData')}（SHA-256=${pick('referenceDataSha256')}）
+- 场景数据：${pick('scenarioData')}（SHA-256=${pick('scenarioDataSha256')}；DEMO_DATE=${pick('demoDate')}，Clock=${pick('clock')}）
 - 计时范围：${input.timingScope ?? '候选生成、资源读取、约束检查及选择/排序（不含 HTTP 与文件输出，02 契约 §8）'}
 - 测量：每场景每策略预热 ${scenarioFile.evaluation.warmupRuns} 次（已丢弃）、测量 ${measuredRuns} 次；中位数与范围如下
 
