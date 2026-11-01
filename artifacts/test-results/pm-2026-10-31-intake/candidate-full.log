@@ -1,0 +1,1023 @@
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ----------------------< com.campus:campus-events >----------------------
+[INFO] Building 校园活动协同与资源调度系统 0.1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- clean:3.4.1:clean (default-clean) @ campus-events ---
+[INFO] Deleting D:\JLU\软件综合实践\.doc-work\pm-followup-2026-10-31\candidate\server\target
+[INFO]
+[INFO] --- resources:3.3.1:resources (default-resources) @ campus-events ---
+[INFO] Copying 4 resources from src\main\resources to target\classes
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO]
+[INFO] --- compiler:3.14.1:compile (default-compile) @ campus-events ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 103 source files with javac [debug parameters release 21] to target\classes
+[INFO] /D:/JLU/软件综合实践/.doc-work/pm-followup-2026-10-31/candidate/server/src/main/java/com/campus/events/foundation/CanonicalJson.java: D:\JLU\软件综合实践\.doc-work\pm-followup-2026-10-31\candidate\server\src\main\java\com\campus\events\foundation\CanonicalJson.java使用或覆盖了已过时的 API。
+[INFO] /D:/JLU/软件综合实践/.doc-work/pm-followup-2026-10-31/candidate/server/src/main/java/com/campus/events/foundation/CanonicalJson.java: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+[INFO]
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ campus-events ---
+[INFO] skip non existing resourceDirectory D:\JLU\软件综合实践\.doc-work\pm-followup-2026-10-31\candidate\server\src\test\resources
+[INFO]
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ campus-events ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 33 source files with javac [debug parameters release 21] to target\test-classes
+[INFO]
+[INFO] --- surefire:3.5.6:test (default-test) @ campus-events ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+[INFO] Running com.campus.events.activity.ActivityServiceTest
+18:28:30.639 [main] INFO org.hibernate.validator.internal.util.Version -- HV000001: Hibernate Validator 8.0.3.Final
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+WARNING: A Java agent has been loaded dynamically (C:\Users\admin\.m2\repository\net\bytebuddy\byte-buddy-agent\1.17.8\byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+[INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.078 s -- in com.campus.events.activity.ActivityServiceTest
+[INFO] Running com.campus.events.activity.ActivityStateMachineTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in com.campus.events.activity.ActivityStateMachineTest
+[INFO] Running com.campus.events.auth.AuthorizationPolicyTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in com.campus.events.auth.AuthorizationPolicyTest
+[INFO] Running com.campus.events.auth.PasswordPolicyTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in com.campus.events.auth.PasswordPolicyTest
+[INFO] Running com.campus.events.contract.ContractValidationTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.074 s -- in com.campus.events.contract.ContractValidationTest
+[INFO] Running com.campus.events.foundation.CanonicalJsonTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.140 s -- in com.campus.events.foundation.CanonicalJsonTest
+[INFO] Running com.campus.events.foundation.ResponsesTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in com.campus.events.foundation.ResponsesTest
+[INFO] Running com.campus.events.scheduling.CandidateRankingTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 s -- in com.campus.events.scheduling.CandidateRankingTest
+[INFO] Running com.campus.events.scheduling.CapacitySweepTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.028 s -- in com.campus.events.scheduling.CapacitySweepTest
+[INFO] Running com.campus.events.scheduling.ScheduleQueryServiceTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s -- in com.campus.events.scheduling.ScheduleQueryServiceTest
+[INFO] Running com.campus.events.scheduling.StrategyEvaluatorTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.104 s -- in com.campus.events.scheduling.StrategyEvaluatorTest
+[INFO] Running com.campus.events.scheduling.TimeIntervalTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 s -- in com.campus.events.scheduling.TimeIntervalTest
+[INFO]
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 76, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
+[INFO]
+[INFO] --- jar:3.4.2:jar (default-jar) @ campus-events ---
+[INFO] Building jar: D:\JLU\软件综合实践\.doc-work\pm-followup-2026-10-31\candidate\server\target\campus-events-0.1.0-SNAPSHOT.jar
+[INFO]
+[INFO] --- spring-boot:3.5.16:repackage (repackage) @ campus-events ---
+[INFO] Replacing main artifact D:\JLU\软件综合实践\.doc-work\pm-followup-2026-10-31\candidate\server\target\campus-events-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to D:\JLU\软件综合实践\.doc-work\pm-followup-2026-10-31\candidate\server\target\campus-events-0.1.0-SNAPSHOT.jar.original
+[INFO]
+[INFO] --- failsafe:3.5.6:integration-test (default) @ campus-events ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO]
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+Picked up JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8
+[INFO] Running D-AT-07 两活动抢同一资源恰一成功（BookingConcurrencyIT）
+18:28:33.553 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.campus.events.acceptance.BookingConcurrencyIT]: BookingConcurrencyIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+18:28:33.629 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.BookingConcurrencyIT
+18:28:33.874 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+18:28:33.896 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Schema history table "t_bb4d5512ff6d47bb80a902eeaedc7703"."flyway_schema_history" does not exist yet
+18:28:33.897 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 1 migration (execution time 00:00.010s)
+18:28:33.912 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Creating Schema History table "t_bb4d5512ff6d47bb80a902eeaedc7703"."flyway_schema_history" ...
+18:28:33.998 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "t_bb4d5512ff6d47bb80a902eeaedc7703": << Empty Schema >>
+18:28:34.018 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "t_bb4d5512ff6d47bb80a902eeaedc7703" to version "1 - schema"
+18:28:34.106 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 1 migration to schema "t_bb4d5512ff6d47bb80a902eeaedc7703", now at version v1 (execution time 00:00.078s)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-31T18:28:34.397+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.acceptance.BookingConcurrencyIT    : Starting BookingConcurrencyIT using Java 21.0.12.1 with PID 45824 (started by admin in D:\JLU\软件综合实践\.doc-work\pm-followup-2026-10-31\candidate\server)
+2026-10-31T18:28:34.397+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.acceptance.BookingConcurrencyIT    : The following 1 profile is active: "test"
+2026-10-31T18:28:35.119+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2026-10-31T18:28:35.127+08:00  INFO 45824 --- [campus-events] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-31T18:28:35.127+08:00  INFO 45824 --- [campus-events] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-10-31T18:28:35.156+08:00  INFO 45824 --- [campus-events] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-10-31T18:28:35.156+08:00  INFO 45824 --- [campus-events] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 752 ms
+2026-10-31T18:28:35.261+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-31T18:28:35.296+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@66b31d46
+2026-10-31T18:28:35.297+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-31T18:28:35.304+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_bb4d5512ff6d47bb80a902eeaedc7703 (PostgreSQL 17.6)
+2026-10-31T18:28:35.317+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.006s)
+2026-10-31T18:28:35.344+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_bb4d5512ff6d47bb80a902eeaedc7703": 1
+2026-10-31T18:28:35.344+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Schema "t_bb4d5512ff6d47bb80a902eeaedc7703" is up to date. No migration necessary.
+2026-10-31T18:28:36.026+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 63693 (http) with context path '/'
+2026-10-31T18:28:36.032+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.acceptance.BookingConcurrencyIT    : Started BookingConcurrencyIT in 1.797 seconds (process running for 3.186)
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+WARNING: A Java agent has been loaded dynamically (C:\Users\admin\.m2\repository\net\bytebuddy\byte-buddy-agent\1.17.8\byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+2026-10-31T18:28:36.510+08:00  INFO 45824 --- [campus-events] [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-31T18:28:36.510+08:00  INFO 45824 --- [campus-events] [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-31T18:28:36.511+08:00  INFO 45824 --- [campus-events] [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-10-31T18:28:36.979+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-10-31T18:28:36.984+08:00  INFO 45824 --- [campus-events] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-10-31T18:28:36.987+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-10-31T18:28:36.989+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 3.493 s <<< FAILURE! -- in D-AT-07 两活动抢同一资源恰一成功（BookingConcurrencyIT）
+[ERROR] com.campus.events.acceptance.BookingConcurrencyIT.tc0701_concurrentResourceConfirmExactlyOneWins -- Time elapsed: 0.852 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 提交活动失败：{"error":{"message":"活动事件端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"53bb584e-168b-4794-840e-04230a505f00"} ==> expected: <200> but was: <503>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.BookingConcurrencyIT.createApprovedUnreserved(BookingConcurrencyIT.java:140)
+	at com.campus.events.acceptance.BookingConcurrencyIT.tc0701_concurrentResourceConfirmExactlyOneWins(BookingConcurrencyIT.java:81)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO] Running D-AT-17 取消与竞争
+2026-10-31T18:28:37.002+08:00  INFO 45824 --- [campus-events] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.campus.events.acceptance.CancellationRaceIT]: CancellationRaceIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-31T18:28:37.004+08:00  INFO 45824 --- [campus-events] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.CancellationRaceIT
+2026-10-31T18:28:37.065+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+2026-10-31T18:28:37.075+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_d4c52880a6a64952b597519eb4a368c1"."flyway_schema_history" does not exist yet
+2026-10-31T18:28:37.076+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.004s)
+2026-10-31T18:28:37.084+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_d4c52880a6a64952b597519eb4a368c1"."flyway_schema_history" ...
+2026-10-31T18:28:37.130+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_d4c52880a6a64952b597519eb4a368c1": << Empty Schema >>
+2026-10-31T18:28:37.141+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_d4c52880a6a64952b597519eb4a368c1" to version "1 - schema"
+2026-10-31T18:28:37.241+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_d4c52880a6a64952b597519eb4a368c1", now at version v1 (execution time 00:00.095s)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-31T18:28:37.352+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.acceptance.CancellationRaceIT      : Starting CancellationRaceIT using Java 21.0.12.1 with PID 45824 (started by admin in D:\JLU\软件综合实践\.doc-work\pm-followup-2026-10-31\candidate\server)
+2026-10-31T18:28:37.352+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.acceptance.CancellationRaceIT      : The following 1 profile is active: "test"
+2026-10-31T18:28:37.524+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2026-10-31T18:28:37.525+08:00  INFO 45824 --- [campus-events] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-31T18:28:37.525+08:00  INFO 45824 --- [campus-events] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-10-31T18:28:37.546+08:00  INFO 45824 --- [campus-events] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-10-31T18:28:37.546+08:00  INFO 45824 --- [campus-events] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 193 ms
+2026-10-31T18:28:37.573+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-10-31T18:28:37.606+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@2df24f19
+2026-10-31T18:28:37.606+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-10-31T18:28:37.607+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_d4c52880a6a64952b597519eb4a368c1 (PostgreSQL 17.6)
+2026-10-31T18:28:37.624+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.007s)
+2026-10-31T18:28:37.665+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_d4c52880a6a64952b597519eb4a368c1": 1
+2026-10-31T18:28:37.666+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Schema "t_d4c52880a6a64952b597519eb4a368c1" is up to date. No migration necessary.
+2026-10-31T18:28:37.960+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 63714 (http) with context path '/'
+2026-10-31T18:28:37.963+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.acceptance.CancellationRaceIT      : Started CancellationRaceIT in 0.631 seconds (process running for 5.117)
+2026-10-31T18:28:37.993+08:00  INFO 45824 --- [campus-events] [o-auto-2-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-31T18:28:37.993+08:00  INFO 45824 --- [campus-events] [o-auto-2-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-31T18:28:37.994+08:00  INFO 45824 --- [campus-events] [o-auto-2-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-10-31T18:28:38.450+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-10-31T18:28:38.454+08:00  INFO 45824 --- [campus-events] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-10-31T18:28:38.456+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2026-10-31T18:28:38.458+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+[ERROR] Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 1.459 s <<< FAILURE! -- in D-AT-17 取消与竞争
+[ERROR] com.campus.events.acceptance.CancellationRaceIT.cancelTwiceDoesNotOverReleaseNorRevive -- Time elapsed: 0.188 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 创建改期应成功：{"error":{"message":"记录不存在","details":{},"code":"NOT_FOUND"},"requestId":"783b1d83-622a-475d-a91d-4db63b52cf08"} ==> expected: <201> but was: <404>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at com.campus.events.acceptance.CancellationRaceIT.cancelTwiceDoesNotOverReleaseNorRevive(CancellationRaceIT.java:76)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.acceptance.CancellationRaceIT.cancelRacesResourceDecisionToConsistentTerminalState -- Time elapsed: 0.205 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 创建改期应成功：{"error":{"message":"记录不存在","details":{},"code":"NOT_FOUND"},"requestId":"7f686643-245b-430e-b827-59bae5aa0a7b"} ==> expected: <201> but was: <404>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at com.campus.events.acceptance.CancellationRaceIT.cancelRacesResourceDecisionToConsistentTerminalState(CancellationRaceIT.java:140)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO] Running D-AT-11/12/13/14 改期拒绝、抢占、自身排除与回滚（ChangeRollbackIT）
+2026-10-31T18:28:38.467+08:00  INFO 45824 --- [campus-events] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.campus.events.acceptance.ChangeRollbackIT]: ChangeRollbackIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-31T18:28:38.470+08:00  INFO 45824 --- [campus-events] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.ChangeRollbackIT
+2026-10-31T18:28:38.537+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+2026-10-31T18:28:38.546+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_d1073ab616234503ba39e78ddc5ec192"."flyway_schema_history" does not exist yet
+2026-10-31T18:28:38.546+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.003s)
+2026-10-31T18:28:38.554+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_d1073ab616234503ba39e78ddc5ec192"."flyway_schema_history" ...
+2026-10-31T18:28:38.598+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_d1073ab616234503ba39e78ddc5ec192": << Empty Schema >>
+2026-10-31T18:28:38.605+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_d1073ab616234503ba39e78ddc5ec192" to version "1 - schema"
+2026-10-31T18:28:38.720+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_d1073ab616234503ba39e78ddc5ec192", now at version v1 (execution time 00:00.109s)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-31T18:28:38.859+08:00  INFO 45824 --- [campus-events] [           main] c.c.events.acceptance.ChangeRollbackIT   : Starting ChangeRollbackIT using Java 21.0.12.1 with PID 45824 (started by admin in D:\JLU\软件综合实践\.doc-work\pm-followup-2026-10-31\candidate\server)
+2026-10-31T18:28:38.859+08:00  INFO 45824 --- [campus-events] [           main] c.c.events.acceptance.ChangeRollbackIT   : The following 1 profile is active: "test"
+2026-10-31T18:28:39.020+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2026-10-31T18:28:39.021+08:00  INFO 45824 --- [campus-events] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-31T18:28:39.021+08:00  INFO 45824 --- [campus-events] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-10-31T18:28:39.043+08:00  INFO 45824 --- [campus-events] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-10-31T18:28:39.043+08:00  INFO 45824 --- [campus-events] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 183 ms
+2026-10-31T18:28:39.073+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2026-10-31T18:28:39.101+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection org.postgresql.jdbc.PgConnection@183e64a8
+2026-10-31T18:28:39.101+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2026-10-31T18:28:39.102+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_d1073ab616234503ba39e78ddc5ec192 (PostgreSQL 17.6)
+2026-10-31T18:28:39.112+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.005s)
+2026-10-31T18:28:39.143+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_d1073ab616234503ba39e78ddc5ec192": 1
+2026-10-31T18:28:39.143+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Schema "t_d1073ab616234503ba39e78ddc5ec192" is up to date. No migration necessary.
+2026-10-31T18:28:39.934+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 49276 (http) with context path '/'
+2026-10-31T18:28:39.940+08:00  INFO 45824 --- [campus-events] [           main] c.c.events.acceptance.ChangeRollbackIT   : Started ChangeRollbackIT in 1.102 seconds (process running for 7.095)
+2026-10-31T18:28:39.975+08:00  INFO 45824 --- [campus-events] [o-auto-3-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-31T18:28:39.975+08:00  INFO 45824 --- [campus-events] [o-auto-3-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-31T18:28:39.977+08:00  INFO 45824 --- [campus-events] [o-auto-3-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-10-31T18:28:41.064+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-10-31T18:28:41.069+08:00  INFO 45824 --- [campus-events] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-10-31T18:28:41.071+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2026-10-31T18:28:41.073+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+[ERROR] Tests run: 5, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 2.613 s <<< FAILURE! -- in D-AT-11/12/13/14 改期拒绝、抢占、自身排除与回滚（ChangeRollbackIT）
+[ERROR] com.campus.events.acceptance.ChangeRollbackIT.tc1101_staffRejectKeepsOriginalPlan -- Time elapsed: 0.249 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 读取活动失败：{"error":{"message":"改期端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"ed36d5bd-a092-4f43-b0c1-2b70b4d2b170"} ==> expected: <200> but was: <503>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.ChangeRollbackIT.readActivityFieldInt(ChangeRollbackIT.java:385)
+	at com.campus.events.acceptance.ChangeRollbackIT.readActivityVersion(ChangeRollbackIT.java:380)
+	at com.campus.events.acceptance.ChangeRollbackIT.tc1101_staffRejectKeepsOriginalPlan(ChangeRollbackIT.java:98)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.acceptance.ChangeRollbackIT.tc1102_approverRejectKeepsOriginalPlan -- Time elapsed: 0.192 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 读取活动失败：{"error":{"message":"改期端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"91494502-4164-47d5-88ae-43c25f66f57d"} ==> expected: <200> but was: <503>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.ChangeRollbackIT.readActivityFieldInt(ChangeRollbackIT.java:385)
+	at com.campus.events.acceptance.ChangeRollbackIT.readActivityVersion(ChangeRollbackIT.java:380)
+	at com.campus.events.acceptance.ChangeRollbackIT.tc1102_approverRejectKeepsOriginalPlan(ChangeRollbackIT.java:140)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.acceptance.ChangeRollbackIT.tc1201_finalConfirmationConflictedWhenPreempted -- Time elapsed: 0.290 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 读取活动失败：{"error":{"message":"改期端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"33984ce8-82cb-40f2-aea8-8f5f879d93ab"} ==> expected: <200> but was: <503>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.ChangeRollbackIT.readActivityFieldInt(ChangeRollbackIT.java:385)
+	at com.campus.events.acceptance.ChangeRollbackIT.readActivityVersion(ChangeRollbackIT.java:380)
+	at com.campus.events.acceptance.ChangeRollbackIT.tc1201_finalConfirmationConflictedWhenPreempted(ChangeRollbackIT.java:181)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.acceptance.ChangeRollbackIT.tc1301_schedulePreviewExcludesSelf -- Time elapsed: 0.063 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 读取活动失败：{"error":{"message":"改期端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"34163b38-094f-42ba-8742-a5d5c1f813a4"} ==> expected: <200> but was: <503>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.ChangeRollbackIT.readActivityFieldInt(ChangeRollbackIT.java:385)
+	at com.campus.events.acceptance.ChangeRollbackIT.readActivityVersion(ChangeRollbackIT.java:380)
+	at com.campus.events.acceptance.ChangeRollbackIT.tc1301_schedulePreviewExcludesSelf(ChangeRollbackIT.java:225)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.acceptance.ChangeRollbackIT.tc1401_replaceReservationsFailureRollsBack -- Time elapsed: 0.217 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 读取活动失败：{"error":{"message":"改期端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"369c5979-dd9e-4488-8fee-8dfd8ac26fd8"} ==> expected: <200> but was: <503>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.ChangeRollbackIT.readActivityFieldInt(ChangeRollbackIT.java:385)
+	at com.campus.events.acceptance.ChangeRollbackIT.readActivityVersion(ChangeRollbackIT.java:380)
+	at com.campus.events.acceptance.ChangeRollbackIT.tc1401_replaceReservationsFailureRollsBack(ChangeRollbackIT.java:261)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO] Running N-AT-01～06 身份、资格与授权范围（IdentityEligibilityIT）
+2026-10-31T18:28:41.088+08:00  INFO 45824 --- [campus-events] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.campus.events.acceptance.IdentityEligibilityIT]: IdentityEligibilityIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-31T18:28:41.091+08:00  INFO 45824 --- [campus-events] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.IdentityEligibilityIT
+2026-10-31T18:28:41.165+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+2026-10-31T18:28:41.180+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_1476f1d878b54f179c1a7d6b1b9069f6"."flyway_schema_history" does not exist yet
+2026-10-31T18:28:41.181+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.007s)
+2026-10-31T18:28:41.188+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_1476f1d878b54f179c1a7d6b1b9069f6"."flyway_schema_history" ...
+2026-10-31T18:28:41.230+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_1476f1d878b54f179c1a7d6b1b9069f6": << Empty Schema >>
+2026-10-31T18:28:41.259+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_1476f1d878b54f179c1a7d6b1b9069f6" to version "1 - schema"
+2026-10-31T18:28:41.350+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_1476f1d878b54f179c1a7d6b1b9069f6", now at version v1 (execution time 00:00.086s)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-31T18:28:41.471+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.acceptance.IdentityEligibilityIT   : Starting IdentityEligibilityIT using Java 21.0.12.1 with PID 45824 (started by admin in D:\JLU\软件综合实践\.doc-work\pm-followup-2026-10-31\candidate\server)
+2026-10-31T18:28:41.471+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.acceptance.IdentityEligibilityIT   : The following 1 profile is active: "test"
+2026-10-31T18:28:41.704+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2026-10-31T18:28:41.706+08:00  INFO 45824 --- [campus-events] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-31T18:28:41.706+08:00  INFO 45824 --- [campus-events] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-10-31T18:28:41.731+08:00  INFO 45824 --- [campus-events] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-10-31T18:28:41.731+08:00  INFO 45824 --- [campus-events] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 258 ms
+2026-10-31T18:28:41.769+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2026-10-31T18:28:41.799+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-4 - Added connection org.postgresql.jdbc.PgConnection@35307365
+2026-10-31T18:28:41.799+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2026-10-31T18:28:41.800+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_1476f1d878b54f179c1a7d6b1b9069f6 (PostgreSQL 17.6)
+2026-10-31T18:28:41.814+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.005s)
+2026-10-31T18:28:41.852+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_1476f1d878b54f179c1a7d6b1b9069f6": 1
+2026-10-31T18:28:41.853+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Schema "t_1476f1d878b54f179c1a7d6b1b9069f6" is up to date. No migration necessary.
+2026-10-31T18:28:42.130+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 49312 (http) with context path '/'
+2026-10-31T18:28:42.131+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.acceptance.IdentityEligibilityIT   : Started IdentityEligibilityIT in 0.685 seconds (process running for 9.286)
+2026-10-31T18:28:42.138+08:00  INFO 45824 --- [campus-events] [o-auto-4-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-31T18:28:42.138+08:00  INFO 45824 --- [campus-events] [o-auto-4-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-31T18:28:42.139+08:00  INFO 45824 --- [campus-events] [o-auto-4-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-10-31T18:28:44.318+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-10-31T18:28:44.322+08:00  INFO 45824 --- [campus-events] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-10-31T18:28:44.323+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
+2026-10-31T18:28:44.324+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
+[ERROR] Tests run: 6, Failures: 6, Errors: 0, Skipped: 0, Time elapsed: 3.243 s <<< FAILURE! -- in N-AT-01～06 身份、资格与授权范围（IdentityEligibilityIT）
+[ERROR] com.campus.events.acceptance.IdentityEligibilityIT.nat02_eligibilityMatrixEightCombos -- Time elapsed: 0.371 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 教师×双允许(3111/3211) 提交失败：{"error":{"message":"活动事件端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"96dd4556-6254-457f-8edc-196b62535810"} ==> expected: <200> but was: <503>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.IdentityEligibilityIT.verifyCombo(IdentityEligibilityIT.java:593)
+	at com.campus.events.acceptance.IdentityEligibilityIT.nat02_eligibilityMatrixEightCombos(IdentityEligibilityIT.java:177)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.acceptance.IdentityEligibilityIT.nat01_identitySeparateFromRole -- Time elapsed: 0.239 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 提交活动失败：{"error":{"message":"活动事件端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"39489c85-5763-4998-8469-06ace4a97f29"} ==> expected: <200> but was: <503>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.IdentityEligibilityIT.createSubmittedActivity(IdentityEligibilityIT.java:644)
+	at com.campus.events.acceptance.IdentityEligibilityIT.nat01_identitySeparateFromRole(IdentityEligibilityIT.java:113)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.acceptance.IdentityEligibilityIT.nat04_identityChangeUsesLatestForPending -- Time elapsed: 0.602 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 提交活动失败：{"error":{"message":"活动事件端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"dcec3315-e773-4dc8-864b-a9b3a35d5229"} ==> expected: <200> but was: <503>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.IdentityEligibilityIT.createSubmittedActivity(IdentityEligibilityIT.java:644)
+	at com.campus.events.acceptance.IdentityEligibilityIT.nat04_identityChangeUsesLatestForPending(IdentityEligibilityIT.java:236)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.acceptance.IdentityEligibilityIT.nat06_scopePartialAndDisabledStaff -- Time elapsed: 0.251 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 提交活动失败：{"error":{"message":"活动事件端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"698366a4-d720-4b7d-8510-7d49d0f405d9"} ==> expected: <200> but was: <503>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.IdentityEligibilityIT.createSubmittedActivity(IdentityEligibilityIT.java:644)
+	at com.campus.events.acceptance.IdentityEligibilityIT.nat06_scopePartialAndDisabledStaff(IdentityEligibilityIT.java:422)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.acceptance.IdentityEligibilityIT.nat03_candidateFiltersIneligibleAndDirectSubmitRejected -- Time elapsed: 0.056 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 读取活动失败：{"error":{"message":"改期端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"40b36e85-1e40-470b-a2dc-54aceeb7dcd0"} ==> expected: <200> but was: <503>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.IdentityEligibilityIT.readActivityFieldInt(IdentityEligibilityIT.java:684)
+	at com.campus.events.acceptance.IdentityEligibilityIT.readActivityVersion(IdentityEligibilityIT.java:675)
+	at com.campus.events.acceptance.IdentityEligibilityIT.nat03_candidateFiltersIneligibleAndDirectSubmitRejected(IdentityEligibilityIT.java:188)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.acceptance.IdentityEligibilityIT.nat05_ownerCannotSelfApproveOrConfirm -- Time elapsed: 0.582 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 提交活动失败：{"error":{"message":"活动事件端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"cf35eb64-f22c-45cb-89ed-3c086ab99a03"} ==> expected: <200> but was: <503>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.IdentityEligibilityIT.createSubmittedActivity(IdentityEligibilityIT.java:644)
+	at com.campus.events.acceptance.IdentityEligibilityIT.nat05_ownerCannotSelfApproveOrConfirm(IdentityEligibilityIT.java:320)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO] Running D-AT-19 通知一致性
+2026-10-31T18:28:44.332+08:00  INFO 45824 --- [campus-events] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.NotificationConsistencyIT
+2026-10-31T18:28:44.386+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+2026-10-31T18:28:44.394+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_cb1554e82780455e97372d217d02ee37"."flyway_schema_history" does not exist yet
+2026-10-31T18:28:44.394+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.003s)
+2026-10-31T18:28:44.400+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_cb1554e82780455e97372d217d02ee37"."flyway_schema_history" ...
+2026-10-31T18:28:44.433+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_cb1554e82780455e97372d217d02ee37": << Empty Schema >>
+2026-10-31T18:28:44.438+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_cb1554e82780455e97372d217d02ee37" to version "1 - schema"
+2026-10-31T18:28:44.518+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_cb1554e82780455e97372d217d02ee37", now at version v1 (execution time 00:00.076s)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-31T18:28:44.627+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.a.NotificationConsistencyIT        : Starting NotificationConsistencyIT using Java 21.0.12.1 with PID 45824 (started by admin in D:\JLU\软件综合实践\.doc-work\pm-followup-2026-10-31\candidate\server)
+2026-10-31T18:28:44.627+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.a.NotificationConsistencyIT        : The following 1 profile is active: "test"
+2026-10-31T18:28:44.764+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2026-10-31T18:28:44.765+08:00  INFO 45824 --- [campus-events] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-31T18:28:44.765+08:00  INFO 45824 --- [campus-events] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-10-31T18:28:44.785+08:00  INFO 45824 --- [campus-events] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-10-31T18:28:44.785+08:00  INFO 45824 --- [campus-events] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 156 ms
+2026-10-31T18:28:44.804+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2026-10-31T18:28:44.827+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-5 - Added connection org.postgresql.jdbc.PgConnection@7db72209
+2026-10-31T18:28:44.828+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2026-10-31T18:28:44.828+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_cb1554e82780455e97372d217d02ee37 (PostgreSQL 17.6)
+2026-10-31T18:28:44.839+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.004s)
+2026-10-31T18:28:44.869+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_cb1554e82780455e97372d217d02ee37": 1
+2026-10-31T18:28:44.869+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Schema "t_cb1554e82780455e97372d217d02ee37" is up to date. No migration necessary.
+2026-10-31T18:28:45.100+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 49341 (http) with context path '/'
+2026-10-31T18:28:45.102+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.a.NotificationConsistencyIT        : Started NotificationConsistencyIT in 0.493 seconds (process running for 12.256)
+2026-10-31T18:28:45.111+08:00  INFO 45824 --- [campus-events] [o-auto-5-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-31T18:28:45.111+08:00  INFO 45824 --- [campus-events] [o-auto-5-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-31T18:28:45.111+08:00  INFO 45824 --- [campus-events] [o-auto-5-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-10-31T18:28:45.362+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-10-31T18:28:45.366+08:00  INFO 45824 --- [campus-events] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-10-31T18:28:45.368+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
+2026-10-31T18:28:45.374+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 1.047 s <<< FAILURE! -- in D-AT-19 通知一致性
+[ERROR] com.campus.events.acceptance.NotificationConsistencyIT.consumerFailureRecoversAndDuplicateDeliveryIsIdempotent -- Time elapsed: 0.187 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 创建改期应成功：{"error":{"message":"记录不存在","details":{},"code":"NOT_FOUND"},"requestId":"175cb2dc-aa5e-4646-8f6d-77f81d4cdd9b"} ==> expected: <201> but was: <404>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at com.campus.events.acceptance.NotificationConsistencyIT.consumerFailureRecoversAndDuplicateDeliveryIsIdempotent(NotificationConsistencyIT.java:89)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO] Running D-AT-01/02/08/20/21 权限、幂等、陈旧版本与读取隔离（PermissionsIT）
+2026-10-31T18:28:45.379+08:00  INFO 45824 --- [campus-events] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.campus.events.acceptance.PermissionsIT]: PermissionsIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-31T18:28:45.380+08:00  INFO 45824 --- [campus-events] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.PermissionsIT
+2026-10-31T18:28:45.433+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+2026-10-31T18:28:45.441+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_ace5ca3c5f4e4174a380f057d608259e"."flyway_schema_history" does not exist yet
+2026-10-31T18:28:45.441+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.003s)
+2026-10-31T18:28:45.448+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_ace5ca3c5f4e4174a380f057d608259e"."flyway_schema_history" ...
+2026-10-31T18:28:45.482+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_ace5ca3c5f4e4174a380f057d608259e": << Empty Schema >>
+2026-10-31T18:28:45.486+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_ace5ca3c5f4e4174a380f057d608259e" to version "1 - schema"
+2026-10-31T18:28:45.565+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_ace5ca3c5f4e4174a380f057d608259e", now at version v1 (execution time 00:00.075s)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-31T18:28:45.666+08:00  INFO 45824 --- [campus-events] [           main] c.c.events.acceptance.PermissionsIT      : Starting PermissionsIT using Java 21.0.12.1 with PID 45824 (started by admin in D:\JLU\软件综合实践\.doc-work\pm-followup-2026-10-31\candidate\server)
+2026-10-31T18:28:45.666+08:00  INFO 45824 --- [campus-events] [           main] c.c.events.acceptance.PermissionsIT      : The following 1 profile is active: "test"
+2026-10-31T18:28:45.767+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2026-10-31T18:28:45.767+08:00  INFO 45824 --- [campus-events] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-31T18:28:45.767+08:00  INFO 45824 --- [campus-events] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-10-31T18:28:45.784+08:00  INFO 45824 --- [campus-events] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-10-31T18:28:45.784+08:00  INFO 45824 --- [campus-events] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 117 ms
+2026-10-31T18:28:45.797+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2026-10-31T18:28:45.816+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-6 - Added connection org.postgresql.jdbc.PgConnection@6cee6eb7
+2026-10-31T18:28:45.817+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2026-10-31T18:28:45.817+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_ace5ca3c5f4e4174a380f057d608259e (PostgreSQL 17.6)
+2026-10-31T18:28:45.826+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.004s)
+2026-10-31T18:28:45.848+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_ace5ca3c5f4e4174a380f057d608259e": 1
+2026-10-31T18:28:45.848+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Schema "t_ace5ca3c5f4e4174a380f057d608259e" is up to date. No migration necessary.
+2026-10-31T18:28:46.061+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 49381 (http) with context path '/'
+2026-10-31T18:28:46.063+08:00  INFO 45824 --- [campus-events] [           main] c.c.events.acceptance.PermissionsIT      : Started PermissionsIT in 0.412 seconds (process running for 13.217)
+2026-10-31T18:28:46.067+08:00  INFO 45824 --- [campus-events] [o-auto-6-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-31T18:28:46.067+08:00  INFO 45824 --- [campus-events] [o-auto-6-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-31T18:28:46.067+08:00  INFO 45824 --- [campus-events] [o-auto-6-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-10-31T18:28:47.797+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-10-31T18:28:47.802+08:00  INFO 45824 --- [campus-events] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-10-31T18:28:47.803+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
+2026-10-31T18:28:47.804+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
+[ERROR] Tests run: 13, Failures: 7, Errors: 0, Skipped: 0, Time elapsed: 2.428 s <<< FAILURE! -- in D-AT-01/02/08/20/21 权限、幂等、陈旧版本与读取隔离（PermissionsIT）
+[ERROR] com.campus.events.acceptance.PermissionsIT.tc0203_nonOwnerCannotEdit -- Time elapsed: 0.219 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 读取活动失败：{"error":{"message":"改期端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"48c3ef2b-cad7-48cc-b46b-1f6f53c91bed"} ==> expected: <200> but was: <503>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.PermissionsIT.readActivityFieldInt(PermissionsIT.java:567)
+	at com.campus.events.acceptance.PermissionsIT.readActivityLockVersion(PermissionsIT.java:558)
+	at com.campus.events.acceptance.PermissionsIT.tc0203_nonOwnerCannotEdit(PermissionsIT.java:216)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.acceptance.PermissionsIT.tc0802_sameKeyDifferentBodyRejected -- Time elapsed: 0.129 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 提交活动失败：{"error":{"message":"活动事件端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"75e39284-f590-4540-9081-49867bae8d8e"} ==> expected: <200> but was: <503>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.PermissionsIT.createApprovedUnreserved(PermissionsIT.java:546)
+	at com.campus.events.acceptance.PermissionsIT.tc0802_sameKeyDifferentBodyRejected(PermissionsIT.java:284)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.acceptance.PermissionsIT.tc2001And02_staleVersionProtection -- Time elapsed: 0.075 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 提交失败：{"error":{"message":"活动事件端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"4c3adc53-f579-4584-a33b-1f08d02d2041"} ==> expected: <200> but was: <503>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.PermissionsIT.tc2001And02_staleVersionProtection(PermissionsIT.java:335)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.acceptance.PermissionsIT.tc0201_approverFromOtherOrgCannotDecide -- Time elapsed: 0.204 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 读取活动失败：{"error":{"message":"改期端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"7f3b5e41-682c-4be4-bb6f-86ef7b134a92"} ==> expected: <200> but was: <503>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.PermissionsIT.readActivityFieldInt(PermissionsIT.java:567)
+	at com.campus.events.acceptance.PermissionsIT.readActivityLockVersion(PermissionsIT.java:558)
+	at com.campus.events.acceptance.PermissionsIT.tc0201_approverFromOtherOrgCannotDecide(PermissionsIT.java:186)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.acceptance.PermissionsIT.tc2103_changeViewRedactedForStaff -- Time elapsed: 0.094 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 读取活动失败：{"error":{"message":"改期端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"95454f80-1f86-455d-b10b-5f29a4a7401c"} ==> expected: <200> but was: <503>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.PermissionsIT.readActivityFieldInt(PermissionsIT.java:567)
+	at com.campus.events.acceptance.PermissionsIT.readActivityVersion(PermissionsIT.java:562)
+	at com.campus.events.acceptance.PermissionsIT.tc2103_changeViewRedactedForStaff(PermissionsIT.java:436)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.acceptance.PermissionsIT.tc0801_replaySameKeySameBodyReturnsFirstResponse -- Time elapsed: 0.104 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 提交活动失败：{"error":{"message":"活动事件端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"98e0bbbb-dc37-446e-945a-c4da0e137219"} ==> expected: <200> but was: <503>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.PermissionsIT.createApprovedUnreserved(PermissionsIT.java:546)
+	at com.campus.events.acceptance.PermissionsIT.tc0801_replaySameKeySameBodyReturnsFirstResponse(PermissionsIT.java:237)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.acceptance.PermissionsIT.tc0202_accountAdminHasNoBusinessApproval -- Time elapsed: 0.177 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 读取活动失败：{"error":{"message":"改期端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"82a51dc7-c7e8-4140-a517-f346d72bb711"} ==> expected: <200> but was: <503>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.PermissionsIT.readActivityFieldInt(PermissionsIT.java:567)
+	at com.campus.events.acceptance.PermissionsIT.readActivityLockVersion(PermissionsIT.java:558)
+	at com.campus.events.acceptance.PermissionsIT.tc0202_accountAdminHasNoBusinessApproval(PermissionsIT.java:201)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO] Running D-AT-15/16 报名冻结与并发容量
+2026-10-31T18:28:47.814+08:00  INFO 45824 --- [campus-events] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.campus.events.acceptance.RegistrationCapacityIT]: RegistrationCapacityIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-31T18:28:47.815+08:00  INFO 45824 --- [campus-events] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.RegistrationCapacityIT
+2026-10-31T18:28:47.865+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+2026-10-31T18:28:47.871+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_0bc8d7e5860f4787803d621c94816d85"."flyway_schema_history" does not exist yet
+2026-10-31T18:28:47.871+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.002s)
+2026-10-31T18:28:47.876+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_0bc8d7e5860f4787803d621c94816d85"."flyway_schema_history" ...
+2026-10-31T18:28:47.911+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_0bc8d7e5860f4787803d621c94816d85": << Empty Schema >>
+2026-10-31T18:28:47.916+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_0bc8d7e5860f4787803d621c94816d85" to version "1 - schema"
+2026-10-31T18:28:47.990+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_0bc8d7e5860f4787803d621c94816d85", now at version v1 (execution time 00:00.070s)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-31T18:28:48.156+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.acceptance.RegistrationCapacityIT  : Starting RegistrationCapacityIT using Java 21.0.12.1 with PID 45824 (started by admin in D:\JLU\软件综合实践\.doc-work\pm-followup-2026-10-31\candidate\server)
+2026-10-31T18:28:48.156+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.acceptance.RegistrationCapacityIT  : The following 1 profile is active: "test"
+2026-10-31T18:28:48.241+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2026-10-31T18:28:48.242+08:00  INFO 45824 --- [campus-events] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-31T18:28:48.242+08:00  INFO 45824 --- [campus-events] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-10-31T18:28:48.259+08:00  INFO 45824 --- [campus-events] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-10-31T18:28:48.259+08:00  INFO 45824 --- [campus-events] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 103 ms
+2026-10-31T18:28:48.274+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
+2026-10-31T18:28:48.300+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-7 - Added connection org.postgresql.jdbc.PgConnection@5f638200
+2026-10-31T18:28:48.300+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
+2026-10-31T18:28:48.301+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_0bc8d7e5860f4787803d621c94816d85 (PostgreSQL 17.6)
+2026-10-31T18:28:48.309+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.004s)
+2026-10-31T18:28:48.337+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_0bc8d7e5860f4787803d621c94816d85": 1
+2026-10-31T18:28:48.337+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Schema "t_0bc8d7e5860f4787803d621c94816d85" is up to date. No migration necessary.
+2026-10-31T18:28:48.551+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 49493 (http) with context path '/'
+2026-10-31T18:28:48.552+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.acceptance.RegistrationCapacityIT  : Started RegistrationCapacityIT in 0.407 seconds (process running for 15.707)
+2026-10-31T18:28:48.559+08:00  INFO 45824 --- [campus-events] [o-auto-7-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-31T18:28:48.559+08:00  INFO 45824 --- [campus-events] [o-auto-7-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-31T18:28:48.559+08:00  INFO 45824 --- [campus-events] [o-auto-7-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-10-31T18:28:49.962+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-10-31T18:28:49.965+08:00  INFO 45824 --- [campus-events] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-10-31T18:28:49.967+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown initiated...
+2026-10-31T18:28:49.968+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown completed.
+[ERROR] Tests run: 4, Failures: 2, Errors: 2, Skipped: 0, Time elapsed: 2.163 s <<< FAILURE! -- in D-AT-15/16 报名冻结与并发容量
+[ERROR] com.campus.events.acceptance.RegistrationCapacityIT.pendingChangeFreezesRegistrationUntilTerminal -- Time elapsed: 0.222 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 创建改期应成功：{"error":{"message":"记录不存在","details":{},"code":"NOT_FOUND"},"requestId":"8ef02437-f022-4539-9a72-29103989a5d3"} ==> expected: <201> but was: <404>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at com.campus.events.acceptance.RegistrationCapacityIT.pendingChangeFreezesRegistrationUntilTerminal(RegistrationCapacityIT.java:94)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.acceptance.RegistrationCapacityIT.concurrentJoinOnCapacityOneYieldsSingleActive -- Time elapsed: 1.050 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 20 并发 JOIN 应恰 1 个 200；实际HTTP状态/错误码分布={503:INTERNAL_ERROR=20} ==> expected: <1> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:166)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:664)
+	at com.campus.events.acceptance.RegistrationCapacityIT.concurrentJoinOnCapacityOneYieldsSingleActive(RegistrationCapacityIT.java:149)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.acceptance.RegistrationCapacityIT.repeatedJoinByWinnerDoesNotIncreaseCount -- Time elapsed: 0.026 s <<< ERROR!
+org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+	at org.springframework.dao.support.DataAccessUtils.nullableSingleResult(DataAccessUtils.java:194)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:890)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:918)
+	at com.campus.events.acceptance.RegistrationCapacityIT.activeWinner(RegistrationCapacityIT.java:283)
+	at com.campus.events.acceptance.RegistrationCapacityIT.repeatedJoinByWinnerDoesNotIncreaseCount(RegistrationCapacityIT.java:165)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.acceptance.RegistrationCapacityIT.withdrawReleasesCapacityForAnotherStudent -- Time elapsed: 0.025 s <<< ERROR!
+org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+	at org.springframework.dao.support.DataAccessUtils.nullableSingleResult(DataAccessUtils.java:194)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:890)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForObject(JdbcTemplate.java:918)
+	at com.campus.events.acceptance.RegistrationCapacityIT.activeWinner(RegistrationCapacityIT.java:283)
+	at com.campus.events.acceptance.RegistrationCapacityIT.withdrawReleasesCapacityForAnotherStudent(RegistrationCapacityIT.java:180)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO] Running QA-04 / D-AT-22 策略评测执行器（SchedulingBenchmarkIT）
+2026-10-31T18:28:49.973+08:00  INFO 45824 --- [campus-events] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.campus.events.acceptance.SchedulingBenchmarkIT]: SchedulingBenchmarkIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-10-31T18:28:49.974+08:00  INFO 45824 --- [campus-events] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.SchedulingBenchmarkIT
+2026-10-31T18:28:50.022+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+2026-10-31T18:28:50.029+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_a60724a2bdd841d1b343156089bbba00"."flyway_schema_history" does not exist yet
+2026-10-31T18:28:50.030+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.002s)
+2026-10-31T18:28:50.036+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_a60724a2bdd841d1b343156089bbba00"."flyway_schema_history" ...
+2026-10-31T18:28:50.067+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_a60724a2bdd841d1b343156089bbba00": << Empty Schema >>
+2026-10-31T18:28:50.072+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_a60724a2bdd841d1b343156089bbba00" to version "1 - schema"
+2026-10-31T18:28:50.150+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_a60724a2bdd841d1b343156089bbba00", now at version v1 (execution time 00:00.075s)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-31T18:28:50.282+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.acceptance.SchedulingBenchmarkIT   : Starting SchedulingBenchmarkIT using Java 21.0.12.1 with PID 45824 (started by admin in D:\JLU\软件综合实践\.doc-work\pm-followup-2026-10-31\candidate\server)
+2026-10-31T18:28:50.282+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.acceptance.SchedulingBenchmarkIT   : The following 1 profile is active: "test"
+2026-10-31T18:28:50.377+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Starting...
+2026-10-31T18:28:50.399+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-8 - Added connection org.postgresql.jdbc.PgConnection@418e1cd6
+2026-10-31T18:28:50.399+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Start completed.
+2026-10-31T18:28:50.400+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_a60724a2bdd841d1b343156089bbba00 (PostgreSQL 17.6)
+2026-10-31T18:28:50.409+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.004s)
+2026-10-31T18:28:50.435+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_a60724a2bdd841d1b343156089bbba00": 1
+2026-10-31T18:28:50.435+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Schema "t_a60724a2bdd841d1b343156089bbba00" is up to date. No migration necessary.
+2026-10-31T18:28:50.653+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.acceptance.SchedulingBenchmarkIT   : Started SchedulingBenchmarkIT in 0.381 seconds (process running for 17.808)
+2026-10-31T18:28:54.232+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown initiated...
+2026-10-31T18:28:54.233+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown completed.
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.262 s -- in QA-04 / D-AT-22 策略评测执行器（SchedulingBenchmarkIT）
+[INFO] Running com.campus.events.acceptance.SeederRollbackIT
+2026-10-31T18:28:54.282+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+2026-10-31T18:28:54.288+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_110dafbdba904df2a7f0963ae5b9ca31"."flyway_schema_history" does not exist yet
+2026-10-31T18:28:54.288+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.002s)
+2026-10-31T18:28:54.293+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_110dafbdba904df2a7f0963ae5b9ca31"."flyway_schema_history" ...
+2026-10-31T18:28:54.321+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_110dafbdba904df2a7f0963ae5b9ca31": << Empty Schema >>
+2026-10-31T18:28:54.326+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_110dafbdba904df2a7f0963ae5b9ca31" to version "1 - schema"
+2026-10-31T18:28:54.411+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_110dafbdba904df2a7f0963ae5b9ca31", now at version v1 (execution time 00:00.080s)
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.585 s -- in com.campus.events.acceptance.SeederRollbackIT
+[INFO] Running com.campus.events.activity.ActivityRegistrationIT
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-31T18:28:54.868+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.activity.ActivityRegistrationIT    : Starting ActivityRegistrationIT using Java 21.0.12.1 with PID 45824 (started by admin in D:\JLU\软件综合实践\.doc-work\pm-followup-2026-10-31\candidate\server)
+2026-10-31T18:28:54.868+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.activity.ActivityRegistrationIT    : The following 1 profile is active: "test"
+2026-10-31T18:28:54.990+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Starting...
+2026-10-31T18:28:55.013+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Added connection org.postgresql.jdbc.PgConnection@e0c6e2c
+2026-10-31T18:28:55.013+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Start completed.
+2026-10-31T18:28:55.015+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=an_06640d39686943a1a64c8e59c5e46e48 (PostgreSQL 17.6)
+2026-10-31T18:28:55.022+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "an_06640d39686943a1a64c8e59c5e46e48"."flyway_schema_history" does not exist yet
+2026-10-31T18:28:55.023+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.002s)
+2026-10-31T18:28:55.029+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "an_06640d39686943a1a64c8e59c5e46e48"."flyway_schema_history" ...
+2026-10-31T18:28:55.065+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "an_06640d39686943a1a64c8e59c5e46e48": << Empty Schema >>
+2026-10-31T18:28:55.068+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "an_06640d39686943a1a64c8e59c5e46e48" to version "1 - schema"
+2026-10-31T18:28:55.149+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "an_06640d39686943a1a64c8e59c5e46e48", now at version v1 (execution time 00:00.077s)
+2026-10-31T18:28:55.372+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-31T18:28:55.372+08:00  INFO 45824 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-31T18:28:55.373+08:00  INFO 45824 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-31T18:28:55.377+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.activity.ActivityRegistrationIT    : Started ActivityRegistrationIT in 0.548 seconds (process running for 22.531)
+2026-10-31T18:29:39.860+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown initiated...
+2026-10-31T18:29:39.862+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown completed.
+[INFO] Tests run: 35, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 45.04 s -- in com.campus.events.activity.ActivityRegistrationIT
+[INFO] Running CM-01 DemoDataSeeder 导入顺序与幂等回归
+2026-10-31T18:29:39.911+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+2026-10-31T18:29:39.917+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_e629da62f57a4558ac66472a7a272b2e"."flyway_schema_history" does not exist yet
+2026-10-31T18:29:39.917+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.002s)
+2026-10-31T18:29:39.922+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_e629da62f57a4558ac66472a7a272b2e"."flyway_schema_history" ...
+2026-10-31T18:29:39.953+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_e629da62f57a4558ac66472a7a272b2e": << Empty Schema >>
+2026-10-31T18:29:39.959+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_e629da62f57a4558ac66472a7a272b2e" to version "1 - schema"
+2026-10-31T18:29:40.027+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_e629da62f57a4558ac66472a7a272b2e", now at version v1 (execution time 00:00.064s)
+2026-10-31T18:29:40.119+08:00  INFO 45824 --- [campus-events] [           main] com.campus.events.dev.DemoDataSeeder     : 演示数据导入完成：组织 2、用户 9、资源 12、活动 2、预约 4、报名 1（演示日期 2030-10-20）
+2026-10-31T18:29:40.219+08:00  INFO 45824 --- [campus-events] [           main] com.campus.events.dev.DemoDataSeeder     : 演示数据导入完成：组织 0、用户 0、资源 0、活动 0、预约 0、报名 0（演示日期 2030-10-20）
+2026-10-31T18:29:40.344+08:00  INFO 45824 --- [campus-events] [           main] com.campus.events.dev.DemoDataSeeder     : 演示数据导入完成：组织 0、用户 0、资源 0、活动 0、预约 0、报名 0（演示日期 2030-10-20）
+2026-10-31T18:29:40.591+08:00  INFO 45824 --- [campus-events] [           main] com.campus.events.dev.DemoDataSeeder     : 演示数据导入完成：组织 0、用户 1、资源 0、活动 0、预约 0、报名 0（演示日期 2030-10-20）
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.817 s -- in CM-01 DemoDataSeeder 导入顺序与幂等回归
+[INFO] Running com.campus.events.foundation.FoundationIT
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-31T18:29:40.718+08:00  INFO 45824 --- [campus-events] [           main] c.campus.events.foundation.FoundationIT  : Starting FoundationIT using Java 21.0.12.1 with PID 45824 (started by admin in D:\JLU\软件综合实践\.doc-work\pm-followup-2026-10-31\candidate\server)
+2026-10-31T18:29:40.719+08:00  INFO 45824 --- [campus-events] [           main] c.campus.events.foundation.FoundationIT  : The following 1 profile is active: "test"
+2026-10-31T18:29:40.807+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Starting...
+2026-10-31T18:29:40.830+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-10 - Added connection org.postgresql.jdbc.PgConnection@148a0dec
+2026-10-31T18:29:40.830+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Start completed.
+2026-10-31T18:29:40.831+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_426d15a6dee64d95ad372b9798aef7fb (PostgreSQL 17.6)
+2026-10-31T18:29:40.838+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_426d15a6dee64d95ad372b9798aef7fb"."flyway_schema_history" does not exist yet
+2026-10-31T18:29:40.839+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.002s)
+2026-10-31T18:29:40.844+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_426d15a6dee64d95ad372b9798aef7fb"."flyway_schema_history" ...
+2026-10-31T18:29:40.876+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_426d15a6dee64d95ad372b9798aef7fb": << Empty Schema >>
+2026-10-31T18:29:40.880+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_426d15a6dee64d95ad372b9798aef7fb" to version "1 - schema"
+2026-10-31T18:29:40.945+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_426d15a6dee64d95ad372b9798aef7fb", now at version v1 (execution time 00:00.061s)
+2026-10-31T18:29:41.167+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-31T18:29:41.167+08:00  INFO 45824 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-31T18:29:41.167+08:00  INFO 45824 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-31T18:29:41.169+08:00  INFO 45824 --- [campus-events] [           main] c.campus.events.foundation.FoundationIT  : Started FoundationIT in 0.484 seconds (process running for 68.323)
+2026-10-31T18:29:46.820+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown initiated...
+2026-10-31T18:29:46.821+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown completed.
+[INFO] Tests run: 22, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.140 s -- in com.campus.events.foundation.FoundationIT
+[INFO] Running com.campus.events.foundation.PublishedModulesIT
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-31T18:29:46.862+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.foundation.PublishedModulesIT      : Starting PublishedModulesIT using Java 21.0.12.1 with PID 45824 (started by admin in D:\JLU\软件综合实践\.doc-work\pm-followup-2026-10-31\candidate\server)
+2026-10-31T18:29:46.862+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.foundation.PublishedModulesIT      : The following 1 profile is active: "test"
+2026-10-31T18:29:46.941+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Starting...
+2026-10-31T18:29:46.965+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-11 - Added connection org.postgresql.jdbc.PgConnection@7d7760b3
+2026-10-31T18:29:46.965+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Start completed.
+2026-10-31T18:29:46.965+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_641bd3c87fa2490ead18d3fdfcca0834 (PostgreSQL 17.6)
+2026-10-31T18:29:46.973+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_641bd3c87fa2490ead18d3fdfcca0834"."flyway_schema_history" does not exist yet
+2026-10-31T18:29:46.973+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.002s)
+2026-10-31T18:29:46.980+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_641bd3c87fa2490ead18d3fdfcca0834"."flyway_schema_history" ...
+2026-10-31T18:29:47.014+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_641bd3c87fa2490ead18d3fdfcca0834": << Empty Schema >>
+2026-10-31T18:29:47.026+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_641bd3c87fa2490ead18d3fdfcca0834" to version "1 - schema"
+2026-10-31T18:29:47.105+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_641bd3c87fa2490ead18d3fdfcca0834", now at version v1 (execution time 00:00.074s)
+2026-10-31T18:29:47.310+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-31T18:29:47.310+08:00  INFO 45824 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-31T18:29:47.310+08:00  INFO 45824 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-31T18:29:47.312+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.foundation.PublishedModulesIT      : Started PublishedModulesIT in 0.485 seconds (process running for 74.467)
+2026-10-31T18:29:48.913+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Shutdown initiated...
+2026-10-31T18:29:48.914+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Shutdown completed.
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.091 s -- in com.campus.events.foundation.PublishedModulesIT
+[INFO] Running com.campus.events.foundation.StandardMavenSchemaIT
+2026-10-31T18:29:48.964+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+2026-10-31T18:29:48.971+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_9edc0f57d3844d218c9462945bcabfaa"."flyway_schema_history" does not exist yet
+2026-10-31T18:29:48.971+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.002s)
+2026-10-31T18:29:48.977+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_9edc0f57d3844d218c9462945bcabfaa"."flyway_schema_history" ...
+2026-10-31T18:29:49.008+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_9edc0f57d3844d218c9462945bcabfaa": << Empty Schema >>
+2026-10-31T18:29:49.012+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_9edc0f57d3844d218c9462945bcabfaa" to version "1 - schema"
+2026-10-31T18:29:49.084+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_9edc0f57d3844d218c9462945bcabfaa", now at version v1 (execution time 00:00.068s)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-31T18:29:49.095+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.foundation.StandardMavenSchemaIT   : Starting StandardMavenSchemaIT using Java 21.0.12.1 with PID 45824 (started by admin in D:\JLU\软件综合实践\.doc-work\pm-followup-2026-10-31\candidate\server)
+2026-10-31T18:29:49.095+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.foundation.StandardMavenSchemaIT   : The following 1 profile is active: "test"
+2026-10-31T18:29:49.189+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Starting...
+2026-10-31T18:29:49.211+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-12 - Added connection org.postgresql.jdbc.PgConnection@6e997547
+2026-10-31T18:29:49.211+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Start completed.
+2026-10-31T18:29:49.212+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_9edc0f57d3844d218c9462945bcabfaa (PostgreSQL 17.6)
+2026-10-31T18:29:49.220+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.003s)
+2026-10-31T18:29:49.243+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_9edc0f57d3844d218c9462945bcabfaa": 1
+2026-10-31T18:29:49.243+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Schema "t_9edc0f57d3844d218c9462945bcabfaa" is up to date. No migration necessary.
+2026-10-31T18:29:49.455+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.foundation.StandardMavenSchemaIT   : Started StandardMavenSchemaIT in 0.369 seconds (process running for 76.61)
+2026-10-31T18:29:49.535+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Shutdown initiated...
+2026-10-31T18:29:49.575+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Shutdown completed.
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.660 s -- in com.campus.events.foundation.StandardMavenSchemaIT
+[INFO] Running com.campus.events.resource.ResourceSchedulingIT
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-31T18:29:49.614+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.resource.ResourceSchedulingIT      : Starting ResourceSchedulingIT using Java 21.0.12.1 with PID 45824 (started by admin in D:\JLU\软件综合实践\.doc-work\pm-followup-2026-10-31\candidate\server)
+2026-10-31T18:29:49.614+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.resource.ResourceSchedulingIT      : The following 1 profile is active: "test"
+2026-10-31T18:29:49.682+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Starting...
+2026-10-31T18:29:49.705+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-13 - Added connection org.postgresql.jdbc.PgConnection@13674b28
+2026-10-31T18:29:49.705+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Start completed.
+2026-10-31T18:29:49.706+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_8f9147236b724bc79acb50e6226fec45 (PostgreSQL 17.6)
+2026-10-31T18:29:49.711+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_8f9147236b724bc79acb50e6226fec45"."flyway_schema_history" does not exist yet
+2026-10-31T18:29:49.712+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.002s)
+2026-10-31T18:29:49.717+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_8f9147236b724bc79acb50e6226fec45"."flyway_schema_history" ...
+2026-10-31T18:29:49.748+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_8f9147236b724bc79acb50e6226fec45": << Empty Schema >>
+2026-10-31T18:29:49.751+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_8f9147236b724bc79acb50e6226fec45" to version "1 - schema"
+2026-10-31T18:29:49.830+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_8f9147236b724bc79acb50e6226fec45", now at version v1 (execution time 00:00.075s)
+2026-10-31T18:29:50.043+08:00  INFO 45824 --- [campus-events] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-31T18:29:50.043+08:00  INFO 45824 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-31T18:29:50.043+08:00  INFO 45824 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-31T18:29:50.045+08:00  INFO 45824 --- [campus-events] [           main] c.c.e.resource.ResourceSchedulingIT      : Started ResourceSchedulingIT in 0.464 seconds (process running for 77.199)
+2026-10-31T18:29:58.823+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Shutdown initiated...
+2026-10-31T18:29:58.825+08:00  INFO 45824 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Shutdown completed.
+[WARNING] Tests run: 30, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 9.248 s -- in com.campus.events.resource.ResourceSchedulingIT
+[INFO] Running DS-01 V1 迁移验证 v3.0（SchemaIT）
+2026-10-31T18:29:58.871+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+2026-10-31T18:29:58.877+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_a569e1f287dc4be5a93deadc5524eaf3"."flyway_schema_history" does not exist yet
+2026-10-31T18:29:58.878+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.002s)
+2026-10-31T18:29:58.883+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_a569e1f287dc4be5a93deadc5524eaf3"."flyway_schema_history" ...
+2026-10-31T18:29:58.913+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_a569e1f287dc4be5a93deadc5524eaf3": << Empty Schema >>
+2026-10-31T18:29:58.917+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_a569e1f287dc4be5a93deadc5524eaf3" to version "1 - schema"
+2026-10-31T18:29:58.989+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_a569e1f287dc4be5a93deadc5524eaf3", now at version v1 (execution time 00:00.068s)
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.148 s -- in DS-01 V1 迁移验证 v3.0（SchemaIT）
+[INFO] Running com.campus.events.scheduling.DsStrategyBenchmarkIT
+2026-10-31T18:30:02.027+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+2026-10-31T18:30:02.035+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_5508986af7ab4370851ea4587802c571"."flyway_schema_history" does not exist yet
+2026-10-31T18:30:02.035+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.003s)
+2026-10-31T18:30:02.041+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_5508986af7ab4370851ea4587802c571"."flyway_schema_history" ...
+2026-10-31T18:30:02.073+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_5508986af7ab4370851ea4587802c571": << Empty Schema >>
+2026-10-31T18:30:02.079+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_5508986af7ab4370851ea4587802c571" to version "1 - schema"
+2026-10-31T18:30:02.153+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_5508986af7ab4370851ea4587802c571", now at version v1 (execution time 00:00.070s)
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 53.10 s -- in com.campus.events.scheduling.DsStrategyBenchmarkIT
+[INFO] Running com.campus.events.support.DbTestSupportIT
+2026-10-31T18:30:55.126+08:00  INFO 45824 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+2026-10-31T18:30:55.136+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_4229627d70fb438a897529a100dd9000"."flyway_schema_history" does not exist yet
+2026-10-31T18:30:55.136+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.004s)
+2026-10-31T18:30:55.142+08:00  INFO 45824 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_4229627d70fb438a897529a100dd9000"."flyway_schema_history" ...
+2026-10-31T18:30:55.177+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_4229627d70fb438a897529a100dd9000": << Empty Schema >>
+2026-10-31T18:30:55.205+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_4229627d70fb438a897529a100dd9000" to version "1 - schema"
+2026-10-31T18:30:55.277+08:00  INFO 45824 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_4229627d70fb438a897529a100dd9000", now at version v1 (execution time 00:00.070s)
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.512 s -- in com.campus.events.support.DbTestSupportIT
+[INFO]
+[INFO] Results:
+[INFO]
+[ERROR] Failures:
+[ERROR]   BookingConcurrencyIT.tc0701_concurrentResourceConfirmExactlyOneWins:81->createApprovedUnreserved:140 提交活动失败：{"error":{"message":"活动事件端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"53bb584e-168b-4794-840e-04230a505f00"} ==> expected: <200> but was: <503>
+[ERROR]   CancellationRaceIT.cancelRacesResourceDecisionToConsistentTerminalState:140 创建改期应成功：{"error":{"message":"记录不存在","details":{},"code":"NOT_FOUND"},"requestId":"7f686643-245b-430e-b827-59bae5aa0a7b"} ==> expected: <201> but was: <404>
+[ERROR]   CancellationRaceIT.cancelTwiceDoesNotOverReleaseNorRevive:76 创建改期应成功：{"error":{"message":"记录不存在","details":{},"code":"NOT_FOUND"},"requestId":"783b1d83-622a-475d-a91d-4db63b52cf08"} ==> expected: <201> but was: <404>
+[ERROR]   ChangeRollbackIT.tc1101_staffRejectKeepsOriginalPlan:98->readActivityVersion:380->readActivityFieldInt:385 读取活动失败：{"error":{"message":"改期端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"ed36d5bd-a092-4f43-b0c1-2b70b4d2b170"} ==> expected: <200> but was: <503>
+[ERROR]   ChangeRollbackIT.tc1102_approverRejectKeepsOriginalPlan:140->readActivityVersion:380->readActivityFieldInt:385 读取活动失败：{"error":{"message":"改期端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"91494502-4164-47d5-88ae-43c25f66f57d"} ==> expected: <200> but was: <503>
+[ERROR]   ChangeRollbackIT.tc1201_finalConfirmationConflictedWhenPreempted:181->readActivityVersion:380->readActivityFieldInt:385 读取活动失败：{"error":{"message":"改期端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"33984ce8-82cb-40f2-aea8-8f5f879d93ab"} ==> expected: <200> but was: <503>
+[ERROR]   ChangeRollbackIT.tc1301_schedulePreviewExcludesSelf:225->readActivityVersion:380->readActivityFieldInt:385 读取活动失败：{"error":{"message":"改期端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"34163b38-094f-42ba-8742-a5d5c1f813a4"} ==> expected: <200> but was: <503>
+[ERROR]   ChangeRollbackIT.tc1401_replaceReservationsFailureRollsBack:261->readActivityVersion:380->readActivityFieldInt:385 读取活动失败：{"error":{"message":"改期端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"369c5979-dd9e-4488-8fee-8dfd8ac26fd8"} ==> expected: <200> but was: <503>
+[ERROR]   IdentityEligibilityIT.nat01_identitySeparateFromRole:113->createSubmittedActivity:644 提交活动失败：{"error":{"message":"活动事件端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"39489c85-5763-4998-8469-06ace4a97f29"} ==> expected: <200> but was: <503>
+[ERROR]   IdentityEligibilityIT.nat02_eligibilityMatrixEightCombos:177->verifyCombo:593 教师×双允许(3111/3211) 提交失败：{"error":{"message":"活动事件端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"96dd4556-6254-457f-8edc-196b62535810"} ==> expected: <200> but was: <503>
+[ERROR]   IdentityEligibilityIT.nat03_candidateFiltersIneligibleAndDirectSubmitRejected:188->readActivityVersion:675->readActivityFieldInt:684 读取活动失败：{"error":{"message":"改期端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"40b36e85-1e40-470b-a2dc-54aceeb7dcd0"} ==> expected: <200> but was: <503>
+[ERROR]   IdentityEligibilityIT.nat04_identityChangeUsesLatestForPending:236->createSubmittedActivity:644 提交活动失败：{"error":{"message":"活动事件端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"dcec3315-e773-4dc8-864b-a9b3a35d5229"} ==> expected: <200> but was: <503>
+[ERROR]   IdentityEligibilityIT.nat05_ownerCannotSelfApproveOrConfirm:320->createSubmittedActivity:644 提交活动失败：{"error":{"message":"活动事件端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"cf35eb64-f22c-45cb-89ed-3c086ab99a03"} ==> expected: <200> but was: <503>
+[ERROR]   IdentityEligibilityIT.nat06_scopePartialAndDisabledStaff:422->createSubmittedActivity:644 提交活动失败：{"error":{"message":"活动事件端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"698366a4-d720-4b7d-8510-7d49d0f405d9"} ==> expected: <200> but was: <503>
+[ERROR]   NotificationConsistencyIT.consumerFailureRecoversAndDuplicateDeliveryIsIdempotent:89 创建改期应成功：{"error":{"message":"记录不存在","details":{},"code":"NOT_FOUND"},"requestId":"175cb2dc-aa5e-4646-8f6d-77f81d4cdd9b"} ==> expected: <201> but was: <404>
+[ERROR]   PermissionsIT.tc0201_approverFromOtherOrgCannotDecide:186->readActivityLockVersion:558->readActivityFieldInt:567 读取活动失败：{"error":{"message":"改期端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"7f3b5e41-682c-4be4-bb6f-86ef7b134a92"} ==> expected: <200> but was: <503>
+[ERROR]   PermissionsIT.tc0202_accountAdminHasNoBusinessApproval:201->readActivityLockVersion:558->readActivityFieldInt:567 读取活动失败：{"error":{"message":"改期端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"82a51dc7-c7e8-4140-a517-f346d72bb711"} ==> expected: <200> but was: <503>
+[ERROR]   PermissionsIT.tc0203_nonOwnerCannotEdit:216->readActivityLockVersion:558->readActivityFieldInt:567 读取活动失败：{"error":{"message":"改期端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"48c3ef2b-cad7-48cc-b46b-1f6f53c91bed"} ==> expected: <200> but was: <503>
+[ERROR]   PermissionsIT.tc0801_replaySameKeySameBodyReturnsFirstResponse:237->createApprovedUnreserved:546 提交活动失败：{"error":{"message":"活动事件端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"98e0bbbb-dc37-446e-945a-c4da0e137219"} ==> expected: <200> but was: <503>
+[ERROR]   PermissionsIT.tc0802_sameKeyDifferentBodyRejected:284->createApprovedUnreserved:546 提交活动失败：{"error":{"message":"活动事件端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"75e39284-f590-4540-9081-49867bae8d8e"} ==> expected: <200> but was: <503>
+[ERROR]   PermissionsIT.tc2001And02_staleVersionProtection:335 提交失败：{"error":{"message":"活动事件端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"4c3adc53-f579-4584-a33b-1f08d02d2041"} ==> expected: <200> but was: <503>
+[ERROR]   PermissionsIT.tc2103_changeViewRedactedForStaff:436->readActivityVersion:562->readActivityFieldInt:567 读取活动失败：{"error":{"message":"改期端口尚未就绪","details":{},"code":"INTERNAL_ERROR"},"requestId":"95454f80-1f86-455d-b10b-5f29a4a7401c"} ==> expected: <200> but was: <503>
+[ERROR]   RegistrationCapacityIT.concurrentJoinOnCapacityOneYieldsSingleActive:149 20 并发 JOIN 应恰 1 个 200；实际HTTP状态/错误码分布={503:INTERNAL_ERROR=20} ==> expected: <1> but was: <0>
+[ERROR]   RegistrationCapacityIT.pendingChangeFreezesRegistrationUntilTerminal:94 创建改期应成功：{"error":{"message":"记录不存在","details":{},"code":"NOT_FOUND"},"requestId":"8ef02437-f022-4539-9a72-29103989a5d3"} ==> expected: <201> but was: <404>
+[ERROR] Errors:
+[ERROR]   RegistrationCapacityIT.repeatedJoinByWinnerDoesNotIncreaseCount:165->activeWinner:283 » EmptyResultDataAccess Incorrect result size: expected 1, actual 0
+[ERROR]   RegistrationCapacityIT.withdrawReleasesCapacityForAnotherStudent:180->activeWinner:283 » EmptyResultDataAccess Incorrect result size: expected 1, actual 0
+[INFO]
+[ERROR] Tests run: 142, Failures: 24, Errors: 2, Skipped: 1
+[INFO]
+[INFO]
+[INFO] --- failsafe:3.5.6:verify (default) @ campus-events ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  02:29 min
+[INFO] Finished at: 2026-10-31T18:30:55+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-failsafe-plugin:3.5.6:verify (default) on project campus-events: There are test failures.
+[ERROR]
+[ERROR] See D:\JLU\软件综合实践\.doc-work\pm-followup-2026-10-31\candidate\server\target\failsafe-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

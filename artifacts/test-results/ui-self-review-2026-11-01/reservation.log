@@ -1,0 +1,11 @@
+
+Running 2 tests using 1 worker
+
+(node:62720) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62720) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\integration\review-regression.spec.ts:494:1 › 真实通知已读不代签，拒绝及撤回解除报名冻结并保留原安排 (7.7s)
+  ok 2 tests\integration\review-regression.spec.ts:588:1 › 真实改期资源竞争返回409保留旧安排，故障标为AT_RISK (5.2s)
+
+  2 passed (15.8s)

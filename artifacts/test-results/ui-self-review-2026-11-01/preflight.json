@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-11-01T14:35:25.2953417+08:00",
+  "scope": "web, docs/ui and own ui review evidence only",
+  "changedFiles": 176,
+  "textFilesScanned": 68,
+  "privatePasswordMatches": 0,
+  "tokenPatternMatches": 0,
+  "gitDiffCheck": "passed for tracked changes",
+  "rawLogs": "raw output preserved, including original whitespace/encoding",
+  "wordAndOtherModules": "no changes in git status",
+  "lockfile": "unchanged"
+}

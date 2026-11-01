@@ -1,0 +1,18 @@
+
+> campus-sched-web@0.1.0 test:integration
+> playwright test --config playwright.integration.config.ts real-service.spec.ts
+
+
+Running 5 tests using 1 worker
+
+(node:15988) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:15988) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\integration\real-service.spec.ts:21:1 › 真实登录、教师无隐式审批、刷新会话与退出 (1.9s)
+  ok 2 tests\integration\real-service.spec.ts:49:1 › 真实账号创建、完整授权保存与启停持久化 (4.1s)
+  ok 3 tests\integration\real-service.spec.ts:91:1 › 真实资源创建、资格更新与刷新 (1.9s)
+  ok 4 tests\integration\real-service.spec.ts:126:1 › 真实分步创建草稿、修改、调度预览与刷新持久化 (2.4s)
+  ok 5 tests\integration\real-service.spec.ts:182:1 › 管理员更新资格后，真实预览解释具体受限场地并保留草稿 (1.8s)
+
+  5 passed (13.0s)

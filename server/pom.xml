@@ -19,13 +19,20 @@
   <build><plugins>
     <plugin><groupId>org.springframework.boot</groupId><artifactId>spring-boot-maven-plugin</artifactId></plugin>
     <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><configuration><includes><include>**/*Test.java</include></includes><failIfNoTests>true</failIfNoTests></configuration></plugin>
-    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-failsafe-plugin</artifactId><configuration><includes><include>**/*IT.java</include></includes><failIfNoTests>true</failIfNoTests></configuration><executions><execution><goals><goal>integration-test</goal><goal>verify</goal></goals></execution></executions></plugin>
+    <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-failsafe-plugin</artifactId><configuration>
+      <includes><include>**/*IT.java</include></includes><failIfNoTests>true</failIfNoTests>
+      <!-- QA扩展在类初始化时发布test.schema.name；Spring在创建各测试上下文时解析。
+           各模块DynamicPropertySource仍有更高优先级；缺库/缺schema时失败，不回落到public。 -->
+      <systemPropertiesFile>${project.basedir}/.mvn/integration-test.properties</systemPropertiesFile>
+    </configuration><executions><execution><goals><goal>integration-test</goal><goal>verify</goal></goals></execution></executions></plugin>
   </plugins></build>
   <!-- 仅验证PM工作包。默认test/verify始终编译全部源码和验收，不启用本profile。 -->
   <profiles><profile><id>pm-isolated</id><build><plugins>
     <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><configuration>
       <includes><include>com/campus/events/CampusEventsApplication.java</include><include>com/campus/events/foundation/**/*.java</include><include>com/campus/events/auth/**/*.java</include><include>com/campus/events/contract/**/*.java</include></includes>
       <testIncludes><testInclude>com/campus/events/foundation/**/*.java</testInclude><testInclude>com/campus/events/auth/**/*.java</testInclude><testInclude>com/campus/events/contract/**/*.java</testInclude></testIncludes>
+      <!-- 此测试需要已接收的AN/DS生产模块，仅在标准构建中执行；独立PM配置不编译它。 -->
+      <testExcludes><testExclude>**/PublishedModulesIT.java</testExclude><testExclude>**/StandardMavenSchemaIT.java</testExclude></testExcludes>
     </configuration></plugin>
   </plugins></build></profile></profiles>
 </project>

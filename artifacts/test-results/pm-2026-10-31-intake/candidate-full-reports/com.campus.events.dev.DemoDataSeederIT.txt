@@ -1,0 +1,1 @@
+{"class":"com.campus.events.dev.DemoDataSeederIT","tests":3,"failures":0,"errors":0,"skipped":0}

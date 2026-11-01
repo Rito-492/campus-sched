@@ -130,3 +130,14 @@ API-13的mine并集/去重/当前角色、API-14取消后的报名历史豁免�
 ### 2026-10-29 后续验证增量
 
 AN-02～04/API-15～22：补齐其余写接口同键重放，验证原响应、不可变版本及预约/事件不重复；同键异请求体/异路由409。AN-02/API-12、15：容量0/-1/超过预计人数400且无部分写入。AN-03/API-19：过去安排409且预约/事件无新增。AN-04/D-AT-17：取消/改期竞争10次执行。实际隔离verify为25单测+33 PostgreSQL IT，详见activity-module-validation-v1.0.md；不宣称真实CM端口、默认构建或E2E通过。
+
+### 2026-10-31 基线feb0d70标准构建复验
+
+| 任务/接口 | 本轮实际证据 | 完成边界 |
+|---|---|---|
+| AN-02～04 / API-12～23 | 标准Maven POM，25单测+35 PostgreSQL IT，0失败/错误/跳过；日志artifacts/test-results/an-2026-10-31 | AN模块回归通过；CM端口仍为测试实现 |
+| AN-04 / API-21 / D-AT-15 | 三种待处理状态分别拒绝JOIN/WITHDRAW，终态解除冻结，activeChangeId清除 | 真实CM创建/审批/终态流程阻塞 |
+| AN-04 / API-22 / D-AT-17 | 取消全链路回滚与10次取消/版本切换竞争重跑通过 | CM生产cancelPending及append未交付 |
+| AN-02 / API-13、14、ActivityPort / D-AT-20 | review读取回归、版本切换与旧版本退出409、人数保留 | CM待办API与最终改期确认真实联调阻塞 |
+
+Seeder编译阻塞随feb0d70解除。本轮不再使用隔离POM；不代表全仓库测试、M2/M3、通知消费或E2E通过。详细交接见activity-cm-integration-v1.0.md。

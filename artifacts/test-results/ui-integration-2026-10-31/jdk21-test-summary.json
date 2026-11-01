@@ -1,0 +1,258 @@
+[
+  {
+    "suite": "com.campus.events.activity.ActivityServiceTest",
+    "tests": 18,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration": "2.89",
+    "errorsSummary": []
+  },
+  {
+    "suite": "com.campus.events.activity.ActivityStateMachineTest",
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration": "0.04",
+    "errorsSummary": []
+  },
+  {
+    "suite": "com.campus.events.auth.AuthorizationPolicyTest",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration": "0.032",
+    "errorsSummary": []
+  },
+  {
+    "suite": "com.campus.events.contract.ContractValidationTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration": "0.15",
+    "errorsSummary": []
+  },
+  {
+    "suite": "com.campus.events.foundation.CanonicalJsonTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration": "0.241",
+    "errorsSummary": []
+  },
+  {
+    "suite": "com.campus.events.foundation.ResponsesTest",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration": "0.076",
+    "errorsSummary": []
+  },
+  {
+    "suite": "com.campus.events.scheduling.CandidateRankingTest",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration": "0.035",
+    "errorsSummary": []
+  },
+  {
+    "suite": "com.campus.events.scheduling.CapacitySweepTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration": "0.074",
+    "errorsSummary": []
+  },
+  {
+    "suite": "com.campus.events.scheduling.ScheduleQueryServiceTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration": "0.071",
+    "errorsSummary": []
+  },
+  {
+    "suite": "com.campus.events.scheduling.StrategyEvaluatorTest",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration": "0.302",
+    "errorsSummary": []
+  },
+  {
+    "suite": "com.campus.events.scheduling.TimeIntervalTest",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration": "0.014",
+    "errorsSummary": []
+  },
+  {
+    "suite": "com.campus.events.acceptance.BookingConcurrencyIT",
+    "tests": 1,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0,
+    "duration": "3.479",
+    "errorsSummary": [
+      {
+        "test": "",
+        "message": "装载测试数据失败：demo"
+      }
+    ]
+  },
+  {
+    "suite": "com.campus.events.acceptance.CancellationRaceIT",
+    "tests": 1,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0,
+    "duration": "2.55",
+    "errorsSummary": [
+      {
+        "test": "",
+        "message": "装载测试数据失败：demo"
+      }
+    ]
+  },
+  {
+    "suite": "com.campus.events.acceptance.ChangeRollbackIT",
+    "tests": 1,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0,
+    "duration": "2.457",
+    "errorsSummary": [
+      {
+        "test": "",
+        "message": "装载测试数据失败：demo"
+      }
+    ]
+  },
+  {
+    "suite": "com.campus.events.acceptance.IdentityEligibilityIT",
+    "tests": 1,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0,
+    "duration": "2.669",
+    "errorsSummary": [
+      {
+        "test": "",
+        "message": "装载测试数据失败：demo"
+      }
+    ]
+  },
+  {
+    "suite": "com.campus.events.acceptance.NotificationConsistencyIT",
+    "tests": 1,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0,
+    "duration": "2.645",
+    "errorsSummary": [
+      {
+        "test": "",
+        "message": "装载测试数据失败：demo"
+      }
+    ]
+  },
+  {
+    "suite": "com.campus.events.acceptance.PermissionsIT",
+    "tests": 1,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0,
+    "duration": "2.582",
+    "errorsSummary": [
+      {
+        "test": "",
+        "message": "装载测试数据失败：demo"
+      }
+    ]
+  },
+  {
+    "suite": "com.campus.events.acceptance.RegistrationCapacityIT",
+    "tests": 1,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0,
+    "duration": "2.658",
+    "errorsSummary": [
+      {
+        "test": "",
+        "message": "装载测试数据失败：demo"
+      }
+    ]
+  },
+  {
+    "suite": "com.campus.events.acceptance.SchedulingBenchmarkIT",
+    "tests": 1,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0,
+    "duration": "2.545",
+    "errorsSummary": [
+      {
+        "test": "",
+        "message": "装载参考数据失败：demo"
+      }
+    ]
+  },
+  {
+    "suite": "com.campus.events.activity.ActivityRegistrationIT",
+    "tests": 33,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration": "118.517",
+    "errorsSummary": []
+  },
+  {
+    "suite": "com.campus.events.dev.DemoDataSeederIT",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration": "3.869",
+    "errorsSummary": []
+  },
+  {
+    "suite": "com.campus.events.foundation.FoundationIT",
+    "tests": 21,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration": "14.945",
+    "errorsSummary": []
+  },
+  {
+    "suite": "com.campus.events.resource.ResourceSchedulingIT",
+    "tests": 20,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration": "47.645",
+    "errorsSummary": []
+  },
+  {
+    "suite": "com.campus.events.resource.SchemaIT",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "duration": "22.554",
+    "errorsSummary": []
+  }
+]

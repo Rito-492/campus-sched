@@ -1,0 +1,59 @@
+{
+  "metric": "构建产物字节数；gzip逐文件计算；页面包括入口及其静态依赖，不包括其他路由动态依赖",
+  "entry": {
+    "files": [
+      "assets/index--stVsgrX.css",
+      "assets/index-BX-dTF0w.js"
+    ],
+    "jsBytes": 1050697,
+    "jsGzipBytes": 348076,
+    "cssBytes": 372776,
+    "cssGzipBytes": 51114
+  },
+  "login": {
+    "files": [
+      "assets/LoginPage-CCBLuoj2.js",
+      "assets/index--stVsgrX.css",
+      "assets/index-BX-dTF0w.js"
+    ],
+    "jsBytes": 1053256,
+    "jsGzipBytes": 349516,
+    "cssBytes": 372776,
+    "cssGzipBytes": 51114
+  },
+  "total": {
+    "files": [
+      "assets/ActivitiesPage-Bob7kNf1.js",
+      "assets/ActivityCreatePage-BJoGbVih.js",
+      "assets/ActivityDetailPage-omHkep48.js",
+      "assets/AlternativesPanel.vue_vue_type_script_setup_true_lang-DG98_Alq.js",
+      "assets/CalendarPage-CdE23OYb.js",
+      "assets/change-CjOn2DG7.js",
+      "assets/ChangeDetailPage-gIt74nIu.js",
+      "assets/ChangeWorkspacePage-C20VFvbZ.js",
+      "assets/format-migFoBCL.js",
+      "assets/ImpactPanel.vue_vue_type_script_setup_true_lang-C0ASf5JY.js",
+      "assets/index--stVsgrX.css",
+      "assets/index-BX-dTF0w.js",
+      "assets/LoginPage-CCBLuoj2.js",
+      "assets/MutationFeedback.vue_vue_type_script_setup_true_lang-C956QOBU.js",
+      "assets/NotificationsPage-BhIyD_-Z.js",
+      "assets/PendingPage-OPVqGZPr.js",
+      "assets/PlanSummary.vue_vue_type_script_setup_true_lang-HMytzLHh.js",
+      "assets/ResourceCalendar.vue_vue_type_script_setup_true_lang-BT928c5D.js",
+      "assets/ResourceManagePage-B3roK8gX.js",
+      "assets/UsersPage-BgWO3SPt.js",
+      "assets/UsersPage-InTsJseY.css",
+      "assets/validation-Dc3vNH7X.js"
+    ],
+    "jsBytes": 1172099,
+    "jsGzipBytes": 399478,
+    "cssBytes": 375122,
+    "cssGzipBytes": 51887
+  },
+  "largestJavaScript": {
+    "file": "assets/index-BX-dTF0w.js",
+    "bytes": 1050697,
+    "gzipBytes": 348076
+  }
+}

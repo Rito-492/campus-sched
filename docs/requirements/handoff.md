@@ -131,3 +131,11 @@
 - 仅扩展本人ActivityRegistrationIT：其余写路由幂等重放、同键异请求拒绝、非法容量创建/编辑回滚、过去安排资源确认拒绝；取消/改期竞争由3次增至10次。生产代码与公共契约无变更。
 - 隔离verify真实通过25单测+33 PostgreSQL IT，0失败/错误/跳过；证据见artifacts/test-results/an-2026-10-29-followup，复现入口见activity-module-validation-v1.0.md。默认构建本轮未重跑，不将隔离构建等同产品完整验收。
 - 下一接收：PM/QA复核PR #11；CM仍须交真实ChangePort/EventPort与种子编译修复。列表剩余N+1优化、PM契约待决项、默认构建及重启/E2E联调仍未完成。尚未接收。
+
+## 标准构建与CM接入核验（2026-10-31）
+
+- 冯玉琪22220314；AN-02～05；基线main=feb0d70，work/22220314-activity安全快进同步，无未提交修改丢失。PR #11已合入，不重复开发生产业务。
+- 标准server/pom.xml回归已实际通过：25单测+35真实PostgreSQL IT，0失败/错误/跳过。未使用此前隔离POM，Seeder编译阻塞已解除；执行的是AN测试集合，不是全仓库验收。
+- 本轮仅补强三种改期待处理状态的报名/退出冻结、详情activeChangeId清除，以及切换版本后旧版本请求拒绝且报名保留；已有取消、待办、版本回滚和API-12～23回归重跑。证据artifacts/test-results/an-2026-10-31，命令与限制见activity-cm-integration-v1.0.md。
+- **真实CM接入阻塞**：feb0d70仍只有ChangePort/EventPort接口，生产实现未交付；现有IT继续使用显式测试替身。提供者CM杨瀚霖；需生产pendingId/hasPending/cancelPending/append及改期调用链后复验。不得宣称M2/M3完成。
+- 下一接收：CM交生产端口，PM/QA交叉评审本轮结果，UI了解待办与版本字段仍受真实CM依赖限制。通知消费、重启一致性和E2E未验证，尚未接收。此前记录中的默认构建失败为历史结果，以本节标准AN回归通过状态为准。

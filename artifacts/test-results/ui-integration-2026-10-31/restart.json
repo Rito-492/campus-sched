@@ -1,0 +1,7 @@
+{
+  "stoppedPid": 61788,
+  "restartedAt": "2026-10-31T16:42:31.3533420+08:00",
+  "reseed": false,
+  "scope": "UI partial persistence only",
+  "postgresRestarted": false
+}

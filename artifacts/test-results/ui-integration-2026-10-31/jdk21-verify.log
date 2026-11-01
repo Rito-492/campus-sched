@@ -1,0 +1,566 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.campus:campus-events >----------------------
+[INFO] Building У԰�Эͬ����Դ����ϵͳ 0.1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ campus-events ---
+[INFO] Copying 4 resources from src\main\resources to target\classes
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ campus-events ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 102 source files with javac [debug parameters release 21] to target\classes
+[INFO] /D:/code/01_projects/project/campus-sched/server/src/main/java/com/campus/events/foundation/CanonicalJson.java: D:\code\01_projects\project\campus-sched\server\src\main\java\com\campus\events\foundation\CanonicalJson.javaʹ�û򸲸����ѹ�ʱ�� API��
+[INFO] /D:/code/01_projects/project/campus-sched/server/src/main/java/com/campus/events/foundation/CanonicalJson.java: �й���ϸ��Ϣ, ��ʹ�� -Xlint:deprecation ���±��롣
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ campus-events ---
+[INFO] skip non existing resourceDirectory D:\code\01_projects\project\campus-sched\server\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ campus-events ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 27 source files with javac [debug parameters release 21] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ campus-events ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.campus.events.activity.ActivityServiceTest
+16:33:07.845 [main] INFO org.hibernate.validator.internal.util.Version -- HV000001: Hibernate Validator 8.0.3.Final
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (C:\Users\yangchang\.m2\repository\net\bytebuddy\byte-buddy-agent\1.17.8\byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+Java HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.890 s -- in com.campus.events.activity.ActivityServiceTest
+[INFO] Running com.campus.events.activity.ActivityStateMachineTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.040 s -- in com.campus.events.activity.ActivityStateMachineTest
+[INFO] Running com.campus.events.auth.AuthorizationPolicyTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.032 s -- in com.campus.events.auth.AuthorizationPolicyTest
+[INFO] Running com.campus.events.contract.ContractValidationTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.150 s -- in com.campus.events.contract.ContractValidationTest
+[INFO] Running com.campus.events.foundation.CanonicalJsonTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.241 s -- in com.campus.events.foundation.CanonicalJsonTest
+[INFO] Running com.campus.events.foundation.ResponsesTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.076 s -- in com.campus.events.foundation.ResponsesTest
+[INFO] Running com.campus.events.scheduling.CandidateRankingTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 s -- in com.campus.events.scheduling.CandidateRankingTest
+[INFO] Running com.campus.events.scheduling.CapacitySweepTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.074 s -- in com.campus.events.scheduling.CapacitySweepTest
+[INFO] Running com.campus.events.scheduling.ScheduleQueryServiceTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.071 s -- in com.campus.events.scheduling.ScheduleQueryServiceTest
+[INFO] Running com.campus.events.scheduling.StrategyEvaluatorTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.302 s -- in com.campus.events.scheduling.StrategyEvaluatorTest
+[INFO] Running com.campus.events.scheduling.TimeIntervalTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 s -- in com.campus.events.scheduling.TimeIntervalTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 70, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ campus-events ---
+[INFO] Building jar: D:\code\01_projects\project\campus-sched\server\target\campus-events-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot:3.5.16:repackage (repackage) @ campus-events ---
+[INFO] Replacing main artifact D:\code\01_projects\project\campus-sched\server\target\campus-events-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to D:\code\01_projects\project\campus-sched\server\target\campus-events-0.1.0-SNAPSHOT.jar.original
+[INFO] 
+[INFO] --- failsafe:3.5.6:integration-test (default) @ campus-events ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running D-AT-07 �����ͬһ��Դǡһ�ɹ���BookingConcurrencyIT��
+16:33:31.174 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.campus.events.acceptance.BookingConcurrencyIT]: BookingConcurrencyIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:33:31.366 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.BookingConcurrencyIT
+16:33:32.053 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+16:33:32.107 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Schema history table "t_5a7733ecb52b492c852534c2f44b0fa9"."flyway_schema_history" does not exist yet
+16:33:32.111 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 1 migration (execution time 00:00.026s)
+16:33:32.161 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Creating Schema History table "t_5a7733ecb52b492c852534c2f44b0fa9"."flyway_schema_history" ...
+16:33:32.395 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "t_5a7733ecb52b492c852534c2f44b0fa9": << Empty Schema >>
+16:33:32.450 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "t_5a7733ecb52b492c852534c2f44b0fa9" to version "1 - schema"
+16:33:32.757 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 1 migration to schema "t_5a7733ecb52b492c852534c2f44b0fa9", now at version v1 (execution time 00:00.288s)
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 3.479 s <<< FAILURE! -- in D-AT-07 �����ͬһ��Դǡһ�ɹ���BookingConcurrencyIT��
+[ERROR] com.campus.events.acceptance.BookingConcurrencyIT -- Time elapsed: 3.479 s <<< ERROR!
+java.lang.IllegalStateException: װ�ز�������ʧ�ܣ�demo
+	at com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:161)
+	at com.campus.events.support.DbTestSupport.beforeAll(DbTestSupport.java:130)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table "user_resource_scope" violates foreign key constraint "fk_user_resource_scope_resource"
+  ��ϸ��Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table "resource".
+	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:140)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1556)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:972)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1016)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1026)
+	at com.campus.events.support.DbTestSupport.insertReferenceTables(DbTestSupport.java:236)
+	at com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:157)
+	... 2 more
+Caused by: org.postgresql.util.PSQLException: ERROR: insert or update on table "user_resource_scope" violates foreign key constraint "fk_user_resource_scope_resource"
+  ��ϸ��Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table "resource".
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2904)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2589)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:431)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:534)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:437)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:157)
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:977)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)
+	... 7 more
+
+[INFO] Running D-AT-17 ȡ���뾺��
+16:33:34.560 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.campus.events.acceptance.CancellationRaceIT]: CancellationRaceIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:33:34.564 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.CancellationRaceIT
+16:33:34.775 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+16:33:34.801 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Schema history table "t_da7c6df0e1254e5dbe53ec197e715841"."flyway_schema_history" does not exist yet
+16:33:34.805 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 1 migration (execution time 00:00.015s)
+16:33:34.834 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Creating Schema History table "t_da7c6df0e1254e5dbe53ec197e715841"."flyway_schema_history" ...
+16:33:34.958 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "t_da7c6df0e1254e5dbe53ec197e715841": << Empty Schema >>
+16:33:34.985 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "t_da7c6df0e1254e5dbe53ec197e715841" to version "1 - schema"
+16:33:35.277 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 1 migration to schema "t_da7c6df0e1254e5dbe53ec197e715841", now at version v1 (execution time 00:00.282s)
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.550 s <<< FAILURE! -- in D-AT-17 ȡ���뾺��
+[ERROR] com.campus.events.acceptance.CancellationRaceIT -- Time elapsed: 2.550 s <<< ERROR!
+java.lang.IllegalStateException: װ�ز�������ʧ�ܣ�demo
+	at com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:161)
+	at com.campus.events.support.DbTestSupport.beforeAll(DbTestSupport.java:130)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table "user_resource_scope" violates foreign key constraint "fk_user_resource_scope_resource"
+  ��ϸ��Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table "resource".
+	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:140)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1556)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:972)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1016)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1026)
+	at com.campus.events.support.DbTestSupport.insertReferenceTables(DbTestSupport.java:236)
+	at com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:157)
+	... 2 more
+Caused by: org.postgresql.util.PSQLException: ERROR: insert or update on table "user_resource_scope" violates foreign key constraint "fk_user_resource_scope_resource"
+  ��ϸ��Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table "resource".
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2904)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2589)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:431)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:534)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:437)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:157)
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:977)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)
+	... 7 more
+
+[INFO] Running D-AT-11/12/13/14 ���ھܾ�����ռ�������ų���ع���ChangeRollbackIT��
+16:33:37.124 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.campus.events.acceptance.ChangeRollbackIT]: ChangeRollbackIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:33:37.137 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.ChangeRollbackIT
+16:33:37.358 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+16:33:37.384 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Schema history table "t_9ac743dad5924c9aa15760767b3025a7"."flyway_schema_history" does not exist yet
+16:33:37.385 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 1 migration (execution time 00:00.013s)
+16:33:37.410 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Creating Schema History table "t_9ac743dad5924c9aa15760767b3025a7"."flyway_schema_history" ...
+16:33:37.537 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "t_9ac743dad5924c9aa15760767b3025a7": << Empty Schema >>
+16:33:37.555 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "t_9ac743dad5924c9aa15760767b3025a7" to version "1 - schema"
+16:33:37.854 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 1 migration to schema "t_9ac743dad5924c9aa15760767b3025a7", now at version v1 (execution time 00:00.289s)
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.457 s <<< FAILURE! -- in D-AT-11/12/13/14 ���ھܾ�����ռ�������ų���ع���ChangeRollbackIT��
+[ERROR] com.campus.events.acceptance.ChangeRollbackIT -- Time elapsed: 2.457 s <<< ERROR!
+java.lang.IllegalStateException: װ�ز�������ʧ�ܣ�demo
+	at com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:161)
+	at com.campus.events.support.DbTestSupport.beforeAll(DbTestSupport.java:130)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table "user_resource_scope" violates foreign key constraint "fk_user_resource_scope_resource"
+  ��ϸ��Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table "resource".
+	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:140)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1556)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:972)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1016)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1026)
+	at com.campus.events.support.DbTestSupport.insertReferenceTables(DbTestSupport.java:236)
+	at com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:157)
+	... 2 more
+Caused by: org.postgresql.util.PSQLException: ERROR: insert or update on table "user_resource_scope" violates foreign key constraint "fk_user_resource_scope_resource"
+  ��ϸ��Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table "resource".
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2904)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2589)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:431)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:534)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:437)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:157)
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:977)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)
+	... 7 more
+
+[INFO] Running N-AT-01��06 ���ݡ��ʸ�����Ȩ��Χ��IdentityEligibilityIT��
+16:33:39.584 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.campus.events.acceptance.IdentityEligibilityIT]: IdentityEligibilityIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:33:39.587 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.IdentityEligibilityIT
+16:33:39.751 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+16:33:39.774 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Schema history table "t_25f07a2d0cc549eca925ff52b6f65522"."flyway_schema_history" does not exist yet
+16:33:39.775 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 1 migration (execution time 00:00.012s)
+16:33:39.793 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Creating Schema History table "t_25f07a2d0cc549eca925ff52b6f65522"."flyway_schema_history" ...
+16:33:39.934 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "t_25f07a2d0cc549eca925ff52b6f65522": << Empty Schema >>
+16:33:39.944 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "t_25f07a2d0cc549eca925ff52b6f65522" to version "1 - schema"
+16:33:40.304 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 1 migration to schema "t_25f07a2d0cc549eca925ff52b6f65522", now at version v1 (execution time 00:00.349s)
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.669 s <<< FAILURE! -- in N-AT-01��06 ���ݡ��ʸ�����Ȩ��Χ��IdentityEligibilityIT��
+[ERROR] com.campus.events.acceptance.IdentityEligibilityIT -- Time elapsed: 2.669 s <<< ERROR!
+java.lang.IllegalStateException: װ�ز�������ʧ�ܣ�demo
+	at com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:161)
+	at com.campus.events.support.DbTestSupport.beforeAll(DbTestSupport.java:130)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table "user_resource_scope" violates foreign key constraint "fk_user_resource_scope_resource"
+  ��ϸ��Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table "resource".
+	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:140)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1556)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:972)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1016)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1026)
+	at com.campus.events.support.DbTestSupport.insertReferenceTables(DbTestSupport.java:236)
+	at com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:157)
+	... 2 more
+Caused by: org.postgresql.util.PSQLException: ERROR: insert or update on table "user_resource_scope" violates foreign key constraint "fk_user_resource_scope_resource"
+  ��ϸ��Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table "resource".
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2904)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2589)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:431)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:534)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:437)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:157)
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:977)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)
+	... 7 more
+
+[INFO] Running D-AT-19 ֪ͨһ����
+16:33:42.261 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.NotificationConsistencyIT
+16:33:42.439 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+16:33:42.463 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Schema history table "t_d1839de0a49f4ea1b7be942128ee7394"."flyway_schema_history" does not exist yet
+16:33:42.467 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 1 migration (execution time 00:00.013s)
+16:33:42.489 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Creating Schema History table "t_d1839de0a49f4ea1b7be942128ee7394"."flyway_schema_history" ...
+16:33:42.622 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "t_d1839de0a49f4ea1b7be942128ee7394": << Empty Schema >>
+16:33:42.631 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "t_d1839de0a49f4ea1b7be942128ee7394" to version "1 - schema"
+16:33:42.963 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 1 migration to schema "t_d1839de0a49f4ea1b7be942128ee7394", now at version v1 (execution time 00:00.326s)
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.645 s <<< FAILURE! -- in D-AT-19 ֪ͨһ����
+[ERROR] com.campus.events.acceptance.NotificationConsistencyIT -- Time elapsed: 2.645 s <<< ERROR!
+java.lang.IllegalStateException: װ�ز�������ʧ�ܣ�demo
+	at com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:161)
+	at com.campus.events.support.DbTestSupport.beforeAll(DbTestSupport.java:130)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table "user_resource_scope" violates foreign key constraint "fk_user_resource_scope_resource"
+  ��ϸ��Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table "resource".
+	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:140)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1556)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:972)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1016)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1026)
+	at com.campus.events.support.DbTestSupport.insertReferenceTables(DbTestSupport.java:236)
+	at com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:157)
+	... 2 more
+Caused by: org.postgresql.util.PSQLException: ERROR: insert or update on table "user_resource_scope" violates foreign key constraint "fk_user_resource_scope_resource"
+  ��ϸ��Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table "resource".
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2904)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2589)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:431)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:534)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:437)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:157)
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:977)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)
+	... 7 more
+
+[INFO] Running D-AT-01/02/08/20/21 Ȩ�ޡ��ݵȡ��¾ɰ汾���ȡ���루PermissionsIT��
+16:33:44.907 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.campus.events.acceptance.PermissionsIT]: PermissionsIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:33:44.910 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.PermissionsIT
+16:33:45.102 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+16:33:45.120 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Schema history table "t_b40a5eb37f7e486fa4abee1bc084efad"."flyway_schema_history" does not exist yet
+16:33:45.120 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 1 migration (execution time 00:00.009s)
+16:33:45.143 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Creating Schema History table "t_b40a5eb37f7e486fa4abee1bc084efad"."flyway_schema_history" ...
+16:33:45.275 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "t_b40a5eb37f7e486fa4abee1bc084efad": << Empty Schema >>
+16:33:45.285 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "t_b40a5eb37f7e486fa4abee1bc084efad" to version "1 - schema"
+16:33:45.603 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 1 migration to schema "t_b40a5eb37f7e486fa4abee1bc084efad", now at version v1 (execution time 00:00.309s)
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.582 s <<< FAILURE! -- in D-AT-01/02/08/20/21 Ȩ�ޡ��ݵȡ��¾ɰ汾���ȡ���루PermissionsIT��
+[ERROR] com.campus.events.acceptance.PermissionsIT -- Time elapsed: 2.582 s <<< ERROR!
+java.lang.IllegalStateException: װ�ز�������ʧ�ܣ�demo
+	at com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:161)
+	at com.campus.events.support.DbTestSupport.beforeAll(DbTestSupport.java:130)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table "user_resource_scope" violates foreign key constraint "fk_user_resource_scope_resource"
+  ��ϸ��Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table "resource".
+	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:140)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1556)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:972)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1016)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1026)
+	at com.campus.events.support.DbTestSupport.insertReferenceTables(DbTestSupport.java:236)
+	at com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:157)
+	... 2 more
+Caused by: org.postgresql.util.PSQLException: ERROR: insert or update on table "user_resource_scope" violates foreign key constraint "fk_user_resource_scope_resource"
+  ��ϸ��Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table "resource".
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2904)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2589)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:431)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:534)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:437)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:157)
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:977)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)
+	... 7 more
+
+[INFO] Running D-AT-15/16 ���������벢������
+16:33:47.490 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.campus.events.acceptance.RegistrationCapacityIT]: RegistrationCapacityIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:33:47.493 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.RegistrationCapacityIT
+16:33:47.678 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+16:33:47.703 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Schema history table "t_07308e82cec64dbba6812f62b828e878"."flyway_schema_history" does not exist yet
+16:33:47.705 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 1 migration (execution time 00:00.016s)
+16:33:47.728 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Creating Schema History table "t_07308e82cec64dbba6812f62b828e878"."flyway_schema_history" ...
+16:33:47.873 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "t_07308e82cec64dbba6812f62b828e878": << Empty Schema >>
+16:33:47.882 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "t_07308e82cec64dbba6812f62b828e878" to version "1 - schema"
+16:33:48.250 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 1 migration to schema "t_07308e82cec64dbba6812f62b828e878", now at version v1 (execution time 00:00.359s)
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.658 s <<< FAILURE! -- in D-AT-15/16 ���������벢������
+[ERROR] com.campus.events.acceptance.RegistrationCapacityIT -- Time elapsed: 2.658 s <<< ERROR!
+java.lang.IllegalStateException: װ�ز�������ʧ�ܣ�demo
+	at com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:161)
+	at com.campus.events.support.DbTestSupport.beforeAll(DbTestSupport.java:130)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table "user_resource_scope" violates foreign key constraint "fk_user_resource_scope_resource"
+  ��ϸ��Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table "resource".
+	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:140)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1556)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:972)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1016)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1026)
+	at com.campus.events.support.DbTestSupport.insertReferenceTables(DbTestSupport.java:236)
+	at com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:157)
+	... 2 more
+Caused by: org.postgresql.util.PSQLException: ERROR: insert or update on table "user_resource_scope" violates foreign key constraint "fk_user_resource_scope_resource"
+  ��ϸ��Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table "resource".
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2904)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2589)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:431)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:534)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:437)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:157)
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:977)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)
+	... 7 more
+
+[INFO] Running QA-04 / D-AT-22 ��������ִ������SchedulingBenchmarkIT��
+16:33:50.152 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.campus.events.acceptance.SchedulingBenchmarkIT]: SchedulingBenchmarkIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+16:33:50.154 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.SchedulingBenchmarkIT
+16:33:50.313 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+16:33:50.333 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Schema history table "t_675a61c10ce741bbaf85a787f15c9eb7"."flyway_schema_history" does not exist yet
+16:33:50.334 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 1 migration (execution time 00:00.009s)
+16:33:50.355 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Creating Schema History table "t_675a61c10ce741bbaf85a787f15c9eb7"."flyway_schema_history" ...
+16:33:50.477 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "t_675a61c10ce741bbaf85a787f15c9eb7": << Empty Schema >>
+16:33:50.487 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "t_675a61c10ce741bbaf85a787f15c9eb7" to version "1 - schema"
+16:33:50.795 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 1 migration to schema "t_675a61c10ce741bbaf85a787f15c9eb7", now at version v1 (execution time 00:00.301s)
+[ERROR] Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.545 s <<< FAILURE! -- in QA-04 / D-AT-22 ��������ִ������SchedulingBenchmarkIT��
+[ERROR] com.campus.events.acceptance.SchedulingBenchmarkIT -- Time elapsed: 2.545 s <<< ERROR!
+java.lang.IllegalStateException: װ�زο�����ʧ�ܣ�demo
+	at com.campus.events.support.DbTestSupport.loadReferenceData(DbTestSupport.java:177)
+	at com.campus.events.acceptance.SchedulingBenchmarkIT.loadReferenceData(SchedulingBenchmarkIT.java:93)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table "user_resource_scope" violates foreign key constraint "fk_user_resource_scope_resource"
+  ��ϸ��Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table "resource".
+	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:140)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1556)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:972)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1016)
+	at org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1026)
+	at com.campus.events.support.DbTestSupport.insertReferenceTables(DbTestSupport.java:236)
+	at com.campus.events.support.DbTestSupport.loadReferenceData(DbTestSupport.java:175)
+	... 3 more
+Caused by: org.postgresql.util.PSQLException: ERROR: insert or update on table "user_resource_scope" violates foreign key constraint "fk_user_resource_scope_resource"
+  ��ϸ��Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table "resource".
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2904)
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2589)
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:431)
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:534)
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:437)
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:157)
+	at org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:977)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)
+	... 8 more
+
+[INFO] Running com.campus.events.activity.ActivityRegistrationIT
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-31T16:33:53.239+08:00  INFO 43968 --- [campus-events] [           main] c.c.e.activity.ActivityRegistrationIT    : Starting ActivityRegistrationIT using Java 21.0.9 with PID 43968 (started by yangchang in D:\code\01_projects\project\campus-sched\server)
+2026-10-31T16:33:53.239+08:00  INFO 43968 --- [campus-events] [           main] c.c.e.activity.ActivityRegistrationIT    : No active profile set, falling back to 1 default profile: "default"
+2026-10-31T16:33:54.666+08:00  INFO 43968 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-31T16:33:54.768+08:00  INFO 43968 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1f26b992
+2026-10-31T16:33:54.770+08:00  INFO 43968 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-31T16:33:54.791+08:00  INFO 43968 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=an_5e02ecaedf3541d688cee001a5770a36 (PostgreSQL 17.6)
+2026-10-31T16:33:54.818+08:00  INFO 43968 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "an_5e02ecaedf3541d688cee001a5770a36"."flyway_schema_history" does not exist yet
+2026-10-31T16:33:54.820+08:00  INFO 43968 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.013s)
+2026-10-31T16:33:54.845+08:00  INFO 43968 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "an_5e02ecaedf3541d688cee001a5770a36"."flyway_schema_history" ...
+2026-10-31T16:33:54.996+08:00  INFO 43968 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "an_5e02ecaedf3541d688cee001a5770a36": << Empty Schema >>
+2026-10-31T16:33:55.015+08:00  INFO 43968 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "an_5e02ecaedf3541d688cee001a5770a36" to version "1 - schema"
+2026-10-31T16:33:55.438+08:00  INFO 43968 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "an_5e02ecaedf3541d688cee001a5770a36", now at version v1 (execution time 00:00.417s)
+2026-10-31T16:33:57.516+08:00  INFO 43968 --- [campus-events] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-31T16:33:57.516+08:00  INFO 43968 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-31T16:33:57.518+08:00  INFO 43968 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2026-10-31T16:33:57.553+08:00  INFO 43968 --- [campus-events] [           main] c.c.e.activity.ActivityRegistrationIT    : Started ActivityRegistrationIT in 4.804 seconds (process running for 27.592)
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+Java HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+WARNING: A Java agent has been loaded dynamically (C:\Users\yangchang\.m2\repository\net\bytebuddy\byte-buddy-agent\1.17.8\byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+2026-10-31T16:35:51.215+08:00  INFO 43968 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-10-31T16:35:51.219+08:00  INFO 43968 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+[INFO] Tests run: 33, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 118.5 s -- in com.campus.events.activity.ActivityRegistrationIT
+[INFO] Running CM-01 DemoDataSeeder ����˳�����ݵȻع�
+2026-10-31T16:35:51.401+08:00  INFO 43968 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+2026-10-31T16:35:51.433+08:00  INFO 43968 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_2b5a7402379a42f3baa3d83d809b76d6"."flyway_schema_history" does not exist yet
+2026-10-31T16:35:51.434+08:00  INFO 43968 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.011s)
+2026-10-31T16:35:51.459+08:00  INFO 43968 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_2b5a7402379a42f3baa3d83d809b76d6"."flyway_schema_history" ...
+2026-10-31T16:35:51.601+08:00  INFO 43968 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_2b5a7402379a42f3baa3d83d809b76d6": << Empty Schema >>
+2026-10-31T16:35:51.614+08:00  INFO 43968 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_2b5a7402379a42f3baa3d83d809b76d6" to version "1 - schema"
+2026-10-31T16:35:52.193+08:00  INFO 43968 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_2b5a7402379a42f3baa3d83d809b76d6", now at version v1 (execution time 00:00.575s)
+2026-10-31T16:35:52.616+08:00  INFO 43968 --- [campus-events] [           main] com.campus.events.dev.DemoDataSeeder     : ��ʾ���ݵ�����ɣ���֯ 2���û� 9����Դ 12��� 2��ԤԼ 4������ 1����ʾ���� 2030-10-20��
+2026-10-31T16:35:52.948+08:00  INFO 43968 --- [campus-events] [           main] com.campus.events.dev.DemoDataSeeder     : ��ʾ���ݵ�����ɣ���֯ 0���û� 0����Դ 0��� 0��ԤԼ 0������ 0����ʾ���� 2030-10-20��
+2026-10-31T16:35:53.365+08:00  INFO 43968 --- [campus-events] [           main] com.campus.events.dev.DemoDataSeeder     : ��ʾ���ݵ�����ɣ���֯ 0���û� 0����Դ 0��� 0��ԤԼ 0������ 0����ʾ���� 2030-10-20��
+2026-10-31T16:35:54.264+08:00  INFO 43968 --- [campus-events] [           main] com.campus.events.dev.DemoDataSeeder     : ��ʾ���ݵ�����ɣ���֯ 0���û� 1����Դ 0��� 0��ԤԼ 0������ 0����ʾ���� 2030-10-20��
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.869 s -- in CM-01 DemoDataSeeder ����˳�����ݵȻع�
+[INFO] Running com.campus.events.foundation.FoundationIT
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-31T16:35:55.231+08:00  INFO 43968 --- [campus-events] [           main] c.campus.events.foundation.FoundationIT  : Starting FoundationIT using Java 21.0.9 with PID 43968 (started by yangchang in D:\code\01_projects\project\campus-sched\server)
+2026-10-31T16:35:55.231+08:00  INFO 43968 --- [campus-events] [           main] c.campus.events.foundation.FoundationIT  : No active profile set, falling back to 1 default profile: "default"
+2026-10-31T16:35:57.367+08:00  INFO 43968 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-10-31T16:35:57.492+08:00  INFO 43968 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@4df54c1
+2026-10-31T16:35:57.493+08:00  INFO 43968 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-10-31T16:35:57.495+08:00  INFO 43968 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_8550d44118ba4001a36fc4b295d985f3 (PostgreSQL 17.6)
+2026-10-31T16:35:57.540+08:00  INFO 43968 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_8550d44118ba4001a36fc4b295d985f3"."flyway_schema_history" does not exist yet
+2026-10-31T16:35:57.542+08:00  INFO 43968 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.020s)
+2026-10-31T16:35:57.582+08:00  INFO 43968 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_8550d44118ba4001a36fc4b295d985f3"."flyway_schema_history" ...
+2026-10-31T16:35:57.729+08:00  INFO 43968 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_8550d44118ba4001a36fc4b295d985f3": << Empty Schema >>
+2026-10-31T16:35:57.745+08:00  INFO 43968 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_8550d44118ba4001a36fc4b295d985f3" to version "1 - schema"
+2026-10-31T16:35:58.511+08:00  INFO 43968 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_8550d44118ba4001a36fc4b295d985f3", now at version v1 (execution time 00:00.751s)
+2026-10-31T16:35:59.098+08:00  INFO 43968 --- [campus-events] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-31T16:35:59.098+08:00  INFO 43968 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-31T16:35:59.099+08:00  INFO 43968 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-10-31T16:35:59.108+08:00  INFO 43968 --- [campus-events] [           main] c.campus.events.foundation.FoundationIT  : Started FoundationIT in 4.002 seconds (process running for 149.148)
+2026-10-31T16:36:10.038+08:00  INFO 43968 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2026-10-31T16:36:10.040+08:00  INFO 43968 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+[INFO] Tests run: 21, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 14.94 s -- in com.campus.events.foundation.FoundationIT
+[INFO] Running com.campus.events.resource.ResourceSchedulingIT
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-31T16:36:10.176+08:00  INFO 43968 --- [campus-events] [           main] c.c.e.resource.ResourceSchedulingIT      : Starting ResourceSchedulingIT using Java 21.0.9 with PID 43968 (started by yangchang in D:\code\01_projects\project\campus-sched\server)
+2026-10-31T16:36:10.176+08:00  INFO 43968 --- [campus-events] [           main] c.c.e.resource.ResourceSchedulingIT      : No active profile set, falling back to 1 default profile: "default"
+2026-10-31T16:36:10.454+08:00  INFO 43968 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2026-10-31T16:36:10.532+08:00  INFO 43968 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection org.postgresql.jdbc.PgConnection@23973547
+2026-10-31T16:36:10.532+08:00  INFO 43968 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2026-10-31T16:36:10.532+08:00  INFO 43968 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_2b4b400a611d4b9fa8aeccf7d4222551 (PostgreSQL 17.6)
+2026-10-31T16:36:10.553+08:00  INFO 43968 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_2b4b400a611d4b9fa8aeccf7d4222551"."flyway_schema_history" does not exist yet
+2026-10-31T16:36:10.553+08:00  INFO 43968 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.007s)
+2026-10-31T16:36:10.568+08:00  INFO 43968 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_2b4b400a611d4b9fa8aeccf7d4222551"."flyway_schema_history" ...
+2026-10-31T16:36:10.657+08:00  INFO 43968 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_2b4b400a611d4b9fa8aeccf7d4222551": << Empty Schema >>
+2026-10-31T16:36:10.663+08:00  INFO 43968 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_2b4b400a611d4b9fa8aeccf7d4222551" to version "1 - schema"
+2026-10-31T16:36:11.051+08:00  INFO 43968 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_2b4b400a611d4b9fa8aeccf7d4222551", now at version v1 (execution time 00:00.376s)
+2026-10-31T16:36:11.566+08:00  INFO 43968 --- [campus-events] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-10-31T16:36:11.566+08:00  INFO 43968 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-10-31T16:36:11.566+08:00  INFO 43968 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-10-31T16:36:11.575+08:00  INFO 43968 --- [campus-events] [           main] c.c.e.resource.ResourceSchedulingIT      : Started ResourceSchedulingIT in 1.52 seconds (process running for 161.614)
+2026-10-31T16:36:57.684+08:00  INFO 43968 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2026-10-31T16:36:57.688+08:00  INFO 43968 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+[INFO] Tests run: 20, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 47.65 s -- in com.campus.events.resource.ResourceSchedulingIT
+[INFO] Running DS-01 V1 Ǩ����֤ v3.0��SchemaIT��
+2026-10-31T16:36:57.921+08:00  INFO 43968 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.6)
+2026-10-31T16:36:57.954+08:00  INFO 43968 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_445ed1e5b7084600b0d440804d67b359"."flyway_schema_history" does not exist yet
+2026-10-31T16:36:57.954+08:00  INFO 43968 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 1 migration (execution time 00:00.013s)
+2026-10-31T16:36:57.987+08:00  INFO 43968 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_445ed1e5b7084600b0d440804d67b359"."flyway_schema_history" ...
+2026-10-31T16:36:58.154+08:00  INFO 43968 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_445ed1e5b7084600b0d440804d67b359": << Empty Schema >>
+2026-10-31T16:36:58.165+08:00  INFO 43968 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_445ed1e5b7084600b0d440804d67b359" to version "1 - schema"
+2026-10-31T16:36:58.848+08:00  INFO 43968 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 1 migration to schema "t_445ed1e5b7084600b0d440804d67b359", now at version v1 (execution time 00:00.671s)
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 22.55 s -- in DS-01 V1 Ǩ����֤ v3.0��SchemaIT��
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Errors: 
+[ERROR]   BookingConcurrencyIT ? IllegalState װ�ز�������ʧ�ܣ�demo
+[ERROR]   CancellationRaceIT ? IllegalState װ�ز�������ʧ�ܣ�demo
+[ERROR]   ChangeRollbackIT ? IllegalState װ�ز�������ʧ�ܣ�demo
+[ERROR]   IdentityEligibilityIT ? IllegalState װ�ز�������ʧ�ܣ�demo
+[ERROR]   NotificationConsistencyIT ? IllegalState װ�ز�������ʧ�ܣ�demo
+[ERROR]   PermissionsIT ? IllegalState װ�ز�������ʧ�ܣ�demo
+[ERROR]   RegistrationCapacityIT ? IllegalState װ�ز�������ʧ�ܣ�demo
+[ERROR]   SchedulingBenchmarkIT.loadReferenceData:93 ? IllegalState װ�زο�����ʧ�ܣ�demo
+[INFO] 
+[ERROR] Tests run: 93, Failures: 0, Errors: 8, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- failsafe:3.5.6:verify (default) @ campus-events ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  05:35 min
+[INFO] Finished at: 2026-10-31T16:37:20+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-failsafe-plugin:3.5.6:verify (default) on project campus-events: 
+[ERROR] 
+[ERROR] See D:\code\01_projects\project\campus-sched\server\target\failsafe-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

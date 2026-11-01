@@ -1,0 +1,22 @@
+
+Running 13 tests using 1 worker
+
+(node:54232) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:54232) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\browser\layout.spec.ts:14:3 › 登录及开发原型布局 1366x768 (5.5s)
+  ok  2 tests\browser\layout.spec.ts:14:3 › 登录及开发原型布局 1920x1080 (1.2s)
+  ok  3 tests\browser\layout.spec.ts:14:3 › 登录及开发原型布局 390x844 (864ms)
+  ok  4 tests\browser\layout.spec.ts:60:1 › 受保护页面无会话跳登录，登录错误不会伪造成功 (871ms)
+  ok  5 tests\browser\remaining-ui-preview.spec.ts:15:3 › 资源、日历、改期、活动与通知开发预览 1366x768 (4.4s)
+  ok  6 tests\browser\remaining-ui-preview.spec.ts:15:3 › 资源、日历、改期、活动与通知开发预览 1920x1080 (2.7s)
+  ok  7 tests\browser\remaining-ui-preview.spec.ts:15:3 › 资源、日历、改期、活动与通知开发预览 390x844 (2.5s)
+  ok  8 tests\browser\users-preview.spec.ts:14:3 › 账号管理与完整授权开发预览 1366x768 (1.7s)
+  ok  9 tests\browser\users-preview.spec.ts:14:3 › 账号管理与完整授权开发预览 1920x1080 (2.2s)
+  ok 10 tests\browser\users-preview.spec.ts:14:3 › 账号管理与完整授权开发预览 390x844 (1.6s)
+  ok 11 tests\browser\workspace-preview.spec.ts:15:3 › 登录后外观预览与真实会话隔离 1366x768 (792ms)
+  ok 12 tests\browser\workspace-preview.spec.ts:15:3 › 登录后外观预览与真实会话隔离 1920x1080 (988ms)
+  ok 13 tests\browser\workspace-preview.spec.ts:15:3 › 登录后外观预览与真实会话隔离 390x844 (880ms)
+
+  13 passed (31.0s)

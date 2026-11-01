@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-11-01T07:17:52.428Z",
+  "candidate": "origin/main=107a301 to current working tree, including tracked and untracked UI files",
+  "trackedChanges": 245,
+  "newFiles": 289,
+  "scope": "passed",
+  "secretScan": "passed",
+  "priorSnapshotHashesMatched": 201,
+  "productSourceChangedDuringReview": false,
+  "diffCheck": "passed"
+}

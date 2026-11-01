@@ -1,0 +1,7 @@
+{
+  "command": "git fetch origin main（网络失败后限时重试）",
+  "exitCode": 128,
+  "timedOut": false,
+  "output": "fatal: unable to access 'https://github.com/Rito-492/campus-sched.git/': Failed to connect to github.com port 443 after 21096 ms: Could not connect to server\n",
+  "localMain": "107a301ba1ea040a0c322656789f078ff81093f2"
+}

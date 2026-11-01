@@ -1,0 +1,72 @@
+{
+  "baseline": "c4f3d41",
+  "browser": "Edge 152.0.4191.66 / Playwright 1.56.1",
+  "dataMode": "real Java21 API and PostgreSQL17; isolated demo seed + real API test records",
+  "viewports": [
+    "1366x768",
+    "1920x1080",
+    "390x844"
+  ],
+  "screenshots": [
+    {
+      "file": "real-authorization-1366x768.png",
+      "sha256": "8297587d000fb35d30a824b8d388030f722e9054ec34cbf375029879efe22c0b"
+    },
+    {
+      "file": "real-authorization-1920x1080.png",
+      "sha256": "a57a1300ff0575a4bbf976c56147d839e04a448b17afcf88d990ba3cb2eaf80e"
+    },
+    {
+      "file": "real-authorization-390x844.png",
+      "sha256": "6d01e40a2afb3cae48c97b47b0c253b6ae98c262659e8ec0592ee1c5e82883e7"
+    },
+    {
+      "file": "real-calendar-1366x768.png",
+      "sha256": "4bd6ed4ceb9d366a001f30dc285ca9b3a67d1eb13893674ee478be664dd2081f"
+    },
+    {
+      "file": "real-calendar-1920x1080.png",
+      "sha256": "a070ad7e15a06d018094ebe7f5e3e6be6318d20998f43f230ef0bdd3aac5a4a9"
+    },
+    {
+      "file": "real-calendar-390x844.png",
+      "sha256": "9b279c9dac6ad13beda4f5c1e0a0efca3a44be04e43a919cb80458d0e73cb347"
+    },
+    {
+      "file": "real-draft-1366x768.png",
+      "sha256": "13a6d0864a1192bc48b9cdf4c8c6c2f8c5134f43ca1506fb69f9a3fc190059ea"
+    },
+    {
+      "file": "real-draft-1920x1080.png",
+      "sha256": "e4a74ebffaedeb4269a773f0b936d119e486faf20580d620bd687b7f47911fc9"
+    },
+    {
+      "file": "real-draft-390x844.png",
+      "sha256": "f304afba4be5c1ef698985e981e627bee94b1aca9a12664d8d7cdfe23f1f3b21"
+    },
+    {
+      "file": "real-eligibility-error-1366x768.png",
+      "sha256": "67735c2ea78b43a98a487bd6fda5cfcc6f038c9a599dbc6603e7e99226eae2bf"
+    },
+    {
+      "file": "real-eligibility-error-1920x1080.png",
+      "sha256": "211168cf5b6f2121bbb46f84e6cc43bec8613beb7cedee3b134603d8815145b3"
+    },
+    {
+      "file": "real-eligibility-error-390x844.png",
+      "sha256": "b54b528cb743f167c04f123e580a3dad75d7f39c27f06c9de32e0e612ba664de"
+    },
+    {
+      "file": "real-resource-1366x768.png",
+      "sha256": "b846ca06658a8e58c50513ce8fb7fd8aa1d313ff5f4fa80f992b48aa1502ef4b"
+    },
+    {
+      "file": "real-resource-1920x1080.png",
+      "sha256": "a9fabd9c3d251688c2293bca3e0e3b388829b4867c81b40d4c3c3f6dc58981c4"
+    },
+    {
+      "file": "real-resource-390x844.png",
+      "sha256": "69f5e04c067714395cc7462714c8e4bbb1179b744a91e9bac4796eaa128d75fb"
+    }
+  ]
+}

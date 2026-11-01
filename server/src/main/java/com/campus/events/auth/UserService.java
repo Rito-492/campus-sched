@@ -2,7 +2,6 @@ package com.campus.events.auth;
 
 import com.campus.events.contract.*;
 import com.campus.events.foundation.*;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -47,7 +46,7 @@ public class UserService {
         var authorization = new AuthorizationInput(input.identity(), input.roles(), input.permissions(), input.approvalScopes(), input.managedResourceIds());
         validateAuthorization(authorization);
         requireOrganization(input.organizationId());
-        if (input.password().getBytes(StandardCharsets.UTF_8).length > 72) throw ApiException.invalid("密码UTF-8长度不能超过72字节");
+        PasswordPolicy.validateNew(input.password());
         UUID id = UUID.randomUUID();
         // ON CONFLICT避免捕获唯一键异常后继续使用已中止的PostgreSQL事务。
         int inserted = jdbc.update("""

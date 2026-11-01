@@ -183,6 +183,23 @@ class FoundationIT {
         assertEquals(0, count("user_permission", target.id())); assertEquals(0, count("user_resource_scope", target.id()));
         assertEquals(0, count("user_approval_scope", target.id())); assertEquals(2, count("authorization_change", target.id()));
     }
+    @Test void newPasswordMinimumAndUtf8LimitAreEnforcedWithoutWrites() throws Exception {
+        for (String rejected : List.of(UUID.randomUUID().toString().substring(0, 7), "汉".repeat(25))) {
+            String username = "bad-password-" + UUID.randomUUID(); UUID key = UUID.randomUUID();
+            var input = new UserCreate(Identity.STUDENT, List.of(Role.APPLICANT), List.of(), List.of(), List.of(),
+                    username, "密码边界账号", rejected, org);
+            assertEquals(400, call("POST", "/users", adminToken, key, input).status());
+            assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM app_user WHERE username=?", Integer.class, username));
+            assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM command_receipt WHERE actor_id=? AND idempotency_key=?", Integer.class, admin.id(), key.toString()));
+        }
+        String accepted = UUID.randomUUID().toString().substring(0, 8);
+        var valid = new UserCreate(Identity.STUDENT, List.of(Role.APPLICANT), List.of(), List.of(), List.of(),
+                "eight-char-" + UUID.randomUUID(), "八位密码账号", accepted, org);
+        var response = call("POST", "/users", adminToken, UUID.randomUUID(), valid);
+        assertEquals(201, response.status());
+        assertTrue(encoder.matches(accepted, jdbc.queryForObject("SELECT password_hash FROM app_user WHERE id=?", String.class,
+                UUID.fromString(response.data().path("id").asText()))));
+    }
     @Test void inconsistentOrNonexistentAuthorizationFailsWithoutHistory() throws Exception {
         Actor target = createFixture(Identity.STUDENT, Role.APPLICANT);
         for (var invalid : List.of(

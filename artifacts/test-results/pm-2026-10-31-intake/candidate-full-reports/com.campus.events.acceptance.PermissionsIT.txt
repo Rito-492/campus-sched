@@ -1,0 +1,1 @@
+{"class":"com.campus.events.acceptance.PermissionsIT","tests":13,"failures":7,"errors":0,"skipped":0}

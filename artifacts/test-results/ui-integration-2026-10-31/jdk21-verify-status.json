@@ -1,0 +1,8 @@
+{
+  "command": "./mvnw.cmd --batch-mode --no-transfer-progress verify",
+  "java": "21.0.9",
+  "postgres": "17.6",
+  "database": "new isolated campus_test on localhost:55432",
+  "exitCode": 1,
+  "finished": "2026-10-31T16:37:20.6940997+08:00"
+}
