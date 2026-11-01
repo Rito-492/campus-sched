@@ -174,14 +174,21 @@ class ActivityRegistrationIT {
             assertEquals(1,port.get(a.id()).activity().registrationCount()); assertEquals(a.lockVersion()+1,port.get(a.id()).activity().lockVersion());
         } finally { start.countDown(); pool.shutdownNow(); }
     }
-    @Test void repeatJoinAndWithdrawAreIdempotentAndFreezeRejectsBoth() {
+    @org.junit.jupiter.params.ParameterizedTest
+    @org.junit.jupiter.params.provider.EnumSource(value=ChangeStatus.class,
+            names={"AWAITING_CONFIRMATIONS","PENDING_APPROVER","PENDING_RESOURCE"})
+    void repeatJoinAndWithdrawAreIdempotentAndFreezeRejectsBoth(ChangeStatus pendingStatus) {
         var a=open(); var join=new RegistrationCommand(RegistrationAction.JOIN,1);
         tx.execute(s->service.registration(actor(student),a.id(),join)); tx.execute(s->service.registration(actor(student),a.id(),join));
         assertEquals(a.lockVersion()+1,port.get(a.id()).activity().lockVersion());
         pending(a.id());
+        // 三种待处理状态均须冻结；这里仍是测试端口契约回归，不代替CM真实改期流程。
+        jdbc.update("UPDATE change_request SET status=? WHERE activity_id=?",pendingStatus.name(),a.id());
+        assertNotNull(service.get(actor(owner),a.id()).activeChangeId());
         error(()->tx.execute(s->service.registration(actor(student),a.id(),join)),"CHANGE_PENDING");
         error(()->tx.execute(s->service.registration(actor(student),a.id(),new RegistrationCommand(RegistrationAction.WITHDRAW,1))),"CHANGE_PENDING");
         jdbc.update("UPDATE change_request SET status='WITHDRAWN' WHERE activity_id=?",a.id());
+        assertNull(service.get(actor(owner),a.id()).activeChangeId());
         tx.execute(s->service.registration(actor(student),a.id(),new RegistrationCommand(RegistrationAction.WITHDRAW,1)));
         tx.execute(s->service.registration(actor(student),a.id(),new RegistrationCommand(RegistrationAction.WITHDRAW,1)));
         assertEquals(0,port.get(a.id()).activity().registrationCount()); assertEquals(a.lockVersion()+2,port.get(a.id()).activity().lockVersion());
@@ -221,6 +228,9 @@ class ActivityRegistrationIT {
         });
         assertEquals(2,port.get(a.id()).activity().effectiveVersionNo());
         assertEquals(2,jdbc.queryForObject("SELECT version_no FROM activity_registration WHERE activity_id=?",Integer.class,a.id()));
+        error(()->tx.execute(s->service.registration(actor(student),a.id(),new RegistrationCommand(RegistrationAction.WITHDRAW,1))),"STALE_VERSION");
+        assertEquals(1,service.get(actor(student),a.id()).registrationCount());
+        assertEquals(2,service.get(actor(student),a.id()).effectiveVersionNo());
     }
     @Test void latestApprovalScopeAndSelfApprovalAreEnforcedInRealDatabase() {
         var a=submit(create()); Actor stale=actor(reviewer);

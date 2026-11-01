@@ -1,0 +1,30 @@
+
+> campus-sched-web@0.1.0 test:unit
+> vitest run
+
+
+ RUN  v3.2.7 D:/JLU/软件综合实践/.doc-work/pm-followup-2026-10-31/candidate/web
+
+ ✓ tests/client.test.ts (7 tests) 19ms
+ ✓ tests/resource.test.ts (4 tests) 4ms
+ ✓ tests/change-access.test.ts (6 tests) 4ms
+ ✓ tests/access.test.ts (9 tests) 5ms
+ ✓ tests/capacity.test.ts (4 tests) 5ms
+ ✓ tests/mutation.test.ts (4 tests) 7ms
+ ✓ tests/user-admin.test.ts (7 tests) 19ms
+ ✓ tests/change-workspace.test.ts (5 tests) 15ms
+ ✓ tests/contracts.test.ts (2 tests) 18ms
+ ✓ tests/validation.test.ts (5 tests) 3ms
+ ✓ tests/queue.test.ts (2 tests) 2ms
+ ✓ tests/api-feedback.test.ts (2 tests) 28ms
+ ✓ tests/authorization.test.ts (7 tests) 137ms
+ ✓ tests/components.test.ts (4 tests) 66ms
+ ✓ tests/change-actions.test.ts (3 tests) 150ms
+ ✓ tests/draft-editor.test.ts (1 test) 261ms
+ ✓ tests/activity-detail.test.ts (1 test) 286ms
+ ✓ tests/users-panel.test.ts (5 tests) 607ms
+
+ Test Files  18 passed (18)
+      Tests  78 passed (78)
+   Start at  18:26:14
+   Duration  2.80s (transform 1.17s, setup 0ms, collect 9.44s, tests 1.63s, environment 11.26s, prepare 1.98s)

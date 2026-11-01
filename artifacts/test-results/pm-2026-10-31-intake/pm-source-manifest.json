@@ -1,0 +1,68 @@
+{
+  "sourceCommitBeforeChange": "e1e4f8a282929d1a0de6c32b27246c5c377eb3ed",
+  "sourceFiles": [
+    {
+      "path": "README.md",
+      "sha256": "a3e1c7e336f3bacd89e6df09791f94c7a20a1e847566cfa5b3c9f736c1f9f941"
+    },
+    {
+      "path": "docs/management/access-coordination-v1.0.md",
+      "sha256": "497b5c9701ffac89bb9defe224543e37d411e61f5f65e890ca51fe91504682d0"
+    },
+    {
+      "path": "docs/management/api-register.md",
+      "sha256": "4c2bb70597a6639ec613ed45d4fc948096b41c1b64639c066a300266c931e845"
+    },
+    {
+      "path": "docs/management/contract-coordination-2026-10-31.md",
+      "sha256": "7bdf9fee91bb2e89731bc61b47e8acbd898608aac25281cc05f10c512617eb5d"
+    },
+    {
+      "path": "docs/management/decision-log.md",
+      "sha256": "3d349b01f858e93ffadbbc4ee0c561296668f449ae27e92082dbb694f0171923"
+    },
+    {
+      "path": "docs/management/detailed-project-plan.md",
+      "sha256": "35328d0602c639f6de3fcb7f6688bc56d722ce907d8c889653edbf6cf5484b57"
+    },
+    {
+      "path": "docs/management/foundation-guide.md",
+      "sha256": "939665aaf5935392e47249fd503ccc172081e1c5adde6cccf69de5a803029199"
+    },
+    {
+      "path": "docs/management/handoff.md",
+      "sha256": "e5e48e3e9e9610366ffde78ea3b4b3b977da89fff0f395006a1ecbb9de1c283b"
+    },
+    {
+      "path": "docs/management/initial-project-plan.md",
+      "sha256": "0dbaa206be3506d71f3d489aba73e6c42dfcb182a74388ae99bf04f4f19c74e2"
+    },
+    {
+      "path": "docs/management/integration-intake-2026-10-31-v1.0.md",
+      "sha256": "1cafd31372a00ab60703c0fb552a23131088f2ef2ea4487750c65c8203f4f5f1"
+    },
+    {
+      "path": "docs/management/integration-log.md",
+      "sha256": "5c3ba198e0864153eeb61b21d201b5e56984306516a1a7343af4c8282b90e84f"
+    },
+    {
+      "path": "docs/management/integration-status-2026-10-31.md",
+      "sha256": "be42988aa3e84cdfb34aa1da7d07c60f6846a8df3e0bfd1baa88608d19693cab"
+    },
+    {
+      "path": "docs/management/risks.md",
+      "sha256": "d46d3fd4609f0bb92a746177c12cefef1f5e2baae70bc76c5e7dbdc531c365dc"
+    },
+    {
+      "path": "docs/management/work-log.md",
+      "sha256": "a55e65c85c36aa623a0692e1405c718c5c8167f6325f132c820adbf53818db9e"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/foundation/PublishedModulesIT.java",
+      "sha256": "e995b3ae1a3c6d32507a635349577f879c648658a40c71f4c95d082b62881c19"
+    }
+  ],
+  "localLinks": 47,
+  "preservedOriginalHandoff": true,
+  "problems": []
+}

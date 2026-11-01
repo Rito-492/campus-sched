@@ -1,5 +1,23 @@
 # 集成日志
 
+## 2026-10-31同日续作：c4f3d41与QA/UI候选接收
+
+安全普通merge最新main=c4f3d41，已接收DS PR #15。PM新增身份/范围变更作用于既有会话的两项真实跨模块IT；标准指定集合76单元+32 IT全通过、0跳过。PM分支默认verify为76单元通过、113 IT中8初始化错误/1跳过，exit 1。
+
+独立工作区依次组合原作者QA e1e175c、UI fork a327b16、AN 86b15c0及PM测试：76单元通过、142 IT=115通过/24失败/2错误/1跳过。Java21上原QA装载/回滚及160行评测通过、16组expected一致；UI在Node22.23上类型/78项unit/build、5项真实局部浏览器及1项关闭播种后的重启检查通过。独立组合未推送或合入main，CM端口和11接口仍缺，未放行M0～M4。
+
+npm audit报告8项（6 moderate/2 critical，critical为开发测试链），交UI整改。访问矩阵、review发现解释及D/I提案见[协调方案](access-coordination-v1.0.md)；全部SHA、接收范围和失败证据见[候选接收记录](integration-intake-2026-10-31-v1.0.md)及artifacts/test-results/pm-2026-10-31-intake。原始评测未注入构建commit，外部source-manifest固定了本次来源，未人工改写原JSON。服务、UI随机schema及本轮PostgreSQL已停止清理。
+
+## 2026-10-31：标准工程复验与真实模块接收
+
+从`34dc4d5`安全快进至最新`origin/main=feb0d70`，保留本地计划v3.2～v3.5、所有Word及已有handoff追加。AN活动、DS调度及CM种子修复均已进入主线；Account/Activity/Scheduling三类实现已有实际接收代码。Change/Event及CM的11个HTTP操作未交付，web工程未交付。
+
+本轮补齐NFR-08新建密码最少8字符规则、OpenAPI的503缺依赖信封及标准Failsafe随机schema绑定；新增PM/AN/DS真实模块联测，无CM替身。密码回归在旧代码上实际出现400期望/201实际的失败，修复后通过；schema绑定使用标准入口实测同一随机schema及22表。
+
+指定模块标准verify执行76项单元＋30项真库IT通过。默认全量verify另行实际运行，QA acceptance/benchmark八类在fixture装载阶段出现资源外键错误；不关闭原场景或用新测试代替它们。原始命令、全部计数、通过/失败摘要及源码清单见`artifacts/test-results/pm-2026-10-31/`。责任与节点结论见[集成状态](integration-status-2026-10-31.md)，合同影响及AN待决建议见[协调记录](contract-coordination-2026-10-31.md)。
+
+前端typecheck/test:unit/build、E2E、正式八场景策略评测、安装恢复和30场景整体未通过；不创建发布标签或批准合并。源码及本轮管理材料可交叉评审，其他成员仍负责本人生产实现和缺陷修复。
+
 ## 2026-10-19：PM-01～05本地工作包
 
 成员：冀项阳55230223。公共基线v3.0，实际`origin/main`为`2a9e94143296f5972e91bc2b7848b711762e01f4`。先fetch核实，再将没有额外提交的本人分支同步主线，切换`work/55230223-foundation`；保留三份用户Word修改及三份未跟踪历史Word。没有提交、推送、PR、合并或发布。

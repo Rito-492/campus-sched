@@ -1,0 +1,1 @@
+{"class":"com.campus.events.scheduling.CandidateRankingTest","tests":3,"failures":0,"errors":0,"skipped":0}
