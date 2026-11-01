@@ -1,0 +1,105 @@
+
+Running 3 tests using 1 worker
+
+(node:64496) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:64496) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\production\components.spec.ts:12:3 › 生产组件、中文确认和主题在路由切换后完整 1366x768 (17.1s)
+(node:62280) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62280) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 tests\production\components.spec.ts:12:3 › 生产组件、中文确认和主题在路由切换后完整 1920x1080 (16.3s)
+(node:66460) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:66460) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  3 tests\production\components.spec.ts:12:3 › 生产组件、中文确认和主题在路由切换后完整 390x844 (16.2s)
+
+
+  1) tests\production\components.spec.ts:12:3 › 生产组件、中文确认和主题在路由切换后完整 1366x768 ──────────────────────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator:  getByTestId('eligibility-teacher').locator('input')
+    Expected: visible
+    Received: hidden
+    Timeout:  15000ms
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 15000ms[22m
+    [2m  - waiting for getByTestId('eligibility-teacher').locator('input')[22m
+    [2m    18 × locator resolved to <input type="checkbox" class="el-checkbox__original"/>[22m
+    [2m       - unexpected value "hidden"[22m
+
+
+      43 |     await expect(
+      44 |       page.getByTestId('eligibility-teacher').locator('input'),
+    > 45 |     ).toBeVisible()
+         |       ^
+      46 |     await page.getByTestId('eligibility-save').click()
+      47 |     const confirmation = page.locator('.el-popconfirm:visible')
+      48 |     await expect(
+        at D:\code\01_projects\project\campus-sched\web\tests\production\components.spec.ts:45:7
+
+    Error Context: test-results\production\components-生产组件、中文确认和主题在路由切换后完整-1366x768\error-context.md
+
+  2) tests\production\components.spec.ts:12:3 › 生产组件、中文确认和主题在路由切换后完整 1920x1080 ─────────────────────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator:  getByTestId('eligibility-teacher').locator('input')
+    Expected: visible
+    Received: hidden
+    Timeout:  15000ms
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 15000ms[22m
+    [2m  - waiting for getByTestId('eligibility-teacher').locator('input')[22m
+    [2m    18 × locator resolved to <input type="checkbox" class="el-checkbox__original"/>[22m
+    [2m       - unexpected value "hidden"[22m
+
+
+      43 |     await expect(
+      44 |       page.getByTestId('eligibility-teacher').locator('input'),
+    > 45 |     ).toBeVisible()
+         |       ^
+      46 |     await page.getByTestId('eligibility-save').click()
+      47 |     const confirmation = page.locator('.el-popconfirm:visible')
+      48 |     await expect(
+        at D:\code\01_projects\project\campus-sched\web\tests\production\components.spec.ts:45:7
+
+    Error Context: test-results\production\components-生产组件、中文确认和主题在路由切换后完整-1920x1080\error-context.md
+
+  3) tests\production\components.spec.ts:12:3 › 生产组件、中文确认和主题在路由切换后完整 390x844 ───────────────────────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator:  getByTestId('eligibility-teacher').locator('input')
+    Expected: visible
+    Received: hidden
+    Timeout:  15000ms
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 15000ms[22m
+    [2m  - waiting for getByTestId('eligibility-teacher').locator('input')[22m
+    [2m    18 × locator resolved to <input type="checkbox" class="el-checkbox__original"/>[22m
+    [2m       - unexpected value "hidden"[22m
+
+
+      43 |     await expect(
+      44 |       page.getByTestId('eligibility-teacher').locator('input'),
+    > 45 |     ).toBeVisible()
+         |       ^
+      46 |     await page.getByTestId('eligibility-save').click()
+      47 |     const confirmation = page.locator('.el-popconfirm:visible')
+      48 |     await expect(
+        at D:\code\01_projects\project\campus-sched\web\tests\production\components.spec.ts:45:7
+
+    Error Context: test-results\production\components-生产组件、中文确认和主题在路由切换后完整-390x844\error-context.md
+
+  3 failed
+    tests\production\components.spec.ts:12:3 › 生产组件、中文确认和主题在路由切换后完整 1366x768 ───────────────────────
+    tests\production\components.spec.ts:12:3 › 生产组件、中文确认和主题在路由切换后完整 1920x1080 ──────────────────────
+    tests\production\components.spec.ts:12:3 › 生产组件、中文确认和主题在路由切换后完整 390x844 ────────────────────────

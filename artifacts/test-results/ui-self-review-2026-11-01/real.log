@@ -1,0 +1,19 @@
+
+Running 10 tests using 1 worker
+
+(node:64320) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:64320) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\integration\real-service.spec.ts:21:1 › 真实登录、教师无隐式审批、刷新会话与退出 (8.7s)
+  ok  2 tests\integration\real-service.spec.ts:49:1 › 真实账号创建、完整授权保存与启停持久化 (10.5s)
+  ok  3 tests\integration\real-service.spec.ts:91:1 › 真实资源创建、资格更新与刷新 (3.4s)
+  ok  4 tests\integration\real-service.spec.ts:126:1 › 真实分步创建草稿、修改、调度预览与刷新持久化 (3.8s)
+  ok  5 tests\integration\real-service.spec.ts:182:1 › 管理员更新资格后，真实预览解释具体受限场地并保留草稿 (2.5s)
+  ok  6 tests\integration\review-regression.spec.ts:152:1 › 真实纯角色与跨组织工作人员展示，撤销审批范围后刷新隐藏旧详情 (5.9s)
+  ok  7 tests\integration\review-regression.spec.ts:225:1 › 真实首次预约报名与改期本人确认、审批、生效和日历通知刷新 (18.7s)
+  ok  8 tests\integration\review-regression.spec.ts:464:1 › 真实通知已读不代签，拒绝及撤回解除报名冻结并保留原安排 (19.3s)
+  ok  9 tests\integration\review-regression.spec.ts:556:1 › 真实改期资源竞争返回409保留旧安排，故障标为AT_RISK (7.1s)
+  ok 10 tests\integration\review-regression.spec.ts:634:1 › 真实报名响应丢失后同key同body重试，不重复增加人数 (3.6s)
+
+  10 passed (1.5m)

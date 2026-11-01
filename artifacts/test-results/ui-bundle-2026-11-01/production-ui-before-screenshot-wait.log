@@ -1,0 +1,12 @@
+
+Running 3 tests using 1 worker
+
+(node:43880) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:43880) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\production\components.spec.ts:12:3 › 生产组件、中文确认和主题在路由切换后完整 1366x768 (4.2s)
+  ok 2 tests\production\components.spec.ts:12:3 › 生产组件、中文确认和主题在路由切换后完整 1920x1080 (3.9s)
+  ok 3 tests\production\components.spec.ts:12:3 › 生产组件、中文确认和主题在路由切换后完整 390x844 (3.9s)
+
+  3 passed (15.3s)

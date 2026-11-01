@@ -1,0 +1,36 @@
+
+ RUN  v3.2.7 D:/code/01_projects/project/campus-sched/web
+
+ ✓ tests/activity-detail.test.ts (8 tests) 1009ms
+   ✓ 正式详情中候选只填入草稿，显式保存后才更新当前安排  394ms
+ ✓ tests/users-panel.test.ts (5 tests) 1478ms
+   ✓ 账号编辑表单 > 空账号表单保留输入并显示校验，不发送创建事件  367ms
+   ✓ 账号编辑表单 > 必须确认完整替换；去掉管理员后提交清理字段，不携带Actor私有字段  303ms
+   ✓ 账号编辑表单 > 开发预览即使触发表单提交也不执行账号写入  390ms
+ ✓ tests/change-actions.test.ts (3 tests) 219ms
+ ✓ tests/draft-editor.test.ts (1 test) 487ms
+   ✓ 草稿编辑与版本冲突 > 等待409重载后用新lockVersion保存，保留用户输入  485ms
+ ✓ tests/activity-records.test.ts (13 tests) 379ms
+ ✓ tests/change-detail.test.ts (2 tests) 313ms
+ ✓ tests/authorization.test.ts (7 tests) 324ms
+ ✓ tests/resource-management.test.ts (3 tests) 426ms
+ ✓ tests/api-feedback.test.ts (2 tests) 66ms
+ ✓ tests/components.test.ts (4 tests) 136ms
+ ✓ tests/contracts.test.ts (2 tests) 26ms
+ ✓ tests/user-admin.test.ts (7 tests) 46ms
+ ✓ tests/client.test.ts (7 tests) 41ms
+ ✓ tests/change-workspace.test.ts (9 tests) 35ms
+ ✓ tests/mutation.test.ts (4 tests) 9ms
+ ✓ tests/validation.test.ts (5 tests) 10ms
+ ✓ tests/access.test.ts (9 tests) 10ms
+ ✓ tests/capacity.test.ts (4 tests) 6ms
+ ✓ tests/resource.test.ts (4 tests) 7ms
+ ✓ tests/queue.test.ts (2 tests) 4ms
+ ✓ tests/change-access.test.ts (6 tests) 5ms
+
+ Test Files  21 passed (21)
+      Tests  107 passed (107)
+   Start at  15:03:30
+   Duration  72.75s (transform 2.13s, setup 0ms, collect 51.46s, tests 5.04s, environment 75.51s, prepare 6.21s)
+
+JSON report written to D:/code/01_projects/project/campus-sched/artifacts/test-results/ui-review-fixes-2026-11-01/unit-results.json

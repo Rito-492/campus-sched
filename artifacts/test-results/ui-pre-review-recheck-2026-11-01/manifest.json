@@ -1,0 +1,88 @@
+{
+  "timestamp": "2026-11-01T14:43:25.5618854+08:00",
+  "main": "107a301ba1ea040a0c322656789f078ff81093f2",
+  "localHead": "9fe38e9c2d9ca9f2ae402acdee74e471ad4c0a48",
+  "remoteHead": "a327b16b171ab40da1ef336b8f1c0ab8d21bd834",
+  "reviewId": 5726456316,
+  "sourceState": "未提交本地修复；本轮仅增加文档和复测证据，未推送",
+  "unitPassed": 15,
+  "realBrowserPassed": 1,
+  "unitFiles": 2,
+  "node": "22.23.0",
+  "build": "本轮未重跑，核对前轮构建日志与未变源码",
+  "secretScan": "passed",
+  "files": [
+    {
+      "path": "artifacts/screenshots/ui-pre-review-recheck-2026-11-01/real-cross-org-staff-1366x768.png",
+      "sha256": "81332ce69d676ecfa3b71353dd211f90b51625f2b38e85c9c21aa0c150f9a0cd"
+    },
+    {
+      "path": "artifacts/screenshots/ui-pre-review-recheck-2026-11-01/real-cross-org-staff-1920x1080.png",
+      "sha256": "835e5db986e8f8759eebfec379b361c2fb578cace80febfe7e3e240db050d0d9"
+    },
+    {
+      "path": "artifacts/screenshots/ui-pre-review-recheck-2026-11-01/real-cross-org-staff-390x844.png",
+      "sha256": "d2c56fa21552ab5234bb37645ca3dfab26ca096cb46564c443078dbca23ddc19"
+    },
+    {
+      "path": "artifacts/screenshots/ui-pre-review-recheck-2026-11-01/real-revoked-detail-1366x768.png",
+      "sha256": "6ae4917f127e6c85f0c2106bf5a0539a95797cf44d748d7299b3f93e15211f47"
+    },
+    {
+      "path": "artifacts/screenshots/ui-pre-review-recheck-2026-11-01/real-revoked-detail-1920x1080.png",
+      "sha256": "91ce02c8b392f33f98bcabb810b107749306803896a17f22a3d4e442cf8b5bf9"
+    },
+    {
+      "path": "artifacts/screenshots/ui-pre-review-recheck-2026-11-01/real-revoked-detail-390x844.png",
+      "sha256": "04c05ea0d6e5099bd84da7399bcd21e085c0b6ca9257c956360b76362c1fdd79"
+    },
+    {
+      "path": "artifacts/test-results/ui-pre-review-recheck-2026-11-01/real-results.json",
+      "sha256": "ece38e5023e13d7c7bdadf3bca691fda46a323cf3361dce688477f0239a0ed08"
+    },
+    {
+      "path": "artifacts/test-results/ui-pre-review-recheck-2026-11-01/real.log",
+      "sha256": "282f865e2e515ec01618f26ddd91cadb0867abc5487ffbb0becd036aa6e4d988"
+    },
+    {
+      "path": "artifacts/test-results/ui-pre-review-recheck-2026-11-01/unit-results.json",
+      "sha256": "3ac0afbcc7fd480a3a19de089f95fe82ae54b6553fabd7a5ce01d827423ba449"
+    },
+    {
+      "path": "artifacts/test-results/ui-pre-review-recheck-2026-11-01/unit.log",
+      "sha256": "9a06486b59b232934db19dbcd47bb399eff4e0fd938346a1e4a2b181de8a56b2"
+    },
+    {
+      "path": "docs/ui/handoff.md",
+      "sha256": "51f941fdb46182dd3caf2d7989e77a7fe519357d5f8666721fa9ab7cc87193e4"
+    },
+    {
+      "path": "docs/ui/pre-review-recheck-2026-11-01.md",
+      "sha256": "9912a322881397d18149002ce68e922f03bf427096afa45d868abf09d3fb4e9e"
+    },
+    {
+      "path": "web/src/components/ActivityRecords.vue",
+      "sha256": "416c5538ae8057070b1f1529e1cdefd2c7b2bd0ccb424036389e74cfdbc1ec28"
+    },
+    {
+      "path": "web/src/domain/access.ts",
+      "sha256": "b6da2212958eace9393fd4bb9dbc8ebd3b21fb697bce8eb679df6c0d4a8fcd58"
+    },
+    {
+      "path": "web/src/pages/ActivityDetailPage.vue",
+      "sha256": "0f9638e50f9ced16a17eaed76e5a690882ee921f0f9ddc31899172de392283f8"
+    },
+    {
+      "path": "web/tests/activity-detail.test.ts",
+      "sha256": "66af46e32248096d038c463f9e09d564cb7a33f4eaf95e9521a858c7035e38e0"
+    },
+    {
+      "path": "web/tests/activity-records.test.ts",
+      "sha256": "be0b31afdfd2b613c0f06c1bc8f192b588cc2f90f17d9a061c5b9281aa5e4212"
+    },
+    {
+      "path": "web/tests/integration/review-regression.spec.ts",
+      "sha256": "193f67e265f050ced976beeab460bca894d9c96ed7b5deb287163172ce24d2bd"
+    }
+  ]
+}

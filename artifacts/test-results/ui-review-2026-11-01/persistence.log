@@ -1,0 +1,11 @@
+
+Running 2 tests using 1 worker
+
+(node:52172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:52172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\integration\persistence.spec.ts:5:1 › 服务重启后保留草稿、资源资格、完整授权和停用状态 (2.3s)
+  ok 2 tests\integration\review-restart.spec.ts:5:1 › 实际重启后改期生效版本、安排、报名、日历和通知仍可读取 (2.5s)
+
+  2 passed (7.4s)

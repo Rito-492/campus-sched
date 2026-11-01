@@ -1,0 +1,73 @@
+{
+  "version": "0.1.0",
+  "baseline": "feb0d70e2ff9da1669eb9c4c3e4beeb592a43ae9",
+  "date": "2026-10-31",
+  "browser": "Edge 152.0.4191.66",
+  "runtime": "Node 22.23.0",
+  "data": "UI_FIXTURE_ONLY / 2030-10-20；登录页无数据；非真实业务E2E",
+  "viewports": [
+    [
+      1366,
+      768
+    ],
+    [
+      1920,
+      1080
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "sourceSha256": {
+    "web/index.html": "95051d1b5aebbf8e43a814322be0296d1bde3567df9e5ae3199a4560de4c9536",
+    "web/package-lock.json": "714427333468418e6cc085b3d614d696e3641e088e913d38dae4eebd542b3f5f",
+    "web/package.json": "1d359bea99bdb7f99afa15779efdaad4e14e7689c0a282e248ce0666556b1090",
+    "web/playwright.config.ts": "d29d47d9decaf09d06db7a8e26e671797018077fd891016ad00cab46b9d49c6a",
+    "web/scripts/check-production.mjs": "9108f7720be1834c789328dbc2dfd021b2d2588b08b4e395730718cb93ad534c",
+    "web/scripts/sync-types.mjs": "c56cc79a092013574f8026777451365d52ed01b1a774165315462c218caa15c7",
+    "web/src/api/client.ts": "2b76acbdb46d7cd2bc13327bda63721c0a2296071800a27b2d664f3683d7dc47",
+    "web/src/api/index.ts": "4a2a5b3e198a44e0c2943ee9d6637a0e689ec4663ef22485f1cc8fc03b0b83ab",
+    "web/src/App.vue": "69cf9d0d32522eedf67974c17825b2d81e122d464b6a491945e9d385f34b7b91",
+    "web/src/components/AlternativesPanel.vue": "7bf12c3d896297fcd4e2607fe57f1d0386e6d55d49c0a62624dec05409d2d9d9",
+    "web/src/components/ApiFeedback.vue": "69a310c3cb8e517f99732f94deac8f9d2434bc6ea8b798779cc6b512b795eca2",
+    "web/src/components/ChangeTimeline.vue": "2c66cddf77712d79add2faa7588f5a62e7a2e092ed46741cdc44ac528e80ebf3",
+    "web/src/components/ConflictList.vue": "1687390d81a155d4922137ae80b108e86b40e8fa3f035364aaf0e94210d0e97a",
+    "web/src/components/ImpactPanel.vue": "6e2c42ea80ddce7c34b0a2662d16b6c4958cc201ef41b4cdbc20f2f80ea4e57a",
+    "web/src/components/ResourceCalendar.vue": "d31111a7e08c1caf1f5a23af1f6a8fdb87aef4b85addd4e305e3348355b82639",
+    "web/src/dev/PrototypePage.vue": "baf668e05f67bfe13236adf3fb4d0cc68e734fba28365ae30681db7a4e4d913b",
+    "web/src/domain/access.ts": "b6da2212958eace9393fd4bb9dbc8ebd3b21fb697bce8eb679df6c0d4a8fcd58",
+    "web/src/domain/format.ts": "f254db049899b38719ed83233c7195522fb1571d1c0c10503dce67ca54255c6b",
+    "web/src/domain/validation.ts": "575b93d66d957fcd148fd39c688698b65f04eaba70efcaa9be352e4bf9dc44c7",
+    "web/src/main.ts": "6f7cc498e6e3db0595663802326edd7810ced64d8273b885494ffea90cf8422e",
+    "web/src/pages/ActivitiesPage.vue": "fd25d7536731172f2c94bbbbb4cf7699850ea2e32f4c4d7816f0b16c17143225",
+    "web/src/pages/ActivityCreatePage.vue": "fa68f6960baa60b1c01176cf40bb8254a5097512d83a8c9d1e0dbd7e8607f6ea",
+    "web/src/pages/ActivityDetailPage.vue": "237641d9601085a05719fc5703e6df65606f595212b12c01c859d48e122c2b9b",
+    "web/src/pages/CalendarPage.vue": "c306b79e5e532116fdef2bb7375c547eed242ca725ce60ed2860893eb01cdea0",
+    "web/src/pages/LoginPage.vue": "de877bec9ca739667685e8d05e3be77b1972b3964d8765a630b589537740e02a",
+    "web/src/pages/NotificationsPage.vue": "a8afd56fc9f67b8d6ec58121ba344f6d71aa1116aeddfd9009ecb54d2b6c1f38",
+    "web/src/pages/PendingPage.vue": "f9c9ef8db7a0c11d4e4f760f2d6ca857bbee36fefe602a67a37b9f97b16dbb90",
+    "web/src/router.ts": "894e3c43a0e862e18fc27173c11c9dea022a219f364ea03129ba7f734984775b",
+    "web/src/stores/session.ts": "f1e6175a468a5a32524036aca37914aead1efd42bf3cd4097784b6e39033d0d1",
+    "web/src/style.css": "74db66cd24f4b3d05ac34ed770ff9ea140b99237b1e29e760cb764cc81fc1b67",
+    "web/src/types/api.ts": "8e549afd0ad3ff589029b16067e26f4c7e3943db44d4c9f29033088dcf2bfa23",
+    "web/tests/access.test.ts": "ab8600b806da625f74933d8943e1159ffaf2eb89ac1e005d5a42efcd7ae728ac",
+    "web/tests/browser/layout.spec.ts": "a838fc344cd160f9a31004cf314ea8dd777f5a869e3bbb94c71ac4513a7e4c0a",
+    "web/tests/client.test.ts": "85ce6844fb7db885be2db456e93b8da27131951907f6f6c246073d7a18eb39c7",
+    "web/tests/components.test.ts": "9d47e61654f5b1c0992a1ba7ec70152c7f6ad605430cfff83302e547fac6e6fe",
+    "web/tests/contracts.test.ts": "d979ebf85ba75e0d37c9420e982d80ff60a3e0df950deb15594327dad0013d07",
+    "web/tests/fixtures.ts": "d38c073b879b5d18e225b3a0d202ea9d8e3c10ecd9925e680ca4abea10a90e55",
+    "web/tests/validation.test.ts": "2bce93c1b91393924a277c6a1d7001e39980c25b49a2e088a0cc6a590bf8e6b7",
+    "web/tsconfig.json": "0a4bb9c8fed5d308031c3055e041708b901023d5e7c9358208816e4f17431403",
+    "web/vite.config.ts": "0649c6c374f81612349a7919ae927b1d07da63e7fd438aba846faa8fdb734ed8"
+  },
+  "screenshots": {
+    "login-1366x768.png": "89a4f07c0b42beb4b201338d11bf3149e50e01aaf462aa62b02b6601c5300931",
+    "login-1920x1080.png": "8d764b51e4f318dee4c925257a38df0970739113c57989525ef5a6d2c9d4fdb1",
+    "login-390x844.png": "c89a9de53fc662ae49162eb0a549b0096d91b97126b8a5c9883c54114bcd1e8d",
+    "prototype-1366x768.png": "194d550c394e2c80db0984bd5631c63df78c534acbb908ce1b3d080236d50898",
+    "prototype-1920x1080.png": "dd46b01e7260f987d3aba23c972443f5f89f79671a61098cb75dc30f8083b3ef",
+    "prototype-390x844.png": "80bc4ac852ef99edc18550cd054501f91fdac4e8760578d8d0ef9bb784c6c575"
+  },
+  "sourceHashBasis": "Git暂存区规范化文本（与提交blob一致）"
+}

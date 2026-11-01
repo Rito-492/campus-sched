@@ -1,0 +1,37 @@
+
+ RUN  v3.2.7 D:/code/01_projects/project/campus-sched/web
+
+ ✓ tests/user-admin.test.ts (7 tests) 19ms
+ ✓ tests/change-workspace.test.ts (9 tests) 17ms
+ ✓ tests/client.test.ts (7 tests) 18ms
+ ✓ tests/contracts.test.ts (2 tests) 25ms
+ ✓ tests/change-access.test.ts (6 tests) 5ms
+ ✓ tests/access.test.ts (9 tests) 5ms
+ ✓ tests/mutation.test.ts (4 tests) 7ms
+ ✓ tests/capacity.test.ts (4 tests) 5ms
+ ✓ tests/resource.test.ts (4 tests) 5ms
+ ✓ tests/validation.test.ts (5 tests) 5ms
+ ✓ tests/queue.test.ts (2 tests) 3ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 10 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/activity-detail.test.ts [ tests/activity-detail.test.ts ]
+ FAIL  tests/activity-records.test.ts [ tests/activity-records.test.ts ]
+ FAIL  tests/api-feedback.test.ts [ tests/api-feedback.test.ts ]
+ FAIL  tests/authorization.test.ts [ tests/authorization.test.ts ]
+ FAIL  tests/change-actions.test.ts [ tests/change-actions.test.ts ]
+ FAIL  tests/change-detail.test.ts [ tests/change-detail.test.ts ]
+ FAIL  tests/components.test.ts [ tests/components.test.ts ]
+ FAIL  tests/draft-editor.test.ts [ tests/draft-editor.test.ts ]
+ FAIL  tests/resource-management.test.ts [ tests/resource-management.test.ts ]
+ FAIL  tests/users-panel.test.ts [ tests/users-panel.test.ts ]
+TypeError: Unknown file extension ".css" for D:\code\01_projects\project\campus-sched\web\node_modules\element-plus\theme-chalk\base.css
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/10]⎯
+
+
+ Test Files  10 failed | 11 passed (21)
+      Tests  59 passed (59)
+   Start at  15:31:06
+   Duration  61.95s (transform 1.51s, setup 0ms, collect 2.72s, tests 115ms, environment 75.81s, prepare 5.28s)
+
+JSON report written to D:/code/01_projects/project/campus-sched/artifacts/test-results/ui-bundle-2026-11-01/unit-results.json

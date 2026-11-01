@@ -1,0 +1,339 @@
+{
+  "date": "2026-11-01",
+  "author": "杨畅（17231018）",
+  "upstreamMain": "107a301ba1ea040a0c322656789f078ff81093f2",
+  "localMerge": "9fe38e9c2d9ca9f2ae402acdee74e471ad4c0a48",
+  "previousPrHead": "a327b16b171ab40da1ef336b8f1c0ab8d21bd834",
+  "sourceState": "本地未提交修复，未推送；各文件哈希对应当前工作区",
+  "node": "22.23.0",
+  "tests": {
+    "unitPassed": 90,
+    "initialIntegrationFailed": 2,
+    "unitFiles": 19,
+    "knownBackendFailure": "API-18 空批准意见400，未修复",
+    "realIntegrationPassed": 7,
+    "restartPassed": 2
+  },
+  "sources": [
+    {
+      "path": "docs/ui/api-matrix.md",
+      "sha256": "09114b50d28a0a3e8f8805ae5a6b4d3143050dae5ac941f40772395b04ff5cc0"
+    },
+    {
+      "path": "docs/ui/handoff.md",
+      "sha256": "9f86db7eb68b7379ce4e7090ac7650e317678d7d0c961fba01fdb94edf99614e"
+    },
+    {
+      "path": "docs/ui/interface-implementation-0.1.md",
+      "sha256": "522b38efdc70f1eecab330e5753a15603309a595cd11b5bb6dcc05122eb9f1d7"
+    },
+    {
+      "path": "docs/ui/pr-draft.md",
+      "sha256": "a13103e8fdac15ae8e71aab43779a4d9aef1934bae2102adec2a68973c78c20a"
+    },
+    {
+      "path": "docs/ui/review-followup-2026-11-01.md",
+      "sha256": "2759ce357ece12fa1edadb2389818b9cd6b73e4810caf4e6efab4110f04f47d9"
+    },
+    {
+      "path": "docs/ui/user-manual.md",
+      "sha256": "43f23dee9177243d2349f8bd681121fe9aec1c34327cd6bbeb8438f45f308bcb"
+    },
+    {
+      "path": "web/package.json",
+      "sha256": "7b37b53bd08118f89f54a9ebc11138ea76f9471c0999f6afe1cb8d6dde0aa6d6"
+    },
+    {
+      "path": "web/README.md",
+      "sha256": "9429ebe4012ab52fdb0b5bbb94e61086ec7e615be2567ca0d3343202ad36bb1d"
+    },
+    {
+      "path": "web/src/components/ActivityRecords.vue",
+      "sha256": "416c5538ae8057070b1f1529e1cdefd2c7b2bd0ccb424036389e74cfdbc1ec28"
+    },
+    {
+      "path": "web/src/components/ImpactPanel.vue",
+      "sha256": "3b56f5bdf1860e12a24ad625647c6c636688b82fd964b21b5f6311284ec6de3d"
+    },
+    {
+      "path": "web/src/domain/authorization.ts",
+      "sha256": "a9542c734484e263117632a7ac4a985feb499ba6ab52801cef124f671d024cc0"
+    },
+    {
+      "path": "web/src/pages/ActivityDetailPage.vue",
+      "sha256": "aec7cbe9edc81bc8cc042e80f8d56b68b0b8bfbffa0231ba0c6653d96713abfc"
+    },
+    {
+      "path": "web/tests/activity-detail.test.ts",
+      "sha256": "ae48540f39d5afd7613450ec4fa91e9b057392f0edbda437733eb17e26a0864e"
+    },
+    {
+      "path": "web/tests/activity-records.test.ts",
+      "sha256": "be0b31afdfd2b613c0f06c1bc8f192b588cc2f90f17d9a061c5b9281aa5e4212"
+    },
+    {
+      "path": "web/tests/authorization.test.ts",
+      "sha256": "68b3125c6368191323863d8fabd740ef9580cc5600bbcae99186583b58b4c09c"
+    },
+    {
+      "path": "web/tests/integration/review-regression.spec.ts",
+      "sha256": "76ee5810d92f5194ded5f6d5a98db44b03e3aa896edaa2763d8c32dafb1f73b2"
+    },
+    {
+      "path": "web/tests/integration/review-restart.spec.ts",
+      "sha256": "3980605fddbc47e5baf5be371a0796b537c0118ad199bfa8373190a41f9d1816"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-authorization-1366x768.png",
+      "sha256": "92be70e21ee03617eb540fded5b53312964d53a5434245703f9a384f3cbdd07d",
+      "bytes": 57214
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-authorization-1920x1080.png",
+      "sha256": "b5093cb9fd421b857a7a33b4490141338ba02f31952cb297b0f18fc7389d8fbd",
+      "bytes": 62487
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-authorization-390x844.png",
+      "sha256": "1222bc007afece25a7c34197466eadd39007795855f82752629b7e03bbe16bea",
+      "bytes": 43888
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-calendar-1366x768.png",
+      "sha256": "4e5fc5236f187cd31f408f31511968fbaa1bae6005e296ec8ed557fc831cca24",
+      "bytes": 173644
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-calendar-1920x1080.png",
+      "sha256": "16d03077c25ab063d1e4508d5854fb4d8b13aa2d38d3e50c038de5f97692c54b",
+      "bytes": 183748
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-calendar-390x844.png",
+      "sha256": "9b279c9dac6ad13beda4f5c1e0a0efca3a44be04e43a919cb80458d0e73cb347",
+      "bytes": 59490
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-draft-1366x768.png",
+      "sha256": "fab8110c1c4540a5a17b6170638e4f5950a3385cfd765061854ea49c74f73d04",
+      "bytes": 87587
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-draft-1920x1080.png",
+      "sha256": "20893af0167c4c60d1ebae78a6eaea8a04611355f83a80162eb50f890dbe159a",
+      "bytes": 91582
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-draft-390x844.png",
+      "sha256": "b53b126825419bd70622020947e9d6e3ea823df740781ba8f7baad9ad97213b8",
+      "bytes": 73661
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-eligibility-error-1366x768.png",
+      "sha256": "bcedd00dddb8f0db74f47a549def3ad5c8b9eddb925736d8b62a83cd5e947deb",
+      "bytes": 104421
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-eligibility-error-1920x1080.png",
+      "sha256": "c71e8fce08add6ae8cfc328214b06c375bd5589cf342b951e9c01927e4022417",
+      "bytes": 107779
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-eligibility-error-390x844.png",
+      "sha256": "ccf60856bc79185736340369e646fe226b81a5ae6cbdcf33b7b33169ade353ce",
+      "bytes": 86559
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-resource-1366x768.png",
+      "sha256": "cff34e8249742df8e0858fe32d7d43765cf6356242ebbf4b7f6d35398de48354",
+      "bytes": 170228
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-resource-1920x1080.png",
+      "sha256": "9ccd8e7cf10a365610c9cb932e1d5bd677771c8444581bfd9f28c2831d2c0497",
+      "bytes": 177752
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-resource-390x844.png",
+      "sha256": "fad6cabcbb1e72303f84c1de416e3c41356177a6c5f347c6c2f8a0cb399b4a52",
+      "bytes": 76538
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/real-cross-org-staff-1366x768.png",
+      "sha256": "e4bc5e5bbdfa341ae296f847f7e9e07873ddfeaa1a75e18da2f6ad004f5891c5",
+      "bytes": 83591
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/real-cross-org-staff-1920x1080.png",
+      "sha256": "40bbddcd5286e6c3cdfb769d0026e639afdcf855b389570d08bdcb070c51a131",
+      "bytes": 87662
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/real-cross-org-staff-390x844.png",
+      "sha256": "7b12dd44fab3d37af94a38483f07dd267406050fc451928980df14520b093804",
+      "bytes": 68291
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/real-revoked-detail-1366x768.png",
+      "sha256": "05f34b70172d081bffd860dac779cd43de3b141f90be39e9e77e0e957a22259a",
+      "bytes": 36593
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/real-revoked-detail-1920x1080.png",
+      "sha256": "b674eac2d412ff8393ce30be0126de93148c8507e851ccc3bbebb9bedf8f8f45",
+      "bytes": 40621
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/real-revoked-detail-390x844.png",
+      "sha256": "f91cf73660f5809e5af7346561d2a12b84122d74e6546a97d94c9ae8a64c3b1e",
+      "bytes": 22842
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/restarted/real-change-after-restart-1366x768.png",
+      "sha256": "ae12aa5df19d28ede6ea2c7e2b75f26bac6c6703fc9a7b3f060ff55fe4e77b54",
+      "bytes": 222056
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/restarted/real-change-after-restart-1920x1080.png",
+      "sha256": "5507b4fa0f0c59f94366fe8ecb5cda0226ce51c226184625d181738f0509701f",
+      "bytes": 232385
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/restarted/real-change-after-restart-390x844.png",
+      "sha256": "87488af4e6b202fd62eb85cf4575944c238eaa44ab0a2a9c5254abea426715f1",
+      "bytes": 186404
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/with-comment/real-change-applied-1366x768.png",
+      "sha256": "024dd3b3253f4680525002cdb6cfdf558f6ec2aa060b54d433eeb7b8a270aa5b",
+      "bytes": 220426
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/with-comment/real-change-applied-1920x1080.png",
+      "sha256": "767efe6e4af9a8f8d8273ce8de1e0bebd09a4d8238e8b663368279c080a390f5",
+      "bytes": 230818
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/with-comment/real-change-applied-390x844.png",
+      "sha256": "56f51f158663f0b22a39a078851954db802fb2dc61b965c2497874d20a8e4d0f",
+      "bytes": 184877
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/with-comment/real-cross-org-staff-1366x768.png",
+      "sha256": "c6320489c3611a170cf70cb20a59b421af8bf2252d8ed80acccb1c1d88d767f3",
+      "bytes": 84416
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/with-comment/real-cross-org-staff-1920x1080.png",
+      "sha256": "483a6c6b83c3bc172e61e6c152252234a898f8cb1586547db7ac8d3d1b6983fb",
+      "bytes": 88508
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/with-comment/real-cross-org-staff-390x844.png",
+      "sha256": "fa8b1ad17f084e73dec3f9fc7270a03ec1697f064bb87aae8a175824df85a3d0",
+      "bytes": 69228
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/with-comment/real-revoked-detail-1366x768.png",
+      "sha256": "b7c5b463f73ced748aa7fb6c5763c79a9ed8ab19c695ddec4d7231888f5c346f",
+      "bytes": 36586
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/with-comment/real-revoked-detail-1920x1080.png",
+      "sha256": "edd4eff8c72bbe80ed719788a957da3f8470c092e6fad3621512203e45c04fc9",
+      "bytes": 40625
+    },
+    {
+      "path": "artifacts/screenshots/ui-review-2026-11-01/with-comment/real-revoked-detail-390x844.png",
+      "sha256": "10216996b4f6efb3b6f2df7964efff3d7a9331a5fa92c3476adc04a6dc61b51b",
+      "bytes": 22727
+    },
+    {
+      "path": "artifacts/test-results/ui-review-2026-11-01/backend-package-retry.log",
+      "sha256": "e2a1b4121dcf9a957cd982195f2b588b86e2070c4c5633222561f6e33b1e3766",
+      "bytes": 1953
+    },
+    {
+      "path": "artifacts/test-results/ui-review-2026-11-01/backend-package.log",
+      "sha256": "907b207f4144793645d1fd8077cf553ea047c835ff59eb9de693f0960d31ecc7",
+      "bytes": 3248
+    },
+    {
+      "path": "artifacts/test-results/ui-review-2026-11-01/build-final.log",
+      "sha256": "8d94b706a66e890f2d3587c1cb78efe1047e81fed3e3411ebed6325087e5849a",
+      "bytes": 3266
+    },
+    {
+      "path": "artifacts/test-results/ui-review-2026-11-01/build.log",
+      "sha256": "fcfc9267189870010b99771dc1de2466224ec7de3138ae8fee92c64108a2ebf7",
+      "bytes": 3266
+    },
+    {
+      "path": "artifacts/test-results/ui-review-2026-11-01/integration-results.json",
+      "sha256": "f96d7f90a70603a78bdc3de24c8ee58ebd3a796aaaaa3dbacd55b3b1389baa40",
+      "bytes": 6920
+    },
+    {
+      "path": "artifacts/test-results/ui-review-2026-11-01/integration.log",
+      "sha256": "1751d9568f66681dfa8823592e1ccb1cd28d90c43d9969115e294717d2d9afeb",
+      "bytes": 1165
+    },
+    {
+      "path": "artifacts/test-results/ui-review-2026-11-01/persistence-results.json",
+      "sha256": "8ccb7ef94d62744d420221ce4a877f7a391864aab5dac4f2d560bd956e2d7c17",
+      "bytes": 3951
+    },
+    {
+      "path": "artifacts/test-results/ui-review-2026-11-01/persistence.log",
+      "sha256": "c409297b2b88e435007c756935ac12383a18e4b5a4ee52812cb4e6f42d1cd59b",
+      "bytes": 669
+    },
+    {
+      "path": "artifacts/test-results/ui-review-2026-11-01/restart.json",
+      "sha256": "b17d85a6abbb2cc35941a9f1c8e096b148c57d4a967e6b320ba66cb2f1944880",
+      "bytes": 203
+    },
+    {
+      "path": "artifacts/test-results/ui-review-2026-11-01/review-integration-results.json",
+      "sha256": "959fb5d22dc2962c9fdc6b83293147dbf885dc783044497599a71267d825f007",
+      "bytes": 11462
+    },
+    {
+      "path": "artifacts/test-results/ui-review-2026-11-01/review-integration-with-comment-results.json",
+      "sha256": "e1dd057625f233b6a070f848a5c915af654c447c6f8708b27a9e29ab93c71cb3",
+      "bytes": 3838
+    },
+    {
+      "path": "artifacts/test-results/ui-review-2026-11-01/review-integration-with-comment.log",
+      "sha256": "75f21e6b95aea15e494f3bc2383056fb2c37fe4759a9b26cab2e3b0e9cd0adfc",
+      "bytes": 705
+    },
+    {
+      "path": "artifacts/test-results/ui-review-2026-11-01/review-integration.log",
+      "sha256": "0fe2947ca30b77966cdacabffe3110e20fb435a87853ff58bfb8189163d5ca35",
+      "bytes": 3921
+    },
+    {
+      "path": "artifacts/test-results/ui-review-2026-11-01/typecheck.log",
+      "sha256": "8c7c252e67f1ddf35c380bd7d4e4e8e499a9529fff68dc417d34db0873e62c6e",
+      "bytes": 60
+    },
+    {
+      "path": "artifacts/test-results/ui-review-2026-11-01/types-check.log",
+      "sha256": "9489d050b8183ab9a0f63fbf2fb527c8d764b093ccd353d63c620c1df1e739e7",
+      "bytes": 81
+    },
+    {
+      "path": "artifacts/test-results/ui-review-2026-11-01/unit-results.json",
+      "sha256": "5b2fc877da8fd8087e6cd64944fe3c82ad8f514c98b4f8cf7a2af940cfda3eca",
+      "bytes": 30522
+    },
+    {
+      "path": "artifacts/test-results/ui-review-2026-11-01/unit.log",
+      "sha256": "46b378ea8cfb995659ff3382ccba989255d4a3b303e580b5ab519cc35e42f317",
+      "bytes": 1758
+    }
+  ]
+}

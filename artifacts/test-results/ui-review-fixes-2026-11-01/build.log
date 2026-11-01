@@ -1,0 +1,39 @@
+
+> campus-sched-web@0.1.0 build
+> vue-tsc --noEmit && vite build && node scripts/check-production.mjs
+
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 1697 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                                                    0.43 kB │ gzip:   0.33 kB
+dist/assets/UsersPage-InTsJseY.css                                                 2.35 kB │ gzip:   0.77 kB
+dist/assets/index--stVsgrX.css                                                   372.78 kB │ gzip:  51.11 kB
+dist/assets/format-migFoBCL.js                                                     0.50 kB │ gzip:   0.42 kB
+dist/assets/PendingPage-OPVqGZPr.js                                                0.82 kB │ gzip:   0.58 kB
+dist/assets/validation-Dc3vNH7X.js                                                 1.47 kB │ gzip:   0.83 kB
+dist/assets/change-CjOn2DG7.js                                                     1.61 kB │ gzip:   0.91 kB
+dist/assets/PlanSummary.vue_vue_type_script_setup_true_lang-HMytzLHh.js            1.97 kB │ gzip:   0.96 kB
+dist/assets/MutationFeedback.vue_vue_type_script_setup_true_lang-C956QOBU.js       2.28 kB │ gzip:   1.20 kB
+dist/assets/CalendarPage-CdE23OYb.js                                               2.49 kB │ gzip:   1.49 kB
+dist/assets/LoginPage-CCBLuoj2.js                                                  2.56 kB │ gzip:   1.44 kB
+dist/assets/ImpactPanel.vue_vue_type_script_setup_true_lang-C0ASf5JY.js            2.57 kB │ gzip:   1.38 kB
+dist/assets/NotificationsPage-BhIyD_-Z.js                                          2.63 kB │ gzip:   1.48 kB
+dist/assets/ActivitiesPage-Bob7kNf1.js                                             5.63 kB │ gzip:   2.70 kB
+dist/assets/ResourceCalendar.vue_vue_type_script_setup_true_lang-BT928c5D.js       6.32 kB │ gzip:   2.96 kB
+dist/assets/AlternativesPanel.vue_vue_type_script_setup_true_lang-DG98_Alq.js      7.19 kB │ gzip:   2.88 kB
+dist/assets/ChangeWorkspacePage-C20VFvbZ.js                                        8.20 kB │ gzip:   3.81 kB
+dist/assets/ActivityCreatePage-BJoGbVih.js                                         8.58 kB │ gzip:   3.62 kB
+dist/assets/ChangeDetailPage-gIt74nIu.js                                          12.42 kB │ gzip:   4.94 kB
+dist/assets/ResourceManagePage-B3roK8gX.js                                        14.19 kB │ gzip:   5.51 kB
+dist/assets/ActivityDetailPage-omHkep48.js                                        19.15 kB │ gzip:   6.69 kB
+dist/assets/UsersPage-BgWO3SPt.js                                                 20.84 kB │ gzip:   7.60 kB
+dist/assets/index-BX-dTF0w.js                                                  1,050.70 kB │ gzip: 348.08 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 13.87s
+生产产物检查通过：无开发原型入口或演示数据标识。

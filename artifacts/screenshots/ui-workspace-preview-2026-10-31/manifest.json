@@ -1,0 +1,22 @@
+{
+  "baseline": "feb0d70",
+  "baseUiCommit": "e100e0b",
+  "localChanges": true,
+  "date": "2026-10-31",
+  "browser": "Edge 152.0.4191.66",
+  "runtime": "Node 22.23.0",
+  "data": "开发演示数据，无真实登录，无API请求；2030-10虚构安排",
+  "sourceSha256": {
+    "web/src/dev/WorkspacePreview.vue": "4bd9212c00c09de6d06e23f8b8d29c10f761ae571dfd784963705a73bb0fa327",
+    "web/src/components/WorkspaceLayout.vue": "c3a563a9926989a5a6d1bc12545c2c2bde1fca39fc21237494051029fae17c9b",
+    "web/src/components/ActivityList.vue": "9ebdc78d8aa9aae6fe4016da151e4077561ce2407e6b6dd44147b671ee1d7a66",
+    "web/src/router.ts": "72bd9bf4a1b48d5f28f02ddb414eee645174d366dae7e70300a97bfbef4ef123",
+    "web/src/style.css": "b7abfdca4cb9b62610ad8534456c9e8be16b0ca3a6bc4ba066b984064a57aca2",
+    "web/tests/browser/workspace-preview.spec.ts": "8606495e8a1550ff8fcc275d469bdac1f6b434e3377bca7ce5dcb4ecd4ccaf98"
+  },
+  "screenshots": {
+    "workspace-1366x768.png": "cde4f4452a88913a879a6f86e13164a8804525c94eaa3ba23ee4bd78968a1a6f",
+    "workspace-1920x1080.png": "9ca323885a480a004407d3a18161b72f0cc4483ba70fb18b908e9806b97dd86e",
+    "workspace-390x844.png": "6738f03d51a2d0d93453fd6e0d81357ff6bd6cb0debdc8a846e0e5fb9c3bdb5f"
+  }
+}

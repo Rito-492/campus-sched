@@ -1,0 +1,61 @@
+
+Running 1 test using 1 worker
+
+(node:64020) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:64020) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 .integration-runtime\professional-review\staff-history.spec.ts:40:1 › 真实资源刷新应将当前选中资源的资格开关更新为服务器最新值 (11.7s)
+
+
+  1) .integration-runtime\professional-review\staff-history.spec.ts:40:1 › 真实资源刷新应将当前选中资源的资格开关更新为服务器最新值 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).not.[22mtoBeChecked[2m([22m[2m)[22m failed
+
+    Locator:  getByTestId('eligibility-teacher').locator('input')
+    Expected: not checked
+    Received: checked
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "soft not toBeChecked" with timeout 5000ms[22m
+    [2m  - waiting for getByTestId('eligibility-teacher').locator('input')[22m
+    [2m    9 × locator resolved to <input type="checkbox" class="el-checkbox__original"/>[22m
+    [2m      - unexpected value "checked"[22m
+
+
+      76 |   mkdirSync(shot, { recursive: true })
+      77 |   await page.screenshot({ path: resolve(shot, 'eligibility-refresh-stale.png'), fullPage: true })
+    > 78 |   await expect.soft(teacher).not.toBeChecked()
+         |                                  ^
+      79 |   await expect.soft(student).not.toBeChecked()
+      80 | })
+      81 |
+        at D:\code\01_projects\project\campus-sched\web\.integration-runtime\professional-review\staff-history.spec.ts:78:34
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).not.[22mtoBeChecked[2m([22m[2m)[22m failed
+
+    Locator:  getByTestId('eligibility-student').locator('input')
+    Expected: not checked
+    Received: checked
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "soft not toBeChecked" with timeout 5000ms[22m
+    [2m  - waiting for getByTestId('eligibility-student').locator('input')[22m
+    [2m    9 × locator resolved to <input type="checkbox" class="el-checkbox__original"/>[22m
+    [2m      - unexpected value "checked"[22m
+
+
+      77 |   await page.screenshot({ path: resolve(shot, 'eligibility-refresh-stale.png'), fullPage: true })
+      78 |   await expect.soft(teacher).not.toBeChecked()
+    > 79 |   await expect.soft(student).not.toBeChecked()
+         |                                  ^
+      80 | })
+      81 |
+        at D:\code\01_projects\project\campus-sched\web\.integration-runtime\professional-review\staff-history.spec.ts:79:34
+
+    Error Context: .integration-runtime\professional-review-output\staff-history-真实资源刷新应将当前选中资源的资格开关更新为服务器最新值\error-context.md
+
+  1 failed
+    .integration-runtime\professional-review\staff-history.spec.ts:40:1 › 真实资源刷新应将当前选中资源的资格开关更新为服务器最新值 

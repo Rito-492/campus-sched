@@ -1,0 +1,35 @@
+
+Running 1 test using 1 worker
+
+(node:42720) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:42720) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\production\components.spec.ts:12:3 › 生产组件、中文确认和主题在路由切换后完整 1366x768 (5.1s)
+
+
+  1) tests\production\components.spec.ts:12:3 › 生产组件、中文确认和主题在路由切换后完整 1366x768 ──────────────────────
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoEqual[2m([22m[32mexpected[39m[2m) // deep equality[22m
+
+    [32m- Expected  - 1[39m
+    [31m+ Received  + 3[39m
+
+    [32m- Array [][39m
+    [31m+ Array [[39m
+    [31m+   "Failed to load resource: the server responded with a status of 404 (Not Found) (http://127.0.0.1:4173/favicon.ico)",[39m
+    [31m+ ][39m
+
+      108 |       ),
+      109 |     ).toEqual([])
+    > 110 |     expect(errors).toEqual([])
+          |                    ^
+      111 |     expect(mutations).toEqual([])
+      112 |   })
+      113 | }
+        at D:\code\01_projects\project\campus-sched\web\tests\production\components.spec.ts:110:20
+
+    Error Context: test-results\production\components-生产组件、中文确认和主题在路由切换后完整-1366x768\error-context.md
+
+  1 failed
+    tests\production\components.spec.ts:12:3 › 生产组件、中文确认和主题在路由切换后完整 1366x768 ───────────────────────

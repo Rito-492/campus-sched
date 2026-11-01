@@ -1,0 +1,13 @@
+
+ RUN  v3.2.7 D:/code/01_projects/project/campus-sched/web
+
+ ✓ tests/resource-management.test.ts (3 tests) 255ms
+ ✓ tests/activity-records.test.ts (13 tests) 306ms
+ ✓ tests/change-access.test.ts (6 tests) 5ms
+
+ Test Files  3 passed (3)
+      Tests  22 passed (22)
+   Start at  15:15:11
+   Duration  10.70s (transform 862ms, setup 0ms, collect 8.50s, tests 565ms, environment 8.03s, prepare 628ms)
+
+JSON report written to D:/code/01_projects/project/campus-sched/artifacts/test-results/ui-final-review-2026-11-01/targeted-unit-results.json

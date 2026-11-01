@@ -1,0 +1,14 @@
+
+ RUN  v3.2.7 D:/code/01_projects/project/campus-sched/web
+
+ ✓ tests/activity-records.test.ts (7 tests) 323ms
+ ✓ tests/activity-detail.test.ts (8 tests) 1405ms
+   ✓ 刷新返回 401 后移除旧活动及关联记录，重试可恢复  463ms
+   ✓ 正式详情中候选只填入草稿，显式保存后才更新当前安排  425ms
+
+ Test Files  2 passed (2)
+      Tests  15 passed (15)
+   Start at  14:42:16
+   Duration  11.99s (transform 1.21s, setup 0ms, collect 12.47s, tests 1.73s, environment 6.92s, prepare 461ms)
+
+JSON report written to D:/code/01_projects/project/campus-sched/artifacts/test-results/ui-pre-review-recheck-2026-11-01/unit-results.json

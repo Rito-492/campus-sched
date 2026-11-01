@@ -1,0 +1,176 @@
+
+ RUN  v3.2.7 D:/code/01_projects/project/campus-sched/web
+
+ ❯ tests/change-workspace.test.ts (9 tests | 4 failed) 26ms
+   × 改期工作台真实请求编排（单元替身） > 工作台刷新401清除受保护安排、目标与意见 13ms
+     → expected { id: 'activity-1', …(12) } to be null
+   × 改期工作台真实请求编排（单元替身） > 工作台刷新403清除受保护安排、目标与意见 2ms
+     → expected { id: 'activity-1', …(12) } to be null
+   × 改期工作台真实请求编排（单元替身） > 工作台刷新404清除受保护安排、目标与意见 1ms
+     → expected { id: 'activity-1', …(12) } to be null
+   × 改期工作台真实请求编排（单元替身） > 工作台刷新被拒绝后迟到的旧加载不能重新建立可提交预览 1ms
+     → expected { id: 'activity-1', …(12) } to be null
+   ✓ 改期工作台真实请求编排（单元替身） > 无预览不能创建；选择候选必须重新预览最终目标 3ms
+   ✓ 改期工作台真实请求编排（单元替身） > 编辑目标使旧影响失效，迟到响应也不能恢复创建按钮 1ms
+   ✓ 改期工作台真实请求编排（单元替身） > 409后保留目标/原因，加载新版本且要求重新预览 1ms
+   ✓ 改期工作台真实请求编排（单元替身） > 创建结果未知时只重放原命令，不使用新版本另建申请 1ms
+   ✓ 改期工作台真实请求编排（单元替身） > 预览目标不一致或不可行不能创建 1ms
+ ❯ tests/activity-detail.test.ts (8 tests | 2 failed) 625ms
+   ✓ 刷新返回 401 后移除旧活动及关联记录，重试可恢复 169ms
+   ✓ 刷新返回 403 后移除旧活动及关联记录，重试可恢复 53ms
+   ✓ 刷新返回 404 后移除旧活动及关联记录，重试可恢复 48ms
+   ✓ 网络刷新失败时明确标记旧快照并禁止办理，恢复后移除提示 39ms
+   ✓ 联合预约 409 重读完成后保留结构化冲突，下一次成功后清除 41ms
+   ✓ 正式详情中候选只填入草稿，显式保存后才更新当前安排 217ms
+   × 资源查询先失败不能掩盖稍后返回的活动403 32ms
+     → expected '← 活动工作台测试活动当前安排、审批与报名状态以服务端最新记录为准。资源网…' not to contain '测试活动'
+   × 409刷新和手动重试交错时，旧成功响应不能恢复已被403清除的详情 25ms
+     → expected '← 活动工作台测试活动当前安排、审批与报名状态以服务端最新记录为准。权限已…' not to contain '测试活动'
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/activity-detail.test.ts > 资源查询先失败不能掩盖稍后返回的活动403
+AssertionError: expected '← 活动工作台测试活动当前安排、审批与报名状态以服务端最新记录为准。资源网…' not to contain '测试活动'
+
+Expected: "测试活动"
+Received: "← 活动工作台测试活动当前安排、审批与报名状态以服务端最新记录为准。资源网络中断重试刷新失败，以下为上次成功读取的旧快照，可能已过期。请刷新成功后再办理。当前安排开放报名暂无简介活动时间10/20 10:00 — 10/20 11:00布场 / 撤场30 / 30 分钟 场地测试场地设备测试设备 × 2有效版本2刷新状态报名参与12 / 20 人你尚未报名仅学生身份的申请人可报名或退出报名参加办理活动 草稿 → 待批准 → 待资源确认 → 已预约 → 开放报名。业务批准不会占用资源。 发起改期原因或审批意见（拒绝、撤回、取消必填）取消活动"
+
+ ❯ tests/activity-detail.test.ts:268:24
+    266|   deny(new ApiError(403, 'FORBIDDEN', '详情权限已撤销'))
+    267|   await flushPromises()
+    268|   expect(w.text()).not.toContain(a.input.title)
+       |                        ^
+    269|   expect(w.find('[data-testid="activity-records"]').exists()).toBe(fal…
+    270|   expect(w.get('[data-testid="api-error"]').text()).toContain('详情权限已撤销…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/activity-detail.test.ts > 409刷新和手动重试交错时，旧成功响应不能恢复已被403清除的详情
+AssertionError: expected '← 活动工作台测试活动当前安排、审批与报名状态以服务端最新记录为准。权限已…' not to contain '测试活动'
+
+Expected: "测试活动"
+Received: "← 活动工作台测试活动当前安排、审批与报名状态以服务端最新记录为准。权限已撤销重试刷新失败，以下为上次成功读取的旧快照，可能已过期。请刷新成功后再办理。当前安排待资源确认暂无简介活动时间10/20 10:00 — 10/20 11:00布场 / 撤场30 / 30 分钟 场地测试场地设备测试设备 × 2有效版本2请刷新版本重试 请核对最新状态与输入后重新操作。 刷新状态报名参与12 / 20 人你尚未报名仅学生身份的申请人可报名或退出报名参加办理活动 草稿 → 待批准 → 待资源确认 → 已预约 → 开放报名。业务批准不会占用资源。 确认联合预约"
+
+ ❯ tests/activity-detail.test.ts:286:24
+    284|   oldResponse({ data: a, requestId: 'old' })
+    285|   await flushPromises()
+    286|   expect(w.text()).not.toContain(a.input.title)
+       |                        ^
+    287|   expect(w.find('[data-testid="activity-records"]').exists()).toBe(fal…
+    288| })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+ FAIL  tests/change-workspace.test.ts > 改期工作台真实请求编排（单元替身） > 工作台刷新401清除受保护安排、目标与意见
+ FAIL  tests/change-workspace.test.ts > 改期工作台真实请求编排（单元替身） > 工作台刷新403清除受保护安排、目标与意见
+ FAIL  tests/change-workspace.test.ts > 改期工作台真实请求编排（单元替身） > 工作台刷新404清除受保护安排、目标与意见
+AssertionError: expected { id: 'activity-1', …(12) } to be null
+
+- Expected: 
+null
+
++ Received: 
+{
+  "activeChangeId": null,
+  "createdAt": "2030-10-01T00:00:00Z",
+  "effectiveVersionNo": 2,
+  "id": "activity-1",
+  "input": {
+    "description": "",
+    "expectedAttendees": 30,
+    "plan": {
+      "endAt": "2030-10-20T11:00:00+08:00",
+      "equipment": [
+        {
+          "quantity": 2,
+          "resourceId": "equipment-1",
+        },
+      ],
+      "setupMinutes": 30,
+      "startAt": "2030-10-20T10:00:00+08:00",
+      "teardownMinutes": 30,
+      "venueId": "venue-1",
+    },
+    "registrationCapacity": 20,
+    "staffUserIds": [],
+    "title": "测试活动",
+  },
+  "lockVersion": 7,
+  "myRegistrationStatus": null,
+  "organizationId": "org-1",
+  "ownerId": "owner-1",
+  "registrationCount": 12,
+  "resourceRisk": "NORMAL",
+  "status": "OPEN",
+  "versionNo": 3,
+}
+
+ ❯ tests/change-workspace.test.ts:83:30
+     81|     vi.mocked(api.activity).mockRejectedValueOnce(new ApiError(status,…
+     82|     await s.load()
+     83|     expect(s.activity.value).toBeNull()
+       |                              ^
+     84|     expect(s.target.value).toBeNull()
+     85|     expect(s.resources.value).toEqual([])
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/6]⎯
+
+ FAIL  tests/change-workspace.test.ts > 改期工作台真实请求编排（单元替身） > 工作台刷新被拒绝后迟到的旧加载不能重新建立可提交预览
+AssertionError: expected { id: 'activity-1', …(12) } to be null
+
+- Expected: 
+null
+
++ Received: 
+{
+  "activeChangeId": null,
+  "createdAt": "2030-10-01T00:00:00Z",
+  "effectiveVersionNo": 2,
+  "id": "activity-1",
+  "input": {
+    "description": "",
+    "expectedAttendees": 30,
+    "plan": {
+      "endAt": "2030-10-20T11:00:00+08:00",
+      "equipment": [
+        {
+          "quantity": 2,
+          "resourceId": "equipment-1",
+        },
+      ],
+      "setupMinutes": 30,
+      "startAt": "2030-10-20T10:00:00+08:00",
+      "teardownMinutes": 30,
+      "venueId": "venue-1",
+    },
+    "registrationCapacity": 20,
+    "staffUserIds": [],
+    "title": "测试活动",
+  },
+  "lockVersion": 7,
+  "myRegistrationStatus": null,
+  "organizationId": "org-1",
+  "ownerId": "owner-1",
+  "registrationCount": 12,
+  "resourceRisk": "NORMAL",
+  "status": "OPEN",
+  "versionNo": 3,
+}
+
+ ❯ tests/change-workspace.test.ts:99:30
+     97|     oldResponse(envelope(a()))
+     98|     await oldLoad
+     99|     expect(s.activity.value).toBeNull()
+       |                              ^
+    100|     expect(s.allowed.value).toBe(false)
+    101|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/6]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  6 failed | 11 passed (17)
+   Start at  14:18:33
+   Duration  6.69s (transform 540ms, setup 0ms, collect 3.67s, tests 650ms, environment 4.56s, prepare 368ms)
+
+JSON report written to D:/code/01_projects/project/campus-sched/artifacts/test-results/ui-self-review-2026-11-01/adversarial-before.json

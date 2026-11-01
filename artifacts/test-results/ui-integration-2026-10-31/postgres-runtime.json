@@ -1,0 +1,5 @@
+{
+  "url": "https://repo.maven.apache.org/maven2/io/zonky/test/postgres/embedded-postgres-binaries-windows-amd64/17.6.0/embedded-postgres-binaries-windows-amd64-17.6.0.jar",
+  "sha256": "c91d39b6db91cf8811e3b20d941e74a0396e277360873821daab47cdb4c1282c",
+  "purpose": "独立本地真实PostgreSQL联调，不是Compose发布验收"
+}
