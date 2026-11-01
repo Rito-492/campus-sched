@@ -63,11 +63,20 @@ onBeforeRouteLeave(
     @retry="state.load()"
   />
   <MutationFeedback
+    v-if="activity"
     :mutation="mutation"
     :resources="resources"
     @refresh="state.load()"
   />
   <template v-if="activity && target">
+    <p
+      v-if="error"
+      class="feedback warning"
+      role="status"
+      data-testid="change-workspace-stale"
+    >
+      刷新失败，当前安排为上次成功读取的旧快照；请刷新成功后再预览或创建改期。
+    </p>
     <p
       v-if="activity.resourceRisk === 'AT_RISK'"
       class="feedback warning"

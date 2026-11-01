@@ -141,7 +141,6 @@ describe('改期权限与状态', () => {
   it('报名学生不获得名单与审计权限，审计单独检查资源范围', () => {
     expect(recordAccess(actor({ identity: 'STUDENT' }), a, resources)).toEqual({
       registrations: false,
-      changes: false,
       audit: false,
     })
     expect(

@@ -12,6 +12,7 @@ import type {
 } from '../types/api'
 import { recordAccess, changeLabels } from '../domain/change'
 import { formatTime } from '../domain/format'
+import { isApplicant } from '../domain/access'
 import ApiFeedback from './ApiFeedback.vue'
 const props = defineProps<{
   activity: ActivityView
@@ -20,6 +21,14 @@ const props = defineProps<{
 }>()
 const access = computed(() =>
   recordAccess(props.actor, props.activity, props.resources),
+)
+// ActivityView的人员数组可能被裁剪；只提供查询入口，API-28决定读取权限。
+const canQueryChanges = computed(() => !!props.actor?.enabled)
+// API-04 是同组织申请人的候选列表，不能作为跨组织的人员目录。
+const canQueryStaff = computed(
+  () =>
+    isApplicant(props.actor) &&
+    props.actor?.organizationId === props.activity.organizationId,
 )
 const tab = ref('staff'),
   loading = ref(false),
@@ -40,7 +49,11 @@ async function load() {
   changes.value = []
   audit.value = []
   try {
-    if (tab.value === 'staff' && props.activity.input.staffUserIds.length) {
+    if (
+      tab.value === 'staff' &&
+      canQueryStaff.value &&
+      props.activity.input.staffUserIds.length
+    ) {
       const r = await api.staff()
       if (turn !== generation) return
       staff.value = r.data
@@ -50,7 +63,7 @@ async function load() {
       if (turn !== generation) return
       registrations.value = r.data
       truncated.value = !!r.truncated
-    } else if (tab.value === 'changes' && access.value.changes) {
+    } else if (tab.value === 'changes' && canQueryChanges.value) {
       const r = await api.changes(props.activity.id)
       if (turn !== generation) return
       changes.value = r.data
@@ -68,11 +81,13 @@ async function load() {
   }
 }
 watch(
-  [tab, () => props.activity, () => props.actor],
+  [tab, () => props.activity, () => props.actor, canQueryStaff],
   () => {
     if (
-      tab.value !== 'staff' &&
-      !access.value[tab.value as keyof typeof access.value]
+      (tab.value === 'changes' && !canQueryChanges.value) ||
+      (tab.value !== 'staff' &&
+        tab.value !== 'changes' &&
+        !access.value[tab.value as keyof typeof access.value])
     )
       tab.value = 'staff'
     void load()
@@ -88,7 +103,7 @@ watch(
         v-if="access.registrations"
         name="registrations"
         label="报名名单" /><el-tab-pane
-        v-if="access.changes"
+        v-if="canQueryChanges"
         name="changes"
         label="改期记录" /><el-tab-pane
         v-if="access.audit"
@@ -101,12 +116,27 @@ watch(
       :truncated="truncated"
       @retry="load"
     />
-    <template v-if="!loading && !error">
+    <template v-if="!loading && (!error || tab === 'staff')">
       <template v-if="tab === 'staff'"
         ><p v-if="!activity.input.staffUserIds.length" class="muted">
           当前权限下没有可展示的工作人员。
         </p>
-        <p v-for="id in activity.input.staffUserIds" :key="id">
+        <p
+          v-if="
+            activity.input.staffUserIds.some(
+              (id) => !staff.some((s) => s.id === id),
+            )
+          "
+          class="muted"
+          data-testid="staff-name-unavailable"
+        >
+          当前无法获取部分工作人员姓名，以下保留本活动已授权展示的人员 ID。
+        </p>
+        <p
+          v-for="id in activity.input.staffUserIds"
+          :key="id"
+          :data-testid="`activity-staff-${id}`"
+        >
           {{ staff.find((s) => s.id === id)?.displayName ?? id }}
         </p></template
       >
@@ -127,17 +157,19 @@ watch(
           · 版本 {{ r.versionNo }}
         </div>
       </div>
-      <template v-if="tab === 'changes'"
-        ><p v-if="!changes.length" class="muted">暂无改期记录。</p>
+      <div v-if="tab === 'changes'" data-testid="change-history">
+        <p v-if="!changes.length" class="muted">暂无改期记录。</p>
         <article v-for="c in changes" :key="c.id" class="notification">
-          <RouterLink :to="`/changes/${c.id}`"
+          <RouterLink
+            :to="`/changes/${c.id}`"
+            :data-testid="`change-record-${c.id}`"
             >{{ changeLabels[c.status] }} · 基于版本
             {{ c.baseVersionNo }}</RouterLink
           >
           <p>{{ c.reason }}</p>
           <p class="caption">{{ formatTime(c.createdAt) }}</p>
-        </article></template
-      >
+        </article>
+      </div>
       <template v-if="tab === 'audit'"
         ><p v-if="!audit.length" class="muted">暂无可展示的历史记录。</p>
         <article v-for="a in audit" :key="a.id" class="notification">

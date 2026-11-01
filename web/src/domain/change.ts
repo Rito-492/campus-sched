@@ -95,10 +95,6 @@ export function recordAccess(
     ].every((id) => actor!.managedResourceIds.includes(id))
   return {
     registrations: !!owner || duty,
-    changes:
-      !!owner ||
-      duty ||
-      (!!actor?.enabled && activity.input.staffUserIds.includes(actor.id)),
     audit: !!owner || duty || audit,
   }
 }

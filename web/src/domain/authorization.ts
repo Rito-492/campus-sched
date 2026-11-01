@@ -90,7 +90,7 @@ export function validateUserCreate(value: UserCreate): string[] {
   if (!value.username.trim()) errors.push('请输入用户名')
   if (!value.displayName.trim()) errors.push('请输入显示名')
   if (!value.organizationId) errors.push('请选择所属组织')
-  if (value.password.length < 8) errors.push('初始密码至少8位')
+  if ([...value.password].length < 8) errors.push('初始密码至少8位')
   if (new TextEncoder().encode(value.password).length > 72)
     errors.push('初始密码不能超过72个UTF-8字节')
   return errors

@@ -1,0 +1,41 @@
+{
+  "note": "仅在忽略目录中构造文件体积测试，不替换实际dist，不涉及后端或业务fixture",
+  "actualBundleMatchesPrevious": true,
+  "results": [
+    {
+      "name": "合法体积通过",
+      "expectedExitCode": 0,
+      "actualExitCode": 0,
+      "passed": true,
+      "output": "最大JS块 500.00 kB；登录页静态JS合计 210.00 kB（gzip 0.28 kB）；CSS 0.00 kB。\n"
+    },
+    {
+      "name": "单块超过500kB拒绝",
+      "expectedExitCode": 1,
+      "actualExitCode": 1,
+      "passed": true,
+      "output": "最大JS块 500.00 kB；登录页静态JS合计 210.00 kB（gzip 0.28 kB）；CSS 0.00 kB。\nError: 前端体积预算超限：单JS块须≤500kB，登录页全部静态JS须≤400kB。\r"
+    },
+    {
+      "name": "单块均合格但登录总量超400kB拒绝",
+      "expectedExitCode": 1,
+      "actualExitCode": 1,
+      "passed": true,
+      "output": "最大JS块 300.00 kB；登录页静态JS合计 400.00 kB（gzip 0.46 kB）；CSS 0.00 kB。\nError: 前端体积预算超限：单JS块须≤500kB，登录页全部静态JS须≤400kB。\r"
+    },
+    {
+      "name": "边界值400kB及500kB通过",
+      "expectedExitCode": 0,
+      "actualExitCode": 0,
+      "passed": true,
+      "output": "最大JS块 500.00 kB；登录页静态JS合计 400.00 kB（gzip 0.46 kB）；CSS 0.00 kB。\n"
+    },
+    {
+      "name": "缺少登录清单拒绝",
+      "expectedExitCode": 1,
+      "actualExitCode": 1,
+      "passed": true,
+      "output": "Error: 构建清单缺少模块：src/pages/LoginPage.vue\r"
+    }
+  ]
+}

@@ -82,15 +82,18 @@ watch(
     resource.value.quantity = 1
   },
 )
-watch([selectedId, () => props.revision], () => {
-  const r = selected.value
-  if (r)
+// 刷新会替换资源快照，ID不变时也必须同步申请资格。
+watch(
+  [selected, () => props.revision],
+  ([r]) => {
     eligibility.value = {
-      allowTeacher: r.allowTeacher,
-      allowStudent: r.allowStudent,
+      allowTeacher: r?.allowTeacher ?? false,
+      allowStudent: r?.allowStudent ?? false,
     }
-  errors.value = []
-})
+    errors.value = []
+  },
+  { immediate: true },
+)
 watch(
   () => props.resources,
   (rs) => {

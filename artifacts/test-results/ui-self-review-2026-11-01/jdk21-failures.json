@@ -1,0 +1,82 @@
+[
+  {
+    "suite": "com.campus.events.acceptance.BookingConcurrencyIT",
+    "test": "",
+    "kind": "error",
+    "type": "java.lang.IllegalStateException",
+    "message": "装载测试数据失败：demo",
+    "detail": "java.lang.IllegalStateException: 装载测试数据失败：demo\n\tat com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:161)\n\tat com.campus.events.support.DbTestSupport.beforeAll(DbTestSupport.java:130)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\nCaused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\""
+  },
+  {
+    "suite": "com.campus.events.acceptance.CancellationRaceIT",
+    "test": "",
+    "kind": "error",
+    "type": "java.lang.IllegalStateException",
+    "message": "装载测试数据失败：demo",
+    "detail": "java.lang.IllegalStateException: 装载测试数据失败：demo\n\tat com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:161)\n\tat com.campus.events.support.DbTestSupport.beforeAll(DbTestSupport.java:130)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\nCaused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\""
+  },
+  {
+    "suite": "com.campus.events.acceptance.ChangeRollbackIT",
+    "test": "",
+    "kind": "error",
+    "type": "java.lang.IllegalStateException",
+    "message": "装载测试数据失败：demo",
+    "detail": "java.lang.IllegalStateException: 装载测试数据失败：demo\n\tat com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:161)\n\tat com.campus.events.support.DbTestSupport.beforeAll(DbTestSupport.java:130)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\nCaused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\""
+  },
+  {
+    "suite": "com.campus.events.acceptance.IdentityEligibilityIT",
+    "test": "",
+    "kind": "error",
+    "type": "java.lang.IllegalStateException",
+    "message": "装载测试数据失败：demo",
+    "detail": "java.lang.IllegalStateException: 装载测试数据失败：demo\n\tat com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:161)\n\tat com.campus.events.support.DbTestSupport.beforeAll(DbTestSupport.java:130)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\nCaused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\""
+  },
+  {
+    "suite": "com.campus.events.acceptance.NotificationConsistencyIT",
+    "test": "",
+    "kind": "error",
+    "type": "java.lang.IllegalStateException",
+    "message": "装载测试数据失败：demo",
+    "detail": "java.lang.IllegalStateException: 装载测试数据失败：demo\n\tat com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:161)\n\tat com.campus.events.support.DbTestSupport.beforeAll(DbTestSupport.java:130)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\nCaused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\""
+  },
+  {
+    "suite": "com.campus.events.acceptance.PermissionsIT",
+    "test": "",
+    "kind": "error",
+    "type": "java.lang.IllegalStateException",
+    "message": "装载测试数据失败：demo",
+    "detail": "java.lang.IllegalStateException: 装载测试数据失败：demo\n\tat com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:161)\n\tat com.campus.events.support.DbTestSupport.beforeAll(DbTestSupport.java:130)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\nCaused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\""
+  },
+  {
+    "suite": "com.campus.events.acceptance.RegistrationCapacityIT",
+    "test": "",
+    "kind": "error",
+    "type": "java.lang.IllegalStateException",
+    "message": "装载测试数据失败：demo",
+    "detail": "java.lang.IllegalStateException: 装载测试数据失败：demo\n\tat com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:161)\n\tat com.campus.events.support.DbTestSupport.beforeAll(DbTestSupport.java:130)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\nCaused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\""
+  },
+  {
+    "suite": "com.campus.events.acceptance.SchedulingBenchmarkIT",
+    "test": "",
+    "kind": "error",
+    "type": "java.lang.IllegalStateException",
+    "message": "装载参考数据失败：demo",
+    "detail": "java.lang.IllegalStateException: 装载参考数据失败：demo\n\tat com.campus.events.support.DbTestSupport.loadReferenceData(DbTestSupport.java:177)\n\tat com.campus.events.acceptance.SchedulingBenchmarkIT.loadReferenceData(SchedulingBenchmarkIT.java:93)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)"
+  },
+  {
+    "suite": "com.campus.events.activity.ActivityRegistrationIT",
+    "test": "",
+    "kind": "error",
+    "type": "java.lang.IllegalStateException",
+    "message": "Failed to load ApplicationContext for [WebMergedContextConfiguration@1de12397 testClass = com.campus.events.activity.ActivityRegistrationIT, locations = [], classes = [com.campus.events.CampusEventsApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = [\"org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true\"], contextCustomizers = [[ImportsContextCustomizer@2f5f5bc9 key = [org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientWebSecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.saml2.Saml2RelyingPartyAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, com.campus.events.activity.ActivityRegistrationIT$Ports, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@7e928e2f, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1698ee84, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@5af3a0f, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@75d0911a, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@531c311e, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@7e63ad38, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@a4b2d8f, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@6b11b6a4, org.springframework.boot.test.context.SpringBootTestAnnotation@fd7d35ce], resourceBasePath = \"src/main/webapp\", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]",
+    "detail": "java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@1de12397 testClass = com.campus.events.activity.ActivityRegistrationIT, locations = [], classes = [com.campus.events.CampusEventsApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = [\"org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true\"], contextCustomizers = [[ImportsContextCustomizer@2f5f5bc9 key = [org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientWebSecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.saml2.Saml2RelyingPartyAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, com.campus.events.activity.ActivityRegistrationIT$Ports, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@7e928e2f, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@1698ee84, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@5af3a0f, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@75d0911a, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@531c311e, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@7e63ad38, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@a4b2d8f, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@6b11b6a4, org.springframework.boot.test.context.SpringBootTestAnnotation@fd7d35ce], resourceBasePath = \"src/main/webapp\", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]\n\tat org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:180)\n\tat org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)\n\tat org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:200)\n\tat org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:139)"
+  },
+  {
+    "suite": "com.campus.events.resource.ResourceSchedulingIT",
+    "test": "missingChangePortRejectsActivityLockWithoutPartialWrites",
+    "kind": "skipped",
+    "type": "org.opentest4j.TestAbortedException",
+    "message": "",
+    "detail": "org.opentest4j.TestAbortedException: Assumption failed: CM端口已到位，改跑真实切换测试\n\tat org.junit.jupiter.api.Assumptions.throwAssumptionFailed(Assumptions.java:321)\n\tat org.junit.jupiter.api.Assumptions.assumeTrue(Assumptions.java:120)\n\tat com.campus.events.resource.ResourceSchedulingIT.missingChangePortRejectsActivityLockWithoutPartialWrites(ResourceSchedulingIT.java:630)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)"
+  }
+]

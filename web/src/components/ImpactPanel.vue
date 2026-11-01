@@ -34,7 +34,13 @@ withDefaults(
           :resources="resources"
           :changed-fields="impact.changedFields"
         />
-        <p class="caption">浅色标注变化字段；申请中的目标尚未成为有效安排。</p>
+        <p class="caption">
+          {{
+            historical
+              ? '浅色标注本次申请的变化字段；是否生效以确认结果及服务端当前安排为准。'
+              : '浅色标注变化字段；申请中的目标尚未成为有效安排。'
+          }}
+        </p>
       </div>
     </div>
     <div class="impact-grid">

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { onBeforeRouteLeave, useRoute } from 'vue-router'
 import { api } from '../api'
 import { ApiError } from '../api/client'
@@ -45,19 +45,24 @@ const mutation = useMutation<ChangeView>({
   },
   conflict: () => load(true),
 })
+let loadGeneration = 0
+onBeforeUnmount(() => loadGeneration++)
 async function load(rethrow = false) {
+  const turn = ++loadGeneration
   loading.value = true
   error.value = null
   relatedError.value = null
   relatedReady.value = false
   try {
     await session.restore()
+    if (turn !== loadGeneration) return
     const c = await api.change(String(route.params.id))
+    if (turn !== loadGeneration) return
+    const a = await api.activity(c.data.activityId)
+    if (turn !== loadGeneration) return
+    const r = await api.resources()
+    if (turn !== loadGeneration) return
     item.value = c.data
-    const [a, r] = await Promise.all([
-      api.activity(c.data.activityId),
-      api.resources(),
-    ])
     activity.value = a.data
     resources.value = r.data
     truncated.value = !!r.truncated
@@ -70,6 +75,7 @@ async function load(rethrow = false) {
           api.calendar(from, to),
           api.notifications(),
         ])
+        if (turn !== loadGeneration) return
         entries.value = calendar.data
         calendarTruncated.value = !!calendar.truncated
         notices.value = notifications.data.filter(
@@ -78,18 +84,25 @@ async function load(rethrow = false) {
         noticesTruncated.value = !!notifications.truncated
         relatedReady.value = true
       } catch (e) {
-        relatedError.value = e
+        if (turn === loadGeneration) relatedError.value = e
       }
     }
   } catch (e) {
+    if (turn !== loadGeneration) return
     error.value = e
     if (e instanceof ApiError && [401, 403, 404].includes(e.status)) {
       item.value = null
       activity.value = null
+      resources.value = []
+      entries.value = []
+      notices.value = []
+      truncated.value = false
+      mutation.error.value = null
+      mutation.refreshError.value = null
     }
     if (rethrow) throw e
   } finally {
-    loading.value = false
+    if (turn === loadGeneration) loading.value = false
   }
 }
 function decide(kind: 'confirm' | 'approve' | 'reserve', data: ChangeDecision) {
@@ -178,11 +191,20 @@ onBeforeRouteLeave(
     @retry="load()"
   />
   <MutationFeedback
+    v-if="item"
     :mutation="mutation"
     :resources="resources"
     @refresh="load()"
   />
   <template v-if="item">
+    <p
+      v-if="error"
+      class="feedback warning"
+      role="status"
+      data-testid="change-detail-stale"
+    >
+      刷新失败，以下为上次成功读取的旧快照；请刷新成功后再处理改期。
+    </p>
     <section v-if="activity" class="panel">
       <h2>服务端当前有效安排</h2>
       <p data-testid="current-version">

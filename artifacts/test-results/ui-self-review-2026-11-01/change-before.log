@@ -1,0 +1,431 @@
+
+ RUN  v3.2.7 D:/code/01_projects/project/campus-sched/web
+
+ ❯ tests/change-detail.test.ts (2 tests | 2 failed) 304ms
+   × 改期409自动刷新失权后，原始错误details也不能继续泄露受保护快照 218ms
+     → expected '改期进度 · 目标在全部确认完成前不会替换当前有效安排。刷新进度通知中心资…' not to contain '受保护的改期理由'
+   × 改期详情网络刷新失败时标明旧快照，并禁止处理 85ms
+     → Unable to get [data-testid="change-detail-stale"] within: <section class="page-heading"><a href="/activities/activity-1" class="">← 活动详情与历史</a>
+  <h1>改期进度</h1>
+  <p class="muted">测试活动 · 目标在全部确认完成前不会替换当前有效安排。 </p>
+</section>
+<div class="toolbar"><button aria-disabled="false" type="button" class="el-button" data-testid="change-refresh">
+    <!--v-if--><span class="">刷新进度</span>
+  </button><a href="/notifications" class="">通知中心</a><a href="/resources/calendar" class="">资源日历</a></div>
+<div class="feedback error" role="alert" data-testid="api-error">
+  <div data-testid="alert-generic"><strong>网络中断</strong>
+    <!--v-if-->
+    <!--v-if-->
+    <!--v-if--><button aria-disabled="false" type="button" class="el-button el-button--small">
+      <!--v-if--><span class="">重试</span>
+    </button>
+  </div>
+</div>
+<!--v-if-->
+<!--v-if-->
+<!--v-if-->
+<!--v-if-->
+<!--v-if-->
+<!--v-if-->
+<section class="panel">
+  <h2>服务端当前有效安排</h2>
+  <p data-testid="current-version"> 有效版本 2</p>
+  <!--v-if-->
+  <dl class="summary plan-summary">
+    <dt>时间</dt>
+    <dd class="">10/20 10:00 — 10/20 11:00</dd>
+    <dt>布场 / 撤场</dt>
+    <dd class="">30 / 30 分钟 </dd>
+    <dt>场地</dt>
+    <dd class="">测试场地</dd>
+    <dt>设备</dt>
+    <dd class="">
+      <p>测试设备 × 2</p>
+      <!--v-if-->
+    </dd>
+  </dl>
+</section>
+<section class="panel" data-testid="change-impact">
+  <section>
+    <h2>安排差异与影响</h2>
+    <!--v-if-->
+    <p class="feedback warning"> 当前资源风险尚未加载，请刷新活动状态；历史快照不能代替实时风险。 </p>
+    <div class="detail-grid plan-comparison">
+      <div class="comparison-side">
+        <h3>本次改期前安排（历史快照）</h3>
+        <dl class="summary plan-summary">
+          <dt>时间</dt>
+          <dd class="">10/20 10:00 — 10/20 11:00</dd>
+          <dt>布场 / 撤场</dt>
+          <dd class="">30 / 30 分钟 </dd>
+          <dt>场地</dt>
+          <dd class="">测试场地</dd>
+          <dt>设备</dt>
+          <dd class="">
+            <p>测试设备 × 2</p>
+            <!--v-if-->
+          </dd>
+        </dl>
+      </div>
+      <div class="comparison-side target">
+        <h3>申请的新安排</h3>
+        <dl class="summary plan-summary">
+          <dt>时间</dt>
+          <dd class="">10/20 10:00 — 10/20 11:00</dd>
+          <dt>布场 / 撤场</dt>
+          <dd class="">30 / 30 分钟 </dd>
+          <dt>场地</dt>
+          <dd class="">测试场地</dd>
+          <dt>设备</dt>
+          <dd class="">
+            <p>测试设备 × 2</p>
+            <!--v-if-->
+          </dd>
+        </dl>
+        <p class="caption">浅色标注本次申请的变化字段；是否生效以确认结果及服务端当前安排为准。</p>
+      </div>
+    </div>
+    <div class="impact-grid">
+      <article>
+        <h3>资源</h3>
+        <p> 释放 0 / 新增 0 / 保留 0</p>
+        <p>释放：无</p>
+        <p>新增：无</p>
+        <p>保留：无</p>
+      </article>
+      <article>
+        <h3>审批</h3>
+        <p>需要重新审批及资源确认</p>
+      </article>
+      <article>
+        <h3>工作人员</h3>
+        <p>0 人需确认</p>
+        <p class="caption">仅指定工作人员本人确认，报名人员无需确认。</p>
+      </article>
+      <article>
+        <h3>报名与通知</h3>
+        <p>12 人已报名</p>
+        <p>通知接收人仅按当前权限展示</p>
+      </article>
+    </div>
+  </section>
+</section>
+<section class="panel">
+  <section>
+    <h2>确认与结果</h2>
+    <p class="badge" data-testid="change-status">等待批准人复审</p>
+    <ol class="timeline">
+      <li><strong>提交改期申请</strong>
+        <p>10/01 08:00 · 基于版本 3</p>
+        <p>申请人 owner-1 · 受保护的改期理由</p>
+      </li>
+      <li><strong>批准人复审</strong>
+        <p>尚无复审记录</p>
+      </li>
+      <li><strong>资源确认</strong>
+        <p>尚无资源确认记录</p>
+      </li>
+      <li><strong>等待批准人复审</strong>
+        <p> 最近更新 10/01 08:00
+          <!--v-if-->
+        </p>
+      </li>
+    </ol>
+    <!--v-if-->
+  </section>
+  <!--v-if-->
+</section>
+<section class="panel" data-testid="change-actions">
+  <h2>处理当前步骤</h2>
+  <p class="muted"> 工作人员仅确认本人安排；活动所有者不能批准或复核本人申请。 </p>
+  <!--v-if--><label for="change-comment">意见或撤回原因（拒绝、撤回必填）</label>
+  <div class="el-textarea is-disabled">
+    <!-- input -->
+    <!-- textarea --><textarea class="el-textarea__inner" data-testid="change-comment" maxlength="1000" tabindex="0" autocomplete="off" rows="3" id="change-comment" style="min-height: -4px;" disabled=""></textarea>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+  <div class="toolbar">
+    <!--v-if--><button aria-disabled="true" type="button" class="el-button el-button--primary is-disabled" data-testid="approver-approve" disabled="">
+      <!--v-if--><span class="">批准改期</span>
+    </button><button aria-disabled="true" type="button" class="el-button is-disabled" data-testid="change-reject" disabled="">
+      <!--v-if--><span class="">拒绝</span>
+    </button>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+  <!--teleport start-->
+  <transition-stub name="dialog-fade" appear="false" persisted="true" css="true">
+    <div class="el-overlay el-modal-dialog" style="z-index: 2002; display: none;">
+      <div role="dialog" aria-modal="true" aria-label="拒绝改期" aria-describedby="el-id-3923-3" class="el-overlay-dialog"></div>
+    </div>
+  </transition-stub>
+  <!--teleport end-->
+</section>
+<!--v-if-->
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/change-detail.test.ts > 改期409自动刷新失权后，原始错误details也不能继续泄露受保护快照
+AssertionError: expected '改期进度 · 目标在全部确认完成前不会替换当前有效安排。刷新进度通知中心资…' not to contain '受保护的改期理由'
+
+- Expected
++ Received
+
+- 受保护的改期理由
++ 改期进度 · 目标在全部确认完成前不会替换当前有效安排。刷新进度通知中心资源日历改期读取权限已撤销重试版本冲突 追踪编号：r查看服务端详细原因{
++   "change": {
++     "id": "change-1",
++     "activityId": "activity-1",
++     "baseVersionNo": 3,
++     "targetPlan": {
++       "startAt": "2030-10-20T10:00:00+08:00",
++       "endAt": "2030-10-20T11:00:00+08:00",
++       "setupMinutes": 30,
++       "teardownMinutes": 30,
++       "venueId": "venue-1",
++       "equipment": [
++         {
++           "resourceId": "equipment-1",
++           "quantity": 2
++         }
++       ]
++     },
++     "reason": "受保护的改期理由",
++     "status": "PENDING_APPROVER",
++     "impact": {
++       "oldPlan": {
++         "startAt": "2030-10-20T10:00:00+08:00",
++         "endAt": "2030-10-20T11:00:00+08:00",
++         "setupMinutes": 30,
++         "teardownMinutes": 30,
++         "venueId": "venue-1",
++         "equipment": [
++           {
++             "resourceId": "equipment-1",
++             "quantity": 2
++           }
++         ]
++       },
++       "newPlan": {
++         "startAt": "2030-10-20T10:00:00+08:00",
++         "endAt": "2030-10-20T11:00:00+08:00",
++         "setupMinutes": 30,
++         "teardownMinutes": 30,
++         "venueId": "venue-1",
++         "equipment": [
++           {
++             "resourceId": "equipment-1",
++             "quantity": 2
++           }
++         ]
++       },
++       "releasedResourceIds": [],
++       "acquiredResourceIds": [],
++       "retainedResourceIds": [],
++       "requiredStaffUserIds": [],
++       "registeredUserIds": [],
++       "registeredCount": 12,
++       "notificationUserIds": [],
++       "approvalReset": true,
++       "originalResourceRisk": "NORMAL",
++       "changedFields": []
++     },
++     "confirmations": [],
++     "approverDecision": null,
++     "resourceDecision": null,
++     "lastConflicts": [],
++     "appliedVersionNo": null,
++     "createdBy": "owner-1",
++     "createdAt": "2030-10-01T00:00:00Z",
++     "updatedAt": "2030-10-01T00:00:00Z"
++   }
++ }重试 请核对最新状态与输入后重新操作。更新状态未完成，请刷新查询；已确认的操作不会再次提交。改期读取权限已撤销重试
+
+ ❯ tests/change-detail.test.ts:46:24
+     44|   await flushPromises()
+     45|   expect(w.text()).toContain('改期读取权限已撤销')
+     46|   expect(w.text()).not.toContain(c.reason)
+       |                        ^
+     47|   expect(w.find('[data-testid="change-impact"]').exists()).toBe(false)
+     48|   expect(w.find('[data-testid="mutation-error"]').exists()).toBe(false)
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/change-detail.test.ts > 改期详情网络刷新失败时标明旧快照，并禁止处理
+Error: Unable to get [data-testid="change-detail-stale"] within: <section class="page-heading"><a href="/activities/activity-1" class="">← 活动详情与历史</a>
+  <h1>改期进度</h1>
+  <p class="muted">测试活动 · 目标在全部确认完成前不会替换当前有效安排。 </p>
+</section>
+<div class="toolbar"><button aria-disabled="false" type="button" class="el-button" data-testid="change-refresh">
+    <!--v-if--><span class="">刷新进度</span>
+  </button><a href="/notifications" class="">通知中心</a><a href="/resources/calendar" class="">资源日历</a></div>
+<div class="feedback error" role="alert" data-testid="api-error">
+  <div data-testid="alert-generic"><strong>网络中断</strong>
+    <!--v-if-->
+    <!--v-if-->
+    <!--v-if--><button aria-disabled="false" type="button" class="el-button el-button--small">
+      <!--v-if--><span class="">重试</span>
+    </button>
+  </div>
+</div>
+<!--v-if-->
+<!--v-if-->
+<!--v-if-->
+<!--v-if-->
+<!--v-if-->
+<!--v-if-->
+<section class="panel">
+  <h2>服务端当前有效安排</h2>
+  <p data-testid="current-version"> 有效版本 2</p>
+  <!--v-if-->
+  <dl class="summary plan-summary">
+    <dt>时间</dt>
+    <dd class="">10/20 10:00 — 10/20 11:00</dd>
+    <dt>布场 / 撤场</dt>
+    <dd class="">30 / 30 分钟 </dd>
+    <dt>场地</dt>
+    <dd class="">测试场地</dd>
+    <dt>设备</dt>
+    <dd class="">
+      <p>测试设备 × 2</p>
+      <!--v-if-->
+    </dd>
+  </dl>
+</section>
+<section class="panel" data-testid="change-impact">
+  <section>
+    <h2>安排差异与影响</h2>
+    <!--v-if-->
+    <p class="feedback warning"> 当前资源风险尚未加载，请刷新活动状态；历史快照不能代替实时风险。 </p>
+    <div class="detail-grid plan-comparison">
+      <div class="comparison-side">
+        <h3>本次改期前安排（历史快照）</h3>
+        <dl class="summary plan-summary">
+          <dt>时间</dt>
+          <dd class="">10/20 10:00 — 10/20 11:00</dd>
+          <dt>布场 / 撤场</dt>
+          <dd class="">30 / 30 分钟 </dd>
+          <dt>场地</dt>
+          <dd class="">测试场地</dd>
+          <dt>设备</dt>
+          <dd class="">
+            <p>测试设备 × 2</p>
+            <!--v-if-->
+          </dd>
+        </dl>
+      </div>
+      <div class="comparison-side target">
+        <h3>申请的新安排</h3>
+        <dl class="summary plan-summary">
+          <dt>时间</dt>
+          <dd class="">10/20 10:00 — 10/20 11:00</dd>
+          <dt>布场 / 撤场</dt>
+          <dd class="">30 / 30 分钟 </dd>
+          <dt>场地</dt>
+          <dd class="">测试场地</dd>
+          <dt>设备</dt>
+          <dd class="">
+            <p>测试设备 × 2</p>
+            <!--v-if-->
+          </dd>
+        </dl>
+        <p class="caption">浅色标注本次申请的变化字段；是否生效以确认结果及服务端当前安排为准。</p>
+      </div>
+    </div>
+    <div class="impact-grid">
+      <article>
+        <h3>资源</h3>
+        <p> 释放 0 / 新增 0 / 保留 0</p>
+        <p>释放：无</p>
+        <p>新增：无</p>
+        <p>保留：无</p>
+      </article>
+      <article>
+        <h3>审批</h3>
+        <p>需要重新审批及资源确认</p>
+      </article>
+      <article>
+        <h3>工作人员</h3>
+        <p>0 人需确认</p>
+        <p class="caption">仅指定工作人员本人确认，报名人员无需确认。</p>
+      </article>
+      <article>
+        <h3>报名与通知</h3>
+        <p>12 人已报名</p>
+        <p>通知接收人仅按当前权限展示</p>
+      </article>
+    </div>
+  </section>
+</section>
+<section class="panel">
+  <section>
+    <h2>确认与结果</h2>
+    <p class="badge" data-testid="change-status">等待批准人复审</p>
+    <ol class="timeline">
+      <li><strong>提交改期申请</strong>
+        <p>10/01 08:00 · 基于版本 3</p>
+        <p>申请人 owner-1 · 受保护的改期理由</p>
+      </li>
+      <li><strong>批准人复审</strong>
+        <p>尚无复审记录</p>
+      </li>
+      <li><strong>资源确认</strong>
+        <p>尚无资源确认记录</p>
+      </li>
+      <li><strong>等待批准人复审</strong>
+        <p> 最近更新 10/01 08:00
+          <!--v-if-->
+        </p>
+      </li>
+    </ol>
+    <!--v-if-->
+  </section>
+  <!--v-if-->
+</section>
+<section class="panel" data-testid="change-actions">
+  <h2>处理当前步骤</h2>
+  <p class="muted"> 工作人员仅确认本人安排；活动所有者不能批准或复核本人申请。 </p>
+  <!--v-if--><label for="change-comment">意见或撤回原因（拒绝、撤回必填）</label>
+  <div class="el-textarea is-disabled">
+    <!-- input -->
+    <!-- textarea --><textarea class="el-textarea__inner" data-testid="change-comment" maxlength="1000" tabindex="0" autocomplete="off" rows="3" id="change-comment" style="min-height: -4px;" disabled=""></textarea>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+  <div class="toolbar">
+    <!--v-if--><button aria-disabled="true" type="button" class="el-button el-button--primary is-disabled" data-testid="approver-approve" disabled="">
+      <!--v-if--><span class="">批准改期</span>
+    </button><button aria-disabled="true" type="button" class="el-button is-disabled" data-testid="change-reject" disabled="">
+      <!--v-if--><span class="">拒绝</span>
+    </button>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+  <!--teleport start-->
+  <transition-stub name="dialog-fade" appear="false" persisted="true" css="true">
+    <div class="el-overlay el-modal-dialog" style="z-index: 2002; display: none;">
+      <div role="dialog" aria-modal="true" aria-label="拒绝改期" aria-describedby="el-id-3923-3" class="el-overlay-dialog"></div>
+    </div>
+  </transition-stub>
+  <!--teleport end-->
+</section>
+<!--v-if-->
+ ❯ VueWrapper.get node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js:7333:15
+    7331|             return result;
+    7332|         }
+    7333|         throw new Error(`Unable to get ${selector} within: ${this.html…
+       |               ^
+    7334|     }
+    7335|     getComponent(selector) {
+ ❯ tests/change-detail.test.ts:56:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  14:20:21
+   Duration  9.35s (transform 683ms, setup 0ms, collect 5.26s, tests 304ms, environment 3.20s, prepare 256ms)
+
+JSON report written to D:/code/01_projects/project/campus-sched/artifacts/test-results/ui-self-review-2026-11-01/change-before.json

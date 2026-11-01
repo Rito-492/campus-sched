@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { onBeforeRouteLeave, useRoute } from 'vue-router'
 import { api } from '../api'
 import { ApiError, type Envelope } from '../api/client'
@@ -46,7 +46,14 @@ const mutation = useMutation({
     check.value = null
     await load(true)
   },
-  conflict: () => load(true),
+  conflict: async () => {
+    try {
+      await load(true)
+    } finally {
+      // 重读版本后再恢复本次冲突；失去详情读取权限时不恢复关联内容。
+      if (item.value) showConflicts(mutation.error.value)
+    }
+  },
 })
 const uncertain = mutation.uncertain
 const busy = computed(
@@ -66,30 +73,45 @@ const registrationReason = computed(() =>
 const future = computed(
   () => !!item.value && Date.parse(item.value.input.plan.startAt) > Date.now(),
 )
+let loadGeneration = 0
+onBeforeUnmount(() => loadGeneration++)
 async function load(rethrow = false) {
+  const turn = ++loadGeneration
   check.value = null
   alternatives.value = null
   loading.value = true
   error.value = null
   try {
-    const [a, r] = await Promise.all([
-      api.activity(String(route.params.id)),
-      api.resources(),
-    ])
+    // 先确认详情读取资格，资源查询失败不能掩盖详情的401/403/404。
+    const a = await api.activity(String(route.params.id))
+    if (turn !== loadGeneration) return
+    const r = await api.resources()
+    if (turn !== loadGeneration) return
     item.value = a.data
     resources.value = r.data
     truncated.value = !!r.truncated
   } catch (e) {
+    if (turn !== loadGeneration) return
     error.value = e
+    if (e instanceof ApiError && [401, 403, 404].includes(e.status)) {
+      item.value = null
+      resources.value = []
+      truncated.value = false
+      editing.value = false
+      draftLocked.value = false
+      seedPlan.value = undefined
+      comment.value = ''
+      actionError.value = null
+    }
     if (rethrow) throw e
   } finally {
-    loading.value = false
+    if (turn === loadGeneration) loading.value = false
   }
 }
 async function execute(command?: { run: () => Promise<Envelope<unknown>> }) {
   if (!busy.value) await mutation.execute(command)
 }
-watch(mutation.error, (e) => {
+function showConflicts(e: unknown) {
   if (
     e instanceof ApiError &&
     e.status === 409 &&
@@ -102,7 +124,7 @@ watch(mutation.error, (e) => {
       feasible: false,
       conflicts: e.details.conflicts as Conflict[],
     }
-})
+}
 async function preview() {
   if (!item.value || busy.value) return
   check.value = null
@@ -177,6 +199,14 @@ onBeforeRouteLeave(
   />
   <template v-if="item">
     <p
+      v-if="error"
+      class="feedback warning"
+      role="status"
+      data-testid="activity-stale"
+    >
+      刷新失败，以下为上次成功读取的旧快照，可能已过期。请刷新成功后再办理。
+    </p>
+    <p
       v-if="item.resourceRisk === 'AT_RISK'"
       class="feedback warning"
       data-testid="risk-banner"
@@ -244,6 +274,7 @@ onBeforeRouteLeave(
           操作结果尚未确认。请刷新核对，或使用上方“重试”重放原请求。
         </p>
         <el-button
+          data-testid="activity-refresh"
           :disabled="
             loading || mutation.busy.value || previewBusy || draftLocked
           "
@@ -464,6 +495,7 @@ onBeforeRouteLeave(
       >
     </section>
     <ActivityRecords
+      v-if="!error"
       :activity="item"
       :actor="session.actor"
       :resources="resources"

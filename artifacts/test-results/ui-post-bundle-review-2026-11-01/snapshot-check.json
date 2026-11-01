@@ -1,0 +1,71 @@
+{
+  "timestamp": "2026-11-01T07:50:55.542Z",
+  "branch": "work/17231018-ui",
+  "head": "9fe38e9c2d9ca9f2ae402acdee74e471ad4c0a48",
+  "main": "107a301ba1ea040a0c322656789f078ff81093f2",
+  "previousManifestFileCount": 237,
+  "mismatches": [],
+  "reviewedBasis": "完整当前工作区相对origin/main；包括未跟踪UI文件",
+  "previousResults": {
+    "npmCi": {
+      "passed": true,
+      "packages": 203,
+      "log": "npm-ci.log"
+    },
+    "contractTypes": {
+      "passed": true,
+      "log": "types-check.log"
+    },
+    "typecheck": {
+      "passed": true,
+      "log": "typecheck-final.log"
+    },
+    "unit": {
+      "files": 21,
+      "passed": 107,
+      "failed": 0,
+      "skipped": 0
+    },
+    "build": {
+      "passed": true,
+      "fixtureExclusion": true,
+      "bundleBudget": true,
+      "log": "final-build.log"
+    },
+    "browsers": {
+      "layout": {
+        "startTime": "2026-11-01T07:32:25.444Z",
+        "duration": 30980.128999999997,
+        "expected": 13,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "production-ui": {
+        "startTime": "2026-11-01T07:39:26.217Z",
+        "duration": 16030.324999999999,
+        "expected": 3,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "real-production": {
+        "startTime": "2026-11-01T07:37:23.250Z",
+        "duration": 58059.217000000004,
+        "expected": 11,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      }
+    },
+    "gitDiffCheck": "passed",
+    "finalChecks": {
+      "scope": "passed",
+      "secretScan": "passed",
+      "historicalEvidenceHashesMatched": 112,
+      "existingPackageVersionsChanged": [],
+      "lockfileRoot": "matched"
+    }
+  },
+  "snapshotUnchanged": true
+}

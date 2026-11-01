@@ -1,0 +1,1124 @@
+{
+  "timestamp": "2026-11-01T07:19:36.191Z",
+  "reviewSubject": "完整本地候选工作区（main至当前修改与未跟踪文件），不是远端旧PR",
+  "main": "107a301ba1ea040a0c322656789f078ff81093f2",
+  "localHead": "9fe38e9c2d9ca9f2ae402acdee74e471ad4c0a48",
+  "branch": "work/17231018-ui",
+  "remotePrHeadReferenceOnly": "a327b16b171ab40da1ef336b8f1c0ab8d21bd834",
+  "conclusion": "建议改（非阻塞）；未发现新增必须改；两项P2修复验证通过",
+  "formalCrossReview": false,
+  "published": false,
+  "reviewedSourceUnchanged": 96,
+  "results": {
+    "targetedUnit": {
+      "passed": 22,
+      "failed": 0,
+      "skipped": 0
+    },
+    "targetedReal": {
+      "startTime": "2026-11-01T07:15:12.665Z",
+      "duration": 27440.718,
+      "expected": 3,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "priorFullChecks": "来源ui-review-fixes manifest，201项哈希在补评审文档前一致；本轮未重跑完整检查"
+  },
+  "candidatePaths": [
+    "artifacts/screenshots/ui-2026-10-31/login-1366x768.png",
+    "artifacts/screenshots/ui-2026-10-31/login-1920x1080.png",
+    "artifacts/screenshots/ui-2026-10-31/login-390x844.png",
+    "artifacts/screenshots/ui-2026-10-31/manifest.json",
+    "artifacts/screenshots/ui-2026-10-31/prototype-1366x768.png",
+    "artifacts/screenshots/ui-2026-10-31/prototype-1920x1080.png",
+    "artifacts/screenshots/ui-2026-10-31/prototype-390x844.png",
+    "artifacts/screenshots/ui-accounts-2026-10-31/accounts-1366x768.png",
+    "artifacts/screenshots/ui-accounts-2026-10-31/accounts-1920x1080.png",
+    "artifacts/screenshots/ui-accounts-2026-10-31/accounts-390x844.png",
+    "artifacts/screenshots/ui-accounts-2026-10-31/authorization-1366x768.png",
+    "artifacts/screenshots/ui-accounts-2026-10-31/authorization-1920x1080.png",
+    "artifacts/screenshots/ui-accounts-2026-10-31/authorization-390x844.png",
+    "artifacts/screenshots/ui-accounts-2026-10-31/manifest.json",
+    "artifacts/screenshots/ui-completion-2026-10-31/accounts-1366x768.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/accounts-1920x1080.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/accounts-390x844.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/activity-detail-1366x768.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/activity-detail-1920x1080.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/activity-detail-390x844.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/alternatives-impact-1366x768.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/alternatives-impact-1920x1080.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/alternatives-impact-390x844.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/authorization-1366x768.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/authorization-1920x1080.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/authorization-390x844.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/calendar-1366x768.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/calendar-1920x1080.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/calendar-390x844.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/change-applied-sample-1366x768.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/change-applied-sample-1920x1080.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/change-applied-sample-390x844.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/change-conflicted-1366x768.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/change-conflicted-1920x1080.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/change-conflicted-390x844.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/login-1366x768.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/login-1920x1080.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/login-390x844.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/manifest.json",
+    "artifacts/screenshots/ui-completion-2026-10-31/notifications-1366x768.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/notifications-1920x1080.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/notifications-390x844.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/prototype-1366x768.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/prototype-1920x1080.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/prototype-390x844.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/resources-1366x768.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/resources-1920x1080.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/resources-390x844.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/workspace-1366x768.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/workspace-1920x1080.png",
+    "artifacts/screenshots/ui-completion-2026-10-31/workspace-390x844.png",
+    "artifacts/screenshots/ui-integration-2026-10-31/manifest.json",
+    "artifacts/screenshots/ui-integration-2026-10-31/real-authorization-1366x768.png",
+    "artifacts/screenshots/ui-integration-2026-10-31/real-authorization-1920x1080.png",
+    "artifacts/screenshots/ui-integration-2026-10-31/real-authorization-390x844.png",
+    "artifacts/screenshots/ui-integration-2026-10-31/real-calendar-1366x768.png",
+    "artifacts/screenshots/ui-integration-2026-10-31/real-calendar-1920x1080.png",
+    "artifacts/screenshots/ui-integration-2026-10-31/real-calendar-390x844.png",
+    "artifacts/screenshots/ui-integration-2026-10-31/real-draft-1366x768.png",
+    "artifacts/screenshots/ui-integration-2026-10-31/real-draft-1920x1080.png",
+    "artifacts/screenshots/ui-integration-2026-10-31/real-draft-390x844.png",
+    "artifacts/screenshots/ui-integration-2026-10-31/real-eligibility-error-1366x768.png",
+    "artifacts/screenshots/ui-integration-2026-10-31/real-eligibility-error-1920x1080.png",
+    "artifacts/screenshots/ui-integration-2026-10-31/real-eligibility-error-390x844.png",
+    "artifacts/screenshots/ui-integration-2026-10-31/real-resource-1366x768.png",
+    "artifacts/screenshots/ui-integration-2026-10-31/real-resource-1920x1080.png",
+    "artifacts/screenshots/ui-integration-2026-10-31/real-resource-390x844.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/accounts-1366x768.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/accounts-1920x1080.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/accounts-390x844.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/activity-detail-1366x768.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/activity-detail-1920x1080.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/activity-detail-390x844.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/alternatives-impact-1366x768.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/alternatives-impact-1920x1080.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/alternatives-impact-390x844.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/authorization-1366x768.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/authorization-1920x1080.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/authorization-390x844.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/calendar-1366x768.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/calendar-1920x1080.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/calendar-390x844.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/change-applied-sample-1366x768.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/change-applied-sample-1920x1080.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/change-applied-sample-390x844.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/change-conflicted-1366x768.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/change-conflicted-1920x1080.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/change-conflicted-390x844.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/login-1366x768.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/login-1920x1080.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/login-390x844.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/manifest.json",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/notifications-1366x768.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/notifications-1920x1080.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/notifications-390x844.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/prototype-1366x768.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/prototype-1920x1080.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/prototype-390x844.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/resources-1366x768.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/resources-1920x1080.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/resources-390x844.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/workspace-1366x768.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/workspace-1920x1080.png",
+    "artifacts/screenshots/ui-integration-layout-2026-10-31/workspace-390x844.png",
+    "artifacts/screenshots/ui-pr-2026-10-31/manifest.json",
+    "artifacts/screenshots/ui-pr-2026-10-31/real-authorization-1366x768.png",
+    "artifacts/screenshots/ui-pr-2026-10-31/real-authorization-1920x1080.png",
+    "artifacts/screenshots/ui-pr-2026-10-31/real-authorization-390x844.png",
+    "artifacts/screenshots/ui-pr-2026-10-31/real-calendar-1366x768.png",
+    "artifacts/screenshots/ui-pr-2026-10-31/real-calendar-1920x1080.png",
+    "artifacts/screenshots/ui-pr-2026-10-31/real-calendar-390x844.png",
+    "artifacts/screenshots/ui-pr-2026-10-31/real-draft-1366x768.png",
+    "artifacts/screenshots/ui-pr-2026-10-31/real-draft-1920x1080.png",
+    "artifacts/screenshots/ui-pr-2026-10-31/real-draft-390x844.png",
+    "artifacts/screenshots/ui-pr-2026-10-31/real-eligibility-error-1366x768.png",
+    "artifacts/screenshots/ui-pr-2026-10-31/real-eligibility-error-1920x1080.png",
+    "artifacts/screenshots/ui-pr-2026-10-31/real-eligibility-error-390x844.png",
+    "artifacts/screenshots/ui-pr-2026-10-31/real-resource-1366x768.png",
+    "artifacts/screenshots/ui-pr-2026-10-31/real-resource-1920x1080.png",
+    "artifacts/screenshots/ui-pr-2026-10-31/real-resource-390x844.png",
+    "artifacts/screenshots/ui-workspace-preview-2026-10-31/manifest.json",
+    "artifacts/screenshots/ui-workspace-preview-2026-10-31/workspace-1366x768.png",
+    "artifacts/screenshots/ui-workspace-preview-2026-10-31/workspace-1920x1080.png",
+    "artifacts/screenshots/ui-workspace-preview-2026-10-31/workspace-390x844.png",
+    "artifacts/test-results/ui-accounts-2026-10-31/unit-results.json",
+    "artifacts/test-results/ui-completion-2026-10-31/build.log",
+    "artifacts/test-results/ui-completion-2026-10-31/layout-results.json",
+    "artifacts/test-results/ui-completion-2026-10-31/unit-results.json",
+    "artifacts/test-results/ui-integration-2026-10-31/auth-permissions.json",
+    "artifacts/test-results/ui-integration-2026-10-31/build.log",
+    "artifacts/test-results/ui-integration-2026-10-31/endpoint-probes.json",
+    "artifacts/test-results/ui-integration-2026-10-31/jdk21-test-summary.json",
+    "artifacts/test-results/ui-integration-2026-10-31/jdk21-verify-status.json",
+    "artifacts/test-results/ui-integration-2026-10-31/jdk21-verify.log",
+    "artifacts/test-results/ui-integration-2026-10-31/layout-results.json",
+    "artifacts/test-results/ui-integration-2026-10-31/manifest.json",
+    "artifacts/test-results/ui-integration-2026-10-31/persistence.json",
+    "artifacts/test-results/ui-integration-2026-10-31/postgres-runtime.json",
+    "artifacts/test-results/ui-integration-2026-10-31/real-service-initial.json",
+    "artifacts/test-results/ui-integration-2026-10-31/real-service.json",
+    "artifacts/test-results/ui-integration-2026-10-31/restart.json",
+    "artifacts/test-results/ui-integration-2026-10-31/unit-results.json",
+    "artifacts/test-results/ui-pr-2026-10-31/backend-package.log",
+    "artifacts/test-results/ui-pr-2026-10-31/build.log",
+    "artifacts/test-results/ui-pr-2026-10-31/manifest.json",
+    "artifacts/test-results/ui-pr-2026-10-31/persistence.json",
+    "artifacts/test-results/ui-pr-2026-10-31/real-service.json",
+    "artifacts/test-results/ui-pr-2026-10-31/restart.json",
+    "artifacts/test-results/ui-pr-2026-10-31/unit-results.json",
+    "docs/ui/api-matrix.md",
+    "docs/ui/handoff.md",
+    "docs/ui/interface-implementation-0.1.md",
+    "docs/ui/pr-draft.md",
+    "docs/ui/prototype/README.md",
+    "docs/ui/real-integration-2026-10-31.md",
+    "docs/ui/user-manual.md",
+    "web/.gitignore",
+    "web/.node-version",
+    "web/README.md",
+    "web/index.html",
+    "web/package-lock.json",
+    "web/package.json",
+    "web/playwright.config.ts",
+    "web/playwright.integration.config.ts",
+    "web/scripts/check-production.mjs",
+    "web/scripts/probe-integration.mjs",
+    "web/scripts/sync-types.mjs",
+    "web/src/App.vue",
+    "web/src/api/client.ts",
+    "web/src/api/index.ts",
+    "web/src/components/ActivityList.vue",
+    "web/src/components/ActivityRecords.vue",
+    "web/src/components/AlternativesPanel.vue",
+    "web/src/components/ApiFeedback.vue",
+    "web/src/components/AuthorizationEditor.vue",
+    "web/src/components/ChangeActions.vue",
+    "web/src/components/ChangeTimeline.vue",
+    "web/src/components/ConflictList.vue",
+    "web/src/components/DraftEditor.vue",
+    "web/src/components/ImpactPanel.vue",
+    "web/src/components/MutationFeedback.vue",
+    "web/src/components/PlanEditor.vue",
+    "web/src/components/PlanSummary.vue",
+    "web/src/components/ResourceCalendar.vue",
+    "web/src/components/ResourceManagePanel.vue",
+    "web/src/components/UsersPanel.vue",
+    "web/src/components/WorkspaceLayout.vue",
+    "web/src/composables/useChangeWorkspace.ts",
+    "web/src/composables/useMutation.ts",
+    "web/src/composables/useUserAdmin.ts",
+    "web/src/dev/ChangePreviewPanel.vue",
+    "web/src/dev/PrototypePage.vue",
+    "web/src/dev/WorkspacePreview.vue",
+    "web/src/domain/access.ts",
+    "web/src/domain/authorization.ts",
+    "web/src/domain/capacity.ts",
+    "web/src/domain/change.ts",
+    "web/src/domain/format.ts",
+    "web/src/domain/queue.ts",
+    "web/src/domain/resource.ts",
+    "web/src/domain/validation.ts",
+    "web/src/main.ts",
+    "web/src/pages/ActivitiesPage.vue",
+    "web/src/pages/ActivityCreatePage.vue",
+    "web/src/pages/ActivityDetailPage.vue",
+    "web/src/pages/CalendarPage.vue",
+    "web/src/pages/ChangeDetailPage.vue",
+    "web/src/pages/ChangeWorkspacePage.vue",
+    "web/src/pages/LoginPage.vue",
+    "web/src/pages/NotificationsPage.vue",
+    "web/src/pages/PendingPage.vue",
+    "web/src/pages/ResourceManagePage.vue",
+    "web/src/pages/UsersPage.vue",
+    "web/src/router.ts",
+    "web/src/stores/session.ts",
+    "web/src/style.css",
+    "web/src/types/api.ts",
+    "web/tests/access.test.ts",
+    "web/tests/activity-detail.test.ts",
+    "web/tests/api-feedback.test.ts",
+    "web/tests/authorization.test.ts",
+    "web/tests/browser/layout.spec.ts",
+    "web/tests/browser/remaining-ui-preview.spec.ts",
+    "web/tests/browser/users-preview.spec.ts",
+    "web/tests/browser/workspace-preview.spec.ts",
+    "web/tests/capacity.test.ts",
+    "web/tests/change-access.test.ts",
+    "web/tests/change-actions.test.ts",
+    "web/tests/change-workspace.test.ts",
+    "web/tests/client.test.ts",
+    "web/tests/components.test.ts",
+    "web/tests/contracts.test.ts",
+    "web/tests/draft-editor.test.ts",
+    "web/tests/fixtures.ts",
+    "web/tests/integration/persistence.spec.ts",
+    "web/tests/integration/real-service.spec.ts",
+    "web/tests/integration/support.ts",
+    "web/tests/mutation.test.ts",
+    "web/tests/queue.test.ts",
+    "web/tests/resource.test.ts",
+    "web/tests/user-admin.test.ts",
+    "web/tests/users-panel.test.ts",
+    "web/tests/validation.test.ts",
+    "web/tsconfig.json",
+    "web/vite.config.ts",
+    "artifacts/screenshots/ui-final-review-2026-11-01/real/real-change-applied-1366x768.png",
+    "artifacts/screenshots/ui-final-review-2026-11-01/real/real-change-applied-1920x1080.png",
+    "artifacts/screenshots/ui-final-review-2026-11-01/real/real-change-applied-390x844.png",
+    "artifacts/screenshots/ui-final-review-2026-11-01/real/real-eligibility-refresh-saved-1366x768.png",
+    "artifacts/screenshots/ui-final-review-2026-11-01/real/real-eligibility-refresh-saved-1920x1080.png",
+    "artifacts/screenshots/ui-final-review-2026-11-01/real/real-eligibility-refresh-saved-390x844.png",
+    "artifacts/screenshots/ui-final-review-2026-11-01/real/real-staff-applied-history-1366x768.png",
+    "artifacts/screenshots/ui-final-review-2026-11-01/real/real-staff-applied-history-1920x1080.png",
+    "artifacts/screenshots/ui-final-review-2026-11-01/real/real-staff-applied-history-390x844.png",
+    "artifacts/screenshots/ui-final-review-2026-11-01/real/real-withdrawn-1366x768.png",
+    "artifacts/screenshots/ui-final-review-2026-11-01/real/real-withdrawn-1920x1080.png",
+    "artifacts/screenshots/ui-final-review-2026-11-01/real/real-withdrawn-390x844.png",
+    "artifacts/screenshots/ui-pre-review-recheck-2026-11-01/real-cross-org-staff-1366x768.png",
+    "artifacts/screenshots/ui-pre-review-recheck-2026-11-01/real-cross-org-staff-1920x1080.png",
+    "artifacts/screenshots/ui-pre-review-recheck-2026-11-01/real-cross-org-staff-390x844.png",
+    "artifacts/screenshots/ui-pre-review-recheck-2026-11-01/real-revoked-detail-1366x768.png",
+    "artifacts/screenshots/ui-pre-review-recheck-2026-11-01/real-revoked-detail-1920x1080.png",
+    "artifacts/screenshots/ui-pre-review-recheck-2026-11-01/real-revoked-detail-390x844.png",
+    "artifacts/screenshots/ui-professional-review-2026-11-01/eligibility-refresh-stale.png",
+    "artifacts/screenshots/ui-professional-review-2026-11-01/staff-history-missing.png",
+    "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-authorization-1366x768.png",
+    "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-authorization-1920x1080.png",
+    "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-authorization-390x844.png",
+    "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-calendar-1366x768.png",
+    "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-calendar-1920x1080.png",
+    "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-calendar-390x844.png",
+    "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-draft-1366x768.png",
+    "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-draft-1920x1080.png",
+    "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-draft-390x844.png",
+    "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-eligibility-error-1366x768.png",
+    "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-eligibility-error-1920x1080.png",
+    "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-eligibility-error-390x844.png",
+    "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-resource-1366x768.png",
+    "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-resource-1920x1080.png",
+    "artifacts/screenshots/ui-review-2026-11-01/existing-flows/real-resource-390x844.png",
+    "artifacts/screenshots/ui-review-2026-11-01/real-cross-org-staff-1366x768.png",
+    "artifacts/screenshots/ui-review-2026-11-01/real-cross-org-staff-1920x1080.png",
+    "artifacts/screenshots/ui-review-2026-11-01/real-cross-org-staff-390x844.png",
+    "artifacts/screenshots/ui-review-2026-11-01/real-revoked-detail-1366x768.png",
+    "artifacts/screenshots/ui-review-2026-11-01/real-revoked-detail-1920x1080.png",
+    "artifacts/screenshots/ui-review-2026-11-01/real-revoked-detail-390x844.png",
+    "artifacts/screenshots/ui-review-2026-11-01/restarted/real-change-after-restart-1366x768.png",
+    "artifacts/screenshots/ui-review-2026-11-01/restarted/real-change-after-restart-1920x1080.png",
+    "artifacts/screenshots/ui-review-2026-11-01/restarted/real-change-after-restart-390x844.png",
+    "artifacts/screenshots/ui-review-2026-11-01/with-comment/real-change-applied-1366x768.png",
+    "artifacts/screenshots/ui-review-2026-11-01/with-comment/real-change-applied-1920x1080.png",
+    "artifacts/screenshots/ui-review-2026-11-01/with-comment/real-change-applied-390x844.png",
+    "artifacts/screenshots/ui-review-2026-11-01/with-comment/real-cross-org-staff-1366x768.png",
+    "artifacts/screenshots/ui-review-2026-11-01/with-comment/real-cross-org-staff-1920x1080.png",
+    "artifacts/screenshots/ui-review-2026-11-01/with-comment/real-cross-org-staff-390x844.png",
+    "artifacts/screenshots/ui-review-2026-11-01/with-comment/real-revoked-detail-1366x768.png",
+    "artifacts/screenshots/ui-review-2026-11-01/with-comment/real-revoked-detail-1920x1080.png",
+    "artifacts/screenshots/ui-review-2026-11-01/with-comment/real-revoked-detail-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/accounts-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/accounts-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/accounts-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/activity-detail-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/activity-detail-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/activity-detail-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/alternatives-impact-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/alternatives-impact-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/alternatives-impact-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/authorization-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/authorization-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/authorization-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/calendar-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/calendar-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/calendar-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/change-applied-sample-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/change-applied-sample-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/change-applied-sample-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/change-conflicted-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/change-conflicted-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/change-conflicted-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/login-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/login-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/login-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/notifications-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/notifications-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/notifications-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/prototype-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/prototype-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/prototype-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/resources-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/resources-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/resources-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/workspace-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/workspace-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/layout/workspace-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-authorization-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-authorization-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-authorization-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-calendar-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-calendar-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-calendar-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-change-applied-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-change-applied-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-change-applied-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-conflict-risk-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-conflict-risk-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-conflict-risk-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-cross-org-staff-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-cross-org-staff-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-cross-org-staff-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-draft-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-draft-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-draft-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-eligibility-error-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-eligibility-error-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-eligibility-error-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-eligibility-refresh-saved-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-eligibility-refresh-saved-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-eligibility-refresh-saved-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-resource-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-resource-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-resource-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-revoked-detail-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-revoked-detail-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-revoked-detail-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-staff-applied-history-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-staff-applied-history-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-staff-applied-history-390x844.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-withdrawn-1366x768.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-withdrawn-1920x1080.png",
+    "artifacts/screenshots/ui-review-fixes-2026-11-01/real/real-withdrawn-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/accounts-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/accounts-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/accounts-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/activity-detail-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/activity-detail-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/activity-detail-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/alternatives-impact-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/alternatives-impact-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/alternatives-impact-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/authorization-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/authorization-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/authorization-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/calendar-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/calendar-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/calendar-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/change-applied-sample-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/change-applied-sample-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/change-applied-sample-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/change-conflicted-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/change-conflicted-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/change-conflicted-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/login-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/login-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/login-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/notifications-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/notifications-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/notifications-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/prototype-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/prototype-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/prototype-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/resources-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/resources-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/resources-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/workspace-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/workspace-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/layout/workspace-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-authorization-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-authorization-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-authorization-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-calendar-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-calendar-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-calendar-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-change-applied-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-change-applied-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-change-applied-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-conflict-risk-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-conflict-risk-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-conflict-risk-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-cross-org-staff-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-cross-org-staff-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-cross-org-staff-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-draft-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-draft-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-draft-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-eligibility-error-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-eligibility-error-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-eligibility-error-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-resource-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-resource-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-resource-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-revoked-detail-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-revoked-detail-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-revoked-detail-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-withdrawn-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-withdrawn-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/real/real-withdrawn-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/reservations/real-conflict-risk-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/reservations/real-conflict-risk-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/reservations/real-conflict-risk-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/reservations/real-withdrawn-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/reservations/real-withdrawn-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/reservations/real-withdrawn-390x844.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/restarted/real-change-after-restart-1366x768.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/restarted/real-change-after-restart-1920x1080.png",
+    "artifacts/screenshots/ui-self-review-2026-11-01/restarted/real-change-after-restart-390x844.png",
+    "artifacts/test-results/ui-final-review-2026-11-01/snapshot-check.json",
+    "artifacts/test-results/ui-final-review-2026-11-01/targeted-real-results.json",
+    "artifacts/test-results/ui-final-review-2026-11-01/targeted-real.log",
+    "artifacts/test-results/ui-final-review-2026-11-01/targeted-unit-results.json",
+    "artifacts/test-results/ui-final-review-2026-11-01/targeted-unit.log",
+    "artifacts/test-results/ui-pre-review-recheck-2026-11-01/manifest.json",
+    "artifacts/test-results/ui-pre-review-recheck-2026-11-01/real-results.json",
+    "artifacts/test-results/ui-pre-review-recheck-2026-11-01/real.log",
+    "artifacts/test-results/ui-pre-review-recheck-2026-11-01/unit-results.json",
+    "artifacts/test-results/ui-pre-review-recheck-2026-11-01/unit.log",
+    "artifacts/test-results/ui-professional-review-2026-11-01/diagnostics-initial.json",
+    "artifacts/test-results/ui-professional-review-2026-11-01/diagnostics-initial.log",
+    "artifacts/test-results/ui-professional-review-2026-11-01/diagnostics.json",
+    "artifacts/test-results/ui-professional-review-2026-11-01/diagnostics.log",
+    "artifacts/test-results/ui-professional-review-2026-11-01/eligibility-observed.json",
+    "artifacts/test-results/ui-professional-review-2026-11-01/manifest.json",
+    "artifacts/test-results/ui-professional-review-2026-11-01/real-eligibility.log",
+    "artifacts/test-results/ui-professional-review-2026-11-01/real-history.log",
+    "artifacts/test-results/ui-professional-review-2026-11-01/repro/eligibility-refresh.test.ts",
+    "artifacts/test-results/ui-professional-review-2026-11-01/repro/playwright.config.ts",
+    "artifacts/test-results/ui-professional-review-2026-11-01/repro/staff-history.spec.ts",
+    "artifacts/test-results/ui-professional-review-2026-11-01/repro/vitest.config.ts",
+    "artifacts/test-results/ui-professional-review-2026-11-01/staff-history-observed.json",
+    "artifacts/test-results/ui-review-2026-11-01/backend-package-retry.log",
+    "artifacts/test-results/ui-review-2026-11-01/backend-package.log",
+    "artifacts/test-results/ui-review-2026-11-01/build-final.log",
+    "artifacts/test-results/ui-review-2026-11-01/build.log",
+    "artifacts/test-results/ui-review-2026-11-01/integration-results.json",
+    "artifacts/test-results/ui-review-2026-11-01/integration.log",
+    "artifacts/test-results/ui-review-2026-11-01/manifest.json",
+    "artifacts/test-results/ui-review-2026-11-01/persistence-results.json",
+    "artifacts/test-results/ui-review-2026-11-01/persistence.log",
+    "artifacts/test-results/ui-review-2026-11-01/restart.json",
+    "artifacts/test-results/ui-review-2026-11-01/review-integration-results.json",
+    "artifacts/test-results/ui-review-2026-11-01/review-integration-with-comment-results.json",
+    "artifacts/test-results/ui-review-2026-11-01/review-integration-with-comment.log",
+    "artifacts/test-results/ui-review-2026-11-01/review-integration.log",
+    "artifacts/test-results/ui-review-2026-11-01/typecheck.log",
+    "artifacts/test-results/ui-review-2026-11-01/types-check.log",
+    "artifacts/test-results/ui-review-2026-11-01/unit-results.json",
+    "artifacts/test-results/ui-review-2026-11-01/unit.log",
+    "artifacts/test-results/ui-review-fixes-2026-11-01/build.log",
+    "artifacts/test-results/ui-review-fixes-2026-11-01/layout-results.json",
+    "artifacts/test-results/ui-review-fixes-2026-11-01/layout.log",
+    "artifacts/test-results/ui-review-fixes-2026-11-01/manifest.json",
+    "artifacts/test-results/ui-review-fixes-2026-11-01/real-results.json",
+    "artifacts/test-results/ui-review-fixes-2026-11-01/real.log",
+    "artifacts/test-results/ui-review-fixes-2026-11-01/typecheck.log",
+    "artifacts/test-results/ui-review-fixes-2026-11-01/types-check.log",
+    "artifacts/test-results/ui-review-fixes-2026-11-01/unit-results.json",
+    "artifacts/test-results/ui-review-fixes-2026-11-01/unit.log",
+    "artifacts/test-results/ui-self-review-2026-11-01/adversarial-after.json",
+    "artifacts/test-results/ui-self-review-2026-11-01/adversarial-after.log",
+    "artifacts/test-results/ui-self-review-2026-11-01/adversarial-before.json",
+    "artifacts/test-results/ui-self-review-2026-11-01/adversarial-before.log",
+    "artifacts/test-results/ui-self-review-2026-11-01/build.log",
+    "artifacts/test-results/ui-self-review-2026-11-01/change-after.json",
+    "artifacts/test-results/ui-self-review-2026-11-01/change-after.log",
+    "artifacts/test-results/ui-self-review-2026-11-01/change-before.json",
+    "artifacts/test-results/ui-self-review-2026-11-01/change-before.log",
+    "artifacts/test-results/ui-self-review-2026-11-01/jdk21-failures.json",
+    "artifacts/test-results/ui-self-review-2026-11-01/jdk21-suites.json",
+    "artifacts/test-results/ui-self-review-2026-11-01/jdk21-verify.log",
+    "artifacts/test-results/ui-self-review-2026-11-01/layout-results.json",
+    "artifacts/test-results/ui-self-review-2026-11-01/layout.log",
+    "artifacts/test-results/ui-self-review-2026-11-01/manifest.json",
+    "artifacts/test-results/ui-self-review-2026-11-01/npm-ci.log",
+    "artifacts/test-results/ui-self-review-2026-11-01/preflight.json",
+    "artifacts/test-results/ui-self-review-2026-11-01/real-results.json",
+    "artifacts/test-results/ui-self-review-2026-11-01/real.log",
+    "artifacts/test-results/ui-self-review-2026-11-01/reservation-results.json",
+    "artifacts/test-results/ui-self-review-2026-11-01/reservation.log",
+    "artifacts/test-results/ui-self-review-2026-11-01/restart-results.json",
+    "artifacts/test-results/ui-self-review-2026-11-01/restart.json",
+    "artifacts/test-results/ui-self-review-2026-11-01/restart.log",
+    "artifacts/test-results/ui-self-review-2026-11-01/typecheck-final.log",
+    "artifacts/test-results/ui-self-review-2026-11-01/typecheck.log",
+    "artifacts/test-results/ui-self-review-2026-11-01/types-check.log",
+    "artifacts/test-results/ui-self-review-2026-11-01/unit-results.json",
+    "artifacts/test-results/ui-self-review-2026-11-01/unit.log",
+    "docs/ui/pr-rereview-2026-11-01.md",
+    "docs/ui/pr-review-2026-11-01.md",
+    "docs/ui/pre-review-recheck-2026-11-01.md",
+    "docs/ui/review-fixes-2026-11-01.md",
+    "docs/ui/review-followup-2026-11-01.md",
+    "docs/ui/self-review-2026-11-01.md",
+    "web/tests/activity-records.test.ts",
+    "web/tests/change-detail.test.ts",
+    "web/tests/integration/review-regression.spec.ts",
+    "web/tests/integration/review-restart.spec.ts",
+    "web/tests/resource-management.test.ts"
+  ],
+  "files": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "af3f5c858d8a12c2d2fb0d34a5167c7089bf379f9ba774ae2ed33a1fe282251a"
+    },
+    {
+      "path": "agents/17231018-ui/agent.md",
+      "sha256": "7d658e3981ecde09101c6765f46f4f01eb3c5d6fb9eaa1dbf1348fe825d4fa05"
+    },
+    {
+      "path": "agents/common/01-开发基线.md",
+      "sha256": "b2a88b899b159bff57022429d8d74883ed7395e5147b4aa275cbd9ffdc9f764e"
+    },
+    {
+      "path": "agents/common/02-数据与接口契约.md",
+      "sha256": "5b30b49ff130d23cc4a3a1bdeba28673f2ee61e4d47813b0471fb75a7bb9d33f"
+    },
+    {
+      "path": "agents/common/03-验收与演示数据.md",
+      "sha256": "4ed25c35f880c52f2b1642a0e66b0857fc0b373f4d69c81e5e65f25f6ddc4e33"
+    },
+    {
+      "path": "agents/common/04-协作与集成规程.md",
+      "sha256": "f097c3b75a735241acbff4d3c7c62cc36a8b5d1e91f3f65a13293def176b5dde"
+    },
+    {
+      "path": "agents/common/05-界面规范.md",
+      "sha256": "e57dd163268b444860eff0aa33411aea2c64cb5bcec06bd20728eede911e7708"
+    },
+    {
+      "path": "artifacts/screenshots/ui-final-review-2026-11-01/real/real-change-applied-1366x768.png",
+      "sha256": "770ba07bb7428a1e316fb90f28c64f20e8330ed6a86568d76bf8c82acc805540"
+    },
+    {
+      "path": "artifacts/screenshots/ui-final-review-2026-11-01/real/real-change-applied-1920x1080.png",
+      "sha256": "863d4f80549d7e29ac2e2d69eb846fbf0d9c02b53219c63a4634d88bffee2f36"
+    },
+    {
+      "path": "artifacts/screenshots/ui-final-review-2026-11-01/real/real-change-applied-390x844.png",
+      "sha256": "a091fc477295ec7ffefe124e0b768c6807dee68deaf3e74053a77814fa50d83c"
+    },
+    {
+      "path": "artifacts/screenshots/ui-final-review-2026-11-01/real/real-eligibility-refresh-saved-1366x768.png",
+      "sha256": "d1fa117c944313cb81d71a0142a6b59226725edb6c3afa27184dc97173d350e1"
+    },
+    {
+      "path": "artifacts/screenshots/ui-final-review-2026-11-01/real/real-eligibility-refresh-saved-1920x1080.png",
+      "sha256": "4c78e1c590e824cf4f88fb2a53af2ffb80dbc163cb52f041ade321e475567498"
+    },
+    {
+      "path": "artifacts/screenshots/ui-final-review-2026-11-01/real/real-eligibility-refresh-saved-390x844.png",
+      "sha256": "89b5dffadb9ad136653930934962a5e2ac151cd18a37626d6000b744ff6d8ae6"
+    },
+    {
+      "path": "artifacts/screenshots/ui-final-review-2026-11-01/real/real-staff-applied-history-1366x768.png",
+      "sha256": "7dfa7c94063aeebb6d140a14ab332fcd35c4792613357e2b91776a562df30ee6"
+    },
+    {
+      "path": "artifacts/screenshots/ui-final-review-2026-11-01/real/real-staff-applied-history-1920x1080.png",
+      "sha256": "37027463679039356119e4bffc284d9e97c3419713cb55658df66cb462061435"
+    },
+    {
+      "path": "artifacts/screenshots/ui-final-review-2026-11-01/real/real-staff-applied-history-390x844.png",
+      "sha256": "1d479a3892e0c54c4e23ff49fc7d3f7d98cf5b7cbe45a2053cd88696d3f06e45"
+    },
+    {
+      "path": "artifacts/screenshots/ui-final-review-2026-11-01/real/real-withdrawn-1366x768.png",
+      "sha256": "1cfca539724adcdf2fbd22f5c6687282552940ca322bb6c3e8196d25743997b8"
+    },
+    {
+      "path": "artifacts/screenshots/ui-final-review-2026-11-01/real/real-withdrawn-1920x1080.png",
+      "sha256": "68fee053c215dcbb4a4023d5f7cfc758bb7abbefb49b2b1f8ac3d9336553ac28"
+    },
+    {
+      "path": "artifacts/screenshots/ui-final-review-2026-11-01/real/real-withdrawn-390x844.png",
+      "sha256": "8a88664b42f76a4b13b6410c276d372080dce3987c280a371d98539fe6dde751"
+    },
+    {
+      "path": "artifacts/test-results/ui-final-review-2026-11-01/snapshot-check.json",
+      "sha256": "d5bcfff2a5410e2500c09614203ff3c37018df05b229dd9df67281869cf9f7fe"
+    },
+    {
+      "path": "artifacts/test-results/ui-final-review-2026-11-01/targeted-real-results.json",
+      "sha256": "a4482793919d800d862ba2b9c90ff51ba4886ce1bbfa877800464d283c29bd0a"
+    },
+    {
+      "path": "artifacts/test-results/ui-final-review-2026-11-01/targeted-real.log",
+      "sha256": "04b021e6a5be471ae7b28794359dd5b72bb25938ae440121158e82a6f3d4fe31"
+    },
+    {
+      "path": "artifacts/test-results/ui-final-review-2026-11-01/targeted-unit-results.json",
+      "sha256": "44c47544d04b525569b0fcea8347dcd418f983a439f26c25d2e7757b65953eb0"
+    },
+    {
+      "path": "artifacts/test-results/ui-final-review-2026-11-01/targeted-unit.log",
+      "sha256": "3f3331edb3df9d6fbbf50cd6c6de4a779f2df6afa60f551eb23ffa9857001ad6"
+    },
+    {
+      "path": "contracts/openapi.yaml",
+      "sha256": "e24d8c4d9f21f14d38a50f9337c383c70315176f4e7aa6ef2e344fcdf0682954"
+    },
+    {
+      "path": "docs/testing/pr-review-checklist.md",
+      "sha256": "3fa83ff269ca5a3282ca517c78e9018246156aaf59b56e8745c00fcd4da31694"
+    },
+    {
+      "path": "docs/ui/T08_用户界面说明文档.docx",
+      "sha256": "f49f7b687fb0ea88fe68e22a18f95f2c9c42259408e4b3ddf841735b5f3cb828"
+    },
+    {
+      "path": "docs/ui/api-matrix.md",
+      "sha256": "e6b983de6c1e1733d6d0ad23fb1861ebd8ea621c3b02ab8f966dd51f2af0112b"
+    },
+    {
+      "path": "docs/ui/handoff.md",
+      "sha256": "d3da2fb4c88dab4af4cef8337b5d6823afd6a5f31ec6e21a720edae8b762cf13"
+    },
+    {
+      "path": "docs/ui/interface-description.md",
+      "sha256": "84f70e16a2b9aa9de8799dded19ad8377f175b93efe53b696ba3fd6de66bcd9e"
+    },
+    {
+      "path": "docs/ui/interface-implementation-0.1.md",
+      "sha256": "add2af513026569f2ba7ee8e949be80415863af7903967af480fc7d9d0082e7c"
+    },
+    {
+      "path": "docs/ui/pr-draft.md",
+      "sha256": "c90b9df082a53aff76d24abd155f6930a8f7c73e587481fa46e927cba3387da0"
+    },
+    {
+      "path": "docs/ui/pr-rereview-2026-11-01.md",
+      "sha256": "163e592e9f318f8a8113b4e273ebbc6a41123a8411c1d32069151cbc9faefe74"
+    },
+    {
+      "path": "docs/ui/pr-review-2026-11-01.md",
+      "sha256": "1497217c14d231711d499f8618891df9bf13dd316607a0805e0d58f19bd69946"
+    },
+    {
+      "path": "docs/ui/pre-review-recheck-2026-11-01.md",
+      "sha256": "9912a322881397d18149002ce68e922f03bf427096afa45d868abf09d3fb4e9e"
+    },
+    {
+      "path": "docs/ui/prototype/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/ui/prototype/README.md",
+      "sha256": "629458aebd5e4237ef17579b961218c3f6c6623d59258f8aa2f50879421d2b43"
+    },
+    {
+      "path": "docs/ui/real-integration-2026-10-31.md",
+      "sha256": "15c1ce53e0ee0f48b87c85509e70952d387ae74ef08f6cece5d68fe75e84387f"
+    },
+    {
+      "path": "docs/ui/review-fixes-2026-11-01.md",
+      "sha256": "47f916317264544401ddb5d42fb1188f2abf2722eac687318da471bd301b73b8"
+    },
+    {
+      "path": "docs/ui/review-followup-2026-11-01.md",
+      "sha256": "2759ce357ece12fa1edadb2389818b9cd6b73e4810caf4e6efab4110f04f47d9"
+    },
+    {
+      "path": "docs/ui/self-review-2026-11-01.md",
+      "sha256": "77443418542af92fc67258abcface2890fb3a6e167dc654722976e5807ecc819"
+    },
+    {
+      "path": "docs/ui/user-manual.md",
+      "sha256": "e773d33527c668e189335b59ed9c56d5cb0c7cc5f129985e965a3608e2f77e20"
+    },
+    {
+      "path": "taskbook.md",
+      "sha256": "75eba57488b1c6ed0afa1ddf5e1355cbd1176fb6c5ed56870e49e0d2b37c5300"
+    },
+    {
+      "path": "web/.gitignore",
+      "sha256": "cecf86ad173ca8a291f02a5f54f52b8145b6b35bd2d408660d3b0ed99ee56e05"
+    },
+    {
+      "path": "web/.gitkeep",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "web/.node-version",
+      "sha256": "834bb700cb13e9b597367731f0678cc9e8174cf623251938ac59f690d5a5e89f"
+    },
+    {
+      "path": "web/Dockerfile",
+      "sha256": "03e0ddb8b6605033eebcaab32c5051484dd9517d98ceac4f660b51dc6f65171c"
+    },
+    {
+      "path": "web/README.md",
+      "sha256": "f72d0a221951cd015b17ce9e6ba316f41c80f1af39dba4437b3738c42f4afa98"
+    },
+    {
+      "path": "web/index.html",
+      "sha256": "95051d1b5aebbf8e43a814322be0296d1bde3567df9e5ae3199a4560de4c9536"
+    },
+    {
+      "path": "web/package-lock.json",
+      "sha256": "714427333468418e6cc085b3d614d696e3641e088e913d38dae4eebd542b3f5f"
+    },
+    {
+      "path": "web/package.json",
+      "sha256": "7b37b53bd08118f89f54a9ebc11138ea76f9471c0999f6afe1cb8d6dde0aa6d6"
+    },
+    {
+      "path": "web/playwright.config.ts",
+      "sha256": "3c0c75e47949b7fcccf718f10e17516d71095cffe815fab0e4f548bed43c6712"
+    },
+    {
+      "path": "web/playwright.integration.config.ts",
+      "sha256": "24216e4f2e79682023bd0b56ecb7bdcd95657e161abf443cabfc8e9f521ab0b6"
+    },
+    {
+      "path": "web/scripts/check-production.mjs",
+      "sha256": "9108f7720be1834c789328dbc2dfd021b2d2588b08b4e395730718cb93ad534c"
+    },
+    {
+      "path": "web/scripts/probe-integration.mjs",
+      "sha256": "3ad2793217ddf7f05b212ba2dae48873ab9881ca9cde571c4116c78410b65ff7"
+    },
+    {
+      "path": "web/scripts/sync-types.mjs",
+      "sha256": "c56cc79a092013574f8026777451365d52ed01b1a774165315462c218caa15c7"
+    },
+    {
+      "path": "web/src/App.vue",
+      "sha256": "1c94e528f06d80ddfa032f27d5cb8866f0b7fc19fce42999d61394e636c1b2d3"
+    },
+    {
+      "path": "web/src/api/client.ts",
+      "sha256": "2b76acbdb46d7cd2bc13327bda63721c0a2296071800a27b2d664f3683d7dc47"
+    },
+    {
+      "path": "web/src/api/index.ts",
+      "sha256": "4a2a5b3e198a44e0c2943ee9d6637a0e689ec4663ef22485f1cc8fc03b0b83ab"
+    },
+    {
+      "path": "web/src/components/ActivityList.vue",
+      "sha256": "0b70d004e90b1eae5a760a8826e28929af643607f8062451c06035f516987268"
+    },
+    {
+      "path": "web/src/components/ActivityRecords.vue",
+      "sha256": "fe815e1b164d3570dfd1200f573b10131a7edd58861520889f7100ea0e9da3b7"
+    },
+    {
+      "path": "web/src/components/AlternativesPanel.vue",
+      "sha256": "5cec379f5b28dbae4d52a739c03033ae22ef072c9c0f283855d090871c44f90c"
+    },
+    {
+      "path": "web/src/components/ApiFeedback.vue",
+      "sha256": "29b8f2f9b35ae86ab26486f941773ed3de2146fa38db5b29ba7d84434d577a0e"
+    },
+    {
+      "path": "web/src/components/AuthorizationEditor.vue",
+      "sha256": "f71c42019f247093f911e7df409aea46653c70a768772232e9096768cf8e1188"
+    },
+    {
+      "path": "web/src/components/ChangeActions.vue",
+      "sha256": "9fc1a9140dc929255ee7913691c462dda33bd37154ee4d75ae21be858573c323"
+    },
+    {
+      "path": "web/src/components/ChangeTimeline.vue",
+      "sha256": "2a7c197da92e84c9939137b972c84b7ea2845ce7911724c085a36285471a34de"
+    },
+    {
+      "path": "web/src/components/ConflictList.vue",
+      "sha256": "1687390d81a155d4922137ae80b108e86b40e8fa3f035364aaf0e94210d0e97a"
+    },
+    {
+      "path": "web/src/components/DraftEditor.vue",
+      "sha256": "aa8d41ffafb229d8cd441af703a4072733ea53fea42510e6d94c3b3b5575df27"
+    },
+    {
+      "path": "web/src/components/ImpactPanel.vue",
+      "sha256": "3b56f5bdf1860e12a24ad625647c6c636688b82fd964b21b5f6311284ec6de3d"
+    },
+    {
+      "path": "web/src/components/MutationFeedback.vue",
+      "sha256": "19584ee04c4212a1ababf6af72a7926e6627d0c413fe6dab19e1b6e7d9704987"
+    },
+    {
+      "path": "web/src/components/PlanEditor.vue",
+      "sha256": "7182e6c831a70c77f5af4cff35ef0717b066854ab69d3a3130c22fb01f663bb6"
+    },
+    {
+      "path": "web/src/components/PlanSummary.vue",
+      "sha256": "79e919ad1fbaf21a85be51a319dcc60b115d9ee2a47eb29971a051f3be8557d7"
+    },
+    {
+      "path": "web/src/components/ResourceCalendar.vue",
+      "sha256": "62e07e2fe982faf6a6aa591314528fb761fd5970d0902992940b17fb7772d7cf"
+    },
+    {
+      "path": "web/src/components/ResourceManagePanel.vue",
+      "sha256": "f0bf0b3f78b7c9eeb41d8e090659fbd71d9473f76d5a7b8e3c3b6eab65c5ea7a"
+    },
+    {
+      "path": "web/src/components/UsersPanel.vue",
+      "sha256": "161ad49d077112e2310a0de69d464bda6bf11db2fc99f3ae1503a0f66e8b1fca"
+    },
+    {
+      "path": "web/src/components/WorkspaceLayout.vue",
+      "sha256": "f33009309744b3ace6edf6eae684f25bdeb65cfe0f9f494bf0696d23cdf380c5"
+    },
+    {
+      "path": "web/src/composables/useChangeWorkspace.ts",
+      "sha256": "63732508869ced79a1f608a7082455320997285557e2677fc25d48fd1a7aaab8"
+    },
+    {
+      "path": "web/src/composables/useMutation.ts",
+      "sha256": "b05d0b1f0241b5e2416d844aa517764a334d4f46746b6c137beb14ea1982e4c6"
+    },
+    {
+      "path": "web/src/composables/useUserAdmin.ts",
+      "sha256": "6f341f09bb38b70e2789b729b35ccbf452d1d0b04625ad87ebf3b8d22e9024a4"
+    },
+    {
+      "path": "web/src/dev/ChangePreviewPanel.vue",
+      "sha256": "8ab2cc2006bb528c8c179cef1e8a9f6188c9d4b7c300b37dd8ad1cb80fc3e525"
+    },
+    {
+      "path": "web/src/dev/PrototypePage.vue",
+      "sha256": "baf668e05f67bfe13236adf3fb4d0cc68e734fba28365ae30681db7a4e4d913b"
+    },
+    {
+      "path": "web/src/dev/WorkspacePreview.vue",
+      "sha256": "5196cb4cb1274d1049cb1ab0f0541a8e312733bba24099d2d3e19d151ac29edc"
+    },
+    {
+      "path": "web/src/domain/access.ts",
+      "sha256": "b6da2212958eace9393fd4bb9dbc8ebd3b21fb697bce8eb679df6c0d4a8fcd58"
+    },
+    {
+      "path": "web/src/domain/authorization.ts",
+      "sha256": "a9542c734484e263117632a7ac4a985feb499ba6ab52801cef124f671d024cc0"
+    },
+    {
+      "path": "web/src/domain/capacity.ts",
+      "sha256": "9d1ff4c2de85cd1b1f14e0733dc286d1e8c06a11c0770f352d20e2cf924f528f"
+    },
+    {
+      "path": "web/src/domain/change.ts",
+      "sha256": "7f6d372fcdfa6b91fce521b19e14009c27820437eee56171ee7165c007855f5f"
+    },
+    {
+      "path": "web/src/domain/format.ts",
+      "sha256": "16c4629f7a6d2354f01c2959ac8d55e13c6832362adf1011e007bbc053ef505f"
+    },
+    {
+      "path": "web/src/domain/queue.ts",
+      "sha256": "11736c57e1f72565f2b5401871991d0ceecfab32ccf1beb5c3ac64973d9bf691"
+    },
+    {
+      "path": "web/src/domain/resource.ts",
+      "sha256": "e68a5743a0f1f2e9c8cb25c63f4bf8fe9b8da766702cf35339188d31cb121812"
+    },
+    {
+      "path": "web/src/domain/validation.ts",
+      "sha256": "b085cd473d9c51e62adcd7f17320529eb54e052369c2cb30355e10e788b4dd40"
+    },
+    {
+      "path": "web/src/main.ts",
+      "sha256": "6f7cc498e6e3db0595663802326edd7810ced64d8273b885494ffea90cf8422e"
+    },
+    {
+      "path": "web/src/pages/ActivitiesPage.vue",
+      "sha256": "d899ec0938091892cad5123748e9f79ee4e4932d21c27c2cd1cb25746bf00b9e"
+    },
+    {
+      "path": "web/src/pages/ActivityCreatePage.vue",
+      "sha256": "96bbc3c34b78ccc8f8fd3ae4ebf807009c516ecd1830f9e0bd8fdb3b0379cbfe"
+    },
+    {
+      "path": "web/src/pages/ActivityDetailPage.vue",
+      "sha256": "0f9638e50f9ced16a17eaed76e5a690882ee921f0f9ddc31899172de392283f8"
+    },
+    {
+      "path": "web/src/pages/CalendarPage.vue",
+      "sha256": "4f25a59a3e7749fafbc8de1a0e276a2a7a048ba67e7792f8846b6b84f0242a8f"
+    },
+    {
+      "path": "web/src/pages/ChangeDetailPage.vue",
+      "sha256": "f1d3032139acd0bae2648135c708156ffcad0160ec4428959e7c4998b1abc49f"
+    },
+    {
+      "path": "web/src/pages/ChangeWorkspacePage.vue",
+      "sha256": "a60bc77aa5a29aed841d5bed30745e5f32c986e12af5cfeb7d0468a3de3be877"
+    },
+    {
+      "path": "web/src/pages/LoginPage.vue",
+      "sha256": "d58dc2191c5bef208997add7189f017a08ebbfe65036ff90dbbc3ffc29da2b49"
+    },
+    {
+      "path": "web/src/pages/NotificationsPage.vue",
+      "sha256": "c77455a10439c11601cc1fbe104915fefaadc6052e54fad8c2cf16b65519141f"
+    },
+    {
+      "path": "web/src/pages/PendingPage.vue",
+      "sha256": "f9c9ef8db7a0c11d4e4f760f2d6ca857bbee36fefe602a67a37b9f97b16dbb90"
+    },
+    {
+      "path": "web/src/pages/ResourceManagePage.vue",
+      "sha256": "4604756a455303bca4d61e03e6a1c2abcf8b5dd09fe8f20cb51a748c1e11ffa2"
+    },
+    {
+      "path": "web/src/pages/UsersPage.vue",
+      "sha256": "5c1e44a30a4c1c3009c8d317c5ff46b6a16c4ab1dfa3213ba571235a072114fa"
+    },
+    {
+      "path": "web/src/router.ts",
+      "sha256": "31917afbbcfb6917561da57fd61ac83da4819beb93d8287efa7c052f551f3ed2"
+    },
+    {
+      "path": "web/src/stores/session.ts",
+      "sha256": "f1e6175a468a5a32524036aca37914aead1efd42bf3cd4097784b6e39033d0d1"
+    },
+    {
+      "path": "web/src/style.css",
+      "sha256": "588d620cc7d267ab1ca9651be41213aba43b2a72cc1d86725b5bbed70724b2ff"
+    },
+    {
+      "path": "web/src/types/api.ts",
+      "sha256": "8e549afd0ad3ff589029b16067e26f4c7e3943db44d4c9f29033088dcf2bfa23"
+    },
+    {
+      "path": "web/tests/access.test.ts",
+      "sha256": "ab8600b806da625f74933d8943e1159ffaf2eb89ac1e005d5a42efcd7ae728ac"
+    },
+    {
+      "path": "web/tests/activity-detail.test.ts",
+      "sha256": "66af46e32248096d038c463f9e09d564cb7a33f4eaf95e9521a858c7035e38e0"
+    },
+    {
+      "path": "web/tests/activity-records.test.ts",
+      "sha256": "d79f0091caa2167b4849916b565568236ac80f846750f00a301b49966cb78a0f"
+    },
+    {
+      "path": "web/tests/api-feedback.test.ts",
+      "sha256": "5b68d8855c704ba2f697740ea82fb69e88e6e2e4a269e8848a45aca7dfc5ed8d"
+    },
+    {
+      "path": "web/tests/authorization.test.ts",
+      "sha256": "68b3125c6368191323863d8fabd740ef9580cc5600bbcae99186583b58b4c09c"
+    },
+    {
+      "path": "web/tests/browser/layout.spec.ts",
+      "sha256": "41c472731ad1053b2e95630729833616c28a11f720393f56d5ff577a2b82ac9c"
+    },
+    {
+      "path": "web/tests/browser/remaining-ui-preview.spec.ts",
+      "sha256": "c59712c933244ade9a9f8fa24f7779f65d5f9900ab8c83962706497877317a29"
+    },
+    {
+      "path": "web/tests/browser/users-preview.spec.ts",
+      "sha256": "913ccc0fc7c9ebf4b6df92e1ffd47b28f823c7383b850c7c4c778e07db16b35a"
+    },
+    {
+      "path": "web/tests/browser/workspace-preview.spec.ts",
+      "sha256": "19adfdb0d212082e4c66c0c682cd7c8b074736618f196c5b51cf37a8b60669c4"
+    },
+    {
+      "path": "web/tests/capacity.test.ts",
+      "sha256": "3a6eaf3eb4bb77fcf3b5fa8ddb3a3425b4cc3229a4ce9c97c083c147a80881c4"
+    },
+    {
+      "path": "web/tests/change-access.test.ts",
+      "sha256": "4ccf5c604646882c3c5d8a2a2cea7e0cebd1103b04fee14ed085427d90a23c19"
+    },
+    {
+      "path": "web/tests/change-actions.test.ts",
+      "sha256": "47621db7d7f0cd4048014d833163cbba1cd56502275daab79e2b831a6a76734e"
+    },
+    {
+      "path": "web/tests/change-detail.test.ts",
+      "sha256": "44d4b2c8d7460c027a3d130a0d224041efa28f22f10754467cf7f8f6f1c8bedf"
+    },
+    {
+      "path": "web/tests/change-workspace.test.ts",
+      "sha256": "492a7acb54259a2f6b811db220e5be198dc9800a180fc0c235962093ed3791ec"
+    },
+    {
+      "path": "web/tests/client.test.ts",
+      "sha256": "85ce6844fb7db885be2db456e93b8da27131951907f6f6c246073d7a18eb39c7"
+    },
+    {
+      "path": "web/tests/components.test.ts",
+      "sha256": "9d47e61654f5b1c0992a1ba7ec70152c7f6ad605430cfff83302e547fac6e6fe"
+    },
+    {
+      "path": "web/tests/contracts.test.ts",
+      "sha256": "d979ebf85ba75e0d37c9420e982d80ff60a3e0df950deb15594327dad0013d07"
+    },
+    {
+      "path": "web/tests/draft-editor.test.ts",
+      "sha256": "b34823f6fa6bc03806f46e2fb70f2f83302eda9c45ad99a6e3cc4c35cd396da7"
+    },
+    {
+      "path": "web/tests/fixtures.ts",
+      "sha256": "d38c073b879b5d18e225b3a0d202ea9d8e3c10ecd9925e680ca4abea10a90e55"
+    },
+    {
+      "path": "web/tests/integration/persistence.spec.ts",
+      "sha256": "7e025684d63979b1636bfdd684c346602b500d216d0555472c500bb8997c1b11"
+    },
+    {
+      "path": "web/tests/integration/real-service.spec.ts",
+      "sha256": "5606f669ff8e498d976d9974c56708a96dac3c2c10b1f425564572a4b270e476"
+    },
+    {
+      "path": "web/tests/integration/review-regression.spec.ts",
+      "sha256": "0d1debfea98b3a8da0434b40f31fb79aa7b387e3edb48536f3fc72139796c918"
+    },
+    {
+      "path": "web/tests/integration/review-restart.spec.ts",
+      "sha256": "3980605fddbc47e5baf5be371a0796b537c0118ad199bfa8373190a41f9d1816"
+    },
+    {
+      "path": "web/tests/integration/support.ts",
+      "sha256": "d10d2f1fab13ae71f89bacc71a44fdfb01b702954b9028d7a1dadbb3a89d5d7c"
+    },
+    {
+      "path": "web/tests/mutation.test.ts",
+      "sha256": "06f5303b406ebf51eeb094c688a6c451524dd9c212904db1020e01e3a094c125"
+    },
+    {
+      "path": "web/tests/queue.test.ts",
+      "sha256": "ab01f3f5d26bad14030f7039f793099cd3b3b8db2a1a9145c32827dbca45f9b1"
+    },
+    {
+      "path": "web/tests/resource-management.test.ts",
+      "sha256": "89e93a63175c12e35c7d1d10b3ccb0f9dde91816d9d38096176dae29ef2be6fb"
+    },
+    {
+      "path": "web/tests/resource.test.ts",
+      "sha256": "99dadd08607ab380e0fb160f2efae129cbb6389249daca6a89351c6a806074ed"
+    },
+    {
+      "path": "web/tests/user-admin.test.ts",
+      "sha256": "c9b0f279d20d761d8f540fd678dc4841aab8a05fcb2704e61b3c4c4716aeb8c3"
+    },
+    {
+      "path": "web/tests/users-panel.test.ts",
+      "sha256": "eb4a16ee71da210b274e4cbef2488ee703446a2dd2f09dc28cff32630efd8340"
+    },
+    {
+      "path": "web/tests/validation.test.ts",
+      "sha256": "2bce93c1b91393924a277c6a1d7001e39980c25b49a2e088a0cc6a590bf8e6b7"
+    },
+    {
+      "path": "web/tsconfig.json",
+      "sha256": "0a4bb9c8fed5d308031c3055e041708b901023d5e7c9358208816e4f17431403"
+    },
+    {
+      "path": "web/vite.config.ts",
+      "sha256": "0649c6c374f81612349a7919ae927b1d07da63e7fd438aba846faa8fdb734ed8"
+    }
+  ]
+}

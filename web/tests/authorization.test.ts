@@ -86,6 +86,12 @@ describe('完整授权替换', () => {
     expect(validateUserCreate({ ...input, password: '1234567' })).toContain(
       '初始密码至少8位',
     )
+    expect(
+      validateUserCreate({ ...input, password: '😀'.repeat(7) }),
+    ).toContain('初始密码至少8位')
+    expect(validateUserCreate({ ...input, password: '😀'.repeat(8) })).toEqual(
+      [],
+    )
   })
   it('教师身份切换不增加APPROVER角色', async () => {
     const wrapper = mount(AuthorizationEditor, {

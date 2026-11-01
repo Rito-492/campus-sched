@@ -1,0 +1,12 @@
+
+ RUN  v3.2.7 D:/code/01_projects/project/campus-sched/web
+
+ ✓ tests/change-workspace.test.ts (9 tests) 16ms
+ ✓ tests/activity-detail.test.ts (8 tests) 623ms
+
+ Test Files  2 passed (2)
+      Tests  17 passed (17)
+   Start at  14:19:18
+   Duration  6.95s (transform 612ms, setup 0ms, collect 3.82s, tests 639ms, environment 4.91s, prepare 374ms)
+
+JSON report written to D:/code/01_projects/project/campus-sched/artifacts/test-results/ui-self-review-2026-11-01/adversarial-after.json

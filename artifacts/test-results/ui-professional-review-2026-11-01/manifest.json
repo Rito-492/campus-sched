@@ -1,0 +1,95 @@
+{
+  "timestamp": "2026-11-01T14:57:48.5266820+08:00",
+  "main": "107a301ba1ea040a0c322656789f078ff81093f2",
+  "localHead": "9fe38e9c2d9ca9f2ae402acdee74e471ad4c0a48",
+  "sourceState": "含未提交修复；本轮无产品修改，未提交推送",
+  "conclusion": "必须改",
+  "newP2Findings": 2,
+  "diagnosticUnitFailures": 1,
+  "diagnosticRealBrowserFailures": 2,
+  "typesCheck": "passed",
+  "secretScan": "passed",
+  "priorFrontendSourceHashes": "matched",
+  "files": [
+    {
+      "path": "artifacts/screenshots/ui-professional-review-2026-11-01/eligibility-refresh-stale.png",
+      "sha256": "b5f8c2c09ca16da1f87c271dc73211b83ac8dd8d49328f68cc2c26e9b3f15f2e"
+    },
+    {
+      "path": "artifacts/screenshots/ui-professional-review-2026-11-01/staff-history-missing.png",
+      "sha256": "5a2b7aa5d5f136f07712316e0ff69abf4c761270c2ff06b4644ffe9ce572c6e7"
+    },
+    {
+      "path": "artifacts/test-results/ui-professional-review-2026-11-01/diagnostics-initial.json",
+      "sha256": "2c73bf754bc9a3f0f544f68a954693dd3b1c4529e24e478ce8dbade543c27e40"
+    },
+    {
+      "path": "artifacts/test-results/ui-professional-review-2026-11-01/diagnostics-initial.log",
+      "sha256": "7c622fa9ab8cc3fece88abe15d7c2ba8693e6c5b6865011ba229330d6dc34196"
+    },
+    {
+      "path": "artifacts/test-results/ui-professional-review-2026-11-01/diagnostics.json",
+      "sha256": "54565d71ac05ec531471427069cb8487da0ffcc1fd9587066a819bf49a3e6680"
+    },
+    {
+      "path": "artifacts/test-results/ui-professional-review-2026-11-01/diagnostics.log",
+      "sha256": "6138e8172f77f29c472670e3220791e8255245e70de5d3273a45505808b4379f"
+    },
+    {
+      "path": "artifacts/test-results/ui-professional-review-2026-11-01/eligibility-observed.json",
+      "sha256": "9411d41fdf227dfe2a506b2d2f9bbb0b98c9548fceea603c8270f147d61c81b2"
+    },
+    {
+      "path": "artifacts/test-results/ui-professional-review-2026-11-01/real-eligibility.log",
+      "sha256": "8ea60b338f06e890d607594eaa920fc451ef71f69e814e89c6c8d21776fd7c57"
+    },
+    {
+      "path": "artifacts/test-results/ui-professional-review-2026-11-01/real-history.log",
+      "sha256": "e498df3539b7f25e38ade20c4136bcf504629999e37df5404fed42d601ce51c2"
+    },
+    {
+      "path": "artifacts/test-results/ui-professional-review-2026-11-01/repro/eligibility-refresh.test.ts",
+      "sha256": "73e81b6d3fc6446754fadeadd8ec3876225a47d10c9bb5d3b98b7a22f42c3c05"
+    },
+    {
+      "path": "artifacts/test-results/ui-professional-review-2026-11-01/repro/playwright.config.ts",
+      "sha256": "9e2d3d0ebb91bccbf48d71ae04bcb6e0fd5e17fd306138d8dbbda1e7f8c3f10b"
+    },
+    {
+      "path": "artifacts/test-results/ui-professional-review-2026-11-01/repro/staff-history.spec.ts",
+      "sha256": "843f2817d47f2fcb2e205df977d94cf5acc9b5774b119462eb6dd78a409612eb"
+    },
+    {
+      "path": "artifacts/test-results/ui-professional-review-2026-11-01/repro/vitest.config.ts",
+      "sha256": "33e0066f015745de83e7f59d1c605d18370594a31303035d8ed2fe6fe8656add"
+    },
+    {
+      "path": "artifacts/test-results/ui-professional-review-2026-11-01/staff-history-observed.json",
+      "sha256": "fcd091c6ca4863cc0428591804e7c0bacd66e8ac17eb6cdc0c97db49aa368ea1"
+    },
+    {
+      "path": "docs/ui/handoff.md",
+      "sha256": "64dc9586c257d59fd08a0be8fda973058b23983e1b2bd777cabbacb685b2f915"
+    },
+    {
+      "path": "docs/ui/pr-review-2026-11-01.md",
+      "sha256": "1497217c14d231711d499f8618891df9bf13dd316607a0805e0d58f19bd69946"
+    },
+    {
+      "path": "web/src/components/ActivityRecords.vue",
+      "sha256": "416c5538ae8057070b1f1529e1cdefd2c7b2bd0ccb424036389e74cfdbc1ec28"
+    },
+    {
+      "path": "web/src/components/ResourceManagePanel.vue",
+      "sha256": "cf40031e7f0bdcab3e833bed052ff788d16d4dc5187f6637b6d7ec36e91a131e"
+    },
+    {
+      "path": "web/src/domain/change.ts",
+      "sha256": "259eb0e60dd338e1dd42c523b6a0dab8b2a63ec7abb166a872e04070d4fbf6f6"
+    },
+    {
+      "path": "web/src/pages/ResourceManagePage.vue",
+      "sha256": "4604756a455303bca4d61e03e6a1c2abcf8b5dd09fe8f20cb51a748c1e11ffa2"
+    }
+  ]
+}

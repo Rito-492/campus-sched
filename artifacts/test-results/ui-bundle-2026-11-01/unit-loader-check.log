@@ -1,0 +1,10 @@
+
+ RUN  v3.2.7 D:/code/01_projects/project/campus-sched/web
+
+ ✓ tests/resource-management.test.ts (3 tests) 209ms
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  15:33:12
+   Duration  7.22s (transform 465ms, setup 0ms, collect 3.65s, tests 209ms, environment 2.71s, prepare 248ms)
+

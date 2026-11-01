@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { useSession } from './stores/session'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import ApiFeedback from './components/ApiFeedback.vue'
 import WorkspaceLayout from './components/WorkspaceLayout.vue'
 const route = useRoute()
@@ -16,10 +17,12 @@ async function logout() {
 }
 </script>
 <template>
-  <a class="skip-link" href="#main">跳到主要内容</a>
-  <div v-if="route.meta.public" class="public-shell"><RouterView /></div>
-  <WorkspaceLayout v-else :actor="session.actor" @account-action="logout">
-    <ApiFeedback :error="error" @retry="logout" />
-    <RouterView :key="route.fullPath" />
-  </WorkspaceLayout>
+  <el-config-provider :locale="zhCn">
+    <a class="skip-link" href="#main">跳到主要内容</a>
+    <div v-if="route.meta.public" class="public-shell"><RouterView /></div>
+    <WorkspaceLayout v-else :actor="session.actor" @account-action="logout">
+      <ApiFeedback :error="error" @retry="logout" />
+      <RouterView :key="route.fullPath" />
+    </WorkspaceLayout>
+  </el-config-provider>
 </template>

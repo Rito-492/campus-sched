@@ -73,6 +73,45 @@ afterEach(() => {
   scopes.splice(0).forEach((s) => s.stop())
 })
 describe('改期工作台真实请求编排（单元替身）', () => {
+  it.each([401, 403, 404])(
+    '工作台刷新%i清除受保护安排、目标与意见',
+    async (status) => {
+      const s = setup()
+      await s.load()
+      s.reason.value = '私有原因'
+      await s.preview()
+      vi.mocked(api.activity).mockRejectedValueOnce(
+        new ApiError(status, 'FORBIDDEN', '禁止读取'),
+      )
+      await s.load()
+      expect(s.activity.value).toBeNull()
+      expect(s.target.value).toBeNull()
+      expect(s.resources.value).toEqual([])
+      expect(s.reason.value).toBe('')
+      expect(s.result.value).toBeNull()
+    },
+  )
+  it('工作台刷新被拒绝后迟到的旧加载不能重新建立可提交预览', async () => {
+    const s = setup()
+    await s.load()
+    let oldResponse!: (
+      value: ReturnType<typeof envelope<ReturnType<typeof a>>>,
+    ) => void
+    vi.mocked(api.activity).mockReturnValueOnce(
+      new Promise((resolve) => {
+        oldResponse = resolve
+      }),
+    )
+    const oldLoad = s.load()
+    vi.mocked(api.activity).mockRejectedValueOnce(
+      new ApiError(403, 'FORBIDDEN', '禁止读取'),
+    )
+    await s.load()
+    oldResponse(envelope(a()))
+    await oldLoad
+    expect(s.activity.value).toBeNull()
+    expect(s.allowed.value).toBe(false)
+  })
   it('无预览不能创建；选择候选必须重新预览最终目标', async () => {
     const s = setup()
     await s.load()

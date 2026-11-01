@@ -1,0 +1,202 @@
+{
+  "config": {
+    "configFile": "D:\\code\\01_projects\\project\\campus-sched\\web\\playwright.integration.config.ts",
+    "rootDir": "D:/code/01_projects/project/campus-sched/web/tests/integration",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list"
+      ],
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "D:/code/01_projects/project/campus-sched/web/test-results/integration",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "D:/code/01_projects/project/campus-sched/web/tests/integration",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.56.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "review-regression.spec.ts",
+      "file": "review-regression.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "真实纯角色与跨组织工作人员展示，撤销审批范围后刷新隐藏旧详情",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5894,
+                  "error": {
+                    "message": "Error: {\"path\":\"/api/v1/activities/d9f711f7-3bc6-4395-876f-73f07738f280/approver-decision\",\"status\":400,\"error\":{\"code\":\"VALIDATION_ERROR\",\"details\":{},\"message\":\"事件字段不完整\"},\"requestId\":\"6967727b-b541-4e80-945a-09edb1788000\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                    "stack": "Error: {\"path\":\"/api/v1/activities/d9f711f7-3bc6-4395-876f-73f07738f280/approver-decision\",\"status\":400,\"error\":{\"code\":\"VALIDATION_ERROR\",\"details\":{},\"message\":\"事件字段不完整\"},\"requestId\":\"6967727b-b541-4e80-945a-09edb1788000\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at successful (D:\\code\\01_projects\\project\\campus-sched\\web\\tests\\integration\\support.ts:49:5)\n    at D:\\code\\01_projects\\project\\campus-sched\\web\\tests\\integration\\review-regression.spec.ts:214:20",
+                    "location": {
+                      "file": "D:\\code\\01_projects\\project\\campus-sched\\web\\tests\\integration\\support.ts",
+                      "column": 5,
+                      "line": 49
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msupport.ts:49\n\n  47 |       requestId: body.requestId,\n  48 |     }),\n> 49 |   ).toBe(true)\n     |     ^\n  50 |   return body.data\n  51 | }\n  52 | export async function screenshots(page: Page, name: string) {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\code\\01_projects\\project\\campus-sched\\web\\tests\\integration\\support.ts",
+                        "column": 5,
+                        "line": 49
+                      },
+                      "message": "Error: {\"path\":\"/api/v1/activities/d9f711f7-3bc6-4395-876f-73f07738f280/approver-decision\",\"status\":400,\"error\":{\"code\":\"VALIDATION_ERROR\",\"details\":{},\"message\":\"事件字段不完整\"},\"requestId\":\"6967727b-b541-4e80-945a-09edb1788000\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   at support.ts:49\n\n  47 |       requestId: body.requestId,\n  48 |     }),\n> 49 |   ).toBe(true)\n     |     ^\n  50 |   return body.data\n  51 | }\n  52 | export async function screenshots(page: Page, name: string) {\n    at successful (D:\\code\\01_projects\\project\\campus-sched\\web\\tests\\integration\\support.ts:49:5)\n    at D:\\code\\01_projects\\project\\campus-sched\\web\\tests\\integration\\review-regression.spec.ts:214:20"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-01T06:03:23.287Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\code\\01_projects\\project\\campus-sched\\web\\test-results\\integration\\review-regression-真实纯角色与跨组织工作人员展示，撤销审批范围后刷新隐藏旧详情\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\code\\01_projects\\project\\campus-sched\\web\\tests\\integration\\support.ts",
+                    "column": 5,
+                    "line": 49
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "e90ba3a1afcc51532157-5cf81bf2f16ffbfd205a",
+          "file": "review-regression.spec.ts",
+          "line": 152,
+          "column": 1
+        },
+        {
+          "title": "真实首次预约报名与改期本人确认、审批、生效和日历通知刷新",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 3505,
+                  "error": {
+                    "message": "Error: {\"path\":\"/api/v1/activities/3c0b5d92-eb3c-4c91-b594-0fc100b07671/approver-decision\",\"status\":400,\"error\":{\"code\":\"VALIDATION_ERROR\",\"details\":{},\"message\":\"事件字段不完整\"},\"requestId\":\"36ea7c23-c074-4c4b-897e-c5d059ecdaa4\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m",
+                    "stack": "Error: {\"path\":\"/api/v1/activities/3c0b5d92-eb3c-4c91-b594-0fc100b07671/approver-decision\",\"status\":400,\"error\":{\"code\":\"VALIDATION_ERROR\",\"details\":{},\"message\":\"事件字段不完整\"},\"requestId\":\"36ea7c23-c074-4c4b-897e-c5d059ecdaa4\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n    at successful (D:\\code\\01_projects\\project\\campus-sched\\web\\tests\\integration\\support.ts:49:5)\n    at D:\\code\\01_projects\\project\\campus-sched\\web\\tests\\integration\\review-regression.spec.ts:242:7",
+                    "location": {
+                      "file": "D:\\code\\01_projects\\project\\campus-sched\\web\\tests\\integration\\support.ts",
+                      "column": 5,
+                      "line": 49
+                    },
+                    "snippet": "\u001b[90m   at \u001b[39msupport.ts:49\n\n  47 |       requestId: body.requestId,\n  48 |     }),\n> 49 |   ).toBe(true)\n     |     ^\n  50 |   return body.data\n  51 | }\n  52 | export async function screenshots(page: Page, name: string) {"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "D:\\code\\01_projects\\project\\campus-sched\\web\\tests\\integration\\support.ts",
+                        "column": 5,
+                        "line": 49
+                      },
+                      "message": "Error: {\"path\":\"/api/v1/activities/3c0b5d92-eb3c-4c91-b594-0fc100b07671/approver-decision\",\"status\":400,\"error\":{\"code\":\"VALIDATION_ERROR\",\"details\":{},\"message\":\"事件字段不完整\"},\"requestId\":\"36ea7c23-c074-4c4b-897e-c5d059ecdaa4\"}\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\n   at support.ts:49\n\n  47 |       requestId: body.requestId,\n  48 |     }),\n> 49 |   ).toBe(true)\n     |     ^\n  50 |   return body.data\n  51 | }\n  52 | export async function screenshots(page: Page, name: string) {\n    at successful (D:\\code\\01_projects\\project\\campus-sched\\web\\tests\\integration\\support.ts:49:5)\n    at D:\\code\\01_projects\\project\\campus-sched\\web\\tests\\integration\\review-regression.spec.ts:242:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-01T06:03:31.935Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "D:\\code\\01_projects\\project\\campus-sched\\web\\test-results\\integration\\review-regression-真实首次预约报名与改期本人确认、审批、生效和日历通知刷新\\error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "D:\\code\\01_projects\\project\\campus-sched\\web\\tests\\integration\\support.ts",
+                    "column": 5,
+                    "line": 49
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "e90ba3a1afcc51532157-e1fb81cbd5bfa70753ea",
+          "file": "review-regression.spec.ts",
+          "line": 223,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-01T06:03:21.185Z",
+    "duration": 15124.773999999998,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

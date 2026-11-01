@@ -1,0 +1,12 @@
+
+Running 3 tests using 1 worker
+
+(node:52628) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:52628) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\integration\review-regression.spec.ts:226:1 › 真实首次预约报名与改期本人确认、审批、生效和日历通知刷新 (13.6s)
+  ok 2 tests\integration\review-regression.spec.ts:528:1 › 真实通知已读不代签，拒绝及撤回解除报名冻结并保留原安排 (8.6s)
+  ok 3 tests\integration\review-regression.spec.ts:743:1 › 真实资源资格被外部关闭后刷新与保存均保持服务端最新值 (2.4s)
+
+  3 passed (27.4s)

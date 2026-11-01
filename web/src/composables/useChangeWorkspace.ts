@@ -1,4 +1,4 @@
-import { computed, ref, shallowRef, watch } from 'vue'
+import { computed, onScopeDispose, ref, shallowRef, watch } from 'vue'
 import { api } from '../api'
 import { ApiError } from '../api/client'
 import type {
@@ -30,6 +30,11 @@ export function useChangeWorkspace(
     errors = ref<string[]>([]),
     truncated = ref(false)
   let generation = 0
+  let loadGeneration = 0
+  onScopeDispose(() => {
+    loadGeneration++
+    invalidate()
+  })
   const proof = ref('')
   const fingerprint = () =>
     activity.value && target.value
@@ -47,7 +52,8 @@ export function useChangeWorkspace(
     conflict: () => load(true),
   })
   const allowed = computed(
-    () => !!activity.value && mayChange(actor(), activity.value),
+    () =>
+      !error.value && !!activity.value && mayChange(actor(), activity.value),
   )
   const locked = computed(
     () => loading.value || previewing.value || mutation.locked.value,
@@ -64,25 +70,42 @@ export function useChangeWorkspace(
       reason.value.length <= 1000,
   )
   async function load(rethrow = false) {
+    const turn = ++loadGeneration
     invalidate()
     loading.value = true
     error.value = null
     try {
-      const [a, r] = await Promise.all([api.activity(id), api.resources()])
+      const a = await api.activity(id)
+      if (turn !== loadGeneration) return
+      const r = await api.resources()
+      if (turn !== loadGeneration) return
       activity.value = a.data
       resources.value = r.data
       truncated.value = !!r.truncated
       if (!target.value) target.value = copy(a.data.input.plan)
     } catch (e) {
+      if (turn !== loadGeneration) return
       error.value = e
+      if (e instanceof ApiError && [401, 403, 404].includes(e.status)) {
+        activity.value = null
+        resources.value = []
+        target.value = null
+        reason.value = ''
+        truncated.value = false
+        previewError.value = null
+        errors.value = []
+        mutation.error.value = null
+        mutation.refreshError.value = null
+      }
       if (rethrow) throw e
     } finally {
-      loading.value = false
+      if (turn === loadGeneration) loading.value = false
     }
   }
   async function preview() {
     if (
       locked.value ||
+      error.value ||
       !target.value ||
       !activity.value ||
       !mayChange(actor(), activity.value)
