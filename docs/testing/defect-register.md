@@ -11,12 +11,19 @@
 | DEF-QA-2026-01 | 默认compile / SeederIT前置编译 | 汤雨润（55230316） | B | 2026-10-26 | close（编译复验通过） |
 | DEF-QA-2026-02 | 默认verify / Spring Failsafe数据源初始化 | 汤雨润（55230316） | C | 2026-10-31 | close（profile/schema绑定复验通过） |
 | DEF-QA-2026-03 | D-AT-22 SchedulingBenchmarkIT 场景装载 | 汤雨润（55230316） | C | 2026-10-31 | close（最终verify通过该IT） |
-| DEF-QA-2026-04 | D-AT-02/03/07/08/16/20、N-AT提交阻塞 / EventPort | 汤雨润（55230316） | B | 2026-10-31 | assign（CM） |
-| DEF-QA-2026-05 | D-AT-02/10-17/19/21、N-AT候选/待处理阻塞 / ChangePort | 汤雨润（55230316） | B | 2026-10-31 | assign（CM） |
+| DEF-QA-2026-04 | D-AT-02/03/07/08/16/20、N-AT提交阻塞 / EventPort | 汤雨润（55230316） | B | 2026-10-31 | close（11-01生产端口已实际可达；新空意见问题另记08） |
+| DEF-QA-2026-05 | D-AT-02/10-17/19/21、N-AT候选/待处理阻塞 / ChangePort | 汤雨润（55230316） | B | 2026-10-31 | close（11-01真实改期/冻结/取消/通知/隐私回归可达） |
 | DEF-QA-2026-06 | D-AT-21 calendar URI偏移编码 | 汤雨润（55230316） | C | 2026-10-31 | close（QA修正URI编码，真实PG子用例通过） |
 | DEF-QA-2026-07 | D-AT-22 demo资源扩展污染候选集合 | 汤雨润（55230316） | C | 2026-10-31 | close（benchmark参考集隔离后复验通过） |
 
-## PR #15 合并后复验（2026-10-31）
+| DEF-QA-2026-08 | API-18 首次批准空comment / 9项IT前置 | 汤雨润（55230316） | B | 2026-11-01 | assign（AN） |
+| DEF-QA-2026-09 | ActivityRegistrationIT 生产/替身重复Bean | 汤雨润（55230316） | C | 2026-11-01 | assign（AN） |
+
+## 全模块合并后复验（2026-11-01）
+
+main=`b8be7e4`，QA=`253c230`加本轮补丁，JDK21真实verify：77/77单测，112 IT=101通过/9失败/1错误/1跳过。原04/05缺端口关闭，但不等于所有相关场景通过。新08/09与修复建议详见[集成报告§6](pr16-integration-2026-11-01.md#6-新缺陷与职责)；9个失败同源于合法APPROVE空意见被错误用作空事件文本；AN整类33项因测试EventPort与生产Bean冲突未执行。生产缺陷由AN修，不用补非空测试意见掩盖。通知、重复取消、回滚、Seeder支撑问题已在QA范围修复并真实复验。模块显式skip仍不算通过。
+
+## PR #15 合并后复验（2026-10-31，历史）
 
 main `c4f3d41`，QA测试提交`54d976d`，真实PostgreSQL默认verify仍有24失败/2错误，DEF-QA-2026-04/05保持assign（CM），不得因DS PR合并关闭。D-AT-16仍20/20 JOIN为503；真实跨端口成功切换测试因缺ChangePort明确skipped，缺依赖时503且不写库保护通过。DEF-QA-2026-01/02/03/06/07相关Seeder、支撑、日历编码及隔离基准评测继续通过，保持关闭。证据：`artifacts/test-results/qa-2026-10-31/post-pr15-merge/result-summary.json`及Failsafe XML。未修改生产代码或expected。
 

@@ -16,9 +16,11 @@ import org.springframework.transaction.support.TransactionTemplate;
 import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /** QA补充Seeder失败原子性回归：真实PostgreSQL及隔离schema。 */
 class SeederRollbackIT {
@@ -43,13 +45,22 @@ class SeederRollbackIT {
         setField(seeder, "demoDate", DbTestSupport.DEMO_DATE.toString());
         setField(seeder, "demoPassword", requiredDemoPassword());
 
-        assertThrows(RuntimeException.class, () -> seeder.run(null),
+        RuntimeException failure = assertThrows(RuntimeException.class, () -> seeder.run(null),
                 "末尾报名外键失败必须让Seeder整体事务回滚");
+        Throwable cause = failure;
+        while (cause != null && !(cause instanceof SQLException)) cause = cause.getCause();
+        assertTrue(cause instanceof SQLException, "失败必须来自真实SQL约束，而非更早的配置/解析错误");
+        SQLException sqlFailure = (SQLException) cause;
+        assertEquals("23503", sqlFailure.getSQLState(), "必须为外键违反");
+        assertTrue(sqlFailure.getMessage().contains("fk_activity_registration_user"),
+                "必须在末尾报名用户外键失败，不能因更早失败而虚假验证回滚");
 
         JdbcTemplate jdbc = db.jdbc();
         assertEquals(0L, count(jdbc, "organization"));
         assertEquals(0L, count(jdbc, "app_user"));
         assertEquals(0L, count(jdbc, "user_role"));
+        assertEquals(0L, count(jdbc, "user_permission"));
+        assertEquals(0L, count(jdbc, "user_approval_scope"));
         assertEquals(0L, count(jdbc, "resource"));
         assertEquals(0L, count(jdbc, "user_resource_scope"));
         assertEquals(0L, count(jdbc, "activity"));

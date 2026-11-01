@@ -88,8 +88,11 @@ test.describe('D-AT-01 登录、令牌与响应脱敏', () => {
 
         // 仍停留在登录页，并显示错误提示（05 §2 login 提交反馈/错误原因）
         await expect(page).toHaveURL(/\/login(?:[/?#]|$)/);
-        // 登录错误提示 testid 待 UI 提供，见 handoff；用 alert 语义定位
-        await expect(page.getByRole('alert').filter({ hasText: /密码|账号|认证|失败/ })).toBeVisible();
+        // UI已交付login-error；直接核对本次API的错误文案与requestId，不臆定措辞。
+        const loginError = page.getByTestId('login-error');
+        await expect(loginError).toBeVisible();
+        await expect(loginError).toContainText(failBody.error!.message!);
+        await expect(loginError).toContainText(failBody.requestId!);
 
         // 账号未被锁死：正确密码再次登录 200
         await page.getByLabel(/密码/).fill(demoPassword());

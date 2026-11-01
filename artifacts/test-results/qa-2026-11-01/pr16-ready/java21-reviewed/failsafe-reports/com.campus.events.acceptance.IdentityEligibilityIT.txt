@@ -1,0 +1,53 @@
+-------------------------------------------------------------------------------
+Test set: com.campus.events.acceptance.IdentityEligibilityIT
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 4.789 s <<< FAILURE! -- in com.campus.events.acceptance.IdentityEligibilityIT
+com.campus.events.acceptance.IdentityEligibilityIT.nat02_eligibilityMatrixEightCombos -- Time elapsed: 0.339 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 教师×双允许(3111/3211) 审批失败：{"error":{"message":"事件字段不完整","details":{},"code":"VALIDATION_ERROR"},"requestId":"0d8aa6fd-adf4-4650-b9d7-3f89ced729db"} ==> expected: <200> but was: <400>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.IdentityEligibilityIT.verifyCombo(IdentityEligibilityIT.java:597)
+	at com.campus.events.acceptance.IdentityEligibilityIT.nat02_eligibilityMatrixEightCombos(IdentityEligibilityIT.java:177)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.campus.events.acceptance.IdentityEligibilityIT.nat04_identityChangeUsesLatestForPending -- Time elapsed: 0.698 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 审批失败：{"error":{"message":"事件字段不完整","details":{},"code":"VALIDATION_ERROR"},"requestId":"cd39dd3c-d22d-4798-b266-e76668da6eec"} ==> expected: <200> but was: <400>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.IdentityEligibilityIT.nat04_identityChangeUsesLatestForPending(IdentityEligibilityIT.java:249)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.campus.events.acceptance.IdentityEligibilityIT.nat06_scopePartialAndDisabledStaff -- Time elapsed: 1.355 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 审批失败：{"error":{"message":"事件字段不完整","details":{},"code":"VALIDATION_ERROR"},"requestId":"0261175a-d184-44b3-8967-c6bd1a6af3b3"} ==> expected: <200> but was: <400>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.IdentityEligibilityIT.nat06_scopePartialAndDisabledStaff(IdentityEligibilityIT.java:473)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.campus.events.acceptance.IdentityEligibilityIT.nat05_ownerCannotSelfApproveOrConfirm -- Time elapsed: 0.695 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 独立批准人应成功：{"error":{"message":"事件字段不完整","details":{},"code":"VALIDATION_ERROR"},"requestId":"916ed437-a833-40cb-94ab-45caa7241c74"} ==> expected: <200> but was: <400>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.IdentityEligibilityIT.nat05_ownerCannotSelfApproveOrConfirm(IdentityEligibilityIT.java:339)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

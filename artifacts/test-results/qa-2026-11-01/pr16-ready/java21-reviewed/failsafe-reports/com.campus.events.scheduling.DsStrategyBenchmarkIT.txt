@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.campus.events.scheduling.DsStrategyBenchmarkIT
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 74.53 s -- in com.campus.events.scheduling.DsStrategyBenchmarkIT

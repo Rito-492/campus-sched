@@ -1,0 +1,29 @@
+npm notice run campus-sched-qa@0.1.0 test:e2e
+npm notice run playwright test ui-layout.spec.ts permissions.spec.ts --workers=1
+
+Running 16 tests using 1 worker
+
+(node:125061) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop] › tests/permissions.spec.ts:47:3 › D-AT-21 隐私与读取隔离 › TC-21-1 学生日历只显示无权限占用信息，不泄露活动名称/组织者/名单 (1.9s)
+  ✓   2 [desktop] › tests/permissions.spec.ts:92:3 › D-AT-21 隐私与读取隔离 › TC-21-2 学生读取他人活动报名名单被拒 403，UI 不展示名单 (1.7s)
+  ✓   3 [desktop] › tests/permissions.spec.ts:131:3 › D-AT-21 隐私与读取隔离 › TC-21-2 学生只能查看自己的通知，读取他人通知被拒 (2.9s)
+  ✓   4 [desktop] › tests/permissions.spec.ts:182:3 › D-AT-21 隐私与读取隔离 › TC-21-3 staff_a 读取改期详情时名单字段被裁剪但计数真实 (801ms)
+  ✓   5 [desktop] › tests/ui-layout.spec.ts:38:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 登录页：无横向溢出、无错误横幅、文字可读并留存截图 (564ms)
+  ✓   6 [desktop] › tests/ui-layout.spec.ts:54:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动列表：无横向溢出、无错误横幅、文字可读并留存截图 (1.6s)
+  ✓   7 [desktop] › tests/ui-layout.spec.ts:71:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动详情：无横向溢出、无错误横幅、文字可读并留存截图 (1.1s)
+  ✓   8 [desktop] › tests/ui-layout.spec.ts:88:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 改期工作台：无横向溢出、无错误横幅、文字可读并留存截图 (1.5s)
+(node:125466) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   9 [desktop-1920] › tests/ui-layout.spec.ts:38:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 登录页：无横向溢出、无错误横幅、文字可读并留存截图 (546ms)
+  ✓  10 [desktop-1920] › tests/ui-layout.spec.ts:54:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动列表：无横向溢出、无错误横幅、文字可读并留存截图 (1.2s)
+  ✓  11 [desktop-1920] › tests/ui-layout.spec.ts:71:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动详情：无横向溢出、无错误横幅、文字可读并留存截图 (1.2s)
+  ✓  12 [desktop-1920] › tests/ui-layout.spec.ts:88:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 改期工作台：无横向溢出、无错误横幅、文字可读并留存截图 (1.5s)
+(node:125680) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 [mobile-390] › tests/ui-layout.spec.ts:38:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 登录页：无横向溢出、无错误横幅、文字可读并留存截图 (396ms)
+  ✓  14 [mobile-390] › tests/ui-layout.spec.ts:54:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动列表：无横向溢出、无错误横幅、文字可读并留存截图 (920ms)
+  ✓  15 [mobile-390] › tests/ui-layout.spec.ts:71:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动详情：无横向溢出、无错误横幅、文字可读并留存截图 (1.5s)
+  ✓  16 [mobile-390] › tests/ui-layout.spec.ts:88:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 改期工作台：无横向溢出、无错误横幅、文字可读并留存截图 (944ms)
+
+  16 passed (22.0s)

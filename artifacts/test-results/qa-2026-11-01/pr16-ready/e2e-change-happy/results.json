@@ -1,0 +1,236 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node",
+      "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/node_modules/.bin/playwright",
+      "test",
+      "change-happy-path.spec.ts",
+      "--workers=1"
+    ],
+    "configFile": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/playwright.config.ts",
+    "rootDir": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/artifacts/test-results/e2e-raw",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/artifacts/test-results/e2e-raw",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-1920",
+        "name": "desktop-1920",
+        "testDir": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "/ui-layout\\.spec\\.ts/"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/artifacts/test-results/e2e-raw",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-390",
+        "name": "mobile-390",
+        "testDir": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "/ui-layout\\.spec\\.ts/"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "./test-results/e2e-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "change-happy-path.spec.ts",
+      "file": "change-happy-path.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "D-AT-10 / D-AT-23 改期成功主线与持久化",
+          "file": "change-happy-path.spec.ts",
+          "line": 37,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-10-1 / TC-23-1 预览选首选方案→staff/approver/resource 确认→version2→student 收到通知（含 reload 持久化）",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "D-AT",
+                      "description": "D-AT-10",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/change-happy-path.spec.ts",
+                        "line": 38,
+                        "column": 3
+                      }
+                    },
+                    {
+                      "type": "D-AT",
+                      "description": "D-AT-23",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/change-happy-path.spec.ts",
+                        "line": 38,
+                        "column": 3
+                      }
+                    },
+                    {
+                      "type": "TC",
+                      "description": "TC-10-1",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/change-happy-path.spec.ts",
+                        "line": 38,
+                        "column": 3
+                      }
+                    },
+                    {
+                      "type": "TC",
+                      "description": "TC-23-1",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/change-happy-path.spec.ts",
+                        "line": 38,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8670,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-01T08:50:23.503Z",
+                      "annotations": [
+                        {
+                          "type": "D-AT",
+                          "description": "D-AT-10",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/change-happy-path.spec.ts",
+                            "line": 38,
+                            "column": 3
+                          }
+                        },
+                        {
+                          "type": "D-AT",
+                          "description": "D-AT-23",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/change-happy-path.spec.ts",
+                            "line": 38,
+                            "column": 3
+                          }
+                        },
+                        {
+                          "type": "TC",
+                          "description": "TC-10-1",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/change-happy-path.spec.ts",
+                            "line": 38,
+                            "column": 3
+                          }
+                        },
+                        {
+                          "type": "TC",
+                          "description": "TC-23-1",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/change-happy-path.spec.ts",
+                            "line": 38,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "007a8f1f0cc5edd717ac-bc2e7b4084c75f257035",
+              "file": "change-happy-path.spec.ts",
+              "line": 38,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-01T08:50:23.179Z",
+    "duration": 9329.978000000001,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
