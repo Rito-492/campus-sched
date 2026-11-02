@@ -1,0 +1,17 @@
+{
+  "main": "b8be7e48c227627c2c6e24aee534cf727200faf6",
+  "qaHead": "19ae94ba8d0e461336ba037e315bbc077d529196",
+  "pmWorkingFiles": [
+    {
+      "path": "server/pom.xml",
+      "sha256": "e60ba9f94fe32b3d6be8e6fb03128f4d380d8487b95bc9087bb9b7dd0e640b55"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/foundation/ProductionWorkflowIT.java",
+      "sha256": "45bc77fd03af89f1722a651cf9682e75290cf900dc44b1c0a060354aadc64242"
+    }
+  ],
+  "reviewTrackedSourceChanges": "",
+  "experimentChanges": "server/src/main/java/com/campus/events/activity/ActivityService.java\nserver/src/test/java/com/campus/events/acceptance/IdentityEligibilityIT.java\nserver/src/test/java/com/campus/events/acceptance/PermissionsIT.java\nserver/src/test/java/com/campus/events/activity/ActivityRegistrationIT.java\n",
+  "note": "QA范围扫描333项的哈希来自复验工作区；其中两个evaluation工件是本轮输出，原PR源代码无改写。运行器覆盖仅指定本机Edge、串行worker与证据路径。"
+}

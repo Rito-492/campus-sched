@@ -1,5 +1,15 @@
 # 项目经理交接单
 
+## 2026-11-02 全生产端口接收与正式审核
+
+- 冀项阳55230223，PM-01～05；保全用户Word/计划及原33行追加，安全快进main=b8be7e4。AN/PM/DS/CM/UI既有PR均已合入，40 Controller/五端口源码已接收，未自审或合并main。
+- 新增ProductionWorkflowIT两项无业务替身的真实生产链与权限撤销/原key恢复回归；标准77单元+38指定IT、独立28单元+22 IT均通过。默认77单元通过、87 IT中9初始化错误/1跳过；未排除原验收。
+- QA #16 head19ae94b原样复验77单元通过、112 IT=101通过/9失败/1错误/1跳过。归因实验及两项建议检查分开记录，未越权改其他岗位的PM/main源码。
+- 已以jixiiangyang提交[QA必须改审核](https://github.com/Rito-492/campus-sched/pull/16#pullrequestreview-5732183680)：预建待确认行不等于代签、STALE_VERSION未约定附加字段不应强制；两项既有断言需QA修订复审。[CM复核](https://github.com/Rito-492/campus-sched/pull/18#pullrequestreview-5732184450)实证所有者staff错误要求向自己确认，需CM独立修复。
+- Node22类型/107项UI unit/build、原QA选定19项生产浏览器、160行evaluate通过；改期单项复跑后关闭seed重启，API及新浏览器reload保持version2/3102/15:00。重复运行不累加唯一覆盖，审计8项仍在。
+- 证据artifacts/test-results/pm-2026-11-02；完整源码范围、阶段和责任见[正式集成审核](integration-review-2026-11-02-v1.0.md)。本次启动的服务/schema/PostgreSQL已清理停止，Word SHA与开工一致。
+- 下一接收：QA修两处断言，AN修空意见及两种测试端口Primary，CM修所有者确认，UI处理审计，DS/CM核对迁移归属。PM接收独立修复再组织全量；release说明/manifest及干净发布、全部30场景和课程回执未齐，不放行M4。本人变更走非作者PR评审，不自批。
+
 ## 2026-10-31 同日续作：c4f3d41与候选交付独立接收
 
 - 冀项阳55230223，PM-04/05；安全普通merge最新main=c4f3d41，保留用户Word、计划草案及本文件原追加。PR #14仍待评审，未自批或合并。

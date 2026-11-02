@@ -1,0 +1,36 @@
+diff --git a/server/src/main/java/com/campus/events/activity/ActivityService.java b/server/src/main/java/com/campus/events/activity/ActivityService.java
+index cebb6c4..c00019d 100644
+--- a/server/src/main/java/com/campus/events/activity/ActivityService.java
++++ b/server/src/main/java/com/campus/events/activity/ActivityService.java
+@@ -138,7 +138,8 @@ public class ActivityService {
+         // 保证此处读取的versionNo就是提交时冻结的版本，不从客户端接受另一个审批版本。
+         transition(row,s->ActivityStateMachine.decide(s,row.versionNo(),ActivityStateMachine.Decision.valueOf(command.decision().name())),null);
+         activities.approval(row,latest.id(),command);
+-        event(row,latest,command.decision()==Decision.APPROVE?"ACTIVITY_APPROVED":"ACTIVITY_REJECTED",command.comment(),List.of());
++        event(row,latest,command.decision()==Decision.APPROVE?"ACTIVITY_APPROVED":"ACTIVITY_REJECTED",
++                command.comment().isBlank() ? "活动已获批准" : command.comment(),List.of());
+         return http(activities.get(id),latest);
+     }
+     @Transactional(propagation=Propagation.MANDATORY) public ActivityView confirm(Actor actor,UUID id,VersionCommand command) {
+diff --git a/server/src/test/java/com/campus/events/activity/ActivityRegistrationIT.java b/server/src/test/java/com/campus/events/activity/ActivityRegistrationIT.java
+index 6048dd5..e1765a2 100644
+--- a/server/src/test/java/com/campus/events/activity/ActivityRegistrationIT.java
++++ b/server/src/test/java/com/campus/events/activity/ActivityRegistrationIT.java
+@@ -70,7 +70,7 @@ class ActivityRegistrationIT {
+     }
+     @TestConfiguration static class Ports {
+         @Bean @Primary Clock anIntegrationClock() { return Clock.fixed(NOW,ZoneOffset.UTC); }
+-        @Bean ChangePort changePort(JdbcTemplate db) { return new ChangePort() {
++        @Bean @Primary ChangePort changePort(JdbcTemplate db) { return new ChangePort() {
+             public UUID pendingId(UUID id) {
+                 var rows=db.query("SELECT id FROM change_request WHERE activity_id=? AND status IN ('AWAITING_CONFIRMATIONS','PENDING_APPROVER','PENDING_RESOURCE')",(rs,n)->rs.getObject(1,UUID.class),id);
+                 return rows.isEmpty()?null:rows.getFirst();
+@@ -81,7 +81,7 @@ class ActivityRegistrationIT {
+                 db.update("UPDATE change_request SET status='CANCELLED_BY_ACTIVITY' WHERE activity_id=? AND status IN ('AWAITING_CONFIRMATIONS','PENDING_APPROVER','PENDING_RESOURCE')",id);
+             }
+         }; }
+-        @Bean TestEvents eventPort(JdbcTemplate db,ObjectMapper mapper) { return new TestEvents(db,mapper); }
++        @Bean @Primary TestEvents eventPort(JdbcTemplate db,ObjectMapper mapper) { return new TestEvents(db,mapper); }
+     }
+     static class TestEvents implements EventPort {
+         final JdbcTemplate db; final ObjectMapper mapper; volatile boolean fail;
