@@ -504,6 +504,16 @@ class IdentityEligibilityIT {
         String changeId = created.data().path("id").asText();
         assertEquals("AWAITING_CONFIRMATIONS", created.data().path("status").asText());
 
+        UUID changeUuid = UUID.fromString(changeId);
+        long staffRowsBefore = countWhere(
+                "SELECT count(*) FROM change_confirmation WHERE change_id = ? AND user_id = ?",
+                changeUuid, USER_STAFF_A);
+        assertEquals(1L, staffRowsBefore, "创建改期应预建工作人员待确认行");
+        assertEquals(staffRowsBefore, countWhere(
+                "SELECT count(*) FROM change_confirmation WHERE change_id = ? AND user_id = ? "
+                        + "AND decision IS NULL AND decided_at IS NULL", changeUuid, USER_STAFF_A),
+                "停用前工作人员尚未作决定");
+
         HttpResult disabled = call(HttpMethod.PATCH, "/api/v1/users/" + USER_STAFF_A + "/enabled",
                 admin, idem(), toJson(boolBody("enabled", false)));
         assertEquals(200, disabled.status(), () -> "停用工作人员失败：" + disabled.body());
@@ -514,9 +524,16 @@ class IdentityEligibilityIT {
                     staffToken, idem(), toJson(decisionBody("APPROVE", "")));
             assertTrue(confirm.status() == 401 || confirm.status() == 403,
                     () -> "停用工作人员确认请求应被拒：" + confirm.body());
-            assertEquals(0L, countWhere(
+            assertEquals(staffRowsBefore, countWhere(
                     "SELECT count(*) FROM change_confirmation WHERE change_id = ? AND user_id = ?",
-                    UUID.fromString(changeId), USER_STAFF_A), "停用账号不得代签，change_confirmation 不应有该用户记录");
+                    changeUuid, USER_STAFF_A), "拒绝停用账号请求后待确认快照行数不变");
+            assertEquals(staffRowsBefore, countWhere(
+                    "SELECT count(*) FROM change_confirmation WHERE change_id = ? AND user_id = ? "
+                            + "AND decision IS NULL AND decided_at IS NULL", changeUuid, USER_STAFF_A),
+                    "停用账号不得代签，原待办的decision和decided_at必须仍为NULL");
+            assertEquals("AWAITING_CONFIRMATIONS", queryString(
+                    "SELECT status FROM change_request WHERE id = ?", changeUuid),
+                    "停用账号请求被拒不得推进改期");
         } finally {
             HttpResult restored = call(HttpMethod.PATCH, "/api/v1/users/" + USER_STAFF_A + "/enabled",
                     admin, idem(), toJson(boolBody("enabled", true)));

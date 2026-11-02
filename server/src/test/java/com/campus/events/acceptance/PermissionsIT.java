@@ -360,9 +360,11 @@ class PermissionsIT {
                 owner, idem(), toJson(staleBase));
         assertEquals(409, r1.status());
         assertEquals("STALE_VERSION", r1.errorCode());
-        assertTrue(r1.body().path("error").path("details").has("versionNo")
-                        || r1.body().path("error").path("details").has("lockVersion"),
-                "STALE_VERSION details 应含当前 versionNo/lockVersion");
+        assertTrue(r1.body().hasNonNull("requestId"));
+        assertTrue(r1.error().hasNonNull("message"));
+        assertTrue(r1.error().path("details").isObject(), "错误信封details允许为空对象");
+        assertEquals(currentVersion, readActivityVersion(owner, activityId), "冲突后重新GET内容版本不变");
+        assertEquals(currentLock, readActivityLockVersion(owner, activityId), "冲突后重新GET锁版本不变");
 
         ObjectNode staleLock = changeCreateBody(currentVersion,
                 "2030-10-20T18:00:00+08:00", "2030-10-20T19:00:00+08:00",
@@ -371,6 +373,11 @@ class PermissionsIT {
                 owner, idem(), toJson(staleLock));
         assertEquals(409, r2.status());
         assertEquals("STALE_VERSION", r2.errorCode());
+        assertTrue(r2.body().hasNonNull("requestId"));
+        assertTrue(r2.error().hasNonNull("message"));
+        assertTrue(r2.error().path("details").isObject(), "错误信封details允许为空对象");
+        assertEquals(currentVersion, readActivityVersion(owner, activityId), "旧锁版本请求后重新GET内容版本不变");
+        assertEquals(currentLock, readActivityLockVersion(owner, activityId), "旧锁版本请求后重新GET锁版本不变");
 
         assertEquals(versionsBefore, countWhere("SELECT count(*) FROM activity_version WHERE activity_id = ?",
                 UUID.fromString(activityId)), "陈旧版本请求不得产生新 activity_version");

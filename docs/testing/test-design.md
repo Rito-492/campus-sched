@@ -307,7 +307,7 @@
 - **前置**：A 已被改期产生 version2。
 - **输入**：`POST /activities/{id}/changes` 带 baseVersionNo=1（旧值）。
 - **预期**：409 `STALE_VERSION`；无覆盖最新安排。
-- **观察点**：details 含当前 versionNo/lockVersion（02 §3）；无新 `activity_version`。
+- **观察点**：核对409/STALE_VERSION及完整错误信封，不强制details出现特定版本字段；冲突后重新GET确认versionNo/lockVersion不变；无新 `activity_version`（PR16评审修正）。
 - **清理**：无写入。
 
 ### TC-20-2 旧 expectedLockVersion 提交
@@ -392,6 +392,6 @@
 | N-AT-03 | 候选过滤受限资源；强制提交仍拒绝 | IdentityEligibilityIT.nat03 | alternatives 不含受限资源；直提 403 | 正+负 |
 | N-AT-04 | 提交后改身份/资格 | IdentityEligibilityIT.nat04 | 未确认用最新设置；旧预约保留；新目标拒绝且原安排不变 | 正+负 |
 | N-AT-05 | 所有者兼任审批/复核对本人申请 4 种审核 | IdentityEligibilityIT.nat05 | 全部 403 回避；独立授权人员正常 | 负+正 |
-| N-AT-06 | 范围不全覆盖拒绝；停用工作人员不代签 | IdentityEligibilityIT.nat06 | 范围外 403；停用 401/403 且 confirmation 无记录 | 负 |
+| N-AT-06 | 范围不全覆盖拒绝；停用工作人员不代签 | IdentityEligibilityIT.nat06 | 范围外 403；停用 401/403，待确认行数不变、decision/decided_at仍NULL，改期仍等待确认 | 负 |
 
 另：API-04 新语义（purpose=staff vs 无 purpose 权限差异）在 PermissionsIT TC-21-4；报名资格按 identity=STUDENT 判定在 RegistrationCapacityIT 注明。
