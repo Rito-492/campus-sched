@@ -91,3 +91,7 @@ AuthorizationPolicy提供role、permission、approval、resources、confirmation
 ## 5 最新跨模块接收（2026-10-31同日续作）
 
 main=c4f3d41已同步。PublishedModulesIT新增通过真实API创建独立账号与资源，验证API-39身份改变立即作用于旧会话的AN/DS预览、API-06停用拒绝旧会话，以及撤销资源范围后API-40拒绝且无资格/历史/回执写入。6项真实跨模块测试均无CM替身；标准PM集合共76单元+32 IT全通过。QA/UI候选及完整失败边界见[最新候选接收记录](integration-intake-2026-10-31-v1.0.md)；接口协调见[访问与资源边界方案](access-coordination-v1.0.md)。
+
+## 6 2026-11-02 全生产依赖与审核
+
+ChangePort/EventPort和UI现已在main=b8be7e4。ProductionWorkflowIT不替换任何业务端口，补真实首次链、报名/改期冻结、原子版本/预约切换、通知及取消，以及最终管理范围撤销后403、无回执/审计污染和原key恢复重试。默认验收不排除任何测试；历史pm-isolated另行排除此依赖业务模块的类。PM指定集合77单元+38 IT通过，默认仍失败。QA待确认行不是决定；版本冲突details按现行契约可为空，必须重新GET实体。详见[2026-11-02集成与正式审核](integration-review-2026-11-02-v1.0.md)，不弱化拒绝、事务或权限检查。

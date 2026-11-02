@@ -1,0 +1,84 @@
+{
+  "main": "b8be7e48c227627c2c6e24aee534cf727200faf6",
+  "stagedSourceFiles": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "a6e80c02ae7a4e1647d95b19bd8224b5011f9cf390109f441e5717cb419f1d16"
+    },
+    {
+      "path": "README.md",
+      "sha256": "cb118a102f5907ea485e69d5d73ddaa50c7d6f5e5f51f27d174294a779398aa2"
+    },
+    {
+      "path": "contracts/openapi.yaml",
+      "sha256": "7b399268f48f70f7a10270329d1ce0017838dc091ab91507430ad7dfd608d703"
+    },
+    {
+      "path": "docs/management/access-coordination-v1.0.md",
+      "sha256": "0590948248a4e21a1f53d482f7139543e5be66404002cf395ea3d134700ae3ea"
+    },
+    {
+      "path": "docs/management/api-register.md",
+      "sha256": "af8c73ac6768557d06b38d89c2f369977edf853da87f48836263a0a2ff3f9d08"
+    },
+    {
+      "path": "docs/management/contract-coordination-2026-10-31.md",
+      "sha256": "dadf2ffe72f328cf991f9dd12ac0e8e53cea845ca714b22aa379bb06ac3178aa"
+    },
+    {
+      "path": "docs/management/decision-log.md",
+      "sha256": "bb0e010ab98fbc6b842d9a7773ef88951e5512cd080dfd8d858e9ef37ec2b993"
+    },
+    {
+      "path": "docs/management/detailed-project-plan.md",
+      "sha256": "7e83637ac7e17006b2ad65e458af00a9ad323faf6bfee3c29bf5c1a25815dac8"
+    },
+    {
+      "path": "docs/management/foundation-guide.md",
+      "sha256": "c0f8078075fed38da50287102ac35e04864a4fd3941fb780f5f10af5cca99da3"
+    },
+    {
+      "path": "docs/management/handoff.md",
+      "sha256": "7d9f180bb5cde6d1fd53a1baacfbce9e1463cb4062cd72a7f0eb1c0d7801b0c2"
+    },
+    {
+      "path": "docs/management/initial-project-plan.md",
+      "sha256": "cc53596d9a13fd4ab418197df31a70bdff37f575c33d4cbd6f36566840dca244"
+    },
+    {
+      "path": "docs/management/integration-log.md",
+      "sha256": "eafd8742829d8837673f3043fa5e20aa3dfa6bc23a8248887e1a65df205eecc7"
+    },
+    {
+      "path": "docs/management/integration-review-2026-11-02-v1.0.md",
+      "sha256": "3edfe71736a406f4bd1d4e67ee854c4da5920a860a75196cab9297c5f14ce26f"
+    },
+    {
+      "path": "docs/management/integration-status-2026-10-31.md",
+      "sha256": "dd5559b945886d7363ed4f31cf6234f58389750865ee3f906d021620f909a04b"
+    },
+    {
+      "path": "docs/management/risks.md",
+      "sha256": "79664ca625f326decf6a3574f3f3e3c8155a0634e2433ca6120eb7fd9f8899fe"
+    },
+    {
+      "path": "docs/management/work-log.md",
+      "sha256": "c02c5aab7fd92fdcdaeee42b1d6c9c471373cb513ff306f16cda5924f71d0612"
+    },
+    {
+      "path": "server/pom.xml",
+      "sha256": "e60ba9f94fe32b3d6be8e6fb03128f4d380d8487b95bc9087bb9b7dd0e640b55"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/foundation/ProductionWorkflowIT.java",
+      "sha256": "45bc77fd03af89f1722a651cf9682e75290cf900dc44b1c0a060354aadc64242"
+    }
+  ],
+  "localLinks": 56,
+  "openApiReferences": 369,
+  "implementedRoutes": 40,
+  "contractRoutes": 40,
+  "preservedUserWord": true,
+  "preservedHandoffAppend": "33\t0\tdocs/management/handoff.md",
+  "problems": []
+}

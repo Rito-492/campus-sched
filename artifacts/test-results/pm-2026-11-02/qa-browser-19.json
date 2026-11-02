@@ -1,0 +1,1298 @@
+{
+  "config": {
+    "argv": [
+      "D:\\JLU\\软件综合实践\\.doc-work\\pm-tools\\node-v22.23.0-win-x64\\node.exe",
+      "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config=D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\pm-review.config.ts",
+      "login.spec.ts",
+      "ui-layout.spec.ts",
+      "eligibility.spec.ts",
+      "change-happy-path.spec.ts"
+    ],
+    "configFile": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\pm-review.config.ts",
+    "rootDir": "D:/JLU/软件综合实践/.doc-work/pm-2026-11-02/review-qa16/qa/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/JLU/软件综合实践/.doc-work/pm-2026-11-02/qa-e2e-raw",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "D:/JLU/软件综合实践/.doc-work/pm-2026-11-02/review-qa16/qa/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "D:/JLU/软件综合实践/.doc-work/pm-2026-11-02/qa-e2e-raw",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-1920",
+        "name": "desktop-1920",
+        "testDir": "D:/JLU/软件综合实践/.doc-work/pm-2026-11-02/review-qa16/qa/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "/ui-layout\\.spec\\.ts/"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "D:/JLU/软件综合实践/.doc-work/pm-2026-11-02/qa-e2e-raw",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-390",
+        "name": "mobile-390",
+        "testDir": "D:/JLU/软件综合实践/.doc-work/pm-2026-11-02/review-qa16/qa/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "/ui-layout\\.spec\\.ts/"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\qa-e2e-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "change-happy-path.spec.ts",
+      "file": "change-happy-path.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "D-AT-10 / D-AT-23 改期成功主线与持久化",
+          "file": "change-happy-path.spec.ts",
+          "line": 37,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-10-1 / TC-23-1 预览选首选方案→staff/approver/resource 确认→version2→student 收到通知（含 reload 持久化）",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "D-AT",
+                      "description": "D-AT-10",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\change-happy-path.spec.ts",
+                        "line": 38,
+                        "column": 3
+                      }
+                    },
+                    {
+                      "type": "D-AT",
+                      "description": "D-AT-23",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\change-happy-path.spec.ts",
+                        "line": 38,
+                        "column": 3
+                      }
+                    },
+                    {
+                      "type": "TC",
+                      "description": "TC-10-1",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\change-happy-path.spec.ts",
+                        "line": 38,
+                        "column": 3
+                      }
+                    },
+                    {
+                      "type": "TC",
+                      "description": "TC-23-1",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\change-happy-path.spec.ts",
+                        "line": 38,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4221,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T04:34:14.628Z",
+                      "annotations": [
+                        {
+                          "type": "D-AT",
+                          "description": "D-AT-10",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\change-happy-path.spec.ts",
+                            "line": 38,
+                            "column": 3
+                          }
+                        },
+                        {
+                          "type": "D-AT",
+                          "description": "D-AT-23",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\change-happy-path.spec.ts",
+                            "line": 38,
+                            "column": 3
+                          }
+                        },
+                        {
+                          "type": "TC",
+                          "description": "TC-10-1",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\change-happy-path.spec.ts",
+                            "line": 38,
+                            "column": 3
+                          }
+                        },
+                        {
+                          "type": "TC",
+                          "description": "TC-23-1",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\change-happy-path.spec.ts",
+                            "line": 38,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "007a8f1f0cc5edd717ac-bc2e7b4084c75f257035",
+              "file": "change-happy-path.spec.ts",
+              "line": 38,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "eligibility.spec.ts",
+      "file": "eligibility.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "N-AT-02 资格限制（仅教师资源）",
+          "file": "eligibility.spec.ts",
+          "line": 65,
+          "column": 6,
+          "specs": [
+            {
+              "title": "N-AT-02 applicant_b（STUDENT）UI 明示仅教师资源不可申请并禁选（HTTP提交另验）",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "N-AT",
+                      "description": "N-AT-02",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\eligibility.spec.ts",
+                        "line": 66,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1042,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T04:34:19.039Z",
+                      "annotations": [
+                        {
+                          "type": "N-AT",
+                          "description": "N-AT-02",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\eligibility.spec.ts",
+                            "line": 66,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1dbb26507d3dd8bb8f37-761ad332b5b1a287c6a9",
+              "file": "eligibility.spec.ts",
+              "line": 66,
+              "column": 3
+            },
+            {
+              "title": "N-AT-02 applicant_a（TEACHER）同目标可走到下一步（对照，按 identity 判断）",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "N-AT",
+                      "description": "N-AT-02",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\eligibility.spec.ts",
+                        "line": 99,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1859,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T04:34:20.084Z",
+                      "annotations": [
+                        {
+                          "type": "N-AT",
+                          "description": "N-AT-02",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\eligibility.spec.ts",
+                            "line": 99,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1dbb26507d3dd8bb8f37-c0f66fb4ec9ca4f68f85",
+              "file": "eligibility.spec.ts",
+              "line": 99,
+              "column": 3
+            },
+            {
+              "title": "N-AT-02 applicant_b 直接 HTTP 保存草稿后提交 → 403 RESOURCE_INELIGIBLE 且草稿不推进",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "N-AT",
+                      "description": "N-AT-02",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\eligibility.spec.ts",
+                        "line": 134,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 223,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T04:34:21.948Z",
+                      "annotations": [
+                        {
+                          "type": "N-AT",
+                          "description": "N-AT-02",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\eligibility.spec.ts",
+                            "line": 134,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1dbb26507d3dd8bb8f37-5fa65699b3b630dda8b8",
+              "file": "eligibility.spec.ts",
+              "line": 134,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "login.spec.ts",
+      "file": "login.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "D-AT-01 登录、令牌与响应脱敏",
+          "file": "login.spec.ts",
+          "line": 28,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-01-1 applicant_a 正常登录进入主页，登录响应无密码字段、页面无散列信息",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "D-AT",
+                      "description": "D-AT-01",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\login.spec.ts",
+                        "line": 29,
+                        "column": 3
+                      }
+                    },
+                    {
+                      "type": "TC",
+                      "description": "TC-01-1",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\login.spec.ts",
+                        "line": 29,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 507,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T04:34:22.193Z",
+                      "annotations": [
+                        {
+                          "type": "D-AT",
+                          "description": "D-AT-01",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\login.spec.ts",
+                            "line": 29,
+                            "column": 3
+                          }
+                        },
+                        {
+                          "type": "TC",
+                          "description": "TC-01-1",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\login.spec.ts",
+                            "line": 29,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41d3fd2474a19feb00a1-b72a75ee6a439ca81bc4",
+              "file": "login.spec.ts",
+              "line": 29,
+              "column": 3
+            },
+            {
+              "title": "TC-01-2 错误密码返回 401 并显示错误提示，停留登录页，随后正确密码仍可登录",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "D-AT",
+                      "description": "D-AT-01",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\login.spec.ts",
+                        "line": 64,
+                        "column": 3
+                      }
+                    },
+                    {
+                      "type": "TC",
+                      "description": "TC-01-2",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\login.spec.ts",
+                        "line": 64,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 750,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T04:34:22.704Z",
+                      "annotations": [
+                        {
+                          "type": "D-AT",
+                          "description": "D-AT-01",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\login.spec.ts",
+                            "line": 64,
+                            "column": 3
+                          }
+                        },
+                        {
+                          "type": "TC",
+                          "description": "TC-01-2",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\login.spec.ts",
+                            "line": 64,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41d3fd2474a19feb00a1-c7cdd144bd9da1ca2a53",
+              "file": "login.spec.ts",
+              "line": 64,
+              "column": 3
+            },
+            {
+              "title": "D-AT-01 登录后页面与浏览器存储不出现密码散列或明文口令",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "D-AT",
+                      "description": "D-AT-01",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\login.spec.ts",
+                        "line": 111,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 545,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T04:34:23.459Z",
+                      "annotations": [
+                        {
+                          "type": "D-AT",
+                          "description": "D-AT-01",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\login.spec.ts",
+                            "line": 111,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41d3fd2474a19feb00a1-799e490f3b74fef95b1d",
+              "file": "login.spec.ts",
+              "line": 111,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ui-layout.spec.ts",
+      "file": "ui-layout.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "附表 界面与视觉核对（desktop / desktop-1920 / mobile-390）",
+          "file": "ui-layout.spec.ts",
+          "line": 37,
+          "column": 6,
+          "specs": [
+            {
+              "title": "登录页：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "登录页 05 §2 /login",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                        "line": 38,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 280,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T04:34:24.018Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "登录页 05 §2 /login",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                            "line": 38,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-48b488e3bbf3738c2a49",
+              "file": "ui-layout.spec.ts",
+              "line": 38,
+              "column": 3
+            },
+            {
+              "title": "活动列表：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "活动列表 05 §2 /activities",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                        "line": 54,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 680,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T04:34:24.305Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "活动列表 05 §2 /activities",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                            "line": 54,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-743ab668d6e1a2d3ac1b",
+              "file": "ui-layout.spec.ts",
+              "line": 54,
+              "column": 3
+            },
+            {
+              "title": "活动详情：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "活动详情 05 §2 /activities/:id",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                        "line": 71,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 665,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T04:34:24.989Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "活动详情 05 §2 /activities/:id",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                            "line": 71,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-8b4dd725f01ed290adaf",
+              "file": "ui-layout.spec.ts",
+              "line": 71,
+              "column": 3
+            },
+            {
+              "title": "改期工作台：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "改期工作台 05 §2 /activities/:id/change",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                        "line": 88,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 713,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T04:34:25.659Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "改期工作台 05 §2 /activities/:id/change",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                            "line": 88,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-a7659764aea8a81681b7",
+              "file": "ui-layout.spec.ts",
+              "line": 88,
+              "column": 3
+            },
+            {
+              "title": "登录页：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "登录页 05 §2 /login",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                        "line": 38,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 508,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T04:34:26.971Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "登录页 05 §2 /login",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                            "line": 38,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-32c30108fc735665b3c8",
+              "file": "ui-layout.spec.ts",
+              "line": 38,
+              "column": 3
+            },
+            {
+              "title": "活动列表：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "活动列表 05 §2 /activities",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                        "line": 54,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 719,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T04:34:27.682Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "活动列表 05 §2 /activities",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                            "line": 54,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-b4fedc177d190793ac80",
+              "file": "ui-layout.spec.ts",
+              "line": 54,
+              "column": 3
+            },
+            {
+              "title": "活动详情：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "活动详情 05 §2 /activities/:id",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                        "line": 71,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 742,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T04:34:28.407Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "活动详情 05 §2 /activities/:id",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                            "line": 71,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-280ca7f5932e0b568ce5",
+              "file": "ui-layout.spec.ts",
+              "line": 71,
+              "column": 3
+            },
+            {
+              "title": "改期工作台：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "改期工作台 05 §2 /activities/:id/change",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                        "line": 88,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 677,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T04:34:29.155Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "改期工作台 05 §2 /activities/:id/change",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                            "line": 88,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-58727a631153cb921732",
+              "file": "ui-layout.spec.ts",
+              "line": 88,
+              "column": 3
+            },
+            {
+              "title": "登录页：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "登录页 05 §2 /login",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                        "line": 38,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-390",
+                  "projectName": "mobile-390",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 501,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T04:34:30.370Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "登录页 05 §2 /login",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                            "line": 38,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-02f2d0e7c8600a903bfc",
+              "file": "ui-layout.spec.ts",
+              "line": 38,
+              "column": 3
+            },
+            {
+              "title": "活动列表：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "活动列表 05 §2 /activities",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                        "line": 54,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-390",
+                  "projectName": "mobile-390",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 704,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T04:34:31.146Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "活动列表 05 §2 /activities",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                            "line": 54,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-2cfc8bd1eda29959438d",
+              "file": "ui-layout.spec.ts",
+              "line": 54,
+              "column": 3
+            },
+            {
+              "title": "活动详情：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "活动详情 05 §2 /activities/:id",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                        "line": 71,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-390",
+                  "projectName": "mobile-390",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 785,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T04:34:31.857Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "活动详情 05 §2 /activities/:id",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                            "line": 71,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-8f4ee2d62b1aae179b11",
+              "file": "ui-layout.spec.ts",
+              "line": 71,
+              "column": 3
+            },
+            {
+              "title": "改期工作台：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "改期工作台 05 §2 /activities/:id/change",
+                      "location": {
+                        "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                        "line": 88,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-390",
+                  "projectName": "mobile-390",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 743,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-02T04:34:32.648Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "改期工作台 05 §2 /activities/:id/change",
+                          "location": {
+                            "file": "D:\\JLU\\软件综合实践\\.doc-work\\pm-2026-11-02\\review-qa16\\qa\\tests\\ui-layout.spec.ts",
+                            "line": 88,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-80e613905345d484b949",
+              "file": "ui-layout.spec.ts",
+              "line": 88,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-02T04:34:14.298Z",
+    "duration": 19398.300000000003,
+    "expected": 19,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

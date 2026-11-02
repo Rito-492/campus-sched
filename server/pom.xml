@@ -31,8 +31,8 @@
     <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><configuration>
       <includes><include>com/campus/events/CampusEventsApplication.java</include><include>com/campus/events/foundation/**/*.java</include><include>com/campus/events/auth/**/*.java</include><include>com/campus/events/contract/**/*.java</include></includes>
       <testIncludes><testInclude>com/campus/events/foundation/**/*.java</testInclude><testInclude>com/campus/events/auth/**/*.java</testInclude><testInclude>com/campus/events/contract/**/*.java</testInclude></testIncludes>
-      <!-- 此测试需要已接收的AN/DS生产模块，仅在标准构建中执行；独立PM配置不编译它。 -->
-      <testExcludes><testExclude>**/PublishedModulesIT.java</testExclude><testExclude>**/StandardMavenSchemaIT.java</testExclude></testExcludes>
+      <!-- 跨模块测试需要已接收的业务模块/QA支撑，仅在标准构建执行；独立PM配置不编译它们。 -->
+      <testExcludes><testExclude>**/PublishedModulesIT.java</testExclude><testExclude>**/ProductionWorkflowIT.java</testExclude><testExclude>**/StandardMavenSchemaIT.java</testExclude></testExcludes>
     </configuration></plugin>
   </plugins></build></profile></profiles>
 </project>

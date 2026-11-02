@@ -74,7 +74,7 @@ paths:
       tags:
         - PM
       x-owner: PM
-      x-implementation-status: 已实现，PM隔离验证见交接单
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 账号密码登录。仅保存令牌SHA-256；会话8小时；身份独立于角色。
   /auth/me:
     get:
@@ -135,7 +135,7 @@ paths:
       tags:
         - PM
       x-owner: PM
-      x-implementation-status: 已实现，PM隔离验证见交接单
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 读取当前账号及最新身份、角色、权限和范围，不含口令。
   /auth/logout:
     post:
@@ -196,7 +196,7 @@ paths:
       tags:
         - PM
       x-owner: PM
-      x-implementation-status: 已实现，PM隔离验证见交接单
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 删除当前会话；不要求幂等键。
   /users:
     get:
@@ -273,7 +273,7 @@ paths:
       tags:
         - PM
       x-owner: PM
-      x-implementation-status: 已实现，PM隔离验证见交接单
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: purpose=staff时仅APPLICANT查询同组织启用账号，返回StaffView[]；无purpose须ADMIN及USER_MANAGE，返回Actor[]。列表最多200项。
     post:
       operationId: API-05
@@ -346,7 +346,7 @@ paths:
       tags:
         - PM
       x-owner: PM
-      x-implementation-status: 已实现，PM隔离验证见交接单
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 仅ADMIN及USER_MANAGE创建账号，引用现存组织/资源/类别。角色与范围完整提供，密码经BCrypt编码。 新建密码至少8个字符且UTF-8最多72字节，失败400且不创建账号/历史/回执。
   /users/{id}/enabled:
     patch:
@@ -426,7 +426,7 @@ paths:
       tags:
         - PM
       x-owner: PM
-      x-implementation-status: 已实现，PM隔离验证见交接单
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 仅ADMIN及USER_MANAGE。停用同时删除全部会话，并与前后值历史共事务保存。重新启用不恢复旧令牌。
   /resources:
     get:
@@ -506,7 +506,7 @@ paths:
       tags:
         - DS
       x-owner: DS
-      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
     post:
       operationId: API-08
@@ -579,7 +579,7 @@ paths:
       tags:
         - DS
       x-owner: DS
-      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /resources/calendar:
     get:
@@ -664,7 +664,7 @@ paths:
       tags:
         - DS
       x-owner: DS
-      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /resources/{id}/faults:
     post:
@@ -750,7 +750,7 @@ paths:
       tags:
         - DS
       x-owner: DS
-      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
     get:
       operationId: API-11
@@ -834,7 +834,7 @@ paths:
       tags:
         - DS
       x-owner: DS
-      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities:
     post:
@@ -908,7 +908,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
     get:
       operationId: API-13
@@ -994,7 +994,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}:
     get:
@@ -1067,7 +1067,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
     patch:
       operationId: API-15
@@ -1146,7 +1146,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/submit:
     post:
@@ -1232,7 +1232,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/withdraw:
     post:
@@ -1318,7 +1318,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/approver-decision:
     post:
@@ -1404,7 +1404,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
+      x-implementation-status: 生产实现已合入；合法空APPROVE意见事件衔接缺陷待AN修复，见2026-11-02审核
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/resource-confirm:
     post:
@@ -1490,7 +1490,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/publish:
     post:
@@ -1576,7 +1576,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/cancel:
     post:
@@ -1662,7 +1662,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/registration:
     put:
@@ -1748,7 +1748,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/registrations:
     get:
@@ -1821,7 +1821,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/schedule-preview:
     post:
@@ -1900,7 +1900,7 @@ paths:
       tags:
         - DS
       x-owner: DS
-      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/alternatives:
     post:
@@ -1979,7 +1979,7 @@ paths:
       tags:
         - DS
       x-owner: DS
-      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/change-preview:
     post:
@@ -2052,7 +2052,7 @@ paths:
       tags:
         - CM
       x-owner: CM
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/changes:
     post:
@@ -2132,7 +2132,7 @@ paths:
       tags:
         - CM
       x-owner: CM
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 生产实现已合入；所有者列入工作人员时的自我确认缺陷待CM修复，见2026-11-02审核
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
     get:
       operationId: API-28
@@ -2204,7 +2204,7 @@ paths:
       tags:
         - CM
       x-owner: CM
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /changes/{id}:
     get:
@@ -2271,7 +2271,7 @@ paths:
       tags:
         - CM
       x-owner: CM
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /changes/{id}/confirmation:
     post:
@@ -2351,7 +2351,7 @@ paths:
       tags:
         - CM
       x-owner: CM
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /changes/{id}/approver-decision:
     post:
@@ -2431,7 +2431,7 @@ paths:
       tags:
         - CM
       x-owner: CM
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /changes/{id}/resource-decision:
     post:
@@ -2511,7 +2511,7 @@ paths:
       tags:
         - CM
       x-owner: CM
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /changes/{id}/withdraw:
     post:
@@ -2591,7 +2591,7 @@ paths:
       tags:
         - CM
       x-owner: CM
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /notifications:
     get:
@@ -2663,7 +2663,7 @@ paths:
       tags:
         - CM
       x-owner: CM
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /notifications/{id}/read:
     post:
@@ -2737,7 +2737,7 @@ paths:
       tags:
         - CM
       x-owner: CM
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/audit:
     get:
@@ -2810,7 +2810,7 @@ paths:
       tags:
         - CM
       x-owner: CM
-      x-implementation-status: 待模块负责人交付
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /health:
     get:
@@ -2872,7 +2872,7 @@ paths:
       tags:
         - PM
       x-owner: PM
-      x-implementation-status: 已实现，PM隔离验证见交接单
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /organizations:
     get:
@@ -2939,7 +2939,7 @@ paths:
       tags:
         - PM
       x-owner: PM
-      x-implementation-status: 已实现，PM隔离验证见交接单
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 仅ADMIN及USER_MANAGE查询种子建立的组织，最多200项，按createdAt降序、id升序。
   /users/{id}/authorization:
     patch:
@@ -3019,7 +3019,7 @@ paths:
       tags:
         - PM
       x-owner: PM
-      x-implementation-status: 已实现，PM隔离验证见交接单
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 仅ADMIN及USER_MANAGE。完整替换身份、角色、权限、按组织分组的审批类别和明确资源范围。移除ADMIN/APPROVER须同时清空对应范围；拒绝通配符/不存在引用。先锁用户，授权与历史共事务保存。
   /resources/{id}/eligibility:
     patch:
@@ -3099,7 +3099,7 @@ paths:
       tags:
         - DS
       x-owner: DS
-      x-implementation-status: 主线已有生产实现；端口依赖与运行验证见2026-10-31接口登记
+      x-implementation-status: 生产实现已合入；真实运行范围及全量未通过原因见2026-11-02PM审核记录
       description: 仅ADMIN及RESOURCE_MANAGE且资源在managedResourceIds内。记录资格前后值；已生效预约保留，未确认申请和改期目标按最新资格校验。
 components:
   securitySchemes:

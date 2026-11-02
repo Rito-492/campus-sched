@@ -34,3 +34,13 @@ AN建议B/D/I及名单裁剪的后续范围见[契约协调记录](contract-coor
 | PM-D14 | review保留待办发现集合；D/I先提出具体状态矩阵与最小签名 | AN/DS/QA接收后才修改公共签名及其实现，不以空实现保持表面绿色 |
 | PM-D15 | UI审计独立于build记录；critical项按开发依赖链交UI评估 | 不在PM分支改UI锁文件或自动执行破坏性升级 |
 | PM-D16 | 原PR #14在同一分支增补本轮PM测试和接收证据，继续交叉评审 | 不自审、不合并，用户既有模块通过后重提授权沿用 |
+
+## 2026-11-02 正式审核决定
+
+| 编号 | 实际选择 | 依据与限制 |
+|---|---|---|
+| PM-D17 | 将预建待确认行与已签决定分开校验 | common/02允许decision为空；停用请求被拒不应删除快照 |
+| PM-D18 | STALE_VERSION的details可为空对象，前端重新GET | 现行契约未要求versionNo/lockVersion必填；若扩展需统一修订，不私增验收条件 |
+| PM-D19 | QA #16正式Request Changes；CM #18补合并后P2复核 | 非作者jixiiangyang执行，有真实review留痕；不Approve或合并 |
+| PM-D20 | 其他岗位修复只在独立归因实验验证，提供建议补丁 | PM/main未改AN/QA/CM源代码，实验不算已合入或原head全绿 |
+| PM-D21 | 40 Controller/5实现已接收，限定生产链通过仍不放行整机 | 合法空审批、所有者staff、QA断言、依赖与发布缺口各由所属成员处理 |
