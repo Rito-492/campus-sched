@@ -1,0 +1,38 @@
+diff --git a/server/src/test/java/com/campus/events/acceptance/IdentityEligibilityIT.java b/server/src/test/java/com/campus/events/acceptance/IdentityEligibilityIT.java
+index c48c74e..919a67a 100644
+--- a/server/src/test/java/com/campus/events/acceptance/IdentityEligibilityIT.java
++++ b/server/src/test/java/com/campus/events/acceptance/IdentityEligibilityIT.java
+@@ -514,9 +514,14 @@ class IdentityEligibilityIT {
+                     staffToken, idem(), toJson(decisionBody("APPROVE", "")));
+             assertTrue(confirm.status() == 401 || confirm.status() == 403,
+                     () -> "停用工作人员确认请求应被拒：" + confirm.body());
+-            assertEquals(0L, countWhere(
++            assertEquals(1L, countWhere(
+                     "SELECT count(*) FROM change_confirmation WHERE change_id = ? AND user_id = ?",
+-                    UUID.fromString(changeId), USER_STAFF_A), "停用账号不得代签，change_confirmation 不应有该用户记录");
++                    UUID.fromString(changeId), USER_STAFF_A), "创建时的待确认行应保留");
++            assertEquals(0L, countWhere(
++                    "SELECT count(*) FROM change_confirmation WHERE change_id = ? AND user_id = ? AND (decision IS NOT NULL OR decided_at IS NOT NULL)",
++                    UUID.fromString(changeId), USER_STAFF_A), "停用请求不得写决定或决定时间");
++            assertEquals("AWAITING_CONFIRMATIONS", db.jdbc().queryForObject(
++                    "SELECT status FROM change_request WHERE id = ?", String.class, UUID.fromString(changeId)));
+         } finally {
+             HttpResult restored = call(HttpMethod.PATCH, "/api/v1/users/" + USER_STAFF_A + "/enabled",
+                     admin, idem(), toJson(boolBody("enabled", true)));
+diff --git a/server/src/test/java/com/campus/events/acceptance/PermissionsIT.java b/server/src/test/java/com/campus/events/acceptance/PermissionsIT.java
+index 0544c59..5ce2441 100644
+--- a/server/src/test/java/com/campus/events/acceptance/PermissionsIT.java
++++ b/server/src/test/java/com/campus/events/acceptance/PermissionsIT.java
+@@ -360,9 +360,9 @@ class PermissionsIT {
+                 owner, idem(), toJson(staleBase));
+         assertEquals(409, r1.status());
+         assertEquals("STALE_VERSION", r1.errorCode());
+-        assertTrue(r1.body().path("error").path("details").has("versionNo")
+-                        || r1.body().path("error").path("details").has("lockVersion"),
+-                "STALE_VERSION details 应含当前 versionNo/lockVersion");
++        assertTrue(r1.body().path("error").path("details").isObject(), "统一错误信封保留details对象");
++        assertEquals(currentVersion, readActivityVersion(owner, activityId), "失败后重新GET的版本不得被覆盖");
++        assertEquals(currentLock, readActivityLockVersion(owner, activityId), "失败不得递增版本锁");
+
+         ObjectNode staleLock = changeCreateBody(currentVersion,
+                 "2030-10-20T18:00:00+08:00", "2030-10-20T19:00:00+08:00",

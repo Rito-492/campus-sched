@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:45864) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [desktop] › ..\qa\tests\change-happy-path.spec.ts:38:3 › D-AT-10 / D-AT-23 改期成功主线与持久化 › TC-10-1 / TC-23-1 预览选首选方案→staff/approver/resource 确认→version2→student 收到通知（含 reload 持久化） (4.3s)
+
+  1 passed (5.0s)

@@ -1,0 +1,35 @@
+
+> campus-sched-web@0.1.0 test:unit
+> vitest run
+
+
+ RUN  v3.2.7 D:/JLU/软件综合实践/campus-sched/web
+
+ ✓ tests/client.test.ts (7 tests) 16ms
+ ✓ tests/change-access.test.ts (6 tests) 5ms
+ ✓ tests/access.test.ts (9 tests) 6ms
+ ✓ tests/user-admin.test.ts (7 tests) 21ms
+ ✓ tests/change-workspace.test.ts (9 tests) 17ms
+ ✓ tests/contracts.test.ts (2 tests) 20ms
+ ✓ tests/resource.test.ts (4 tests) 6ms
+ ✓ tests/validation.test.ts (5 tests) 5ms
+ ✓ tests/queue.test.ts (2 tests) 4ms
+ ✓ tests/capacity.test.ts (4 tests) 6ms
+ ✓ tests/mutation.test.ts (4 tests) 10ms
+ ✓ tests/components.test.ts (4 tests) 91ms
+ ✓ tests/change-actions.test.ts (3 tests) 289ms
+ ✓ tests/authorization.test.ts (7 tests) 221ms
+ ✓ tests/activity-records.test.ts (13 tests) 353ms
+ ✓ tests/resource-management.test.ts (3 tests) 312ms
+ ✓ tests/change-detail.test.ts (2 tests) 319ms
+ ✓ tests/draft-editor.test.ts (1 test) 485ms
+   ✓ 草稿编辑与版本冲突 > 等待409重载后用新lockVersion保存，保留用户输入  484ms
+ ✓ tests/api-feedback.test.ts (2 tests) 32ms
+ ✓ tests/activity-detail.test.ts (8 tests) 902ms
+ ✓ tests/users-panel.test.ts (5 tests) 1198ms
+   ✓ 账号编辑表单 > 空账号表单保留输入并显示校验，不发送创建事件  474ms
+
+ Test Files  21 passed (21)
+      Tests  107 passed (107)
+   Start at  12:22:20
+   Duration  5.49s (transform 6.50s, setup 0ms, collect 29.95s, tests 4.31s, environment 21.23s, prepare 3.06s)

@@ -1,0 +1,236 @@
+{
+  "unitTests": 77,
+  "integrationTests": 112,
+  "tests": 189,
+  "failures": 9,
+  "errors": 1,
+  "skipped": 1,
+  "exit": 1,
+  "classes": [
+    {
+      "class": "com.campus.events.acceptance.BookingConcurrencyIT",
+      "tests": 1,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.acceptance.CancellationRaceIT",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.acceptance.ChangeRollbackIT",
+      "tests": 5,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.acceptance.IdentityEligibilityIT",
+      "tests": 6,
+      "failures": 4,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.acceptance.NotificationConsistencyIT",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.acceptance.PermissionsIT",
+      "tests": 13,
+      "failures": 3,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.acceptance.RegistrationCapacityIT",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.acceptance.SchedulingBenchmarkIT",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.acceptance.SeederRollbackIT",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.activity.ActivityRegistrationIT",
+      "tests": 1,
+      "failures": 0,
+      "errors": 1,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.activity.ActivityServiceTest",
+      "tests": 18,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.activity.ActivityStateMachineTest",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.auth.AuthorizationPolicyTest",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.auth.PasswordPolicyTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.change.ChangeServiceTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.contract.ContractValidationTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.dev.DemoDataSeederIT",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.foundation.CanonicalJsonTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.foundation.FoundationIT",
+      "tests": 22,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.foundation.PublishedModulesIT",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.foundation.ResponsesTest",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.foundation.StandardMavenSchemaIT",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.notification.OutboxClaimIT",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.resource.ResourceSchedulingIT",
+      "tests": 30,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1
+    },
+    {
+      "class": "com.campus.events.resource.SchemaIT",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.scheduling.CandidateRankingTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.scheduling.CapacitySweepTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.scheduling.DsStrategyBenchmarkIT",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.scheduling.ScheduleQueryServiceTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.scheduling.StrategyEvaluatorTest",
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.scheduling.TimeIntervalTest",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.support.DbTestSupportIT",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "passed": 178
+}

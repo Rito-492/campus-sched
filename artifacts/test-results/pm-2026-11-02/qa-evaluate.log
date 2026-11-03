@@ -1,0 +1,5 @@
+
+> campus-sched-qa@0.1.0 evaluate
+> node scripts/evaluate-scheduling.ts
+
+[evaluate-scheduling] 完成：160 行 → artifacts/evaluation/results.csv + summary.md

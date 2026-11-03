@@ -1,0 +1,1673 @@
+{
+  "base": "b8be7e48c227627c2c6e24aee534cf727200faf6",
+  "head": "19ae94ba8d0e461336ba037e315bbc077d529196",
+  "changedFiles": 333,
+  "findings": [],
+  "files": [
+    {
+      "path": "artifacts/evaluation/results.csv",
+      "bytes": 9013,
+      "sha256": "31c0dc41abcf71999bf6b3530b70a482fc0dd0465e89644e9ad09e627e28aaeb"
+    },
+    {
+      "path": "artifacts/evaluation/summary.md",
+      "bytes": 4063,
+      "sha256": "22f03015470718a726ad86acf7d2dd1b718b80158273f6abb63b8107df59bd30"
+    },
+    {
+      "path": "artifacts/screenshots/qa-pr16-ready-2026-11-01/applied-after-backend-restart.png",
+      "bytes": 107338,
+      "sha256": "4f459c769dee0954b2add75352281b41c1a4ac67b040313031d07bbf6aa40a65"
+    },
+    {
+      "path": "artifacts/screenshots/qa-pr16-ready-2026-11-01/desktop-1920-activities.png",
+      "bytes": 59403,
+      "sha256": "2418d9b417476eac96f6ed0d5fae9f9c76d7f0090ce263e6aa863124badea752"
+    },
+    {
+      "path": "artifacts/screenshots/qa-pr16-ready-2026-11-01/desktop-1920-activity-detail.png",
+      "bytes": 112727,
+      "sha256": "c5a66c5c2bf320eb1af0c1b07290fdcfbe4fb1a5483bf3320ece0c91fd014930"
+    },
+    {
+      "path": "artifacts/screenshots/qa-pr16-ready-2026-11-01/desktop-1920-change-workbench.png",
+      "bytes": 106578,
+      "sha256": "cf96776ab28433abb51831acc0429a410578300af348d5271d68a01834f20998"
+    },
+    {
+      "path": "artifacts/screenshots/qa-pr16-ready-2026-11-01/desktop-1920-login.png",
+      "bytes": 68266,
+      "sha256": "70c89d1e0db7bd1fe46d8d3235f6fc748001df5aeec0266de9dc51907c552e7c"
+    },
+    {
+      "path": "artifacts/screenshots/qa-pr16-ready-2026-11-01/desktop-activities.png",
+      "bytes": 54801,
+      "sha256": "dc7e4a167edde3e9dd83ef76f685b13b8e50232573260d98ab78df5bf49dc40e"
+    },
+    {
+      "path": "artifacts/screenshots/qa-pr16-ready-2026-11-01/desktop-activity-detail.png",
+      "bytes": 108227,
+      "sha256": "dde614c257eba9ac217d24e1ff6f77e83725403cd9b22fd83057caa35eb5d7de"
+    },
+    {
+      "path": "artifacts/screenshots/qa-pr16-ready-2026-11-01/desktop-change-workbench.png",
+      "bytes": 102334,
+      "sha256": "290f8b0c00ac78a47b8d09d47584858583db6e133ad8f9666193bef154dd3e0e"
+    },
+    {
+      "path": "artifacts/screenshots/qa-pr16-ready-2026-11-01/desktop-login.png",
+      "bytes": 62706,
+      "sha256": "bd73314170134d61763294afa66c037f7e59f5c703041cdf7b77e7e64e8e6de9"
+    },
+    {
+      "path": "artifacts/screenshots/qa-pr16-ready-2026-11-01/manifest.json",
+      "bytes": 2680,
+      "sha256": "e770488275d881cff3e4bbb24c04ae823a389b41e5dfa239a4dbb8c8b200a9fc"
+    },
+    {
+      "path": "artifacts/screenshots/qa-pr16-ready-2026-11-01/mobile-390-activities.png",
+      "bytes": 34862,
+      "sha256": "2574bd0db905217977a75886f23cca21a22edfb27a6c62fd784eff87dd6bc25c"
+    },
+    {
+      "path": "artifacts/screenshots/qa-pr16-ready-2026-11-01/mobile-390-activity-detail.png",
+      "bytes": 86182,
+      "sha256": "f7700ba6bf5ddc0ff79ee24a56eaefc5d90781bfa034b2339c56af6e0675dc00"
+    },
+    {
+      "path": "artifacts/screenshots/qa-pr16-ready-2026-11-01/mobile-390-change-workbench.png",
+      "bytes": 88772,
+      "sha256": "42b5ad4d2ccfeee7531879275bb4891aa7586ab9e722c1bb6b36fee597ddfe5c"
+    },
+    {
+      "path": "artifacts/screenshots/qa-pr16-ready-2026-11-01/mobile-390-login.png",
+      "bytes": 37594,
+      "sha256": "fdb503a48ff02f773183de7d99158fe4afd475aa9d9ce459a7548ee71d19c9b1"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-20/DbSupportProbe.java",
+      "bytes": 3524,
+      "sha256": "c0981c9e1a50ed8be6f8c81db25586d4373f7895db5f54e0c71ba7b2cbcf5d90"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-20/atomic-fail.json",
+      "bytes": 1338,
+      "sha256": "794f12ce830b428163b167e5fdf433f8dbe845f6cc00de6b9e6b185b3fde45a9"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-20/contract-check.log",
+      "bytes": 107,
+      "sha256": "8697cd023d3e010ef6422e23b0dd6b6f0072e39441f2490cd1d77527e874a384"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-20/data-reference-check.log",
+      "bytes": 177,
+      "sha256": "d6d3836fa1ee43af70e219cdd8f14977794e7e5782740abbddaec6eb8ab3c7aa"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-20/data-reference-check.py",
+      "bytes": 3548,
+      "sha256": "06c721afdcbe7c67b12c4292ab64cee4402908d612498becd3483ff8f4f4a27e"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-20/default-test.log",
+      "bytes": 32949,
+      "sha256": "7c3e2301f35808cc420ce39d044bfed44ed99832fb3c696d8af4ddd40fd844b5"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-20/run-summary.md",
+      "bytes": 2685,
+      "sha256": "0d63eb6c03499a8a2f0f69192f4e688cadf001f0325ad4f947d0b2222e912475"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-20/support-compile.log",
+      "bytes": 313,
+      "sha256": "cbaae500b4c91f3ee7bb4cec69513b12c645cafa761b914ace6759b8aba4be40"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-20/support-postgres.log",
+      "bytes": 3708,
+      "sha256": "523dbbf3cf53a0190b86ae497dfff3b21826b0f3a2ed7bcb91b7e91ec7ba7266"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-26/contract-check.log",
+      "bytes": 98,
+      "sha256": "8a9c5582e0ecac6f35a46113a1122797d1f5fc4201a4731c361d6ae11260e6da"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-26/data-reference-check.log",
+      "bytes": 759,
+      "sha256": "d386385448484eef54abd94c14f7987f6c251039c1f9527f61834dfdb67fcd50"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-26/default-compile.log",
+      "bytes": 1246,
+      "sha256": "1c6ccda8020e3ce861924848321be88a9a94420a0ddf9c171c551cc07823d367"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/benchmark-hash-rerun/TEST-com.campus.events.acceptance.SchedulingBenchmarkIT.xml",
+      "bytes": 26865,
+      "sha256": "bca12010db55e990ec32e8fefc3212943a1e22751ada4b5494c280a478233c13"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/benchmark-hash-rerun/context.txt",
+      "bytes": 262,
+      "sha256": "5a5ad567bd67842b145c8bac2d9b395464e519558dcacbeb7ec9f13b687ceef2"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/benchmark-hash-rerun/evaluate.log",
+      "bytes": 198,
+      "sha256": "fd64343deb9de61011ae9d5d98139728121cbf22acc386b6dffecae8176750e1"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/benchmark-hash-rerun/exit.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/benchmark-hash-rerun/scheduling-evaluation.json",
+      "bytes": 43586,
+      "sha256": "95f71f0a2766dcbbb339f1da0435c11e49aae6f07bf83b8fc29e117c4c271fda"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/benchmark-reference-rerun/evaluation-prior-mismatch/results.csv",
+      "bytes": 9286,
+      "sha256": "e08e726c203ebe32f9a733a737aa706f454238eab1446eb238736b5a69dda8b8"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/benchmark-reference-rerun/evaluation-prior-mismatch/summary.md",
+      "bytes": 3748,
+      "sha256": "ac8241a51851193b2827effe4354e729c7a7f9d57476999ad949dd0a25d08a17"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/d-at16-diagnostic/TEST-com.campus.events.acceptance.RegistrationCapacityIT.xml",
+      "bytes": 33344,
+      "sha256": "f95d6370563d4b89b75643de04f92d803ef5de13679221f793ba8baabb1c71b6"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/d-at16-diagnostic/context.txt",
+      "bytes": 209,
+      "sha256": "270a8a4cc662665bd1202e21c5878068a7611a7762653e47da2f2f9c6c42804b"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/d-at16-diagnostic/exit.txt",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/d-at21-uri-object-rerun/TEST-com.campus.events.acceptance.PermissionsIT.xml",
+      "bytes": 40848,
+      "sha256": "21cb68907bf8ae2631023c22115613e1d783612af660172820054a4741c1f371"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/d-at21-uri-object-rerun/context.txt",
+      "bytes": 255,
+      "sha256": "038dd36b4e71e3e5a7765cda764906cfd7298971658715b7dc1bff3297e537e1"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/d-at21-uri-object-rerun/exit.txt",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/d-at21-url-diagnostic/TEST-com.campus.events.acceptance.PermissionsIT.xml",
+      "bytes": 42400,
+      "sha256": "056ab89a0ac4f9823013f7bf4c1fbcf5d9553395c2cab2067c0568141f82daba"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/d-at21-url-diagnostic/context.txt",
+      "bytes": 208,
+      "sha256": "8d40de1fd84bd02fd65672152e0cc27b0a13be18aa5e15f0fbed196de301843a"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/d-at21-url-diagnostic/exit.txt",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/evaluate-script-tsc.log",
+      "bytes": 83,
+      "sha256": "882baf2b25f5a834f4bc887acbf63f0cc128542b81dae691f07183e01affa79d"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/context.txt",
+      "bytes": 254,
+      "sha256": "9015cf0dfa5ba06c41266c1cea29a5f2bf2788741d0b03c10abd2598d3492212"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/default-verify.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/evaluate.log",
+      "bytes": 198,
+      "sha256": "fd64343deb9de61011ae9d5d98139728121cbf22acc386b6dffecae8176750e1"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/evaluation-prior/results.csv",
+      "bytes": 9428,
+      "sha256": "33d1ab95e7c589f3030197eb44f210aa887ca7dc6fe630af73c808f504e5c9db"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/evaluation-prior/summary.md",
+      "bytes": 4111,
+      "sha256": "a51c7fce44f0421882443935a60e30765a981fa741c6f33afe2bccd86df7c93e"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/failsafe-reports/TEST-com.campus.events.acceptance.BookingConcurrencyIT.xml",
+      "bytes": 29583,
+      "sha256": "fb32e570fef30482389ac9b0f26a817424a543b8f3c2d2002044eac584f1fa47"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/failsafe-reports/TEST-com.campus.events.acceptance.CancellationRaceIT.xml",
+      "bytes": 30815,
+      "sha256": "a1f117f3516cc86a8b446924a5556606b475613db4a58f0e145ac06fa68547d9"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/failsafe-reports/TEST-com.campus.events.acceptance.ChangeRollbackIT.xml",
+      "bytes": 36430,
+      "sha256": "14362ee8994ba6a3c1f9c3cd88a2acd49059fa2b5c912ebe7bb82f9a367c02b1"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/failsafe-reports/TEST-com.campus.events.acceptance.IdentityEligibilityIT.xml",
+      "bytes": 37824,
+      "sha256": "193f3bca1f3c80a5c6614c030d791943083027f7fdcfe52e5ac817bc65dcafb0"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/failsafe-reports/TEST-com.campus.events.acceptance.NotificationConsistencyIT.xml",
+      "bytes": 29084,
+      "sha256": "0a1f6a186431862982a135662d5c08f653e13dc0b6f78fa9321f8fedea3d2ea5"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/failsafe-reports/TEST-com.campus.events.acceptance.PermissionsIT.xml",
+      "bytes": 40354,
+      "sha256": "8131a45556174297bab28e007eee64c7bce88933d02e7a454774ad57465bab21"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/failsafe-reports/TEST-com.campus.events.acceptance.RegistrationCapacityIT.xml",
+      "bytes": 32839,
+      "sha256": "d2c1d913884e58dad21e8c33744a489237710054317568235152caa499d585d3"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/failsafe-reports/TEST-com.campus.events.acceptance.SchedulingBenchmarkIT.xml",
+      "bytes": 26581,
+      "sha256": "5685b7b9195288a781861cf554f63c63583c64003a89950e5d4c92a7163081b8"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/failsafe-reports/TEST-com.campus.events.acceptance.SeederRollbackIT.xml",
+      "bytes": 23698,
+      "sha256": "5f3a1dcd069ebb2b7041b12eae188519519aa5686c297a5971153ef8aedd4f8e"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/failsafe-reports/TEST-com.campus.events.activity.ActivityRegistrationIT.xml",
+      "bytes": 30650,
+      "sha256": "5f540919f5515c219f43270cf155832130545105df165aa761f85a62d8d3fc53"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/failsafe-reports/TEST-com.campus.events.dev.DemoDataSeederIT.xml",
+      "bytes": 24983,
+      "sha256": "f2e41db8cbb61fb02a6e8e3489fd7c5bf001ad91c40cae6a90c6eeadefc90811"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/failsafe-reports/TEST-com.campus.events.foundation.FoundationIT.xml",
+      "bytes": 28332,
+      "sha256": "69bef9758c28eae61128196d0e222e7c35748398969b6ca9364a98596e4f6c9f"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/failsafe-reports/TEST-com.campus.events.resource.ResourceSchedulingIT.xml",
+      "bytes": 28604,
+      "sha256": "98b67578da6ae1c243eb15b7706dbc30d79f105e6fbbb28c7268bbb198ca4f23"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/failsafe-reports/TEST-com.campus.events.resource.SchemaIT.xml",
+      "bytes": 24313,
+      "sha256": "3a5fcdd358a03522f1605047de5447bce71103c7a94ef0dd70494c19d0b11d70"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/failsafe-reports/TEST-com.campus.events.support.DbTestSupportIT.xml",
+      "bytes": 23684,
+      "sha256": "4cf9b385b52d3c6fd6b31023f30fa95bc84fbe056b74794e7e028e7a27695720"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/failsafe-reports/failsafe-summary.xml",
+      "bytes": 494,
+      "sha256": "8f886e225dc4c2c52476e93b50447a319751066ce0e2c71ed38ec0e0dce368e4"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/scheduling-evaluation.json",
+      "bytes": 43591,
+      "sha256": "e48647f0407e057148d1e8fc94750a1e9ab3bba6d5076f754d35b114e19c1199"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/surefire-reports/TEST-com.campus.events.activity.ActivityServiceTest.xml",
+      "bytes": 23492,
+      "sha256": "d369ea17a1e71ec2353eb5de65a58314d705322312ec58fd558c6fe44e064732"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/surefire-reports/TEST-com.campus.events.activity.ActivityStateMachineTest.xml",
+      "bytes": 21865,
+      "sha256": "c64401427ce3de0d391b1ce582c01c4ae5679d0a4fc942671cc9df4a96d77131"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/surefire-reports/TEST-com.campus.events.auth.AuthorizationPolicyTest.xml",
+      "bytes": 21759,
+      "sha256": "b7a179e3f68042f1164b5f955771f720202d9036a0a08e7cd3de637f3f0b7b32"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/surefire-reports/TEST-com.campus.events.contract.ContractValidationTest.xml",
+      "bytes": 21597,
+      "sha256": "3b3ff5c662946b98fd2bf2b7758f3dea76d77fc7b500e4d30aee5cb079815347"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/surefire-reports/TEST-com.campus.events.foundation.CanonicalJsonTest.xml",
+      "bytes": 21552,
+      "sha256": "2193302c0bf28180a0f6b04debe2cefb4eaa5f7a34964bf072e8d6c3f3ef59b1"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/surefire-reports/TEST-com.campus.events.foundation.ResponsesTest.xml",
+      "bytes": 21040,
+      "sha256": "91d56fb21bda70e3b4d3935603d2e35ac7d19617c1b40e2da0a4dc8499cf2cac"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/surefire-reports/TEST-com.campus.events.scheduling.CandidateRankingTest.xml",
+      "bytes": 21230,
+      "sha256": "6463f18a06541cc13968e88aed97ac84210a7f2d73fb6237ce8315adb4466d49"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/surefire-reports/TEST-com.campus.events.scheduling.CapacitySweepTest.xml",
+      "bytes": 21591,
+      "sha256": "083f621b1bd0e42a39257b46f87be31854ad6ccaa865718de7b34ae2a2310177"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/surefire-reports/TEST-com.campus.events.scheduling.ScheduleQueryServiceTest.xml",
+      "bytes": 22222,
+      "sha256": "42b927010bd2e2b53cd1d2d37f05d5527fa9ea692866da8cf333d7844058d65a"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/surefire-reports/TEST-com.campus.events.scheduling.StrategyEvaluatorTest.xml",
+      "bytes": 21851,
+      "sha256": "8dbf1d6620922b394cb3ebaa648fde6434b8dd62ea5ada9d23908d0f62c22947"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-after-calendar-encoding/surefire-reports/TEST-com.campus.events.scheduling.TimeIntervalTest.xml",
+      "bytes": 21252,
+      "sha256": "938b4d429c599b75906b61257e44b5d05be11072963e35aead20ba6fb01c23b3"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/context.txt",
+      "bytes": 300,
+      "sha256": "bef628e5613aac6d684d8a60b55819b46bccb45b26cb0b23904049d94827039b"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/default-verify.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/TEST-com.campus.events.acceptance.BookingConcurrencyIT.xml",
+      "bytes": 29584,
+      "sha256": "06a38e2327ec738c9f50bd5ac695d936c5c400f53204e85e05e3e4a30abc09ef"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/TEST-com.campus.events.acceptance.CancellationRaceIT.xml",
+      "bytes": 30813,
+      "sha256": "d564f9182c11731c7fd3ee9daebb69c3deacffc28e671ddf4864faaadf06d566"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/TEST-com.campus.events.acceptance.ChangeRollbackIT.xml",
+      "bytes": 36432,
+      "sha256": "98db47d264fa62fd77fefeb97da2edcc792dcb1e378d837fc2a1e80bfeb1f941"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/TEST-com.campus.events.acceptance.IdentityEligibilityIT.xml",
+      "bytes": 37824,
+      "sha256": "2911276f45a0ae7be727749e8eb73ebb417321d51b68cce7c1fd7632cb45e03f"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/TEST-com.campus.events.acceptance.NotificationConsistencyIT.xml",
+      "bytes": 29086,
+      "sha256": "77433280638d6380971ab46a6d2d3f669d424cdee813580a0ea411aecf4f3026"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/TEST-com.campus.events.acceptance.PermissionsIT.xml",
+      "bytes": 41724,
+      "sha256": "78f64fd7961e4bce5cbf2b9341e93a7b7193e236f074b7c39bc5181525dd2d11"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/TEST-com.campus.events.acceptance.RegistrationCapacityIT.xml",
+      "bytes": 32840,
+      "sha256": "93a9704ecbe80bade1e0880dfbcb38fbceb6adecb7f6c28e13aac82375360f99"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/TEST-com.campus.events.acceptance.SchedulingBenchmarkIT.xml",
+      "bytes": 26580,
+      "sha256": "6a49125d0cdc9e9bc3a060fc076f1b131b64995f2c7d065745bbc4fd468e63a8"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/TEST-com.campus.events.acceptance.SeederRollbackIT.xml",
+      "bytes": 23698,
+      "sha256": "1eff4eb1cb9e9c51a13f53b1786a670feef15711ee077c5f75d938bf6bc0f082"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/TEST-com.campus.events.activity.ActivityRegistrationIT.xml",
+      "bytes": 30646,
+      "sha256": "34eb2b46a3d789dfd1e3d8fc30c461f021bf837e99ba79fbe7b7ed1bfdf70fc5"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/TEST-com.campus.events.dev.DemoDataSeederIT.xml",
+      "bytes": 24985,
+      "sha256": "fc551b9ad88e7e27ca9dbbbaa57ec0e76a594f1815555e4bcfb73336ed01ca39"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/TEST-com.campus.events.foundation.FoundationIT.xml",
+      "bytes": 28334,
+      "sha256": "7c51b103e5e8de300d024eeb4e549c0e99ba320a290c31b072948abebc15f253"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/TEST-com.campus.events.resource.ResourceSchedulingIT.xml",
+      "bytes": 28606,
+      "sha256": "bf8bda288f0f08a2c655b2bcb5b979977d8606dc7fd4c205b434ded01bc0be0f"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/TEST-com.campus.events.resource.SchemaIT.xml",
+      "bytes": 24312,
+      "sha256": "866aba861c841a3fbdc09a90fbd049a501ad9b5c4f326bf503abedb2a1d4cb52"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/TEST-com.campus.events.support.DbTestSupportIT.xml",
+      "bytes": 23685,
+      "sha256": "5fab841743663c1b2990f9a12c0fb0deff47bf1794adc08634267aab6dff58ca"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/failsafe-reports/failsafe-summary.xml",
+      "bytes": 494,
+      "sha256": "445ed3cadcb6002fe18b9f82c48b3b2c07e241faf3b6bf23e5fcb4ba3a98bc7d"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/scheduling-evaluation.json",
+      "bytes": 43583,
+      "sha256": "685ee26d3ada15293d03761547a720e19ac8fb686fc8bca28bb20f4abeb3da4b"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/surefire-reports/TEST-com.campus.events.activity.ActivityServiceTest.xml",
+      "bytes": 23494,
+      "sha256": "483008054b9d0d6beb70dba1a4739e26cddc430d82e8f26cbe2a816bb516fe25"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/surefire-reports/TEST-com.campus.events.activity.ActivityStateMachineTest.xml",
+      "bytes": 21872,
+      "sha256": "1f8a3f41c09effde8fa8ba1ad195128d8d4107334b5fa38412a52cf80ae0d324"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/surefire-reports/TEST-com.campus.events.auth.AuthorizationPolicyTest.xml",
+      "bytes": 21761,
+      "sha256": "47cc40118a78d9f4e4dec32c0cd149818860e697aadd096235a84e5c9b55593a"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/surefire-reports/TEST-com.campus.events.contract.ContractValidationTest.xml",
+      "bytes": 21597,
+      "sha256": "b92f47d1276c4a3808961370a141e88df0678abc5aae87f60d8c580beb018db4"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/surefire-reports/TEST-com.campus.events.foundation.CanonicalJsonTest.xml",
+      "bytes": 21552,
+      "sha256": "da92566df6930b98fc4e8fc82d1656083a09a5d88f20489c37a100b40dccd728"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/surefire-reports/TEST-com.campus.events.foundation.ResponsesTest.xml",
+      "bytes": 21040,
+      "sha256": "712f137d278a23e4523bbcc51336ab90128103b7e2723282356e340bde1ba6bf"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/surefire-reports/TEST-com.campus.events.scheduling.CandidateRankingTest.xml",
+      "bytes": 21230,
+      "sha256": "84ea7eb11fd64ba9ff2d2444409a1766099ba680e967167d392616b20c853961"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/surefire-reports/TEST-com.campus.events.scheduling.CapacitySweepTest.xml",
+      "bytes": 21591,
+      "sha256": "15dabfcb6d80b24d90c0454641577fc99ddb2218f5206f47038b521de6ba79d7"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/surefire-reports/TEST-com.campus.events.scheduling.ScheduleQueryServiceTest.xml",
+      "bytes": 22222,
+      "sha256": "abd8e659d27ac89b61e90ac51decc5dbb1ee038293d333b181b91f7db1673044"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/surefire-reports/TEST-com.campus.events.scheduling.StrategyEvaluatorTest.xml",
+      "bytes": 21853,
+      "sha256": "7beb18a222d54ab54b90300283450d0f2c6f4b79e7af77f243535680ca2aa11c"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-hash-metadata-verify/surefire-reports/TEST-com.campus.events.scheduling.TimeIntervalTest.xml",
+      "bytes": 21251,
+      "sha256": "8c769b35c91bbd9d9aa6759919147c7c01e053105f6502bde2092b13ed54814b"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/context.txt",
+      "bytes": 347,
+      "sha256": "742440a79b0b98ab5993c6bedbe84e36fc2093e6fe569a7011b38b023ec10cb8"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/default-verify.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/evaluate.log",
+      "bytes": 521,
+      "sha256": "770568c72056f948ecdff4fd2a5e6de5c0adbeed6462c3d180578102a1cdcc9a"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-profile-fix.md",
+      "bytes": 1175,
+      "sha256": "b4eecf6bd31853e2d0d5965727bcaff55d7e1607d750444037713f755f4ebf98"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-reports/TEST-com.campus.events.acceptance.BookingConcurrencyIT.xml",
+      "bytes": 29585,
+      "sha256": "68cf5aeafe21b9c6f4f0802b86a15deb7e7f33f13992b8d42342423fd48bca66"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-reports/TEST-com.campus.events.acceptance.CancellationRaceIT.xml",
+      "bytes": 30815,
+      "sha256": "6515b02eca696a15fb81605ae9affe415b1e2e4fbd03032e412379a2dc99537b"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-reports/TEST-com.campus.events.acceptance.ChangeRollbackIT.xml",
+      "bytes": 36433,
+      "sha256": "5eb5090760a9dbbf34902189ab50c14e6aec31ebe2bed69ce672a4c71e4d123e"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-reports/TEST-com.campus.events.acceptance.IdentityEligibilityIT.xml",
+      "bytes": 37822,
+      "sha256": "8759a93da857ea03df2181a039ebcda488120813bea08cbb282bf97552e4d850"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-reports/TEST-com.campus.events.acceptance.NotificationConsistencyIT.xml",
+      "bytes": 29086,
+      "sha256": "3cc7c14a52ed82df1ba10ea42bc0d6e53839d8282f2e3c0240cb77def6325f37"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-reports/TEST-com.campus.events.acceptance.PermissionsIT.xml",
+      "bytes": 41721,
+      "sha256": "e0f88f464f2b3be9c226f020ca91056eda7554b8e9ed0c29eb0707590a954216"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-reports/TEST-com.campus.events.acceptance.RegistrationCapacityIT.xml",
+      "bytes": 32720,
+      "sha256": "ce63d252f5e923bd45d25f3ca4bd066cb1045446292bf9b1f36c833532ec32aa"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-reports/TEST-com.campus.events.acceptance.SchedulingBenchmarkIT.xml",
+      "bytes": 26580,
+      "sha256": "a4a76056f0dc80774be2fe52e1f2e84461d61586ecd3465633aa624febe3303f"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-reports/TEST-com.campus.events.acceptance.SeederRollbackIT.xml",
+      "bytes": 23698,
+      "sha256": "512c40a7b1ee6f2f75bc09bdee98b1842c99e6255ad5e1de0c803591cbf8be09"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-reports/TEST-com.campus.events.activity.ActivityRegistrationIT.xml",
+      "bytes": 30650,
+      "sha256": "b1dbb8aed6be91537ac211c2f581933371ac58e5737e91cd321c229b44b3cac1"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-reports/TEST-com.campus.events.dev.DemoDataSeederIT.xml",
+      "bytes": 24985,
+      "sha256": "5d3d9c54169b6ef97058bebfe31bd260b29287c3328204c11a09d3d7676fb195"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-reports/TEST-com.campus.events.foundation.FoundationIT.xml",
+      "bytes": 28336,
+      "sha256": "04d0561cf1b0de5b1e24b5c592cabe319cf27bdb8186317013155bbb81082171"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-reports/TEST-com.campus.events.resource.ResourceSchedulingIT.xml",
+      "bytes": 28604,
+      "sha256": "daf7a10fca2fdd58ab38e64ff7468fae19def636899558a81d2b0f2815714f1d"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-reports/TEST-com.campus.events.resource.SchemaIT.xml",
+      "bytes": 24312,
+      "sha256": "c75a8d107a42b32f6c2f005558a7dfbc0e2bfea6951557af87180f74ae2edd63"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-reports/TEST-com.campus.events.support.DbTestSupportIT.xml",
+      "bytes": 23685,
+      "sha256": "a379fd1b2f00d6953f80125d766f97ce1cb96efefe021a63142881dc5216167f"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/failsafe-reports/failsafe-summary.xml",
+      "bytes": 494,
+      "sha256": "445ed3cadcb6002fe18b9f82c48b3b2c07e241faf3b6bf23e5fcb4ba3a98bc7d"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/scheduling-benchmark-loader-repro.md",
+      "bytes": 1500,
+      "sha256": "2de6159f034f895224f00b21a7ce8a8ab0fbe91f2a9475c4366286246ef3337b"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/scheduling-evaluation.json",
+      "bytes": 43122,
+      "sha256": "31da4d7c731bf9c7ce877ef4fa48c702bfb086bd6cc2edb8105c87eb4c571e02"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/surefire-reports/TEST-com.campus.events.activity.ActivityServiceTest.xml",
+      "bytes": 23493,
+      "sha256": "74c2f14227ff4f7319cdacfc8c4b34215ec00069e95a6ced0aea6240e2b617c4"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/surefire-reports/TEST-com.campus.events.activity.ActivityStateMachineTest.xml",
+      "bytes": 21871,
+      "sha256": "fa9b4296656bef4081debff7cbf47d704141597bff6ecfb8c955d556bd6688bf"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/surefire-reports/TEST-com.campus.events.auth.AuthorizationPolicyTest.xml",
+      "bytes": 21761,
+      "sha256": "d96b862f45eb280e0f43d2275ea007521a47caeaf87f758592e345654420999c"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/surefire-reports/TEST-com.campus.events.contract.ContractValidationTest.xml",
+      "bytes": 21596,
+      "sha256": "3c884d6835b936e50f27278fb585545da73a8c0b65c2814dab1c82943812252c"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/surefire-reports/TEST-com.campus.events.foundation.CanonicalJsonTest.xml",
+      "bytes": 21552,
+      "sha256": "7fe6d34343cdf4c41cdd4673e624be925dfd4234abccff91ad3366433ecad0e8"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/surefire-reports/TEST-com.campus.events.foundation.ResponsesTest.xml",
+      "bytes": 21040,
+      "sha256": "e3cbabe1f5d21b1cb0da190debcb78ec8c6a34a700873bbaa0d391b9ef0ba6f1"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/surefire-reports/TEST-com.campus.events.scheduling.CandidateRankingTest.xml",
+      "bytes": 21230,
+      "sha256": "92687feff417f8293aa4a7e81839279d8b00af8e2733b609b2811f04cd229ca8"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/surefire-reports/TEST-com.campus.events.scheduling.CapacitySweepTest.xml",
+      "bytes": 21591,
+      "sha256": "b93e76649bb4f66ed23c23b4d06eb8eff7697b74e0abbb610b8ee55af304d6e5"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/surefire-reports/TEST-com.campus.events.scheduling.ScheduleQueryServiceTest.xml",
+      "bytes": 22222,
+      "sha256": "d6033eec5bf6727d0479b7eaff49facef8e0416c47ab05eca7700bcc35b4f62c"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/surefire-reports/TEST-com.campus.events.scheduling.StrategyEvaluatorTest.xml",
+      "bytes": 21853,
+      "sha256": "da9ab553f1c80105b64170fa2696d477a102e63a7251f29e1444590d00e91c82"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/final-verify-with-seeder-rollback/surefire-reports/TEST-com.campus.events.scheduling.TimeIntervalTest.xml",
+      "bytes": 21252,
+      "sha256": "22e6e177c3d4b70ea6af8ac2aadf9d6ebee8892835157f4c7f571ad898c58ac9"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/contract-check.log",
+      "bytes": 195,
+      "sha256": "7fa979953f7e9016881f22023bc221219736e4f5f814a0160bd2ae3b54726252"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/default-verify.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/ds-strategy-full-reference.json",
+      "bytes": 145411,
+      "sha256": "6942cbf628c7236af992ec2c046dcae67b20160a5e6b4f82a48094efc795000d"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/ds-strategy-scenario-core.json",
+      "bytes": 126170,
+      "sha256": "fb96dd679fbad99dfec4c19638b8ef6144c4ee053fb533c5543bd26f6daf7fb6"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/evaluate.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/evaluate.log",
+      "bytes": 186,
+      "sha256": "f7f194f232b6045b4f2502f35f8ae714b194b513fd9a066a627716c78bf5ab8c"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/evaluation-before-rerun/results.csv",
+      "bytes": 9433,
+      "sha256": "bb74ad29e5a1612b049239133b3bff37c4e54774c270e4c84f169aae8877b7ac"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/evaluation-before-rerun/summary.md",
+      "bytes": 4109,
+      "sha256": "5717b8435f7cebf41fe8cfa952259570836201cb404de2909b4e48e3b8f27348"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/failsafe-reports/TEST-com.campus.events.acceptance.BookingConcurrencyIT.xml",
+      "bytes": 29584,
+      "sha256": "c67a9ca6c7d540a22370aee2cd752b832e7cb684d109ba6515c71d03e834821a"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/failsafe-reports/TEST-com.campus.events.acceptance.CancellationRaceIT.xml",
+      "bytes": 30814,
+      "sha256": "0638e6fbbe2048847330d3d5cd853c972cb4245d43a5ee42fa7841238b803d1d"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/failsafe-reports/TEST-com.campus.events.acceptance.ChangeRollbackIT.xml",
+      "bytes": 36430,
+      "sha256": "57e635edf1a0d9382d67aef7149548e3b6b5b8ee06bc2a621d8fd579b232800e"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/failsafe-reports/TEST-com.campus.events.acceptance.IdentityEligibilityIT.xml",
+      "bytes": 37823,
+      "sha256": "6d9312dac2507e5a5bbb5a429ab5aab5bd1372d1021a029277b2b378a305319d"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/failsafe-reports/TEST-com.campus.events.acceptance.NotificationConsistencyIT.xml",
+      "bytes": 29084,
+      "sha256": "eb27c7ba8801924fc9d7b92d22eb82e6f66a33a0cf0b87ebbdb9b4bc2e984c66"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/failsafe-reports/TEST-com.campus.events.acceptance.PermissionsIT.xml",
+      "bytes": 40355,
+      "sha256": "42b8e1b70663957754555d3f32c1c76cd682cb634877b7af5d817db0d48b6938"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/failsafe-reports/TEST-com.campus.events.acceptance.RegistrationCapacityIT.xml",
+      "bytes": 32840,
+      "sha256": "79234f9fb61aa05ba2f2a6e2afd01a030b90fb1739ffab26c4055a739f185cfb"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/failsafe-reports/TEST-com.campus.events.acceptance.SchedulingBenchmarkIT.xml",
+      "bytes": 26581,
+      "sha256": "4bc76185524c12a0b657ac9f085a04233a89a12b5d471d7f43dee2e87131da26"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/failsafe-reports/TEST-com.campus.events.acceptance.SeederRollbackIT.xml",
+      "bytes": 23697,
+      "sha256": "8365358ca77881ba10ea8a4875c6f60ad1191fd59e7779d3334b515952b881c5"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/failsafe-reports/TEST-com.campus.events.activity.ActivityRegistrationIT.xml",
+      "bytes": 30651,
+      "sha256": "5d7f56e67098efddd53e4cfb0917c0a3d3f9c19d8f8d31c274f8f2c8b6232cd5"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/failsafe-reports/TEST-com.campus.events.dev.DemoDataSeederIT.xml",
+      "bytes": 24984,
+      "sha256": "51a303c8b734b1729343d07a3d8b8eafae290c03c0d62ecca98d14bef395207a"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/failsafe-reports/TEST-com.campus.events.foundation.FoundationIT.xml",
+      "bytes": 28334,
+      "sha256": "371d9cf0b363ef8c7087762e0b19ac10bf7f54bfab8f03c3daf243a1d65412e3"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/failsafe-reports/TEST-com.campus.events.resource.ResourceSchedulingIT.xml",
+      "bytes": 30846,
+      "sha256": "0c6d9a2083d898ae9e2a361511669040a472fc0728774e89cbf2235c200a50f9"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/failsafe-reports/TEST-com.campus.events.resource.SchemaIT.xml",
+      "bytes": 24313,
+      "sha256": "2a0440a42b85360fe1d663300b4f66ccfb01fda416a58b6ccbabdfd5d838a08a"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/failsafe-reports/TEST-com.campus.events.scheduling.DsStrategyBenchmarkIT.xml",
+      "bytes": 23864,
+      "sha256": "dea6bacb427172924fe8222095ca7c1869cc3af0e79b104c37513086fa7f15ba"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/failsafe-reports/TEST-com.campus.events.support.DbTestSupportIT.xml",
+      "bytes": 23682,
+      "sha256": "c9f90fb5b91a724a9017baf60621f1dbbb75990a381829babdf3f7e5caca5092"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/failsafe-reports/failsafe-summary.xml",
+      "bytes": 494,
+      "sha256": "eedf2e93ed09d3e788ca23ac1d60fd6f395a3b42bde76d3e8e10f481e5a36e13"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/java-version.txt",
+      "bytes": 152,
+      "sha256": "4f5ea83924368516497e29fe7f627cb322b2fc7ca3f3711ae59cbeb3cae9b02d"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/playwright-list.log",
+      "bytes": 5534,
+      "sha256": "ca64a1225796fcff9db766dd5392f6da5a8955ad434521da074ef4a8a6e4869f"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/postgres-version.txt",
+      "bytes": 54,
+      "sha256": "5d54e0a61e5c1c10f5a44fe32d693ca7acdf747497f2d1870d2944d3eff6bc7d"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/result-summary.json",
+      "bytes": 5488,
+      "sha256": "9a47207381ff8febfd7f52370ec2de4196fa6febefc58663a5b7e75b4a305378"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/results.csv",
+      "bytes": 9378,
+      "sha256": "bc04110e7626aefe9eee010735e9a3c4ceb40185f9692c57496c3432e656222b"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/scheduling-evaluation.json",
+      "bytes": 43526,
+      "sha256": "389f8a93b927ad8dced8af047dc66e5845b27aacc435cd9b30dd93f2999f333d"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/source-commit.txt",
+      "bytes": 41,
+      "sha256": "4cb4fa1541a790d2eaa1e798953755e32aec3e147815262900a3bef2dac6444f"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/summary.md",
+      "bytes": 4094,
+      "sha256": "8c0501b81dae85c13e9d21dc8e711a2d2c6483e7faf2bf7297ec3103ff4bb7ce"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/surefire-reports/TEST-com.campus.events.activity.ActivityServiceTest.xml",
+      "bytes": 23494,
+      "sha256": "2fe374f81fcd0b28e60c6bdd28aaacb6bf79d0b309b491aa35a664410929d8ff"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/surefire-reports/TEST-com.campus.events.activity.ActivityStateMachineTest.xml",
+      "bytes": 21867,
+      "sha256": "b9621f925c5636394d5545144c51cc16eaefccf0c519cf1c438359f49bb0975f"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/surefire-reports/TEST-com.campus.events.auth.AuthorizationPolicyTest.xml",
+      "bytes": 21761,
+      "sha256": "208fe3afd870aec46a0b8f35aa9bbf9c2b98d857bcc197cb293b83af7de6f698"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/surefire-reports/TEST-com.campus.events.contract.ContractValidationTest.xml",
+      "bytes": 21595,
+      "sha256": "033554ed25e87d20c472bf7934c0aed9a7ba132827f96ea59661d20619035360"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/surefire-reports/TEST-com.campus.events.foundation.CanonicalJsonTest.xml",
+      "bytes": 21550,
+      "sha256": "177cf7e87ece5ada305a65c7c8cd716ccc1c8a14a8e019f2cf54383ad9b31951"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/surefire-reports/TEST-com.campus.events.foundation.ResponsesTest.xml",
+      "bytes": 21039,
+      "sha256": "1c876c8bb56f3cc6fc70fc1b243db523dc2c69ad0c33741bd3be9aef68f6dfde"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/surefire-reports/TEST-com.campus.events.scheduling.CandidateRankingTest.xml",
+      "bytes": 21224,
+      "sha256": "f7f2e066bd604fa7da62a1a53caea5fff9131de04ba68ebf50bdbb327e37ded1"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/surefire-reports/TEST-com.campus.events.scheduling.CapacitySweepTest.xml",
+      "bytes": 21591,
+      "sha256": "14eac783bd25bc22d5b0cf77d1d214fbd39d2dfc7e9356f24d2979e0286cb1ee"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/surefire-reports/TEST-com.campus.events.scheduling.ScheduleQueryServiceTest.xml",
+      "bytes": 22222,
+      "sha256": "48fe582810ce90ad73783d08e6b37b929470f358052f0d791d84cd03c0a44f1b"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/surefire-reports/TEST-com.campus.events.scheduling.StrategyEvaluatorTest.xml",
+      "bytes": 21853,
+      "sha256": "93320a1abcb812b908594601f87c1ae8bc291d2cb8ee0db7cbd3b858b9eb84a2"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/post-pr15-merge/surefire-reports/TEST-com.campus.events.scheduling.TimeIntervalTest.xml",
+      "bytes": 21250,
+      "sha256": "c272f9c311f128d03256263c7f01c6ec19b0d7ea8591165d7776be6173ca2241"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/static/contract-check.log",
+      "bytes": 110,
+      "sha256": "9f34d702df922a096b37e4de5ff11af293746b8be1b7ce8c8db003c9364086fe"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/static/data-reference-check.log",
+      "bytes": 189,
+      "sha256": "4627edab86482eea96c93b26cf3e942ce034cf41b63dcbc72976f444a293bcc7"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/static/playwright-list.log",
+      "bytes": 5615,
+      "sha256": "819275c24ab703f8f98bdc3a9573e9e36631236d9aadb09a9d23ee80629f9ac3"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/static/summary.txt",
+      "bytes": 34,
+      "sha256": "ecbc915b54b23f15411431bdc4b076297f48b615a46008fe504ee3139e2b5c8d"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-10-31/static/tsc.log",
+      "bytes": 71,
+      "sha256": "4695c1f8393a49a05e0ea9ca3bc627946e1a40d06c285bf1a0b31911f07c9e6e"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/applied-restart-after.json",
+      "bytes": 1078,
+      "sha256": "df4052e68c414c5d5c91202960090d974eba9295f5a06a25be659bad44f75213"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/applied-restart-before.json",
+      "bytes": 1078,
+      "sha256": "df4052e68c414c5d5c91202960090d974eba9295f5a06a25be659bad44f75213"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/applied-restart-result.json",
+      "bytes": 233,
+      "sha256": "efe47912e78e75e87daebc5ee3ef640cccbbf25bcc8fe828d181b1bb5b07f4df"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/contract-check.log",
+      "bytes": 195,
+      "sha256": "7fa979953f7e9016881f22023bc221219736e4f5f814a0160bd2ae3b54726252"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/e2e-after-restart/exit.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/e2e-after-restart/results.json",
+      "bytes": 40823,
+      "sha256": "974c4c92d1817da4ea56a87866a95ce2cee07be105f3adbb988e501fc61c43e8"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/e2e-after-restart/run.log",
+      "bytes": 4032,
+      "sha256": "85d9328962f866d343a27bb7c34a7acb6cdb121326616485876bc8bb13e90016"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/e2e-booking-eligibility-final/exit.txt",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/e2e-booking-eligibility-final/results.json",
+      "bytes": 29679,
+      "sha256": "ebb0d6423ffad6529a8a84f7c28f4b722aea0305ac25221e3ec9beb32246ad2e"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/e2e-booking-eligibility-final/run.log",
+      "bytes": 9141,
+      "sha256": "7357d1dd629afe5389133c49bafc5ad13023564179eaf1fa6a93ae4c0ad48537"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/e2e-change-happy/exit.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/e2e-change-happy/results.json",
+      "bytes": 7989,
+      "sha256": "40d1a0561651315233a3d93933a3e7d1a4cec9c0a755b53cf7d9dd26875fe2a4"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/e2e-change-happy/run.log",
+      "bytes": 588,
+      "sha256": "f7a52c9d30bb8025f9c6768b328f95e3b90e0a336097e7cc0c02aac7b06953ae"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/e2e-eligibility-reviewed/exit.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/e2e-eligibility-reviewed/results.json",
+      "bytes": 9605,
+      "sha256": "c0ebb0d1cc03c1fe2681e5e55f0035d968af5f2412f7b0061c6da9a1bb1a26cd"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/e2e-eligibility-reviewed/run.log",
+      "bytes": 956,
+      "sha256": "4264d84cf30a943dec08e404e892dbeafa885f22fe652e749c207ae00e421453"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/e2e-login-layout-final/exit.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/e2e-login-layout-final/results.json",
+      "bytes": 37067,
+      "sha256": "e9137688da2831852a59b7f075891d46068dde1924fb20597c3bdadb09e336d5"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/e2e-login-layout-final/run.log",
+      "bytes": 3913,
+      "sha256": "cb5bb5751e28f14d85f86a6497d63d19733ad38806e1916d18876e0a5bf78855"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/evaluate.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/evaluate.log",
+      "bytes": 186,
+      "sha256": "f7f194f232b6045b4f2502f35f8ae714b194b513fd9a066a627716c78bf5ab8c"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/final-source-hashes.json",
+      "bytes": 2141,
+      "sha256": "c1ad33c5ee47064519102868cb9ebe23187cc6e7f1fb4ad54acee82f5d54f39a"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/frontend-compat/qa-typecheck-and-list.log",
+      "bytes": 5716,
+      "sha256": "7d41d336d165a1737e75ba73f7999a8c70c0cd4e73312f6f754bbe1f64184966"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/frontend-compat/summary.md",
+      "bytes": 5575,
+      "sha256": "ebf4773701f1819b72d449c9d7e2da6b951caf6461aaa63b49f92db39384b0c3"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/frontend-compat/web-build.log",
+      "bytes": 5861,
+      "sha256": "fdec8fff7ac6625bde23b2ec4b853f83229a1b6519ae3b993fd9974314eadd63"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/frontend-compat/web-checks.log",
+      "bytes": 1998,
+      "sha256": "920f045c794cae0e7e3b4048fe335a251b2664def4f06307514cda90ca7e29cf"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/frontend-compat/web-npm-ci.log",
+      "bytes": 933,
+      "sha256": "aed01df2a25c865d626936126099167e3869f664f87cc921d5af9f4eb1271f04"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/frontend-compat/web-typecheck.log",
+      "bytes": 170,
+      "sha256": "947d207d0b8c337bb74a1bc24d89b9bd7aaaba4a2e2c478b1562f0bcdb64d321"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/frontend-compat/web-unit.log",
+      "bytes": 2284,
+      "sha256": "8c697ad59ff6b6a278369cb35b4e4ec04f7e0cc2475cb6bc8ffcc942f91e8dbd"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java-version.txt",
+      "bytes": 195,
+      "sha256": "477d64a6b08c9a9dd143deae108edf7929a93b40434d87285d41addc8fba509f"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/default-verify.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/default-verify.log",
+      "bytes": 239216,
+      "sha256": "2dc0076ac385b874bd1f3ce99ab404cf267ea83c27ae7f61d060f224897d1c9e"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/TEST-com.campus.events.acceptance.BookingConcurrencyIT.xml",
+      "bytes": 30008,
+      "sha256": "9b987f1579c8f786c81bd536fb3c036b9580ff4dc11e9fbfed01822521b24e90"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/TEST-com.campus.events.acceptance.CancellationRaceIT.xml",
+      "bytes": 28614,
+      "sha256": "53ae2d244498d468348d52ef416052a8e23e668739fdeb53df0cb079b1a4f6ee"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/TEST-com.campus.events.acceptance.ChangeRollbackIT.xml",
+      "bytes": 49141,
+      "sha256": "d14a84c01b0c9c2b5bf66d8a3911f19e9f0faed61f1271b5b3961479f027788a"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/TEST-com.campus.events.acceptance.IdentityEligibilityIT.xml",
+      "bytes": 34820,
+      "sha256": "30f50626e8d189e2d6a2390351f7bc5461eed2b11f8ae96a9b502ddcd3200579"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/TEST-com.campus.events.acceptance.NotificationConsistencyIT.xml",
+      "bytes": 28181,
+      "sha256": "b2602411b60f6b1916181b6d33e19c0b316e5fae3fb36ebf0e53931b74ce8f34"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/TEST-com.campus.events.acceptance.PermissionsIT.xml",
+      "bytes": 34749,
+      "sha256": "6f44a03155b7fce9cd2638175e204e3bc53c11b4cecf816305e53272dbfbf884"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/TEST-com.campus.events.acceptance.RegistrationCapacityIT.xml",
+      "bytes": 28922,
+      "sha256": "a897b180858fe9836a082a77db762130c1ac20abf02e56cfca9afc8ca6b68871"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/TEST-com.campus.events.acceptance.SchedulingBenchmarkIT.xml",
+      "bytes": 27002,
+      "sha256": "9e1cde444c6bbc26866908f5996bad88bd2ec65f2246f6af6a6294c6098e49bb"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/TEST-com.campus.events.acceptance.SeederRollbackIT.xml",
+      "bytes": 24110,
+      "sha256": "e6a169258d5731a84b56393f7111238a214f45018992711bff0b7133c1c8e7c9"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/TEST-com.campus.events.activity.ActivityRegistrationIT.xml",
+      "bytes": 138568,
+      "sha256": "aacbc3e8013bb2018de49c85b44bc8aede19a87a2f8ea575d063ce26b039c70c"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/TEST-com.campus.events.dev.DemoDataSeederIT.xml",
+      "bytes": 25398,
+      "sha256": "fce921a56119b0415bcee5f50a7ed4cc921ae7d0c69782956994bb5985635060"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/TEST-com.campus.events.foundation.FoundationIT.xml",
+      "bytes": 28894,
+      "sha256": "48a7f8821b7293a18b83d53995eb3a6fb746afc25e700c593726b5c6fb2542ef"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/TEST-com.campus.events.foundation.PublishedModulesIT.xml",
+      "bytes": 26836,
+      "sha256": "ab0e2e438ce7bbc9f970813bc52d432a1bd39e00dafab62d368166397669111c"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/TEST-com.campus.events.foundation.StandardMavenSchemaIT.xml",
+      "bytes": 26396,
+      "sha256": "b0a1dccc9b0ef5940c526950dfad9583fc4b27e34787d36ebd5420c2cebc497a"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/TEST-com.campus.events.notification.OutboxClaimIT.xml",
+      "bytes": 24500,
+      "sha256": "84a93d4512a8526801eae642ec280360984f03e54d159ce3208fe1568c78eef2"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/TEST-com.campus.events.resource.ResourceSchedulingIT.xml",
+      "bytes": 31539,
+      "sha256": "1da85ce167f8ae7a9e0619632bb2f58e49b926df70649843c47d158870b338eb"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/TEST-com.campus.events.resource.SchemaIT.xml",
+      "bytes": 24723,
+      "sha256": "6cc18f9e88e76e105a8acf3e55ad75612a300a3a848dbe8eae8ce8fe192b670a"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/TEST-com.campus.events.scheduling.DsStrategyBenchmarkIT.xml",
+      "bytes": 24276,
+      "sha256": "5a49680cc886686a098d231ac87294f428d5708116dd67fa70150aab3171083c"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/TEST-com.campus.events.support.DbTestSupportIT.xml",
+      "bytes": 24096,
+      "sha256": "5323e87029edf1552edfab0681184085c05dc34bd1721e3340fcd579616690dd"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/com.campus.events.acceptance.BookingConcurrencyIT.txt",
+      "bytes": 1568,
+      "sha256": "3d1552af1de834429c7bb8023fb098c7699a2c1fb336bbb30dc05857d14e69f7"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/com.campus.events.acceptance.CancellationRaceIT.txt",
+      "bytes": 344,
+      "sha256": "d9c838afcb94db2e69e3489e21a4a7df22145a0a1fb197245f8e3585c2f9c700"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/com.campus.events.acceptance.ChangeRollbackIT.txt",
+      "bytes": 1543,
+      "sha256": "0257b2c8e04806cf4e68a0631d5997e926a18f388343434c6e3fce84b9be5eed"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/com.campus.events.acceptance.IdentityEligibilityIT.txt",
+      "bytes": 4793,
+      "sha256": "70c5b0a717313e5f91b1f5b88d97fb907756b92f6eef7c1d3ef384d395fb1746"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/com.campus.events.acceptance.NotificationConsistencyIT.txt",
+      "bytes": 358,
+      "sha256": "811ee8cef0cfad7fbcd677ffbbbb81311ff6ecb4dda6f5c37c595c2b088ebbd0"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/com.campus.events.acceptance.PermissionsIT.txt",
+      "bytes": 3729,
+      "sha256": "ca17fafe47291ffd7105b6a311ddb9bfa19ba11ab03d09221886a0515b123880"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/com.campus.events.acceptance.RegistrationCapacityIT.txt",
+      "bytes": 352,
+      "sha256": "cd1279f3b6e6a3e93eeaef96e3981a6906411e6d6ee7ba5a60a0e6c0014de812"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/com.campus.events.acceptance.SchedulingBenchmarkIT.txt",
+      "bytes": 350,
+      "sha256": "8c2a54ff246b9f168b482b3728c40442e9dc6e4f3678a44f46e4fbfefc987fad"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/com.campus.events.acceptance.SeederRollbackIT.txt",
+      "bytes": 340,
+      "sha256": "f7976ce1fb3b37e9768b6a2c6c20484c0947ba5b21d30acf9d30b49af8dc193b"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/com.campus.events.activity.ActivityRegistrationIT.txt",
+      "bytes": 12459,
+      "sha256": "69af2d8733297262eeb1136935748a45b0f1d4d2011d1629e6304cab30fe5d50"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/com.campus.events.dev.DemoDataSeederIT.txt",
+      "bytes": 326,
+      "sha256": "802bb42ef056af16d3cc00d7ff9aaf8ed87e27261aa86334c70f47e04aef9acb"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/com.campus.events.foundation.FoundationIT.txt",
+      "bytes": 333,
+      "sha256": "477331b475fc1a223dcc903f4b41f41f3803db263b5cedcead9284434028d99b"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/com.campus.events.foundation.PublishedModulesIT.txt",
+      "bytes": 344,
+      "sha256": "2a1980d2d5478db777ffa88c61306f902cc2699faaeda8e08686dc9f15ee29e9"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/com.campus.events.foundation.StandardMavenSchemaIT.txt",
+      "bytes": 350,
+      "sha256": "fd104e3ffa67912f55b604d2ed1db20695bf40c8fc2bd823305a0aad5f98047a"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/com.campus.events.notification.OutboxClaimIT.txt",
+      "bytes": 338,
+      "sha256": "75c08d4212580aa77a9a4ce785e71df60158cb20aa6c7c8610acf299c641db67"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/com.campus.events.resource.ResourceSchedulingIT.txt",
+      "bytes": 345,
+      "sha256": "59d8f20387ca8ccb6155e9df50665dccc28803fe95d18aa5da0b331e1d944545"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/com.campus.events.resource.SchemaIT.txt",
+      "bytes": 320,
+      "sha256": "f390c13d0081db73d9fe7378a864645e6f336c412fb05e688a2b22b8eda83f31"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/com.campus.events.scheduling.DsStrategyBenchmarkIT.txt",
+      "bytes": 350,
+      "sha256": "79b09b719faff9112ecf8132c280d18937be7645290f6fc270d268f0fd007781"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/com.campus.events.support.DbTestSupportIT.txt",
+      "bytes": 332,
+      "sha256": "25989462c0b44e17c46324fc0f8903e9dae4a432ad8a512a1e2b5ff494a3b438"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/failsafe-reports/failsafe-summary.xml",
+      "bytes": 493,
+      "sha256": "406c077a8d052a49680dc45a6682c1a628e8097f82c9c607b4b82653e9eacaec"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/result-summary.json",
+      "bytes": 43780,
+      "sha256": "48effd0108a2c59dd33d612a42e6e9b70db23cc9834685f6779c88ca619c6215"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/source-commit.txt",
+      "bytes": 41,
+      "sha256": "57fa0f1cb205e52f9c51f179ae07480a07d991ccb61d92c812a5932ce6c70d88"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/TEST-com.campus.events.activity.ActivityServiceTest.xml",
+      "bytes": 23681,
+      "sha256": "97103d75b1530b265c376809d9379dfe265c0d5ada993d9596eb1c67c090311d"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/TEST-com.campus.events.activity.ActivityStateMachineTest.xml",
+      "bytes": 22054,
+      "sha256": "2df7aff18c5d102224f9789d4e2b42722864eb0e28f69cb47b1608c2ba53e59f"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/TEST-com.campus.events.auth.AuthorizationPolicyTest.xml",
+      "bytes": 21946,
+      "sha256": "e12b7148688f909d468e6b7d4b686d3b8a2727fb2775c12d0622544e0450ac73"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/TEST-com.campus.events.auth.PasswordPolicyTest.xml",
+      "bytes": 21629,
+      "sha256": "3c86bd96967cbf9275183fbcd1bfbd0a0326bfc52e90580f45306e088e53ee7a"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/TEST-com.campus.events.change.ChangeServiceTest.xml",
+      "bytes": 21110,
+      "sha256": "0ea40b1f3dc6c0b7be3fefcf7eb594c69a9bd4f089080df38dfc12ca09563a35"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/TEST-com.campus.events.contract.ContractValidationTest.xml",
+      "bytes": 21784,
+      "sha256": "8a6033da5a86e29eabfccfbf90d3bd42854c97c073215446f0ba9cc3ac302197"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/TEST-com.campus.events.foundation.CanonicalJsonTest.xml",
+      "bytes": 21736,
+      "sha256": "ab49aec7ad26f6c0696b1bb123c7a94493d78409ce62ae8b58609010f0f7e13d"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/TEST-com.campus.events.foundation.ResponsesTest.xml",
+      "bytes": 21226,
+      "sha256": "23a01005db4f2f6a1badbf2b5e107bc1eb5cc49caec0ea891229a153e04e6e77"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/TEST-com.campus.events.scheduling.CandidateRankingTest.xml",
+      "bytes": 21415,
+      "sha256": "d67099cbcb6ab97c63c04b5105f70b2c0769c961e0b5e1899293287bb7800ba9"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/TEST-com.campus.events.scheduling.CapacitySweepTest.xml",
+      "bytes": 21776,
+      "sha256": "9df0b3081f1520dd87b28e8e8c848a6c4d2b6d1d26edc2bfc75cec42c71873d2"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/TEST-com.campus.events.scheduling.ScheduleQueryServiceTest.xml",
+      "bytes": 22408,
+      "sha256": "e7747641b19b4728b260c733255a31bfc78cab44faed459beae760a803c8af90"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/TEST-com.campus.events.scheduling.StrategyEvaluatorTest.xml",
+      "bytes": 22040,
+      "sha256": "7440bbf3bc5ca7c2f4fc4816c9ff10c1a1301af7aa259598201affcec6d074af"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/TEST-com.campus.events.scheduling.TimeIntervalTest.xml",
+      "bytes": 21439,
+      "sha256": "d56b8e1b15ecbab910ebfbadc7fb49e84b696425ece4534d3d46860f172ff5c2"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/com.campus.events.activity.ActivityServiceTest.txt",
+      "bytes": 343,
+      "sha256": "927d67f169f48e2d3c6ef9be655fa13bbfb470e80ad348e443770d2de7db732f"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/com.campus.events.activity.ActivityStateMachineTest.txt",
+      "bytes": 352,
+      "sha256": "f10c08d5f2bcb4126e684ef69ffe4a415d62309d5c21a18f86155bdf4b723c6a"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/com.campus.events.auth.AuthorizationPolicyTest.txt",
+      "bytes": 342,
+      "sha256": "5ff0a6c4903da445cc9a9b157a9be17a2d4b96ba86096c2cf3e4b076d0409bfe"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/com.campus.events.auth.PasswordPolicyTest.txt",
+      "bytes": 332,
+      "sha256": "2f9d142aad60ff69640b7fbd94cba989f2d935a5ed4e62b7c6bc9b5a10d001af"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/com.campus.events.change.ChangeServiceTest.txt",
+      "bytes": 334,
+      "sha256": "2e8eca099a5ce19eafeb1e4cff97681098b029c7ee3a717e25a3e88c68db00ac"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/com.campus.events.contract.ContractValidationTest.txt",
+      "bytes": 348,
+      "sha256": "83a2771b67dc2509b9ee89a813315ff0d423f0aecab675375cffe8c7135c1a7c"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/com.campus.events.foundation.CanonicalJsonTest.txt",
+      "bytes": 342,
+      "sha256": "439c0bee8483f0e7d8e8aaf313c7ba4bea2dd490fb108df00e2786cf0283b324"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/com.campus.events.foundation.ResponsesTest.txt",
+      "bytes": 334,
+      "sha256": "aeba7313b50915f38c10bbf2478636b73b7f997f69ee9dff44a042827073c858"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/com.campus.events.scheduling.CandidateRankingTest.txt",
+      "bytes": 348,
+      "sha256": "73d0c09ae914639a449c3e00bbb6425bfa4fad241224fc0fb02e1c91e47a7496"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/com.campus.events.scheduling.CapacitySweepTest.txt",
+      "bytes": 342,
+      "sha256": "0e5b21f18e035ea7b527d06b92eb2fd5f58a3e84a681c33121bb8741c3111fe8"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/com.campus.events.scheduling.ScheduleQueryServiceTest.txt",
+      "bytes": 356,
+      "sha256": "7ebf379c86cf6048b51f6e31fa115562d3ce652f9cae6d166438fcf69d7eef1c"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/com.campus.events.scheduling.StrategyEvaluatorTest.txt",
+      "bytes": 350,
+      "sha256": "6ee585f85a7559dbea529418efb29cab23e496ee4afc79fdf1ad41ac113e625a"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/surefire-reports/com.campus.events.scheduling.TimeIntervalTest.txt",
+      "bytes": 340,
+      "sha256": "3933056da5e25266aeb29a5f14795a56daec51b89273daf119d064bd15c8737c"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/java21-reviewed/test-patch.diff",
+      "bytes": 7946,
+      "sha256": "396c09aebfad1498f600cb217f239a880415a59eafc9a5321266e33d8bc507c8"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/jdk-source.json",
+      "bytes": 226,
+      "sha256": "2ede7cf59cd045b756fa89fcfbda5d01492f9548faacc8de6e748f062ae33662"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/qa-typecheck-current.log",
+      "bytes": 87,
+      "sha256": "6bc368f45b395f1f4b37337e9d8c5dbfb9b81e6333a00c6b7d93148a9d40b9a6"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/qa-typecheck-final.log",
+      "bytes": 87,
+      "sha256": "6bc368f45b395f1f4b37337e9d8c5dbfb9b81e6333a00c6b7d93148a9d40b9a6"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/restart-after.json",
+      "bytes": 1078,
+      "sha256": "0ace2572e8674c196a0219f0bf306f811c2d47fe46d9b895020ff0db127f437d"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/restart-before.json",
+      "bytes": 1078,
+      "sha256": "0ace2572e8674c196a0219f0bf306f811c2d47fe46d9b895020ff0db127f437d"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/restart-result.json",
+      "bytes": 284,
+      "sha256": "b616e8ecc0e9f19095258e70d07f7b23284530a67697c219ea862be9ccaa82a4"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/results.csv",
+      "bytes": 9427,
+      "sha256": "8c954ad2572b5eeb771dfaa962bf43d65eefd7664e968e1acbc543e7ad691f76"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/rollback-targeted/TEST-com.campus.events.acceptance.ChangeRollbackIT.xml",
+      "bytes": 47432,
+      "sha256": "05554e2d7d88c370f9efbc3919f4da3627c4cf9459f2df1ba22cbe312a2511a1"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/rollback-targeted/exit.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/rollback-targeted/verify.log",
+      "bytes": 32381,
+      "sha256": "b83903b91dc237d05f911a7b0cfa3f847cd77e58b1fefb13a8c68f2af6769589"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/scheduling-evaluation.json",
+      "bytes": 43578,
+      "sha256": "4c7872622ed467b6ca1c0284c20e8f1dcc6c999fa0949dd93780f28bb799f67b"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/seeder-strengthened/TEST-com.campus.events.acceptance.SeederRollbackIT.xml",
+      "bytes": 23118,
+      "sha256": "7079fdce2e07cce2d28cc68abe0352aae2da87a0faf3fd3639deeaf9bedf870b"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/seeder-strengthened/TEST-com.campus.events.support.DbTestSupportIT.xml",
+      "bytes": 23103,
+      "sha256": "957422ad6a6acfd86daca46623c57cb49797a6c7a0a245a2e86fd34644ec5f35"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/seeder-strengthened/exit.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/seeder-strengthened/verify.log",
+      "bytes": 9476,
+      "sha256": "f0b03ce6f737034d224483637d71dce853c9b256a0605fd5c6d4a298cca30ac2"
+    },
+    {
+      "path": "artifacts/test-results/qa-2026-11-01/pr16-ready/summary.md",
+      "bytes": 4102,
+      "sha256": "e13abacc72ba5dbd0049eb2d822702af2baee5c34c316fbc279db483046eec91"
+    },
+    {
+      "path": "docs/testing/coverage-matrix.md",
+      "bytes": 13961,
+      "sha256": "2bc5005120933731172ee45a751087df010e7f2da264ac4fadbb9584f3f3f151"
+    },
+    {
+      "path": "docs/testing/defect-register.md",
+      "bytes": 13404,
+      "sha256": "37c613719e93fb821e103d30c7713cabaacf4c36bae9c7eded874c7d0b14bb4e"
+    },
+    {
+      "path": "docs/testing/handoff.md",
+      "bytes": 32276,
+      "sha256": "71e7f3e92bda28ba2608377eefd047770c6ee7a1d6fa44ef78d56bc91c03a342"
+    },
+    {
+      "path": "docs/testing/pr16-agent-review-2026-11-01.md",
+      "bytes": 2293,
+      "sha256": "e81538106c885600a4ea659ee5cc3fe944af5496b9771b8bd04d3b325a1e118a"
+    },
+    {
+      "path": "docs/testing/pr16-integration-2026-11-01.md",
+      "bytes": 10008,
+      "sha256": "d44a8dd372a0189076af71a40217ddb4c836aea1b5623dcdff40bdf0bedb6962"
+    },
+    {
+      "path": "docs/testing/test-data-plan.md",
+      "bytes": 12935,
+      "sha256": "98f80bdbef078097856d2dddf5b8e2748bf67007e418a220619e562d21883e94"
+    },
+    {
+      "path": "docs/testing/test-design.md",
+      "bytes": 32529,
+      "sha256": "95b7ce16a5709a789fa08cef38adde3722037ccdbb5d98b4a123459dcafb03ad"
+    },
+    {
+      "path": "docs/testing/test-plan.md",
+      "bytes": 10450,
+      "sha256": "d7592bb2d5a6aa7e3b67073bad94108fd278b2578c8c2c2f9fa4fd94b72332a3"
+    },
+    {
+      "path": "docs/testing/test-report.md",
+      "bytes": 10985,
+      "sha256": "a5718d370a7074a69b5819f462991f28594296f227ae1d4e1685137800dcc064"
+    },
+    {
+      "path": "qa/playwright.config.ts",
+      "bytes": 1969,
+      "sha256": "d81eefa0a11326b74c1d7ae8c2a1f8f2fe6c255e6b7289c9d811fb5380d839c2"
+    },
+    {
+      "path": "qa/scripts/evaluate-scheduling.ts",
+      "bytes": 11963,
+      "sha256": "c4d2b7708aa472854f6548e9545ab419350df32f818af30f4f5b0d3556bb1109"
+    },
+    {
+      "path": "qa/tests/booking.spec.ts",
+      "bytes": 9838,
+      "sha256": "1e4b2a91e94318b597d8ea6586d2bdbed5267c0fa52d4e32ded4e4f0ca09f0c4"
+    },
+    {
+      "path": "qa/tests/change-conflict.spec.ts",
+      "bytes": 16134,
+      "sha256": "12b10a3b46d6dd2947de7f0b28a5351268f384a2090e0edfa7127a5ca95b3252"
+    },
+    {
+      "path": "qa/tests/change-happy-path.spec.ts",
+      "bytes": 6523,
+      "sha256": "20fd93b249e65b731d8f4ad2cc76aeb35e2255da4338c3ed516c9ea18525aaea"
+    },
+    {
+      "path": "qa/tests/eligibility.spec.ts",
+      "bytes": 8807,
+      "sha256": "f9329ace0408c86c5642a34c72ce96222a214ddb7e73fd2dbffb4a9916fe0c61"
+    },
+    {
+      "path": "qa/tests/helpers.ts",
+      "bytes": 30839,
+      "sha256": "2102d35d9779f7ee22a56b3f4b4a1b19b135f8a95af0d94fbd8c5fd829ab3560"
+    },
+    {
+      "path": "qa/tests/login.spec.ts",
+      "bytes": 6539,
+      "sha256": "541203a972703a0d8c224fbcdee031feccbe5d0c56240d37e16fccaee094058a"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/acceptance/CancellationRaceIT.java",
+      "bytes": 16007,
+      "sha256": "aac2e6e25ff0120c3090bae2f179f91ee3ade9e8387b745b1efce4953b8e73be"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/acceptance/ChangeRollbackIT.java",
+      "bytes": 28501,
+      "sha256": "659b903aaf1fb6aef2dd8e6cec1e88ab0cee339de164b14024b7e315bc8c1a92"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/acceptance/NotificationConsistencyIT.java",
+      "bytes": 14123,
+      "sha256": "0064a739406cd459d1c5b048b8470eadfd6cc2b6e3797089b1421a63c9631bb1"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/acceptance/PermissionsIT.java",
+      "bytes": 40188,
+      "sha256": "4c8755f3e5602a8d764e78d8edd9cfa55ec6f0a643b5631b41635462ca247b93"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/acceptance/RegistrationCapacityIT.java",
+      "bytes": 14395,
+      "sha256": "9d3da07d084896fd7a46e2bdcf0d725d0bcdfb7b2f4df99bf5a6773ae0c88852"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/acceptance/SchedulingBenchmarkIT.java",
+      "bytes": 24509,
+      "sha256": "3792f9daa636c324b2df1e6f9f0414c83130d6ed4018118b750370841fb5f7e2"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/acceptance/SeederRollbackIT.java",
+      "bytes": 4748,
+      "sha256": "171602125da5b13aff5108dc1f3e22066910f45ea4bfaaba710b4cee896067a3"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/support/DbTestSupport.java",
+      "bytes": 24342,
+      "sha256": "ba5e90d8e361238c31ad08d81b4114f57bd1342e9d6baa05d541f69c0d1fd6b4"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/support/DbTestSupportIT.java",
+      "bytes": 1259,
+      "sha256": "7205a7a52cab7d441893d2721487b15ef03b1a797590bef54ddeb160127344dd"
+    },
+    {
+      "path": "test-data/scenarios/scheduling-reference.json",
+      "bytes": 2390,
+      "sha256": "c7e9785b30c22e416fd5bdf3a0cde2b1803cd08267583b36cccf446b292df540"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+
+Running 19 tests using 1 worker
+
+(node:52316) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 [desktop] › ..\qa\tests\change-happy-path.spec.ts:38:3 › D-AT-10 / D-AT-23 改期成功主线与持久化 › TC-10-1 / TC-23-1 预览选首选方案→staff/approver/resource 确认→version2→student 收到通知（含 reload 持久化） (4.2s)
+  ok  2 [desktop] › ..\qa\tests\eligibility.spec.ts:66:3 › N-AT-02 资格限制（仅教师资源） › N-AT-02 applicant_b（STUDENT）UI 明示仅教师资源不可申请并禁选（HTTP提交另验） (1.0s)
+  ok  3 [desktop] › ..\qa\tests\eligibility.spec.ts:99:3 › N-AT-02 资格限制（仅教师资源） › N-AT-02 applicant_a（TEACHER）同目标可走到下一步（对照，按 identity 判断） (1.9s)
+  ok  4 [desktop] › ..\qa\tests\eligibility.spec.ts:134:3 › N-AT-02 资格限制（仅教师资源） › N-AT-02 applicant_b 直接 HTTP 保存草稿后提交 → 403 RESOURCE_INELIGIBLE 且草稿不推进 (223ms)
+  ok  5 [desktop] › ..\qa\tests\login.spec.ts:29:3 › D-AT-01 登录、令牌与响应脱敏 › TC-01-1 applicant_a 正常登录进入主页，登录响应无密码字段、页面无散列信息 (507ms)
+  ok  6 [desktop] › ..\qa\tests\login.spec.ts:64:3 › D-AT-01 登录、令牌与响应脱敏 › TC-01-2 错误密码返回 401 并显示错误提示，停留登录页，随后正确密码仍可登录 (750ms)
+  ok  7 [desktop] › ..\qa\tests\login.spec.ts:111:3 › D-AT-01 登录、令牌与响应脱敏 › D-AT-01 登录后页面与浏览器存储不出现密码散列或明文口令 (545ms)
+  ok  8 [desktop] › ..\qa\tests\ui-layout.spec.ts:38:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 登录页：无横向溢出、无错误横幅、文字可读并留存截图 (280ms)
+  ok  9 [desktop] › ..\qa\tests\ui-layout.spec.ts:54:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动列表：无横向溢出、无错误横幅、文字可读并留存截图 (680ms)
+  ok 10 [desktop] › ..\qa\tests\ui-layout.spec.ts:71:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动详情：无横向溢出、无错误横幅、文字可读并留存截图 (665ms)
+  ok 11 [desktop] › ..\qa\tests\ui-layout.spec.ts:88:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 改期工作台：无横向溢出、无错误横幅、文字可读并留存截图 (713ms)
+(node:33896) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 12 [desktop-1920] › ..\qa\tests\ui-layout.spec.ts:38:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 登录页：无横向溢出、无错误横幅、文字可读并留存截图 (508ms)
+  ok 13 [desktop-1920] › ..\qa\tests\ui-layout.spec.ts:54:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动列表：无横向溢出、无错误横幅、文字可读并留存截图 (719ms)
+  ok 14 [desktop-1920] › ..\qa\tests\ui-layout.spec.ts:71:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动详情：无横向溢出、无错误横幅、文字可读并留存截图 (742ms)
+  ok 15 [desktop-1920] › ..\qa\tests\ui-layout.spec.ts:88:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 改期工作台：无横向溢出、无错误横幅、文字可读并留存截图 (677ms)
+(node:52180) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 16 [mobile-390] › ..\qa\tests\ui-layout.spec.ts:38:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 登录页：无横向溢出、无错误横幅、文字可读并留存截图 (501ms)
+  ok 17 [mobile-390] › ..\qa\tests\ui-layout.spec.ts:54:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动列表：无横向溢出、无错误横幅、文字可读并留存截图 (704ms)
+  ok 18 [mobile-390] › ..\qa\tests\ui-layout.spec.ts:71:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动详情：无横向溢出、无错误横幅、文字可读并留存截图 (785ms)
+  ok 19 [mobile-390] › ..\qa\tests\ui-layout.spec.ts:88:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 改期工作台：无横向溢出、无错误横幅、文字可读并留存截图 (743ms)
+
+  19 passed (19.4s)
