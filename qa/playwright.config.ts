@@ -28,7 +28,8 @@ export default defineConfig({
   use: {
     baseURL,
     screenshot: 'only-on-failure',
-    trace: 'retain-on-failure',
+    // 真实登录链路的trace会收集认证请求体/Bearer，不将凭据写入证据。
+    trace: 'off',
     actionTimeout: 10_000,
     locale: 'zh-CN',
     timezoneId: 'Asia/Shanghai',

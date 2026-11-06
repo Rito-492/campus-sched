@@ -1,0 +1,24 @@
+{
+  "scope": "正式基线，仅QA断言修正，未改AN生产",
+  "verifyExit": 1,
+  "suites": [
+    {
+      "class": "com.campus.events.acceptance.IdentityEligibilityIT",
+      "tests": 1,
+      "failures": [
+        "审批失败：{\"error\":{\"details\":{},\"message\":\"事件字段不完整\",\"code\":\"VALIDATION_ERROR\"},\"requestId\":\"0d5bbf86-ebc4-4036-871f-1245074d1189\"} ==> expected: <200> but was: <400>"
+      ],
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "class": "com.campus.events.acceptance.PermissionsIT",
+      "tests": 1,
+      "failures": [
+        "批准人审批失败：{\"error\":{\"details\":{},\"message\":\"事件字段不完整\",\"code\":\"VALIDATION_ERROR\"},\"requestId\":\"d0128133-b92f-4735-8649-2976d2447334\"} ==> expected: <200> but was: <400>"
+      ],
+      "errors": 0,
+      "skipped": 0
+    }
+  ]
+}

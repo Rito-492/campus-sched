@@ -1,0 +1,1 @@
+DATA_REFERENCE_CHECK_OK: demo org=2 users=9 resources=12 activities=2 registrations=1; concurrency users=20 activities=1; scheduling scenarios=8 strategies=2 candidateLimit=300

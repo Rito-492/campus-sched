@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "checks": [
+    "id",
+    "status",
+    "versionNo",
+    "effectiveVersionNo",
+    "lockVersion",
+    "input",
+    "registrationCount",
+    "resourceRisk",
+    "activeChangeId"
+  ],
+  "databaseRestarted": false,
+  "backendRestarted": true,
+  "reseeded": false
+}

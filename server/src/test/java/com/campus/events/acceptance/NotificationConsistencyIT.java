@@ -1,5 +1,6 @@
 package com.campus.events.acceptance;
 
+import com.campus.events.notification.NotificationDeliveryProbe;
 import com.campus.events.support.DbTestSupport;
 import com.campus.events.support.TestClockConfiguration;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -125,7 +126,7 @@ class NotificationConsistencyIT {
         long pendingBefore = pendingConfirmationCount(changeId, STAFF_A);
 
         HttpResult read = call(HttpMethod.POST, "/api/v1/notifications/" + notificationId + "/read",
-                staff, null, null);
+                staff, UUID.randomUUID().toString(), null);
         assertEquals(200, read.status(), "读取本人通知应成功：" + read.body());
 
         Timestamp readAt = db.jdbc().queryForObject(
@@ -138,16 +139,7 @@ class NotificationConsistencyIT {
 
     // ---------------------------------------------------------------- 故障注入
 
-    /**
-     * 通知投递探针（仅测试使用，03 §2：失败注入只在测试上下文替换 bean/挂钩，不提供公网故障接口）。
-     *
-     * <p>装配依赖 PM/CM：生产通知消费者在投递某个 outbox 事件到某个收件人之前必须调用
-     * {@link #beforeDelivery(UUID, UUID)}；本测试以 {@code @Primary} 覆盖为首次抛异常的探针。
-     * 未完成该装配时本用例应报告阻塞，不得改为 Mock 后宣称通过。
-     */
-    public interface NotificationDeliveryProbe {
-        void beforeDelivery(UUID eventId, UUID recipientId);
-    }
+    // 使用CM生产NotificationDeliveryProbe类型，故障只注入测试bean；不另造同名接口。
 
     @TestConfiguration
     static class NotificationFaultConfiguration {

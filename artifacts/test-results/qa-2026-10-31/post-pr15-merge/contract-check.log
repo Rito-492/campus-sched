@@ -1,0 +1,4 @@
+npm notice run campus-sched-qa@0.1.0 test:contract
+npm notice run node scripts/check-contract.ts
+[check-contract] 核对 40 个接口、9 组枚举、15 个 DTO
+[check-contract] 全部通过 ✓

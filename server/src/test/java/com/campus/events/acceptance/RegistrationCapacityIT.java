@@ -26,7 +26,11 @@ import org.springframework.web.client.RestClient;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.UUID;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -139,8 +143,11 @@ class RegistrationCapacityIT {
         assertEquals(20, results.size());
         long ok = results.stream().filter(r -> r.status() == 200).count();
         long full = results.stream().filter(r -> r.status() == 409).count();
-        assertEquals(1, ok, "20 并发 JOIN 应恰 1 个 200");
-        assertEquals(19, full, "其余 19 个应为 409");
+        Map<String, Long> outcomeCounts = results.stream()
+                .map(r -> r.status() + ":" + (r.status() >= 400 ? r.body().path("error").path("code").asText() : "OK"))
+                .collect(Collectors.groupingBy(Function.identity(), TreeMap::new, Collectors.counting()));
+        assertEquals(1, ok, "20 并发 JOIN 应恰 1 个 200；实际HTTP状态/错误码分布=" + outcomeCounts);
+        assertEquals(19, full, "其余 19 个应为409 CAPACITY_FULL；实际HTTP状态/错误码分布=" + outcomeCounts);
         for (HttpResult r : results) {
             if (r.status() == 409) {
                 assertEquals("CAPACITY_FULL", r.body().path("error").path("code").asText(),

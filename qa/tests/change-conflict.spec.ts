@@ -101,13 +101,20 @@ async function preemptPreferredResources(): Promise<void> {
   }
 }
 
-/** 拒绝改期（05 §3：拒绝需填理由；弹窗字段 testid 待 UI 提供，见 handoff，用 dialog 语义定位）。 */
+/**
+ * 拒绝改期（05 §3：拒绝需填理由；docs/ui/real-integration-2026-10-31.md「QA接收路径」：
+ * change-reject → 弹窗 reject-reason（理由必填）→ reject-confirm；改期不同步骤互斥，
+ * change-reject 只对应当前可处理步骤）。
+ */
 async function rejectChangeViaUi(page: Page, reason: string): Promise<void> {
-  await page.getByRole('button', { name: /拒绝|驳回/ }).click();
+  await page.getByTestId('change-reject').click();
   const dialog = page.getByRole('dialog');
   await expect(dialog).toBeVisible();
-  await dialog.getByLabel(/理由|原因/).fill(reason);
-  await dialog.getByRole('button', { name: /确定|确认|提交/ }).click();
+  await expect(dialog, '拒绝弹窗应有标题「拒绝改期」').toContainText('拒绝改期');
+  // 理由必填：未填理由时确认按钮保持禁用（05 §3 / 契约 reason 必填）
+  await expect(page.getByTestId('reject-confirm'), '未填理由时不得允许确认拒绝').toBeDisabled();
+  await page.getByTestId('reject-reason').fill(reason);
+  await page.getByTestId('reject-confirm').click();
 }
 
 /** 原安排保留：活动仍是 version1，仍为原场地（3101）与原时间（10:00）。 */
@@ -174,7 +181,7 @@ test.describe('D-AT-11 拒绝改期（原安排保护）', () => {
         const staff = await openSession(browser, USERS.staffA);
         sessions.push(staff);
         await staff.page.goto(`/changes/${changeId}`);
-        await expectChangeStatus(staff.page, /AWAITING_CONFIRMATIONS|待确认/);
+        await expectChangeStatus(staff.page, /AWAITING_CONFIRMATIONS|等待工作人员确认/);
         await rejectChangeViaUi(staff.page, '时间冲突');
         await expectChangeStatus(staff.page, /REJECTED|已拒绝|驳回/);
 
@@ -214,7 +221,7 @@ test.describe('D-AT-11 拒绝改期（原安排保护）', () => {
         const approver = await openSession(browser, USERS.approverA);
         sessions.push(approver);
         await approver.page.goto(`/changes/${changeId}`);
-        await expectChangeStatus(approver.page, /PENDING_APPROVER|待批准人审批/);
+        await expectChangeStatus(approver.page, /PENDING_APPROVER|等待批准人复审/);
         await rejectChangeViaUi(approver.page, '不同意');
         await expectChangeStatus(approver.page, /REJECTED|已拒绝|驳回/);
 

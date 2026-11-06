@@ -1,0 +1,132 @@
+diff --git a/server/src/test/java/com/campus/events/acceptance/CancellationRaceIT.java b/server/src/test/java/com/campus/events/acceptance/CancellationRaceIT.java
+index e6c9861..a24a0b7 100644
+--- a/server/src/test/java/com/campus/events/acceptance/CancellationRaceIT.java
++++ b/server/src/test/java/com/campus/events/acceptance/CancellationRaceIT.java
+@@ -98,9 +98,14 @@ class CancellationRaceIT {
+         assertEquals(releasedAfterFirst, releasedReservationCount(ACTIVITY_A), "重放不得额外释放预约");
+         assertEquals(totalAfterFirst, totalReservationCount(ACTIVITY_A));
+ 
+-        // 第三次：不同 key，活动已 CANCELLED，应被拒绝且不得再次释放
+-        HttpResult other = cancel(ACTIVITY_A, currentLockVersion(ACTIVITY_A), UUID.randomUUID().toString(), applicant);
+-        assertEquals(409, other.status(), "已取消活动再次取消应 409：" + other.body());
++        // 第三次：03契约§6要求合法所有者重复取消返回当前结果，不得再次释放。
++        int cancelledLock = currentLockVersion(ACTIVITY_A);
++        long outboxAfterFirst = db.outboxCount();
++        HttpResult other = cancel(ACTIVITY_A, cancelledLock, UUID.randomUUID().toString(), applicant);
++        assertEquals(200, other.status(), "合法所有者重复取消应返回当前结果：" + other.body());
++        assertEquals("CANCELLED", other.body().path("data").path("status").asText());
++        assertEquals(cancelledLock, currentLockVersion(ACTIVITY_A), "重复取消不应再递增版本锁");
++        assertEquals(outboxAfterFirst, db.outboxCount(), "重复取消不应追加事件");
+         assertEquals(releasedAfterFirst, releasedReservationCount(ACTIVITY_A));
+         assertEquals(totalAfterFirst, totalReservationCount(ACTIVITY_A));
+         assertEquals("CANCELLED", db.activityStatus(ACTIVITY_A));
+@@ -109,7 +114,7 @@ class CancellationRaceIT {
+         ObjectNode confirmBody = MAPPER.createObjectNode();
+         confirmBody.put("expectedLockVersion", currentLockVersion(ACTIVITY_A));
+         HttpResult confirm = call(HttpMethod.POST, "/api/v1/activities/" + ACTIVITY_A + "/resource-confirm",
+-                applicant, UUID.randomUUID().toString(), confirmBody);
++                login("resource_admin"), UUID.randomUUID().toString(), confirmBody);
+         assertEquals(409, confirm.status(), "取消后资源确认应被拒：" + confirm.body());
+         assertEquals(0, db.activeReservationCount(ACTIVITY_A));
+ 
+diff --git a/server/src/test/java/com/campus/events/acceptance/ChangeRollbackIT.java b/server/src/test/java/com/campus/events/acceptance/ChangeRollbackIT.java
+index 0af56f1..b6ccb11 100644
+--- a/server/src/test/java/com/campus/events/acceptance/ChangeRollbackIT.java
++++ b/server/src/test/java/com/campus/events/acceptance/ChangeRollbackIT.java
+@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
+ import com.fasterxml.jackson.databind.node.ArrayNode;
+ import com.fasterxml.jackson.databind.node.NullNode;
+ import com.fasterxml.jackson.databind.node.ObjectNode;
++import org.junit.jupiter.api.AfterEach;
+ import org.junit.jupiter.api.DisplayName;
+ import org.junit.jupiter.api.MethodOrderer;
+ import org.junit.jupiter.api.Order;
+@@ -26,6 +27,7 @@ import org.springframework.http.HttpMethod;
+ import org.springframework.http.MediaType;
+ import org.springframework.http.ResponseEntity;
+ import org.springframework.test.annotation.DirtiesContext;
++import org.springframework.test.util.AopTestUtils;
+ import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
+ 
+ import java.util.List;
+@@ -87,6 +89,23 @@ class ChangeRollbackIT {
+     @MockitoSpyBean
+     private SchedulingPort schedulingPort;
+ 
++    /** 前例失败也经合法撤回释放待处理改期；不直改业务表，不掩盖原测试失败。 */
++    @AfterEach
++    void withdrawUnfinishedChange() {
++        List<String> pending = db.jdbc().queryForList(
++                "SELECT id::text FROM change_request WHERE activity_id = ? "
++                        + "AND status IN ('AWAITING_CONFIRMATIONS','PENDING_APPROVER','PENDING_RESOURCE')",
++                String.class, ACTIVITY_A);
++        if (pending.isEmpty()) return;
++        String owner = login("applicant_a");
++        for (String id : pending) {
++            ObjectNode body = MAPPER.createObjectNode().put("reason", "验收结束清理未完成申请");
++            HttpResult result = call(HttpMethod.POST, "/api/v1/changes/" + id + "/withdraw",
++                    owner, idem(), toJson(body));
++            assertEquals(200, result.status(), () -> "清理待处理改期失败：" + result.body());
++        }
++    }
++
+     // ------------------------------------------------------------------ D-AT-11
+ 
+     @Test
+@@ -276,15 +295,16 @@ class ChangeRollbackIT {
+         decision.put("decision", "APPROVE");
+         decision.put("comment", "");
+ 
++        SchedulingPort targetSpy = AopTestUtils.getUltimateTargetObject(schedulingPort);
+         doThrow(new RuntimeException("测试故障注入：replaceReservations 失败（D-AT-14）"))
+-                .when(schedulingPort).replaceReservations(any(UUID.class), anyInt(), any(Plan.class));
++                .when(targetSpy).replaceReservations(any(UUID.class), anyInt(), any(Plan.class));
+         try {
+             HttpResult failed = call(HttpMethod.POST, "/api/v1/changes/" + changeId + "/resource-decision",
+                     resource, key, toJson(decision));
+             assertEquals(500, failed.status(), () -> "注入故障后应返回 500：" + failed.body());
+             assertEquals("INTERNAL_ERROR", failed.errorCode());
+         } finally {
+-            reset(schedulingPort);
++            reset(targetSpy);
+         }
+ 
+         assertEquals(beforeEffectiveVersion, db.effectiveVersionNo(ACTIVITY_A), "活动版本指针必须回滚");
+diff --git a/server/src/test/java/com/campus/events/acceptance/NotificationConsistencyIT.java b/server/src/test/java/com/campus/events/acceptance/NotificationConsistencyIT.java
+index 412b800..f65b5a3 100644
+--- a/server/src/test/java/com/campus/events/acceptance/NotificationConsistencyIT.java
++++ b/server/src/test/java/com/campus/events/acceptance/NotificationConsistencyIT.java
+@@ -1,5 +1,6 @@
+ package com.campus.events.acceptance;
+ 
++import com.campus.events.notification.NotificationDeliveryProbe;
+ import com.campus.events.support.DbTestSupport;
+ import com.campus.events.support.TestClockConfiguration;
+ import com.fasterxml.jackson.databind.JsonNode;
+@@ -125,7 +126,7 @@ class NotificationConsistencyIT {
+         long pendingBefore = pendingConfirmationCount(changeId, STAFF_A);
+ 
+         HttpResult read = call(HttpMethod.POST, "/api/v1/notifications/" + notificationId + "/read",
+-                staff, null, null);
++                staff, UUID.randomUUID().toString(), null);
+         assertEquals(200, read.status(), "读取本人通知应成功：" + read.body());
+ 
+         Timestamp readAt = db.jdbc().queryForObject(
+@@ -138,16 +139,7 @@ class NotificationConsistencyIT {
+ 
+     // ---------------------------------------------------------------- 故障注入
+ 
+-    /**
+-     * 通知投递探针（仅测试使用，03 §2：失败注入只在测试上下文替换 bean/挂钩，不提供公网故障接口）。
+-     *
+-     * <p>装配依赖 PM/CM：生产通知消费者在投递某个 outbox 事件到某个收件人之前必须调用
+-     * {@link #beforeDelivery(UUID, UUID)}；本测试以 {@code @Primary} 覆盖为首次抛异常的探针。
+-     * 未完成该装配时本用例应报告阻塞，不得改为 Mock 后宣称通过。
+-     */
+-    public interface NotificationDeliveryProbe {
+-        void beforeDelivery(UUID eventId, UUID recipientId);
+-    }
++    // 使用CM生产NotificationDeliveryProbe类型，故障只注入测试bean；不另造同名接口。
+ 
+     @TestConfiguration
+     static class NotificationFaultConfiguration {

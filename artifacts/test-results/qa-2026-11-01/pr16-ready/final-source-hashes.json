@@ -1,0 +1,19 @@
+{
+  "qa/tests/change-happy-path.spec.ts": "20fd93b249e65b731d8f4ad2cc76aeb35e2255da4338c3ed516c9ea18525aaea",
+  "qa/tests/change-conflict.spec.ts": "12b10a3b46d6dd2947de7f0b28a5351268f384a2090e0edfa7127a5ca95b3252",
+  "qa/tests/helpers.ts": "2102d35d9779f7ee22a56b3f4b4a1b19b135f8a95af0d94fbd8c5fd829ab3560",
+  "qa/tests/ui-layout.spec.ts": "0f9adc9c9ff2e391ef8b492f7565aa9265c580bd8abd4d0d51462a15306541d1",
+  "qa/tests/login.spec.ts": "541203a972703a0d8c224fbcdee031feccbe5d0c56240d37e16fccaee094058a",
+  "qa/tests/eligibility.spec.ts": "f9329ace0408c86c5642a34c72ce96222a214ddb7e73fd2dbffb4a9916fe0c61",
+  "qa/tests/permissions.spec.ts": "bc3a67794d02fdfe94a575122b27fdd2e46f112186f8abf709e0fa046c14850d",
+  "qa/tests/booking.spec.ts": "1e4b2a91e94318b597d8ea6586d2bdbed5267c0fa52d4e32ded4e4f0ca09f0c4",
+  "server/src/test/java/com/campus/events/acceptance/NotificationConsistencyIT.java": "0064a739406cd459d1c5b048b8470eadfd6cc2b6e3797089b1421a63c9631bb1",
+  "server/src/test/java/com/campus/events/acceptance/RegistrationCapacityIT.java": "9d3da07d084896fd7a46e2bdcf0d725d0bcdfb7b2f4df99bf5a6773ae0c88852",
+  "server/src/test/java/com/campus/events/acceptance/ChangeRollbackIT.java": "659b903aaf1fb6aef2dd8e6cec1e88ab0cee339de164b14024b7e315bc8c1a92",
+  "server/src/test/java/com/campus/events/acceptance/SchedulingBenchmarkIT.java": "3792f9daa636c324b2df1e6f9f0414c83130d6ed4018118b750370841fb5f7e2",
+  "server/src/test/java/com/campus/events/acceptance/PermissionsIT.java": "4c8755f3e5602a8d764e78d8edd9cfa55ec6f0a643b5631b41635462ca247b93",
+  "server/src/test/java/com/campus/events/acceptance/BookingConcurrencyIT.java": "d6d7a5dd73da2c6af99372fbf5cf14dabc17ca99224035019437056ac7c2a73b",
+  "server/src/test/java/com/campus/events/acceptance/CancellationRaceIT.java": "aac2e6e25ff0120c3090bae2f179f91ee3ade9e8387b745b1efce4953b8e73be",
+  "server/src/test/java/com/campus/events/acceptance/SeederRollbackIT.java": "171602125da5b13aff5108dc1f3e22066910f45ea4bfaaba710b4cee896067a3",
+  "server/src/test/java/com/campus/events/acceptance/IdentityEligibilityIT.java": "cd397e3c328d69f38546ad0d680205a7816ce4fc96a86ccb92965c13c88784c2"
+}

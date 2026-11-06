@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "organizations": [
+    { "id": "00000000-0000-0000-0000-000000001001", "name": "软件学院" },
+    { "id": "00000000-0000-0000-0000-000000001002", "name": "其他学院" }
+  ],
+  "users": [
+    {
+      "id": "00000000-0000-0000-0000-000000002001",
+      "username": "applicant_a",
+      "displayName": "申请人A（调度评测）",
+      "organizationId": "00000000-0000-0000-0000-000000001001",
+      "identity": "TEACHER",
+      "roles": ["APPLICANT"],
+      "permissions": [],
+      "approvalScopes": [],
+      "managedResourceIds": []
+    },
+    {
+      "id": "00000000-0000-0000-0000-000000002004",
+      "username": "resource_admin",
+      "displayName": "资源管理员（调度评测）",
+      "organizationId": "00000000-0000-0000-0000-000000001001",
+      "identity": "TEACHER",
+      "roles": ["ADMIN"],
+      "permissions": ["RESOURCE_MANAGE", "RESOURCE_CONFIRM", "AUDIT_READ"],
+      "approvalScopes": [],
+      "managedResourceIds": [
+        "00000000-0000-0000-0000-000000003101",
+        "00000000-0000-0000-0000-000000003102",
+        "00000000-0000-0000-0000-000000003201",
+        "00000000-0000-0000-0000-000000003202"
+      ]
+    }
+  ],
+  "resources": [
+    { "id": "00000000-0000-0000-0000-000000003101", "kind": "VENUE", "name": "学术报告厅A", "category": "VENUE", "capacity": 80, "quantity": 1, "openFrom": "08:00", "openTo": "22:00", "allowTeacher": true, "allowStudent": true, "createdAt": "${DEMO_DATE}T08:00:00+08:00" },
+    { "id": "00000000-0000-0000-0000-000000003102", "kind": "VENUE", "name": "多功能厅B", "category": "VENUE", "capacity": 120, "quantity": 1, "openFrom": "08:00", "openTo": "22:00", "allowTeacher": true, "allowStudent": true, "createdAt": "${DEMO_DATE}T08:00:00+08:00" },
+    { "id": "00000000-0000-0000-0000-000000003201", "kind": "EQUIPMENT", "name": "投影设备组A", "category": "PROJECTOR", "capacity": null, "quantity": 2, "openFrom": "08:00", "openTo": "22:00", "allowTeacher": true, "allowStudent": true, "createdAt": "${DEMO_DATE}T08:00:00+08:00" },
+    { "id": "00000000-0000-0000-0000-000000003202", "kind": "EQUIPMENT", "name": "投影设备组B", "category": "PROJECTOR", "capacity": null, "quantity": 2, "openFrom": "08:00", "openTo": "22:00", "allowTeacher": true, "allowStudent": true, "createdAt": "${DEMO_DATE}T08:00:00+08:00" }
+  ],
+  "activities": [],
+  "registrations": []
+}

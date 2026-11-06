@@ -1,0 +1,5 @@
+date=2026-10-31 Asia/Shanghai
+commit=1fe36763f6c9c66faef034269d3d788561c363fb
+postgres=17/campus_test/127.0.0.1:55439
+credentials=random ephemeral/not logged
+temporary PostgreSQL removed after identity check

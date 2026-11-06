@@ -1,0 +1,17 @@
+-------------------------------------------------------------------------------
+Test set: com.campus.events.acceptance.BookingConcurrencyIT
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 1.360 s <<< FAILURE! -- in com.campus.events.acceptance.BookingConcurrencyIT
+com.campus.events.acceptance.BookingConcurrencyIT.tc0701_concurrentResourceConfirmExactlyOneWins -- Time elapsed: 0.456 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 批准人审批失败：{"error":{"message":"事件字段不完整","details":{},"code":"VALIDATION_ERROR"},"requestId":"221b1a06-186b-4b33-b46f-3a2b8dd69417"} ==> expected: <200> but was: <400>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.BookingConcurrencyIT.createApprovedUnreserved(BookingConcurrencyIT.java:146)
+	at com.campus.events.acceptance.BookingConcurrencyIT.tc0701_concurrentResourceConfirmExactlyOneWins(BookingConcurrencyIT.java:81)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

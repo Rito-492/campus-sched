@@ -1,0 +1,28 @@
+npm notice run campus-sched-qa@0.1.0 test:e2e
+npm notice run playwright test login.spec.ts ui-layout.spec.ts --workers=1
+
+Running 15 tests using 1 worker
+
+(node:122462) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 [desktop] › tests/login.spec.ts:29:3 › D-AT-01 登录、令牌与响应脱敏 › TC-01-1 applicant_a 正常登录进入主页，登录响应无密码字段、页面无散列信息 (781ms)
+  ✓   2 [desktop] › tests/login.spec.ts:64:3 › D-AT-01 登录、令牌与响应脱敏 › TC-01-2 错误密码返回 401 并显示错误提示，停留登录页，随后正确密码仍可登录 (952ms)
+  ✓   3 [desktop] › tests/login.spec.ts:111:3 › D-AT-01 登录、令牌与响应脱敏 › D-AT-01 登录后页面与浏览器存储不出现密码散列或明文口令 (735ms)
+  ✓   4 [desktop] › tests/ui-layout.spec.ts:38:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 登录页：无横向溢出、无错误横幅、文字可读并留存截图 (350ms)
+  ✓   5 [desktop] › tests/ui-layout.spec.ts:54:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动列表：无横向溢出、无错误横幅、文字可读并留存截图 (869ms)
+  ✓   6 [desktop] › tests/ui-layout.spec.ts:71:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动详情：无横向溢出、无错误横幅、文字可读并留存截图 (867ms)
+  ✓   7 [desktop] › tests/ui-layout.spec.ts:88:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 改期工作台：无横向溢出、无错误横幅、文字可读并留存截图 (858ms)
+(node:122696) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   8 [desktop-1920] › tests/ui-layout.spec.ts:38:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 登录页：无横向溢出、无错误横幅、文字可读并留存截图 (374ms)
+  ✓   9 [desktop-1920] › tests/ui-layout.spec.ts:54:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动列表：无横向溢出、无错误横幅、文字可读并留存截图 (940ms)
+  ✓  10 [desktop-1920] › tests/ui-layout.spec.ts:71:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动详情：无横向溢出、无错误横幅、文字可读并留存截图 (995ms)
+  ✓  11 [desktop-1920] › tests/ui-layout.spec.ts:88:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 改期工作台：无横向溢出、无错误横幅、文字可读并留存截图 (934ms)
+(node:122840) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  12 [mobile-390] › tests/ui-layout.spec.ts:38:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 登录页：无横向溢出、无错误横幅、文字可读并留存截图 (366ms)
+  ✓  13 [mobile-390] › tests/ui-layout.spec.ts:54:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动列表：无横向溢出、无错误横幅、文字可读并留存截图 (920ms)
+  ✓  14 [mobile-390] › tests/ui-layout.spec.ts:71:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 活动详情：无横向溢出、无错误横幅、文字可读并留存截图 (894ms)
+  ✓  15 [mobile-390] › tests/ui-layout.spec.ts:88:3 › 附表 界面与视觉核对（desktop / desktop-1920 / mobile-390） › 改期工作台：无横向溢出、无错误横幅、文字可读并留存截图 (963ms)
+
+  15 passed (13.2s)

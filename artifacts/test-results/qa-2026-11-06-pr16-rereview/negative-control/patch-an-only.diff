@@ -1,0 +1,13 @@
+diff --git a/server/src/main/java/com/campus/events/activity/ActivityService.java b/server/src/main/java/com/campus/events/activity/ActivityService.java
+index cebb6c4..c7816b3 100644
+--- a/server/src/main/java/com/campus/events/activity/ActivityService.java
++++ b/server/src/main/java/com/campus/events/activity/ActivityService.java
+@@ -138,7 +138,7 @@ public class ActivityService {
+         // 保证此处读取的versionNo就是提交时冻结的版本，不从客户端接受另一个审批版本。
+         transition(row,s->ActivityStateMachine.decide(s,row.versionNo(),ActivityStateMachine.Decision.valueOf(command.decision().name())),null);
+         activities.approval(row,latest.id(),command);
+-        event(row,latest,command.decision()==Decision.APPROVE?"ACTIVITY_APPROVED":"ACTIVITY_REJECTED",command.comment(),List.of());
++        event(row,latest,command.decision()==Decision.APPROVE?"ACTIVITY_APPROVED":"ACTIVITY_REJECTED",command.comment().isBlank()?"活动审批决定（仅解阻实验）":command.comment(),List.of());
+         return http(activities.get(id),latest);
+     }
+     @Transactional(propagation=Propagation.MANDATORY) public ActivityView confirm(Actor actor,UUID id,VersionCommand command) {

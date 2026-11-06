@@ -8,8 +8,10 @@ import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -18,6 +20,7 @@ import java.nio.file.Path;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
@@ -70,6 +73,7 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
     private final String schemaName;
     private DataSource dataSource;
     private JdbcTemplate jdbc;
+    private TransactionTemplate transactions;
 
     private DbTestSupport(List<String> dataFiles) {
         this.dataFiles = dataFiles;
@@ -79,6 +83,23 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
         }
         // 提前发布，供 Spring 测试配置的 DataSource 在上下文创建时读取
         System.setProperty("test.schema.name", schemaName);
+        configureSpringDataSource(schemaName);
+    }
+
+    /**
+     * 为使用 @SpringBootTest 的验收用例启用test profile，并绑定本类独立schema。
+     * application-test.yml提供TEST_DB_*凭据；这里仅写入不含密码的URL/schema系统属性。
+     */
+    private static void configureSpringDataSource(String schemaName) {
+        String url = requireEnv("TEST_DATABASE_URL");
+        if (!url.contains("campus_test")) {
+            throw new IllegalStateException("TEST_DATABASE_URL 必须指向 campus_test（禁止使用开发库/外部库）");
+        }
+        String scopedUrl = url + (url.contains("?") ? "&" : "?") + "currentSchema=" + schemaName;
+        System.setProperty("spring.profiles.active", "test");
+        System.setProperty("spring.datasource.url", scopedUrl);
+        System.setProperty("spring.flyway.schemas", schemaName);
+        System.setProperty("spring.flyway.default-schema", schemaName);
     }
 
     /** 创建支撑实例；参数为 test-data/ 下的数据文件（省略 .json 后缀），如 "demo"、"scenarios/registration-concurrency"。 */
@@ -125,6 +146,7 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
 
         this.dataSource = new DriverManagerDataSource(scopedUrl, user, password);
         this.jdbc = new JdbcTemplate(dataSource);
+        this.transactions = new TransactionTemplate(new DataSourceTransactionManager(dataSource));
 
         for (String file : dataFiles) {
             loadTestData(file);
@@ -154,9 +176,16 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
     public void loadTestData(String dataFile) {
         try {
             JsonNode root = readDataFile(dataFile);
-            insertReferenceTables(root, ENCODER.encode(requireEnv("DEMO_PASSWORD")));
-            insertActivities(root);
-            insertRegistrations(root);
+            String passwordHash = ENCODER.encode(requireEnv("DEMO_PASSWORD"));
+            transactions.executeWithoutResult(status -> {
+                insertReferenceTables(root, passwordHash);
+                try {
+                    insertActivities(root);
+                } catch (JsonProcessingException e) {
+                    throw new IllegalStateException("序列化活动 input 失败", e);
+                }
+                insertRegistrations(root);
+            });
         } catch (Exception e) {
             throw new IllegalStateException("装载测试数据失败：" + dataFile, e);
         }
@@ -165,14 +194,17 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
     /**
      * 仅装载组织/用户/资源（参考数据）；评测场景不装载演示活动与报名（test-data-plan §7）。
      *
-     * <p>用于 SchedulingBenchmarkIT：评测环境 = {@code demo.json} 的 organizations/users/resources
-     * + {@code scenarios/scheduling.json} 场景数据；不装载演示活动 A/B 与报名，避免场景互相干扰。
-     * 只写 organization/app_user/user_role/user_permission/user_approval_scope/user_resource_scope/resource 表。
+     * <p>SchedulingBenchmarkIT单独传入{@code scenarios/scheduling-reference.json}作为基线参考集，
+     * 再按每个场景装载{@code scenarios/scheduling.json}中的占用/故障；不使用canonical demo.json的N-AT资格扩展资源，
+     * 也不装载演示活动A/B与报名，避免额外候选污染固定场景几何。只写
+     * organization/app_user/user_role/user_permission/user_approval_scope/user_resource_scope/resource表。
+     * 此参考集是独立schema内的Benchmark-only快照，不代表canonical demo账号授权范围。
      */
     public void loadReferenceData(String dataFile) {
         try {
             JsonNode root = readDataFile(dataFile);
-            insertReferenceTables(root, ENCODER.encode(requireEnv("DEMO_PASSWORD")));
+            String passwordHash = ENCODER.encode(requireEnv("DEMO_PASSWORD"));
+            transactions.executeWithoutResult(status -> insertReferenceTables(root, passwordHash));
         } catch (Exception e) {
             throw new IllegalStateException("装载参考数据失败：" + dataFile, e);
         }
@@ -187,6 +219,8 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
 
     /** organization/app_user/user_role/user_permission/user_approval_scope/user_resource_scope/resource 参考数据。 */
     private void insertReferenceTables(JsonNode root, String passwordHash) {
+        List<ManagedResourceScope> managedResourceScopes = new ArrayList<>();
+
         JsonNode organizations = root.path("organizations");
         for (JsonNode n : organizations) {
             jdbc.update("INSERT INTO organization (id, name, created_at, updated_at) VALUES (?,?,?,?)",
@@ -233,8 +267,7 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
                 }
             }
             for (JsonNode resourceId : managedResourceIds) {
-                jdbc.update("INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)",
-                        userId, uuid(resourceId), ts());
+                managedResourceScopes.add(new ManagedResourceScope(userId, uuid(resourceId)));
             }
         }
 
@@ -244,9 +277,16 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
                     uuid(n.get("id")), n.get("kind").asText(), n.get("name").asText(),
                     n.get("category").asText(),
                     n.has("capacity") && !n.get("capacity").isNull() ? n.get("capacity").asInt() : null,
-                    n.get("quantity").asInt(), n.get("openFrom").asText(), n.get("openTo").asText(),
+                    n.get("quantity").asInt(), LocalTime.parse(n.get("openFrom").asText()),
+                    LocalTime.parse(n.get("openTo").asText()),
                     n.get("allowTeacher").asBoolean(), n.get("allowStudent").asBoolean(),
                     ts(), ts());
+        }
+
+        // V1 对 resource_id 使用即时外键；范围授权必须在资源实际插入后写入。
+        for (ManagedResourceScope scope : managedResourceScopes) {
+            jdbc.update("INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)",
+                    scope.userId(), scope.resourceId(), ts());
         }
     }
 
@@ -260,7 +300,7 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
             jdbc.update("INSERT INTO activity (id, organization_id, owner_id, status, version_no, effective_version_no, lock_version, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?)",
                     uuid(n.get("id")), uuid(n.get("organizationId")), uuid(n.get("ownerId")),
                     status, versionNo, effective ? versionNo : null, 0, ts(), ts());
-            jdbc.update("INSERT INTO activity_version (activity_id, version_no, input_json, created_by, created_at) VALUES (?,?,?,?,?)",
+            jdbc.update("INSERT INTO activity_version (activity_id, version_no, input_json, created_by, created_at) VALUES (?,?,?::jsonb,?,?)",
                     uuid(n.get("id")), versionNo, MAPPER.writeValueAsString(n.get("input")),
                     uuid(n.get("ownerId")), ts());
             if (effective) {
@@ -389,6 +429,9 @@ public final class DbTestSupport implements BeforeAllCallback, AfterAllCallback 
     }
 
     // ---------------------------------------------------------------- 内部
+
+    private record ManagedResourceScope(UUID userId, UUID resourceId) {
+    }
 
     private static Path resolveDataFile(String dataFile) {
         String dir = System.getProperty("test.data.dir", "");

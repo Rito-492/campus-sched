@@ -1,0 +1,115 @@
+npm notice run campus-sched-qa@0.1.0 test:e2e
+npm notice run playwright test booking.spec.ts eligibility.spec.ts --workers=1
+
+Running 4 tests using 1 worker
+
+(node:130759) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [desktop] › tests/booking.spec.ts:68:3 › D-AT-03 首次预约主线（新建→编辑→提交→批准→资源确认→发布→报名） › TC-03-1 applicant_a 新建并提交，approver_a 同意、resource_admin 确认、发布后 student_a 报名成功 (4.7s)
+(node:130857) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [desktop] › tests/eligibility.spec.ts:66:3 › N-AT-02 资格限制（仅教师资源） › N-AT-02 applicant_b（STUDENT）UI 明示仅教师资源不可申请并禁选（HTTP提交另验） (11.0s)
+(node:130958) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [desktop] › tests/eligibility.spec.ts:99:3 › N-AT-02 资格限制（仅教师资源） › N-AT-02 applicant_a（TEACHER）同目标可走到下一步（对照，按 identity 判断） (2.3s)
+  ✘  4 [desktop] › tests/eligibility.spec.ts:134:3 › N-AT-02 资格限制（仅教师资源） › N-AT-02 applicant_b 直接 HTTP 保存草稿后提交 → 403 RESOURCE_INELIGIBLE 且草稿不推进 (272ms)
+
+
+  1) [desktop] › tests/booking.spec.ts:68:3 › D-AT-03 首次预约主线（新建→编辑→提交→批准→资源确认→发布→报名） › TC-03-1 applicant_a 新建并提交，approver_a 同意、resource_admin 确认、发布后 student_a 报名成功 
+
+    Error: 批准人同意应 200
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 400
+
+      125 |         );
+      126 |         await approver.page.getByTestId(TESTID.approverApprove).click();
+    > 127 |         expect((await approveResponse).status(), '批准人同意应 200').toBe(200);
+          |                                                                ^
+      128 |         expect((await getActivity(ownerApi, activityId)).status, '批准后应 APPROVED_UNRESERVED').toBe('APPROVED_UNRESERVED');
+      129 |
+      130 |         // 7) resource_admin 经 UI 确认（05 §4 resource-confirm）→ SCHEDULED，完整数量预约
+        at /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/booking.spec.ts:127:64
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../artifacts/test-results/e2e-raw/booking-D-AT-03-首次预约主线（新建→-ed6ea-admin-确认、发布后-student-a-报名成功-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../artifacts/test-results/e2e-raw/booking-D-AT-03-首次预约主线（新建→-ed6ea-admin-确认、发布后-student-a-报名成功-desktop/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../artifacts/test-results/e2e-raw/booking-D-AT-03-首次预约主线（新建→-ed6ea-admin-确认、发布后-student-a-报名成功-desktop/error-context.md
+
+  2) [desktop] › tests/eligibility.spec.ts:66:3 › N-AT-02 资格限制（仅教师资源） › N-AT-02 applicant_b（STUDENT）UI 明示仅教师资源不可申请并禁选（HTTP提交另验） 
+
+    TimeoutError: locator.click: Timeout 10000ms exceeded.
+    Call log:
+      - waiting for getByRole('combobox', { name: '设备' }).locator('xpath=ancestor::*[contains(@class,"el-select")][1]')
+        - locator resolved to <div class="el-select__selected-item el-select__input-wrapper is-hidden">…</div>
+      - attempting click action
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="el-select__selected-item el-select__placeholder is-transparent">…</div> intercepts pointer events
+        - retrying click action
+        - waiting 20ms
+        2 × waiting for element to be visible, enabled and stable
+          - element is visible, enabled and stable
+          - scrolling into view if needed
+          - done scrolling
+          - <div class="el-select__selected-item el-select__placeholder is-transparent">…</div> intercepts pointer events
+        - retrying click action
+          - waiting 100ms
+        19 × waiting for element to be visible, enabled and stable
+           - element is visible, enabled and stable
+           - scrolling into view if needed
+           - done scrolling
+           - <div class="el-select__selected-item el-select__placeholder is-transparent">…</div> intercepts pointer events
+         - retrying click action
+           - waiting 500ms
+
+
+      86 |         await student.page.keyboard.press('Escape');
+      87 |         await student.page.getByRole('button', { name: '添加设备' }).click();
+    > 88 |         await student.page.getByRole('combobox', { name: '设备' }).locator('xpath=ancestor::*[contains(@class,"el-select")][1]').click();
+         |                                                                                                                                ^
+      89 |         const equipment = student.page.getByRole('option', { name: ELIGIBILITY_RESOURCES.equipmentTeacherOnly.name });
+      90 |         await expect(equipment).toBeVisible();
+      91 |         await expect(equipment).toHaveAttribute('aria-disabled', 'true');
+        at /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/eligibility.spec.ts:88:128
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../artifacts/test-results/e2e-raw/eligibility-N-AT-02-资格限制（仅-57c6d-UI-明示仅教师资源不可申请并禁选（HTTP提交另验）-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../artifacts/test-results/e2e-raw/eligibility-N-AT-02-资格限制（仅-57c6d-UI-明示仅教师资源不可申请并禁选（HTTP提交另验）-desktop/error-context.md
+
+  3) [desktop] › tests/eligibility.spec.ts:134:3 › N-AT-02 资格限制（仅教师资源） › N-AT-02 applicant_b 直接 HTTP 保存草稿后提交 → 403 RESOURCE_INELIGIBLE 且草稿不推进 
+
+    Error: 被拒申请不得创建活动
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: false
+    Received: true
+
+      176 |           mine.some((a) => a.input.title === TEACHER_ONLY_INPUT.title),
+      177 |           '被拒申请不得创建活动',
+    > 178 |         ).toBe(false);
+          |           ^
+      179 |       } finally {
+      180 |         await apiClose(apis);
+      181 |       }
+        at /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/eligibility.spec.ts:178:11
+
+    Error Context: ../artifacts/test-results/e2e-raw/eligibility-N-AT-02-资格限制（仅-ba0d9--RESOURCE-INELIGIBLE-且草稿不推进-desktop/error-context.md
+
+  3 failed
+    [desktop] › tests/booking.spec.ts:68:3 › D-AT-03 首次预约主线（新建→编辑→提交→批准→资源确认→发布→报名） › TC-03-1 applicant_a 新建并提交，approver_a 同意、resource_admin 确认、发布后 student_a 报名成功 
+    [desktop] › tests/eligibility.spec.ts:66:3 › N-AT-02 资格限制（仅教师资源） › N-AT-02 applicant_b（STUDENT）UI 明示仅教师资源不可申请并禁选（HTTP提交另验） 
+    [desktop] › tests/eligibility.spec.ts:134:3 › N-AT-02 资格限制（仅教师资源） › N-AT-02 applicant_b 直接 HTTP 保存草稿后提交 → 403 RESOURCE_INELIGIBLE 且草稿不推进 
+  1 passed (19.7s)
