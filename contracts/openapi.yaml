@@ -2112,7 +2112,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorEnvelope"
         "409":
-          description: 状态、版本或幂等冲突
+          description: >-
+            状态、版本或幂等冲突。依据公共契约第3节，适用且调用者有权读取时，
+            error.details 至少提供当前 versionNo、lockVersion 或 status 之一。
+            本接口的所有者版本冲突属于适用情形。客户端仍须重新 GET 活动。
+            幂等键复用错误不要求附带活动状态。
           content:
             application/json:
               schema:
@@ -2132,7 +2136,7 @@ paths:
       tags:
         - CM
       x-owner: CM
-      x-implementation-status: 生产实现已合入；所有者列入工作人员时的自我确认缺陷待CM修复，见2026-11-02审核
+      x-implementation-status: 生产实现已合入；所有者自我确认与STALE_VERSION空详情待CM修复，见2026-11-06复审
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
     get:
       operationId: API-28
