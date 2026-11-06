@@ -2,6 +2,33 @@
 
 > 维护：测试经理（55230316）。格式依据 `agents/common/04-协作与集成规程.md` §4 固定模板。运行时信息填真实值；**不能为了填满模板虚构结果**，未执行的检查如实标注。
 
+## 最新交付（2026-11-06：PR16复审修正）
+
+- 成员/任务：汤雨润（55230316），QA-02/03/05；接收PM冀项阳对`1700e29`的第二次CHANGES_REQUESTED（与主线`16de4a5`组合复验）。只改QA断言与测试文档，不接AN/CM生产文件。
+- 已通过：停用工作人员待确认快照项获复审通过，本轮未改动。
+- 本轮修正：`PermissionsIT`新增`assertStaleVersionDetails`，409详情至少返回当前`versionNo`/`lockVersion`/`status`之一且值必须准确，不锁定唯一字段；保留重新GET与无新版本写入；测试设计TC-20-1同步。
+- 真实复验严格分开：正式基线仍在AN空意见400前置停止；负向对照（仅解阻AN）在`details={}`命中新断言失败，证明断言有效；解阻实验（AN+CM）目标用例通过。实验补丁不提交。
+- 产品缺口：**DEF-QA-2026-11（CM）** API-27两处`STALE_VERSION`未返回版本详情；QA已更新断言，待CM修复后以最新组合复验。DEF-QA-2026-08/09仍归AN。
+- 证据：[复审修正说明](pr16-rereview-2026-11-06.md)、[缺陷登记](defect-register.md)、`artifacts/test-results/qa-2026-11-06-pr16-rereview/`。契约与QA类型检查实际通过。
+- 下一接收人：CM修复DEF-11、AN修复08/09；PM复审PR16。尚未收到复审接收，未自行Approve或合并main。
+
+## 历史交付（2026-11-03：课程任务5软件测试设计）
+
+- 成员/任务：汤雨润（55230316），QA-03/05；本轮目标为课程软件测试设计与QA质量代码，不是全量产品放行。
+- 基准：`work/55230316-qa`，安全普通合并最新`origin/main=16de4a5`，本轮实现起点HEAD=`5f081aa2cccc401aaec35a6948bed37a643890f2`；原未跟踪材料保留，未reset/强推，本轮未创建提交或推送。
+- 模板：读取后原名归档至[课程原件](../course/5.3%20测试设计文档模板.docx)，21911字节，SHA-256=`550734eabcc078286b118a84f2fbb2f90330497d370840b7528d03af906c2353`，内容未修改；[归档与基准证据](../../artifacts/test-results/qa-2026-11-03-task5-context.json)。
+- 设计：[新版测试设计](test-design-v1.0.md)、[结构化用例集](../../test-data/test-design-cases-v1.0.json)；24组（20UC+4专项）、138条（47正/91负），每组至少1正2负；UC20/20、验收30/30、API40/40均为**设计追踪**，不是执行覆盖。全部新用例标未执行，旧设计及覆盖账本保留。
+- QA代码：[质量门禁](../../qa/scripts/check-test-design.ts)、[27项自测](../../qa/scripts/check-test-design.test.ts)、[真实HTTP/PG边界回归](../../server/src/test/java/com/campus/events/acceptance/ContractBoundaryIT.java)。门禁验证结构、必填、场景、极性、状态、编号引用并检查部分内容信号，不代替人工语义评审；自测含反例，防止缺失/空集假通过。
+- 已实跑：最新27/27门禁自测、QA TypeScript、40API/9枚举/15DTO契约检查、Maven test-compile通过。父代理最终独立复跑27项自测与类型/契约检查均通过。初次对尚不存在JSON检查失败、初稿11项问题（4项非法需求编号+7项负面关键词误伤）保留原日志；非法编号已修，负面语义规则降为人工复核提示，不能以关键词决定语义正确。
+- 2026-11-06新增真实执行：以一次性 Docker PostgreSQL 17.11（隔离 `campus_test`、每测试独立 schema）实际运行 `ContractBoundaryIT` 7项，**4通过/3失败/0跳过**（exit 1）。失败为可复现产品缺陷：DEF-QA-2026-08（空审批意见400）、DEF-QA-2026-10（改期把所有者列入必确认并预建确认行，仅所有者未直达PENDING_APPROVER，CM待接收）。这不是138条设计用例的批量执行，也不表示产品通过；证据见[执行结果](../../artifacts/test-results/qa-2026-11-06-task5-db/result.json)与[缺陷登记](defect-register.md)。
+- 未实跑：全量verify、真实浏览器E2E及Compose干净发布；Node26/JDK27偏离基线Node22/Java21，release编译目标21不等于Java21实测。HTTP/PG边界测试已于2026-11-06在隔离测试库实际执行（见上条），资格校验契约确认为提交阶段拒绝，未等到最终确认。
+- 已知产品缺陷保持正确预期：AN合法空审批意见不得拒绝、CM所有者不向自己工作人员确认。本轮不改AN/CM生产代码，不靠改预期或跳过让其变绿。最新产品结论仍以[PM集成记录](../management/integration-review-2026-11-02-v1.0.md)为准，不上调历史30项覆盖率。
+- 组织方式：顶层协调+内容writer、QA tester、排版、独立reviewer。排版前两次子代理运行中断未产出，不伪造其完成；已恢复必要任务。AI审查不冒充团队成员批准。
+- [提交与顶层验收说明](task5-submission-v1.0.md)：项目经理冀项阳11月07日23:59（Asia/Shanghai）前上传学习通分组任务5，**仅非代码工件**。尚未接收、尚未上传、无平台回执；不预填签字。
+- 最终Word：[测试设计v1.0](test-design-v1.0.docx)，2026-11-06 17:24按用户意见精简后重生成，78052字节，SHA-256=`2254e34c95fa2a2f171af5ed09b4bad6a47575bb89136f078f3e9ad8e76121f5`。已移除临时补充的实施人员/检查清单自检等非设计章节，正文回归测试设计本体（用例数据与统计未变）。独立逐字段核1742项、缺失0；XML与关系部件良构、138条编号/全部环境与数据字典一致；内部路径与验收编号等术语已清零。生成反例实测缺失/空集均exit2且不生成文件。
+- 最终技术预审：[审查与处置](task5-review-v1.0.md)。独立reviewer提出的7类必须改已修，补4条（范围不全含两个独立子例）；父代理进一步修单变量前置、旧令牌强401、授权后快照不变及Word统计bug。仅AI技术预审，不是人类正式Approve。
+- [最终核验JSON](../../artifacts/test-results/qa-2026-11-03-task5-final/final-verification.json)、[父代理独立QA复验](../../artifacts/test-results/qa-2026-11-03-task5-final/qa-recheck.json)、[Word生成检查](../../artifacts/test-results/qa-2026-11-03-task5-docx/verification-report.md)。最终138条门禁与Word生成均exit0。未做完整XSD验证、Word真实分页视觉检查；项目经理须在Word/WPS人工打开确认。没有平台提交、签字、Git提交或推送。
+
 ## 最新修正（2026-11-02：PR16评审两项必须改）
 
 - QA汤雨润55230316，QA-03/05；接收PM冀项阳的CHANGES_REQUESTED（被审19ae94b，main仍b8be7e4）。只修IdentityEligibilityIT与PermissionsIT，不修改AN/CM生产或契约。
@@ -206,7 +233,7 @@
 
 ### 流程观察（供 PM/CM 决策，非阻塞）
 
-- 所有成员提交的 git author 均为 `Rito-492`，无法从提交溯源到人（本次 AN 分支的两提交因此被误认）。建议各成员设置独立 git 身份（如 `tyr-55230316` 拼音缩写，与公开仓库匿名化一致），由 CM 在配置管理计划中约定。
+- 所有成员提交的 git author 均为 `Rito-492`，无法从提交溯源到人（本次 AN 分支的两提交因此被误认）。建议各成员设置独立 git 身份（姓名首字母加学号，与公开仓库匿名化一致），由 CM 在配置管理计划中约定。
 
 ## 本次交付（2026-09-26 第一批，QA-01 全部）
 

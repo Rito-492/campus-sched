@@ -362,7 +362,7 @@ class PermissionsIT {
         assertEquals("STALE_VERSION", r1.errorCode());
         assertTrue(r1.body().hasNonNull("requestId"));
         assertTrue(r1.error().hasNonNull("message"));
-        assertTrue(r1.error().path("details").isObject(), "错误信封details允许为空对象");
+        assertStaleVersionDetails(r1.error().path("details"), currentVersion, currentLock, "OPEN");
         assertEquals(currentVersion, readActivityVersion(owner, activityId), "冲突后重新GET内容版本不变");
         assertEquals(currentLock, readActivityLockVersion(owner, activityId), "冲突后重新GET锁版本不变");
 
@@ -375,7 +375,7 @@ class PermissionsIT {
         assertEquals("STALE_VERSION", r2.errorCode());
         assertTrue(r2.body().hasNonNull("requestId"));
         assertTrue(r2.error().hasNonNull("message"));
-        assertTrue(r2.error().path("details").isObject(), "错误信封details允许为空对象");
+        assertStaleVersionDetails(r2.error().path("details"), currentVersion, currentLock, "OPEN");
         assertEquals(currentVersion, readActivityVersion(owner, activityId), "旧锁版本请求后重新GET内容版本不变");
         assertEquals(currentLock, readActivityLockVersion(owner, activityId), "旧锁版本请求后重新GET锁版本不变");
 
@@ -567,6 +567,28 @@ class PermissionsIT {
 
     private int readActivityVersion(String token, String activityId) {
         return readActivityFieldInt(token, activityId, "versionNo");
+    }
+
+    /**
+     * 02 §3行196：适用本场景的409 details至少含当前versionNo/lockVersion/status之一（不锁定唯一字段），
+     * 且返回的每项都必须与重新GET所得当前值一致，避免陈旧值冒充。
+     */
+    private void assertStaleVersionDetails(JsonNode details, int versionNo, int lockVersion, String status) {
+        assertTrue(details.isObject(), "错误信封details应为对象");
+        boolean hasVersion = details.hasNonNull("versionNo");
+        boolean hasLock = details.hasNonNull("lockVersion");
+        boolean hasStatus = details.hasNonNull("status");
+        assertTrue(hasVersion || hasLock || hasStatus,
+                "STALE_VERSION details 至少返回当前versionNo/lockVersion/status之一：" + details);
+        if (hasVersion) {
+            assertEquals(versionNo, details.path("versionNo").asInt(), "details.versionNo 必须为当前内容版本");
+        }
+        if (hasLock) {
+            assertEquals(lockVersion, details.path("lockVersion").asInt(), "details.lockVersion 必须为当前锁版本");
+        }
+        if (hasStatus) {
+            assertEquals(status, details.path("status").asText(), "details.status 必须为当前状态");
+        }
     }
 
     private int readActivityFieldInt(String token, String activityId, String field) {

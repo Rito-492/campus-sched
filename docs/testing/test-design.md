@@ -307,7 +307,7 @@
 - **前置**：A 已被改期产生 version2。
 - **输入**：`POST /activities/{id}/changes` 带 baseVersionNo=1（旧值）。
 - **预期**：409 `STALE_VERSION`；无覆盖最新安排。
-- **观察点**：核对409/STALE_VERSION及完整错误信封，不强制details出现特定版本字段；冲突后重新GET确认versionNo/lockVersion不变；无新 `activity_version`（PR16评审修正）。
+- **观察点**：核对409/STALE_VERSION及完整错误信封；details至少返回当前versionNo/lockVersion/status之一且值准确，不锁定唯一字段（02 §3）；冲突后重新GET确认versionNo/lockVersion不变；无新 `activity_version`（PR16复审修正）。
 - **清理**：无写入。
 
 ### TC-20-2 旧 expectedLockVersion 提交
