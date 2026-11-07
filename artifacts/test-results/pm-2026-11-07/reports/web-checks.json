@@ -1,0 +1,22 @@
+[
+  {
+    "check": "types:check",
+    "exit": 0,
+    "log": "web-types-check.log"
+  },
+  {
+    "check": "typecheck",
+    "exit": 0,
+    "log": "web-typecheck.log"
+  },
+  {
+    "check": "test:unit",
+    "exit": 0,
+    "log": "web-test-unit.log"
+  },
+  {
+    "check": "build",
+    "exit": 0,
+    "log": "web-build.log"
+  }
+]

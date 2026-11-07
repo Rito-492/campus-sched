@@ -23,23 +23,23 @@ Java21、Spring Boot3.5.16、Maven3.9.11，Wrapper自带发行包SHA-256核对�
 node qa/scripts/check-contract.ts
 ```
 
-已接收AN/DS后，当前推荐在标准POM上执行明确模块集合：
+2026-10-31 接收 AN/DS 时使用的标准 POM 指定集合如下；当前六类集合及结果见第 7 节：
 
 ```powershell
 ./server/mvnw.cmd -f server/pom.xml "-Dit.test=FoundationIT,PublishedModulesIT,StandardMavenSchemaIT,DemoDataSeederIT" clean verify
 ```
 
-本轮该命令通过76项全体单元和30项指定真库IT。它是有范围的模块验证，默认全量verify另有失败日志。PublishedModulesIT显式选真实PM/AN/DS且不装配CM，验证缺依赖的错误与回滚，不使用端口替身；StandardMavenSchemaIT验证标准Spring/Flyway与QA扩展使用同一随机schema。这两项跨模块测试不编译进历史pm-isolated配置，默认构建仍包括它们。
+2026-10-31 该命令通过76项全体单元和30项指定真库IT。它是有范围的模块验证，默认全量verify另有失败日志。PublishedModulesIT显式选真实PM/AN/DS且不装配CM，验证缺依赖的错误与回滚，不使用端口替身；StandardMavenSchemaIT验证标准Spring/Flyway与QA扩展使用同一随机schema。这两项跨模块测试不编译进历史pm-isolated配置，默认构建仍包括它们。
 
 Failsafe从`.mvn/integration-test.properties`读取test配置和运行期占位符：TEST_DATABASE_URL由环境提供，test.schema.name由QA扩展发布；不能把尚未生成的schema名提前写死或回落public。各模块显式DynamicPropertySource仍优先。本轮没有修改QA装载器，数据外键/事务问题仍需原作者修复。
 
 2026-10-20该入口真实执行22项单元测试和21项真实PostgreSQL集成测试；不能将隔离生成的jar用于全项目发布，也不据此标记M0/M2/M3完成。PM测试为随机`t_<32hex>` schema，仅删除本次schema；不使用QA演示导入器，不能据此宣称后者已通过。正式全量检查在修复依赖后使用默认入口。
 
-Clock默认系统UTC，只有e2e profile读取APP_TEST_NOW；普通dev不受该值影响。测试可用@Primary Clock。Jackson保留契约要求的显式null，拒绝未知字段、缺失必需字段、原始类型null、重复JSON键和尾随内容。
+Clock默认系统UTC，只有e2e profile读取APP_TEST_NOW；普通dev不受该值影响。测试可用@Primary Clock。Jackson保留契约要求的显式null，拒绝未知字段、缺失必需字段、原始类型null、重复JSON键和尾随内容。2026-11-07 增补：整数请求字段拒绝小数，枚举只接受契约名称，拒绝数字序号及数字字符串；非法请求返回 400，不能先转换后写入。
 
 ## 2 HTTP与账号
 
-真实实现为API-01～06、37～39；其余API仅有统一契约。应用未添加生产替身或空成功接口。详细请求/响应结构见`contracts/openapi.yaml`，归属见[接口登记](api-register.md)。
+PM 负责 API-01～06、37～39 的生产实现；截至 2026-11-07，其他成员也已交付其余 API，40 项均有 Controller，五类端口均有生产适配器。实现存在不等于完整验收通过。应用未添加生产替身或空成功接口。详细请求/响应结构见`contracts/openapi.yaml`，归属见[接口登记](api-register.md)。
 
 登录示例：`POST /api/v1/auth/login`，请求为`{"username":"applicant_a","password":"本地DEMO_PASSWORD的值"}`。成功`data`含token、expiresAt和user，后续带`Authorization: Bearer <token>`。密码不返回，数据库只保存BCrypt哈希和令牌SHA-256。会话8小时，停用时删除该用户全部会话，重新启用不恢复旧令牌，退出只删当前会话。
 
@@ -78,7 +78,7 @@ return Responses.http(result);
 
 ## 4 端口与锁
 
-AccountPort由PM实现，仅依赖账号Repository。get读取最新账号；lock/grantResource为MANDATORY，要求已有事务。grantResource由DS创建资源编排在锁定创建者后调用，不允许DS直接写授权表。不存在账号返回404；是否启用及是否有权操作由统一策略和调用服务检查。
+AccountPort由PM实现，不依赖业务模块服务。get读取最新账号；lock/grantResource为MANDATORY，要求已有事务。grantResource由DS创建资源编排在锁定创建者后调用，不允许DS直接写授权表。2026-11-07 已补齐新增资源范围的完整授权前后历史，创建者为操作人，资源、范围、历史与回执共同提交或回滚；范围已存在时不新增历史，相同幂等键重放也不重复授权。不存在账号返回404；是否启用及是否有权操作由统一策略和调用服务检查。
 
 AuthorizationPolicy提供role、permission、approval、resources、confirmation、registration。首次审批与改期复审共用approval：必须覆盖活动组织和主场地/所有设备类别，拒绝所有者本人。首次/改期资源复核共用confirmation：ADMIN及RESOURCE_CONFIRM，必须覆盖所有资源且非所有者。普通教师、USER_MANAGE管理员均无隐含审批权。AN/CM应在各自入口真实调用策略，PM单元测试不能替代这四个入口的N-AT-05验收。
 
@@ -90,8 +90,18 @@ AuthorizationPolicy提供role、permission、approval、resources、confirmation
 
 ## 5 最新跨模块接收（2026-10-31同日续作）
 
-main=c4f3d41已同步。PublishedModulesIT新增通过真实API创建独立账号与资源，验证API-39身份改变立即作用于旧会话的AN/DS预览、API-06停用拒绝旧会话，以及撤销资源范围后API-40拒绝且无资格/历史/回执写入。6项真实跨模块测试均无CM替身；标准PM集合共76单元+32 IT全通过。QA/UI候选及完整失败边界见[最新候选接收记录](integration-intake-2026-10-31-v1.0.md)；接口协调见[访问与资源边界方案](access-coordination-v1.0.md)。
+main=c4f3d41已同步。PublishedModulesIT新增通过真实API创建独立账号与资源，验证API-39身份改变立即作用于旧会话的AN/DS预览、API-06停用拒绝旧会话，以及撤销资源范围后API-40拒绝且无资格/历史/回执写入。当日6项真实跨模块测试均无CM替身；标准PM集合共76单元+32 IT全通过。QA/UI候选及完整失败边界见[最新候选接收记录](integration-intake-2026-10-31-v1.0.md)；接口协调见[访问与资源边界方案](access-coordination-v1.0.md)。
 
 ## 6 2026-11-02 全生产依赖与审核
 
-ChangePort/EventPort和UI现已在main=b8be7e4。ProductionWorkflowIT不替换任何业务端口，补真实首次链、报名/改期冻结、原子版本/预约切换、通知及取消，以及最终管理范围撤销后403、无回执/审计污染和原key恢复重试。默认验收不排除任何测试；历史pm-isolated另行排除此依赖业务模块的类。PM指定集合77单元+38 IT通过，默认仍失败。QA待确认行不是决定；版本冲突details按现行契约可为空，必须重新GET实体。详见[2026-11-02集成与正式审核](integration-review-2026-11-02-v1.0.md)，不弱化拒绝、事务或权限检查。
+ChangePort/EventPort和UI现已在main=b8be7e4。ProductionWorkflowIT不替换任何业务端口，补真实首次链、报名/改期冻结、原子版本/预约切换、通知及取消，以及最终管理范围撤销后403、无回执/审计污染和原key恢复重试。默认验收不排除任何测试；历史pm-isolated另行排除此依赖业务模块的类。当日PM指定集合77单元+38 IT通过，默认仍失败。QA待确认行不是决定。11-02 曾将版本冲突 details 解释为可空，11-06 已纠正：common/02 §3 要求适用的授权 409 至少包含一项准确的当前 versionNo、lockVersion 或 status；前端仍须重新 GET。不得由此向无权访问者泄露私有状态。历史执行见[2026-11-02集成与正式审核](integration-review-2026-11-02-v1.0.md)，当前结论以第 7 节为准。
+
+## 7 2026-11-07 当前接入与回归
+
+主线为 `16de4a5`，本轮 PM 改动基于分支 HEAD `984892c`，尚未提交。新增严格 JSON 解析、资源自动授权历史及真实回归，不改共享签名或迁移。推荐限定集合为：
+
+```powershell
+./server/mvnw.cmd -f server/pom.xml "-Dit.test=FoundationIT,PublishedModulesIT,ProductionWorkflowIT,StandardMavenSchemaIT,DemoDataSeederIT,OutboxClaimIT" clean verify
+```
+
+本轮 96 项单元和 43 项指定 IT 通过。默认全量仍有 QA 数据装载及 AN 测试端口初始化错误；最新 QA 独立组合已解除装载，仍受 AN 空审批及 CM 详情缺陷影响。API-27 新 QA 断言符合既有契约，空详情应由 CM 修复，不应放宽断言。具体命令、限定范围、浏览器与建议补丁见[当前集成记录](integration-review-2026-11-07-v1.0.md)。

@@ -1,0 +1,241 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.campus:campus-events >----------------------
+[INFO] Building У԰�Эͬ����Դ����ϵͳ 0.1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ campus-events ---
+[INFO] Deleting D:\Codex\2026-11-07\https-github-com-rito-492-campus\outputs\campus-sched\server\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ campus-events ---
+[INFO] Copying 4 resources from src\main\resources to target\classes
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ campus-events ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 116 source files with javac [debug parameters release 21] to target\classes
+[INFO] /D:/Codex/2026-11-07/https-github-com-rito-492-campus/outputs/campus-sched/server/src/main/java/com/campus/events/foundation/CanonicalJson.java: D:\Codex\2026-11-07\https-github-com-rito-492-campus\outputs\campus-sched\server\src\main\java\com\campus\events\foundation\CanonicalJson.javaʹ�û򸲸����ѹ�ʱ�� API��
+[INFO] /D:/Codex/2026-11-07/https-github-com-rito-492-campus/outputs/campus-sched/server/src/main/java/com/campus/events/foundation/CanonicalJson.java: �й���ϸ��Ϣ, ��ʹ�� -Xlint:deprecation ���±��롣
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ campus-events ---
+[INFO] skip non existing resourceDirectory D:\Codex\2026-11-07\https-github-com-rito-492-campus\outputs\campus-sched\server\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ campus-events ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 35 source files with javac [debug parameters release 21] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ campus-events ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.campus.events.foundation.CanonicalJsonTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.129 s -- in com.campus.events.foundation.CanonicalJsonTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ campus-events ---
+[INFO] Building jar: D:\Codex\2026-11-07\https-github-com-rito-492-campus\outputs\campus-sched\server\target\campus-events-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot:3.5.16:repackage (repackage) @ campus-events ---
+[INFO] Replacing main artifact D:\Codex\2026-11-07\https-github-com-rito-492-campus\outputs\campus-sched\server\target\campus-events-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to D:\Codex\2026-11-07\https-github-com-rito-492-campus\outputs\campus-sched\server\target\campus-events-0.1.0-SNAPSHOT.jar.original
+[INFO] 
+[INFO] --- failsafe:3.5.6:integration-test (default) @ campus-events ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.campus.events.foundation.FoundationIT
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-07T13:19:51.699+08:00  INFO 11108 --- [campus-events] [           main] c.campus.events.foundation.FoundationIT  : Starting FoundationIT using Java 21.0.12.1 with PID 11108 (started by admin in D:\Codex\2026-11-07\https-github-com-rito-492-campus\outputs\campus-sched\server)
+2026-11-07T13:19:51.701+08:00  INFO 11108 --- [campus-events] [           main] c.campus.events.foundation.FoundationIT  : The following 1 profile is active: "test"
+2026-11-07T13:19:52.713+08:00  INFO 11108 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-11-07T13:19:52.748+08:00  INFO 11108 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@718989fa
+2026-11-07T13:19:52.749+08:00  INFO 11108 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-11-07T13:19:52.767+08:00  INFO 11108 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:5547/campus_test?currentSchema=t_721958eef8bd42189c11b550bb008dc1 (PostgreSQL 17.6)
+2026-11-07T13:19:52.795+08:00  INFO 11108 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_721958eef8bd42189c11b550bb008dc1"."flyway_schema_history" does not exist yet
+2026-11-07T13:19:52.798+08:00  INFO 11108 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.014s)
+2026-11-07T13:19:52.809+08:00  INFO 11108 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_721958eef8bd42189c11b550bb008dc1"."flyway_schema_history" ...
+2026-11-07T13:19:52.862+08:00  INFO 11108 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_721958eef8bd42189c11b550bb008dc1": << Empty Schema >>
+2026-11-07T13:19:52.887+08:00  INFO 11108 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_721958eef8bd42189c11b550bb008dc1" to version "1 - schema"
+2026-11-07T13:19:52.966+08:00  INFO 11108 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_721958eef8bd42189c11b550bb008dc1" to version "2 - outbox claim token"
+2026-11-07T13:19:52.972+08:00  INFO 11108 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "t_721958eef8bd42189c11b550bb008dc1", now at version v2 (execution time 00:00.068s)
+2026-11-07T13:19:53.887+08:00  INFO 11108 --- [campus-events] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-07T13:19:53.888+08:00  INFO 11108 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-07T13:19:53.888+08:00  INFO 11108 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-11-07T13:19:53.919+08:00  INFO 11108 --- [campus-events] [           main] c.campus.events.foundation.FoundationIT  : Started FoundationIT in 2.569 seconds (process running for 3.165)
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+WARNING: A Java agent has been loaded dynamically (D:\Codex\2026-11-07\https-github-com-rito-492-campus\work\maven-home\repository\net\bytebuddy\byte-buddy-agent\1.17.8\byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+2026-11-07T13:19:55.574+08:00  INFO 11108 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-11-07T13:19:55.577+08:00  INFO 11108 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+[ERROR] Tests run: 3, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 4.482 s <<< FAILURE! -- in com.campus.events.foundation.FoundationIT
+[ERROR] com.campus.events.foundation.FoundationIT.numericAuthorizationEnumsAreRejectedWithoutWrites -- Time elapsed: 0.660 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: identity: {"requestId":"3c04997d-813f-4d39-9772-692fd60d91bb","data":{"identity":"TEACHER","roles":["APPLICANT"],"permissions":[],"approvalScopes":[],"managedResourceIds":[],"id":"3d4d8c1b-d112-427f-9d14-cf0040290ee0","displayName":"ö��У���˺�","organizationId":"b02047d0-81c1-4762-992c-213b48ca7b22","enabled":true}} ==> expected: <400> but was: <201>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at com.campus.events.foundation.FoundationIT.numericAuthorizationEnumsAreRejectedWithoutWrites(FoundationIT.java:259)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.foundation.FoundationIT.automaticResourceGrantAndHistoryRollBackTogether -- Time elapsed: 0.171 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <java.lang.IllegalStateException> but was: <org.opentest4j.AssertionFailedError>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+	at com.campus.events.foundation.FoundationIT.automaticResourceGrantAndHistoryRollBackTogether(FoundationIT.java:294)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: org.opentest4j.AssertionFailedError: expected: <1> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:166)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:161)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:632)
+	at com.campus.events.foundation.FoundationIT.lambda$automaticResourceGrantAndHistoryRollBackTogether$10(FoundationIT.java:297)
+	at org.springframework.transaction.support.TransactionOperations.lambda$executeWithoutResult$0(TransactionOperations.java:68)
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:140)
+	at org.springframework.transaction.support.TransactionOperations.executeWithoutResult(TransactionOperations.java:67)
+	at com.campus.events.foundation.FoundationIT.lambda$automaticResourceGrantAndHistoryRollBackTogether$11(FoundationIT.java:294)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+	... 6 more
+
+[ERROR] com.campus.events.foundation.FoundationIT.automaticResourceGrantRecordsOneCompleteAuthorizationHistory -- Time elapsed: 0.167 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <1> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:166)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:161)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:632)
+	at com.campus.events.foundation.FoundationIT.automaticResourceGrantRecordsOneCompleteAuthorizationHistory(FoundationIT.java:286)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO] Running com.campus.events.foundation.PublishedModulesIT
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-07T13:19:55.634+08:00  INFO 11108 --- [campus-events] [           main] c.c.e.foundation.PublishedModulesIT      : Starting PublishedModulesIT using Java 21.0.12.1 with PID 11108 (started by admin in D:\Codex\2026-11-07\https-github-com-rito-492-campus\outputs\campus-sched\server)
+2026-11-07T13:19:55.635+08:00  INFO 11108 --- [campus-events] [           main] c.c.e.foundation.PublishedModulesIT      : The following 1 profile is active: "test"
+2026-11-07T13:19:55.790+08:00  INFO 11108 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-11-07T13:19:55.815+08:00  INFO 11108 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@138d978e
+2026-11-07T13:19:55.816+08:00  INFO 11108 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-11-07T13:19:55.817+08:00  INFO 11108 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:5547/campus_test?currentSchema=t_098668e837ae4bedb30a103f614b7f4c (PostgreSQL 17.6)
+2026-11-07T13:19:55.825+08:00  INFO 11108 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_098668e837ae4bedb30a103f614b7f4c"."flyway_schema_history" does not exist yet
+2026-11-07T13:19:55.825+08:00  INFO 11108 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.003s)
+2026-11-07T13:19:55.832+08:00  INFO 11108 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_098668e837ae4bedb30a103f614b7f4c"."flyway_schema_history" ...
+2026-11-07T13:19:55.866+08:00  INFO 11108 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_098668e837ae4bedb30a103f614b7f4c": << Empty Schema >>
+2026-11-07T13:19:55.877+08:00  INFO 11108 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_098668e837ae4bedb30a103f614b7f4c" to version "1 - schema"
+2026-11-07T13:19:55.951+08:00  INFO 11108 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_098668e837ae4bedb30a103f614b7f4c" to version "2 - outbox claim token"
+2026-11-07T13:19:55.954+08:00  INFO 11108 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "t_098668e837ae4bedb30a103f614b7f4c", now at version v2 (execution time 00:00.067s)
+2026-11-07T13:19:56.198+08:00  INFO 11108 --- [campus-events] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-07T13:19:56.198+08:00  INFO 11108 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-07T13:19:56.198+08:00  INFO 11108 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-11-07T13:19:56.201+08:00  INFO 11108 --- [campus-events] [           main] c.c.e.foundation.PublishedModulesIT      : Started PublishedModulesIT in 0.612 seconds (process running for 5.448)
+2026-11-07T13:19:57.073+08:00  INFO 11108 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2026-11-07T13:19:57.074+08:00  INFO 11108 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+[ERROR] Tests run: 3, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 1.490 s <<< FAILURE! -- in com.campus.events.foundation.PublishedModulesIT
+[ERROR] com.campus.events.foundation.PublishedModulesIT.fractionalResourceQuantityIsRejectedWithoutResourceGrantOrReceipt -- Time elapsed: 0.014 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: {"requestId":"96e43edc-9538-4c33-90eb-418fa6b82af4","data":{"allowTeacher":true,"allowStudent":true,"kind":"EQUIPMENT","name":"С�����","category":"PROJECTOR","capacity":null,"quantity":2,"openFrom":"08:00","openTo":"22:00","id":"cb89607d-aad6-4e90-91f6-8d5df1ee413f","createdAt":"2026-11-07T05:19:56.920231Z"}} ==> expected: <400> but was: <201>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at com.campus.events.foundation.PublishedModulesIT.fractionalResourceQuantityIsRejectedWithoutResourceGrantOrReceipt(PublishedModulesIT.java:145)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.foundation.PublishedModulesIT.newResourceIsGrantedViaRealAccountPort -- Time elapsed: 0.015 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <1> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:538)
+	at com.campus.events.foundation.PublishedModulesIT.newResourceIsGrantedViaRealAccountPort(PublishedModulesIT.java:127)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.foundation.PublishedModulesIT.fractionalLockVersionCannotModifyPersistedDraft -- Time elapsed: 0.068 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: {"requestId":"d0fc4ef3-8099-4781-8e4c-0ce37bba9366","data":{"id":"af994447-3adc-47cc-a1d8-f68c96d410d3","organizationId":"f9636476-a444-4dbb-adb2-1d6a8e595d4f","ownerId":"ff35d68f-a851-486e-a5ca-b8c9928cb54e","status":"DRAFT","versionNo":2,"effectiveVersionNo":null,"lockVersion":1,"input":{"title":"��Ӧ�����С�����汾","description":"","expectedAttendees":60,"registrationCapacity":20,"staffUserIds":[],"plan":{"startAt":"2030-10-20T02:00:00Z","endAt":"2030-10-20T03:00:00Z","setupMinutes":0,"teardownMinutes":0,"venueId":"6821cf1c-b240-4968-a35b-e7e90281056d","equipment":[]}},"registrationCount":0,"resourceRisk":"NORMAL","activeChangeId":null,"myRegistrationStatus":null,"createdAt":"2026-11-07T05:19:56.972553Z"}} ==> expected: <400> but was: <200>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at com.campus.events.foundation.PublishedModulesIT.fractionalLockVersionCannotModifyPersistedDraft(PublishedModulesIT.java:157)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   FoundationIT.automaticResourceGrantAndHistoryRollBackTogether:294 Unexpected exception type thrown, expected: <java.lang.IllegalStateException> but was: <org.opentest4j.AssertionFailedError>
+[ERROR]   FoundationIT.automaticResourceGrantRecordsOneCompleteAuthorizationHistory:286 expected: <1> but was: <0>
+[ERROR]   FoundationIT.numericAuthorizationEnumsAreRejectedWithoutWrites:259 identity: {"requestId":"3c04997d-813f-4d39-9772-692fd60d91bb","data":{"identity":"TEACHER","roles":["APPLICANT"],"permissions":[],"approvalScopes":[],"managedResourceIds":[],"id":"3d4d8c1b-d112-427f-9d14-cf0040290ee0","displayName":"ö��У���˺�","organizationId":"b02047d0-81c1-4762-992c-213b48ca7b22","enabled":true}} ==> expected: <400> but was: <201>
+[ERROR]   PublishedModulesIT.fractionalLockVersionCannotModifyPersistedDraft:157 {"requestId":"d0fc4ef3-8099-4781-8e4c-0ce37bba9366","data":{"id":"af994447-3adc-47cc-a1d8-f68c96d410d3","organizationId":"f9636476-a444-4dbb-adb2-1d6a8e595d4f","ownerId":"ff35d68f-a851-486e-a5ca-b8c9928cb54e","status":"DRAFT","versionNo":2,"effectiveVersionNo":null,"lockVersion":1,"input":{"title":"��Ӧ�����С�����汾","description":"","expectedAttendees":60,"registrationCapacity":20,"staffUserIds":[],"plan":{"startAt":"2030-10-20T02:00:00Z","endAt":"2030-10-20T03:00:00Z","setupMinutes":0,"teardownMinutes":0,"venueId":"6821cf1c-b240-4968-a35b-e7e90281056d","equipment":[]}},"registrationCount":0,"resourceRisk":"NORMAL","activeChangeId":null,"myRegistrationStatus":null,"createdAt":"2026-11-07T05:19:56.972553Z"}} ==> expected: <400> but was: <200>
+[ERROR]   PublishedModulesIT.fractionalResourceQuantityIsRejectedWithoutResourceGrantOrReceipt:145 {"requestId":"96e43edc-9538-4c33-90eb-418fa6b82af4","data":{"allowTeacher":true,"allowStudent":true,"kind":"EQUIPMENT","name":"С�����","category":"PROJECTOR","capacity":null,"quantity":2,"openFrom":"08:00","openTo":"22:00","id":"cb89607d-aad6-4e90-91f6-8d5df1ee413f","createdAt":"2026-11-07T05:19:56.920231Z"}} ==> expected: <400> but was: <201>
+[ERROR]   PublishedModulesIT.newResourceIsGrantedViaRealAccountPort:127 expected: <1> but was: <0>
+[INFO] 
+[ERROR] Tests run: 6, Failures: 6, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- failsafe:3.5.6:verify (default) @ campus-events ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  12.811 s
+[INFO] Finished at: 2026-11-07T13:19:57+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-failsafe-plugin:3.5.6:verify (default) on project campus-events: There are test failures.
+[ERROR] 
+[ERROR] See D:\Codex\2026-11-07\https-github-com-rito-492-campus\outputs\campus-sched\server\target\failsafe-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

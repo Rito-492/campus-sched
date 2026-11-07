@@ -1,0 +1,33 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-07T13:27:25.549+08:00  INFO 6664 --- [campus-events] [           main] c.campus.events.CampusEventsApplication  : Starting CampusEventsApplication v0.1.0-SNAPSHOT using Java 21.0.12.1 with PID 6664 (D:\Codex\2026-11-07\https-github-com-rito-492-campus\outputs\campus-sched\server\target\campus-events-0.1.0-SNAPSHOT.jar started by admin in D:\Codex\2026-11-07\https-github-com-rito-492-campus\outputs\campus-sched)
+2026-11-07T13:27:25.552+08:00  INFO 6664 --- [campus-events] [           main] c.campus.events.CampusEventsApplication  : The following 2 profiles are active: "dev", "e2e"
+2026-11-07T13:27:28.256+08:00  INFO 6664 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-11-07T13:27:28.272+08:00  INFO 6664 --- [campus-events] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-07T13:27:28.273+08:00  INFO 6664 --- [campus-events] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-11-07T13:27:28.306+08:00  INFO 6664 --- [campus-events] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-11-07T13:27:28.309+08:00  INFO 6664 --- [campus-events] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2614 ms
+2026-11-07T13:27:28.618+08:00  INFO 6664 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-11-07T13:27:28.812+08:00  INFO 6664 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@fddd7ae
+2026-11-07T13:27:28.814+08:00  INFO 6664 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-11-07T13:27:28.849+08:00  INFO 6664 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:5547/campus_test?currentSchema=pm_ui_3d831caabe5443f4b3b2b8823bd6a1fe (PostgreSQL 17.6)
+2026-11-07T13:27:28.883+08:00  INFO 6664 --- [campus-events] [           main] o.f.core.internal.database.base.Schema   : Creating schema "pm_ui_3d831caabe5443f4b3b2b8823bd6a1fe" ...
+2026-11-07T13:27:28.894+08:00  INFO 6664 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "pm_ui_3d831caabe5443f4b3b2b8823bd6a1fe"."flyway_schema_history" ...
+2026-11-07T13:27:28.958+08:00  INFO 6664 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "pm_ui_3d831caabe5443f4b3b2b8823bd6a1fe": null
+2026-11-07T13:27:28.991+08:00  INFO 6664 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "pm_ui_3d831caabe5443f4b3b2b8823bd6a1fe" to version "1 - schema"
+2026-11-07T13:27:29.114+08:00  INFO 6664 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "pm_ui_3d831caabe5443f4b3b2b8823bd6a1fe" to version "2 - outbox claim token"
+2026-11-07T13:27:29.128+08:00  INFO 6664 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "pm_ui_3d831caabe5443f4b3b2b8823bd6a1fe", now at version v2 (execution time 00:00.112s)
+2026-11-07T13:27:30.230+08:00  INFO 6664 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-11-07T13:27:30.242+08:00  INFO 6664 --- [campus-events] [           main] c.campus.events.CampusEventsApplication  : Started CampusEventsApplication in 5.734 seconds (process running for 7.415)
+2026-11-07T13:27:30.513+08:00  INFO 6664 --- [campus-events] [           main] com.campus.events.dev.DemoDataSeeder     : 演示数据导入完成：组织 2、用户 9、资源 12、活动 2、预约 4、报名 1（演示日期 2030-10-20）
+2026-11-07T13:27:53.823+08:00  INFO 6664 --- [campus-events] [0.1-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-07T13:27:53.823+08:00  INFO 6664 --- [campus-events] [0.1-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-07T13:27:53.824+08:00  INFO 6664 --- [campus-events] [0.1-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms

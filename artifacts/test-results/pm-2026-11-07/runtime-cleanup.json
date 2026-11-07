@@ -1,0 +1,8 @@
+{
+  "postgresStopExit": 0,
+  "frontendStopped": true,
+  "scope": "Only this task backend, frontend, and dedicated PostgreSQL instance",
+  "checkedAtUtc": "2026-11-07T05:42:39.4415453Z",
+  "backendStopped": true,
+  "remainingTestListenerPorts": []
+}

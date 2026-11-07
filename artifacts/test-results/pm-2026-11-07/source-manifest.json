@@ -1,0 +1,1811 @@
+{
+  "count": 361,
+  "files": [
+    {
+      "path": ".env.example",
+      "bytes": 1399,
+      "sha256": "aeab1ef4c7dba3361ca2ff74a3cc519b470cad38229ebf5776bdefd1aa9bc5f6"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 9551,
+      "sha256": "a1188d9603dcf167e762b92d1cfb8d7d907c1686d79480b13f1aea00439ba436"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3722,
+      "sha256": "203304068d761dd33f26705242f393ee0a7446638b97784687c762e38d536823"
+    },
+    {
+      "path": "agents/17231018-ui/agent.md",
+      "bytes": 6265,
+      "sha256": "7d658e3981ecde09101c6765f46f4f01eb3c5d6fb9eaa1dbf1348fe825d4fa05"
+    },
+    {
+      "path": "agents/22220314-activity/agent.md",
+      "bytes": 6230,
+      "sha256": "88bcc22591523630ff82cdf3cbb6cbf1a2a3518e850dbe70e8da0eae91f24607"
+    },
+    {
+      "path": "agents/55230223-foundation/agent.md",
+      "bytes": 6276,
+      "sha256": "f9f58864c2c33e84d5412be879fb1b0580db5d381921c03118c3cede6b3b1447"
+    },
+    {
+      "path": "agents/55230315-scheduling/agent.md",
+      "bytes": 6245,
+      "sha256": "a377a93eda9b209aaaec20fac959d7017b002d44d3f89eec4fa0a45e3c2352a9"
+    },
+    {
+      "path": "agents/55230316-qa/agent.md",
+      "bytes": 6264,
+      "sha256": "7f09180e64a2a4655a063f1e5f5a649a43fdb5fd043ec9f95bf02da73e405f7a"
+    },
+    {
+      "path": "agents/55231031-change/agent.md",
+      "bytes": 6405,
+      "sha256": "408794a0567124b88daf17b812063b9d488ecad40e3564816cb40286c507a226"
+    },
+    {
+      "path": "agents/README.md",
+      "bytes": 2005,
+      "sha256": "08853b70c5517c291bd199bcc1c7665847d5f5bb16cb21024d4b2a95ec470610"
+    },
+    {
+      "path": "agents/common/01-开发基线.md",
+      "bytes": 4794,
+      "sha256": "b2a88b899b159bff57022429d8d74883ed7395e5147b4aa275cbd9ffdc9f764e"
+    },
+    {
+      "path": "agents/common/02-数据与接口契约.md",
+      "bytes": 31740,
+      "sha256": "5b30b49ff130d23cc4a3a1bdeba28673f2ee61e4d47813b0471fb75a7bb9d33f"
+    },
+    {
+      "path": "agents/common/03-验收与演示数据.md",
+      "bytes": 14183,
+      "sha256": "4ed25c35f880c52f2b1642a0e66b0857fc0b373f4d69c81e5e65f25f6ddc4e33"
+    },
+    {
+      "path": "agents/common/04-协作与集成规程.md",
+      "bytes": 4302,
+      "sha256": "f097c3b75a735241acbff4d3c7c62cc36a8b5d1e91f3f65a13293def176b5dde"
+    },
+    {
+      "path": "agents/common/05-界面规范.md",
+      "bytes": 7597,
+      "sha256": "e57dd163268b444860eff0aa33411aea2c64cb5bcec06bd20728eede911e7708"
+    },
+    {
+      "path": "compose.qa.yaml",
+      "bytes": 2107,
+      "sha256": "76e4a6cbd15efd96fa9408ecebe98ecd13d94a52ed5259c0a3eb2879693d7017"
+    },
+    {
+      "path": "compose.yaml",
+      "bytes": 2070,
+      "sha256": "051068a3df9f3c10109746478eef0f679b8f51b7e0525104f154edb1bc57b377"
+    },
+    {
+      "path": "contracts/openapi.yaml",
+      "bytes": 126189,
+      "sha256": "4ee84d2111a489d83b28e4d4e41969c2fb8c38bf476d3beb86d84d3039eef5c7"
+    },
+    {
+      "path": "docs/configuration/configuration-index.md",
+      "bytes": 6266,
+      "sha256": "c46ae74c8301ae59b9bfd56c8fafe767ec68ee13af7114001cb01d12b03c8610"
+    },
+    {
+      "path": "docs/configuration/configuration-management-plan.md",
+      "bytes": 13481,
+      "sha256": "8cfc66c67807b03944473b959df59e5b1506903ae7916e8fc5151dad6fd1c813"
+    },
+    {
+      "path": "docs/configuration/handoff.md",
+      "bytes": 28346,
+      "sha256": "28e47b2eded508c36b3a830de461ff7350c7f9249b54df981e588a406f36ba5e"
+    },
+    {
+      "path": "docs/configuration/repo-structure.md",
+      "bytes": 11444,
+      "sha256": "d72b97f904cdce9170b8f525db618c4be823f05c5fdc640b932dedbe58ff2a2c"
+    },
+    {
+      "path": "docs/design/database-design.md",
+      "bytes": 9888,
+      "sha256": "9f0a11b0a617cd9faaad7f70bd6141fd6a6d29fabd8c9c01ae477acf1730c1b2"
+    },
+    {
+      "path": "docs/design/handoff.md",
+      "bytes": 27617,
+      "sha256": "8efdfb762b64281269aa27c132909bf3935b0e63ca5edc14473bd7c1231923b0"
+    },
+    {
+      "path": "docs/design/integration-validation-v1.0.md",
+      "bytes": 7364,
+      "sha256": "7fa46e5f5ad5fbd65fbfe71f5e019fda718a148f22841fafd2825aa1b776a641"
+    },
+    {
+      "path": "docs/design/migration-register.md",
+      "bytes": 5021,
+      "sha256": "4faec5db080414b9a7c3a44ea4b7843f18b8824c4dfce642dd15741f0fc11c2b"
+    },
+    {
+      "path": "docs/design/scheduling-check-v1.0.md",
+      "bytes": 5054,
+      "sha256": "fd176ffa20f281a002ed83ce3764921fd1e4d458d3c18c3149b7bc5f1e3cd816"
+    },
+    {
+      "path": "docs/design/scheduling-implementation-v1.0.md",
+      "bytes": 10142,
+      "sha256": "806ae7f33d1fa4e33f4c277dfce308d7b04167b19ca314eec5dfeac8912ce0b9"
+    },
+    {
+      "path": "docs/design/scheduling-progress-v1.0.md",
+      "bytes": 6839,
+      "sha256": "11103c1ff5f7eafd7d752765c0fbdf835b6304659c94c7f94d8fe4803f81cd21"
+    },
+    {
+      "path": "docs/design/scheduling-review-fix-v1.0.md",
+      "bytes": 6535,
+      "sha256": "0d3c9adc017f8247611ffcf8da39704ec6349c569ba0c4fe87846c9bbe962eec"
+    },
+    {
+      "path": "docs/design/software-design-task4.md",
+      "bytes": 108609,
+      "sha256": "1909282148841bbea704d84fa47b43707350bb30c0415fef6cbfb585277e06d9"
+    },
+    {
+      "path": "docs/design/system-design.md",
+      "bytes": 6299,
+      "sha256": "ad60853d971f1c7d0408a263ab932b77a720bd1e7a80241c8f152e29398adf25"
+    },
+    {
+      "path": "docs/management/access-coordination-v1.0.md",
+      "bytes": 6593,
+      "sha256": "4e278e68ec602b1a18ee7f8670c14950a66e6c4601d355cc7ba60354385c23c7"
+    },
+    {
+      "path": "docs/management/api-register.md",
+      "bytes": 7969,
+      "sha256": "89ad0f2f88a6c9e224f45432ae8084f05fb762fc936b3f0b720464a64d1f0d3f"
+    },
+    {
+      "path": "docs/management/contract-coordination-2026-10-31.md",
+      "bytes": 4545,
+      "sha256": "dadf2ffe72f328cf991f9dd12ac0e8e53cea845ca714b22aa379bb06ac3178aa"
+    },
+    {
+      "path": "docs/management/decision-log.md",
+      "bytes": 6267,
+      "sha256": "d237d881ad880f906e9eb5045580f49a7ccb7e87094bae052919111cade53bed"
+    },
+    {
+      "path": "docs/management/detailed-project-plan.md",
+      "bytes": 18646,
+      "sha256": "53ad9680c896fb1b4252322fbfabafeaf734b5137359655aaeb3e3b9b56ac5e9"
+    },
+    {
+      "path": "docs/management/foundation-guide.md",
+      "bytes": 11474,
+      "sha256": "f3a620556603b4ca7cd00c60aa20b8e77683cc3cf24f555b7cc8568bd9da4d62"
+    },
+    {
+      "path": "docs/management/handoff.md",
+      "bytes": 31729,
+      "sha256": "8a16a043f80db272ec61466fca080648e4d5eceaa2c3202ad94f0ab53e8ae9e5"
+    },
+    {
+      "path": "docs/management/initial-project-plan.md",
+      "bytes": 37504,
+      "sha256": "5d5c6e1c037f34d1f217687c6d8d3ff1f15385f593820c93f74dfec6212abdd9"
+    },
+    {
+      "path": "docs/management/integration-intake-2026-10-31-v1.0.md",
+      "bytes": 6909,
+      "sha256": "1cafd31372a00ab60703c0fb552a23131088f2ef2ea4487750c65c8203f4f5f1"
+    },
+    {
+      "path": "docs/management/integration-log.md",
+      "bytes": 9164,
+      "sha256": "e68ad8d52f9b8aaac2d7b658dee9570c2d1df9c068f663e7b88ae4fbca64415b"
+    },
+    {
+      "path": "docs/management/integration-review-2026-11-02-v1.0.md",
+      "bytes": 7911,
+      "sha256": "3edfe71736a406f4bd1d4e67ee854c4da5920a860a75196cab9297c5f14ce26f"
+    },
+    {
+      "path": "docs/management/integration-review-2026-11-06-v1.0.md",
+      "bytes": 4835,
+      "sha256": "25d7c45bd06a4a5b18ab70bd471d5bd15771effa612d91ef2e017c1bd5cb1fe5"
+    },
+    {
+      "path": "docs/management/integration-review-2026-11-07-v1.0.md",
+      "bytes": 11864,
+      "sha256": "20bfa4b3b2632ea78e4ef19f90ad045863b1eb0d7a16f0c8de521424fc3b5fee"
+    },
+    {
+      "path": "docs/management/integration-status-2026-10-31.md",
+      "bytes": 5897,
+      "sha256": "dd5559b945886d7363ed4f31cf6234f58389750865ee3f906d021620f909a04b"
+    },
+    {
+      "path": "docs/management/review-fixes-2026-10-20.md",
+      "bytes": 4723,
+      "sha256": "eb4fd92ebd1a0e7af714c603adb6c5aa5dd522c5dc1e9116b84f54ec9da22f3d"
+    },
+    {
+      "path": "docs/management/risks.md",
+      "bytes": 5774,
+      "sha256": "ce3086a953f8592c9d40b829e5d3d131765925d293e50c3502831caa4d21f5d7"
+    },
+    {
+      "path": "docs/management/work-log.md",
+      "bytes": 6085,
+      "sha256": "d87e783db6ec7311b81bf24799d3f8098bfb872f83f7e1a83defe7abe51e8f39"
+    },
+    {
+      "path": "docs/requirements/activity-api-handoff-v1.0.md",
+      "bytes": 6913,
+      "sha256": "6df375a4545a35a117d9c8a8fd17186207c3a278d0168a7893af91898a048ebe"
+    },
+    {
+      "path": "docs/requirements/activity-cm-integration-v1.0.md",
+      "bytes": 3746,
+      "sha256": "545c22f3e210a261d90af43110597e2efd841036fe3c285fa74049f2a47b6bf7"
+    },
+    {
+      "path": "docs/requirements/activity-module-validation-v1.0.md",
+      "bytes": 8156,
+      "sha256": "26f79c400c3b48bebb0047dcfdb7d2f2f57e9b64c76d1582bd042d469454157f"
+    },
+    {
+      "path": "docs/requirements/activity-review-response-v1.0.md",
+      "bytes": 4020,
+      "sha256": "8a82d79478668ad9cec079479bdc73878277336c9a905ba082fd34d63f9b4681"
+    },
+    {
+      "path": "docs/requirements/business-rules.md",
+      "bytes": 9298,
+      "sha256": "46b4432337c6f69f1ecdcde82a23fabe41c54c5dee8e8eba67f82a556b72ce8b"
+    },
+    {
+      "path": "docs/requirements/handoff.md",
+      "bytes": 20563,
+      "sha256": "580c3560b849f4bf65d06735fc2ef42647cadbc4d3c9a232661a65f8b5b91ef3"
+    },
+    {
+      "path": "docs/requirements/software-requirements.md",
+      "bytes": 21932,
+      "sha256": "eb4dcf1bdbb39be1887054d0cd84bc4b3de016258fab9c05458da895b541340b"
+    },
+    {
+      "path": "docs/requirements/supplementary-specification.md",
+      "bytes": 8915,
+      "sha256": "ccaa060bcedfd0bd535de735a52676c9f8ad019703cf9f452ebaf873323433a8"
+    },
+    {
+      "path": "docs/requirements/traceability.md",
+      "bytes": 12884,
+      "sha256": "1c0e0b7fd23ac3c00514dd6cac80ae78b995fb58cfe7f8f3a37eb2934e43874a"
+    },
+    {
+      "path": "docs/requirements/use-cases.md",
+      "bytes": 28332,
+      "sha256": "51ed693504d5e4accaa45ffad10f547d4a4ee7aa1dc3801485d648a520a29c1a"
+    },
+    {
+      "path": "docs/testing/coverage-matrix.md",
+      "bytes": 5451,
+      "sha256": "7ae27d05d1cfc72b0a77a3d4ec28af84031c5c83e62bf2972f6987071d1dd465"
+    },
+    {
+      "path": "docs/testing/defect-register.md",
+      "bytes": 1184,
+      "sha256": "f5d865d553008fa24e475bd0dcdf373d345bdcfe24d5ef1f1f42a73a59ff60c7"
+    },
+    {
+      "path": "docs/testing/handoff.md",
+      "bytes": 14206,
+      "sha256": "3a1bb7d2e92635c1203e130ac75b385846b075b1d2955636f9f2b3cd5d26b802"
+    },
+    {
+      "path": "docs/testing/pr-review-checklist.md",
+      "bytes": 5103,
+      "sha256": "3fa83ff269ca5a3282ca517c78e9018246156aaf59b56e8745c00fcd4da31694"
+    },
+    {
+      "path": "docs/testing/test-data-plan.md",
+      "bytes": 11890,
+      "sha256": "083073d3ed9ede52c56ca754be96a2f511976ba1e9e29a254ebba6ecc1249131"
+    },
+    {
+      "path": "docs/testing/test-design.md",
+      "bytes": 30405,
+      "sha256": "1db7dcaf59a4fe72da5c4bbf5365a857a3ac4f1324cc917dde7ec10430568a9c"
+    },
+    {
+      "path": "docs/testing/test-plan.md",
+      "bytes": 10213,
+      "sha256": "01568c611c3f600d72363c17d7718703444c7299d4ed123102447a999f8e4952"
+    },
+    {
+      "path": "docs/testing/testid-requirements.md",
+      "bytes": 3104,
+      "sha256": "e9ecf67b303dc289edab81ea2638bc1eafd6fe367f99f69c852c2b8509bbc447"
+    },
+    {
+      "path": "docs/ui/api-matrix.md",
+      "bytes": 15267,
+      "sha256": "7a3904da32cf5ba76d8a729376ade18cde0eb3dd649f5bdac3ec4fe9d8e0070d"
+    },
+    {
+      "path": "docs/ui/bundle-optimization-2026-11-01.md",
+      "bytes": 6478,
+      "sha256": "349bd894ec1da4b366a9b6428f78f0d1601741e7d5b61f909d4f0bc2bd6bce28"
+    },
+    {
+      "path": "docs/ui/handoff.md",
+      "bytes": 27520,
+      "sha256": "780e80234b35dfa2cffda25b0744256854ff6c75463dd12643b91ea7a480de89"
+    },
+    {
+      "path": "docs/ui/interface-description.md",
+      "bytes": 25861,
+      "sha256": "84f70e16a2b9aa9de8799dded19ad8377f175b93efe53b696ba3fd6de66bcd9e"
+    },
+    {
+      "path": "docs/ui/interface-implementation-0.1.md",
+      "bytes": 4959,
+      "sha256": "ac91e80383097eee59ae6d1fd6cde78654ecc9a6c4bbe66e8d1415f24c56e370"
+    },
+    {
+      "path": "docs/ui/pr-draft.md",
+      "bytes": 4479,
+      "sha256": "d85807fe3a927746d1a71693997dd19501fd0fcc8edf364406a24a4134a00876"
+    },
+    {
+      "path": "docs/ui/pr-post-bundle-review-2026-11-01.md",
+      "bytes": 6593,
+      "sha256": "e3609867ddbae22e75a77bd97ac434d2a54ca51c8e1cc2e4ca3a6f1801b85e1f"
+    },
+    {
+      "path": "docs/ui/pr-rereview-2026-11-01.md",
+      "bytes": 7184,
+      "sha256": "163e592e9f318f8a8113b4e273ebbc6a41123a8411c1d32069151cbc9faefe74"
+    },
+    {
+      "path": "docs/ui/pr-review-2026-11-01.md",
+      "bytes": 7312,
+      "sha256": "1497217c14d231711d499f8618891df9bf13dd316607a0805e0d58f19bd69946"
+    },
+    {
+      "path": "docs/ui/pre-review-recheck-2026-11-01.md",
+      "bytes": 3712,
+      "sha256": "9912a322881397d18149002ce68e922f03bf427096afa45d868abf09d3fb4e9e"
+    },
+    {
+      "path": "docs/ui/prototype/README.md",
+      "bytes": 1869,
+      "sha256": "629458aebd5e4237ef17579b961218c3f6c6623d59258f8aa2f50879421d2b43"
+    },
+    {
+      "path": "docs/ui/real-integration-2026-10-31.md",
+      "bytes": 9024,
+      "sha256": "15c1ce53e0ee0f48b87c85509e70952d387ae74ef08f6cece5d68fe75e84387f"
+    },
+    {
+      "path": "docs/ui/review-fixes-2026-11-01.md",
+      "bytes": 5557,
+      "sha256": "47f916317264544401ddb5d42fb1188f2abf2722eac687318da471bd301b73b8"
+    },
+    {
+      "path": "docs/ui/review-followup-2026-11-01.md",
+      "bytes": 8884,
+      "sha256": "2759ce357ece12fa1edadb2389818b9cd6b73e4810caf4e6efab4110f04f47d9"
+    },
+    {
+      "path": "docs/ui/self-review-2026-11-01.md",
+      "bytes": 11044,
+      "sha256": "77443418542af92fc67258abcface2890fb3a6e167dc654722976e5807ecc819"
+    },
+    {
+      "path": "docs/ui/user-manual.md",
+      "bytes": 10713,
+      "sha256": "40ea9d26341e66c7dbcec47943c0b8327a124ed6807a8f638fce3f5630d7f882"
+    },
+    {
+      "path": "infra/db/init.sql",
+      "bytes": 722,
+      "sha256": "09a22ad1636d2dc0dfe5c85bc09fc276a612cbf2dcfc04397dba0c999fb60954"
+    },
+    {
+      "path": "infra/nginx/default.conf",
+      "bytes": 856,
+      "sha256": "8aafca811b0787873cd3007fc9ea9a22540344f6a62774136b0498c192eb8cd0"
+    },
+    {
+      "path": "qa/package-lock.json",
+      "bytes": 15372,
+      "sha256": "ca0a1d49dc328a60424f596c7322f043c605ac5155e408f07e51bb9a75087a99"
+    },
+    {
+      "path": "qa/package.json",
+      "bytes": 612,
+      "sha256": "95f86b7ec83c1294ad26887c07f4f0604fc1b4e39026b8fbfd1182b21b3f35b8"
+    },
+    {
+      "path": "qa/playwright.config.ts",
+      "bytes": 1888,
+      "sha256": "c4d54857f26aa5a06ce48b24eba06f8fea4b7cc94406efac53e87fb0876a952c"
+    },
+    {
+      "path": "qa/scripts/check-contract.ts",
+      "bytes": 14400,
+      "sha256": "2044e4b83f4d9d677e56e0ded554a6e97debb9433591354a58cfcc5cea122396"
+    },
+    {
+      "path": "qa/scripts/evaluate-scheduling.ts",
+      "bytes": 11849,
+      "sha256": "2c3d21e64184dff7f5f9484f1e648400462203a9218a7a3b6878c2c549fe4ec7"
+    },
+    {
+      "path": "qa/tests/booking.spec.ts",
+      "bytes": 9344,
+      "sha256": "a1dbd45ccfc8be0b03b13f9498bad57f8280d20bee9bcd4fd191d8d26d090d81"
+    },
+    {
+      "path": "qa/tests/change-conflict.spec.ts",
+      "bytes": 15708,
+      "sha256": "c722e2dca6eb22357a4e93175300708ab8d0090ae790140bfff2fea0248ea133"
+    },
+    {
+      "path": "qa/tests/change-happy-path.spec.ts",
+      "bytes": 5497,
+      "sha256": "37e5ae4e7e04872983a98ed78c2eaacbef4c0ddc79532186c57cf3b782f617d1"
+    },
+    {
+      "path": "qa/tests/eligibility.spec.ts",
+      "bytes": 7468,
+      "sha256": "af1b593bf9d84f2ad3e333eb1fa27c3a349f7ef3fe58e6b91ca8458ad94c4c74"
+    },
+    {
+      "path": "qa/tests/helpers.ts",
+      "bytes": 27117,
+      "sha256": "918a2f61d5da77d2535aec1d24af5368e097a9f2268525be64e16be68570644a"
+    },
+    {
+      "path": "qa/tests/login.spec.ts",
+      "bytes": 6381,
+      "sha256": "58c953753ad6d85f6ff160acb4ba0a8a5fb6c1e4ec2c34b8500271d6a8dd6b96"
+    },
+    {
+      "path": "qa/tests/permissions.spec.ts",
+      "bytes": 9544,
+      "sha256": "bc3a67794d02fdfe94a575122b27fdd2e46f112186f8abf709e0fa046c14850d"
+    },
+    {
+      "path": "qa/tests/ui-layout.spec.ts",
+      "bytes": 4132,
+      "sha256": "0f9adc9c9ff2e391ef8b492f7565aa9265c580bd8abd4d0d51462a15306541d1"
+    },
+    {
+      "path": "qa/tsconfig.json",
+      "bytes": 385,
+      "sha256": "2793b266ebbac32b9378aee9e4adf5761f2cd6cd25ec18804c81873bf7179f9f"
+    },
+    {
+      "path": "scripts/check.ps1",
+      "bytes": 5072,
+      "sha256": "8f5ba5361d8ed2820eae65f1eb632e8c78f3d31fef66f3f31f879ae26e0cb2d6"
+    },
+    {
+      "path": "scripts/load-env.ps1",
+      "bytes": 1324,
+      "sha256": "d45a506f2ab365e30cae160ce0033acb0dfafc3cc3653a8aaa2d97c9f61ee439"
+    },
+    {
+      "path": "server/Dockerfile",
+      "bytes": 807,
+      "sha256": "ab8a195c57cf4ee474d122ba2f36162f6c790771c125a36054c0f961ad256fe6"
+    },
+    {
+      "path": "server/mvnw",
+      "bytes": 11790,
+      "sha256": "cae96cef89ebea3531221f4ae17c23cf8edf67d00eae8306d4186ae1bbed4d02"
+    },
+    {
+      "path": "server/mvnw.cmd",
+      "bytes": 8481,
+      "sha256": "46eedb8419bd14fe70d5bb2916d7b6f51806e51b39d5b76a42610384ca929c1c"
+    },
+    {
+      "path": "server/pom.xml",
+      "bytes": 4099,
+      "sha256": "e60ba9f94fe32b3d6be8e6fb03128f4d380d8487b95bc9087bb9b7dd0e640b55"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/CampusEventsApplication.java",
+      "bytes": 441,
+      "sha256": "a6bcef65e0433b9380f4185dcea087542ca6da6157abae14ee972ee927472e29"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/activity/ActivityController.java",
+      "bytes": 4687,
+      "sha256": "5a7807a17b796133e3d321a92cfa2bb28471bb503687703c196c76633acb5cf6"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/activity/ActivityPortAdapter.java",
+      "bytes": 2386,
+      "sha256": "549a2bc5e42150b92f0a4c30a00730b6abe2693301c49af82015678ea5ef4b6c"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/activity/ActivityRepository.java",
+      "bytes": 7551,
+      "sha256": "41d890c40db909af8dc63580bc9095f8266c46ccb30e8126bc9ba44da61218ea"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/activity/ActivityService.java",
+      "bytes": 15222,
+      "sha256": "fd594034bd79e4f4daf10c1cc8ea0b9f5ef828caae75686fe67665709c1e28c5"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/activity/ActivityStateMachine.java",
+      "bytes": 4677,
+      "sha256": "5167a319be954b9ed876cc236d1f90a74856dd42758b8d6ea8e3246935932cde"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/activity/ActivityViews.java",
+      "bytes": 2644,
+      "sha256": "8a8704058323cd477faedf9d64933bc3e8be1021717aa5bf2c70d3cce54c2ac3"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/auth/AccountPortAdapter.java",
+      "bytes": 1869,
+      "sha256": "bebfd32b433d7d41c7815bb57f0962ae0b13ea9efab241bb13fcdede9c6d3660"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/auth/AccountRepository.java",
+      "bytes": 3620,
+      "sha256": "d63a8f4d2fa6bcec24041e895ded3535ce642e12a51df08da70c2a40b5600e23"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/auth/AuthController.java",
+      "bytes": 1320,
+      "sha256": "1b49020a82858ca4250d5704f42296d2aeb813e7d6b13f28ebef1a46619e13a5"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/auth/AuthorizationPolicy.java",
+      "bytes": 2068,
+      "sha256": "47de37afd64e249c548a62aa5c04950985cffa3e7b270dda0710637f762bb280"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/auth/BearerFilter.java",
+      "bytes": 3295,
+      "sha256": "ccb696773761f5f09c55454ca8aa64d07e6a996e72294e96ae34c20ed10c08ca"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/auth/PasswordPolicy.java",
+      "bytes": 679,
+      "sha256": "64a2b3ca415e8d2fabcc8f1858623c13e0cea8f0b805b299f34f364aa812642d"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/auth/SecurityConfiguration.java",
+      "bytes": 2026,
+      "sha256": "335ca618926fc123949c255980d0f407d0bffcf4a1d50b2f94be5ee371d5027e"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/auth/SessionService.java",
+      "bytes": 3282,
+      "sha256": "a4e9f3ac457cf5fecec2ede65684cc591120cb2c29f1a15f4934e088d6d04e98"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/auth/UserController.java",
+      "bytes": 2473,
+      "sha256": "ee70ee3fd3aca6d82fa36894c42790894e7accc5ec02e04780687c47fb47d446"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/auth/UserService.java",
+      "bytes": 8007,
+      "sha256": "5c687e473dda4c05c9787d50680fee0cbfe0b3daea684c11eab90a1be2e8eca2"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/change/ChangeController.java",
+      "bytes": 4552,
+      "sha256": "8e1868e4ffa13b4cd5108ee2e6167fa89d6ba23cdbad466acb0c32e51ad47918"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/change/ChangePortAdapter.java",
+      "bytes": 1019,
+      "sha256": "bfcd90920cc89aa41e2ebd6d91da1f5279af0a68b563bee2e43dc35c9760f39c"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/change/ChangeRepository.java",
+      "bytes": 8550,
+      "sha256": "11f8ad290fce9481e4682afc817d909c49f5edfb5912a5de80a220f7c1b7f97a"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/change/ChangeService.java",
+      "bytes": 20245,
+      "sha256": "8944fc2bf8aa98bf027ed4d99ca6fb2ba54be6ca8606baf9032542b72712059d"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/AccountPort.java",
+      "bytes": 297,
+      "sha256": "a1da2354e50fb5dba7bff35d73c734087a028e22c5099d38d312ae953c88a640"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ActivityEdit.java",
+      "bytes": 302,
+      "sha256": "116a27dbbeace59bedb67970d1683d867b4933365c26c46fe457f27c7f2d082f"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ActivityInput.java",
+      "bytes": 894,
+      "sha256": "8751ace76a0c11615d92a9b5cf13f90d5b8f65c6b5926f0df7ea992c897b54da"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ActivityPort.java",
+      "bytes": 414,
+      "sha256": "d6d837154c2dcb613d0556233667c500bc9ae9577625d4f63f7110732ced3ebf"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ActivitySnapshot.java",
+      "bytes": 297,
+      "sha256": "56977b7e192d215efc7ac91cf7ad6cbdc318452b7c12b16b66453a759b9f5dba"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ActivityStatus.java",
+      "bytes": 141,
+      "sha256": "b515158d35fe2805b6050c3bff6ede9ec889ed17a5f7e8af4f8b7f4133fc1ad7"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ActivityView.java",
+      "bytes": 591,
+      "sha256": "66fff9c1dcbf64b04e6e12f1c5797a1bf34161b561f376eda070a9235188b118"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Actor.java",
+      "bytes": 482,
+      "sha256": "c8e235be6772dc54914a35411a1c006ab64bc8746e4b8bd60ea4bfc72e28e833"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/AffectedActivity.java",
+      "bytes": 317,
+      "sha256": "feacc3618b6b58a889ecaf18c3261a79e1d47d05ccc395e90a5ab390db16dad0"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Alternative.java",
+      "bytes": 358,
+      "sha256": "acd5783f95a40c7b14f67b04cef03e3b163917f3c0e80f3bf2bc570cbe34648a"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/AlternativesView.java",
+      "bytes": 374,
+      "sha256": "e1d0ceed18f18508e87b3932b216b588c7bf7f5f209e2159fe1bcdfaa0386616"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ApprovalCommand.java",
+      "bytes": 569,
+      "sha256": "79eb1c33bab01effd6e7ce7fbac8c28f321678360be76d7d8e56de8bb963bae7"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ApprovalScope.java",
+      "bytes": 312,
+      "sha256": "f35b658faa679a90e9938fba058d7e89ccf2c1d840477fc14b77cb08dc57341d"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/AuditView.java",
+      "bytes": 377,
+      "sha256": "a8a0e1796582cfd0bba9b2e083faa80bcec78056e8c3803d5fb10b821a322a46"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/AuthorizationInput.java",
+      "bytes": 469,
+      "sha256": "95acb7d9d2816f48cf2200db7a4439d652acf98b864908758a85a4ceaec319f4"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/CalendarEntry.java",
+      "bytes": 413,
+      "sha256": "182195d0526bb8ed72917f6b5265f3d950d20e914195cdfa8cdbe7d2a70ee582"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/CalendarSegment.java",
+      "bytes": 99,
+      "sha256": "49d81dba60fffe930597f4c854ac3d09539ad3e83a73ad03ee86e9f8862cc27b"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ChangeCreate.java",
+      "bytes": 393,
+      "sha256": "d017fe9d83a2af8d3d2299babd5c4a68f568cc9fc856dec86f8754935657bf72"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ChangeDecision.java",
+      "bytes": 527,
+      "sha256": "0a12b9dd02b486ca8752599fbb9200c53b4e4d42a2c3ced30133a3d993e9dc92"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ChangePort.java",
+      "bytes": 333,
+      "sha256": "a7fd21b4054d02c1b246e4053536668cbb520b24d8bfd1a5c32450078a876a10"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ChangePreview.java",
+      "bytes": 306,
+      "sha256": "628c17aa40ae52981721c259cdaea293286ca1bbf6593432bbcbca86754ffbd2"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ChangeStatus.java",
+      "bytes": 190,
+      "sha256": "6b2d8413d7da21b9cf3a81bc13af928d5da7b45e6267322687b41cebdec452d9"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ChangeView.java",
+      "bytes": 657,
+      "sha256": "5697abeb00b07e55bab0a8a8f7afb7132adfe76c409474e9da7b041ad4475f48"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/CheckResult.java",
+      "bytes": 275,
+      "sha256": "a123a31f4439f182f2e7d085533c33a2c540d064e4cf211102d967fc0a211e09"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/CommandResult.java",
+      "bytes": 262,
+      "sha256": "1cf1573601bc5579aca94eeaf3138d783f91e6ad00cfd8480d74edf6f5cf75b6"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Confirmation.java",
+      "bytes": 315,
+      "sha256": "e547e66f43605b47ad531d4ea75902f26b4c585f7c45a52627a876fdc03ac31c"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Conflict.java",
+      "bytes": 420,
+      "sha256": "887d4c1730018db66ac916a560ae66261984cc56c36ea2c4d6ddf3348b48cf11"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ConflictCode.java",
+      "bytes": 148,
+      "sha256": "a1f3fb7a85d2bfbad1b073ca4080bcec03c5cd1bc83cf2b18a708c70c1bf2417"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Decision.java",
+      "bytes": 78,
+      "sha256": "9ca7c1537984bd8c15d4817dd8148f6b934ba72cb5711b714291e785b26584aa"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/DecisionRecord.java",
+      "bytes": 318,
+      "sha256": "404e7f048d5e8d8dab5e8e0e292f836a0621c22aee659736ae671f950b184cfc"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/EnabledInput.java",
+      "bytes": 241,
+      "sha256": "b2b06f417755baef7e2c18ad70e483912b4748bc255bf808a09601258f4354c3"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/EquipmentNeed.java",
+      "bytes": 281,
+      "sha256": "7734cd3d120afe4f99b3a202b9a9b2504987d1260f68d5cb9cb43faab0081301"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/EventDraft.java",
+      "bytes": 410,
+      "sha256": "4bd6d93a207655bdbfa20864203df836d5dd137d75dcb69fdda3e940f1710ae4"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/EventPort.java",
+      "bytes": 219,
+      "sha256": "a1c2235a1c7d43e1b686e1bd921d00f52c2b06d134e547ad43f5f5daa7a6d5ab"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/FaultInput.java",
+      "bytes": 612,
+      "sha256": "c9f4e3c17b03a6e573f6683b826cefebb002396a75abe9fdab07586af2699fde"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/FaultView.java",
+      "bytes": 410,
+      "sha256": "abfbbafb6f433a7c8a955eb125374d75e2f1401093614f0904e514e1d75c35eb"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Identity.java",
+      "bytes": 79,
+      "sha256": "f95e9b45d4f04a03fc7374e4c12832cb69b4df6f037575e22119a3f3645be29d"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Impact.java",
+      "bytes": 624,
+      "sha256": "9b1a43bc720d8a4b02f5b043cf98602f0294afae77855421498842a2900980e8"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/LoginInput.java",
+      "bytes": 302,
+      "sha256": "8bd1d94a4ba9bc1d23c5c8d8013c4bdc54315172f1032dee7515afca13ec1aef"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/LoginView.java",
+      "bytes": 282,
+      "sha256": "68805d751913657edbc99f67f93d641659c5931202039f94ce20ce51c3e823b0"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/NotificationView.java",
+      "bytes": 405,
+      "sha256": "21eea550f492661e47ba1225c6c9d569cea1ef3f605447ee3f7435cc847e1ced"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/OrganizationView.java",
+      "bytes": 258,
+      "sha256": "bd896b7da14881791e347028bf3efbf28a6c63a233bc776555f7b784bd9e6acf"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Permission.java",
+      "bytes": 123,
+      "sha256": "e55cb6982a8e9ff93f5ae72a9259b312746eb0163a6a488998aa4e8d5c732758"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Plan.java",
+      "bytes": 1428,
+      "sha256": "bc9662d4cebb94192c5030dad762bd8746f23506508eba34a5c0d0ce365916b6"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Proposal.java",
+      "bytes": 288,
+      "sha256": "20365dce66195019bb3d3a8d9474a3eeb3a2620c6d6efa57123a5ea7ef4c9411"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ReasonCommand.java",
+      "bytes": 318,
+      "sha256": "0ebdefd31b62c8427ce2ff747e1c4a29fef6976ceabb56ba610c2e1ab7e83695"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/RegistrationAction.java",
+      "bytes": 87,
+      "sha256": "8e3c89cca322ac8fdf3aa9b2aa2df3d13098c64e400fb812a648f19dd827346c"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/RegistrationCommand.java",
+      "bytes": 306,
+      "sha256": "df141ac5ba4a8a4b47b6139f8f96f7b10ddebfd77a23fd066dfd4fd3b3e601b9"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/RegistrationStatus.java",
+      "bytes": 101,
+      "sha256": "6502b741073a58a580e0a05f361fab644cac4286766196a01df611a9a05a783f"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/RegistrationView.java",
+      "bytes": 324,
+      "sha256": "27b0641a639d8ff179ab66116e9231985f6851d6135c1be768d1af962f5dc53f"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ResourceCreate.java",
+      "bytes": 1214,
+      "sha256": "8ebc96947e9a350c184e8cf26fd42daa2bfdbc64a2621e7a36636dcf81104d6f"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ResourceEligibility.java",
+      "bytes": 283,
+      "sha256": "76d7bb135bb41f302c5fac965c25ce502297f6d7622a82e7f45bc155999b3fd7"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ResourceKind.java",
+      "bytes": 83,
+      "sha256": "ecd5a4ca4dc20cdccf9cc1463f506dd9d104c80ee5d8cdbaa1d0fbdae174ace8"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/ResourceView.java",
+      "bytes": 489,
+      "sha256": "97cc0558fee68cd3f1e614a4b7c917a7c8b671d9cbc709310c83d366d0ba5ae0"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Risk.java",
+      "bytes": 74,
+      "sha256": "9c291005f022b2fab5658790611de833858520fa07c02310288fa0107842107b"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/Role.java",
+      "bytes": 85,
+      "sha256": "59a66de7492558463282824a06270b51d6a826c5d51e0535d7c8ba33df2ad43c"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/SchedulingPort.java",
+      "bytes": 695,
+      "sha256": "b1d2293610ca4c2028130b07edd91367b675115f769cc3ad9fb30ebf9c9d36d7"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/StaffView.java",
+      "bytes": 312,
+      "sha256": "7a27d68ad2b49d403d774f0040b8f8451386cdd826a18f4a03534e6d76de9ee3"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/UserCreate.java",
+      "bytes": 659,
+      "sha256": "65c157a2f56df7005df6f5a32b6a6e9b1f545ccf2227edcdf57a408781cfd452"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/VersionCommand.java",
+      "bytes": 259,
+      "sha256": "4439a26a83daf49f78c023e3780f70bf027d9847b01f0e734ed7bdfa55f40efc"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/contract/WithdrawInput.java",
+      "bytes": 204,
+      "sha256": "9793180c221ff8afa12ab3655fbf1e13c86f01473a5ee6b3b923b6e146a7f4c8"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/dev/DemoData.java",
+      "bytes": 2692,
+      "sha256": "3da0221d5020a070e605179f8d878f76a2870672de060844b30d1b9468ea723a"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/dev/DemoDataSeeder.java",
+      "bytes": 13183,
+      "sha256": "af3e49121a74c1724ca84dbe3336359ef2b2f766f18998c1d95c5ae5c1bc8002"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/foundation/ApiException.java",
+      "bytes": 1093,
+      "sha256": "6ff36b70a0f40953f3081da557eed5857b0afd8031f2cae193ebee51019a9ac2"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/foundation/ApiExceptionHandler.java",
+      "bytes": 2189,
+      "sha256": "b18a640dee6a0a4d8f104a99dec2506d927b9ff98899b6e06df2cfb0909243f0"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/foundation/CanonicalJson.java",
+      "bytes": 2559,
+      "sha256": "614ca14ab9d179d87363d8c36b8e198e3d8fd1ed846e7ca4c3a400b11e405465"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/foundation/CommandExecutor.java",
+      "bytes": 3006,
+      "sha256": "5ae0631783e34e4eb6b1ce70b97188398b2867742bf6c30c079e0a33807879ab"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/foundation/FoundationConfiguration.java",
+      "bytes": 2028,
+      "sha256": "0ef9477c660d0013636a31269024b2bb3851d51e35e2bdd31c4024d9c01bd7be"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/foundation/HealthController.java",
+      "bytes": 442,
+      "sha256": "2a60838f82df72b83296fe59fc813317403bec011fba05ea50aa48b9749adc3e"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/foundation/RequestIdFilter.java",
+      "bytes": 1029,
+      "sha256": "53be9e39ca6d59084f0ae9aa16784bb9bb701e3e1595aa03388b445b3a4636e8"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/foundation/RequestIds.java",
+      "bytes": 304,
+      "sha256": "6860f19b40adb36fcdf12d647c05e67c1d91662d3c3f113e305b3e18d8594398"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/foundation/Responses.java",
+      "bytes": 1073,
+      "sha256": "a58028fd1793cea0699f6d4987662aa0d9cbd51ae10d5e4bbc6019d8578a52d5"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/notification/EventPortAdapter.java",
+      "bytes": 1646,
+      "sha256": "6883b5b86e81a0e7d1b1c01a8a71cb20c0df0c07f817f0ed125cab29a6b94c56"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/notification/EventRepository.java",
+      "bytes": 6779,
+      "sha256": "7bf9f0d6256109af66c61fefc8b8282cc9ee7e8ba6a947cea4b4161c461ae533"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/notification/NoopNotificationDeliveryProbe.java",
+      "bytes": 385,
+      "sha256": "96773ae972fa676d66c2f0ad648399b76fc9e6adfe43e759c0ea1dde3a44e15d"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/notification/NotificationConfiguration.java",
+      "bytes": 368,
+      "sha256": "52de9af7d5c65c5144bb06fd386936241684612dc8e327a4cb5e32fa33e4fdcf"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/notification/NotificationConsumer.java",
+      "bytes": 2885,
+      "sha256": "e2b3325c26068f3c3c72f1202729f4102a3f0182091955f873b0afb92a99705c"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/notification/NotificationController.java",
+      "bytes": 1919,
+      "sha256": "fc3342d22e215922e31bc8836368b0d69a6b91f4f1c0b24c74cbd8cbeb1f323f"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/notification/NotificationDeliveryProbe.java",
+      "bytes": 648,
+      "sha256": "3839e5a92993686162046799cbb00d4fab41c6aad2da3e923314a2e2195b3ba6"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/notification/NotificationRepository.java",
+      "bytes": 2831,
+      "sha256": "f18d3ca260ef17760197e32c91caedd6d7879e5407385eb8f6dd4ae0f4032605"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/notification/NotificationService.java",
+      "bytes": 3521,
+      "sha256": "67086407bde59e6921e6ee62d1945355547137f61e14912cb1d6be5f8e9b0957"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/registration/RegistrationRepository.java",
+      "bytes": 2394,
+      "sha256": "c86cb1060d33023aaed3a15c5ab27a89493b05621f0be4ccae7fddfe2652c73d"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/resource/ResourceController.java",
+      "bytes": 2929,
+      "sha256": "2c3151494d7eeda993707bad47254caaf30d354d3d80fb07cb7f6f2cf4e7f4f7"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/resource/ResourceRepository.java",
+      "bytes": 10856,
+      "sha256": "c0f3de483ce5135115a77eeff85ac3a97ca1ec24b39b5d7e70e00b6100f2076e"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/resource/ResourceService.java",
+      "bytes": 8823,
+      "sha256": "218426ce539260bf409c757172dcfeaabf75bd01dbf633580b92f5a9a29c4516"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/scheduling/CandidateRanking.java",
+      "bytes": 2053,
+      "sha256": "df0d019cd525093e3881e01bfbb5f8c95f896e06b784b81b69f6dcc865a1214c"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/scheduling/CandidateSearch.java",
+      "bytes": 5044,
+      "sha256": "e3c0184d4c45945245dad3cec2a15649b4a48dc85f539d662c8616d37c214030"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/scheduling/CapacitySweep.java",
+      "bytes": 2690,
+      "sha256": "c9a88f04b9ca79b37e080c872b3765fcb1870642b8b0057f534260a861e282a5"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/scheduling/ConstraintChecker.java",
+      "bytes": 4721,
+      "sha256": "91de7b2c7d9596b01058b1ee92f0ebc3752c923a96805a95cabf93536bc19bde"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/scheduling/ScheduleController.java",
+      "bytes": 1166,
+      "sha256": "031207b1f535182afcc79a96a2f413570ec1a45aea787128b4a42bf1a5b1ac4e"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/scheduling/ScheduleQueryService.java",
+      "bytes": 2632,
+      "sha256": "83f7e5d2f1e5cae74a8e48c3fe236d07dc8afa9004ed41ebe92ec94c5ae9aa04"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/scheduling/SchedulingPortAdapter.java",
+      "bytes": 6036,
+      "sha256": "fa8a69fbd82e0385fc6c814ee319f758d9a27b902b6b00874ae6b2d4da583d73"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/scheduling/StrategyEvaluator.java",
+      "bytes": 1493,
+      "sha256": "dfcb95e7bf01d488c3d6d6ca6e31d7783df6052cb32f973a8293f68c26fd11d9"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/scheduling/StrategyResult.java",
+      "bytes": 242,
+      "sha256": "efac30b919934f02969ca132ec4f3c08d798f038ffcd448e6bc566acf42d65c6"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/scheduling/TimeInterval.java",
+      "bytes": 2133,
+      "sha256": "94c40462fd1c57df5b3b6eefbbe5e8e01145eb1890d6e7820a3577c7abaa69aa"
+    },
+    {
+      "path": "server/src/main/resources/application-dev.yml",
+      "bytes": 326,
+      "sha256": "a24073067907bef51623be0c338ee317184d5f21d01e177bd4744f7b5d79485a"
+    },
+    {
+      "path": "server/src/main/resources/application-e2e.yml",
+      "bytes": 502,
+      "sha256": "42ad971c4712e2b2102788ac3671a0981600a4eede7ba5fea855ecce5a819fb2"
+    },
+    {
+      "path": "server/src/main/resources/application-test.yml",
+      "bytes": 415,
+      "sha256": "6f691a121f98c23925a50fbb17800b5d462795a55a60040232d2acb3db6144e9"
+    },
+    {
+      "path": "server/src/main/resources/application.yml",
+      "bytes": 929,
+      "sha256": "fff957b0e65a77f8d3745957613eab70a8ae9dc1c3a5d41237fc22a1323327ae"
+    },
+    {
+      "path": "server/src/main/resources/db/migration/V1__schema.sql",
+      "bytes": 30454,
+      "sha256": "f05ff82fa0fcb3959f7a2031e25ed72d91e882224da0f5a68ed45b766d9f3a95"
+    },
+    {
+      "path": "server/src/main/resources/db/migration/V2__outbox_claim_token.sql",
+      "bytes": 466,
+      "sha256": "d9c5f4c3b952e36a554c1153bb76e5dfdb90e01100a1d66e0aa3f3b56c7ee4c2"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/acceptance/BookingConcurrencyIT.java",
+      "bytes": 12840,
+      "sha256": "d6d7a5dd73da2c6af99372fbf5cf14dabc17ca99224035019437056ac7c2a73b"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/acceptance/CancellationRaceIT.java",
+      "bytes": 15581,
+      "sha256": "f03fc84617bcaa07437df0e8684938a15c6d34c8a9bf944863d334a867431ef3"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/acceptance/ChangeRollbackIT.java",
+      "bytes": 27252,
+      "sha256": "a37df2dcd995625af44da2cf87fb77388c5a12f97fdd7a130fe025cc4700ff7b"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/acceptance/IdentityEligibilityIT.java",
+      "bytes": 55012,
+      "sha256": "cd397e3c328d69f38546ad0d680205a7816ce4fc96a86ccb92965c13c88784c2"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/acceptance/NotificationConsistencyIT.java",
+      "bytes": 14530,
+      "sha256": "567c4389f3b2995cb76c8b2e97f48f89fba9c8387f436a9137aaea5385034928"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/acceptance/PermissionsIT.java",
+      "bytes": 38999,
+      "sha256": "2c9019994e2c6d23162e84d396de533258733c1d77f93172982b11bc9ba7a8bb"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/acceptance/RegistrationCapacityIT.java",
+      "bytes": 13872,
+      "sha256": "69e54dc1d30aefb4f7916f43561d96eadf229f16e070e6664066f8897c7dd79d"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/acceptance/SchedulingBenchmarkIT.java",
+      "bytes": 21494,
+      "sha256": "a548689d4e1ad6bea7f0f8864172526b2b67773852c3015eed383a87ddc7b0d4"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/activity/ActivityRegistrationIT.java",
+      "bytes": 40349,
+      "sha256": "c534f2651026bd35e314bd202e2f851bb27e69c1c490ec5e05427e7cddc091c0"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/activity/ActivityServiceTest.java",
+      "bytes": 13509,
+      "sha256": "15f07abc5c787f432fd04ab5c9ac408787872b1135034b93f4006fb8d1637cd8"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/activity/ActivityStateMachineTest.java",
+      "bytes": 5808,
+      "sha256": "878e715b88185e7fda95d27bee2529d1ca7b78e0a29d016473cb1a67fe382646"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/auth/AuthorizationPolicyTest.java",
+      "bytes": 3670,
+      "sha256": "0835ecba7901c80a33332a3773ec9489c43b1b83a7bf6ed983bfc68430fa967f"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/auth/PasswordPolicyTest.java",
+      "bytes": 1529,
+      "sha256": "c8561c0427027b98bb4f177b322ea6a1ebf632fd058dcf8d2e179f37c8903b15"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/change/ChangeServiceTest.java",
+      "bytes": 4200,
+      "sha256": "ed9f8dadc45a51f96f059f35291a8c711759c3f4f99312bd8f9efe0cf0052ded"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/contract/ContractValidationTest.java",
+      "bytes": 3171,
+      "sha256": "d1632fdc021864d094485c34a46e3bc11d46233d2b2252e3f8a52f4ea963fddf"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/dev/DemoDataSeederIT.java",
+      "bytes": 6732,
+      "sha256": "7c966f96109582d379bb1386153c5ea12a9f334c44da74743e678659061c6af0"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/foundation/CanonicalJsonTest.java",
+      "bytes": 1549,
+      "sha256": "ebcee0b03925e3c1c337f3be19a31cb0b9889982d529967d40cffaa861bd9893"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/foundation/ContractJsonTest.java",
+      "bytes": 4486,
+      "sha256": "9b95592b5a3208aab0aff5190e9989469a9a1e1955897c1d1320e3f25eaa48a2"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/foundation/FoundationIT.java",
+      "bytes": 31622,
+      "sha256": "d01da21bdc773bd84d2106ceb91c74c6e258b06996f10a81ab12233f86f8ce15"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/foundation/ProductionWorkflowIT.java",
+      "bytes": 15869,
+      "sha256": "45bc77fd03af89f1722a651cf9682e75290cf900dc44b1c0a060354aadc64242"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/foundation/PublishedModulesIT.java",
+      "bytes": 18054,
+      "sha256": "b6418fe681a535ee13ef3e3727402a6816a87f39fe23703f84071122714eddfb"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/foundation/ResponsesTest.java",
+      "bytes": 1311,
+      "sha256": "cfdc6fc550324fdad89a96e7577ecd39c63fca0fd63825d8507f71caa885a847"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/foundation/StandardMavenSchemaIT.java",
+      "bytes": 1487,
+      "sha256": "6bba4a47b58bbcd9f1220776c76c6bac69ae23513933bb55531b93968356e70f"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/notification/OutboxClaimIT.java",
+      "bytes": 5534,
+      "sha256": "6d3665441d9878151489f98ae659cbb9181859ffec57059b1cf49e32f5327fda"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/resource/ResourceSchedulingIT.java",
+      "bytes": 52161,
+      "sha256": "dc79adbdf7c617b00cc803724b97cb5ac9fe12e61edb763195ec40941c01cfd7"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/resource/SchemaIT.java",
+      "bytes": 23458,
+      "sha256": "b8d2938477530dae37a9dc4b8ed49a92d899f69359569cd649ddb78726a94e45"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/scheduling/CandidateRankingTest.java",
+      "bytes": 2686,
+      "sha256": "4554953f75064e26d17db42edc996ffd065c7e932b6936c582dc4d8740c1aa23"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/scheduling/CapacitySweepTest.java",
+      "bytes": 4064,
+      "sha256": "60c1ae5872ea9b478f859b541284b10ff7e92e60ff2fbef460e92377b4a7fdd2"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/scheduling/DsStrategyBenchmarkIT.java",
+      "bytes": 14896,
+      "sha256": "37013e4c34064b7e42c46a81734d8778164edd947fa8487fb124af0d438b0c2e"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/scheduling/ScheduleQueryServiceTest.java",
+      "bytes": 4360,
+      "sha256": "ecf5fbf29b0c86471f04f366753703c8683cb880d65863ffeaa1368956941013"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/scheduling/StrategyEvaluatorTest.java",
+      "bytes": 7172,
+      "sha256": "9c60a0ceeca516c56e853a5913c6ed471b90855c491d311f8cc8e791d6707c93"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/scheduling/TimeIntervalTest.java",
+      "bytes": 2725,
+      "sha256": "a77814dacb9010143709244fc729d2d5e4633d76e86204bdb5a9cbb507c34f01"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/support/ConcurrentRunner.java",
+      "bytes": 5290,
+      "sha256": "9a9dffd40c50711e22bde939d8104f364c0951159dd49f586db78972622863a7"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/support/DbTestSupport.java",
+      "bytes": 21953,
+      "sha256": "c9ac5b077f26d5b00667dd60ff440c7aaf26c9194ad70a1683fed96b39944427"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/support/TestClockConfiguration.java",
+      "bytes": 1401,
+      "sha256": "b9c14b39bff580f5cb301f0d89f5fc8f84e8778e83320b97c8e16c9c538aa4d8"
+    },
+    {
+      "path": "taskbook.md",
+      "bytes": 5372,
+      "sha256": "75eba57488b1c6ed0afa1ddf5e1355cbd1176fb6c5ed56870e49e0d2b37c5300"
+    },
+    {
+      "path": "test-data/demo.json",
+      "bytes": 9669,
+      "sha256": "b29450bf4d40473f5d6db8e33b40f9d2d203af07f8f8f6a4b1476fc8936d8130"
+    },
+    {
+      "path": "test-data/scenarios/registration-concurrency.json",
+      "bytes": 8521,
+      "sha256": "9894cdf2abb23cb7bcd86d6feb3659db1c7d036117ec016a1ce18106422db525"
+    },
+    {
+      "path": "test-data/scenarios/scheduling.json",
+      "bytes": 14516,
+      "sha256": "57b647328e15b868488d96ae0075e7f13e235ce3bc1cb01cd2e4d3053b184278"
+    },
+    {
+      "path": "web/Dockerfile",
+      "bytes": 484,
+      "sha256": "03e0ddb8b6605033eebcaab32c5051484dd9517d98ceac4f660b51dc6f65171c"
+    },
+    {
+      "path": "web/README.md",
+      "bytes": 7292,
+      "sha256": "df1232d8f7717ef19e52c69959bae108f24dd3945b8c8a9a416459ec81066f83"
+    },
+    {
+      "path": "web/package-lock.json",
+      "bytes": 121635,
+      "sha256": "7c065a2f52a53f1fb10c2e6ffad06e47163d2af42b8e01162660d58f786a7bbe"
+    },
+    {
+      "path": "web/package.json",
+      "bytes": 1634,
+      "sha256": "9010d41210605d4a96f59b9b22cf9e3331000ff641a9ead24b95daa9094082e5"
+    },
+    {
+      "path": "web/playwright.config.ts",
+      "bytes": 517,
+      "sha256": "3c0c75e47949b7fcccf718f10e17516d71095cffe815fab0e4f548bed43c6712"
+    },
+    {
+      "path": "web/playwright.integration.config.ts",
+      "bytes": 811,
+      "sha256": "24216e4f2e79682023bd0b56ecb7bdcd95657e161abf443cabfc8e9f521ab0b6"
+    },
+    {
+      "path": "web/playwright.production.config.ts",
+      "bytes": 528,
+      "sha256": "176b4a7e2535781c42f7c45ee297b67246963721da8438166b6a5f17552d4de2"
+    },
+    {
+      "path": "web/scripts/check-production.mjs",
+      "bytes": 571,
+      "sha256": "9108f7720be1834c789328dbc2dfd021b2d2588b08b4e395730718cb93ad534c"
+    },
+    {
+      "path": "web/scripts/probe-integration.mjs",
+      "bytes": 3413,
+      "sha256": "3ad2793217ddf7f05b212ba2dae48873ab9881ca9cde571c4116c78410b65ff7"
+    },
+    {
+      "path": "web/scripts/report-bundle.mjs",
+      "bytes": 2741,
+      "sha256": "9b1657efb1fe5d341ef592ac55f3f8854aa964829f0819c0e0cd2cb1b8ab3e4c"
+    },
+    {
+      "path": "web/scripts/sync-types.mjs",
+      "bytes": 816,
+      "sha256": "c56cc79a092013574f8026777451365d52ed01b1a774165315462c218caa15c7"
+    },
+    {
+      "path": "web/src/App.vue",
+      "bytes": 924,
+      "sha256": "9357313800e5dbee92f98089ba32a6430688e4d0dbdadf4903d5dc76bbd3d928"
+    },
+    {
+      "path": "web/src/api/client.ts",
+      "bytes": 2822,
+      "sha256": "2b76acbdb46d7cd2bc13327bda63721c0a2296071800a27b2d664f3683d7dc47"
+    },
+    {
+      "path": "web/src/api/index.ts",
+      "bytes": 5429,
+      "sha256": "4a2a5b3e198a44e0c2943ee9d6637a0e689ec4663ef22485f1cc8fc03b0b83ab"
+    },
+    {
+      "path": "web/src/components/ActivityList.vue",
+      "bytes": 1463,
+      "sha256": "0b70d004e90b1eae5a760a8826e28929af643607f8062451c06035f516987268"
+    },
+    {
+      "path": "web/src/components/ActivityRecords.vue",
+      "bytes": 6096,
+      "sha256": "fe815e1b164d3570dfd1200f573b10131a7edd58861520889f7100ea0e9da3b7"
+    },
+    {
+      "path": "web/src/components/AlternativesPanel.vue",
+      "bytes": 3650,
+      "sha256": "5cec379f5b28dbae4d52a739c03033ae22ef072c9c0f283855d090871c44f90c"
+    },
+    {
+      "path": "web/src/components/ApiFeedback.vue",
+      "bytes": 2169,
+      "sha256": "29b8f2f9b35ae86ab26486f941773ed3de2146fa38db5b29ba7d84434d577a0e"
+    },
+    {
+      "path": "web/src/components/AuthorizationEditor.vue",
+      "bytes": 8527,
+      "sha256": "f71c42019f247093f911e7df409aea46653c70a768772232e9096768cf8e1188"
+    },
+    {
+      "path": "web/src/components/ChangeActions.vue",
+      "bytes": 5162,
+      "sha256": "9fc1a9140dc929255ee7913691c462dda33bd37154ee4d75ae21be858573c323"
+    },
+    {
+      "path": "web/src/components/ChangeTimeline.vue",
+      "bytes": 2895,
+      "sha256": "2a7c197da92e84c9939137b972c84b7ea2845ce7911724c085a36285471a34de"
+    },
+    {
+      "path": "web/src/components/ConflictList.vue",
+      "bytes": 800,
+      "sha256": "1687390d81a155d4922137ae80b108e86b40e8fa3f035364aaf0e94210d0e97a"
+    },
+    {
+      "path": "web/src/components/DraftEditor.vue",
+      "bytes": 4821,
+      "sha256": "aa8d41ffafb229d8cd441af703a4072733ea53fea42510e6d94c3b3b5575df27"
+    },
+    {
+      "path": "web/src/components/ImpactPanel.vue",
+      "bytes": 2805,
+      "sha256": "3b56f5bdf1860e12a24ad625647c6c636688b82fd964b21b5f6311284ec6de3d"
+    },
+    {
+      "path": "web/src/components/MutationFeedback.vue",
+      "bytes": 1588,
+      "sha256": "19584ee04c4212a1ababf6af72a7926e6627d0c413fe6dab19e1b6e7d9704987"
+    },
+    {
+      "path": "web/src/components/PlanEditor.vue",
+      "bytes": 4941,
+      "sha256": "7182e6c831a70c77f5af4cff35ef0717b066854ab69d3a3130c22fb01f663bb6"
+    },
+    {
+      "path": "web/src/components/PlanSummary.vue",
+      "bytes": 1534,
+      "sha256": "79e919ad1fbaf21a85be51a319dcc60b115d9ee2a47eb29971a051f3be8557d7"
+    },
+    {
+      "path": "web/src/components/ResourceCalendar.vue",
+      "bytes": 6874,
+      "sha256": "62e07e2fe982faf6a6aa591314528fb761fd5970d0902992940b17fb7772d7cf"
+    },
+    {
+      "path": "web/src/components/ResourceManagePanel.vue",
+      "bytes": 12780,
+      "sha256": "f0bf0b3f78b7c9eeb41d8e090659fbd71d9473f76d5a7b8e3c3b6eab65c5ea7a"
+    },
+    {
+      "path": "web/src/components/UsersPanel.vue",
+      "bytes": 14225,
+      "sha256": "161ad49d077112e2310a0de69d464bda6bf11db2fc99f3ae1503a0f66e8b1fca"
+    },
+    {
+      "path": "web/src/components/WorkspaceLayout.vue",
+      "bytes": 2471,
+      "sha256": "f33009309744b3ace6edf6eae684f25bdeb65cfe0f9f494bf0696d23cdf380c5"
+    },
+    {
+      "path": "web/src/composables/useChangeWorkspace.ts",
+      "bytes": 5422,
+      "sha256": "63732508869ced79a1f608a7082455320997285557e2677fc25d48fd1a7aaab8"
+    },
+    {
+      "path": "web/src/composables/useMutation.ts",
+      "bytes": 1820,
+      "sha256": "b05d0b1f0241b5e2416d844aa517764a334d4f46746b6c137beb14ea1982e4c6"
+    },
+    {
+      "path": "web/src/composables/useUserAdmin.ts",
+      "bytes": 3672,
+      "sha256": "6f341f09bb38b70e2789b729b35ccbf452d1d0b04625ad87ebf3b8d22e9024a4"
+    },
+    {
+      "path": "web/src/dev/ChangePreviewPanel.vue",
+      "bytes": 6843,
+      "sha256": "8ab2cc2006bb528c8c179cef1e8a9f6188c9d4b7c300b37dd8ad1cb80fc3e525"
+    },
+    {
+      "path": "web/src/dev/PrototypePage.vue",
+      "bytes": 4926,
+      "sha256": "baf668e05f67bfe13236adf3fb4d0cc68e734fba28365ae30681db7a4e4d913b"
+    },
+    {
+      "path": "web/src/dev/WorkspacePreview.vue",
+      "bytes": 18302,
+      "sha256": "5196cb4cb1274d1049cb1ab0f0541a8e312733bba24099d2d3e19d151ac29edc"
+    },
+    {
+      "path": "web/src/domain/access.ts",
+      "bytes": 3222,
+      "sha256": "b6da2212958eace9393fd4bb9dbc8ebd3b21fb697bce8eb679df6c0d4a8fcd58"
+    },
+    {
+      "path": "web/src/domain/authorization.ts",
+      "bytes": 3736,
+      "sha256": "a9542c734484e263117632a7ac4a985feb499ba6ab52801cef124f671d024cc0"
+    },
+    {
+      "path": "web/src/domain/capacity.ts",
+      "bytes": 2058,
+      "sha256": "9d1ff4c2de85cd1b1f14e0733dc286d1e8c06a11c0770f352d20e2cf924f528f"
+    },
+    {
+      "path": "web/src/domain/change.ts",
+      "bytes": 2953,
+      "sha256": "7f6d372fcdfa6b91fce521b19e14009c27820437eee56171ee7165c007855f5f"
+    },
+    {
+      "path": "web/src/domain/format.ts",
+      "bytes": 818,
+      "sha256": "16c4629f7a6d2354f01c2959ac8d55e13c6832362adf1011e007bbc053ef505f"
+    },
+    {
+      "path": "web/src/domain/queue.ts",
+      "bytes": 708,
+      "sha256": "11736c57e1f72565f2b5401871991d0ceecfab32ccf1beb5c3ac64973d9bf691"
+    },
+    {
+      "path": "web/src/domain/resource.ts",
+      "bytes": 1745,
+      "sha256": "e68a5743a0f1f2e9c8cb25c63f4bf8fe9b8da766702cf35339188d31cb121812"
+    },
+    {
+      "path": "web/src/domain/validation.ts",
+      "bytes": 2265,
+      "sha256": "b085cd473d9c51e62adcd7f17320529eb54e052369c2cb30355e10e788b4dd40"
+    },
+    {
+      "path": "web/src/main.ts",
+      "bytes": 255,
+      "sha256": "4a7d2275f0534379eb4898089e8bc3e0b5c968992b4cdc11527b8410a20db781"
+    },
+    {
+      "path": "web/src/pages/ActivitiesPage.vue",
+      "bytes": 5278,
+      "sha256": "d899ec0938091892cad5123748e9f79ee4e4932d21c27c2cd1cb25746bf00b9e"
+    },
+    {
+      "path": "web/src/pages/ActivityCreatePage.vue",
+      "bytes": 10183,
+      "sha256": "96bbc3c34b78ccc8f8fd3ae4ebf807009c516ecd1830f9e0bd8fdb3b0379cbfe"
+    },
+    {
+      "path": "web/src/pages/ActivityDetailPage.vue",
+      "bytes": 15539,
+      "sha256": "0f9638e50f9ced16a17eaed76e5a690882ee921f0f9ddc31899172de392283f8"
+    },
+    {
+      "path": "web/src/pages/CalendarPage.vue",
+      "bytes": 2839,
+      "sha256": "4f25a59a3e7749fafbc8de1a0e276a2a7a048ba67e7792f8846b6b84f0242a8f"
+    },
+    {
+      "path": "web/src/pages/ChangeDetailPage.vue",
+      "bytes": 9263,
+      "sha256": "f1d3032139acd0bae2648135c708156ffcad0160ec4428959e7c4998b1abc49f"
+    },
+    {
+      "path": "web/src/pages/ChangeWorkspacePage.vue",
+      "bytes": 6147,
+      "sha256": "a60bc77aa5a29aed841d5bed30745e5f32c986e12af5cfeb7d0468a3de3be877"
+    },
+    {
+      "path": "web/src/pages/LoginPage.vue",
+      "bytes": 2856,
+      "sha256": "d58dc2191c5bef208997add7189f017a08ebbfe65036ff90dbbc3ffc29da2b49"
+    },
+    {
+      "path": "web/src/pages/NotificationsPage.vue",
+      "bytes": 3121,
+      "sha256": "c77455a10439c11601cc1fbe104915fefaadc6052e54fad8c2cf16b65519141f"
+    },
+    {
+      "path": "web/src/pages/PendingPage.vue",
+      "bytes": 613,
+      "sha256": "f9c9ef8db7a0c11d4e4f760f2d6ca857bbee36fefe602a67a37b9f97b16dbb90"
+    },
+    {
+      "path": "web/src/pages/ResourceManagePage.vue",
+      "bytes": 4318,
+      "sha256": "4604756a455303bca4d61e03e6a1c2abcf8b5dd09fe8f20cb51a748c1e11ffa2"
+    },
+    {
+      "path": "web/src/pages/UsersPage.vue",
+      "bytes": 1461,
+      "sha256": "5c1e44a30a4c1c3009c8d317c5ff46b6a16c4ab1dfa3213ba571235a072114fa"
+    },
+    {
+      "path": "web/src/router.ts",
+      "bytes": 4255,
+      "sha256": "31917afbbcfb6917561da57fd61ac83da4819beb93d8287efa7c052f551f3ed2"
+    },
+    {
+      "path": "web/src/stores/session.ts",
+      "bytes": 869,
+      "sha256": "f1e6175a468a5a32524036aca37914aead1efd42bf3cd4097784b6e39033d0d1"
+    },
+    {
+      "path": "web/src/style.css",
+      "bytes": 14958,
+      "sha256": "c0b9ea60ea51142db30c13373e3731a675fc41c8fc8375d2ad24e21fbe72e14c"
+    },
+    {
+      "path": "web/src/types/api.ts",
+      "bytes": 5824,
+      "sha256": "8e549afd0ad3ff589029b16067e26f4c7e3943db44d4c9f29033088dcf2bfa23"
+    },
+    {
+      "path": "web/tests/access.test.ts",
+      "bytes": 3799,
+      "sha256": "ab8600b806da625f74933d8943e1159ffaf2eb89ac1e005d5a42efcd7ae728ac"
+    },
+    {
+      "path": "web/tests/activity-detail.test.ts",
+      "bytes": 10791,
+      "sha256": "66af46e32248096d038c463f9e09d564cb7a33f4eaf95e9521a858c7035e38e0"
+    },
+    {
+      "path": "web/tests/activity-records.test.ts",
+      "bytes": 7645,
+      "sha256": "d79f0091caa2167b4849916b565568236ac80f846750f00a301b49966cb78a0f"
+    },
+    {
+      "path": "web/tests/api-feedback.test.ts",
+      "bytes": 1539,
+      "sha256": "5b68d8855c704ba2f697740ea82fb69e88e6e2e4a269e8848a45aca7dfc5ed8d"
+    },
+    {
+      "path": "web/tests/authorization.test.ts",
+      "bytes": 4659,
+      "sha256": "68b3125c6368191323863d8fabd740ef9580cc5600bbcae99186583b58b4c09c"
+    },
+    {
+      "path": "web/tests/browser/layout.spec.ts",
+      "bytes": 2552,
+      "sha256": "41c472731ad1053b2e95630729833616c28a11f720393f56d5ff577a2b82ac9c"
+    },
+    {
+      "path": "web/tests/browser/remaining-ui-preview.spec.ts",
+      "bytes": 4106,
+      "sha256": "c59712c933244ade9a9f8fa24f7779f65d5f9900ab8c83962706497877317a29"
+    },
+    {
+      "path": "web/tests/browser/users-preview.spec.ts",
+      "bytes": 3164,
+      "sha256": "913ccc0fc7c9ebf4b6df92e1ffd47b28f823c7383b850c7c4c778e07db16b35a"
+    },
+    {
+      "path": "web/tests/browser/workspace-preview.spec.ts",
+      "bytes": 2169,
+      "sha256": "19adfdb0d212082e4c66c0c682cd7c8b074736618f196c5b51cf37a8b60669c4"
+    },
+    {
+      "path": "web/tests/capacity.test.ts",
+      "bytes": 2323,
+      "sha256": "3a6eaf3eb4bb77fcf3b5fa8ddb3a3425b4cc3229a4ce9c97c083c147a80881c4"
+    },
+    {
+      "path": "web/tests/change-access.test.ts",
+      "bytes": 4736,
+      "sha256": "4ccf5c604646882c3c5d8a2a2cea7e0cebd1103b04fee14ed085427d90a23c19"
+    },
+    {
+      "path": "web/tests/change-actions.test.ts",
+      "bytes": 2644,
+      "sha256": "47621db7d7f0cd4048014d833163cbba1cd56502275daab79e2b831a6a76734e"
+    },
+    {
+      "path": "web/tests/change-detail.test.ts",
+      "bytes": 4241,
+      "sha256": "44d4b2c8d7460c027a3d130a0d224041efa28f22f10754467cf7f8f6f1c8bedf"
+    },
+    {
+      "path": "web/tests/change-workspace.test.ts",
+      "bytes": 7271,
+      "sha256": "492a7acb54259a2f6b811db220e5be198dc9800a180fc0c235962093ed3791ec"
+    },
+    {
+      "path": "web/tests/client.test.ts",
+      "bytes": 4989,
+      "sha256": "85ce6844fb7db885be2db456e93b8da27131951907f6f6c246073d7a18eb39c7"
+    },
+    {
+      "path": "web/tests/components.test.ts",
+      "bytes": 3093,
+      "sha256": "9d47e61654f5b1c0992a1ba7ec70152c7f6ad605430cfff83302e547fac6e6fe"
+    },
+    {
+      "path": "web/tests/contracts.test.ts",
+      "bytes": 4896,
+      "sha256": "d979ebf85ba75e0d37c9420e982d80ff60a3e0df950deb15594327dad0013d07"
+    },
+    {
+      "path": "web/tests/draft-editor.test.ts",
+      "bytes": 3169,
+      "sha256": "b34823f6fa6bc03806f46e2fb70f2f83302eda9c45ad99a6e3cc4c35cd396da7"
+    },
+    {
+      "path": "web/tests/fixtures.ts",
+      "bytes": 1827,
+      "sha256": "d38c073b879b5d18e225b3a0d202ea9d8e3c10ecd9925e680ca4abea10a90e55"
+    },
+    {
+      "path": "web/tests/integration/persistence.spec.ts",
+      "bytes": 1509,
+      "sha256": "7e025684d63979b1636bfdd684c346602b500d216d0555472c500bb8997c1b11"
+    },
+    {
+      "path": "web/tests/integration/real-service.spec.ts",
+      "bytes": 10737,
+      "sha256": "5606f669ff8e498d976d9974c56708a96dac3c2c10b1f425564572a4b270e476"
+    },
+    {
+      "path": "web/tests/integration/review-regression.spec.ts",
+      "bytes": 25993,
+      "sha256": "0d1debfea98b3a8da0434b40f31fb79aa7b387e3edb48536f3fc72139796c918"
+    },
+    {
+      "path": "web/tests/integration/review-restart.spec.ts",
+      "bytes": 1951,
+      "sha256": "3980605fddbc47e5baf5be371a0796b537c0118ad199bfa8373190a41f9d1816"
+    },
+    {
+      "path": "web/tests/integration/support.ts",
+      "bytes": 2539,
+      "sha256": "d10d2f1fab13ae71f89bacc71a44fdfb01b702954b9028d7a1dadbb3a89d5d7c"
+    },
+    {
+      "path": "web/tests/mutation.test.ts",
+      "bytes": 2496,
+      "sha256": "06f5303b406ebf51eeb094c688a6c451524dd9c212904db1020e01e3a094c125"
+    },
+    {
+      "path": "web/tests/production/components.spec.ts",
+      "bytes": 4308,
+      "sha256": "2f96fd3cae2242cb6fcc1f7c584a83463557933ef1247f8c64578f6484b0ebde"
+    },
+    {
+      "path": "web/tests/queue.test.ts",
+      "bytes": 1063,
+      "sha256": "ab01f3f5d26bad14030f7039f793099cd3b3b8db2a1a9145c32827dbca45f9b1"
+    },
+    {
+      "path": "web/tests/resource-management.test.ts",
+      "bytes": 2897,
+      "sha256": "89e93a63175c12e35c7d1d10b3ccb0f9dde91816d9d38096176dae29ef2be6fb"
+    },
+    {
+      "path": "web/tests/resource.test.ts",
+      "bytes": 1727,
+      "sha256": "99dadd08607ab380e0fb160f2efae129cbb6389249daca6a89351c6a806074ed"
+    },
+    {
+      "path": "web/tests/user-admin.test.ts",
+      "bytes": 5775,
+      "sha256": "c9b0f279d20d761d8f540fd678dc4841aab8a05fcb2704e61b3c4c4716aeb8c3"
+    },
+    {
+      "path": "web/tests/users-panel.test.ts",
+      "bytes": 5098,
+      "sha256": "eb4a16ee71da210b274e4cbef2488ee703446a2dd2f09dc28cff32630efd8340"
+    },
+    {
+      "path": "web/tests/validation.test.ts",
+      "bytes": 1412,
+      "sha256": "2bce93c1b91393924a277c6a1d7001e39980c25b49a2e088a0cc6a590bf8e6b7"
+    },
+    {
+      "path": "web/tsconfig.json",
+      "bytes": 482,
+      "sha256": "0a4bb9c8fed5d308031c3055e041708b901023d5e7c9358208816e4f17431403"
+    },
+    {
+      "path": "web/vite.config.ts",
+      "bytes": 889,
+      "sha256": "d75f2ae813305ce981c84ecc73728152cac7f8fbb1aec3255534bc31b132373c"
+    }
+  ],
+  "purpose": "Source provenance; hashes do not imply every historical evidence file was re-reviewed"
+}

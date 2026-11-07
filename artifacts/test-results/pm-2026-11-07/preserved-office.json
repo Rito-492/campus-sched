@@ -1,0 +1,121 @@
+{
+  "count": 23,
+  "allUnchanged": true,
+  "files": [
+    {
+      "path": "docs/configuration/T08_配置管理计划.docx",
+      "sha256": "c05a48c5f37fea431cfaf34bb43fa39549a97187080535fee27eaf9dc67664d1",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/course/0.2 Rational Unified Process概述.ppt",
+      "sha256": "4b5d8b7e556bd8a32922936913575e3fd279d4dae7ab493b435efa2cbb5a40e8",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/course/3.1 测试——软件测试计划.pptx",
+      "sha256": "5a1fbb9c61042392f97dcfef0e8e2a5a0ab70fff1564dc6574e36f802e6113f3",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/course/5.1 测试——测试用例.pptx",
+      "sha256": "ca87f6dce7ed0cdd6c84bd61c2cdf6b910f57f871517a3377f0b23c7b01c1037",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/course/6.1 测试——测试数据和测试过程.ppt",
+      "sha256": "055db149f98472ac9f44d117bac43ac1fef98165496e16d62a3844cf7e20156b",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/course/6.2 测试——缺陷记录与测试评估.pptx",
+      "sha256": "37840dd84aa5c3819a301f7e60a075c25ecc9a0477ebd9383ac090e3b9fef25d",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/course/role-confirmations/小组成员角色确认说明_冀项阳.xlsx",
+      "sha256": "79dd0b475685ce64085de658321dfcada67ef378b6f358536ca409155d6df353",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/course/role-confirmations/小组成员角色确认说明_冯玉琪.xlsx",
+      "sha256": "5ee989c8eb04478c6f17fec537f93d035be2d75bef8663ae0ddf39aad1a92024",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/course/role-confirmations/小组成员角色确认说明_杨瀚霖.xlsx",
+      "sha256": "83d9c340cd8258af1bf89d17164a68488b71c19fe7a23d513d1e722518b1c282",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/course/role-confirmations/小组成员角色确认说明_杨畅.xlsx",
+      "sha256": "0f47cb8e633070f9836a0016eb6252784d8aeedc890022b6215912def43a9288",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/course/role-confirmations/小组成员角色确认说明_汤雨润.xlsx",
+      "sha256": "1953eddd0ea7b674d9a74e91a90b5021cc7e5f6e8488c18f675a405b7fdd5e70",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/course/role-confirmations/小组成员角色确认说明_黄方勇.xlsx",
+      "sha256": "db0c19abb2b18be618f0a82e7cd9d593ae3ee71d9991de801f9594c70a502823",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/course/小组角色分配及选题表.xlsx",
+      "sha256": "32b5717b6e1a2134db81dff5d594906e93663d04002adc99e80cc03a59817314",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/course/工具选择情况说明.docx",
+      "sha256": "08aea28a4f412b680ae3923990fd33e2738744920b9847d81153aa09a916cb77",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/course/课下任务2.pptx",
+      "sha256": "f33a3b61c077f548d323119509380f1228733c447eb6304c08925dd187951391",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/course/项目组选题说明.docx",
+      "sha256": "3d469de14e9584fd2ef3c334ad2ff50e850b9f77a4d363bf05ec589fe4d7b1d4",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/course/项目考核评估表.doc",
+      "sha256": "544c4f45b9879bbece32a10dfdb81867f48d7cee888ef09e95e8b478d992429e",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/design/software-design-task4.docx",
+      "sha256": "28b903313dfcde635f67f376e1eca566d402ada903c6c61d86117672c3b46702",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/design/software-design-task4.pdf",
+      "sha256": "89c22321657558033b167060b5f9498e26e3c6f7545fdb377a248dd9bb2402d3",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/management/T08_软件开发计划.docx",
+      "sha256": "712bf71b4307a46ea23a8c6f6020a318fa155390e7ceafd0dbc4e69508b16f4f",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/requirements/T08_软件需求规约.docx",
+      "sha256": "5d074347050985646a77a4fbeb4c8c3587c8b9ae01d7630f1354ad9d048e3017",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/testing/T08_软件测试计划.docx",
+      "sha256": "d0785a027540ba1fa774d3e5091711f6cd4d281d97bde1a455fea91e30ea9e45",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "docs/ui/T08_用户界面说明文档.docx",
+      "sha256": "f49f7b687fb0ea88fe68e22a18f95f2c9c42259408e4b3ddf841735b5f3cb828",
+      "unchangedFromHead": true
+    }
+  ]
+}

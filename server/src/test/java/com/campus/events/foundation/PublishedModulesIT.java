@@ -114,9 +114,51 @@ class PublishedModulesIT {
         return jdbc.queryForObject("SELECT count(*) FROM " + table + " WHERE activity_id=?", Long.class, id);
     }
     @Test void newResourceIsGrantedViaRealAccountPort() throws Exception {
-        UUID id = resource("自动授权资源");
+        JsonNode before = mapper.valueToTree(accounts.get(admin));
+        int historyCount = jdbc.queryForObject("SELECT count(*) FROM authorization_change WHERE user_id=?", Integer.class, admin);
+        UUID key = UUID.randomUUID();
+        var input = new ResourceCreate(true, true, ResourceKind.VENUE, "自动授权资源", "VENUE", 80, 1, "08:00", "22:00");
+        var first = call("POST", "/resources", adminToken, key, input);
+        assertEquals(201, first.status(), first.body().toString());
+        UUID id = UUID.fromString(first.data().path("id").asText());
+        assertEquals(first.body(), call("POST", "/resources", adminToken, key, input).body());
         assertTrue(accounts.get(admin).managedResourceIds().contains(id));
         assertEquals(1, jdbc.queryForObject("SELECT count(*) FROM user_resource_scope WHERE user_id=? AND resource_id=?", Integer.class, admin, id));
+        assertEquals(historyCount + 1, jdbc.queryForObject("SELECT count(*) FROM authorization_change WHERE user_id=?", Integer.class, admin));
+        var histories = jdbc.queryForList("SELECT actor_id,before_json,after_json FROM authorization_change WHERE user_id=?", admin);
+        var history = histories.stream().filter(row -> {
+            try { return mapper.readTree(row.get("after_json").toString()).path("managedResourceIds").toString().contains(id.toString()); }
+            catch (java.io.IOException ex) { throw new IllegalStateException(ex); }
+        }).findFirst().orElseThrow();
+        assertEquals(admin, history.get("actor_id"));
+        assertEquals(before, mapper.readTree(history.get("before_json").toString()));
+        assertEquals(mapper.valueToTree(accounts.get(admin)), mapper.readTree(history.get("after_json").toString()));
+    }
+    @Test void fractionalResourceQuantityIsRejectedWithoutResourceGrantOrReceipt() throws Exception {
+        var input = (com.fasterxml.jackson.databind.node.ObjectNode) mapper.valueToTree(
+                new ResourceCreate(true, true, ResourceKind.EQUIPMENT, "小数库存", "PROJECTOR", null, 2, "08:00", "22:00"));
+        input.put("quantity", 2.9); UUID key = UUID.randomUUID();
+        JsonNode before = mapper.valueToTree(accounts.get(admin));
+        int resources = jdbc.queryForObject("SELECT count(*) FROM resource", Integer.class);
+        int histories = jdbc.queryForObject("SELECT count(*) FROM authorization_change WHERE user_id=?", Integer.class, admin);
+        var result = call("POST", "/resources", adminToken, key, input);
+        assertEquals(400, result.status(), result.body().toString());
+        assertEquals("VALIDATION_ERROR", result.body().path("error").path("code").asText());
+        assertEquals(resources, jdbc.queryForObject("SELECT count(*) FROM resource", Integer.class));
+        assertEquals(before, mapper.valueToTree(accounts.get(admin)));
+        assertEquals(histories, jdbc.queryForObject("SELECT count(*) FROM authorization_change WHERE user_id=?", Integer.class, admin));
+        assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM command_receipt WHERE actor_id=? AND idempotency_key=?", Integer.class, admin, key.toString()));
+    }
+    @Test void fractionalLockVersionCannotModifyPersistedDraft() throws Exception {
+        UUID id = draft(), key = UUID.randomUUID();
+        var before = call("GET", "/activities/" + id, ownerToken, null, null).data();
+        var input = new ActivityInput("不应保存的小数锁版本", "", 60, 20, List.of(), plan());
+        var result = call("PATCH", "/activities/" + id, ownerToken, key, Map.of("expectedLockVersion", 0.9, "input", input));
+        assertEquals(400, result.status(), result.body().toString());
+        assertEquals("VALIDATION_ERROR", result.body().path("error").path("code").asText());
+        assertEquals(before, call("GET", "/activities/" + id, ownerToken, null, null).data());
+        assertEquals(1, count("activity_version", id));
+        assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM command_receipt WHERE actor_id=? AND idempotency_key=?", Integer.class, owner, key.toString()));
     }
     @Test void persistedActivityPortAndSchedulingPreviewWorkWithoutMocks() throws Exception {
         UUID id = draft();

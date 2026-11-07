@@ -1,0 +1,40 @@
+{
+  "stats": {
+    "startTime": "2026-11-07T05:34:06.185Z",
+    "duration": 3228.574,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "file": "change-conflict.spec.ts",
+      "line": 129,
+      "title": "TC-09-2 预览同时展示场地占用与器材缺件，首选替代为 3102+3202×2 同时间",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1365,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "change-conflict.spec.ts",
+      "line": 313,
+      "title": "TC-18-1 故障使 A 原安排标 AT_RISK，页面展示风险提示且不谎报可用",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1033,
+          "errors": []
+        }
+      ]
+    }
+  ]
+}

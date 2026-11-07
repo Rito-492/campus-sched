@@ -1,6 +1,6 @@
 # 接口实现与调用登记
 
-依据开发任务包v3.0；核查日期2026-11-02；主线b8be7e4。契约声明、候选交付与生产接收分开登记；PM限定范围独立复验见[正式审核记录](integration-review-2026-11-02-v1.0.md)，不代替其他成员确认或全链路验收。
+依据开发任务包v3.0；当前核查日期2026-11-07，主线`16de4a5`、PM已提交HEAD `984892c`加本轮未提交修复。40项生产归属如下；表内11-02限定验证为历史记录，当前执行与未通过项以[本轮集成报告](integration-review-2026-11-07-v1.0.md)为准，不代替其他成员确认或完整验收。
 
 | 编号 | 方法及路径 | 提供方 | 调用方 | 实现状态 |
 |---|---|---|---|---|
@@ -11,7 +11,7 @@
 | API-05 | POST /users | PM | UI、QA、AN/DS/CM（AccountPort） | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-06 | PATCH /users/{id}/enabled | PM | UI、QA、AN/DS/CM（AccountPort） | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-07 | GET /resources | DS | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
-| API-08 | POST /resources | DS | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
+| API-08 | POST /resources | DS（编排）、PM（AccountPort） | UI、QA | 生产已实现；本轮补完整自动授权历史，共事务、重复与幂等重放已验证 |
 | API-09 | GET /resources/calendar | DS | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-10 | POST /resources/{id}/faults | DS | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-11 | GET /resources/{id}/faults | DS | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
@@ -30,7 +30,7 @@
 | API-24 | POST /activities/{id}/schedule-preview | DS | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-25 | POST /activities/{id}/alternatives | DS | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-26 | POST /activities/{id}/change-preview | CM | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
-| API-27 | POST /activities/{id}/changes | CM | UI、QA | 已有生产实现；所有者staff自我确认缺陷待CM修复 |
+| API-27 | POST /activities/{id}/changes | CM | UI、QA | 生产已实现；所有者staff自我确认、两处陈旧版本空详情仍待CM修复；最新QA详情断言技术复核通过 |
 | API-28 | GET /activities/{id}/changes | CM | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-29 | GET /changes/{id} | CM | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-30 | POST /changes/{id}/confirmation | CM | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
@@ -54,3 +54,9 @@ UI PR #17来自ychangz1的fork，已有40项API客户端、11类页面、锁文�
 ## 2026-11-02 接收与审核
 
 AN #13、PM #14、DS #15、CM #18、UI #17均已合并，40项Controller/5类生产端口已接收；旧表述中的CM/UI缺失不再适用。QA #16原head已独立复验并正式Request Changes（两项基线既有断言需修订），未合入。PM全生产端口限定链、Node22 UI及真实浏览器检查见[2026-11-02集成与正式审核](integration-review-2026-11-02-v1.0.md)，不能据API实现登记推断全产品通过。
+
+## 2026-11-07 公共接入与调用方核对
+
+本轮不改变40项API、共享DTO、枚举、端口或迁移。统一JSON绑定现在拒绝整数小数截断及数字枚举，正常具名输入兼容。AccountPort自动新增资源范围保存完整授权前后历史，调用方仍需先锁创建者并保持同一事务。PM指定96单元＋43 IT通过，覆盖真实创建至改期／通知／取消；默认全量另有初始化错误。
+
+最新QA #16 `6596a7d` 已正确校验API-27授权冲突的当前状态详情，CM实现仍空；AN API-18合法空意见仍400。UI客户端、后端正常输入的真实局部5项与重启1项通过；QA全浏览器25／29通过，另两项AN前置和两项定位不匹配明确交接。API登记表示实现者与调用者，完整结果及接收门槛见[本轮报告](integration-review-2026-11-07-v1.0.md)。
