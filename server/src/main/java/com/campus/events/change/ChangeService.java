@@ -89,6 +89,12 @@ public class ChangeService {
             throw new ApiException(409, "INVALID_STATE", "改期目标必须在未来");
     }
 
+    /** 版本冲突 409 需返回当前版本/锁版本与状态，供调用方提示（02 §3）。 */
+    private ApiException staleVersion(ActivityView activity, String message) {
+        return new ApiException(409, "STALE_VERSION", message, Map.of(
+                "versionNo", activity.versionNo(), "lockVersion", activity.lockVersion(), "status", activity.status().name()));
+    }
+
     private record Locked(ActivitySnapshot snapshot, ChangeRepository.Row change) {}
 
     private Locked lockActivityThenChange(UUID changeId) {
@@ -121,12 +127,14 @@ public class ChangeService {
         var acquired = newIds.stream().filter(id -> !oldIds.contains(id)).sorted(Comparator.comparing(UUID::toString)).toList();
         var retained = oldIds.stream().filter(newIds::contains).sorted(Comparator.comparing(UUID::toString)).toList();
         var staff = activity.input().staffUserIds().stream().sorted(Comparator.comparing(UUID::toString)).toList();
+        // 发起人（所有者）不向自己确认：若其为唯一工作人员，则无其他工作人员需确认，改期直接进入审批（01 §3）。
+        var requiredStaff = staff.stream().filter(id -> !id.equals(activity.ownerId())).toList();
         var registered = registeredUserIds.stream().sorted(Comparator.comparing(UUID::toString)).toList();
         var recipients = new TreeSet<UUID>(Comparator.comparing(UUID::toString));
         recipients.add(activity.ownerId());
         recipients.addAll(staff);
         recipients.addAll(registered);
-        return new Impact(old, target, released, acquired, retained, staff, registered,
+        return new Impact(old, target, released, acquired, retained, requiredStaff, registered,
                 registered.size(), List.copyOf(recipients), true, scheduling.risk(activity.id()), changedFields(old, target));
     }
 
@@ -171,7 +179,7 @@ public class ChangeService {
         var activity = snapshot.activity();
         owner(activity, actor);
         if (proposal.baseVersionNo() != activity.versionNo())
-            throw new ApiException(409, "STALE_VERSION", "活动版本已变化");
+            throw staleVersion(activity, "活动版本已变化");
         future(activity);
         targetFuture(proposal.targetPlan());
         var identity = accounts.get(activity.ownerId()).identity();
@@ -191,9 +199,9 @@ public class ChangeService {
         var activity = snapshot.activity();
         owner(activity, actor);
         if (activity.lockVersion() != command.expectedLockVersion())
-            throw new ApiException(409, "STALE_VERSION", "活动已被其他操作修改");
+            throw staleVersion(activity, "活动已被其他操作修改");
         if (command.baseVersionNo() != activity.versionNo())
-            throw new ApiException(409, "STALE_VERSION", "活动版本已变化");
+            throw staleVersion(activity, "活动版本已变化");
         if (activity.status() != ActivityStatus.SCHEDULED && activity.status() != ActivityStatus.OPEN)
             throw new ApiException(409, "INVALID_STATE", "当前活动不可创建改期");
         future(activity);
@@ -299,7 +307,7 @@ public class ChangeService {
         if (change.status() != ChangeStatus.PENDING_RESOURCE)
             throw new ApiException(409, "INVALID_STATE", "改期尚未进入资源确认");
         if (change.baseVersionNo() != activity.versionNo())
-            throw new ApiException(409, "STALE_VERSION", "活动版本已变化");
+            throw staleVersion(activity, "活动版本已变化");
         future(activity);
         var users = lockUsers(List.of(actor.id(), activity.ownerId()));
         var operator = users.get(actor.id());

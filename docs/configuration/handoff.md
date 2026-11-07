@@ -1,5 +1,16 @@
 # 交接单（配置经理）
 
+## 本轮工作（2026-11-07）：修复改期自确认与版本冲突提示两项验收阻塞
+
+- 成员、学号、任务ID：杨瀚霖、55231031、配置经理；CM 改期模块（API-26～33）缺陷修复。
+- main 基准：本轮 `git fetch` 后 `origin/main` 推进至 `16de4a5`（PR #19 foundation 合并）；本分支 `work/55231031-change` 由 `b19ae8b`（已并入 main 的 PR #18 头）快进合并到 `16de4a5`，无冲突、未 reset。
+- 本轮修复（对应全量验收剩余三项中的两项 CM 项；活动审批项属 AN 冯玉琪，不在本 agent 范围）：
+  1. **改期确认（发起人是唯一工作人员时仍要求其确认自己）**：`ChangeService.impact` 计算 `requiredStaffUserIds` 时过滤掉所有者本人。所有者发起改期不再被列入待确认工作人员，若其为唯一工作人员则 `requiredStaffUserIds` 为空，`create` 直接置 `PENDING_APPROVER`（跳过人员确认阶段），不再要求发起人向自己确认。有其他工作人员时仍仅由他们确认，发起人无法代签自己。依据 01 §3「无其他工作人员直接复审」与「人员确认不可代签」。
+  2. **版本冲突提示（请求版本过期时未返回当前版本/状态）**：新增 `ChangeService.staleVersion` 助手，`preview`/`create`/`resourceDecision` 四处 `STALE_VERSION` 409 统一在 `details` 返回 `{versionNo, lockVersion, status}`（当前版本/锁版本/活动状态），供前端提示。依据 02 §3「其余 409 的 details 至少含当前 versionNo/lockVersion 或当前 status」。
+- 回归测试（真实执行，jdk-23 `--release 21`，单元测试无需数据库）：`ChangeServiceTest` 由 1 用例扩至 4 用例，新增——所有者唯一工作人员→PENDING_APPROVER 且 `requiredStaffUserIds` 为空、`createConfirmations` 空表；所有者+其他工作人员→仍 AWAITING_CONFIRMATIONS 且仅剩该工作人员；预览版本过期→409 STALE_VERSION 且 details 含 versionNo=2/lockVersion=4/status=SCHEDULED。全量单元测试（Surefire `*Test`）**80/80 通过**（含新增 3 用例，0 失败 0 错误）。
+- 未完成项/外部依赖：改期回滚/通知一致性等验收 IT 仍依赖 QA 测试支撑修复（`DbTestSupport` 装载顺序、`NotificationConsistencyIT` 生产 Probe 覆盖、`ActivityRegistrationIT` 双 bean 冲突），与本轮两项逻辑修复无关，未复跑；活动审批修复（不填批准意见审批失败）由 AN 冯玉琪负责。
+- 下一接收人：项目经理评审本分支改动；测试经理复审回归用例；AN 完成活动审批项后进入全量验收复跑。
+
 ## 评审整改（2026-10-31）：P1 改期目标未来复核已关闭；P2 发件箱租约所有权/恢复修复
 
 独立 AI 交叉评审（非自审）对 PR #18 提出「必须改」，经两轮整改，本轮仅补完剩余一项（租约所有权/恢复），不扩大整改范围，重新推送待复审：
