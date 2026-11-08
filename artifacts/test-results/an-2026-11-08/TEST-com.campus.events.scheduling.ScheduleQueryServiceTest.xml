@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.campus.events.scheduling.ScheduleQueryServiceTest" time="0.023" tests="4" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="authorizedReviewerCanPreviewAlternativesUsingOwnersIdentity" classname="com.campus.events.scheduling.ScheduleQueryServiceTest" time="0.012" />
+  <testcase name="ownerPreviewUsesLatestIdentityAndDoesNotReserve" classname="com.campus.events.scheduling.ScheduleQueryServiceTest" time="0.001" />
+  <testcase name="teacherIdentityDoesNotGrantApprovalAndIncompleteScopeIsRejected" classname="com.campus.events.scheduling.ScheduleQueryServiceTest" time="0.005" />
+  <testcase name="staleVersionStopsBeforeResourceEvaluation" classname="com.campus.events.scheduling.ScheduleQueryServiceTest" time="0.002" />
+</testsuite>

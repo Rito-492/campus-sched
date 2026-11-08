@@ -1,0 +1,18 @@
+[
+  {
+    "path": "server/src/main/java/com/campus/events/activity/ActivityService.java",
+    "sha256": "D8BE16E47B559BDF94681F1D5211D11E0F27421A1992D27B49C49DBE0EA4FFDC"
+  },
+  {
+    "path": "server/src/test/java/com/campus/events/activity/ActivityApprovalIT.java",
+    "sha256": "893851EA121D38CB31BAB5662AD2FD29EBCDEDCB130512222103A82656ADCD45"
+  },
+  {
+    "path": "server/src/test/java/com/campus/events/activity/ActivityRegistrationIT.java",
+    "sha256": "39902F3E5F5769F5C119AE07058DA3B7B0408E277EED43826BA5F69348CBA125"
+  },
+  {
+    "path": "server/pom.xml",
+    "sha256": "E60BA9F94FE32B3D6BE8E6FB03128F4D380D8487B95BC9087BB9B7DD0E640B55"
+  }
+]
