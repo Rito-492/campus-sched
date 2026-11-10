@@ -17,10 +17,10 @@
 | DEF-QA-2026-06 | D-AT-21 calendar URI偏移编码 | 汤雨润（55230316） | C | 2026-10-31 | close（QA修正URI编码，真实PG子用例通过） |
 | DEF-QA-2026-07 | D-AT-22 demo资源扩展污染候选集合 | 汤雨润（55230316） | C | 2026-10-31 | close（benchmark参考集隔离后复验通过） |
 
-| DEF-QA-2026-08 | API-18 首次批准空comment / 9项IT前置 | 汤雨润（55230316） | B | 2026-11-01 | assign（AN）；2026-11-06独立真实PG复现 |
-| DEF-QA-2026-09 | ActivityRegistrationIT 生产/替身重复Bean | 汤雨润（55230316） | C | 2026-11-01 | assign（AN） |
-| DEF-QA-2026-10 | API-27 改期：所有者被列入必确认人员并被预建确认行 | 汤雨润（55230316） | C | 2026-11-06 | open（待CM确认接收） |
-| DEF-QA-2026-11 | API-27 STALE_VERSION 409 details 为空，未返回当前版本/锁版本/状态 | 汤雨润（55230316） | C | 2026-11-06 | open（待CM确认接收） |
+| DEF-QA-2026-08 | API-18 首次批准空comment / 9项IT前置 | 汤雨润（55230316） | B | 2026-11-01 | close（11-10最新main空意见用例与审批链实测通过） |
+| DEF-QA-2026-09 | ActivityRegistrationIT 生产/替身重复Bean | 汤雨润（55230316） | C | 2026-11-01 | close（11-10 ActivityRegistrationIT 35/35通过） |
+| DEF-QA-2026-10 | API-27 改期：所有者被列入必确认人员并被预建确认行 | 汤雨润（55230316） | C | 2026-11-06 | open（待CM；11-10 ContractBoundaryIT仍2例失败） |
+| DEF-QA-2026-11 | API-27 STALE_VERSION 409 details 为空，未返回当前版本/锁版本/状态 | 汤雨润（55230316） | C | 2026-11-06 | open（待CM；#21未合入，11-10正式基线仍失败） |
 
 ## 全模块合并后复验（2026-11-01）
 
@@ -122,7 +122,16 @@ PR #8/#10的重复Seeder源码已由PR #10作为唯一权威合并，PR #8关闭
 - 正式基线（最新 main 组合、未改生产）该断言当前失败，即 DEF-QA-2026-11；隔离实验仅在副本中让 CM 两个分支返回当前 `versionNo/lockVersion` 后通过，实验补丁不提交、不冒充产品修复。
 - 9 项 AN 合法空意见审批 400 与 1 项 AN 测试端口 Bean 冲突仍按原缺陷跟踪，不因本轮修正关闭。
 
-## 2026-11-06 任务5边界回归执行结果（真实 PostgreSQL 17.11）
+## 2026-11-10 最新main复跑与缺陷关闭
+
+- main `ca162bf`（含 #22 AN 空意见修复；#21 CM 改期修复未合入），QA 合并提交 `f06482a`；JDK21 + PostgreSQL 17.11，默认 `verify`：77/77 单测；153 IT = 151 通过 / 1 失败 / 0 错误 / 1 跳过。
+- **DEF-QA-2026-08 关闭**：`ContractBoundaryIT.approveWithEmptyComment_isLegal` 通过；PermissionsIT/BookingConcurrencyIT/IdentityEligibilityIT 等原先被 400 阻断的用例全部到达目标断言并通过。空意见事件文本由 AN 生产修复，QA 未补非空意见。
+- **DEF-QA-2026-09 关闭**：`ActivityRegistrationIT` 35/35 全部通过，生产 EventPort 与测试替身不再冲突。
+- **DEF-QA-2026-10 保持 open（CM）**：最新 main 上 `ContractBoundaryIT` 两例仍失败——仅所有者 staff 的改期未直达 PENDING_APPROVER，且仍为所有者预建待确认行。PR #21 已提出修复但评审 CHANGES_REQUESTED、未合入。
+- **DEF-QA-2026-11 保持 open（CM）**：正式基线唯一失败为 `PermissionsIT.tc2001And02` 的 `details={}`。权威口径为 02 §3：适用范围至少返回当前 versionNo/lockVersion/status 之一；CM #21 未合入前不复验关闭。
+- 证据：`artifacts/test-results/qa-2026-11-10/pr16-latest-main/`（默认 verify）、`.../boundary/`（ContractBoundaryIT）。
+
+## 2026-11-06 任务5边界回归（历史）
 
 - 命令：`TEST_DATABASE_URL=jdbc:postgresql://127.0.0.1:55432/campus_test … ./server/mvnw -f server/pom.xml verify -Dit.test=ContractBoundaryIT -DfailIfNoTests=false`，退出码 1（有失败，属预期缺陷证据）。
 - 统计：7 项执行，**4 通过 / 3 失败 / 0 跳过**。通过：标题边界（1/100 接受、0/101 拒绝）、时长边界（30 分钟/6 小时接受、29 分钟/6 小时 01 分拒绝）、`REJECT` 空理由 400、教师申请仅学生场地在提交阶段 403 且零写入。

@@ -1,0 +1,11 @@
+npm notice run campus-sched-qa@0.1.0 test:e2e
+npm notice run playwright test change-conflict.spec.ts -g TC-09-2|TC-18-1 --workers=1
+
+Running 2 tests using 1 worker
+
+(node:11268) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [desktop] › tests/change-conflict.spec.ts:129:3 › D-AT-09 改期冲突与替代方案（UI） › TC-09-2 预览同时展示场地占用与器材缺件，首选替代为 3102+3202×2 同时间 (2.6s)
+  ✓  2 [desktop] › tests/change-conflict.spec.ts:315:3 › D-AT-18 资源故障与风险提示 › TC-18-1 故障使 A 原安排标 AT_RISK，页面展示风险提示且不谎报可用 (1.4s)
+
+  2 passed (4.7s)

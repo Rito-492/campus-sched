@@ -1,0 +1,45 @@
+diff --git a/qa/tests/change-conflict.spec.ts b/qa/tests/change-conflict.spec.ts
+index 5b17f61..31a2b84 100644
+--- a/qa/tests/change-conflict.spec.ts
++++ b/qa/tests/change-conflict.spec.ts
+@@ -147,14 +147,18 @@ test.describe('D-AT-09 改期冲突与替代方案（UI）', () => {
+         // EQUIPMENT_SHORTAGE：3201 库存 2 − B 占 1 = 可用 1 < 需求 2
+         await expect(conflictList).toContainText(RESOURCES.equipmentA.name);
+ 
+-        const alternative0 = organizer.page.getByTestId(TESTID.alternative0);
+-        await expect(alternative0).toBeVisible();
++        // alternative-0 testid 在「选择并查看影响」按钮上（AlternativesPanel.vue:62），
++        // 方案文案在所属方案卡片（article）内；必须定位卡片，不能对按钮断言方案内容。
++        const alternativeCard = organizer.page
++          .getByTestId(TESTID.alternative0)
++          .locator('xpath=ancestor::article[1]');
++        await expect(alternativeCard).toBeVisible();
+         // 05 §3：首个方案标「当前排序首选」，不能写全局最优
+-        await expect(alternative0).toContainText(/首选/);
++        await expect(alternativeCard).toContainText('当前排序首选');
+         // 首选替代：同时间 15:00，换场地 3102、换器材 3202×2
+-        await expect(alternative0).toContainText(RESOURCES.venueB.name);
+-        await expect(alternative0).toContainText(RESOURCES.equipmentB.name);
+-        await expect(alternative0).toContainText('15:00');
++        await expect(alternativeCard).toContainText(RESOURCES.venueB.name);
++        await expect(alternativeCard).toContainText(RESOURCES.equipmentB.name);
++        await expect(alternativeCard).toContainText('15:00');
+ 
+         // 预览只读：活动 A 仍为 version1（未回写）
+         await organizer.page.goto(`/activities/${ACTIVITIES.a.id}`);
+@@ -345,10 +349,11 @@ test.describe('D-AT-18 资源故障与风险提示', () => {
+         const organizer = await openSession(browser, USERS.applicantA);
+         sessions.push(organizer);
+         await organizer.page.goto(`/activities/${ACTIVITIES.a.id}`);
+-        await expect(
+-          organizer.page.getByText(/AT_RISK|资源风险|受影响|不可用/).first(),
+-          '页面应展示 AT_RISK/风险提示',
+-        ).toBeVisible();
++        // 风险提示的稳定定位是 ActivityDetailPage 的 risk-banner（UI 扩展 testid）；
++        // 通用文本正则匹配不到该提示的实际文案（「当前资源受故障影响…」），会误报定位失败。
++        const riskBanner = organizer.page.getByTestId('risk-banner');
++        await expect(riskBanner, '页面应展示资源风险提示').toBeVisible();
++        await expect(riskBanner).toContainText(/故障|风险/);
+         await expect(
+           organizer.page.getByText(/可正常使用|安排正常/),
+           '页面不得把原安排显示为可正常使用',

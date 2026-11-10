@@ -1,4 +1,18 @@
-# 测试报告 v0.9（全模块合并后集成验收）
+# 测试报告 v1.0（最新main全量复跑）
+
+## 2026-11-10 最新结论
+
+- 基准：main `ca162bf`（含 #22 AN 空意见修复；#21 CM 改期修复仍未合入），QA 普通合并 `f06482a`；无 reset/强推。
+- JDK21 + PostgreSQL 17.11 真实默认 `verify`：**Surefire 77/77 通过；Failsafe 153 项 = 151 通过、1 失败、0 错误、1 显式跳过，exit 1**。
+- 唯一失败：`PermissionsIT.tc2001And02` 的 `details={}`（DEF-QA-2026-11，CM 未合入 #21）。跳过为 ResourceSchedulingIT 既有显式项，不计通过。
+- 缺陷关闭：**DEF-08（AN 空意见）实测通过关闭；DEF-09（AN 测试端口 Bean 冲突）ActivityRegistrationIT 35/35 通过关闭**。DEF-10/11 仍归 CM，待 #21 修复合入后复跑。
+- 真实浏览器（最新 main、独立全新数据库 `campus_e2e_20261110`）：**TC-09-2 与 TC-18-1 定位修正后 2/2 通过**；同一代码修正前 2/2 失败（证据保留）。booking.spec 1/1、change-happy-path 1/1 通过。
+- 契约 40 API / 9 枚举 / 15 DTO、QA typecheck 通过；评测 160 行、16 组 expected 全一致。
+- 30 场景：**28 通过、1 部分（D-AT-20）、0 阻塞、1 未执行（D-AT-24）**；Tx 29/30=96.7%，Ts 28/30=93.3%。D-AT-24 因本机缺 compose 插件未执行，只做 compose 文件静态解析，不记通过。
+- 本轮新增定位修正：[change-conflict.spec.ts](../../qa/tests/change-conflict.spec.ts) 的 TC-09-2 由按钮改为方案卡片定位、TC-18-1 改用 `risk-banner` testid；未改产品、expected 或公共契约。
+- 证据：`artifacts/test-results/qa-2026-11-10/`；详细覆盖见 [coverage-matrix.md](coverage-matrix.md)，缺陷见 [defect-register.md](defect-register.md)。
+
+# 测试报告 v0.9（全模块合并后集成验收，历史）
 
 ## 最新结论：2026-11-01
 

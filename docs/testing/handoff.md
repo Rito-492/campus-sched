@@ -2,7 +2,19 @@
 
 > 维护：测试经理（55230316）。格式依据 `agents/common/04-协作与集成规程.md` §4 固定模板。运行时信息填真实值；**不能为了填满模板虚构结果**，未执行的检查如实标注。
 
-## 最新交付（2026-11-06：PR16复审修正）
+## 最新交付（2026-11-10：最新main全量复跑、定位修正与任务5独立PR）
+
+- 成员/任务：汤雨润（55230316），QA-02/03/04/05。
+- 基准：main `ca162bf`（#22 已合入；#21 仍 CHANGES_REQUESTED 未合入），QA 普通合并 `f06482a`。
+- 后端：JDK21 + PostgreSQL 17.11 默认 verify，Surefire 77/77；Failsafe 153=151 通过/1 失败/0 错误/1 跳过。唯一失败为 DEF-11（CM 陈旧版本 details 为空）；跳过为既有显式项。
+- 缺陷：DEF-08、DEF-09 以实际复跑关闭；DEF-10、DEF-11 仍待 CM（#21），未改测试期望迁就。
+- 浏览器：定位修正后 TC-09-2/TC-18-1 2/2 通过（修正前 2/2 失败）；booking.spec、change-happy-path 各 1/1 通过。使用全新数据库 `campus_e2e_20261110`，真实后端/前端，无 Mock。
+- 30 场景：28 通过、1 部分（D-AT-20）、1 未执行（D-AT-24）；Tx 96.7%，Ts 93.3%。D-AT-24 未执行：本机缺 compose 插件，仅静态解析 compose 文件。
+- 任务5文档已单独提交 **PR #23**（分支 `work/55230316-task5-docs`，base main），不混入 #16；已请求 PM 交叉评审。门禁自测 27/27、真实用例集 exit 0。
+- 证据：`artifacts/test-results/qa-2026-11-10/`、[测试报告](test-report.md)、[覆盖矩阵](coverage-matrix.md)、[缺陷登记](defect-register.md)。
+- 下一接收人：CM 修复 DEF-10/11（#21 评审阻塞须清零）；PM 复审 #16 与 #23。尚未收到复审接收，未自行 Approve 或合并。
+
+## 历史交付（2026-11-06：PR16复审修正）
 
 - 成员/任务：汤雨润（55230316），QA-02/03/05；接收PM冀项阳对`1700e29`的第二次CHANGES_REQUESTED（与主线`16de4a5`组合复验）。只改QA断言与测试文档，不接AN/CM生产文件。
 - 已通过：停用工作人员待确认快照项获复审通过，本轮未改动。
@@ -21,7 +33,7 @@
 - QA代码：[质量门禁](../../qa/scripts/check-test-design.ts)、[27项自测](../../qa/scripts/check-test-design.test.ts)、[真实HTTP/PG边界回归](../../server/src/test/java/com/campus/events/acceptance/ContractBoundaryIT.java)。门禁验证结构、必填、场景、极性、状态、编号引用并检查部分内容信号，不代替人工语义评审；自测含反例，防止缺失/空集假通过。
 - 已实跑：最新27/27门禁自测、QA TypeScript、40API/9枚举/15DTO契约检查、Maven test-compile通过。父代理最终独立复跑27项自测与类型/契约检查均通过。初次对尚不存在JSON检查失败、初稿11项问题（4项非法需求编号+7项负面关键词误伤）保留原日志；非法编号已修，负面语义规则降为人工复核提示，不能以关键词决定语义正确。
 - 2026-11-06新增真实执行：以一次性 Docker PostgreSQL 17.11（隔离 `campus_test`、每测试独立 schema）实际运行 `ContractBoundaryIT` 7项，**4通过/3失败/0跳过**（exit 1）。失败为可复现产品缺陷：DEF-QA-2026-08（空审批意见400）、DEF-QA-2026-10（改期把所有者列入必确认并预建确认行，仅所有者未直达PENDING_APPROVER，CM待接收）。这不是138条设计用例的批量执行，也不表示产品通过；证据见[执行结果](../../artifacts/test-results/qa-2026-11-06-task5-db/result.json)与[缺陷登记](defect-register.md)。
-- 未实跑：全量verify、真实浏览器E2E及Compose干净发布；Node26/JDK27偏离基线Node22/Java21，release编译目标21不等于Java21实测。HTTP/PG边界测试已于2026-11-06在隔离测试库实际执行（见上条），资格校验契约确认为提交阶段拒绝，未等到最终确认。
+- 未实跑：全量verify、真实浏览器E2E及Compose干净发布；Node26/JDK27偏离基线Node22/Java21，release编译目标21不等于Java21实测。HTTP/PG边界测试已于2026-11-06在隔离测试库实际执行（见上条），资格校验契约确认为提交阶段拒绝，未等到最终确认。（2026-11-10补记：任务5文档与门禁已随PR #23单独提交；后端已在JDK21真库全量复跑，见顶部最新交付。）
 - 已知产品缺陷保持正确预期：AN合法空审批意见不得拒绝、CM所有者不向自己工作人员确认。本轮不改AN/CM生产代码，不靠改预期或跳过让其变绿。最新产品结论仍以[PM集成记录](../management/integration-review-2026-11-02-v1.0.md)为准，不上调历史30项覆盖率。
 - 组织方式：顶层协调+内容writer、QA tester、排版、独立reviewer。排版前两次子代理运行中断未产出，不伪造其完成；已恢复必要任务。AI审查不冒充团队成员批准。
 - [提交与顶层验收说明](task5-submission-v1.0.md)：项目经理冀项阳11月07日23:59（Asia/Shanghai）前上传学习通分组任务5，**仅非代码工件**。尚未接收、尚未上传、无平台回执；不预填签字。
