@@ -6,7 +6,7 @@
 
 | 编号 | 场景摘要 | 需求关联 | 主责 | QA 执行落点 | 状态（2026-11-10 最新main全部真实复跑） |
 |---|---|---|---|---|---|
-| D-AT-01 | 登录/错密码/停用后旧令牌 401；响应无 passwordHash | FR-01 | PM | PermissionsIT-01 + login.spec | ✅ 通过：PermissionsIT登录/错密码/停用旧令牌三项真实PG通过；UI登录3项于11-01通过，本轮未重复运行UI登录 |
+| D-AT-01 | 登录/错密码/停用后旧令牌 401；响应无 passwordHash | FR-01 | PM | PermissionsIT-01 + login.spec | ✅ 通过：PermissionsIT登录/错密码/停用旧令牌三项真实PG通过；UI登录与三视口页面11-10复跑15/15通过 |
 | D-AT-02 | approver_other/account_admin/applicant_b 越权均 403 无变化 | FR-02 | PM+AN | PermissionsIT（TC-02组） | ✅ 通过：PermissionsIT三类越权403且状态/版本/预约不变断言均通过 |
 | D-AT-03 | 新建→编辑→提交→批准→资源确认→发布；首确前 0 ACTIVE | FR-03 | AN | AN自测 + `booking.spec.ts` | ✅ 通过：真实浏览器新建→编辑→提交→批准→资源确认→发布→报名全链通过（booking.spec 11-10），首确前0 ACTIVE与名单计数已断言 |
 | D-AT-04 | 相邻占用可共存；布场 15 分钟产生边界冲突 | FR-04 | DS | DS自测 + Bench(SCH-05) | ✅ 通过（ResourceSchedulingIT真实PG模块断言） |
