@@ -255,6 +255,10 @@ public class ChangeService {
             throw new ApiException(409, "INVALID_STATE", "改期尚未进入人员确认");
         if (!change.impact().requiredStaffUserIds().contains(actor.id()))
             throw ApiException.forbidden();
+        // 存量旧快照的 requiredStaffUserIds 可能仍含发起人本人：本人不得向自己确认（01 §3）。
+        // 快照不可改，处置为撤回重建（无其他工作人员时重建后直接进入审批），而非就地改写快照。
+        if (actor.id().equals(activity.ownerId()))
+            throw ApiException.forbidden();
         var staff = accounts.lock(actor.id());
         AuthorizationPolicy.enabled(staff);
         changes.decideConfirmation(changeId, staff.id(), command.decision(), command.comment(), clock.instant());
@@ -306,12 +310,14 @@ public class ChangeService {
         var change = locked.change();
         if (change.status() != ChangeStatus.PENDING_RESOURCE)
             throw new ApiException(409, "INVALID_STATE", "改期尚未进入资源确认");
-        if (change.baseVersionNo() != activity.versionNo())
-            throw staleVersion(activity, "活动版本已变化");
         future(activity);
         var users = lockUsers(List.of(actor.id(), activity.ownerId()));
         var operator = users.get(actor.id());
+        // 先按既有锁序校验最新权限、完整资源范围与本人回避，再返回版本冲突详情；
+        // 否则无复核权限的账号会在鉴权前收到 versionNo/lockVersion/status（02 §3，不泄露无权查看的对象）。
         AuthorizationPolicy.confirmation(operator, activity.ownerId(), resourceIds(change.targetPlan()));
+        if (change.baseVersionNo() != activity.versionNo())
+            throw staleVersion(activity, "活动版本已变化");
         var ownerIdentity = users.get(activity.ownerId()).identity();
 
         if (command.decision() == Decision.REJECT) {

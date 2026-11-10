@@ -39,6 +39,11 @@ class ChangeServiceTest {
         return new Actor(Identity.TEACHER, List.of(Role.APPLICANT), List.of(), List.of(), List.of(),
                 ownerId, "活动负责人", org, true);
     }
+    /** 管理员但无 RESOURCE_CONFIRM 权限：鉴权必须先于版本冲突详情返回。 */
+    Actor operatorWithoutConfirmPermission() {
+        return new Actor(Identity.TEACHER, List.of(Role.ADMIN), List.of(), List.of(), List.of(targetVenue),
+                operatorId, "无复核权限管理员", org, true);
+    }
     Plan futurePlan() { return new Plan(now.plusSeconds(7200), now.plusSeconds(14400), 0, 0, venue, List.of()); }
     Plan futureTarget() { return new Plan(now.plusSeconds(10800), now.plusSeconds(18000), 0, 0, targetVenue, List.of()); }
     Plan pastTarget() { return new Plan(now.minusSeconds(3600), now.minusSeconds(1800), 0, 0, targetVenue, List.of()); }
@@ -130,6 +135,51 @@ class ChangeServiceTest {
         assertEquals(ChangeStatus.AWAITING_CONFIRMATIONS, statusCaptor.getValue());
         assertEquals(List.of(staffId), impactCaptor.getValue().requiredStaffUserIds());
         verify(changes).createConfirmations(any(), eq(List.of(staffId)));
+    }
+
+    @Test void resourceDecisionChecksAuthorizationBeforeVersionConflict() {
+        var activity = new ActivityView(activityId, org, ownerId, ActivityStatus.SCHEDULED, 2, 2, 4,
+                new ActivityInput("测试活动", "", 10, 1, List.of(ownerId), futurePlan()), 0, Risk.NORMAL, null, null, now);
+        var impact = new Impact(futurePlan(), futureTarget(), List.of(), List.of(), List.of(), List.of(),
+                List.of(), 0, List.of(), false, Risk.NORMAL, List.of());
+        var row = new ChangeRepository.Row(changeId, activityId, 1, futureTarget(), impact, "改期",
+                ChangeStatus.PENDING_RESOURCE, new DecisionRecord(Decision.APPROVE, "已批", operatorId, now),
+                null, List.of(), null, ownerId, now, now);
+
+        when(accounts.get(operatorId)).thenReturn(operatorWithoutConfirmPermission());
+        when(accounts.lock(operatorId)).thenReturn(operatorWithoutConfirmPermission());
+        when(accounts.lock(ownerId)).thenReturn(owner());
+        when(changes.activityId(changeId)).thenReturn(activityId);
+        when(activities.lock(activityId)).thenReturn(new ActivitySnapshot(activity, List.of()));
+        when(changes.lock(changeId)).thenReturn(row);
+
+        var ex = assertThrows(ApiException.class, () ->
+                service.resourceDecision(operatorWithoutConfirmPermission(), changeId, new ChangeDecision(Decision.APPROVE, "同意")));
+        assertEquals(403, ex.status());
+        // 鉴权失败必须在返回版本冲突详情之前，也不得进入最终调度检查。
+        verify(scheduling, never()).lockAndCheck(any(), any(), anyInt(), any());
+    }
+
+    @Test void ownerCannotSelfConfirmLegacySnapshot() {
+        var activity = new ActivityView(activityId, org, ownerId, ActivityStatus.SCHEDULED, 1, 1, 0,
+                new ActivityInput("测试活动", "", 10, 1, List.of(ownerId), futurePlan()), 0, Risk.NORMAL, null, null, now);
+        // 升级前旧快照：requiredStaffUserIds 仍含发起人本人，新快照会过滤掉（01 §3 无其他工作人员直接复审）。
+        var legacyImpact = new Impact(futurePlan(), futureTarget(), List.of(), List.of(), List.of(), List.of(ownerId),
+                List.of(), 0, List.of(ownerId), true, Risk.NORMAL, List.of("startAt"));
+        var row = new ChangeRepository.Row(changeId, activityId, 1, futureTarget(), legacyImpact, "改期",
+                ChangeStatus.AWAITING_CONFIRMATIONS, null, null, List.of(), null, ownerId, now, now);
+
+        when(accounts.get(ownerId)).thenReturn(owner());
+        when(accounts.lock(ownerId)).thenReturn(owner());
+        when(changes.activityId(changeId)).thenReturn(activityId);
+        when(activities.lock(activityId)).thenReturn(new ActivitySnapshot(activity, List.of()));
+        when(changes.lock(changeId)).thenReturn(row);
+
+        var ex = assertThrows(ApiException.class, () ->
+                service.confirm(owner(), changeId, new ChangeDecision(Decision.APPROVE, "同意")));
+        assertEquals(403, ex.status());
+        // 不得自签/代签推进确认；存量申请处置为撤回重建，快照不可改。
+        verify(changes, never()).decideConfirmation(any(), any(), any(), any(), any());
     }
 
     @Test void staleVersionReturnsCurrentVersionAndStatus() {

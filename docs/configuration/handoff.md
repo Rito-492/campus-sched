@@ -1,5 +1,18 @@
 # 交接单（配置经理）
 
+## 评审整改（2026-11-10）：API-32 鉴权先于版本冲突 + 存量自确认处置
+
+独立交叉评审对 `23825cc` 提出「必须改」两项阻塞，本轮逐项整改（未提交，待授权）：
+
+1. **API-32 资源复核在鉴权前返回活动版本/状态**：原 `resourceDecision` 在 `AuthorizationPolicy.confirmation` 之前检查 `baseVersionNo` 并抛 `STALE_VERSION`（details 含 versionNo/lockVersion/status），无复核权限的账号在版本冲突时收到 409 而非 403，泄露无权查看的版本/状态。整改：把 `STALE_VERSION` 检查移到 `lockUsers` + `AuthorizationPolicy.confirmation`（最新权限、完整资源范围、本人回避）之后，与 02 §3「不泄露无权查看的对象」及 §6 原子切换锁序一致。新增 `ChangeServiceTest.resourceDecisionChecksAuthorizationBeforeVersionConflict`：管理员但无 RESOURCE_CONFIRM 权限 + 版本过期 → 403，且不进入调度锁检查。
+
+2. **存量 AWAITING_CONFIRMATIONS 自确认处置（明确 + 验证）**：`impact.requiredStaffUserIds` 过滤所有者只影响新快照；升级前旧快照仍含发起人本人，`confirm` 按旧快照放行发起人自确认。
+   - 明确：本人不得向自己确认（01 §3「人员确认不可代签」），`confirm` 授权时追加所有者排除；影响快照不可改，存量申请**走现有撤回流程（API-33）重建**，重建时按新规则——若发起人为唯一工作人员则直接进入审批（PENDING_APPROVER）——不就地改写旧快照。
+   - 验证：新增 `ChangeServiceTest.ownerCannotSelfConfirmLegacySnapshot`：旧快照 requiredStaffUserIds 仅含发起人 → 发起人 confirm 403，且未调用 decideConfirmation。
+
+- 回归（真实执行，`D:\Java\jdk-23` + `--release 21`，单元测试无需数据库）：`ChangeServiceTest` 由 4 用例扩至 6 用例；全量单元测试（Surefire `*Test`）**82/82 通过**（0 失败 0 错误）；`git diff --check` 通过。契约检查与 PostgreSQL 集成验收本轮未执行（纯服务层逻辑修复，未触及 contract/openapi 与数据库迁移/表结构）。
+- 下一接收人：项目经理复审整改；测试经理复审回归用例。
+
 ## 本轮工作（2026-11-07）：修复改期自确认与版本冲突提示两项验收阻塞
 
 - 成员、学号、任务ID：杨瀚霖、55231031、配置经理；CM 改期模块（API-26～33）缺陷修复。
