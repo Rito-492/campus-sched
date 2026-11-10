@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.campus.events.activity.ActivityServiceTest" time="2.931" tests="18" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="resourceConfirmationRequiresSpecificPermissionAndAvoidsOwner" classname="com.campus.events.activity.ActivityServiceTest" time="2.004">
+    <system-out><![CDATA[23:49:10.536 [main] INFO org.hibernate.validator.internal.util.Version -- HV000001: Hibernate Validator 8.0.3.Final
+]]></system-out>
+    <system-err><![CDATA[Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (C:\Users\Lenovo\Desktop\Files\Code\Code_vsc\campus\campus-sched\server\target\maven-repository\net\bytebuddy\byte-buddy-agent\1.17.8\byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+  </testcase>
+  <testcase name="mineScopeRequiresCurrentApplicantRole" classname="com.campus.events.activity.ActivityServiceTest" time="0.024" />
+  <testcase name="pastRegistrationAllowsCancelledDetailsButNotParticipantRoster" classname="com.campus.events.activity.ActivityServiceTest" time="0.013" />
+  <testcase name="publishRejectsStartedActivityWithoutStateOrEventWrites" classname="com.campus.events.activity.ActivityServiceTest" time="0.009" />
+  <testcase name="oldContentVersionAndFrozenChangesRejectRegistration" classname="com.campus.events.activity.ActivityServiceTest" time="0.031" />
+  <testcase name="publishRejectsCurrentResourceRiskWithoutStateOrEventWrites" classname="com.campus.events.activity.ActivityServiceTest" time="0.006" />
+  <testcase name="adapterCopiesMetadataAndAdvancesOnlyActiveRegistrationVersions" classname="com.campus.events.activity.ActivityServiceTest" time="0.181" />
+  <testcase name="withdrawRequiresPriorRegistrationAndDuplicateWithdrawDoesNotBumpVersion" classname="com.campus.events.activity.ActivityServiceTest" time="0.009" />
+  <testcase name="approvalRejectsTeacherWithoutRoleAndIncompleteScopeAndSelfApproval" classname="com.campus.events.activity.ActivityServiceTest" time="0.029" />
+  <testcase name="cancelledActivityCannotBeJoinedAndOtherOwnerCannotReadIdempotentCancellation" classname="com.campus.events.activity.ActivityServiceTest" time="0.018" />
+  <testcase name="publishRejectsWrongServiceStateWithoutStateOrEventWrites" classname="com.campus.events.activity.ActivityServiceTest" time="0.005" />
+  <testcase name="fullCapacityRejectsButDuplicateJoinReturnsExistingRow" classname="com.campus.events.activity.ActivityServiceTest" time="0.005" />
+  <testcase name="staleDraftEditCannotAppendAVersion" classname="com.campus.events.activity.ActivityServiceTest" time="0.035" />
+  <testcase name="pendingChangeDoesNotAddAnUndocumentedPublishRestriction" classname="com.campus.events.activity.ActivityServiceTest" time="0.017" />
+  <testcase name="registrationUsesCurrentIdentityRatherThanRequestActor" classname="com.campus.events.activity.ActivityServiceTest" time="0.004" />
+  <testcase name="missingChangePortCannotMasqueradeAsNoPendingChange" classname="com.campus.events.activity.ActivityServiceTest" time="0.012" />
+  <testcase name="nonOwnerEditAndSubmitRejectBeforeLockingSuppliedStaff" classname="com.campus.events.activity.ActivityServiceTest" time="0.009" />
+  <testcase name="publicDetailsHideStaffButInternalSnapshotRetainsThemAndNullsMyStatus" classname="com.campus.events.activity.ActivityServiceTest" time="0.004" />
+</testsuite>

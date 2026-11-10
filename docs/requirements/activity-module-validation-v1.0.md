@@ -75,3 +75,7 @@ CM 编译问题修复后，标准命令（先按仓库规则加载真实测试�
 ## 2026-10-31 标准POM复验
 
 基线feb0d70已包含Seeder修复。本轮使用标准server/pom.xml执行AN测试集合，25单测+35真实PostgreSQL IT通过，0失败/错误/跳过。此前隔离POM记录仅为历史证据。CM真端口仍缺失，测试替身仍保留；完整命令、覆盖与阻塞见[接入检查](activity-cm-integration-v1.0.md)，证据见[an-2026-10-31](../../artifacts/test-results/an-2026-10-31/)。
+
+## 2026-11-08 空批准意见验证
+
+基线16de4a5已有真实CM生产端口。新增ActivityApprovalIT 5项，修复前2失败，修复后通过并能完成首次预约。标准POM最终执行77单测及选定42项PostgreSQL IT全部通过，0失败/错误/跳过。修复、初次清理问题及最终结果分别保存在[an-2026-11-08](../../artifacts/test-results/an-2026-11-08/)。XML归档移除了环境properties，其余结果保留。AN原模块测试继续提供故障注入替身，新审批回归和PM生产流程使用真实生产端口。

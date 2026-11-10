@@ -139,3 +139,13 @@
 - 本轮仅补强三种改期待处理状态的报名/退出冻结、详情activeChangeId清除，以及切换版本后旧版本请求拒绝且报名保留；已有取消、待办、版本回滚和API-12～23回归重跑。证据artifacts/test-results/an-2026-10-31，命令与限制见activity-cm-integration-v1.0.md。
 - **真实CM接入阻塞**：feb0d70仍只有ChangePort/EventPort接口，生产实现未交付；现有IT继续使用显式测试替身。提供者CM杨瀚霖；需生产pendingId/hasPending/cancelPending/append及改期调用链后复验。不得宣称M2/M3完成。
 - 下一接收：CM交生产端口，PM/QA交叉评审本轮结果，UI了解待办与版本字段仍受真实CM依赖限制。通知消费、重启一致性和E2E未验证，尚未接收。此前记录中的默认构建失败为历史结果，以本节标准AN回归通过状态为准。
+
+## 空批准意见阻断首次预约修复（2026-11-08）
+
+- 冯玉琪22220314，AN-03/API-18～19，work/22220314-activity。工作区开工时干净，经公开代理获取main并安全快进至16de4a5，包含真实CM端口及PR #13交付。
+- 真实复现为空字符串和纯空白APPROVE返回400。原因是ActivityService.decide将可空白的审批意见直接用于EventDraft.summary/body，生产EventPortAdapter要求非空，审批事务因“事件字段不完整”回滚。
+- 修复为批准空白意见时采用“活动审批通过”作为事件摘要及通知正文。activity_approval.comment保留原文，填写的意见仍用于事件。拒绝意见仍按原校验必填。
+- 新增ActivityApprovalIT，使用五类真实生产端口、HTTP和PostgreSQL验证空/空白/正常批准、原意见持久化、审计及outbox正文、同键重放和首次预约落库。拒绝空/空白400时活动状态与版本保留、无审批或拒绝事件。
+- 同步修复PM记录中的本人测试端口歧义，ActivityRegistrationIT的ChangePort/EventPort测试Bean显式Primary。两份AN IT清理schema前先停止并等待本上下文通知调度完成，消除后台读已删除schema的问题。
+- 实测修复前5项审批IT中2失败。最终标准Maven verify通过77单测+42 PostgreSQL IT，0失败/错误/跳过，其中审批5项及PM生产流程2项使用真实生产端口，原AN模块35项仍含测试替身。证据artifacts/test-results/an-2026-11-08，详细命令见其README。全仓库其余IT及UI浏览器验收本轮未执行。
+- 此前2026-10-31的CM缺失记录为历史状态，本基线生产端口已到位。接收人PM/QA复核本轮缺陷，UI复验空输入审批操作。接收确认尚未接收。

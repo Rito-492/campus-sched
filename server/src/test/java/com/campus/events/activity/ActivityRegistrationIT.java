@@ -27,7 +27,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
-/** 真PostgreSQL、真实认证/幂等/SchedulingPort；CM两个未交付端口仅在本测试上下文替身。 */
+/** 真PostgreSQL、真实认证/幂等/SchedulingPort；CM端口在本测试上下文提供可注入失败的替身。 */
 @SpringBootTest(classes=CampusEventsApplication.class)
 @AutoConfigureMockMvc(print=MockMvcPrint.NONE)
 @Import(ActivityRegistrationIT.Ports.class)
@@ -49,6 +49,7 @@ class ActivityRegistrationIT {
     @Autowired CommandExecutor commands;
     @Autowired SchedulingPort scheduling;
     @Autowired TestEvents events;
+    @Autowired org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler scheduler;
     UUID org,owner,reviewer,admin,student,venue,equipment;
     String loginPassword;
     static String required(String key) {
@@ -66,11 +67,14 @@ class ActivityRegistrationIT {
         properties.add("app.demo-seed",()->"false");
     }
     @AfterAll void cleanup() {
+        scheduler.setWaitForTasksToCompleteOnShutdown(true);
+        scheduler.setAwaitTerminationSeconds(10);
+        scheduler.shutdown();
         if(url!=null && SCHEMA.matches("an_[0-9a-f]{32}")) new JdbcTemplate(new DriverManagerDataSource(url,user,password)).execute("DROP SCHEMA "+SCHEMA+" CASCADE");
     }
     @TestConfiguration static class Ports {
         @Bean @Primary Clock anIntegrationClock() { return Clock.fixed(NOW,ZoneOffset.UTC); }
-        @Bean ChangePort changePort(JdbcTemplate db) { return new ChangePort() {
+        @Bean @Primary ChangePort changePort(JdbcTemplate db) { return new ChangePort() {
             public UUID pendingId(UUID id) {
                 var rows=db.query("SELECT id FROM change_request WHERE activity_id=? AND status IN ('AWAITING_CONFIRMATIONS','PENDING_APPROVER','PENDING_RESOURCE')",(rs,n)->rs.getObject(1,UUID.class),id);
                 return rows.isEmpty()?null:rows.getFirst();
@@ -81,7 +85,7 @@ class ActivityRegistrationIT {
                 db.update("UPDATE change_request SET status='CANCELLED_BY_ACTIVITY' WHERE activity_id=? AND status IN ('AWAITING_CONFIRMATIONS','PENDING_APPROVER','PENDING_RESOURCE')",id);
             }
         }; }
-        @Bean TestEvents eventPort(JdbcTemplate db,ObjectMapper mapper) { return new TestEvents(db,mapper); }
+        @Bean @Primary TestEvents eventPort(JdbcTemplate db,ObjectMapper mapper) { return new TestEvents(db,mapper); }
     }
     static class TestEvents implements EventPort {
         final JdbcTemplate db; final ObjectMapper mapper; volatile boolean fail;

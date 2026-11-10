@@ -138,7 +138,9 @@ public class ActivityService {
         // 保证此处读取的versionNo就是提交时冻结的版本，不从客户端接受另一个审批版本。
         transition(row,s->ActivityStateMachine.decide(s,row.versionNo(),ActivityStateMachine.Decision.valueOf(command.decision().name())),null);
         activities.approval(row,latest.id(),command);
-        event(row,latest,command.decision()==Decision.APPROVE?"ACTIVITY_APPROVED":"ACTIVITY_REJECTED",command.comment(),List.of());
+        // 批准意见允许空白，审批记录保留原值，事件摘要和通知正文须可读且非空。
+        String summary=command.comment().isBlank() ? "活动审批通过" : command.comment();
+        event(row,latest,command.decision()==Decision.APPROVE?"ACTIVITY_APPROVED":"ACTIVITY_REJECTED",summary,List.of());
         return http(activities.get(id),latest);
     }
     @Transactional(propagation=Propagation.MANDATORY) public ActivityView confirm(Actor actor,UUID id,VersionCommand command) {

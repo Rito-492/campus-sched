@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="com.campus.events.activity.ActivityStateMachineTest" time="0.039" tests="7" errors="0" skipped="0" failures="0" flakes="0">
+  <testcase name="followsTheApprovedSchedulingAndPublishingPath" classname="com.campus.events.activity.ActivityStateMachineTest" time="0.008" />
+  <testcase name="everyLifecycleStatusCanCancelAndCancellationNeverChangesContentVersion" classname="com.campus.events.activity.ActivityStateMachineTest" time="0.001" />
+  <testcase name="rejectionReturnsToDraftAndWithdrawalCreatesANewVersion" classname="com.campus.events.activity.ActivityStateMachineTest" time="0.01" />
+  <testcase name="cancellationIsTerminalAndAnAlreadyCancelledStateIsIdempotent" classname="com.campus.events.activity.ActivityStateMachineTest" time="0.008" />
+  <testcase name="registrationMutationAdvancesLockVersionWithoutChangingContentVersion" classname="com.campus.events.activity.ActivityStateMachineTest" time="0.001" />
+  <testcase name="cancellationFromAnOpenActivityCannotBeReversed" classname="com.campus.events.activity.ActivityStateMachineTest" time="0.001" />
+  <testcase name="rejectsIllegalTransitionsAndStaleApprovalVersions" classname="com.campus.events.activity.ActivityStateMachineTest" time="0.004" />
+</testsuite>
