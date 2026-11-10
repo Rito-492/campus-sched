@@ -1,0 +1,6 @@
+services: db,server,web
+images: postgres:17,[object Object],[object Object]
+docker: unknown command: docker compose
+
+Run 'docker --help' for more information
+docker compose: unknown command (plugin missing)
