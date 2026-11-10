@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-11-06T17:32:27.255869+08:00",
+  "note": "按用户意见完整自查并精简：去除内部路径/编号/流程术语、实施人员与自检章节、重复的状态与实现列",
+  "scenarios": 24,
+  "cases": 138,
+  "positive": 47,
+  "negative": 91,
+  "allUnexecuted": true,
+  "fieldsChecked": 1742,
+  "missingFields": [],
+  "bannedTermsFound": {},
+  "xmlAndRelsParsed": true,
+  "visualInspection": false,
+  "files": {
+    "test-data/test-design-cases-v1.0.json": {
+      "bytes": 179411,
+      "sha256": "3191d050a5f146047e7f635e133c02365ffac743831f0e2cbe6649884a160d84"
+    },
+    "docs/testing/test-design-v1.0.md": {
+      "bytes": 144675,
+      "sha256": "0dd9ccab3a7914d52841e6d50b67334cf640dcf70919140b7b926bdb3d768853"
+    },
+    "docs/testing/test-design-v1.0.docx": {
+      "bytes": 78052,
+      "sha256": "2254e34c95fa2a2f171af5ed09b4bad6a47575bb89136f078f3e9ad8e76121f5"
+    }
+  }
+}

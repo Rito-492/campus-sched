@@ -1,0 +1,16 @@
+== Word渲染工具探测 2026-11-03T18:15:39+08:00 ==
+soffice: 未安装
+libreoffice: 未安装
+lowriter: 未安装
+pandoc: 未安装
+pdftoppm: 未安装
+abiword: 未安装
+unoconv: 未安装
+antiword: 未安装
+docx2txt: 未安装
+wvText: 未安装
+ModuleNotFoundError: No module named 'docx'
+ModuleNotFoundError: No module named 'defusedxml'
+ls: cannot access '/usr/lib/libreoffice': No such file or directory
+ls: cannot access '/opt/libreoffice*': No such file or directory
+== 结论: 无真实Word渲染工具 ==

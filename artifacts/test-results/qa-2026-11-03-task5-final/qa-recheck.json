@@ -1,0 +1,37 @@
+{
+  "timestamp": "2026-11-03T18:19:26.126954+08:00",
+  "executions": [
+    {
+      "name": "gate-selftest",
+      "command": [
+        "node",
+        "--test",
+        "qa/scripts/check-test-design.test.ts"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "npm",
+        "--prefix",
+        "qa",
+        "run",
+        "typecheck"
+      ],
+      "exitCode": 0
+    },
+    {
+      "name": "contract",
+      "command": [
+        "npm",
+        "--prefix",
+        "qa",
+        "run",
+        "test:contract"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "scope": "QA自测/静态检查；非产品业务测试执行"
+}
