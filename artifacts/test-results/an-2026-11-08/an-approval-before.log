@@ -1,0 +1,281 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.campus:campus-events >----------------------
+[INFO] Building У԰�Эͬ����Դ����ϵͳ 0.1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ campus-events ---
+[INFO] Copying 4 resources from src\main\resources to target\classes
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ campus-events ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 116 source files with javac [debug parameters release 21] to target\classes
+[INFO] /C:/Users/Lenovo/Desktop/Files/Code/Code_vsc/campus/campus-sched/server/src/main/java/com/campus/events/foundation/CanonicalJson.java: C:\Users\Lenovo\Desktop\Files\Code\Code_vsc\campus\campus-sched\server\src\main\java\com\campus\events\foundation\CanonicalJson.javaʹ�û򸲸����ѹ�ʱ�� API��
+[INFO] /C:/Users/Lenovo/Desktop/Files/Code/Code_vsc/campus/campus-sched/server/src/main/java/com/campus/events/foundation/CanonicalJson.java: �й���ϸ��Ϣ, ��ʹ�� -Xlint:deprecation ���±��롣
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ campus-events ---
+[INFO] skip non existing resourceDirectory C:\Users\Lenovo\Desktop\Files\Code\Code_vsc\campus\campus-sched\server\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ campus-events ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 35 source files with javac [debug parameters release 21] to target\test-classes
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ campus-events ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.campus.events.activity.ActivityServiceTest
+23:42:34.780 [main] INFO org.hibernate.validator.internal.util.Version -- HV000001: Hibernate Validator 8.0.3.Final
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (C:\Users\Lenovo\Desktop\Files\Code\Code_vsc\campus\campus-sched\server\target\maven-repository\net\bytebuddy\byte-buddy-agent\1.17.8\byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.994 s -- in com.campus.events.activity.ActivityServiceTest
+[INFO] Running com.campus.events.activity.ActivityStateMachineTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.038 s -- in com.campus.events.activity.ActivityStateMachineTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 25, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ campus-events ---
+[INFO] Building jar: C:\Users\Lenovo\Desktop\Files\Code\Code_vsc\campus\campus-sched\server\target\campus-events-0.1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot:3.5.16:repackage (repackage) @ campus-events ---
+[INFO] Replacing main artifact C:\Users\Lenovo\Desktop\Files\Code\Code_vsc\campus\campus-sched\server\target\campus-events-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\Lenovo\Desktop\Files\Code\Code_vsc\campus\campus-sched\server\target\campus-events-0.1.0-SNAPSHOT.jar.original
+[INFO] 
+[INFO] --- failsafe:3.5.6:integration-test (default) @ campus-events ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.campus.events.activity.ActivityApprovalIT
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-08T23:42:44.257+08:00  INFO 24356 --- [campus-events] [           main] c.c.events.activity.ActivityApprovalIT   : Starting ActivityApprovalIT using Java 21.0.12.1 with PID 24356 (started by Lenovo in C:\Users\Lenovo\Desktop\Files\Code\Code_vsc\campus\campus-sched\server)
+2026-11-08T23:42:44.260+08:00  INFO 24356 --- [campus-events] [           main] c.c.events.activity.ActivityApprovalIT   : The following 1 profile is active: "test"
+2026-11-08T23:42:47.119+08:00  INFO 24356 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-11-08T23:42:47.521+08:00  INFO 24356 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@743d0d44
+2026-11-08T23:42:47.523+08:00  INFO 24356 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-11-08T23:42:47.578+08:00  INFO 24356 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:5440/campus_test?currentSchema=an_b2c159027c5240c48c04a5181ff19224 (PostgreSQL 17.6)
+2026-11-08T23:42:47.688+08:00  INFO 24356 --- [campus-events] [           main] o.f.core.internal.database.base.Schema   : Creating schema "an_b2c159027c5240c48c04a5181ff19224" ...
+2026-11-08T23:42:47.736+08:00  INFO 24356 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "an_b2c159027c5240c48c04a5181ff19224"."flyway_schema_history" ...
+2026-11-08T23:42:47.987+08:00  INFO 24356 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "an_b2c159027c5240c48c04a5181ff19224": null
+2026-11-08T23:42:48.038+08:00  INFO 24356 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "an_b2c159027c5240c48c04a5181ff19224" to version "1 - schema"
+2026-11-08T23:42:48.443+08:00  INFO 24356 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "an_b2c159027c5240c48c04a5181ff19224" to version "2 - outbox claim token"
+2026-11-08T23:42:48.458+08:00  INFO 24356 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "an_b2c159027c5240c48c04a5181ff19224", now at version v2 (execution time 00:00.394s)
+2026-11-08T23:42:50.427+08:00  INFO 24356 --- [campus-events] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-08T23:42:50.427+08:00  INFO 24356 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-08T23:42:50.429+08:00  INFO 24356 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2026-11-08T23:42:50.473+08:00  INFO 24356 --- [campus-events] [           main] c.c.events.activity.ActivityApprovalIT   : Started ActivityApprovalIT in 6.765 seconds (process running for 8.239)
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (C:\Users\Lenovo\Desktop\Files\Code\Code_vsc\campus\campus-sched\server\target\maven-repository\net\bytebuddy\byte-buddy-agent\1.17.8\byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+2026-11-08T23:43:06.683+08:00 ERROR 24356 --- [campus-events] [   scheduling-1] o.s.s.s.TaskUtils$LoggingErrorHandler    : Unexpected error occurred in scheduled task
+
+org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [WITH claimed AS (
+    SELECT id FROM outbox_event
+    WHERE status='PENDING' AND next_attempt_at <= now()
+    ORDER BY next_attempt_at, id
+    FOR UPDATE SKIP LOCKED
+    LIMIT ?
+)
+UPDATE outbox_event o
+SET next_attempt_at = now() + (?::int * interval '1 second'),
+    claim_token = gen_random_uuid()
+FROM claimed c
+WHERE o.id = c.id
+RETURNING o.id, o.activity_id, o.version_no, o.payload_json, o.attempts, o.claim_token
+]
+	at org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:134) ~[spring-jdbc-6.2.19.jar:6.2.19]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107) ~[spring-jdbc-6.2.19.jar:6.2.19]
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116) ~[spring-jdbc-6.2.19.jar:6.2.19]
+	at org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1556) ~[spring-jdbc-6.2.19.jar:6.2.19]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677) ~[spring-jdbc-6.2.19.jar:6.2.19]
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:723) ~[spring-jdbc-6.2.19.jar:6.2.19]
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:754) ~[spring-jdbc-6.2.19.jar:6.2.19]
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:767) ~[spring-jdbc-6.2.19.jar:6.2.19]
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:825) ~[spring-jdbc-6.2.19.jar:6.2.19]
+	at com.campus.events.notification.EventRepository.claimNext(EventRepository.java:74) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360) ~[spring-aop-6.2.19.jar:6.2.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.2.19.jar:6.2.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.2.19.jar:6.2.19]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138) ~[spring-tx-6.2.19.jar:6.2.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.19.jar:6.2.19]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728) ~[spring-aop-6.2.19.jar:6.2.19]
+	at com.campus.events.notification.EventRepository$$SpringCGLIB$$0.claimNext(<generated>) ~[classes/:na]
+	at com.campus.events.notification.NotificationConsumer.lambda$drain$0(NotificationConsumer.java:31) ~[classes/:na]
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:140) ~[spring-tx-6.2.19.jar:6.2.19]
+	at com.campus.events.notification.NotificationConsumer.drain(NotificationConsumer.java:31) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.runInternal(ScheduledMethodRunnable.java:130) ~[spring-context-6.2.19.jar:6.2.19]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.lambda$run$2(ScheduledMethodRunnable.java:124) ~[spring-context-6.2.19.jar:6.2.19]
+	at io.micrometer.observation.Observation.observe(Observation.java:498) ~[micrometer-observation-1.15.12.jar:1.15.12]
+	at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:124) ~[spring-context-6.2.19.jar:6.2.19]
+	at org.springframework.scheduling.config.Task$OutcomeTrackingRunnable.run(Task.java:87) ~[spring-context-6.2.19.jar:6.2.19]
+	at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54) ~[spring-context-6.2.19.jar:6.2.19]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572) ~[na:na]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358) ~[na:na]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+Caused by: org.postgresql.util.PSQLException: ERROR: relation "outbox_event" does not exist
+  λ�ã�38
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2904) ~[postgresql-42.7.11.jar:42.7.11]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2589) ~[postgresql-42.7.11.jar:42.7.11]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:431) ~[postgresql-42.7.11.jar:42.7.11]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:534) ~[postgresql-42.7.11.jar:42.7.11]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:437) ~[postgresql-42.7.11.jar:42.7.11]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196) ~[postgresql-42.7.11.jar:42.7.11]
+	at org.postgresql.jdbc.PgPreparedStatement.executeQuery(PgPreparedStatement.java:139) ~[postgresql-42.7.11.jar:42.7.11]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeQuery(ProxyPreparedStatement.java:52) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeQuery(HikariProxyPreparedStatement.java) ~[HikariCP-6.3.3.jar:na]
+	at org.springframework.jdbc.core.JdbcTemplate$1.doInPreparedStatement(JdbcTemplate.java:732) ~[spring-jdbc-6.2.19.jar:6.2.19]
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658) ~[spring-jdbc-6.2.19.jar:6.2.19]
+	... 31 common frames omitted
+
+2026-11-08T23:43:06.781+08:00  INFO 24356 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-11-08T23:43:06.785+08:00  INFO 24356 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+[ERROR] Tests run: 5, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 23.73 s <<< FAILURE! -- in com.campus.events.activity.ActivityApprovalIT
+[ERROR] com.campus.events.activity.ActivityApprovalIT.approvalPersistsOriginalCommentAndAllowsFirstReservation(String)[1] -- Time elapsed: 2.902 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: {"requestId":"80e4ed4c-0f2f-4bde-ad72-6ec76f842e98","error":{"code":"VALIDATION_ERROR","details":{},"message":"�¼��ֶβ�����"}} ==> expected: <200> but was: <400>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at com.campus.events.activity.ActivityApprovalIT.request(ActivityApprovalIT.java:91)
+	at com.campus.events.activity.ActivityApprovalIT.approvalPersistsOriginalCommentAndAllowsFirstReservation(ActivityApprovalIT.java:106)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at java.base/java.util.stream.ReferencePipeline$7$1.accept(ReferencePipeline.java:276)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at java.base/java.util.stream.ReferencePipeline$7$1.accept(ReferencePipeline.java:276)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] com.campus.events.activity.ActivityApprovalIT.approvalPersistsOriginalCommentAndAllowsFirstReservation(String)[2] -- Time elapsed: 2.894 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: {"requestId":"1fb435a3-a070-41ae-b47e-eedf6dae5dc2","error":{"code":"VALIDATION_ERROR","details":{},"message":"�¼��ֶβ�����"}} ==> expected: <200> but was: <400>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)
+	at com.campus.events.activity.ActivityApprovalIT.request(ActivityApprovalIT.java:91)
+	at com.campus.events.activity.ActivityApprovalIT.approvalPersistsOriginalCommentAndAllowsFirstReservation(ActivityApprovalIT.java:106)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.Optional.ifPresent(Optional.java:178)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:184)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at java.base/java.util.stream.ReferencePipeline$7$1.accept(ReferencePipeline.java:276)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at java.base/java.util.stream.ReferencePipeline$7$1.accept(ReferencePipeline.java:276)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1708)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:151)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:174)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   ActivityApprovalIT.approvalPersistsOriginalCommentAndAllowsFirstReservation:106->request:91 {"requestId":"80e4ed4c-0f2f-4bde-ad72-6ec76f842e98","error":{"code":"VALIDATION_ERROR","details":{},"message":"�¼��ֶβ�����"}} ==> expected: <200> but was: <400>
+[ERROR]   ActivityApprovalIT.approvalPersistsOriginalCommentAndAllowsFirstReservation:106->request:91 {"requestId":"1fb435a3-a070-41ae-b47e-eedf6dae5dc2","error":{"code":"VALIDATION_ERROR","details":{},"message":"�¼��ֶβ�����"}} ==> expected: <200> but was: <400>
+[INFO] 
+[ERROR] Tests run: 5, Failures: 2, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- failsafe:3.5.6:verify (default) @ campus-events ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  57.458 s
+[INFO] Finished at: 2026-11-08T23:43:06+08:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-failsafe-plugin:3.5.6:verify (default) on project campus-events: There are test failures.
+[ERROR] 
+[ERROR] See C:\Users\Lenovo\Desktop\Files\Code\Code_vsc\campus\campus-sched\server\target\failsafe-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
