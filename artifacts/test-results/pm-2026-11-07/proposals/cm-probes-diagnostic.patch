@@ -1,0 +1,68 @@
+--- a/server/src/test/java/com/campus/events/foundation/ProductionWorkflowIT.java
++++ b/server/src/test/java/com/campus/events/foundation/ProductionWorkflowIT.java
+@@ -123,7 +123,7 @@
+         Plan original = plan(resource(), "2030-10-20T02:00:00Z", "2030-10-20T03:00:00Z");
+         Plan target = plan(resource(), "2030-10-20T07:00:00Z", "2030-10-20T08:00:00Z");
+         var created = ok(201, "POST", "/activities", ownerToken,
+-                new ActivityInput("PM全生产端口联调", "公开简介", 10, 1, withStaff ? List.of(staff) : List.of(), original));
++                new ActivityInput("PM全生产端口联调", "公开简介", 10, 1, withStaff ? List.of(owner) : List.of(), original));
+         UUID id = UUID.fromString(created.path("id").asText());
+         var submitted = ok(200, "POST", "/activities/" + id + "/submit", ownerToken, new VersionCommand(created.path("lockVersion").asInt()));
+         // 有意见的合法首次审批路径；合法空意见缺陷仍由原QA用例暴露，不改其断言。
+@@ -146,6 +146,44 @@
+     void approveChange(UUID id) throws Exception {
+         assertEquals("PENDING_RESOURCE", ok(200, "POST", "/changes/" + id + "/approver-decision", approverToken,
+                 new ChangeDecision(Decision.APPROVE, "")).path("status").asText());
++    }
++    @Test void staleChangeReturnsAuthorizedSnapshot() throws Exception {
++        var flow = published(false);
++        var before = activity(flow.id());
++        int version = before.path("versionNo").asInt();
++        int lock = before.path("lockVersion").asInt();
++        assertTrue(version >= 1 && lock >= 1);
++        String route = "/activities/" + flow.id() + "/changes";
++        var staleVersion = new ChangeCreate(version + 1, flow.target(), lock, "陈旧内容版本");
++        var staleLock = new ChangeCreate(version, flow.target(), lock - 1, "陈旧锁版本");
++        UUID versionKey = UUID.randomUUID();
++        UUID lockKey = UUID.randomUUID();
++        var versionResponse = call("POST", route, ownerToken, versionKey, staleVersion);
++        var lockResponse = call("POST", route, ownerToken, lockKey, staleLock);
++        var denied = call("POST", route, staffToken, UUID.randomUUID(), staleVersion);
++
++        for (var response : List.of(versionResponse, lockResponse)) {
++            assertEquals(409, response.status());
++            assertEquals("STALE_VERSION", response.body().path("error").path("code").asText());
++        }
++        assertEquals(403, denied.status());
++        assertEquals(0, denied.body().path("error").path("details").size());
++        assertEquals(before, activity(flow.id()));
++        assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM change_request WHERE activity_id=?",
++                Integer.class, flow.id()));
++        assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM command_receipt WHERE actor_id=? AND idempotency_key IN (?,?)",
++                Integer.class, owner, versionKey.toString(), lockKey.toString()));
++        assertAll(
++                () -> assertCurrentState(versionResponse, before, "陈旧内容版本"),
++                () -> assertCurrentState(lockResponse, before, "陈旧锁版本"));
++    }
++
++    private void assertCurrentState(Result response, JsonNode before, String reason) {
++        var details = response.body().path("error").path("details");
++        assertTrue(details.isObject() && (details.path("versionNo").equals(before.path("versionNo"))
++                        || details.path("lockVersion").equals(before.path("lockVersion"))
++                        || details.path("status").equals(before.path("status"))),
++                () -> reason + "按common/02 §3应附至少一项已授权的当前状态，实际details=" + details);
+     }
+     @Test void allProductionPortsPersistChangeNotificationsAndCancellation() throws Exception {
+         Flow flow = published(true);
+@@ -201,4 +239,10 @@
+         var replay = call("POST", "/changes/" + change + "/resource-decision", adminToken, key, command);
+         assertEquals(applied.body(), replay.body());
+     }
+-}
++    @Test void ownerOnlyStaffDoesNotRequireOwnConfirmation() throws Exception {
++        Flow flow = published(true);
++        UUID id = change(flow);
++        var view = ok(200, "GET", "/changes/" + id, ownerToken, null);
++        assertEquals("PENDING_APPROVER", view.path("status").asText(), "BR-07/BR-23：所有者不需要向自己确认");
++        assertEquals(0, view.path("impact").path("requiredStaffUserIds").size());
++    }}

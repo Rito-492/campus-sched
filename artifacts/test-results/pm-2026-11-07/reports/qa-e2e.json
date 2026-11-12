@@ -1,0 +1,426 @@
+{
+  "stats": {
+    "startTime": "2026-11-07T05:30:09.205Z",
+    "duration": 58392.594000000005,
+    "expected": 25,
+    "skipped": 0,
+    "unexpected": 4,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "file": "booking.spec.ts",
+      "line": 68,
+      "title": "TC-03-1 applicant_a 新建并提交，approver_a 同意、resource_admin 确认、发布后 student_a 报名成功",
+      "project": "desktop",
+      "outcome": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "durationMs": 4541,
+          "errors": [
+            "Error: 批准人同意应 200\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m400\u001b[39m\n\n  125 |         );\n  126 |         await approver.page.getByTestId(TESTID.approverApprove).click();\n> 127 |         expect((await approveResponse).status(), '批准人同意应 200').toBe(200);\n      |                                                                ^\n  128 |         expect((await getActivity(ownerApi, activityId)).status, '批准后应 APPROVED_UNRESERVED').toBe('APPROVED_UNRESERVED');\n  129 |\n  130 |         // 7) resource_admin 经 UI 确认（05 §4 resource-confirm）→ SCHEDULED，完整数量预约\n    at D:\\Codex\\2026-11-07\\https-github-com-rito-492-campus\\work\\qa-candidate\\qa\\tests\\booking.spec.ts:127:64"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "change-conflict.spec.ts",
+      "line": 129,
+      "title": "TC-09-2 预览同时展示场地占用与器材缺件，首选替代为 3102+3202×2 同时间",
+      "project": "desktop",
+      "outcome": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "durationMs": 11252,
+          "errors": [
+            "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('alternative-0')\nExpected pattern: \u001b[32m/首选/\u001b[39m\nReceived string:  \u001b[31m\"选择并查看影响\"\u001b[39m\nTimeout: 10000ms\n\nCall log:\n\u001b[2m  - Expect \"toContainText\" getByTestId('alternative-0') with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('alternative-0')\u001b[22m\n\u001b[2m    23 × locator resolved to <button type=\"button\" class=\"el-button\" aria-disabled=\"false\" data-testid=\"alternative-0\">…</button>\u001b[22m\n\u001b[2m       - unexpected value \"选择并查看影响\"\u001b[22m\n\n\n  151 |         await expect(alternative0).toBeVisible();\n  152 |         // 05 §3：首个方案标「当前排序首选」，不能写全局最优\n> 153 |         await expect(alternative0).toContainText(/首选/);\n      |                                    ^\n  154 |         // 首选替代：同时间 15:00，换场地 3102、换器材 3202×2\n  155 |         await expect(alternative0).toContainText(RESOURCES.venueB.name);\n  156 |         await expect(alternative0).toContainText(RESOURCES.equipmentB.name);\n    at D:\\Codex\\2026-11-07\\https-github-com-rito-492-campus\\work\\qa-candidate\\qa\\tests\\change-conflict.spec.ts:153:36"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "change-conflict.spec.ts",
+      "line": 170,
+      "title": "TC-11-1 staff_a 拒绝 → REJECTED，原安排与版本完全保留",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2075,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "change-conflict.spec.ts",
+      "line": 206,
+      "title": "TC-11-2 批准人驳回 → REJECTED，版本指针不变且意见落库",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1531,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "change-conflict.spec.ts",
+      "line": 243,
+      "title": "TC-12-1 候选资源被占 → 409 RESOURCE_CONFLICT、改期 CONFLICTED、原安排保留",
+      "project": "desktop",
+      "outcome": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "durationMs": 843,
+          "errors": [
+            "Error: 批准人审批活动应 200（HTTP 400）\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m400\u001b[39m\n\n   at helpers.ts:384\n\n  382 |\n  383 | export async function readData<T>(res: HttpResponseLike, expectedStatus: number, message: string): Promise<T> {\n> 384 |   expect(res.status(), `${message}（HTTP ${res.status()}）`).toBe(expectedStatus);\n      |                                                            ^\n  385 |   const body = (await res.json()) as ApiEnvelope<T>;\n  386 |   return body.data;\n  387 | }\n    at readData (D:\\Codex\\2026-11-07\\https-github-com-rito-492-campus\\work\\qa-candidate\\qa\\tests\\helpers.ts:384:60)\n    at approverDecideActivity (D:\\Codex\\2026-11-07\\https-github-com-rito-492-campus\\work\\qa-candidate\\qa\\tests\\helpers.ts:576:10)\n    at preemptPreferredResources (D:\\Codex\\2026-11-07\\https-github-com-rito-492-campus\\work\\qa-candidate\\qa\\tests\\change-conflict.spec.ts:96:15)\n    at D:\\Codex\\2026-11-07\\https-github-com-rito-492-campus\\work\\qa-candidate\\qa\\tests\\change-conflict.spec.ts:263:9"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "change-conflict.spec.ts",
+      "line": 311,
+      "title": "TC-18-1 故障使 A 原安排标 AT_RISK，页面展示风险提示且不谎报可用",
+      "project": "desktop",
+      "outcome": "unexpected",
+      "results": [
+        {
+          "status": "failed",
+          "durationMs": 11067,
+          "errors": [
+            "Error: 页面应展示 AT_RISK/风险提示\n\n\u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText(/AT_RISK|资源风险|受影响|不可用/).first()\nExpected: visible\nTimeout: 10000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - 页面应展示 AT_RISK/风险提示 getByText(/AT_RISK|资源风险|受影响|不可用/).first() with timeout 10000ms\u001b[22m\n\u001b[2m  - waiting for getByText(/AT_RISK|资源风险|受影响|不可用/).first()\u001b[22m\n\n\n  349 |           organizer.page.getByText(/AT_RISK|资源风险|受影响|不可用/).first(),\n  350 |           '页面应展示 AT_RISK/风险提示',\n> 351 |         ).toBeVisible();\n      |           ^\n  352 |         await expect(\n  353 |           organizer.page.getByText(/可正常使用|安排正常/),\n  354 |           '页面不得把原安排显示为可正常使用',\n    at D:\\Codex\\2026-11-07\\https-github-com-rito-492-campus\\work\\qa-candidate\\qa\\tests\\change-conflict.spec.ts:351:11"
+          ]
+        }
+      ]
+    },
+    {
+      "file": "change-happy-path.spec.ts",
+      "line": 38,
+      "title": "TC-10-1 / TC-23-1 预览选首选方案→staff/approver/resource 确认→version2→student 收到通知（含 reload 持久化）",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 5915,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "eligibility.spec.ts",
+      "line": 66,
+      "title": "N-AT-02 applicant_b（STUDENT）UI 明示仅教师资源不可申请并禁选（HTTP提交另验）",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1139,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "eligibility.spec.ts",
+      "line": 99,
+      "title": "N-AT-02 applicant_a（TEACHER）同目标可走到下一步（对照，按 identity 判断）",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 2107,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "eligibility.spec.ts",
+      "line": 134,
+      "title": "N-AT-02 applicant_b 直接 HTTP 保存草稿后提交 → 403 RESOURCE_INELIGIBLE 且草稿不推进",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 225,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "login.spec.ts",
+      "line": 29,
+      "title": "TC-01-1 applicant_a 正常登录进入主页，登录响应无密码字段、页面无散列信息",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 561,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "login.spec.ts",
+      "line": 64,
+      "title": "TC-01-2 错误密码返回 401 并显示错误提示，停留登录页，随后正确密码仍可登录",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 777,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "login.spec.ts",
+      "line": 111,
+      "title": "D-AT-01 登录后页面与浏览器存储不出现密码散列或明文口令",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 566,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "permissions.spec.ts",
+      "line": 47,
+      "title": "TC-21-1 学生日历只显示无权限占用信息，不泄露活动名称/组织者/名单",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 897,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "permissions.spec.ts",
+      "line": 92,
+      "title": "TC-21-2 学生读取他人活动报名名单被拒 403，UI 不展示名单",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 794,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "permissions.spec.ts",
+      "line": 131,
+      "title": "TC-21-2 学生只能查看自己的通知，读取他人通知被拒",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1192,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "permissions.spec.ts",
+      "line": 182,
+      "title": "TC-21-3 staff_a 读取改期详情时名单字段被裁剪但计数真实",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 389,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "line": 38,
+      "title": "登录页：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 320,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "line": 54,
+      "title": "活动列表：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 692,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "line": 71,
+      "title": "活动详情：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 698,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "line": 88,
+      "title": "改期工作台：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "desktop",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 747,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "line": 38,
+      "title": "登录页：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "desktop-1920",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 413,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "line": 54,
+      "title": "活动列表：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "desktop-1920",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 687,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "line": 71,
+      "title": "活动详情：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "desktop-1920",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 769,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "line": 88,
+      "title": "改期工作台：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "desktop-1920",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 752,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "line": 38,
+      "title": "登录页：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "mobile-390",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 390,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "line": 54,
+      "title": "活动列表：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "mobile-390",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 672,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "line": 71,
+      "title": "活动详情：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "mobile-390",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 672,
+          "errors": []
+        }
+      ]
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "line": 88,
+      "title": "改期工作台：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "mobile-390",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 711,
+          "errors": []
+        }
+      ]
+    }
+  ]
+}

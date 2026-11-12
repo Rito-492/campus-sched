@@ -1,0 +1,124 @@
+{
+  "totals": {
+    "total": 96,
+    "passed": 96,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "suites": [
+    {
+      "class": "com.campus.events.activity.ActivityServiceTest",
+      "total": 18,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 18
+    },
+    {
+      "class": "com.campus.events.activity.ActivityStateMachineTest",
+      "total": 7,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 7
+    },
+    {
+      "class": "com.campus.events.auth.AuthorizationPolicyTest",
+      "total": 8,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 8
+    },
+    {
+      "class": "com.campus.events.auth.PasswordPolicyTest",
+      "total": 6,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 6
+    },
+    {
+      "class": "com.campus.events.change.ChangeServiceTest",
+      "total": 1,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1
+    },
+    {
+      "class": "com.campus.events.contract.ContractValidationTest",
+      "total": 6,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 6
+    },
+    {
+      "class": "com.campus.events.foundation.CanonicalJsonTest",
+      "total": 6,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 6
+    },
+    {
+      "class": "com.campus.events.foundation.ContractJsonTest",
+      "total": 19,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 19
+    },
+    {
+      "class": "com.campus.events.foundation.ResponsesTest",
+      "total": 2,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 2
+    },
+    {
+      "class": "com.campus.events.scheduling.CandidateRankingTest",
+      "total": 3,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 3
+    },
+    {
+      "class": "com.campus.events.scheduling.CapacitySweepTest",
+      "total": 6,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 6
+    },
+    {
+      "class": "com.campus.events.scheduling.ScheduleQueryServiceTest",
+      "total": 4,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 4
+    },
+    {
+      "class": "com.campus.events.scheduling.StrategyEvaluatorTest",
+      "total": 6,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 6
+    },
+    {
+      "class": "com.campus.events.scheduling.TimeIntervalTest",
+      "total": 4,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 4
+    }
+  ],
+  "failures": []
+}

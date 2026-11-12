@@ -1,0 +1,28 @@
+{
+  "totals": {
+    "total": 14,
+    "passed": 14,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "suites": [
+    {
+      "class": "com.campus.events.acceptance.PermissionsIT",
+      "total": 13,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 13
+    },
+    {
+      "class": "com.campus.events.foundation.ProductionWorkflowIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1
+    }
+  ],
+  "failures": []
+}

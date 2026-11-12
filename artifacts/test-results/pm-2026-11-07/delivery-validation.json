@@ -1,0 +1,29 @@
+{
+  "checkedAtUtc": "2026-11-07T05:49:39.053502+00:00",
+  "main": "16de4a507aa434df6505a49f67619990bc2926c2",
+  "pmHead": "984892cefc04411c463e92411d7c09666c03fbfe",
+  "scopePassed": true,
+  "productJavaFiles": [
+    "server/src/main/java/com/campus/events/auth/AccountPortAdapter.java",
+    "server/src/main/java/com/campus/events/foundation/FoundationConfiguration.java",
+    "server/src/test/java/com/campus/events/foundation/ContractJsonTest.java",
+    "server/src/test/java/com/campus/events/foundation/FoundationIT.java",
+    "server/src/test/java/com/campus/events/foundation/PublishedModulesIT.java"
+  ],
+  "newBrokenLocalMarkdownLinks": [],
+  "testPasswordFoundInEvidence": false,
+  "sourceManifestFilesVerified": 361,
+  "preservedOfficeFilesVerified": 23,
+  "diffCheckPassed": true,
+  "diffCheckScope": "PM code, tests and management Markdown; raw logs, browser error contexts and proposal patch syntax are preserved",
+  "corePatchReverseCheckPassed": true,
+  "export": {
+    "file": "pm-2026-11-07-code-and-docs.patch",
+    "sha256": "b9880915133b68e8c8a36a775f0d0deaa7db78ddadce4a771638a5fff4f14b24",
+    "includes": "PM code, tests and management Markdown; evidence remains in repository directory",
+    "base": "984892cefc04411c463e92411d7c09666c03fbfe"
+  },
+  "commitCreated": false,
+  "pushed": false,
+  "remoteReviewSubmitted": false
+}

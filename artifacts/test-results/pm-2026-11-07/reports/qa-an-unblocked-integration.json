@@ -1,0 +1,187 @@
+{
+  "totals": {
+    "total": 153,
+    "passed": 151,
+    "failed": 1,
+    "errors": 0,
+    "skipped": 1
+  },
+  "suites": [
+    {
+      "class": "com.campus.events.acceptance.BookingConcurrencyIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1
+    },
+    {
+      "class": "com.campus.events.acceptance.CancellationRaceIT",
+      "total": 2,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 2
+    },
+    {
+      "class": "com.campus.events.acceptance.ChangeRollbackIT",
+      "total": 5,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 5
+    },
+    {
+      "class": "com.campus.events.acceptance.IdentityEligibilityIT",
+      "total": 6,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 6
+    },
+    {
+      "class": "com.campus.events.acceptance.NotificationConsistencyIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1
+    },
+    {
+      "class": "com.campus.events.acceptance.PermissionsIT",
+      "total": 13,
+      "failed": 1,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 12
+    },
+    {
+      "class": "com.campus.events.acceptance.RegistrationCapacityIT",
+      "total": 4,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 4
+    },
+    {
+      "class": "com.campus.events.acceptance.SchedulingBenchmarkIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1
+    },
+    {
+      "class": "com.campus.events.acceptance.SeederRollbackIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1
+    },
+    {
+      "class": "com.campus.events.activity.ActivityRegistrationIT",
+      "total": 35,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 35
+    },
+    {
+      "class": "com.campus.events.dev.DemoDataSeederIT",
+      "total": 3,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 3
+    },
+    {
+      "class": "com.campus.events.foundation.FoundationIT",
+      "total": 25,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 25
+    },
+    {
+      "class": "com.campus.events.foundation.ProductionWorkflowIT",
+      "total": 2,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 2
+    },
+    {
+      "class": "com.campus.events.foundation.PublishedModulesIT",
+      "total": 8,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 8
+    },
+    {
+      "class": "com.campus.events.foundation.StandardMavenSchemaIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1
+    },
+    {
+      "class": "com.campus.events.notification.OutboxClaimIT",
+      "total": 4,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 4
+    },
+    {
+      "class": "com.campus.events.resource.ResourceSchedulingIT",
+      "total": 30,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 1,
+      "passed": 29
+    },
+    {
+      "class": "com.campus.events.resource.SchemaIT",
+      "total": 8,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 8
+    },
+    {
+      "class": "com.campus.events.scheduling.DsStrategyBenchmarkIT",
+      "total": 2,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 2
+    },
+    {
+      "class": "com.campus.events.support.DbTestSupportIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1
+    }
+  ],
+  "failures": [
+    {
+      "class": "D-AT-01/02/08/20/21 权限、幂等、陈旧版本与读取隔离（PermissionsIT）",
+      "test": "tc2001And02_staleVersionProtection",
+      "result": "failure",
+      "message": "STALE_VERSION details 至少返回当前versionNo/lockVersion/status之一：{} ==> expected: <true> but was: <false>",
+      "detail": "org.opentest4j.AssertionFailedError: STALE_VERSION details 至少返回当前versionNo/lockVersion/status之一：{} ==> expected: <true> but was: <false>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\tat org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)\n\tat org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)\n\tat org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)\n\tat org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)\n\tat com.campus.events.acceptance.PermissionsIT.assertStaleVersionDetails(PermissionsIT.java:581)\n\tat com.campus.events.acceptance.PermissionsIT.tc2001And02_staleVersionProtection(PermissionsIT.java:365)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n"
+    },
+    {
+      "class": "com.campus.events.resource.ResourceSchedulingIT",
+      "test": "missingChangePortRejectsActivityLockWithoutPartialWrites",
+      "result": "skipped",
+      "message": "",
+      "detail": "org.opentest4j.TestAbortedException: Assumption failed: CM端口已到位，改跑真实切换测试\n\tat org.junit.jupiter.api.Assumptions.throwAssumptionFailed(Assumptions.java:321)\n\tat org.junit.jupiter.api.Assumptions.assumeTrue(Assumptions.java:120)\n\tat com.campus.events.resource.ResourceSchedulingIT.missingChangePortRejectsActivityLockWithoutPartialWrites(ResourceSchedulingIT.java:630)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n"
+    }
+  ]
+}

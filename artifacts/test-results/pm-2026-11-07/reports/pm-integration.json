@@ -1,0 +1,60 @@
+{
+  "totals": {
+    "total": 43,
+    "passed": 43,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "suites": [
+    {
+      "class": "com.campus.events.dev.DemoDataSeederIT",
+      "total": 3,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 3
+    },
+    {
+      "class": "com.campus.events.foundation.FoundationIT",
+      "total": 25,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 25
+    },
+    {
+      "class": "com.campus.events.foundation.ProductionWorkflowIT",
+      "total": 2,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 2
+    },
+    {
+      "class": "com.campus.events.foundation.PublishedModulesIT",
+      "total": 8,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 8
+    },
+    {
+      "class": "com.campus.events.foundation.StandardMavenSchemaIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1
+    },
+    {
+      "class": "com.campus.events.notification.OutboxClaimIT",
+      "total": 4,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 4
+    }
+  ],
+  "failures": []
+}

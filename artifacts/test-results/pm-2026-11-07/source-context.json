@@ -1,0 +1,77 @@
+{
+  "pmHead": "984892cefc04411c463e92411d7c09666c03fbfe",
+  "qaHead": "6596a7dc7e0a1851861d268136e82cd5f63e61a5",
+  "mergeBase": "16de4a507aa434df6505a49f67619990bc2926c2",
+  "mergedTreeBeforeLocalFixes": "bb90b625ab197258928c04c8f291ff0afd94b221",
+  "localPmFixes": [
+    {
+      "path": "server/src/main/java/com/campus/events/auth/AccountPortAdapter.java",
+      "sha256": "bebfd32b433d7d41c7815bb57f0962ae0b13ea9efab241bb13fcdede9c6d3660"
+    },
+    {
+      "path": "server/src/main/java/com/campus/events/foundation/FoundationConfiguration.java",
+      "sha256": "0ef9477c660d0013636a31269024b2bb3851d51e35e2bdd31c4024d9c01bd7be"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/foundation/ContractJsonTest.java",
+      "sha256": "9b95592b5a3208aab0aff5190e9989469a9a1e1955897c1d1320e3f25eaa48a2"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/foundation/FoundationIT.java",
+      "sha256": "d01da21bdc773bd84d2106ceb91c74c6e258b06996f10a81ab12233f86f8ce15"
+    },
+    {
+      "path": "server/src/test/java/com/campus/events/foundation/PublishedModulesIT.java",
+      "sha256": "b6418fe681a535ee13ef3e3727402a6816a87f39fe23703f84071122714eddfb"
+    }
+  ],
+  "purpose": "Isolated QA integration experiment; not merged into PM or main",
+  "main": "16de4a507aa434df6505a49f67619990bc2926c2",
+  "branch": "work/55230223-foundation",
+  "deliveryState": "Local uncommitted PM changes; no push, merge or new remote review",
+  "environment": {
+    "jdk": "21.0.12.1",
+    "maven": "3.9.11",
+    "postgresql": "17.6",
+    "node": "22.23.0",
+    "os": "Windows 11",
+    "browserChannel": "msedge",
+    "database": "dedicated local campus_test; random per-IT schemas",
+    "composeExecuted": false,
+    "dockerCliFound": false
+  },
+  "browserContexts": {
+    "ui": {
+      "clock": "2030-10-19T00:00:00Z",
+      "database": "campus_test",
+      "profiles": "dev,e2e",
+      "server": "http://127.0.0.1:8080",
+      "frontend": "http://127.0.0.1:5173",
+      "seedDate": "2030-10-20",
+      "schema": "pm_ui_3d831caabe5443f4b3b2b8823bd6a1fe"
+    },
+    "qa": {
+      "schema": "pm_qa_ui_5a4745d6aefc466c8c2e61de374cc422",
+      "profiles": "dev,e2e",
+      "server": "http://127.0.0.1:8080",
+      "seedDate": "2030-10-20",
+      "production": "PM HEAD + local PM fixes; no AN/CM experimental changes",
+      "clock": "2030-10-19T00:00:00Z",
+      "frontend": "http://127.0.0.1:5173",
+      "database": "campus_test"
+    },
+    "qaLocator": {
+      "frontend": "http://127.0.0.1:5173",
+      "schema": "pm_locator_de56c861c8154efb861d6919407cd68c",
+      "production": "Original PM product with local PM fixes only",
+      "profiles": "dev,e2e",
+      "purpose": "Two proposed QA locator changes; fresh demo fixture"
+    }
+  },
+  "restart": {
+    "sameSchemaAsUi": true,
+    "demoSeed": false,
+    "commandArgument": "--app.demo-seed=false",
+    "passed": true
+  }
+}

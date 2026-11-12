@@ -1,0 +1,71 @@
+{
+  "totals": {
+    "total": 6,
+    "passed": 0,
+    "failed": 6,
+    "errors": 0,
+    "skipped": 0
+  },
+  "suites": [
+    {
+      "class": "com.campus.events.foundation.FoundationIT",
+      "total": 3,
+      "failed": 3,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 0
+    },
+    {
+      "class": "com.campus.events.foundation.PublishedModulesIT",
+      "total": 3,
+      "failed": 3,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 0
+    }
+  ],
+  "failures": [
+    {
+      "class": "com.campus.events.foundation.FoundationIT",
+      "test": "numericAuthorizationEnumsAreRejectedWithoutWrites",
+      "result": "failure",
+      "message": "identity: {\"requestId\":\"3c04997d-813f-4d39-9772-692fd60d91bb\",\"data\":{\"identity\":\"TEACHER\",\"roles\":[\"APPLICANT\"],\"permissions\":[],\"approvalScopes\":[],\"managedResourceIds\":[],\"id\":\"3d4d8c1b-d112-427f-9d14-cf0040290ee0\",\"displayName\":\"枚举校验账号\",\"organizationId\":\"b02047d0-81c1-4762-992c-213b48ca7b22\",\"enabled\":true}} ==> expected: <400> but was: <201>",
+      "detail": "org.opentest4j.AssertionFailedError: identity: {\"requestId\":\"3c04997d-813f-4d39-9772-692fd60d91bb\",\"data\":{\"identity\":\"TEACHER\",\"roles\":[\"APPLICANT\"],\"permissions\":[],\"approvalScopes\":[],\"managedResourceIds\":[],\"id\":\"3d4d8c1b-d112-427f-9d14-cf0040290ee0\",\"displayName\":\"枚举校验账号\",\"organizationId\":\"b02047d0-81c1-4762-992c-213b48ca7b22\",\"enabled\":true}} ==> expected: <400> but was: <201>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\tat org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)\n\tat org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)\n\tat org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)\n\tat org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)\n\tat com.campus.events.foundation.FoundationIT.numericAuthorizationEnumsAreRejectedWithoutWrites(FoundationIT.java:259)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n"
+    },
+    {
+      "class": "com.campus.events.foundation.FoundationIT",
+      "test": "automaticResourceGrantAndHistoryRollBackTogether",
+      "result": "failure",
+      "message": "Unexpected exception type thrown, expected: <java.lang.IllegalStateException> but was: <org.opentest4j.AssertionFailedError>",
+      "detail": "org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <java.lang.IllegalStateException> but was: <org.opentest4j.AssertionFailedError>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\tat org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)\n\tat org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)\n\tat org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)\n\tat com.campus.events.foundation.FoundationIT.automaticResourceGrantAndHistoryRollBackTogether(FoundationIT.java:294)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\nCaused by: org.opentest4j.AssertionFailedError: expected: <1> but was: <0>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\tat org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)\n\tat org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)\n\tat org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:166)\n\tat org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:161)\n\tat org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:632)\n\tat com.campus.events.foundation.FoundationIT.lambda$automaticResourceGrantAndHistoryRollBackTogether$10(FoundationIT.java:297)\n\tat org.springframework.transaction.support.TransactionOperations.lambda$executeWithoutResult$0(TransactionOperations.java:68)\n\tat org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:140)\n\tat org.springframework.transaction.support.TransactionOperations.executeWithoutResult(TransactionOperations.java:67)\n\tat com.campus.events.foundation.FoundationIT.lambda$automaticResourceGrantAndHistoryRollBackTogether$11(FoundationIT.java:294)\n\tat org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)\n\t... 6 more\n"
+    },
+    {
+      "class": "com.campus.events.foundation.FoundationIT",
+      "test": "automaticResourceGrantRecordsOneCompleteAuthorizationHistory",
+      "result": "failure",
+      "message": "expected: <1> but was: <0>",
+      "detail": "org.opentest4j.AssertionFailedError: expected: <1> but was: <0>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\tat org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)\n\tat org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)\n\tat org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:166)\n\tat org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:161)\n\tat org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:632)\n\tat com.campus.events.foundation.FoundationIT.automaticResourceGrantRecordsOneCompleteAuthorizationHistory(FoundationIT.java:286)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n"
+    },
+    {
+      "class": "com.campus.events.foundation.PublishedModulesIT",
+      "test": "fractionalResourceQuantityIsRejectedWithoutResourceGrantOrReceipt",
+      "result": "failure",
+      "message": "{\"requestId\":\"96e43edc-9538-4c33-90eb-418fa6b82af4\",\"data\":{\"allowTeacher\":true,\"allowStudent\":true,\"kind\":\"EQUIPMENT\",\"name\":\"小数库存\",\"category\":\"PROJECTOR\",\"capacity\":null,\"quantity\":2,\"openFrom\":\"08:00\",\"openTo\":\"22:00\",\"id\":\"cb89607d-aad6-4e90-91f6-8d5df1ee413f\",\"createdAt\":\"2026-11-07T05:19:56.920231Z\"}} ==> expected: <400> but was: <201>",
+      "detail": "org.opentest4j.AssertionFailedError: {\"requestId\":\"96e43edc-9538-4c33-90eb-418fa6b82af4\",\"data\":{\"allowTeacher\":true,\"allowStudent\":true,\"kind\":\"EQUIPMENT\",\"name\":\"小数库存\",\"category\":\"PROJECTOR\",\"capacity\":null,\"quantity\":2,\"openFrom\":\"08:00\",\"openTo\":\"22:00\",\"id\":\"cb89607d-aad6-4e90-91f6-8d5df1ee413f\",\"createdAt\":\"2026-11-07T05:19:56.920231Z\"}} ==> expected: <400> but was: <201>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\tat org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)\n\tat org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)\n\tat org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)\n\tat org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)\n\tat com.campus.events.foundation.PublishedModulesIT.fractionalResourceQuantityIsRejectedWithoutResourceGrantOrReceipt(PublishedModulesIT.java:145)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n"
+    },
+    {
+      "class": "com.campus.events.foundation.PublishedModulesIT",
+      "test": "newResourceIsGrantedViaRealAccountPort",
+      "result": "failure",
+      "message": "expected: <1> but was: <0>",
+      "detail": "org.opentest4j.AssertionFailedError: expected: <1> but was: <0>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\tat org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)\n\tat org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)\n\tat org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)\n\tat org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)\n\tat org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:538)\n\tat com.campus.events.foundation.PublishedModulesIT.newResourceIsGrantedViaRealAccountPort(PublishedModulesIT.java:127)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n"
+    },
+    {
+      "class": "com.campus.events.foundation.PublishedModulesIT",
+      "test": "fractionalLockVersionCannotModifyPersistedDraft",
+      "result": "failure",
+      "message": "{\"requestId\":\"d0fc4ef3-8099-4781-8e4c-0ce37bba9366\",\"data\":{\"id\":\"af994447-3adc-47cc-a1d8-f68c96d410d3\",\"organizationId\":\"f9636476-a444-4dbb-adb2-1d6a8e595d4f\",\"ownerId\":\"ff35d68f-a851-486e-a5ca-b8c9928cb54e\",\"status\":\"DRAFT\",\"versionNo\":2,\"effectiveVersionNo\":null,\"lockVersion\":1,\"input\":{\"title\":\"不应保存的小数锁版本\",\"description\":\"\",\"expectedAttendees\":60,\"registrationCapacity\":20,\"staffUserIds\":[],\"plan\":{\"startAt\":\"2030-10-20T02:00:00Z\",\"endAt\":\"2030-10-20T03:00:00Z\",\"setupMinutes\":0,\"teardownMinutes\":0,\"venueId\":\"6821cf1c-b240-4968-a35b-e7e90281056d\",\"equipment\":[]}},\"registrationCount\":0,\"resourceRisk\":\"NORMAL\",\"activeChangeId\":null,\"myRegistrationStatus\":null,\"createdAt\":\"2026-11-07T05:19:56.972553Z\"}} ==> expected: <400> but was: <200>",
+      "detail": "org.opentest4j.AssertionFailedError: {\"requestId\":\"d0fc4ef3-8099-4781-8e4c-0ce37bba9366\",\"data\":{\"id\":\"af994447-3adc-47cc-a1d8-f68c96d410d3\",\"organizationId\":\"f9636476-a444-4dbb-adb2-1d6a8e595d4f\",\"ownerId\":\"ff35d68f-a851-486e-a5ca-b8c9928cb54e\",\"status\":\"DRAFT\",\"versionNo\":2,\"effectiveVersionNo\":null,\"lockVersion\":1,\"input\":{\"title\":\"不应保存的小数锁版本\",\"description\":\"\",\"expectedAttendees\":60,\"registrationCapacity\":20,\"staffUserIds\":[],\"plan\":{\"startAt\":\"2030-10-20T02:00:00Z\",\"endAt\":\"2030-10-20T03:00:00Z\",\"setupMinutes\":0,\"teardownMinutes\":0,\"venueId\":\"6821cf1c-b240-4968-a35b-e7e90281056d\",\"equipment\":[]}},\"registrationCount\":0,\"resourceRisk\":\"NORMAL\",\"activeChangeId\":null,\"myRegistrationStatus\":null,\"createdAt\":\"2026-11-07T05:19:56.972553Z\"}} ==> expected: <400> but was: <200>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\tat org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)\n\tat org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)\n\tat org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:150)\n\tat org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:563)\n\tat com.campus.events.foundation.PublishedModulesIT.fractionalLockVersionCannotModifyPersistedDraft(PublishedModulesIT.java:157)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n"
+    }
+  ]
+}

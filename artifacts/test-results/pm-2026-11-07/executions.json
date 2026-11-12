@@ -1,0 +1,87 @@
+[
+  {
+    "id": "pm",
+    "directory": "PM delivery",
+    "command": "./server/mvnw.cmd -o \"-Dmaven.repo.local=$env:MAVEN_USER_HOME\\repository\" -f server/pom.xml \"-Dit.test=FoundationIT,PublishedModulesIT,ProductionWorkflowIT,StandardMavenSchemaIT,DemoDataSeederIT,OutboxClaimIT\" clean verify",
+    "exit": 0,
+    "unitReport": "pm-unit",
+    "integrationReport": "pm-integration"
+  },
+  {
+    "id": "default",
+    "directory": "PM delivery",
+    "command": "./server/mvnw.cmd -o \"-Dmaven.repo.local=$env:MAVEN_USER_HOME\\repository\" -f server/pom.xml clean verify",
+    "exit": 1,
+    "unitReport": "default-unit",
+    "integrationReport": "default-integration"
+  },
+  {
+    "id": "qa-candidate",
+    "directory": "isolated merged tree + five PM files",
+    "command": "./server/mvnw.cmd -o \"-Dmaven.repo.local=$env:MAVEN_USER_HOME\\repository\" -f server/pom.xml clean verify",
+    "exit": 1,
+    "unitReport": "qa-candidate-unit",
+    "integrationReport": "qa-candidate-integration"
+  },
+  {
+    "id": "qa-an-unblocked",
+    "directory": "same isolated candidate + an-attribution.patch",
+    "command": "./server/mvnw.cmd -o \"-Dmaven.repo.local=$env:MAVEN_USER_HOME\\repository\" -f server/pom.xml clean verify",
+    "exit": 1,
+    "unitReport": "qa-an-unblocked-unit",
+    "integrationReport": "qa-an-unblocked-integration"
+  },
+  {
+    "id": "cm-probes-before",
+    "directory": "AN-unblocked candidate + cm-probes-diagnostic.patch; original CM",
+    "command": "./server/mvnw.cmd -o \"-Dmaven.repo.local=$env:MAVEN_USER_HOME\\repository\" -f server/pom.xml \"-Dit.test=ProductionWorkflowIT#ownerOnlyStaffDoesNotRequireOwnConfirmation+staleChangeReturnsAuthorizedSnapshot\" verify",
+    "exit": 1,
+    "unitReport": "cm-probes-before-unit",
+    "integrationReport": "cm-probes-before-integration",
+    "collection": "Only TEST-*ProductionWorkflowIT.xml from this targeted run"
+  },
+  {
+    "id": "cm-details-proposed",
+    "directory": "previous diagnostic candidate + api27-cm-proposed.patch",
+    "command": "./server/mvnw.cmd -o \"-Dmaven.repo.local=$env:MAVEN_USER_HOME\\repository\" -f server/pom.xml \"-Dit.test=PermissionsIT,ProductionWorkflowIT#staleChangeReturnsAuthorizedSnapshot\" verify",
+    "exit": 0,
+    "unitReport": "cm-details-proposed-unit",
+    "integrationReport": "cm-details-proposed-integration",
+    "collection": "Only PermissionsIT and ProductionWorkflowIT XML overwritten in this targeted run; owner probe not selected"
+  },
+  {
+    "id": "ui-integration",
+    "directory": "isolated unchanged web tests; PM delivery backend",
+    "command": "npm run test:integration -- --reporter=list,json",
+    "exit": 0,
+    "report": "ui-integration"
+  },
+  {
+    "id": "ui-persistence",
+    "directory": "same web scratch and original UI schema, new backend process; seed disabled",
+    "command": "node node_modules/@playwright/test/cli.js test --config playwright.integration.config.ts persistence.spec.ts --reporter=list,json",
+    "exit": 0,
+    "report": "ui-persistence"
+  },
+  {
+    "id": "qa-e2e",
+    "directory": "unchanged latest QA tests and scratch browser config; original PM delivery backend with fresh fixture",
+    "command": "npx playwright test --config playwright.pm.config.ts",
+    "exit": 1,
+    "report": "qa-e2e"
+  },
+  {
+    "id": "qa-locator",
+    "directory": "only qa-locators-proposed.patch in scratch; original PM delivery backend with fresh fixture",
+    "command": "node node_modules/@playwright/test/cli.js test --config playwright.pm.config.ts --project=desktop --grep 'TC-(09-2|18-1)' --reporter=list,json --output=<isolated-output>",
+    "exit": 0,
+    "report": "qa-locator"
+  },
+  {
+    "id": "qa-evaluate",
+    "directory": "QA candidate; raw measured output captured before AN diagnostic",
+    "command": "node qa/scripts/evaluate-scheduling.ts <captured-scheduling-evaluation.json>",
+    "exit": 0,
+    "rows": 160
+  }
+]

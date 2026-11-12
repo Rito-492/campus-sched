@@ -1,0 +1,22 @@
+--- a/qa/tests/change-conflict.spec.ts
++++ b/qa/tests/change-conflict.spec.ts
+@@ -147,7 +147,9 @@
+         // EQUIPMENT_SHORTAGE：3201 库存 2 − B 占 1 = 可用 1 < 需求 2
+         await expect(conflictList).toContainText(RESOURCES.equipmentA.name);
+ 
+-        const alternative0 = organizer.page.getByTestId(TESTID.alternative0);
++        const alternative0 = organizer.page.locator('.alternative-card').filter({
++          has: organizer.page.getByTestId(TESTID.alternative0),
++        });
+         await expect(alternative0).toBeVisible();
+         // 05 §3：首个方案标「当前排序首选」，不能写全局最优
+         await expect(alternative0).toContainText(/首选/);
+@@ -346,7 +348,7 @@
+         sessions.push(organizer);
+         await organizer.page.goto(`/activities/${ACTIVITIES.a.id}`);
+         await expect(
+-          organizer.page.getByText(/AT_RISK|资源风险|受影响|不可用/).first(),
++          organizer.page.getByTestId('risk-banner'),
+           '页面应展示 AT_RISK/风险提示',
+         ).toBeVisible();
+         await expect(
