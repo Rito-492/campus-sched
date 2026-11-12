@@ -1,0 +1,227 @@
+{
+  "totals": {
+    "total": 92,
+    "passed": 82,
+    "failed": 0,
+    "errors": 9,
+    "skipped": 1
+  },
+  "suites": [
+    {
+      "class": "com.campus.events.acceptance.BookingConcurrencyIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 1,
+      "skipped": 0,
+      "passed": 0
+    },
+    {
+      "class": "com.campus.events.acceptance.CancellationRaceIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 1,
+      "skipped": 0,
+      "passed": 0
+    },
+    {
+      "class": "com.campus.events.acceptance.ChangeRollbackIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 1,
+      "skipped": 0,
+      "passed": 0
+    },
+    {
+      "class": "com.campus.events.acceptance.IdentityEligibilityIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 1,
+      "skipped": 0,
+      "passed": 0
+    },
+    {
+      "class": "com.campus.events.acceptance.NotificationConsistencyIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 1,
+      "skipped": 0,
+      "passed": 0
+    },
+    {
+      "class": "com.campus.events.acceptance.PermissionsIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 1,
+      "skipped": 0,
+      "passed": 0
+    },
+    {
+      "class": "com.campus.events.acceptance.RegistrationCapacityIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 1,
+      "skipped": 0,
+      "passed": 0
+    },
+    {
+      "class": "com.campus.events.acceptance.SchedulingBenchmarkIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 1,
+      "skipped": 0,
+      "passed": 0
+    },
+    {
+      "class": "com.campus.events.activity.ActivityRegistrationIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 1,
+      "skipped": 0,
+      "passed": 0
+    },
+    {
+      "class": "com.campus.events.dev.DemoDataSeederIT",
+      "total": 3,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 3
+    },
+    {
+      "class": "com.campus.events.foundation.FoundationIT",
+      "total": 25,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 25
+    },
+    {
+      "class": "com.campus.events.foundation.ProductionWorkflowIT",
+      "total": 2,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 2
+    },
+    {
+      "class": "com.campus.events.foundation.PublishedModulesIT",
+      "total": 8,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 8
+    },
+    {
+      "class": "com.campus.events.foundation.StandardMavenSchemaIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1
+    },
+    {
+      "class": "com.campus.events.notification.OutboxClaimIT",
+      "total": 4,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 4
+    },
+    {
+      "class": "com.campus.events.resource.ResourceSchedulingIT",
+      "total": 30,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 1,
+      "passed": 29
+    },
+    {
+      "class": "com.campus.events.resource.SchemaIT",
+      "total": 8,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 8
+    },
+    {
+      "class": "com.campus.events.scheduling.DsStrategyBenchmarkIT",
+      "total": 2,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 2
+    }
+  ],
+  "failures": [
+    {
+      "class": "D-AT-07 两活动抢同一资源恰一成功（BookingConcurrencyIT）",
+      "test": "",
+      "result": "error",
+      "message": "装载测试数据失败：demo",
+      "detail": "java.lang.IllegalStateException: 装载测试数据失败：demo\n\tat com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:161)\n\tat com.campus.events.support.DbTestSupport.beforeAll(DbTestSupport.java:130)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\nCaused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\"\n  详细：Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table \"resource\".\n\tat org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:140)\n\tat org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)\n\tat org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)\n\tat org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1556)\n\tat org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:972)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1016)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1026)\n\tat com.campus.events.support.DbTestSupport.insertReferenceTables(DbTestSupport.java:236)\n\tat com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:157)\n\t... 2 more\nCaused by: org.postgresql.util.PSQLException: ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\"\n  详细：Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table \"resource\".\n\tat org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2904)\n\tat org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2589)\n\tat org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:431)\n\tat org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:534)\n\tat org.postgresql.jdbc.PgStatement.execute(PgStatement.java:437)\n\tat org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)\n\tat org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:157)\n\tat org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:977)\n\tat org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)\n\t... 7 more\n"
+    },
+    {
+      "class": "D-AT-17 取消与竞争",
+      "test": "",
+      "result": "error",
+      "message": "装载测试数据失败：demo",
+      "detail": "java.lang.IllegalStateException: 装载测试数据失败：demo\n\tat com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:161)\n\tat com.campus.events.support.DbTestSupport.beforeAll(DbTestSupport.java:130)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\nCaused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\"\n  详细：Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table \"resource\".\n\tat org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:140)\n\tat org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)\n\tat org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)\n\tat org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1556)\n\tat org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:972)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1016)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1026)\n\tat com.campus.events.support.DbTestSupport.insertReferenceTables(DbTestSupport.java:236)\n\tat com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:157)\n\t... 2 more\nCaused by: org.postgresql.util.PSQLException: ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\"\n  详细：Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table \"resource\".\n\tat org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2904)\n\tat org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2589)\n\tat org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:431)\n\tat org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:534)\n\tat org.postgresql.jdbc.PgStatement.execute(PgStatement.java:437)\n\tat org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)\n\tat org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:157)\n\tat org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:977)\n\tat org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)\n\t... 7 more\n"
+    },
+    {
+      "class": "D-AT-11/12/13/14 改期拒绝、抢占、自身排除与回滚（ChangeRollbackIT）",
+      "test": "",
+      "result": "error",
+      "message": "装载测试数据失败：demo",
+      "detail": "java.lang.IllegalStateException: 装载测试数据失败：demo\n\tat com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:161)\n\tat com.campus.events.support.DbTestSupport.beforeAll(DbTestSupport.java:130)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\nCaused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\"\n  详细：Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table \"resource\".\n\tat org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:140)\n\tat org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)\n\tat org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)\n\tat org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1556)\n\tat org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:972)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1016)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1026)\n\tat com.campus.events.support.DbTestSupport.insertReferenceTables(DbTestSupport.java:236)\n\tat com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:157)\n\t... 2 more\nCaused by: org.postgresql.util.PSQLException: ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\"\n  详细：Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table \"resource\".\n\tat org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2904)\n\tat org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2589)\n\tat org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:431)\n\tat org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:534)\n\tat org.postgresql.jdbc.PgStatement.execute(PgStatement.java:437)\n\tat org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)\n\tat org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:157)\n\tat org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:977)\n\tat org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)\n\t... 7 more\n"
+    },
+    {
+      "class": "N-AT-01～06 身份、资格与授权范围（IdentityEligibilityIT）",
+      "test": "",
+      "result": "error",
+      "message": "装载测试数据失败：demo",
+      "detail": "java.lang.IllegalStateException: 装载测试数据失败：demo\n\tat com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:161)\n\tat com.campus.events.support.DbTestSupport.beforeAll(DbTestSupport.java:130)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\nCaused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\"\n  详细：Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table \"resource\".\n\tat org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:140)\n\tat org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)\n\tat org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)\n\tat org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1556)\n\tat org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:972)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1016)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1026)\n\tat com.campus.events.support.DbTestSupport.insertReferenceTables(DbTestSupport.java:236)\n\tat com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:157)\n\t... 2 more\nCaused by: org.postgresql.util.PSQLException: ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\"\n  详细：Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table \"resource\".\n\tat org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2904)\n\tat org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2589)\n\tat org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:431)\n\tat org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:534)\n\tat org.postgresql.jdbc.PgStatement.execute(PgStatement.java:437)\n\tat org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)\n\tat org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:157)\n\tat org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:977)\n\tat org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)\n\t... 7 more\n"
+    },
+    {
+      "class": "D-AT-19 通知一致性",
+      "test": "",
+      "result": "error",
+      "message": "装载测试数据失败：demo",
+      "detail": "java.lang.IllegalStateException: 装载测试数据失败：demo\n\tat com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:161)\n\tat com.campus.events.support.DbTestSupport.beforeAll(DbTestSupport.java:130)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\nCaused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\"\n  详细：Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table \"resource\".\n\tat org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:140)\n\tat org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)\n\tat org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)\n\tat org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1556)\n\tat org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:972)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1016)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1026)\n\tat com.campus.events.support.DbTestSupport.insertReferenceTables(DbTestSupport.java:236)\n\tat com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:157)\n\t... 2 more\nCaused by: org.postgresql.util.PSQLException: ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\"\n  详细：Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table \"resource\".\n\tat org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2904)\n\tat org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2589)\n\tat org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:431)\n\tat org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:534)\n\tat org.postgresql.jdbc.PgStatement.execute(PgStatement.java:437)\n\tat org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)\n\tat org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:157)\n\tat org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:977)\n\tat org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)\n\t... 7 more\n"
+    },
+    {
+      "class": "D-AT-01/02/08/20/21 权限、幂等、陈旧版本与读取隔离（PermissionsIT）",
+      "test": "",
+      "result": "error",
+      "message": "装载测试数据失败：demo",
+      "detail": "java.lang.IllegalStateException: 装载测试数据失败：demo\n\tat com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:161)\n\tat com.campus.events.support.DbTestSupport.beforeAll(DbTestSupport.java:130)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\nCaused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\"\n  详细：Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table \"resource\".\n\tat org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:140)\n\tat org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)\n\tat org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)\n\tat org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1556)\n\tat org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:972)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1016)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1026)\n\tat com.campus.events.support.DbTestSupport.insertReferenceTables(DbTestSupport.java:236)\n\tat com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:157)\n\t... 2 more\nCaused by: org.postgresql.util.PSQLException: ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\"\n  详细：Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table \"resource\".\n\tat org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2904)\n\tat org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2589)\n\tat org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:431)\n\tat org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:534)\n\tat org.postgresql.jdbc.PgStatement.execute(PgStatement.java:437)\n\tat org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)\n\tat org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:157)\n\tat org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:977)\n\tat org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)\n\t... 7 more\n"
+    },
+    {
+      "class": "D-AT-15/16 报名冻结与并发容量",
+      "test": "",
+      "result": "error",
+      "message": "装载测试数据失败：demo",
+      "detail": "java.lang.IllegalStateException: 装载测试数据失败：demo\n\tat com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:161)\n\tat com.campus.events.support.DbTestSupport.beforeAll(DbTestSupport.java:130)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\nCaused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\"\n  详细：Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table \"resource\".\n\tat org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:140)\n\tat org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)\n\tat org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)\n\tat org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1556)\n\tat org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:972)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1016)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1026)\n\tat com.campus.events.support.DbTestSupport.insertReferenceTables(DbTestSupport.java:236)\n\tat com.campus.events.support.DbTestSupport.loadTestData(DbTestSupport.java:157)\n\t... 2 more\nCaused by: org.postgresql.util.PSQLException: ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\"\n  详细：Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table \"resource\".\n\tat org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2904)\n\tat org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2589)\n\tat org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:431)\n\tat org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:534)\n\tat org.postgresql.jdbc.PgStatement.execute(PgStatement.java:437)\n\tat org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)\n\tat org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:157)\n\tat org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:977)\n\tat org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)\n\t... 7 more\n"
+    },
+    {
+      "class": "QA-04 / D-AT-22 策略评测执行器（SchedulingBenchmarkIT）",
+      "test": "",
+      "result": "error",
+      "message": "装载参考数据失败：demo",
+      "detail": "java.lang.IllegalStateException: 装载参考数据失败：demo\n\tat com.campus.events.support.DbTestSupport.loadReferenceData(DbTestSupport.java:177)\n\tat com.campus.events.acceptance.SchedulingBenchmarkIT.loadReferenceData(SchedulingBenchmarkIT.java:93)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\nCaused by: org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO user_resource_scope (user_id, resource_id, created_at) VALUES (?,?,?)]; ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\"\n  详细：Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table \"resource\".\n\tat org.springframework.jdbc.support.SQLStateSQLExceptionTranslator.doTranslate(SQLStateSQLExceptionTranslator.java:140)\n\tat org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:107)\n\tat org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:116)\n\tat org.springframework.jdbc.core.JdbcTemplate.translateException(JdbcTemplate.java:1556)\n\tat org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:677)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:972)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1016)\n\tat org.springframework.jdbc.core.JdbcTemplate.update(JdbcTemplate.java:1026)\n\tat com.campus.events.support.DbTestSupport.insertReferenceTables(DbTestSupport.java:236)\n\tat com.campus.events.support.DbTestSupport.loadReferenceData(DbTestSupport.java:175)\n\t... 3 more\nCaused by: org.postgresql.util.PSQLException: ERROR: insert or update on table \"user_resource_scope\" violates foreign key constraint \"fk_user_resource_scope_resource\"\n  详细：Key (resource_id)=(00000000-0000-0000-0000-000000003101) is not present in table \"resource\".\n\tat org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2904)\n\tat org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2589)\n\tat org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:431)\n\tat org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:534)\n\tat org.postgresql.jdbc.PgStatement.execute(PgStatement.java:437)\n\tat org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:196)\n\tat org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:157)\n\tat org.springframework.jdbc.core.JdbcTemplate.lambda$update$2(JdbcTemplate.java:977)\n\tat org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:658)\n\t... 8 more\n"
+    },
+    {
+      "class": "com.campus.events.activity.ActivityRegistrationIT",
+      "test": "",
+      "result": "error",
+      "message": "Failed to load ApplicationContext for [WebMergedContextConfiguration@92e2c93 testClass = com.campus.events.activity.ActivityRegistrationIT, locations = [], classes = [com.campus.events.CampusEventsApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = [\"org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true\"], contextCustomizers = [[ImportsContextCustomizer@6697f3d key = [org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientWebSecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.saml2.Saml2RelyingPartyAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, com.campus.events.activity.ActivityRegistrationIT$Ports, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@7b324585, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@5974109, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@40499e4f, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@192d74fb, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@27953a83, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@b48c785e, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@37bd68c3, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@6b11b6a4, org.springframework.boot.test.context.SpringBootTestAnnotation@47e5d313], resourceBasePath = \"src/main/webapp\", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]",
+      "detail": "java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@92e2c93 testClass = com.campus.events.activity.ActivityRegistrationIT, locations = [], classes = [com.campus.events.CampusEventsApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = [\"org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true\"], contextCustomizers = [[ImportsContextCustomizer@6697f3d key = [org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientWebSecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.saml2.Saml2RelyingPartyAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, com.campus.events.activity.ActivityRegistrationIT$Ports, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@7b324585, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@5974109, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@40499e4f, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@192d74fb, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@27953a83, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@b48c785e, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@37bd68c3, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@6b11b6a4, org.springframework.boot.test.context.SpringBootTestAnnotation@47e5d313], resourceBasePath = \"src/main/webapp\", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, paren"
+    },
+    {
+      "class": "com.campus.events.resource.ResourceSchedulingIT",
+      "test": "missingChangePortRejectsActivityLockWithoutPartialWrites",
+      "result": "skipped",
+      "message": "",
+      "detail": "org.opentest4j.TestAbortedException: Assumption failed: CM端口已到位，改跑真实切换测试\n\tat org.junit.jupiter.api.Assumptions.throwAssumptionFailed(Assumptions.java:321)\n\tat org.junit.jupiter.api.Assumptions.assumeTrue(Assumptions.java:120)\n\tat com.campus.events.resource.ResourceSchedulingIT.missingChangePortRejectsActivityLockWithoutPartialWrites(ResourceSchedulingIT.java:630)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n"
+    }
+  ]
+}

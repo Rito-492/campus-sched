@@ -50,8 +50,8 @@ test-data/ contracts/ infra/ scripts/ release/ artifacts/ models/
 - **了解项目**：本 README → [`AGENTS.md`](AGENTS.md)（agent 与新成员指南）
 - **课程与分工文档**：`docs/course/`
 
-## 项目经理工作包（2026-11-02）
+## 项目经理工作包（2026-11-07）
 
-main=b8be7e4已包含公共工程、账号认证/权限、幂等事务、AN活动、DS资源调度、CM改期/通知/审计和UI。40项[API契约](contracts/openapi.yaml)均有生产Controller，五类端口已有真实实现；QA PR #16待修订接收，不能据源码数量宣称全部业务通过。
+main=`16de4a5` 已包含公共工程、账号认证/权限、幂等事务、活动、资源调度、改期/通知/审计和 UI。40 项 [API 契约](contracts/openapi.yaml)均有生产 Controller，五类端口已有真实实现。本轮 PM 修复小数版本/数量被截断、数字枚举被接受及资源自动授权缺少历史的问题，并补齐真库回归与管理交接。
 
-需Java21、Node22；默认后端入口为`./server/mvnw.cmd -f server/pom.xml test`及`verify`。本轮指定集合77单元+38真库IT通过，覆盖无CM替身的创建/改期/通知/取消；默认全量仍9初始化错误/1跳过。QA原head复验9失败/1错误/1跳过，正式审核提出两处QA断言必须改。前端107项unit/类型/build及选定19项真实浏览器通过；依赖审计仍8项。范围、重启和新发现的CM自我确认缺陷见[最新正式审核记录](docs/management/integration-review-2026-11-02-v1.0.md)，完整验收与发布未放行。
+需 Java 21、Node 22 和真实 PostgreSQL；默认后端入口为 `./server/mvnw.cmd -f server/pom.xml test` 及 `verify`。本轮 96 项单元和 43 项指定 IT 通过；默认全量仍有 9 个初始化错误、1 项跳过。最新 QA #16 的版本详情断言已符合契约，组合验收仍受 AN/CM 缺陷影响。前端 107 项单元、类型和构建通过，真实局部浏览器 5 项及关闭播种后的重启检查 1 项通过；QA 全部浏览器 29 项中 25 通过、4 失败。依赖审计仍为 8 项。具体修复、各次计数、责任与发布门槛见 [本轮集成记录](docs/management/integration-review-2026-11-07-v1.0.md)及 [交接单](docs/management/handoff.md)，完整验收与发布尚未放行。

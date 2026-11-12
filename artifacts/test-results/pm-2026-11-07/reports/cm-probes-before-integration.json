@@ -1,0 +1,35 @@
+{
+  "totals": {
+    "total": 2,
+    "passed": 0,
+    "failed": 2,
+    "errors": 0,
+    "skipped": 0
+  },
+  "suites": [
+    {
+      "class": "com.campus.events.foundation.ProductionWorkflowIT",
+      "total": 2,
+      "failed": 2,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 0
+    }
+  ],
+  "failures": [
+    {
+      "class": "com.campus.events.foundation.ProductionWorkflowIT",
+      "test": "ownerOnlyStaffDoesNotRequireOwnConfirmation",
+      "result": "failure",
+      "message": "BR-07/BR-23：所有者不需要向自己确认 ==> expected: <PENDING_APPROVER> but was: <AWAITING_CONFIRMATIONS>",
+      "detail": "org.opentest4j.AssertionFailedError: BR-07/BR-23：所有者不需要向自己确认 ==> expected: <PENDING_APPROVER> but was: <AWAITING_CONFIRMATIONS>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\tat org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)\n\tat org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)\n\tat org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)\n\tat org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1156)\n\tat com.campus.events.foundation.ProductionWorkflowIT.ownerOnlyStaffDoesNotRequireOwnConfirmation(ProductionWorkflowIT.java:246)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n"
+    },
+    {
+      "class": "com.campus.events.foundation.ProductionWorkflowIT",
+      "test": "staleChangeReturnsAuthorizedSnapshot",
+      "result": "failure",
+      "message": "Multiple Failures (2 failures)\n org.opentest4j.AssertionFailedError: 陈旧内容版本按common/02 §3应附至少一项已授权的当前状态，实际details={} ==> expected: <true> but was: <false>\n org.opentest4j.AssertionFailedError: 陈旧锁版本按common/02 §3应附至少一项已授权的当前状态，实际details={} ==> expected: <true> but was: <false>",
+      "detail": "org.opentest4j.MultipleFailuresError: \nMultiple Failures (2 failures)\n\torg.opentest4j.AssertionFailedError: 陈旧内容版本按common/02 §3应附至少一项已授权的当前状态，实际details={} ==> expected: <true> but was: <false>\n\torg.opentest4j.AssertionFailedError: 陈旧锁版本按common/02 §3应附至少一项已授权的当前状态，实际details={} ==> expected: <true> but was: <false>\n\tat org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:80)\n\tat org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:44)\n\tat org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:38)\n\tat org.junit.jupiter.api.Assertions.assertAll(Assertions.java:2944)\n\tat com.campus.events.foundation.ProductionWorkflowIT.staleChangeReturnsAuthorizedSnapshot(ProductionWorkflowIT.java:176)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tSuppressed: org.opentest4j.AssertionFailedError: 陈旧内容版本按common/02 §3应附至少一项已授权的当前状态，实际details={} ==> expected: <true> but was: <false>\n\t\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\t\tat org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)\n\t\tat org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)\n\t\tat org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:42)\n\t\tat org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:191)\n\t\tat com.campus.events.foundation.ProductionWorkflowIT.assertCurrentState(ProductionWorkflowIT.java:183)\n\t\tat com.campus.events.foundation.ProductionWorkflowIT.lambda$staleChangeReturnsAuthorizedSnapshot$6(ProductionWorkflowIT.java:177)\n\t\tat org.junit.jupiter.api.AssertAll.lambda$assertAll$0(AssertAll.java:68)\n\t\tat java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)\n\t\tat java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)\n\t\tat java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)\n\t\tat java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)\n\t\tat java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)\n\t\tat java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)\n\t\tat java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)\n\t\tat org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:77)\n\t\t... 7 more\n\tSuppressed: org.opentest4j.AssertionFailedError: 陈旧锁版本按common/02 §3应附至少一项已授权的当前状态，实际details={} ==> expected: <true> but was: <false>\n\t\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\t\tat org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)\n\t\tat org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)\n\t\tat org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:42)\n\t\tat org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:191)\n\t\tat com.campus.events.founda"
+    }
+  ]
+}

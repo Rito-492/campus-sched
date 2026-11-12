@@ -244,6 +244,25 @@ class FoundationIT {
         assertEquals(400, call("PATCH", "/users/" + admin.id() + "/enabled", adminToken, UUID.randomUUID(), Map.of("enabled", true, "actorId", UUID.randomUUID())).status());
         assertEquals(400, call("POST", "/auth/login", null, null, Map.of("username", "x")).status());
     }
+    @Test void numericAuthorizationEnumsAreRejectedWithoutWrites() throws Exception {
+        for (String field : List.of("identity", "roles", "permissions")) {
+            String username = "numeric-enum-" + UUID.randomUUID(); UUID key = UUID.randomUUID();
+            var input = mapper.valueToTree(new UserCreate(Identity.STUDENT, List.of(Role.APPLICANT), List.of(),
+                    List.of(), List.of(), username, "枚举校验账号", PASSWORD, org));
+            var body = (com.fasterxml.jackson.databind.node.ObjectNode) input;
+            if (field.equals("identity")) body.put(field, 0);
+            else {
+                if (field.equals("permissions")) body.set("roles", mapper.valueToTree(List.of(Role.ADMIN)));
+                body.putArray(field).add(0);
+            }
+            var result = call("POST", "/users", adminToken, key, body);
+            assertEquals(400, result.status(), field + ": " + result.body());
+            assertEquals("VALIDATION_ERROR", result.body().path("error").path("code").asText());
+            assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM app_user WHERE username=?", Integer.class, username));
+            assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM command_receipt WHERE actor_id=? AND idempotency_key=?",
+                    Integer.class, admin.id(), key.toString()));
+        }
+    }
     @Test void publicHealthAndErrorEnvelopesDoNotLeakInternals() throws Exception {
         assertEquals("UP", call("GET", "/health", null, null, null).data().path("status").asText());
         var error = call("GET", "/auth/me", null, null, null);
@@ -255,6 +274,36 @@ class FoundationIT {
         assertThrows(IllegalTransactionStateException.class, () -> accountPort.grantResource(admin.id(), venue));
         transactions.executeWithoutResult(tx -> { accountPort.lock(admin.id()); accountPort.grantResource(admin.id(), venue); accountPort.grantResource(admin.id(), venue); });
         assertEquals(1, jdbc.queryForObject("SELECT count(*) FROM user_resource_scope WHERE user_id=? AND resource_id=?", Integer.class, admin.id(), venue));
+    }
+    @Test void automaticResourceGrantRecordsOneCompleteAuthorizationHistory() throws Exception {
+        Actor target = createFixture(Identity.TEACHER, Role.ADMIN);
+        transactions.executeWithoutResult(tx -> {
+            accountPort.lock(target.id());
+            accountPort.grantResource(target.id(), projector);
+            accountPort.grantResource(target.id(), projector);
+        });
+        assertEquals(List.of(projector), accountPort.get(target.id()).managedResourceIds());
+        assertEquals(1, count("authorization_change", target.id()));
+        var history = jdbc.queryForMap("SELECT actor_id,before_json,after_json FROM authorization_change WHERE user_id=?", target.id());
+        assertEquals(target.id(), history.get("actor_id"));
+        assertEquals(mapper.valueToTree(target), mapper.readTree(history.get("before_json").toString()));
+        assertEquals(mapper.valueToTree(accountPort.get(target.id())), mapper.readTree(history.get("after_json").toString()));
+    }
+    @Test void automaticResourceGrantAndHistoryRollBackTogether() {
+        Actor target = createFixture(Identity.TEACHER, Role.ADMIN);
+        assertThrows(IllegalStateException.class, () -> transactions.executeWithoutResult(tx -> {
+            accountPort.lock(target.id());
+            accountPort.grantResource(target.id(), venue);
+            assertEquals(1, count("authorization_change", target.id()));
+            throw new IllegalStateException("自动授权历史写入后的测试故障");
+        }));
+        assertTrue(accountPort.get(target.id()).managedResourceIds().isEmpty());
+        assertEquals(0, count("authorization_change", target.id()));
+        transactions.executeWithoutResult(tx -> {
+            accountPort.lock(target.id()); accountPort.grantResource(target.id(), venue);
+        });
+        assertEquals(List.of(venue), accountPort.get(target.id()).managedResourceIds());
+        assertEquals(1, count("authorization_change", target.id()));
     }
     @Test void requestAndRouteMismatchAreRejectedAndOriginalRemainsReplayable() {
         UUID key = UUID.randomUUID();

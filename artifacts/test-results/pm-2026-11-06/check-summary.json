@@ -1,0 +1,308 @@
+{
+  "date": "2026-11-06",
+  "environment": "Java 21.0.12.1 / Maven Wrapper 3.9.11 / PostgreSQL 17.6 / Node 22.23.0",
+  "command": "server/mvnw.cmd -f server/pom.xml [selection] clean verify",
+  "qaReview": "https://github.com/Rito-492/campus-sched/pull/16#pullrequestreview-5798685426",
+  "runs": [
+    {
+      "run": "main-pm",
+      "source": "16de4a507aa434df6505a49f67619990bc2926c2",
+      "selection": "-Dit.test=FoundationIT,PublishedModulesIT,ProductionWorkflowIT,StandardMavenSchemaIT,DemoDataSeederIT,OutboxClaimIT",
+      "exit": 0,
+      "unit": {
+        "total": 77,
+        "passed": 77,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "integration": {
+        "total": 38,
+        "passed": 38,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "suites": [
+        {
+          "class": "com.campus.events.foundation.ProductionWorkflowIT",
+          "total": 2,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      ]
+    },
+    {
+      "run": "exact-qa16",
+      "source": "1700e29e670c438265106121233580cdda618316",
+      "selection": "默认",
+      "exit": 1,
+      "unit": {
+        "total": 77,
+        "passed": 77,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "integration": {
+        "total": 112,
+        "passed": 101,
+        "failed": 9,
+        "errors": 1,
+        "skipped": 1
+      },
+      "suites": [
+        {
+          "class": "com.campus.events.acceptance.BookingConcurrencyIT",
+          "total": 1,
+          "failed": 1,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.campus.events.acceptance.ChangeRollbackIT",
+          "total": 5,
+          "failed": 1,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.campus.events.acceptance.IdentityEligibilityIT",
+          "total": 6,
+          "failed": 4,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.campus.events.acceptance.PermissionsIT",
+          "total": 13,
+          "failed": 3,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.campus.events.activity.ActivityRegistrationIT",
+          "total": 1,
+          "failed": 0,
+          "errors": 1,
+          "skipped": 0
+        },
+        {
+          "class": "com.campus.events.resource.ResourceSchedulingIT",
+          "total": 30,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 1
+        }
+      ]
+    },
+    {
+      "run": "candidate-original",
+      "source": "16de4a5 + 1700e29，隔离组合",
+      "selection": "默认",
+      "exit": 1,
+      "unit": {
+        "total": 77,
+        "passed": 77,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "integration": {
+        "total": 114,
+        "passed": 103,
+        "failed": 9,
+        "errors": 1,
+        "skipped": 1
+      },
+      "suites": [
+        {
+          "class": "com.campus.events.acceptance.BookingConcurrencyIT",
+          "total": 1,
+          "failed": 1,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.campus.events.acceptance.ChangeRollbackIT",
+          "total": 5,
+          "failed": 1,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.campus.events.acceptance.IdentityEligibilityIT",
+          "total": 6,
+          "failed": 4,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.campus.events.acceptance.PermissionsIT",
+          "total": 13,
+          "failed": 3,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.campus.events.activity.ActivityRegistrationIT",
+          "total": 1,
+          "failed": 0,
+          "errors": 1,
+          "skipped": 0
+        },
+        {
+          "class": "com.campus.events.foundation.ProductionWorkflowIT",
+          "total": 2,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.campus.events.resource.ResourceSchedulingIT",
+          "total": 30,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 1
+        }
+      ]
+    },
+    {
+      "run": "candidate-an-attribution",
+      "source": "16de4a5 + 1700e29，隔离组合 + AN归因补丁",
+      "selection": "默认",
+      "exit": 0,
+      "unit": {
+        "total": 77,
+        "passed": 77,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "integration": {
+        "total": 148,
+        "passed": 147,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "suites": [
+        {
+          "class": "com.campus.events.acceptance.BookingConcurrencyIT",
+          "total": 1,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.campus.events.acceptance.IdentityEligibilityIT",
+          "total": 6,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.campus.events.acceptance.PermissionsIT",
+          "total": 13,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.campus.events.activity.ActivityRegistrationIT",
+          "total": 35,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.campus.events.foundation.ProductionWorkflowIT",
+          "total": 2,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        {
+          "class": "com.campus.events.resource.ResourceSchedulingIT",
+          "total": 30,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 1
+        }
+      ]
+    },
+    {
+      "run": "api27-contract-probe",
+      "source": "16de4a5 + 独立API-27诊断",
+      "selection": "-Dit.test=ProductionWorkflowIT#staleChangeReturnsAuthorizedSnapshot",
+      "exit": 1,
+      "unit": {
+        "total": 77,
+        "passed": 77,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "integration": {
+        "total": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "suites": [
+        {
+          "class": "com.campus.events.foundation.ProductionWorkflowIT",
+          "total": 1,
+          "failed": 1,
+          "errors": 0,
+          "skipped": 0
+        }
+      ]
+    },
+    {
+      "run": "api27-proposed-fix",
+      "source": "16de4a5 + 独立API-27诊断 + CM建议补丁",
+      "selection": "-Dit.test=ProductionWorkflowIT#staleChangeReturnsAuthorizedSnapshot",
+      "exit": 0,
+      "unit": {
+        "total": 77,
+        "passed": 77,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "integration": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "suites": [
+        {
+          "class": "com.campus.events.foundation.ProductionWorkflowIT",
+          "total": 1,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      ]
+    }
+  ],
+  "api27": {
+    "baseline": "两种所有者陈旧版本均409 STALE_VERSION且details={}，无改期、回执及活动变更；非所有者403且无详情",
+    "proposed": "仅建议补丁为两分支附活动当前版本和锁版本，独立探针通过",
+    "observedFailures": [
+      "陈旧内容版本按common/02 §3应附至少一项已授权的当前状态，实际details={}",
+      "陈旧锁版本按common/02 §3应附至少一项已授权的当前状态，实际details={}"
+    ]
+  },
+  "qaChecks": {
+    "contract": "40 API / 9枚举 / 15 DTO通过",
+    "qaTypes": "通过",
+    "pmOpenApi": "说明同步后同一契约检查通过"
+  },
+  "skipReason": "ResourceSchedulingIT：CM端口已到位，改跑真实切换测试"
+}

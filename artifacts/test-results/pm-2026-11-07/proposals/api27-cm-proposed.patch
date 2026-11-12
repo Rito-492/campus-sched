@@ -1,0 +1,16 @@
+diff --git a/server/src/main/java/com/campus/events/change/ChangeService.java b/server/src/main/java/com/campus/events/change/ChangeService.java
+index 9013dac..bebbc81 100644
+--- a/server/src/main/java/com/campus/events/change/ChangeService.java
++++ b/server/src/main/java/com/campus/events/change/ChangeService.java
+@@ -191,9 +191,9 @@ public class ChangeService {
+         var activity = snapshot.activity();
+         owner(activity, actor);
+         if (activity.lockVersion() != command.expectedLockVersion())
+-            throw new ApiException(409, "STALE_VERSION", "活动已被其他操作修改");
++            throw new ApiException(409, "STALE_VERSION", "活动已被其他操作修改", Map.of("versionNo", activity.versionNo(), "lockVersion", activity.lockVersion()));
+         if (command.baseVersionNo() != activity.versionNo())
+-            throw new ApiException(409, "STALE_VERSION", "活动版本已变化");
++            throw new ApiException(409, "STALE_VERSION", "活动版本已变化", Map.of("versionNo", activity.versionNo(), "lockVersion", activity.lockVersion()));
+         if (activity.status() != ActivityStatus.SCHEDULED && activity.status() != ActivityStatus.OPEN)
+             throw new ApiException(409, "INVALID_STATE", "当前活动不可创建改期");
+         future(activity);

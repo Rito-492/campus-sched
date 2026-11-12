@@ -1,0 +1,49 @@
+diff --git a/server/src/test/java/com/campus/events/foundation/ProductionWorkflowIT.java b/server/src/test/java/com/campus/events/foundation/ProductionWorkflowIT.java
+index 4efb622..88948ea 100644
+--- a/server/src/test/java/com/campus/events/foundation/ProductionWorkflowIT.java
++++ b/server/src/test/java/com/campus/events/foundation/ProductionWorkflowIT.java
+@@ -147,6 +147,44 @@ class ProductionWorkflowIT {
+         assertEquals("PENDING_RESOURCE", ok(200, "POST", "/changes/" + id + "/approver-decision", approverToken,
+                 new ChangeDecision(Decision.APPROVE, "")).path("status").asText());
+     }
++    @Test void staleChangeReturnsAuthorizedSnapshot() throws Exception {
++        var flow = published(false);
++        var before = activity(flow.id());
++        int version = before.path("versionNo").asInt();
++        int lock = before.path("lockVersion").asInt();
++        assertTrue(version >= 1 && lock >= 1);
++        String route = "/activities/" + flow.id() + "/changes";
++        var staleVersion = new ChangeCreate(version + 1, flow.target(), lock, "陈旧内容版本");
++        var staleLock = new ChangeCreate(version, flow.target(), lock - 1, "陈旧锁版本");
++        UUID versionKey = UUID.randomUUID();
++        UUID lockKey = UUID.randomUUID();
++        var versionResponse = call("POST", route, ownerToken, versionKey, staleVersion);
++        var lockResponse = call("POST", route, ownerToken, lockKey, staleLock);
++        var denied = call("POST", route, staffToken, UUID.randomUUID(), staleVersion);
++
++        for (var response : List.of(versionResponse, lockResponse)) {
++            assertEquals(409, response.status());
++            assertEquals("STALE_VERSION", response.body().path("error").path("code").asText());
++        }
++        assertEquals(403, denied.status());
++        assertEquals(0, denied.body().path("error").path("details").size());
++        assertEquals(before, activity(flow.id()));
++        assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM change_request WHERE activity_id=?",
++                Integer.class, flow.id()));
++        assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM command_receipt WHERE actor_id=? AND idempotency_key IN (?,?)",
++                Integer.class, owner, versionKey.toString(), lockKey.toString()));
++        assertAll(
++                () -> assertCurrentState(versionResponse, before, "陈旧内容版本"),
++                () -> assertCurrentState(lockResponse, before, "陈旧锁版本"));
++    }
++
++    private void assertCurrentState(Result response, JsonNode before, String reason) {
++        var details = response.body().path("error").path("details");
++        assertTrue(details.isObject() && (details.path("versionNo").equals(before.path("versionNo"))
++                        || details.path("lockVersion").equals(before.path("lockVersion"))
++                        || details.path("status").equals(before.path("status"))),
++                () -> reason + "按common/02 §3应附至少一项已授权的当前状态，实际details=" + details);
++    }
+     @Test void allProductionPortsPersistChangeNotificationsAndCancellation() throws Exception {
+         Flow flow = published(true);
+         ok(200, "PUT", "/activities/" + flow.id() + "/registration", studentToken, new RegistrationCommand(RegistrationAction.JOIN, 1));

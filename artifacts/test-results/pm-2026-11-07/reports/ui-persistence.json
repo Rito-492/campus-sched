@@ -1,0 +1,26 @@
+{
+  "stats": {
+    "startTime": "2026-11-07T05:35:23.940Z",
+    "duration": 2811.37,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "file": "persistence.spec.ts",
+      "line": 5,
+      "title": "服务重启后保留草稿、资源资格、完整授权和停用状态",
+      "project": "",
+      "outcome": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "durationMs": 1887,
+          "errors": []
+        }
+      ]
+    }
+  ]
+}

@@ -25,7 +25,10 @@ public class FoundationConfiguration {
     @Bean public PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(12); }
     @Bean public Jackson2ObjectMapperBuilderCustomizer contractJson() {
         return builder -> builder.serializationInclusion(JsonInclude.Include.ALWAYS)
+                // 数量和版本不截断小数，身份/角色/权限等枚举不接受数字序号。
+                .featuresToDisable(DeserializationFeature.ACCEPT_FLOAT_AS_INT)
                 .featuresToEnable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES,
+                        DeserializationFeature.FAIL_ON_NUMBERS_FOR_ENUMS,
                         DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES,
                         DeserializationFeature.FAIL_ON_MISSING_CREATOR_PROPERTIES,
                         DeserializationFeature.FAIL_ON_TRAILING_TOKENS,

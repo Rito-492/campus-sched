@@ -1,0 +1,250 @@
+{
+  "totals": {
+    "total": 119,
+    "passed": 108,
+    "failed": 9,
+    "errors": 1,
+    "skipped": 1
+  },
+  "suites": [
+    {
+      "class": "com.campus.events.acceptance.BookingConcurrencyIT",
+      "total": 1,
+      "failed": 1,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 0
+    },
+    {
+      "class": "com.campus.events.acceptance.CancellationRaceIT",
+      "total": 2,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 2
+    },
+    {
+      "class": "com.campus.events.acceptance.ChangeRollbackIT",
+      "total": 5,
+      "failed": 1,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 4
+    },
+    {
+      "class": "com.campus.events.acceptance.IdentityEligibilityIT",
+      "total": 6,
+      "failed": 4,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 2
+    },
+    {
+      "class": "com.campus.events.acceptance.NotificationConsistencyIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1
+    },
+    {
+      "class": "com.campus.events.acceptance.PermissionsIT",
+      "total": 13,
+      "failed": 3,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 10
+    },
+    {
+      "class": "com.campus.events.acceptance.RegistrationCapacityIT",
+      "total": 4,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 4
+    },
+    {
+      "class": "com.campus.events.acceptance.SchedulingBenchmarkIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1
+    },
+    {
+      "class": "com.campus.events.acceptance.SeederRollbackIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1
+    },
+    {
+      "class": "com.campus.events.activity.ActivityRegistrationIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 1,
+      "skipped": 0,
+      "passed": 0
+    },
+    {
+      "class": "com.campus.events.dev.DemoDataSeederIT",
+      "total": 3,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 3
+    },
+    {
+      "class": "com.campus.events.foundation.FoundationIT",
+      "total": 25,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 25
+    },
+    {
+      "class": "com.campus.events.foundation.ProductionWorkflowIT",
+      "total": 2,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 2
+    },
+    {
+      "class": "com.campus.events.foundation.PublishedModulesIT",
+      "total": 8,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 8
+    },
+    {
+      "class": "com.campus.events.foundation.StandardMavenSchemaIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1
+    },
+    {
+      "class": "com.campus.events.notification.OutboxClaimIT",
+      "total": 4,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 4
+    },
+    {
+      "class": "com.campus.events.resource.ResourceSchedulingIT",
+      "total": 30,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 1,
+      "passed": 29
+    },
+    {
+      "class": "com.campus.events.resource.SchemaIT",
+      "total": 8,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 8
+    },
+    {
+      "class": "com.campus.events.scheduling.DsStrategyBenchmarkIT",
+      "total": 2,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 2
+    },
+    {
+      "class": "com.campus.events.support.DbTestSupportIT",
+      "total": 1,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 1
+    }
+  ],
+  "failures": [
+    {
+      "class": "D-AT-07 两活动抢同一资源恰一成功（BookingConcurrencyIT）",
+      "test": "tc0701_concurrentResourceConfirmExactlyOneWins",
+      "result": "failure",
+      "message": "批准人审批失败：{\"requestId\":\"d8ddc520-b706-4052-8123-88a10546a68f\",\"error\":{\"details\":{},\"code\":\"VALIDATION_ERROR\",\"message\":\"事件字段不完整\"}} ==> expected: <200> but was: <400>",
+      "detail": "org.opentest4j.AssertionFailedError: 批准人审批失败：{\"requestId\":\"d8ddc520-b706-4052-8123-88a10546a68f\",\"error\":{\"details\":{},\"code\":\"VALIDATION_ERROR\",\"message\":\"事件字段不完整\"}} ==> expected: <200> but was: <400>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\tat org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)\n\tat org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)\n\tat org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)\n\tat org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)\n\tat com.campus.events.acceptance.BookingConcurrencyIT.createApprovedUnreserved(BookingConcurrencyIT.java:146)\n\tat com.campus.events.acceptance.BookingConcurrencyIT.tc0701_concurrentResourceConfirmExactlyOneWins(BookingConcurrencyIT.java:81)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n"
+    },
+    {
+      "class": "D-AT-11/12/13/14 改期拒绝、抢占、自身排除与回滚（ChangeRollbackIT）",
+      "test": "tc1201_finalConfirmationConflictedWhenPreempted",
+      "result": "failure",
+      "message": "批准人审批失败：{\"requestId\":\"aaaee044-b601-4306-b14d-179976465fc7\",\"error\":{\"details\":{},\"code\":\"VALIDATION_ERROR\",\"message\":\"事件字段不完整\"}} ==> expected: <200> but was: <400>",
+      "detail": "org.opentest4j.AssertionFailedError: 批准人审批失败：{\"requestId\":\"aaaee044-b601-4306-b14d-179976465fc7\",\"error\":{\"details\":{},\"code\":\"VALIDATION_ERROR\",\"message\":\"事件字段不完整\"}} ==> expected: <200> but was: <400>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\tat org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)\n\tat org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)\n\tat org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)\n\tat org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)\n\tat com.campus.events.acceptance.ChangeRollbackIT.createApprovedUnreserved(ChangeRollbackIT.java:392)\n\tat com.campus.events.acceptance.ChangeRollbackIT.tc1201_finalConfirmationConflictedWhenPreempted(ChangeRollbackIT.java:216)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n"
+    },
+    {
+      "class": "N-AT-01～06 身份、资格与授权范围（IdentityEligibilityIT）",
+      "test": "nat02_eligibilityMatrixEightCombos",
+      "result": "failure",
+      "message": "教师×双允许(3111/3211) 审批失败：{\"requestId\":\"47338967-fc92-4420-b7dc-2729146dd1e8\",\"error\":{\"details\":{},\"code\":\"VALIDATION_ERROR\",\"message\":\"事件字段不完整\"}} ==> expected: <200> but was: <400>",
+      "detail": "org.opentest4j.AssertionFailedError: 教师×双允许(3111/3211) 审批失败：{\"requestId\":\"47338967-fc92-4420-b7dc-2729146dd1e8\",\"error\":{\"details\":{},\"code\":\"VALIDATION_ERROR\",\"message\":\"事件字段不完整\"}} ==> expected: <200> but was: <400>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\tat org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)\n\tat org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)\n\tat org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)\n\tat org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)\n\tat com.campus.events.acceptance.IdentityEligibilityIT.verifyCombo(IdentityEligibilityIT.java:614)\n\tat com.campus.events.acceptance.IdentityEligibilityIT.nat02_eligibilityMatrixEightCombos(IdentityEligibilityIT.java:177)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n"
+    },
+    {
+      "class": "N-AT-01～06 身份、资格与授权范围（IdentityEligibilityIT）",
+      "test": "nat04_identityChangeUsesLatestForPending",
+      "result": "failure",
+      "message": "审批失败：{\"requestId\":\"0cc4feec-6692-4284-83df-d9503554a69d\",\"error\":{\"details\":{},\"code\":\"VALIDATION_ERROR\",\"message\":\"事件字段不完整\"}} ==> expected: <200> but was: <400>",
+      "detail": "org.opentest4j.AssertionFailedError: 审批失败：{\"requestId\":\"0cc4feec-6692-4284-83df-d9503554a69d\",\"error\":{\"details\":{},\"code\":\"VALIDATION_ERROR\",\"message\":\"事件字段不完整\"}} ==> expected: <200> but was: <400>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\tat org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)\n\tat org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)\n\tat org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)\n\tat org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)\n\tat com.campus.events.acceptance.IdentityEligibilityIT.nat04_identityChangeUsesLatestForPending(IdentityEligibilityIT.java:249)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n"
+    },
+    {
+      "class": "N-AT-01～06 身份、资格与授权范围（IdentityEligibilityIT）",
+      "test": "nat06_scopePartialAndDisabledStaff",
+      "result": "failure",
+      "message": "审批失败：{\"requestId\":\"d80962de-25d8-4ab4-8d23-3eefa59268b8\",\"error\":{\"details\":{},\"code\":\"VALIDATION_ERROR\",\"message\":\"事件字段不完整\"}} ==> expected: <200> but was: <400>",
+      "detail": "org.opentest4j.AssertionFailedError: 审批失败：{\"requestId\":\"d80962de-25d8-4ab4-8d23-3eefa59268b8\",\"error\":{\"details\":{},\"code\":\"VALIDATION_ERROR\",\"message\":\"事件字段不完整\"}} ==> expected: <200> but was: <400>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\tat org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)\n\tat org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)\n\tat org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)\n\tat org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)\n\tat com.campus.events.acceptance.IdentityEligibilityIT.nat06_scopePartialAndDisabledStaff(IdentityEligibilityIT.java:473)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n"
+    },
+    {
+      "class": "N-AT-01～06 身份、资格与授权范围（IdentityEligibilityIT）",
+      "test": "nat05_ownerCannotSelfApproveOrConfirm",
+      "result": "failure",
+      "message": "独立批准人应成功：{\"requestId\":\"591cdbe0-6d77-476b-b1a6-3ba6134d49b7\",\"error\":{\"details\":{},\"code\":\"VALIDATION_ERROR\",\"message\":\"事件字段不完整\"}} ==> expected: <200> but was: <400>",
+      "detail": "org.opentest4j.AssertionFailedError: 独立批准人应成功：{\"requestId\":\"591cdbe0-6d77-476b-b1a6-3ba6134d49b7\",\"error\":{\"details\":{},\"code\":\"VALIDATION_ERROR\",\"message\":\"事件字段不完整\"}} ==> expected: <200> but was: <400>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\tat org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)\n\tat org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)\n\tat org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)\n\tat org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)\n\tat com.campus.events.acceptance.IdentityEligibilityIT.nat05_ownerCannotSelfApproveOrConfirm(IdentityEligibilityIT.java:339)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n"
+    },
+    {
+      "class": "D-AT-01/02/08/20/21 权限、幂等、陈旧版本与读取隔离（PermissionsIT）",
+      "test": "tc0802_sameKeyDifferentBodyRejected",
+      "result": "failure",
+      "message": "批准人审批失败：{\"requestId\":\"28445758-97cc-438a-aa53-a75a271f7973\",\"error\":{\"details\":{},\"code\":\"VALIDATION_ERROR\",\"message\":\"事件字段不完整\"}} ==> expected: <200> but was: <400>",
+      "detail": "org.opentest4j.AssertionFailedError: 批准人审批失败：{\"requestId\":\"28445758-97cc-438a-aa53-a75a271f7973\",\"error\":{\"details\":{},\"code\":\"VALIDATION_ERROR\",\"message\":\"事件字段不完整\"}} ==> expected: <200> but was: <400>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\tat org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)\n\tat org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)\n\tat org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)\n\tat org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)\n\tat com.campus.events.acceptance.PermissionsIT.createApprovedUnreserved(PermissionsIT.java:559)\n\tat com.campus.events.acceptance.PermissionsIT.tc0802_sameKeyDifferentBodyRejected(PermissionsIT.java:284)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n"
+    },
+    {
+      "class": "D-AT-01/02/08/20/21 权限、幂等、陈旧版本与读取隔离（PermissionsIT）",
+      "test": "tc2001And02_staleVersionProtection",
+      "result": "failure",
+      "message": "批准人审批失败：{\"requestId\":\"869003e1-ea76-4c1c-946b-c3099ecc756c\",\"error\":{\"details\":{},\"code\":\"VALIDATION_ERROR\",\"message\":\"事件字段不完整\"}} ==> expected: <200> but was: <400>",
+      "detail": "org.opentest4j.AssertionFailedError: 批准人审批失败：{\"requestId\":\"869003e1-ea76-4c1c-946b-c3099ecc756c\",\"error\":{\"details\":{},\"code\":\"VALIDATION_ERROR\",\"message\":\"事件字段不完整\"}} ==> expected: <200> but was: <400>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\tat org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)\n\tat org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)\n\tat org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)\n\tat org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)\n\tat com.campus.events.acceptance.PermissionsIT.tc2001And02_staleVersionProtection(PermissionsIT.java:340)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n"
+    },
+    {
+      "class": "D-AT-01/02/08/20/21 权限、幂等、陈旧版本与读取隔离（PermissionsIT）",
+      "test": "tc0801_replaySameKeySameBodyReturnsFirstResponse",
+      "result": "failure",
+      "message": "批准人审批失败：{\"requestId\":\"378fce97-91d5-40a4-b2d4-39e6c62bfb25\",\"error\":{\"details\":{},\"code\":\"VALIDATION_ERROR\",\"message\":\"事件字段不完整\"}} ==> expected: <200> but was: <400>",
+      "detail": "org.opentest4j.AssertionFailedError: 批准人审批失败：{\"requestId\":\"378fce97-91d5-40a4-b2d4-39e6c62bfb25\",\"error\":{\"details\":{},\"code\":\"VALIDATION_ERROR\",\"message\":\"事件字段不完整\"}} ==> expected: <200> but was: <400>\n\tat org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)\n\tat org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)\n\tat org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)\n\tat org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)\n\tat org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)\n\tat com.campus.events.acceptance.PermissionsIT.createApprovedUnreserved(PermissionsIT.java:559)\n\tat com.campus.events.acceptance.PermissionsIT.tc0801_replaySameKeySameBodyReturnsFirstResponse(PermissionsIT.java:237)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n"
+    },
+    {
+      "class": "com.campus.events.activity.ActivityRegistrationIT",
+      "test": "",
+      "result": "error",
+      "message": "Failed to load ApplicationContext for [WebMergedContextConfiguration@417430c8 testClass = com.campus.events.activity.ActivityRegistrationIT, locations = [], classes = [com.campus.events.CampusEventsApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = [\"org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true\"], contextCustomizers = [[ImportsContextCustomizer@3c95bbb4 key = [org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientWebSecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.saml2.Saml2RelyingPartyAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, com.campus.events.activity.ActivityRegistrationIT$Ports, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1080b026, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@dcfda20, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@5bfa8cc5, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@5b40ceb, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@1e63ec0b, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@c9ba9af2, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@650eab8, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@6b11b6a4, org.springframework.boot.test.context.SpringBootTestAnnotation@32d3d4f0], resourceBasePath = \"src/main/webapp\", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]",
+      "detail": "java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@417430c8 testClass = com.campus.events.activity.ActivityRegistrationIT, locations = [], classes = [com.campus.events.CampusEventsApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = [\"org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true\"], contextCustomizers = [[ImportsContextCustomizer@3c95bbb4 key = [org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientWebSecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.saml2.Saml2RelyingPartyAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, com.campus.events.activity.ActivityRegistrationIT$Ports, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@1080b026, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@dcfda20, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@5bfa8cc5, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@5b40ceb, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@1e63ec0b, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@c9ba9af2, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@650eab8, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@6b11b6a4, org.springframework.boot.test.context.SpringBootTestAnnotation@32d3d4f0], resourceBasePath = \"src/main/webapp\", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, paren"
+    },
+    {
+      "class": "com.campus.events.resource.ResourceSchedulingIT",
+      "test": "missingChangePortRejectsActivityLockWithoutPartialWrites",
+      "result": "skipped",
+      "message": "",
+      "detail": "org.opentest4j.TestAbortedException: Assumption failed: CM端口已到位，改跑真实切换测试\n\tat org.junit.jupiter.api.Assumptions.throwAssumptionFailed(Assumptions.java:321)\n\tat org.junit.jupiter.api.Assumptions.assumeTrue(Assumptions.java:120)\n\tat com.campus.events.resource.ResourceSchedulingIT.missingChangePortRejectsActivityLockWithoutPartialWrites(ResourceSchedulingIT.java:630)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:580)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n\tat java.base/java.util.ArrayList.forEach(ArrayList.java:1596)\n"
+    }
+  ]
+}

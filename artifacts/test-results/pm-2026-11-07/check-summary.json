@@ -1,0 +1,302 @@
+{
+  "date": "2026-11-07",
+  "source": {
+    "pmHead": "984892cefc04411c463e92411d7c09666c03fbfe",
+    "qaHead": "6596a7dc7e0a1851861d268136e82cd5f63e61a5",
+    "mergeBase": "16de4a507aa434df6505a49f67619990bc2926c2",
+    "mergedTreeBeforeLocalFixes": "bb90b625ab197258928c04c8f291ff0afd94b221",
+    "localPmFixes": [
+      {
+        "path": "server/src/main/java/com/campus/events/auth/AccountPortAdapter.java",
+        "sha256": "bebfd32b433d7d41c7815bb57f0962ae0b13ea9efab241bb13fcdede9c6d3660"
+      },
+      {
+        "path": "server/src/main/java/com/campus/events/foundation/FoundationConfiguration.java",
+        "sha256": "0ef9477c660d0013636a31269024b2bb3851d51e35e2bdd31c4024d9c01bd7be"
+      },
+      {
+        "path": "server/src/test/java/com/campus/events/foundation/ContractJsonTest.java",
+        "sha256": "9b95592b5a3208aab0aff5190e9989469a9a1e1955897c1d1320e3f25eaa48a2"
+      },
+      {
+        "path": "server/src/test/java/com/campus/events/foundation/FoundationIT.java",
+        "sha256": "d01da21bdc773bd84d2106ceb91c74c6e258b06996f10a81ab12233f86f8ce15"
+      },
+      {
+        "path": "server/src/test/java/com/campus/events/foundation/PublishedModulesIT.java",
+        "sha256": "b6418fe681a535ee13ef3e3727402a6816a87f39fe23703f84071122714eddfb"
+      }
+    ],
+    "purpose": "Isolated QA integration experiment; not merged into PM or main",
+    "main": "16de4a507aa434df6505a49f67619990bc2926c2",
+    "branch": "work/55230223-foundation",
+    "deliveryState": "Local uncommitted PM changes; no push, merge or new remote review",
+    "environment": {
+      "jdk": "21.0.12.1",
+      "maven": "3.9.11",
+      "postgresql": "17.6",
+      "node": "22.23.0",
+      "os": "Windows 11",
+      "browserChannel": "msedge",
+      "database": "dedicated local campus_test; random per-IT schemas",
+      "composeExecuted": false,
+      "dockerCliFound": false
+    },
+    "browserContexts": {
+      "ui": {
+        "clock": "2030-10-19T00:00:00Z",
+        "database": "campus_test",
+        "profiles": "dev,e2e",
+        "server": "http://127.0.0.1:8080",
+        "frontend": "http://127.0.0.1:5173",
+        "seedDate": "2030-10-20",
+        "schema": "pm_ui_3d831caabe5443f4b3b2b8823bd6a1fe"
+      },
+      "qa": {
+        "schema": "pm_qa_ui_5a4745d6aefc466c8c2e61de374cc422",
+        "profiles": "dev,e2e",
+        "server": "http://127.0.0.1:8080",
+        "seedDate": "2030-10-20",
+        "production": "PM HEAD + local PM fixes; no AN/CM experimental changes",
+        "clock": "2030-10-19T00:00:00Z",
+        "frontend": "http://127.0.0.1:5173",
+        "database": "campus_test"
+      },
+      "qaLocator": {
+        "frontend": "http://127.0.0.1:5173",
+        "schema": "pm_locator_de56c861c8154efb861d6919407cd68c",
+        "production": "Original PM product with local PM fixes only",
+        "profiles": "dev,e2e",
+        "purpose": "Two proposed QA locator changes; fresh demo fixture"
+      }
+    },
+    "restart": {
+      "sameSchemaAsUi": true,
+      "demoSeed": false,
+      "commandArgument": "--app.demo-seed=false",
+      "passed": true
+    }
+  },
+  "backendReports": {
+    "contract-before": {
+      "total": 19,
+      "passed": 2,
+      "failed": 17,
+      "errors": 0,
+      "skipped": 0
+    },
+    "integration-before": {
+      "total": 6,
+      "passed": 0,
+      "failed": 6,
+      "errors": 0,
+      "skipped": 0
+    },
+    "pm-unit": {
+      "total": 96,
+      "passed": 96,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "pm-integration": {
+      "total": 43,
+      "passed": 43,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "default-unit": {
+      "total": 96,
+      "passed": 96,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "default-integration": {
+      "total": 92,
+      "passed": 82,
+      "failed": 0,
+      "errors": 9,
+      "skipped": 1
+    },
+    "qa-candidate-unit": {
+      "total": 96,
+      "passed": 96,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "qa-candidate-integration": {
+      "total": 119,
+      "passed": 108,
+      "failed": 9,
+      "errors": 1,
+      "skipped": 1
+    },
+    "qa-an-unblocked-unit": {
+      "total": 96,
+      "passed": 96,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "qa-an-unblocked-integration": {
+      "total": 153,
+      "passed": 151,
+      "failed": 1,
+      "errors": 0,
+      "skipped": 1
+    },
+    "cm-probes-before-unit": {
+      "total": 96,
+      "passed": 96,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "cm-probes-before-integration": {
+      "total": 2,
+      "passed": 0,
+      "failed": 2,
+      "errors": 0,
+      "skipped": 0
+    },
+    "cm-details-proposed-unit": {
+      "total": 96,
+      "passed": 96,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "cm-details-proposed-integration": {
+      "total": 14,
+      "passed": 14,
+      "failed": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "webUnit": {
+    "numTotalTests": 107,
+    "numPassedTests": 107,
+    "numFailedTests": 0,
+    "numPendingTests": 0,
+    "success": true
+  },
+  "webChecks": [
+    {
+      "check": "types:check",
+      "exit": 0,
+      "log": "web-types-check.log"
+    },
+    {
+      "check": "typecheck",
+      "exit": 0,
+      "log": "web-typecheck.log"
+    },
+    {
+      "check": "test:unit",
+      "exit": 0,
+      "log": "web-test-unit.log"
+    },
+    {
+      "check": "build",
+      "exit": 0,
+      "log": "web-build.log"
+    }
+  ],
+  "qaStaticChecks": [
+    {
+      "check": "test:contract",
+      "exit": 0
+    },
+    {
+      "check": "typecheck",
+      "exit": 0
+    }
+  ],
+  "browserReports": {
+    "ui-integration": {
+      "startTime": "2026-11-07T05:27:52.770Z",
+      "duration": 18259.858,
+      "expected": 5,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "ui-persistence": {
+      "startTime": "2026-11-07T05:35:23.940Z",
+      "duration": 2811.37,
+      "expected": 1,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "qa-e2e": {
+      "startTime": "2026-11-07T05:30:09.205Z",
+      "duration": 58392.594000000005,
+      "expected": 25,
+      "skipped": 0,
+      "unexpected": 4,
+      "flaky": 0
+    },
+    "qa-locator": {
+      "startTime": "2026-11-07T05:34:06.185Z",
+      "duration": 3228.574,
+      "expected": 2,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "audit": {
+    "exit": 1,
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 6,
+      "high": 0,
+      "critical": 2,
+      "total": 8
+    }
+  },
+  "evaluationRows": 160,
+  "runtimeCleanup": {
+    "postgresStopExit": 0,
+    "frontendStopped": true,
+    "scope": "Only this task backend, frontend, and dedicated PostgreSQL instance",
+    "checkedAtUtc": "2026-11-07T05:42:39.4415453Z",
+    "backendStopped": true,
+    "remainingTestListenerPorts": []
+  },
+  "fullAcceptancePassed": false,
+  "releaseApproved": false,
+  "remainingOwners": {
+    "AN": [
+      "合法空批准意见被拒绝",
+      "测试端口 Bean 冲突"
+    ],
+    "CM": [
+      "陈旧版本冲突详情缺失",
+      "所有者自我确认",
+      "干净部署/备份恢复及发布材料"
+    ],
+    "QA": [
+      "候选正式接收与全量复验",
+      "两处浏览器定位"
+    ],
+    "UI": [
+      "依赖审计及剩余界面验收"
+    ],
+    "DS/CM/QA": [
+      "迁移归属、skip 与访问矩阵接收"
+    ]
+  },
+  "notes": [
+    "Each test run is counted independently; no aggregation as unique coverage",
+    "Initialization errors may prevent a whole class from executing",
+    "AN/CM/QA experiment files are proposals only, not product fixes",
+    "No human hours, signatures, acceptance, release approval, commits or remote reviews fabricated"
+  ]
+}
