@@ -4,7 +4,7 @@
 > 用途：QA-02/03 的测试改造对照表与 QA-05 覆盖判定的执行台账（判定规则见 `test-plan.md` §4.1）。
 > **执行状态初始全部「未执行」**；每轮执行后更新状态列并附证据路径。主责列指模块自测负责人，QA 列为跨模块验收落点。
 
-| 编号 | 场景摘要 | 需求关联 | 主责 | QA 执行落点 | 状态（2026-11-10 最新main全部真实复跑） |
+| 编号 | 场景摘要 | 需求关联 | 主责 | QA 执行落点 | 状态（2026-11-12 最新main复跑与评审更正） |
 |---|---|---|---|---|---|
 | D-AT-01 | 登录/错密码/停用后旧令牌 401；响应无 passwordHash | FR-01 | PM | PermissionsIT-01 + login.spec | ✅ 通过：PermissionsIT登录/错密码/停用旧令牌三项真实PG通过；UI登录与三视口页面11-10复跑15/15通过 |
 | D-AT-02 | approver_other/account_admin/applicant_b 越权均 403 无变化 | FR-02 | PM+AN | PermissionsIT（TC-02组） | ✅ 通过：PermissionsIT三类越权403且状态/版本/预约不变断言均通过 |
@@ -31,20 +31,28 @@
 | D-AT-23 | 刷新/重启后状态来自真实持久化 | FR-23 | UI+配置 | `change-happy-path.spec.ts`（reload 断言） | ✅ 通过：11-10真实UI改期成功链reload后version2/3102/15:00保持；11-01关闭seed重启后API与新浏览器状态一致（重启证据为11-01版本） |
 | D-AT-24 | 干净环境按发布说明启动换角色答辩 | FR-24 | 全员 | 发布演练（check.ps1 + 人工） | ⬜ 未执行：本机Docker仅29.9.3、缺compose插件与docker-compose；仅静态解析compose/compose.qa服务结构，未启动干净环境，不记通过 |
 | N-AT-01 | 身份与角色分离：教师申请人/学生申请人/仅账号管理员调用审批复核 | 身份规则 | PM+AN | IdentityEligibilityIT.nat01 | ✅ 通过：IdentityEligibilityIT 6/6全通过；教师/学生/账号管理员不自动有审批复核权，状态与记录不变 |
-| N-AT-02 | 两类身份×四种资源资格（3111-3114/3211-3214），UI+HTTP 双通道 | 资格规则 | DS+UI | IdentityEligibilityIT.nat02 + conflict.spec | ✅ 通过：IdentityEligibilityIT八组合真实HTTP/库全部通过；教师专用组UI/HTTP双通道11-01通过 |
+| N-AT-02 | 两类身份×四种资源资格（3111-3114/3211-3214），UI+HTTP 双通道 | 资格规则 | DS+UI | IdentityEligibilityIT.nat02 + conflict.spec | 🟨 部分：两类身份×四种资源资格的直接HTTP八组合真库全部通过；UI 仅教师专用组一组证据，其余组合未逐组从UI提交，未达契约§6「UI+HTTP双通道」全覆盖 |
 | N-AT-03 | 候选过滤受限资源；强制提交仍拒绝；按所有者身份校验 | 资格规则 | DS | IdentityEligibilityIT.nat03 + Bench | ✅ 通过：候选过滤+强制受限提交403/无新增改期真库通过，按所有者身份 |
 | N-AT-04 | 提交后改身份/资格：未确认用最新设置；旧预约保留；新目标不合资格拒绝 | 资格规则 | AN+CM | IdentityEligibilityIT.nat04 | ✅ 通过：身份变更后用最新设置、旧预约保留、新目标不合资格拒绝且原安排不变，真库通过 |
 | N-AT-05 | 所有者兼任 APPROVER/RESOURCE_CONFIRM 对本人申请 4 种审核全拒 | 回避规则 | PM+AN | IdentityEligibilityIT.nat05 | ✅ 通过：四种自审回避全部403且无成功变化，独立授权人员正常执行（含改期） |
 | N-AT-06 | 审批范围/管理范围不全覆盖拒绝；停用工作人员拒绝不代签 | 范围规则 | PM+CM | IdentityEligibilityIT.nat06 | ✅ 通过：组织/类别范围、资源范围不全403；停用工作人员被拒且待确认快照不变、不代签，撤回重建通过 |
 
-## 2026-11-10 最新main全量复跑（PR22已合入，PR21未合入）
+## 2026-11-12 最新main复跑与评审更正
+
+- main=`db01829`（PR #20 已合入），QA 普通合并 `6a1785c`；#21（CM 改期修复）仍被评审阻塞，未合入。
+- 默认 verify：Surefire 96/96；Failsafe 158=156 通过、1 失败、0 错误、1 跳过；唯一失败 `PermissionsIT.tc2001And02` 的 `details={}`（DEF-11），同一用例内两种陈旧版本请求各报 1 处失败。该用例已改为先发出两种陈旧版本请求、再用 `assertAll` 分别汇总，两个分支都真实执行并分别报告失败。
+- 按评审更正 **N-AT-02 为部分覆盖**：直接 HTTP 八组合通过，但 UI 仅教师专用组一组证据，未满足契约 §6 的 UI+HTTP 双通道；同步报告、交接与 Ts。
+- 30 项：**27 通过、2 部分（D-AT-20、N-AT-02）、0 阻塞、1 未执行（D-AT-24）**；Tx=29/30=96.7%，Ts=27/30=90.0%。未执行项仍为 Compose 环境缺失，不记通过。
+- 证据：`artifacts/test-results/qa-2026-11-12/`。
+
+## 2026-11-10 全量复跑（历史）
 
 - main=`ca162bf`（含#22 AN空意见修复，#21 CM改期修复仍未合入）；QA普通合并提交`f06482a`。
 - JDK21真实PostgreSQL默认verify：Surefire **77/77通过**；Failsafe **153项=151通过、1失败、0错误、1显式跳过**，exit1。唯一失败为PermissionsIT陈旧版本details为空（DEF-QA-2026-11，CM）；跳过为ResourceSchedulingIT既有显式项，不记通过。
 - 缺陷状态：DEF-QA-2026-08（AN空意见）关闭（ContractBoundaryIT用例与全量审批链实测通过）；DEF-QA-2026-09（AN测试端口Bean冲突）关闭（ActivityRegistrationIT 35/35通过）；DEF-10/11仍待CM。
 - 真实浏览器（最新main独立全新数据库campus_e2e_20261110）：TC-09-2与TC-18-1修正定位后2/2通过（修正前同一代码2/2失败，证明定位问题真实存在）；booking.spec 1/1通过；change-happy-path 1/1通过。
 - 契约40 API/9枚举/15 DTO、QA typecheck通过；评测160行、16组expected全一致。
-- 30项：**28通过、1部分（D-AT-20）、0阻塞、1未执行（D-AT-24）**；Tx=29/30=96.7%，Ts=28/30=93.3%。D-AT-24未执行（Compose不可用），故不计入通过。通过项不推导M0–M4或发布整体放行。
+- 30项：**27通过、2部分（D-AT-20、N-AT-02）、0阻塞、1未执行（D-AT-24）**；Tx=29/30=96.7%，Ts=27/30=90.0%。D-AT-24未执行（Compose不可用），故不计入通过。通过项不推导M0–M4或发布整体放行。
 - 证据：`artifacts/test-results/qa-2026-11-10/`。
 
 ## 2026-11-01 全模块合并后验收（历史）

@@ -32,6 +32,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -354,33 +355,35 @@ class PermissionsIT {
         long versionsBefore = countWhere("SELECT count(*) FROM activity_version WHERE activity_id = ?",
                 UUID.fromString(activityId));
 
+        // 评审要求两种陈旧版本请求各自真实执行并分别报告：先发出两个请求，
+        // 再用 assertAll 汇总检查，避免第一处契约失败掩盖第二处结果。
         ObjectNode staleBase = changeCreateBody(1, "2030-10-20T18:00:00+08:00", "2030-10-20T19:00:00+08:00",
                 30, 30, VENUE_3102, EQUIP_3202, 1, currentLock);
         HttpResult r1 = call(HttpMethod.POST, "/api/v1/activities/" + activityId + "/changes",
                 owner, idem(), toJson(staleBase));
-        assertEquals(409, r1.status());
-        assertEquals("STALE_VERSION", r1.errorCode());
-        assertTrue(r1.body().hasNonNull("requestId"));
-        assertTrue(r1.error().hasNonNull("message"));
-        assertStaleVersionDetails(r1.error().path("details"), currentVersion, currentLock, "OPEN");
-        assertEquals(currentVersion, readActivityVersion(owner, activityId), "冲突后重新GET内容版本不变");
-        assertEquals(currentLock, readActivityLockVersion(owner, activityId), "冲突后重新GET锁版本不变");
-
         ObjectNode staleLock = changeCreateBody(currentVersion,
                 "2030-10-20T18:00:00+08:00", "2030-10-20T19:00:00+08:00",
                 30, 30, VENUE_3102, EQUIP_3202, 1, 0);
         HttpResult r2 = call(HttpMethod.POST, "/api/v1/activities/" + activityId + "/changes",
                 owner, idem(), toJson(staleLock));
-        assertEquals(409, r2.status());
-        assertEquals("STALE_VERSION", r2.errorCode());
-        assertTrue(r2.body().hasNonNull("requestId"));
-        assertTrue(r2.error().hasNonNull("message"));
-        assertStaleVersionDetails(r2.error().path("details"), currentVersion, currentLock, "OPEN");
-        assertEquals(currentVersion, readActivityVersion(owner, activityId), "旧锁版本请求后重新GET内容版本不变");
-        assertEquals(currentLock, readActivityLockVersion(owner, activityId), "旧锁版本请求后重新GET锁版本不变");
 
-        assertEquals(versionsBefore, countWhere("SELECT count(*) FROM activity_version WHERE activity_id = ?",
-                UUID.fromString(activityId)), "陈旧版本请求不得产生新 activity_version");
+        assertAll("两种陈旧版本请求均须409及当前版本详情",
+                () -> assertEquals(409, r1.status(), () -> "旧baseVersion请求状态：" + r1.body()),
+                () -> assertEquals("STALE_VERSION", r1.errorCode(), () -> "旧baseVersion错误码：" + r1.body()),
+                () -> assertTrue(r1.body().hasNonNull("requestId"), "旧baseVersion错误信封应含requestId"),
+                () -> assertTrue(r1.error().hasNonNull("message"), "旧baseVersion错误信封应含message"),
+                () -> assertStaleVersionDetails(r1.error().path("details"), currentVersion, currentLock, "OPEN"),
+                () -> assertEquals(currentVersion, readActivityVersion(owner, activityId), "冲突后重新GET内容版本不变"),
+                () -> assertEquals(currentLock, readActivityLockVersion(owner, activityId), "冲突后重新GET锁版本不变"),
+                () -> assertEquals(409, r2.status(), () -> "旧expectedLockVersion请求状态：" + r2.body()),
+                () -> assertEquals("STALE_VERSION", r2.errorCode(), () -> "旧expectedLockVersion错误码：" + r2.body()),
+                () -> assertTrue(r2.body().hasNonNull("requestId"), "旧锁版本错误信封应含requestId"),
+                () -> assertTrue(r2.error().hasNonNull("message"), "旧锁版本错误信封应含message"),
+                () -> assertStaleVersionDetails(r2.error().path("details"), currentVersion, currentLock, "OPEN"),
+                () -> assertEquals(currentVersion, readActivityVersion(owner, activityId), "旧锁版本请求后重新GET内容版本不变"),
+                () -> assertEquals(currentLock, readActivityLockVersion(owner, activityId), "旧锁版本请求后重新GET锁版本不变"),
+                () -> assertEquals(versionsBefore, countWhere("SELECT count(*) FROM activity_version WHERE activity_id = ?",
+                        UUID.fromString(activityId)), "陈旧版本请求不得产生新 activity_version"));
     }
 
     // ------------------------------------------------------------------ D-AT-21

@@ -3,7 +3,7 @@
 > 由 qa/scripts/evaluate-scheduling.ts 从原始测量行生成；原始行见 results.csv。
 > 缺少原始结果时脚本失败退出，不生成任何产物（03 §4）。本文件不含人工填写数值。
 
-- 生成时间：2026-11-10T06:01:28.161950189Z
+- 生成时间：2026-11-12T15:08:34.995732147Z
 - 机器：Linux/amd64 / Linux 6.18.33.1-microsoft-standard-WSL2 (amd64)
 - JDK：21.0.13 (Eclipse Adoptium)；被测构建：未提供（构建时注入）
 - 参考数据：test-data/scenarios/scheduling-reference.json（SHA-256=c7e9785b30c22e416fd5bdf3a0cde2b1803cd08267583b36cccf446b292df540）
@@ -15,22 +15,22 @@
 
 | scenarioId | strategy | n | feasible | timeShift | venueChanged | replacedLines | evaluatedCount | 中位数ms | min | max |
 |---|---|---|---|---|---|---|---|---|---|---|
-| SCH-01-TIME-CONFLICT | FIRST_FIT | 10 | true | -60 | false | 0 | 13 | 34.19 | 29.17 | 36.772 |
-| SCH-01-TIME-CONFLICT | RANKED | 10 | true | -60 | false | 0 | 36 | 91.663 | 83.44 | 100.736 |
-| SCH-02-VENUE-SWAP | FIRST_FIT | 10 | true | 0 | true | 0 | 3 | 8.163 | 6.207 | 13.325 |
-| SCH-02-VENUE-SWAP | RANKED | 10 | true | 0 | true | 0 | 36 | 94.165 | 78.894 | 104.958 |
-| SCH-03-EQUIPMENT-REPLACE | FIRST_FIT | 10 | true | 0 | false | 1 | 2 | 5.782 | 5.283 | 6.458 |
-| SCH-03-EQUIPMENT-REPLACE | RANKED | 10 | true | 0 | false | 1 | 36 | 90.142 | 83.837 | 101.459 |
-| SCH-04-NO-SOLUTION | FIRST_FIT | 10 | false | null | null | null | 36 | 89.04 | 82.498 | 107.608 |
-| SCH-04-NO-SOLUTION | RANKED | 10 | false | null | null | null | 36 | 87.633 | 85.069 | 103.022 |
-| SCH-05-BOUNDARY-TOUCH | FIRST_FIT | 10 | true | 0 | false | 0 | 1 | 3.201 | 2.504 | 4.006 |
-| SCH-05-BOUNDARY-TOUCH | RANKED | 10 | true | 0 | false | 0 | 36 | 101.394 | 80.281 | 120.864 |
-| SCH-06-PEAK-QUANTITY | FIRST_FIT | 10 | true | 0 | false | 0 | 1 | 3.412 | 3.093 | 4.643 |
-| SCH-06-PEAK-QUANTITY | RANKED | 10 | true | 0 | false | 0 | 36 | 88.308 | 85.207 | 109.619 |
-| SCH-07-RESOURCE-FAULT | FIRST_FIT | 10 | true | 0 | false | 1 | 2 | 5.4 | 4.939 | 5.894 |
-| SCH-07-RESOURCE-FAULT | RANKED | 10 | true | 0 | false | 1 | 36 | 89.613 | 82.889 | 93.542 |
-| SCH-08-STRATEGY-DIFF | FIRST_FIT | 10 | true | -30 | true | 0 | 7 | 16.482 | 15.917 | 19.363 |
-| SCH-08-STRATEGY-DIFF | RANKED | 10 | true | 30 | false | 1 | 36 | 84.516 | 79.585 | 93.704 |
+| SCH-01-TIME-CONFLICT | FIRST_FIT | 10 | true | -60 | false | 0 | 13 | 30.644 | 24.199 | 39.445 |
+| SCH-01-TIME-CONFLICT | RANKED | 10 | true | -60 | false | 0 | 36 | 86.046 | 71.454 | 107.515 |
+| SCH-02-VENUE-SWAP | FIRST_FIT | 10 | true | 0 | true | 0 | 3 | 6.551 | 4.485 | 10.364 |
+| SCH-02-VENUE-SWAP | RANKED | 10 | true | 0 | true | 0 | 36 | 74.631 | 53.976 | 97.975 |
+| SCH-03-EQUIPMENT-REPLACE | FIRST_FIT | 10 | true | 0 | false | 1 | 2 | 4.389 | 3.907 | 5.483 |
+| SCH-03-EQUIPMENT-REPLACE | RANKED | 10 | true | 0 | false | 1 | 36 | 76.752 | 62.446 | 104.96 |
+| SCH-04-NO-SOLUTION | FIRST_FIT | 10 | false | null | null | null | 36 | 96.723 | 66.594 | 121.634 |
+| SCH-04-NO-SOLUTION | RANKED | 10 | false | null | null | null | 36 | 89.488 | 61.115 | 117.846 |
+| SCH-05-BOUNDARY-TOUCH | FIRST_FIT | 10 | true | 0 | false | 0 | 1 | 3.851 | 2.165 | 4.811 |
+| SCH-05-BOUNDARY-TOUCH | RANKED | 10 | true | 0 | false | 0 | 36 | 87.182 | 68.694 | 105.45 |
+| SCH-06-PEAK-QUANTITY | FIRST_FIT | 10 | true | 0 | false | 0 | 1 | 2.652 | 1.972 | 4.6 |
+| SCH-06-PEAK-QUANTITY | RANKED | 10 | true | 0 | false | 0 | 36 | 85.103 | 62.732 | 103.158 |
+| SCH-07-RESOURCE-FAULT | FIRST_FIT | 10 | true | 0 | false | 1 | 2 | 5.687 | 4.032 | 10.899 |
+| SCH-07-RESOURCE-FAULT | RANKED | 10 | true | 0 | false | 1 | 36 | 81.252 | 58.938 | 129.744 |
+| SCH-08-STRATEGY-DIFF | FIRST_FIT | 10 | true | -30 | true | 0 | 7 | 12.72 | 10.723 | 24.015 |
+| SCH-08-STRATEGY-DIFF | RANKED | 10 | true | 30 | false | 1 | 36 | 64.431 | 56.237 | 86.837 |
 
 ## 期望对照（断言目标 vs 实测）
 
