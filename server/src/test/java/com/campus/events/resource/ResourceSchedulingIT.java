@@ -626,21 +626,8 @@ class ResourceSchedulingIT {
     @Autowired ActivityPort activities;
     @Autowired org.springframework.beans.factory.ObjectProvider<ChangePort> changePorts;
 
-    @Test void missingChangePortRejectsActivityLockWithoutPartialWrites() {
-        Assumptions.assumeTrue(changePorts.getIfAvailable() == null, "CM端口已到位，改跑真实切换测试");
-        var original = plan(venue, 0, 1, 1);
-        UUID id = activity(owner, original);
-        assertTrue(book(id, original));
-        jdbc.update("UPDATE activity SET status='SCHEDULED',effective_version_no=1 WHERE id=?", id);
-        var error = assertThrows(ApiException.class, () -> tx.executeWithoutResult(status -> activities.lock(id)));
-        assertEquals(503, error.status());
-        assertEquals(1, jdbc.queryForObject("SELECT effective_version_no FROM activity WHERE id=?", Integer.class, id));
-        assertEquals(2, resources.active(id).size());
-        assertTrue(resources.active(id).stream().allMatch(r -> r.versionNo() == 1));
-    }
-
     @Test void realActivityPortAndSchedulingPortSwitchAndRollbackTogether() {
-        Assumptions.assumeTrue(changePorts.getIfAvailable() != null, "阻塞：CM真实ChangePort尚未交付，不能记切换通过");
+        assertNotNull(changePorts.getIfAvailable(), "main已接收CM真实ChangePort；缺失应失败，不能跳过真实切换");
         var original = plan(venue, 0, 1, 1);
         var target = plan(venue2, 120, 1, 1);
         UUID id = activity(owner, original);
@@ -695,7 +682,7 @@ class ResourceSchedulingIT {
         assertEquals(Risk.NORMAL, scheduling.risk(id));
     }
 
-    @Test void faultHttpReportsActualEventDependencyAndNeverCommitsPartialWork() throws Exception {
+    @Test void faultHttpCommitsThroughRealEventPortAndKeepsReservations() throws Exception {
         var p = plan(venue, 0, 1, 1);
         UUID id = activity(owner, p);
         assertTrue(book(id, p));
@@ -705,30 +692,21 @@ class ResourceSchedulingIT {
         var response = http.perform(post(route).header("Authorization", "Bearer " + token)
                         .header("Idempotency-Key", UUID.randomUUID()).contentType("application/json").content(json(input)))
                 .andReturn().getResponse();
-        boolean ready = eventPorts.getIfAvailable() != null;
-        assertEquals(ready ? 201 : 503, response.getStatus());
+        assertNotNull(eventPorts.getIfAvailable(), "main已接收CM真实EventPort，必须执行故障成功链路");
+        assertEquals(201, response.getStatus());
         var body = mapper.readTree(response.getContentAsString());
-        if (ready) {
-            assertEquals(id.toString(), body.path("data").path("affectedActivities").get(0).path("activityId").asText());
-            assertEquals(1, count("resource_fault"));
-            assertEquals(1, count("audit_log"));
-            assertEquals(1, count("outbox_event"));
-            assertEquals(Risk.AT_RISK, scheduling.risk(id));
-        } else {
-            assertEquals("INTERNAL_ERROR", body.path("error").path("code").asText());
-            assertEquals(0, count("resource_fault"));
-            assertEquals(0, count("command_receipt"));
-            assertEquals(0, count("audit_log"));
-            assertEquals(0, count("outbox_event"));
-            assertEquals(Risk.NORMAL, scheduling.risk(id));
-        }
+        assertEquals(id.toString(), body.path("data").path("affectedActivities").get(0).path("activityId").asText());
+        assertEquals(1, count("resource_fault"));
+        assertEquals(1, count("audit_log"));
+        assertEquals(1, count("outbox_event"));
+        assertEquals(Risk.AT_RISK, scheduling.risk(id));
         assertEquals(2, resources.active(id).size());
         var destination = java.nio.file.Path.of(System.getProperty("test.output.dir", "target"), "ds-fault-api.json");
         java.nio.file.Files.createDirectories(destination.toAbsolutePath().getParent());
         mapper.writerWithDefaultPrettyPrinter().writeValue(destination.toFile(), Map.of(
-                "realEventPortPresent", ready, "httpStatus", response.getStatus(),
+                "realEventPortPresent", true, "httpStatus", response.getStatus(),
                 "faultRows", count("resource_fault"), "activeReservations", resources.active(id).size(),
-                "acceptanceStatus", ready ? "真实EventPort故障API路径通过" : "成功链路阻塞；503及无部分提交通过"));
+                "acceptanceStatus", "真实EventPort故障API路径通过"));
     }
 
     @Test void resourceHttpWritesReuseSharedIdempotencyAndPersistScopeAndHistory() throws Exception {

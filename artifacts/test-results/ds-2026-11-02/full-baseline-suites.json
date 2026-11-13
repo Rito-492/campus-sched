@@ -1,0 +1,121 @@
+[
+  {
+    "name": "com.campus.events.acceptance.BookingConcurrencyIT",
+    "tests": 1,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0
+  },
+  {
+    "name": "com.campus.events.acceptance.CancellationRaceIT",
+    "tests": 1,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0
+  },
+  {
+    "name": "com.campus.events.acceptance.ChangeRollbackIT",
+    "tests": 1,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0
+  },
+  {
+    "name": "com.campus.events.acceptance.IdentityEligibilityIT",
+    "tests": 1,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0
+  },
+  {
+    "name": "com.campus.events.acceptance.NotificationConsistencyIT",
+    "tests": 1,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0
+  },
+  {
+    "name": "com.campus.events.acceptance.PermissionsIT",
+    "tests": 1,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0
+  },
+  {
+    "name": "com.campus.events.acceptance.RegistrationCapacityIT",
+    "tests": 1,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0
+  },
+  {
+    "name": "com.campus.events.acceptance.SchedulingBenchmarkIT",
+    "tests": 1,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0
+  },
+  {
+    "name": "com.campus.events.activity.ActivityRegistrationIT",
+    "tests": 1,
+    "failures": 0,
+    "errors": 1,
+    "skipped": 0
+  },
+  {
+    "name": "com.campus.events.dev.DemoDataSeederIT",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "name": "com.campus.events.foundation.FoundationIT",
+    "tests": 22,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "name": "com.campus.events.foundation.PublishedModulesIT",
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "name": "com.campus.events.foundation.StandardMavenSchemaIT",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "name": "com.campus.events.notification.OutboxClaimIT",
+    "tests": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "name": "com.campus.events.resource.ResourceSchedulingIT",
+    "tests": 30,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1
+  },
+  {
+    "name": "com.campus.events.resource.SchemaIT",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "name": "com.campus.events.scheduling.DsStrategyBenchmarkIT",
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  }
+]

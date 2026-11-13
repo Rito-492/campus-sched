@@ -2,6 +2,24 @@
 
 > 维护：设计师（55230315）。格式依据 `agents/common/04-协作与集成规程.md` §4 固定模板。运行时信息填真实值；未执行的检查如实标注，不虚构通过。
 
+## 2026-11-13 主线复验与交接
+
+- 黄方勇（55230315），DS-01～05，`work/55230315-scheduling` 快进到主线 `e1051df` 后复验。两份资源测试通过真实活动、改期和事件端口运行，覆盖竞争预约、资源切换、故障写入与回滚。
+- Java 21.0.6、PostgreSQL 17.6，使用本地 `campus_test` 的隔离 schema。运行 `./server/mvnw.cmd -B -ntp -f server/pom.xml '-Dit.test=ResourceWorkflowIT,ResourceSchedulingIT,SchemaIT,DsStrategyBenchmarkIT' '-Dtest.output.dir=<证据目录绝对路径>' verify`，退出 0。
+- 单测 101 项、指定集成测试 46 项全部通过，无失败、错误或跳过。集成测试包括资源 29 项、闭环 7 项、迁移 8 项、DS 策略评测 2 项。[结果、策略原始输出和源码哈希](../../artifacts/test-results/ds-2026-11-13/)。
+- 本轮验证范围为指定后端测试。QA 正式 D-AT-22 与全量验收沿用 QA 的记录。请 QA 汤雨润和 PM 冀项阳接收新增回归及迁移登记，接收确认待评审。任务 4 已入库，学习通提交回执尚未核实。
+
+## 历史续验（2026-11-02：接收真实端口，完成 DS 调度闭环回归）
+
+- 黄方勇 55230315，DS-01～05，任务包 v3.0；分支 `work/55230315-scheduling` 从 `7521511` 快进同步至最新 main `b8be7e48c227627c2c6e24aee534cf727200faf6`。保留开工前全部未跟踪文件，本轮未提交/推送。
+- AN ActivityPort、CM ChangePort/EventPort/通知消费者及 UI 已合入 main，旧“缺真实端口”结论转为历史。本轮实际接收生产端口组合，没有修改公共 DTO、生产业务代码、他人模块或已评审 Office 工件。
+- 新增 `resource/ResourceWorkflowIT` 七项真实 HTTP/PostgreSQL 回归：首次确认幂等；并发争资源；联合冲突与候选；工作人员/复审/最终切换与版本通知；预览后被抢占时保留原安排及风险；最终资格重查；预约 SQL 异常的跨模块整体回滚与同 key 重试。覆盖 API-10/19/24～32/34～35/40 及相关活动/报名接口。
+- ResourceSchedulingIT 移除过时缺依赖用例，真实切换不再条件跳过，故障必须经真实 EventPort 成功；隔离缺依赖及异常回滚防护仍保留。迁移登记补记已有 V2 claim_token；V1/V2 SQL 未改。
+- 标准 `./server/mvnw.cmd -B -ntp -f server/pom.xml ... '-Dit.test=ResourceWorkflowIT,ResourceSchedulingIT,SchemaIT' verify` 退出 0：**77 单测、44 真库 IT 通过，失败/错误/跳过均 0**（新闭环 7、资源 29、迁移 8）。本机 Java21.0.6/Maven3.9.11/PostgreSQL17.6，固定 Clock 的闭环测试仅用本机 campus_test 随机 schema。
+- 未筛选的 main 基准全量 verify 退出 1：77 单测通过，85 IT 中 9 错误、1 跳过、75 通过。QA DbTestSupport 装载顺序导致 8 类验收失败；AN ActivityRegistrationIT 的测试 EventPort 与真实 EventPort 重复注入导致 1 类失败。DS 独立策略评测 2 项通过，正式 SchedulingBenchmarkIT 装载失败；不记录全量/M4/正式 D-AT-22 通过。
+- 证据与实际命令：[集成验证说明](scheduling-integration-v1.0.md)、[原始日志/结果/源码哈希](../../artifacts/test-results/ds-2026-11-02/)。测试后随机 schema 和 public 表均为 0；本轮不运行浏览器/前端检查，不声明整套场景验收。
+- 下一接收人：QA 汤雨润/PM 冀项阳接收 QA 分支 `19ae94b` 的装载/验收修复并复跑；AN 冯玉琪修正模块测试端口上下文；QA/CM/UI 继续全链路和浏览器验收。下游对本轮改动的接收确认尚未取得；未自动联系他人、创建/合并 PR 或发布。
+
 ## 最新续验（2026-10-31：QA原始修复接收与评审交付）
 
 - 黄方勇55230315，DS-03～05；本人分支work/55230315-scheduling；fetch后main仍为feb0d70，本地历史工件和stash保留。

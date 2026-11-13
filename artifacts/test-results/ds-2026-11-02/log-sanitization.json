@@ -1,0 +1,26 @@
+[
+  {
+    "file": "baseline-wrapper.log",
+    "secretReplacements": 0
+  },
+  {
+    "file": "ds-final-verify.log",
+    "secretReplacements": 0
+  },
+  {
+    "file": "full-baseline.log",
+    "secretReplacements": 0
+  },
+  {
+    "file": "workflow-first.log",
+    "secretReplacements": 0
+  },
+  {
+    "file": "workflow-initial.log",
+    "secretReplacements": 0
+  },
+  {
+    "file": "workflow-run.log",
+    "secretReplacements": 0
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "path": "server/src/test/java/com/campus/events/resource/ResourceWorkflowIT.java",
+    "sha256": "1a93fec19e99c773218e63d842e95296ea4d2feddc93a1723b64e01fb73cbb4a"
+  },
+  {
+    "path": "server/src/test/java/com/campus/events/resource/ResourceSchedulingIT.java",
+    "sha256": "c2a67d0eda6ced7b00748aaabb2c749954b0a026e63acec1fd71763a8c8fe539"
+  },
+  {
+    "path": "server/src/main/resources/db/migration/V1__schema.sql",
+    "sha256": "f05ff82fa0fcb3959f7a2031e25ed72d91e882224da0f5a68ed45b766d9f3a95"
+  },
+  {
+    "path": "server/src/main/resources/db/migration/V2__outbox_claim_token.sql",
+    "sha256": "d9c5f4c3b952e36a554c1153bb76e5dfdb90e01100a1d66e0aa3f3b56c7ee4c2"
+  }
+]

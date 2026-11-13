@@ -1,0 +1,73 @@
+[
+  {
+    "name": "com.campus.events.resource.ResourceWorkflowIT",
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "twoRealConfirmRequestsProduceOneWinnerWithoutPartialReservations",
+      "lateResourceCompetitionCommitsConflictAndKeepsRiskyOriginalArrangement",
+      "reservationInsertFailureRollsBackWholeChangeAndSameKeyCanRetry",
+      "firstConfirmationReplaysSameKeyAndRejectsChangedRequestWithoutExtraWrites",
+      "conflictPreviewReturnsJointAlternativeWithoutWritingBusinessState",
+      "finalConfirmationUsesLatestEligibilityAndLeavesOriginalReservations",
+      "realChangeSwitchesReservationsRegistrationAndDeliversVersionedNotifications"
+    ]
+  },
+  {
+    "name": "com.campus.events.resource.ResourceSchedulingIT",
+    "tests": 29,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "faultHttpListFiltersEachActivityAndRechecksCurrentScope",
+      "suspendedTransactionDoesNotLendItsCheckToAnotherTransaction",
+      "absentEventPortDoesNotCommitFault",
+      "resourceHttpWritesReuseSharedIdempotencyAndPersistScopeAndHistory",
+      "demoConflictReturnsSameTimeVenueAndEquipmentReplacementWithoutWrites",
+      "eligibilityHttpRechecksScopeAndRejectsReusedKeyWithChangedBody",
+      "eligibilityMatrixReadsDatabaseForBothResourceKinds",
+      "mutableEquipmentCannotChangeThePlanAfterResourceLocksWereTaken",
+      "twoActivitiesCompeteExactlyOneSucceedsWithoutPartialReservations",
+      "equipmentCompetitionAcrossVenuesNeverOverbooks",
+      "adjacentLoadsUsePeakAndSetupOverlapConflicts",
+      "injectedDatabaseFailureRollsBackReleasePartialInsertAndVersion",
+      "replaceExcludesOwnOccupancyAndReleaseIsRepeatable",
+      "databaseConstraintsIncludeCapacityOpeningHoursAndInvalidShanghaiDay",
+      "calendarSegmentsAreRedactedAndHttpUsesCommonEnvelope",
+      "faultHttpCommitsThroughRealEventPortAndKeepsReservations",
+      "realActivityPortAndSchedulingPortSwitchAndRollbackTogether",
+      "eventFailureRollsBackFaultAndLeavesOriginalReservations",
+      "eligibilityHistoryFailureRollsBackFlagsAndKeepsReservations",
+      "conflictAndMissingResourceLeaveNoPartialReservation",
+      "mandatoryTransactionAndSuccessfulSamePlanCheckAreRequired",
+      "resourceCreateGrantsScopeAndRangeViolationsDoNotWrite",
+      "finalCheckWaitsForEligibilityWriterAndReadsCommittedRestriction",
+      "latestOwnerIdentityAndEligibilityOverridePreviewArguments",
+      "overlappingFaultsClampCapacityAndRiskIsLive",
+      "replaceRechecksFaultsAndRollsBackTheNewVersion",
+      "faultResponseRedactionDoesNotSuppressInternalActivityEvents",
+      "calendarTruncationAndCandidateBudgetUseRealRows",
+      "resourceListsAndCalendarUseStableCreationOrder"
+    ]
+  },
+  {
+    "name": "com.campus.events.resource.SchemaIT",
+    "tests": 8,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "cases": [
+      "tc08_approverDecisionColumnRenamed",
+      "tc01_allTwentyTwoBusinessTablesExist",
+      "tc02_uniqueConstraintsRejectDuplicates",
+      "tc04_onlyOnePendingChangePerActivity",
+      "tc03_resourceChecksRejectIllegalValues",
+      "tc06_immutabilityTriggersRejectIllegalUpdates",
+      "tc07_v3IdentityEligibilityStructures",
+      "tc05_deferredFkBehavior"
+    ]
+  }
+]

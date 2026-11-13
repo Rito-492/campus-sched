@@ -7,6 +7,19 @@
 | 版本 | 文件 | 内容 | 状态 | 验证记录 |
 |---|---|---|---|---|
 | V1 | `db/migration/V1__schema.sql` | v3.0 契约 22 表（含 v3.0 前的 17 表基础上新增 user_permission / user_approval_scope / user_resource_scope / authorization_change / resource_eligibility_change）、identity 与资格列、外键/CHECK/索引、3 条不可变保护触发器 | ✅ 已完成并入库 | 2026-10-13 PostgreSQL 17（docker postgres:17，campus_test 独立 schema）：v2 形态（17表）与 v3.0 形态（22表）两轮等价 SQL 烟测均全量通过；明细见下 |
+| V2 | `db/migration/V2__outbox_claim_token.sql` | outbox_event 新增可空 UUID claim_token，标识每次通知认领的所有权；不改写 V1 | 已由 main 接收，本轮由 DS 补登记 | 2026-11-02 PostgreSQL 17.6：空 schema 依序应用 V1/V2 成功；SchemaIT 8 项通过，真实通知切换/投递通过；全量基准中的 CM OutboxClaimIT 4 项通过。来源 main 的 b19ae8b（PR #18），本轮未重写迁移 |
+
+### 2026-11-13 主线复验
+
+- 在主线 `e1051df` 上使用 PostgreSQL 17.6 对空 schema 依次应用 V1 和 V2，`SchemaIT` 8 项全部通过。两个迁移文件保持主线版本，未执行存量库升级演练。
+- [复验结果及源码哈希](../../artifacts/test-results/ds-2026-11-13/)。
+
+### 2026-11-02 接收与续验
+
+- 实际 main 为 `b8be7e48c227627c2c6e24aee534cf727200faf6`，本人分支 `work/55230315-scheduling`。原有共享工程、DTO 和真实业务端口已到位，下面 2026-10-13 的阻塞清单仅为历史。
+- 标准 Wrapper/原始 pom，77 项单元测试、44 项 DS 真库 IT 通过，失败/错误/跳过均 0；其中 SchemaIT 8 项，ResourceSchedulingIT 29 项，ResourceWorkflowIT 7 项。Flyway 日志记录每个新 schema 顺序应用 V1/V2；未执行已有生产数据的升级演练，不把空库验证记为生产升级验证。
+- 全量基准 verify 仍失败：QA 装载顺序外键错误和 AN 测试端口重复注入，详见 [本轮接收与验证](scheduling-integration-v1.0.md)。本登记不声明全量验收或新发布基线通过。
+- V1/V2 文件未修改；后续迁移从 V3 评估编号，仍由 DS 统一维护。证据：[本轮日志与结果](../../artifacts/test-results/ds-2026-11-02/)。
 
 ### V1 版本决策记录（2026-10-13）
 
@@ -40,7 +53,7 @@
 
 执行方式：`psql -1 -v ON_ERROR_STOP=1 -f`（单事务）在 `campus_test` 独立 schema；执行后 schema 清理（无残留）。SQL 脚本等价物固化于 `server/src/test/java/com/campus/events/resource/SchemaIT.java`（tc01–tc08，v3.0 口径）。
 
-## 尚待补做（阻塞说明）
+## 历史待补做（2026-10-13；当前状态见上方续验）
 
 - `SchemaIT`（Java 形态）**尚未编译执行**：阻塞于 PM 基础工程（`server/pom.xml`/mvnw/`contract` 包）。到位后运行 `./server/mvnw.cmd -f server/pom.xml "-Dit.test=SchemaIT" verify`，结果补登本表。
 - `StrategyEvaluator`/`StrategyResult`（02 契约 §8，签名含 `Identity applicantIdentity`）：类型依赖 `contract` 包（Plan/Alternative/Identity），**生产代码未创建**；替身按规程只允许测试代码。归入 DS-05 交付，QA-04 评测入口在 PM contract 包到位后交付。
