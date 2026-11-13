@@ -19,8 +19,8 @@
 
 | DEF-QA-2026-08 | API-18 首次批准空comment / 9项IT前置 | 汤雨润（55230316） | B | 2026-11-01 | close（11-10最新main空意见用例与审批链实测通过） |
 | DEF-QA-2026-09 | ActivityRegistrationIT 生产/替身重复Bean | 汤雨润（55230316） | C | 2026-11-01 | close（11-10 ActivityRegistrationIT 35/35通过） |
-| DEF-QA-2026-10 | API-27 改期：所有者被列入必确认人员并被预建确认行 | 汤雨润（55230316） | C | 2026-11-06 | open（待CM；11-10 ContractBoundaryIT仍2例失败） |
-| DEF-QA-2026-11 | API-27 STALE_VERSION 409 details 为空，未返回当前版本/锁版本/状态 | 汤雨润（55230316） | C | 2026-11-06 | open（待CM；#21未合入，11-10正式基线仍失败） |
+| DEF-QA-2026-10 | API-27 改期：所有者被列入必确认人员并被预建确认行 | 汤雨润（55230316） | C | 2026-11-06 | close（11-13 main e1051df：ContractBoundaryIT 两例通过） |
+| DEF-QA-2026-11 | API-27 STALE_VERSION 409 details 为空，未返回当前版本/锁版本/状态 | 汤雨润（55230316） | C | 2026-11-06 | close（11-13 main e1051df：PermissionsIT 13/13） |
 
 ## 全模块合并后复验（2026-11-01）
 
@@ -122,7 +122,14 @@ PR #8/#10的重复Seeder源码已由PR #10作为唯一权威合并，PR #8关闭
 - 正式基线（最新 main 组合、未改生产）该断言当前失败，即 DEF-QA-2026-11；隔离实验仅在副本中让 CM 两个分支返回当前 `versionNo/lockVersion` 后通过，实验补丁不提交、不冒充产品修复。
 - 9 项 AN 合法空意见审批 400 与 1 项 AN 测试端口 Bean 冲突仍按原缺陷跟踪，不因本轮修正关闭。
 
-## 2026-11-10 最新main复跑与缺陷关闭
+## 2026-11-13 CM #21 合入后关闭 DEF-10/11
+
+- main `e1051df`（PR #21 合并），QA 合并 `0a2a0b2`；JDK21 + PostgreSQL 17.11 默认 `verify` **exit 0**：101/101 单测；165 IT=164 通过、0 失败、0 错误、1 显式跳过；`PermissionsIT` 13/13。
+- **DEF-QA-2026-11 关闭**：旧 `baseVersion` 与旧 `expectedLockVersion` 均返回 `details` 至少一项准确的当前版本/锁版本/状态，重新 GET 与无写入断言通过。
+- **DEF-QA-2026-10 关闭**：`ContractBoundaryIT` 7/7 通过（仅所有者工作人员的改期直达复审；所有者+他人时不为所有者预建待确认行；存量待办不允许所有者自签）。夹具说明：该用例文件位于 PR #23，本组合为 main+QA+该用例，属于依赖 #16 装载支撑的边界验证。
+- 证据：`artifacts/test-results/qa-2026-11-13/final-main-e1051df/`、`final-contract-boundary/`。
+
+## 2026-11-10 最新main复跑与缺陷关闭（历史）
 
 - main `ca162bf`（含 #22 AN 空意见修复；#21 CM 改期修复未合入），QA 合并提交 `f06482a`；JDK21 + PostgreSQL 17.11，默认 `verify`：77/77 单测；153 IT = 151 通过 / 1 失败 / 0 错误 / 1 跳过。
 - **DEF-QA-2026-08 关闭**：`ContractBoundaryIT.approveWithEmptyComment_isLegal` 通过；PermissionsIT/BookingConcurrencyIT/IdentityEligibilityIT 等原先被 400 阻断的用例全部到达目标断言并通过。空意见事件文本由 AN 生产修复，QA 未补非空意见。

@@ -1,6 +1,15 @@
-# 测试报告 v1.0（最新main全量复跑）
+# 测试报告 v1.1（#21合入后最终复跑）
 
-## 2026-11-10 最新结论
+## 2026-11-13 最终结论（CM #21 已合入）
+
+- 基准：main `e1051df`（含 CM #21），QA 普通合并 `0a2a0b2`；无 reset/强推。
+- JDK21 + PostgreSQL 17.11 默认 `verify`：**exit 0**；Surefire **101/101**；Failsafe **165 = 164 通过、0 失败、0 错误、1 跳过**（既有显式项）；`PermissionsIT` **13/13**。
+- D-AT-20 转**通过**：两种陈旧版本请求均校验到最新版本详情；DEF-QA-2026-10/11 **关闭**。
+- `ContractBoundaryIT` 7/7（main+QA 组合，用例来自 PR #23）：空意见、所有者不自确认、存量快照、资源复核鉴权、标题/时长边界全部通过。
+- 30 场景：**28 通过、1 部分（N-AT-02）、0 阻塞、1 未执行（D-AT-24）**；Tx 96.7%、Ts 93.3%。D-AT-24 仍因缺 compose 插件未执行。
+- 证据：`artifacts/test-results/qa-2026-11-13/final-main-e1051df/`、`final-contract-boundary/`。
+
+## 2026-11-10 结论（历史）
 
 - 基准：main `ca162bf`（含 #22 AN 空意见修复；#21 CM 改期修复仍未合入），QA 普通合并 `f06482a`；无 reset/强推。
 - JDK21 + PostgreSQL 17.11 真实默认 `verify`（main `db01829`）：**Surefire 96/96 通过；Failsafe 158 项 = 156 通过、1 失败、0 错误、1 显式跳过，exit 1**。

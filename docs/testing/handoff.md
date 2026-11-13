@@ -2,7 +2,16 @@
 
 > 维护：测试经理（55230316）。格式依据 `agents/common/04-协作与集成规程.md` §4 固定模板。运行时信息填真实值；**不能为了填满模板虚构结果**，未执行的检查如实标注。
 
-## 最新进展（2026-11-13 晚：同步 main 20debb3，仍待 #21）
+## 最新结果（2026-11-13 深夜：CM #21 已合入 main，最终复跑通过）
+
+- main=`e1051df`（PR #21 已合并），QA 普通合并 `0a2a0b2`；无 reset/强推。
+- JDK21 + PostgreSQL 17.11 默认 `verify`：**exit 0**；Surefire **101/101**；Failsafe **165 = 164 通过、0 失败、0 错误、1 跳过**（既有显式项）；`PermissionsIT` **13/13**，两条陈旧版本断言通过。
+- D-AT-20 转**通过**；**DEF-QA-2026-10/11 关闭**。`ContractBoundaryIT` 7/7（main+QA 组合，用例来自 PR #23）覆盖空意见、所有者不自确认、存量快照、资源复核鉴权与标题/时长边界。
+- 30 场景：**28 通过、1 部分（N-AT-02）、0 阻塞、1 未执行（D-AT-24）**；Tx 96.7%、Ts 93.3%。
+- 证据：`artifacts/test-results/qa-2026-11-13/final-main-e1051df/`、`final-contract-boundary/`。
+- 关于历史状态：#21 在 11-09～11-13 期间曾为 CHANGES_REQUESTED/未解决对话导致 BLOCKED，这些是**当时**状态；11-13 晚间已批准并合入，当前阻塞项不再存在。
+
+## 历史进展（2026-11-13 晚：同步 main 20debb3 时点；其后 #21 已合入）
 
 - 已把最新 main `20debb3` 合入 QA 分支（合并 `5f50578`）。在最新组合上定向复跑 `PermissionsIT.tc2001And02`：仍**恰为 2 处** `details={}` 失败（两种陈旧请求各一处），`assertAll` 正常分别报告；断言未放宽。
 - CM #21 已 APPROVED（`196f4a8`），但仓库开启 `required_conversation_resolution`，`ChangeService.java` 仍有 2 条未解决评审对话，故 `mergeStateStatus=BLOCKED`；合入后按评审要求以最新 main + 本 PR 复跑默认 verify 并附 SHA。
@@ -15,7 +24,7 @@
 - 当前复审唯一待办：保留 `PermissionsIT` 两条陈旧版本详情断言，待 CM #21 合入后以最新 main + 本 PR 复跑默认 verify 并附 SHA/结果。断言未改动、未放宽。
 - 候选组合（未合入）：QA `8ca2efc` + CM 最新 `196f4a8`，本地合并 `fd7e868`，默认 verify **exit 0：101/101 单测；158 IT=157 通过、0 失败、1 跳过**。早前 `8f30a49`+`ade8c2b` 组合同样 exit 0。仅作候选证据，不等于已合入主线验收。
 - #21 阻塞原因已定位：`required_conversation_resolution` 开启，`ChangeService.java` 尚有 2 条未解决评审对话；需 CM/评审人解决后合并。
-- #21 状态：PM 已 APPROVE，但早前一条 CHANGES_REQUESTED 未清除，GitHub 仍 BLOCKED；需评审人/PM 清理后合入，QA 随即复跑。
+- #21 状态（当时）：PM 已 APPROVE，但早前一条 CHANGES_REQUESTED 未清除，GitHub 仍 BLOCKED；该历史阻塞随后由评审人清理并于 11-13 合入 main。
 - 证据：`artifacts/test-results/qa-2026-11-13/`。
 
 ## 历史交付（2026-11-10：最新main全量复跑、定位修正与任务5独立PR）

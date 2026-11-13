@@ -4,7 +4,7 @@
 > 用途：QA-02/03 的测试改造对照表与 QA-05 覆盖判定的执行台账（判定规则见 `test-plan.md` §4.1）。
 > **执行状态初始全部「未执行」**；每轮执行后更新状态列并附证据路径。主责列指模块自测负责人，QA 列为跨模块验收落点。
 
-| 编号 | 场景摘要 | 需求关联 | 主责 | QA 执行落点 | 状态（2026-11-12 最新main复跑与评审更正） |
+| 编号 | 场景摘要 | 需求关联 | 主责 | QA 执行落点 | 状态（2026-11-13 最终复跑，#21已合入） |
 |---|---|---|---|---|---|
 | D-AT-01 | 登录/错密码/停用后旧令牌 401；响应无 passwordHash | FR-01 | PM | PermissionsIT-01 + login.spec | ✅ 通过：PermissionsIT登录/错密码/停用旧令牌三项真实PG通过；UI登录与三视口页面11-10复跑15/15通过 |
 | D-AT-02 | approver_other/account_admin/applicant_b 越权均 403 无变化 | FR-02 | PM+AN | PermissionsIT（TC-02组） | ✅ 通过：PermissionsIT三类越权403且状态/版本/预约不变断言均通过 |
@@ -25,7 +25,7 @@
 | D-AT-17 | 取消两次不多释放；取消与改期竞争一致终态 | FR-17 | AN+CM | CancellationRaceIT | ✅ 通过：CancellationRaceIT 2/2；合法重复取消返回当前结果，无额外释放/事件/版本，取消与改期竞争终态一致 |
 | D-AT-18 | 故障 → AT_RISK，页面不谎报原安排可用 | FR-18 | DS+UI | DS自测 + conflict.spec | ✅ 通过：TC-18-1真实UI 11-10通过（risk-banner可见且不被谎报为正常），DS真库风险/故障断言通过 |
 | D-AT-19 | 通知消费失败恢复 + 重复消费去重 | FR-19 | CM | NotificationConsistencyIT | ✅ 通过：真实生产消费者接入测试故障探针，首次失败后恢复、同事件去重、已读不推进确认均通过 |
-| D-AT-20 | 旧 baseVersion/lockVersion → STALE_VERSION | FR-20 | AN+CM | PermissionsIT-20 | 🟨 部分：409 STALE_VERSION、完整错误信封、无新版本写入已真实验证；但details={}未含当前版本/锁版本/状态，违反02 §3，待CM修复（DEF-QA-2026-11） |
+| D-AT-20 | 旧 baseVersion/lockVersion → STALE_VERSION | FR-20 | AN+CM | PermissionsIT-20 | ✅ 通过：main `e1051df`（CM #21）+ QA `0a2a0b2` 默认 verify exit0；两种陈旧版本请求均 409 STALE_VERSION，details 至少一项准确当前版本/锁版本/状态，重新 GET 版本不变、无新版本写入，PermissionsIT 13/13 |
 | D-AT-21 | 日历脱敏/名单与他人通知 403 | FR-21 | 全员 | PermissionsIT-21 + permissions.spec | ✅ 通过：PermissionsIT隐私子项本轮通过（12/13，唯一失败属D-AT-20）；11-01真实浏览器permissions4/4通过 |
 | D-AT-22 | first-fit vs RANKED 300 候选对比 | NFR-评测 | DS+测试 | SchedulingBenchmarkIT + evaluate | ✅ 通过：最新真库Benchmark 1/1，evaluate exit0，160测量行、16组expected全一致；四资源基准范围 |
 | D-AT-23 | 刷新/重启后状态来自真实持久化 | FR-23 | UI+配置 | `change-happy-path.spec.ts`（reload 断言） | ✅ 通过：11-13默认全量29/29（含reload后version2/3102/15:00）；11-01关闭seed重启后API与新浏览器状态一致（重启证据为11-01版本） |
@@ -37,7 +37,15 @@
 | N-AT-05 | 所有者兼任 APPROVER/RESOURCE_CONFIRM 对本人申请 4 种审核全拒 | 回避规则 | PM+AN | IdentityEligibilityIT.nat05 | ✅ 通过：四种自审回避全部403且无成功变化，独立授权人员正常执行（含改期） |
 | N-AT-06 | 审批范围/管理范围不全覆盖拒绝；停用工作人员拒绝不代签 | 范围规则 | PM+CM | IdentityEligibilityIT.nat06 | ✅ 通过：组织/类别范围、资源范围不全403；停用工作人员被拒且待确认快照不变、不代签，撤回重建通过 |
 
-## 2026-11-13 复审清理与浏览器全量复跑
+## 2026-11-13 最终复跑（CM #21 已合入 main）
+
+- main=`e1051df`（含 CM #21 改期修复），QA 普通合并 `0a2a0b2`。
+- 默认 `verify`（JDK21 + PostgreSQL 17.11）：**exit 0**；Surefire **101/101**；Failsafe **165 项 = 164 通过、0 失败、0 错误、1 跳过**（ResourceSchedulingIT 既有显式项）。`PermissionsIT` **13/13**，两条陈旧版本断言均通过；D-AT-20 由部分转为**通过**。
+- `ContractBoundaryIT`（PR #23 用例，在 main+QA 组合上）**7/7 通过**：空意见审批、所有者不自确认、存量快照、资源复核鉴权以及标题/时长边界；DEF-10/11 具备真实关闭证据。
+- 30 项：**28 通过、1 部分（N-AT-02，UI 未覆盖全部八组合）、0 阻塞、1 未执行（D-AT-24）**；Tx=29/30=96.7%、Ts=28/30=93.3%。D-AT-24 仍因本机缺 compose 插件未执行。
+- 证据：`artifacts/test-results/qa-2026-11-13/final-main-e1051df/`、`final-contract-boundary/`。
+
+## 2026-11-13 评审清理与浏览器全量复跑（历史）
 
 - 按复审要求：TC-12-1 抢占助手返回活动 ID，用例结束由该活动所有者调用 API-21 取消并核对 `CANCELLED`；保留抢占与最终 409 断言。默认 Playwright 固定 `workers: 1`，避免共享 demo 活动 A 的跨文件并发污染。
 - 真实后端/前端 + 全新 PostgreSQL：`npm --prefix qa run test:e2e` **29/29 通过**（42.5s）；`change-conflict + change-happy-path` 同序 6/6 通过。并发对照为 26/29（3 例状态竞争），已由串行配置消除。
