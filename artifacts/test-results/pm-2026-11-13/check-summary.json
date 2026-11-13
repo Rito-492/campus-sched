@@ -1,0 +1,210 @@
+{
+  "date": "2026-11-13",
+  "environment": "Java 21.0.12.1, Maven Wrapper 3.9.11, PostgreSQL 17.6, Node 22.23.0, Edge",
+  "main": "db018298359dac00c687783c6615001033270762",
+  "candidates": {
+    "cm": "ade8c2b7979e6639dbc018d3022fbe6dcbd4356e",
+    "qa": "ad1151f647a272dade7ca6b348b2d1e9ae8a6d95",
+    "task5": "26c5dad1694d5b5483762f996b59133d8dc28b98"
+  },
+  "backend": [
+    {
+      "name": "main-pm",
+      "exit": 0,
+      "unit": {
+        "total": 96,
+        "passed": 96,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "integration": {
+        "total": 43,
+        "passed": 43,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "name": "cm-exact",
+      "exit": 0,
+      "unit": {
+        "total": 82,
+        "passed": 82,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "integration": {
+        "total": 6,
+        "passed": 6,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "name": "cm-probes",
+      "exit": 0,
+      "unit": {
+        "total": 101,
+        "passed": 101,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "integration": {
+        "total": 2,
+        "passed": 2,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "name": "qa-exact",
+      "exit": 1,
+      "unit": {
+        "total": 96,
+        "passed": 96,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "integration": {
+        "total": 24,
+        "passed": 23,
+        "failed": 1,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "name": "combined-default",
+      "exit": 0,
+      "unit": {
+        "total": 101,
+        "passed": 101,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "integration": {
+        "total": 158,
+        "passed": 157,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 1
+      }
+    },
+    {
+      "name": "task5-main",
+      "exit": 1,
+      "unit": {
+        "total": 96,
+        "passed": 96,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "integration": {
+        "total": 1,
+        "passed": 0,
+        "failed": 0,
+        "errors": 1,
+        "skipped": 0
+      }
+    },
+    {
+      "name": "task5-combined",
+      "exit": 0,
+      "unit": {
+        "total": 101,
+        "passed": 101,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "integration": {
+        "total": 7,
+        "passed": 7,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  ],
+  "scope": {
+    "main-pm": "FoundationIT,PublishedModulesIT,ProductionWorkflowIT,StandardMavenSchemaIT,DemoDataSeederIT,OutboxClaimIT",
+    "cm-exact": "ProductionWorkflowIT,OutboxClaimIT",
+    "cm-probes": "主线加CM与两项隔离HTTP探针",
+    "qa-exact": "PermissionsIT,IdentityEligibilityIT,ActivityApprovalIT",
+    "combined-default": "主线加CM和QA的默认 clean verify",
+    "task5-main": "主线加任务5的ContractBoundaryIT，beforeAll外键错误",
+    "task5-combined": "主线加CM、QA、任务5的ContractBoundaryIT"
+  },
+  "browser": [
+    {
+      "name": "ui-full-original",
+      "passed": 28,
+      "failed": 1
+    },
+    {
+      "name": "ui-isolated-case",
+      "passed": 28,
+      "failed": 1
+    },
+    {
+      "name": "ui-only-happy",
+      "passed": 1,
+      "failed": 0
+    },
+    {
+      "name": "ui-with-cleanup",
+      "passed": 29,
+      "failed": 0
+    }
+  ],
+  "browserFailure": "TC-12-1保留3102及3202的预约，下一用例选择共享研讨室C，版本2已生效。干净库单跑与建议清理后全套均通过。",
+  "static": {
+    "qaContract": "40 API / 9枚举 / 15 DTO通过",
+    "qaTypecheck": "通过",
+    "webBuild": "通过",
+    "scheduleRows": 160,
+    "designSelfTests": 27,
+    "designCases": 138,
+    "wordPages": 50,
+    "wordSha256": "2254e34c95fa2a2f171af5ed09b4bad6a47575bb89136f078f3e9ad8e76121f5"
+  },
+  "reviews": {
+    "cm": 5885967185,
+    "qa": 5885967530,
+    "task5": 5885967754
+  },
+  "mavenCommand": "./server/mvnw.cmd -f server/pom.xml [optional -Dit.test=<selection>] clean verify",
+  "mavenOutput": "maven-results-original.txt",
+  "followup": {
+    "qa": "8f30a49123ee085a8ab4e29b02be93eccc7cf104",
+    "cm": "ade8c2b7979e6639dbc018d3022fbe6dcbd4356e",
+    "candidateTree": "729179e36d9ed60adbf48bc8585b68af872f77f0",
+    "qaOnly": {
+      "selection": "PermissionsIT#tc2001And02_staleVersionProtection",
+      "exit": 1,
+      "unitPassed": 96,
+      "integrationFailed": 1,
+      "assertionsFailed": 2
+    },
+    "combined": {
+      "exit": 0,
+      "unitPassed": 101,
+      "integrationPassed": 157,
+      "integrationTotal": 158,
+      "skipped": 1
+    },
+    "backendOutput": "maven-results-8f30a49.txt",
+    "browserOutput": "qa-8f30a49-browser.json",
+    "restartOutput": "qa-8f30a49-restart.json",
+    "review": "https://github.com/Rito-492/campus-sched/pull/16#pullrequestreview-5887771583"
+  }
+}

@@ -1,0 +1,55 @@
+diff --git a/server/src/test/java/com/campus/events/foundation/ProductionWorkflowIT.java b/server/src/test/java/com/campus/events/foundation/ProductionWorkflowIT.java
+index 4efb622..909d83a 100644
+--- a/server/src/test/java/com/campus/events/foundation/ProductionWorkflowIT.java
++++ b/server/src/test/java/com/campus/events/foundation/ProductionWorkflowIT.java
+@@ -147,6 +147,50 @@ class ProductionWorkflowIT {
+         assertEquals("PENDING_RESOURCE", ok(200, "POST", "/changes/" + id + "/approver-decision", approverToken,
+                 new ChangeDecision(Decision.APPROVE, "")).path("status").asText());
+     }
++    @Test void oldOwnerConfirmationIsDeniedAndWithdrawalRebuildsWithoutSelf() throws Exception {
++        Flow flow = published(false);
++        UUID change = change(flow);
++        // 只在隔离测试库模拟升级前遗留的待办快照。
++        jdbc.update("UPDATE change_request SET status='AWAITING_CONFIRMATIONS', impact_json=jsonb_set(impact_json, '{requiredStaffUserIds}', ?::jsonb) WHERE id=?",
++                mapper.writeValueAsString(List.of(owner)), change);
++        jdbc.update("INSERT INTO change_confirmation(change_id,user_id) VALUES (?,?)", change, owner);
++        UUID key = UUID.randomUUID();
++        var result = call("POST", "/changes/" + change + "/confirmation", ownerToken, key, new ChangeDecision(Decision.APPROVE, ""));
++        assertEquals(403, result.status());
++        assertEquals(1, jdbc.queryForObject("SELECT count(*) FROM change_confirmation WHERE change_id=? AND user_id=? AND decision IS NULL AND decided_at IS NULL",
++                Integer.class, change, owner));
++        assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM command_receipt WHERE actor_id=? AND idempotency_key=?",
++                Integer.class, owner, key.toString()));
++        assertEquals("WITHDRAWN", ok(200, "POST", "/changes/" + change + "/withdraw", ownerToken,
++                new WithdrawInput("按新规则重新发起")).path("status").asText());
++        UUID rebuilt = change(flow);
++        assertNotEquals(change, rebuilt);
++        assertEquals("PENDING_APPROVER", jdbc.queryForObject("SELECT status FROM change_request WHERE id=?", String.class, rebuilt));
++        assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM change_confirmation WHERE change_id=?", Integer.class, rebuilt));
++    }
++
++    @Test void staleResourceReviewDisclosesDetailsOnlyAfterPermissionCheck() throws Exception {
++        Flow flow = published(false);
++        UUID change = change(flow);
++        approveChange(change);
++        // 只在隔离测试库制造已有版本 1 的改期与活动当前版本 2 不一致。
++        jdbc.update("INSERT INTO activity_version(activity_id,version_no,input_json,created_by) SELECT activity_id,2,input_json,created_by FROM activity_version WHERE activity_id=? AND version_no=1", flow.id());
++        jdbc.update("UPDATE activity SET version_no=2 WHERE id=?", flow.id());
++        var staleBody = new ChangeDecision(Decision.APPROVE, "");
++        var denied = call("POST", "/changes/" + change + "/resource-decision", staffToken, UUID.randomUUID(), staleBody);
++        assertEquals(403, denied.status());
++        assertEquals(0, denied.body().path("error").path("details").size());
++        var allowed = call("POST", "/changes/" + change + "/resource-decision", adminToken, UUID.randomUUID(), staleBody);
++        assertEquals(409, allowed.status());
++        assertEquals("STALE_VERSION", allowed.body().path("error").path("code").asText());
++        var current = activity(flow.id());
++        var details = allowed.body().path("error").path("details");
++        assertEquals(current.path("versionNo"), details.path("versionNo"));
++        assertEquals(current.path("lockVersion"), details.path("lockVersion"));
++        assertEquals(current.path("status"), details.path("status"));
++        assertEquals("PENDING_RESOURCE", jdbc.queryForObject("SELECT status FROM change_request WHERE id=?", String.class, change));
++        assertEquals(1, jdbc.queryForObject("SELECT count(*) FROM reservation WHERE activity_id=? AND status='ACTIVE'", Integer.class, flow.id()));
++    }
+     @Test void allProductionPortsPersistChangeNotificationsAndCancellation() throws Exception {
+         Flow flow = published(true);
+         ok(200, "PUT", "/activities/" + flow.id() + "/registration", studentToken, new RegistrationCommand(RegistrationAction.JOIN, 1));
