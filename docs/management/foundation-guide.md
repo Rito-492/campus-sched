@@ -35,7 +35,7 @@ Failsafe从`.mvn/integration-test.properties`读取test配置和运行期占位�
 
 2026-10-20该入口真实执行22项单元测试和21项真实PostgreSQL集成测试；不能将隔离生成的jar用于全项目发布，也不据此标记M0/M2/M3完成。PM测试为随机`t_<32hex>` schema，仅删除本次schema；不使用QA演示导入器，不能据此宣称后者已通过。正式全量检查在修复依赖后使用默认入口。
 
-Clock默认系统UTC，只有e2e profile读取APP_TEST_NOW；普通dev不受该值影响。测试可用@Primary Clock。Jackson保留契约要求的显式null，拒绝未知字段、缺失必需字段、原始类型null、重复JSON键和尾随内容。2026-11-07 增补：整数请求字段拒绝小数，枚举只接受契约名称，拒绝数字序号及数字字符串；非法请求返回 400，不能先转换后写入。
+Clock默认系统UTC，只有e2e profile读取APP_TEST_NOW；普通dev不受该值影响。测试可用@Primary Clock。Jackson保留契约要求的显式null，拒绝未知字段、缺失必需字段、原始类型null、重复JSON键和尾随内容。PR #20 禁用浮点数向整数请求字段的转换，并拒绝数字枚举序号。相关请求返回 400。
 
 ## 2 HTTP与账号
 
