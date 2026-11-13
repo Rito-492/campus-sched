@@ -1,0 +1,183 @@
+{
+  "passed": 29,
+  "failed": 0,
+  "skipped": 0,
+  "workers": 1,
+  "browser": "Edge",
+  "tests": [
+    {
+      "file": "booking.spec.ts",
+      "title": "TC-03-1 applicant_a 新建并提交，approver_a 同意、resource_admin 确认、发布后 student_a 报名成功",
+      "project": "desktop",
+      "status": "passed"
+    },
+    {
+      "file": "change-conflict.spec.ts",
+      "title": "TC-09-2 预览同时展示场地占用与器材缺件，首选替代为 3102+3202×2 同时间",
+      "project": "desktop",
+      "status": "passed"
+    },
+    {
+      "file": "change-conflict.spec.ts",
+      "title": "TC-11-1 staff_a 拒绝 → REJECTED，原安排与版本完全保留",
+      "project": "desktop",
+      "status": "passed"
+    },
+    {
+      "file": "change-conflict.spec.ts",
+      "title": "TC-11-2 批准人驳回 → REJECTED，版本指针不变且意见落库",
+      "project": "desktop",
+      "status": "passed"
+    },
+    {
+      "file": "change-conflict.spec.ts",
+      "title": "TC-12-1 候选资源被占 → 409 RESOURCE_CONFLICT、改期 CONFLICTED、原安排保留",
+      "project": "desktop",
+      "status": "passed"
+    },
+    {
+      "file": "change-conflict.spec.ts",
+      "title": "TC-18-1 故障使 A 原安排标 AT_RISK，页面展示风险提示且不谎报可用",
+      "project": "desktop",
+      "status": "passed"
+    },
+    {
+      "file": "change-happy-path.spec.ts",
+      "title": "TC-10-1 / TC-23-1 预览选首选方案→staff/approver/resource 确认→version2→student 收到通知（含 reload 持久化）",
+      "project": "desktop",
+      "status": "passed"
+    },
+    {
+      "file": "eligibility.spec.ts",
+      "title": "N-AT-02 applicant_b（STUDENT）UI 明示仅教师资源不可申请并禁选（HTTP提交另验）",
+      "project": "desktop",
+      "status": "passed"
+    },
+    {
+      "file": "eligibility.spec.ts",
+      "title": "N-AT-02 applicant_a（TEACHER）同目标可走到下一步（对照，按 identity 判断）",
+      "project": "desktop",
+      "status": "passed"
+    },
+    {
+      "file": "eligibility.spec.ts",
+      "title": "N-AT-02 applicant_b 直接 HTTP 保存草稿后提交 → 403 RESOURCE_INELIGIBLE 且草稿不推进",
+      "project": "desktop",
+      "status": "passed"
+    },
+    {
+      "file": "login.spec.ts",
+      "title": "TC-01-1 applicant_a 正常登录进入主页，登录响应无密码字段、页面无散列信息",
+      "project": "desktop",
+      "status": "passed"
+    },
+    {
+      "file": "login.spec.ts",
+      "title": "TC-01-2 错误密码返回 401 并显示错误提示，停留登录页，随后正确密码仍可登录",
+      "project": "desktop",
+      "status": "passed"
+    },
+    {
+      "file": "login.spec.ts",
+      "title": "D-AT-01 登录后页面与浏览器存储不出现密码散列或明文口令",
+      "project": "desktop",
+      "status": "passed"
+    },
+    {
+      "file": "permissions.spec.ts",
+      "title": "TC-21-1 学生日历只显示无权限占用信息，不泄露活动名称/组织者/名单",
+      "project": "desktop",
+      "status": "passed"
+    },
+    {
+      "file": "permissions.spec.ts",
+      "title": "TC-21-2 学生读取他人活动报名名单被拒 403，UI 不展示名单",
+      "project": "desktop",
+      "status": "passed"
+    },
+    {
+      "file": "permissions.spec.ts",
+      "title": "TC-21-2 学生只能查看自己的通知，读取他人通知被拒",
+      "project": "desktop",
+      "status": "passed"
+    },
+    {
+      "file": "permissions.spec.ts",
+      "title": "TC-21-3 staff_a 读取改期详情时名单字段被裁剪但计数真实",
+      "project": "desktop",
+      "status": "passed"
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "title": "登录页：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "desktop",
+      "status": "passed"
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "title": "活动列表：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "desktop",
+      "status": "passed"
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "title": "活动详情：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "desktop",
+      "status": "passed"
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "title": "改期工作台：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "desktop",
+      "status": "passed"
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "title": "登录页：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "desktop-1920",
+      "status": "passed"
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "title": "活动列表：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "desktop-1920",
+      "status": "passed"
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "title": "活动详情：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "desktop-1920",
+      "status": "passed"
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "title": "改期工作台：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "desktop-1920",
+      "status": "passed"
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "title": "登录页：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "mobile-390",
+      "status": "passed"
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "title": "活动列表：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "mobile-390",
+      "status": "passed"
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "title": "活动详情：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "mobile-390",
+      "status": "passed"
+    },
+    {
+      "file": "ui-layout.spec.ts",
+      "title": "改期工作台：无横向溢出、无错误横幅、文字可读并留存截图",
+      "project": "mobile-390",
+      "status": "passed"
+    }
+  ]
+}

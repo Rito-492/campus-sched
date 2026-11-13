@@ -181,5 +181,30 @@
     "cm": 5885967185,
     "qa": 5885967530,
     "task5": 5885967754
+  },
+  "mavenCommand": "./server/mvnw.cmd -f server/pom.xml [optional -Dit.test=<selection>] clean verify",
+  "mavenOutput": "maven-results-original.txt",
+  "followup": {
+    "qa": "8f30a49123ee085a8ab4e29b02be93eccc7cf104",
+    "cm": "ade8c2b7979e6639dbc018d3022fbe6dcbd4356e",
+    "candidateTree": "729179e36d9ed60adbf48bc8585b68af872f77f0",
+    "qaOnly": {
+      "selection": "PermissionsIT#tc2001And02_staleVersionProtection",
+      "exit": 1,
+      "unitPassed": 96,
+      "integrationFailed": 1,
+      "assertionsFailed": 2
+    },
+    "combined": {
+      "exit": 0,
+      "unitPassed": 101,
+      "integrationPassed": 157,
+      "integrationTotal": 158,
+      "skipped": 1
+    },
+    "backendOutput": "maven-results-8f30a49.txt",
+    "browserOutput": "qa-8f30a49-browser.json",
+    "restartOutput": "qa-8f30a49-restart.json",
+    "review": "https://github.com/Rito-492/campus-sched/pull/16#pullrequestreview-5887771583"
   }
 }
