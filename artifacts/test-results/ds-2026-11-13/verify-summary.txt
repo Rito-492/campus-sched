@@ -1,0 +1,26 @@
+[INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.921 s -- in com.campus.events.activity.ActivityServiceTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.043 s -- in com.campus.events.activity.ActivityStateMachineTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.030 s -- in com.campus.events.auth.AuthorizationPolicyTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.028 s -- in com.campus.events.auth.PasswordPolicyTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.173 s -- in com.campus.events.change.ChangeServiceTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.147 s -- in com.campus.events.contract.ContractValidationTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.337 s -- in com.campus.events.foundation.CanonicalJsonTest
+[INFO] Tests run: 19, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.239 s -- in com.campus.events.foundation.ContractJsonTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.034 s -- in com.campus.events.foundation.ResponsesTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 s -- in com.campus.events.scheduling.CandidateRankingTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.047 s -- in com.campus.events.scheduling.CapacitySweepTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s -- in com.campus.events.scheduling.ScheduleQueryServiceTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.173 s -- in com.campus.events.scheduling.StrategyEvaluatorTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.010 s -- in com.campus.events.scheduling.TimeIntervalTest
+[INFO] Tests run: 101, Failures: 0, Errors: 0, Skipped: 0
+2026-11-13T23:09:12.333+08:00  INFO 46224 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:5440/campus_test?currentSchema=t_6f889d5024ff4e32a366935b3508099f (PostgreSQL 17.6)
+[INFO] Tests run: 29, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 26.51 s -- in com.campus.events.resource.ResourceSchedulingIT
+2026-11-13T23:09:35.870+08:00  INFO 46224 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:5440/campus_test?currentSchema=t_d8323a52e21e487596aa51125e78eb29 (PostgreSQL 17.6)
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 16.40 s -- in com.campus.events.resource.ResourceWorkflowIT
+2026-11-13T23:09:51.944+08:00  INFO 46224 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:5440/campus_test (PostgreSQL 17.6)
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.11 s -- in DS-01 V1 Ǩ����֤ v3.0��SchemaIT��
+2026-11-13T23:10:02.135+08:00  INFO 46224 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:5440/campus_test (PostgreSQL 17.6)
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 152.3 s -- in com.campus.events.scheduling.DsStrategyBenchmarkIT
+[INFO] Tests run: 46, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+[INFO] Finished at: 2026-11-13T23:12:34+08:00

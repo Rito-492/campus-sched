@@ -1,0 +1,7 @@
+{
+  "acceptanceStatus" : "真实EventPort故障API路径通过",
+  "faultRows" : 1,
+  "activeReservations" : 2,
+  "realEventPortPresent" : true,
+  "httpStatus" : 201
+}
