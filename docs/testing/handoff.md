@@ -8,7 +8,7 @@
 - 基准：main `ca162bf`（#22 已合入；#21 仍 CHANGES_REQUESTED 未合入），QA 普通合并 `f06482a`。
 - 后端（main `db01829`）：JDK21 + PostgreSQL 17.11 默认 verify，Surefire 96/96；Failsafe 158=156 通过/1 失败/0 错误/1 跳过。唯一失败为 DEF-11（CM 陈旧版本 details 为空），两种陈旧请求分别报告；跳过为既有显式项。
 - 缺陷：DEF-08、DEF-09 以实际复跑关闭；DEF-10、DEF-11 仍待 CM（#21），未改测试期望迁就。
-- 浏览器：定位修正后 TC-09-2/TC-18-1 2/2 通过（修正前 2/2 失败）；booking.spec、change-happy-path 各 1/1 通过。使用全新数据库 `campus_e2e_20261110`，真实后端/前端，无 Mock。
+- 浏览器（11-13）：TC-12-1 抢占活动由所有者 API-21 取消并核对 CANCELLED；默认全量套件 **29/29 通过**（全新库、真实前后端），`workers: 1` 防并发污染。此前定位修正 TC-09-2/TC-18-1 2/2 通过（修正前 2/2 失败）。
 - 30 场景：27 通过、2 部分（D-AT-20、N-AT-02）、1 未执行（D-AT-24）；Tx 96.7%，Ts 90.0%（N-AT-02 按契约§6更正为部分）。D-AT-24 未执行：本机缺 compose 插件，仅静态解析 compose 文件。
 - 任务5文档已单独提交 **PR #23**（分支 `work/55230316-task5-docs`，base main），不混入 #16；已请求 PM 交叉评审。门禁自测 27/27、真实用例集 exit 0。
 - 证据：`artifacts/test-results/qa-2026-11-10/`、[测试报告](test-report.md)、[覆盖矩阵](coverage-matrix.md)、[缺陷登记](defect-register.md)。

@@ -12,6 +12,7 @@
 - **2026-11-12 评审更正**：N-AT-02 此前记为通过属过度声明——HTTP 八组合通过，但 UI 仅教师专用组一组；按契约 §6 改为部分覆盖并同步 Ts。
 - 本轮新增定位修正：[change-conflict.spec.ts](../../qa/tests/change-conflict.spec.ts) 的 TC-09-2 由按钮改为方案卡片定位、TC-18-1 改用 `risk-banner` testid；未改产品、expected 或公共契约。
 - 证据：`artifacts/test-results/qa-2026-11-10/`；详细覆盖见 [coverage-matrix.md](coverage-matrix.md)，缺陷见 [defect-register.md](defect-register.md)。
+- **2026-11-13 复审清理**：TC-12-1 抢占活动改由所有者 API-21 取消并核对 CANCELLED；Playwright 固定 `workers: 1`。默认全量浏览器套件 **29/29 通过**（全新库、真实前后端）；并发对照 26/29 已记录为状态竞争，由串行配置消除。证据 `artifacts/test-results/qa-2026-11-13/e2e/`。
 
 # 测试报告 v0.9（全模块合并后集成验收，历史）
 

@@ -15,7 +15,7 @@
 | D-AT-07 | 两批准活动抢同资源，恰 1 成功 1 冲突，无部分预约 | FR-07 | DS+AN | BookingConcurrencyIT | ✅ 通过：BookingConcurrencyIT 1/1真实HTTP+库断言通过（AN空意见修复后），恰1成功1冲突、无部分预约 |
 | D-AT-08 | 幂等：同 key 同 body 重放 / 同 key 不同 body 409 | FR-08 | PM | PermissionsIT-08 | ✅ 通过：PermissionsIT幂等两项通过（同key重放、同key不同body 409），回执与预约计数已断言 |
 | D-AT-09 | 改期预览两类冲突 + 首选 3102+3202×2 代价 (0,1,1) | FR-09 | DS+UI | DS自测 + conflict.spec | ✅ 通过：TC-09-2真实UI 11-10通过（两类冲突、当前排序首选=3102+3202×2同时间15:00、预览不写库）；DS真库同时间替代断言通过 |
-| D-AT-10 | 改期确认链 staff→approver→resource，version2 原子切换 | FR-10 | CM+AN | `change-happy-path.spec.ts` + ChangeRollbackIT 前置 | ✅ 通过：真实浏览器预览选候选→staff/approver/resource→APPLIED/version2，3102+15:00及学生通知、reload通过（11-10复跑）；真库原子切换/回滚通过 |
+| D-AT-10 | 改期确认链 staff→approver→resource，version2 原子切换 | FR-10 | CM+AN | `change-happy-path.spec.ts` + ChangeRollbackIT 前置 | ✅ 通过：真实浏览器预览选候选→staff/approver/resource→APPLIED/version2，3102+15:00及学生通知、reload通过；11-13清除TC-12-1抢占占用后，默认全量29/29通过；真库原子切换/回滚通过 |
 | D-AT-11 | 工作人员/批准人拒绝 → REJECTED 原安排完整 | FR-11 | CM | ChangeRollbackIT-11 | ✅ 通过：ChangeRollbackIT工作人员/批准人拒绝两项真HTTP+库断言通过，原版本预约不变 |
 | D-AT-12 | 预览后被抢占 → CONFLICTED，原安排保留 | FR-12 | CM+DS | ChangeRollbackIT-12 + conflict.spec | ✅ 通过：ChangeRollbackIT抢占后最终409 RESOURCE_CONFLICT/CONFLICTED、原安排保留，5/5全通过（11-10） |
 | D-AT-13 | 自身旧占用排除，不自竞争 | FR-13 | DS+CM | DS自测 + Bench(SCH-01) | ✅ 通过：真实改期schedule-preview排除自身及无写入断言通过；DS模块同样通过 |
@@ -28,7 +28,7 @@
 | D-AT-20 | 旧 baseVersion/lockVersion → STALE_VERSION | FR-20 | AN+CM | PermissionsIT-20 | 🟨 部分：409 STALE_VERSION、完整错误信封、无新版本写入已真实验证；但details={}未含当前版本/锁版本/状态，违反02 §3，待CM修复（DEF-QA-2026-11） |
 | D-AT-21 | 日历脱敏/名单与他人通知 403 | FR-21 | 全员 | PermissionsIT-21 + permissions.spec | ✅ 通过：PermissionsIT隐私子项本轮通过（12/13，唯一失败属D-AT-20）；11-01真实浏览器permissions4/4通过 |
 | D-AT-22 | first-fit vs RANKED 300 候选对比 | NFR-评测 | DS+测试 | SchedulingBenchmarkIT + evaluate | ✅ 通过：最新真库Benchmark 1/1，evaluate exit0，160测量行、16组expected全一致；四资源基准范围 |
-| D-AT-23 | 刷新/重启后状态来自真实持久化 | FR-23 | UI+配置 | `change-happy-path.spec.ts`（reload 断言） | ✅ 通过：11-10真实UI改期成功链reload后version2/3102/15:00保持；11-01关闭seed重启后API与新浏览器状态一致（重启证据为11-01版本） |
+| D-AT-23 | 刷新/重启后状态来自真实持久化 | FR-23 | UI+配置 | `change-happy-path.spec.ts`（reload 断言） | ✅ 通过：11-13默认全量29/29（含reload后version2/3102/15:00）；11-01关闭seed重启后API与新浏览器状态一致（重启证据为11-01版本） |
 | D-AT-24 | 干净环境按发布说明启动换角色答辩 | FR-24 | 全员 | 发布演练（check.ps1 + 人工） | ⬜ 未执行：本机Docker仅29.9.3、缺compose插件与docker-compose；仅静态解析compose/compose.qa服务结构，未启动干净环境，不记通过 |
 | N-AT-01 | 身份与角色分离：教师申请人/学生申请人/仅账号管理员调用审批复核 | 身份规则 | PM+AN | IdentityEligibilityIT.nat01 | ✅ 通过：IdentityEligibilityIT 6/6全通过；教师/学生/账号管理员不自动有审批复核权，状态与记录不变 |
 | N-AT-02 | 两类身份×四种资源资格（3111-3114/3211-3214），UI+HTTP 双通道 | 资格规则 | DS+UI | IdentityEligibilityIT.nat02 + conflict.spec | 🟨 部分：两类身份×四种资源资格的直接HTTP八组合真库全部通过；UI 仅教师专用组一组证据，其余组合未逐组从UI提交，未达契约§6「UI+HTTP双通道」全覆盖 |
@@ -37,7 +37,14 @@
 | N-AT-05 | 所有者兼任 APPROVER/RESOURCE_CONFIRM 对本人申请 4 种审核全拒 | 回避规则 | PM+AN | IdentityEligibilityIT.nat05 | ✅ 通过：四种自审回避全部403且无成功变化，独立授权人员正常执行（含改期） |
 | N-AT-06 | 审批范围/管理范围不全覆盖拒绝；停用工作人员拒绝不代签 | 范围规则 | PM+CM | IdentityEligibilityIT.nat06 | ✅ 通过：组织/类别范围、资源范围不全403；停用工作人员被拒且待确认快照不变、不代签，撤回重建通过 |
 
-## 2026-11-12 最新main复跑与评审更正
+## 2026-11-13 复审清理与浏览器全量复跑
+
+- 按复审要求：TC-12-1 抢占助手返回活动 ID，用例结束由该活动所有者调用 API-21 取消并核对 `CANCELLED`；保留抢占与最终 409 断言。默认 Playwright 固定 `workers: 1`，避免共享 demo 活动 A 的跨文件并发污染。
+- 真实后端/前端 + 全新 PostgreSQL：`npm --prefix qa run test:e2e` **29/29 通过**（42.5s）；`change-conflict + change-happy-path` 同序 6/6 通过。并发对照为 26/29（3 例状态竞争），已由串行配置消除。
+- 后端默认 verify 仍为 96/96 单测、158 IT=156 通过/1 失败（D-AT-20 details，DEF-11）/1 跳过；本轮未改服务端代码。
+- 证据：`artifacts/test-results/qa-2026-11-13/`。
+
+## 2026-11-12 最新main复跑与评审更正（历史）
 
 - main=`db01829`（PR #20 已合入），QA 普通合并 `6a1785c`；#21（CM 改期修复）仍被评审阻塞，未合入。
 - 默认 verify：Surefire 96/96；Failsafe 158=156 通过、1 失败、0 错误、1 跳过；唯一失败 `PermissionsIT.tc2001And02` 的 `details={}`（DEF-11），同一用例内两种陈旧版本请求各报 1 处失败。该用例已改为先发出两种陈旧版本请求、再用 `assertAll` 分别汇总，两个分支都真实执行并分别报告失败。

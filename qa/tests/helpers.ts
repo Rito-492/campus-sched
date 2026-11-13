@@ -554,6 +554,23 @@ export async function editActivity(
   return readData<ActivityViewDto>(res, 200, '编辑活动应 200');
 }
 
+/**
+ * API-21 取消活动（所有者）。用于清理测试自己创建的临时活动，
+ * 不改变产品断言；reason 为契约必填。
+ */
+export async function cancelActivity(
+  api: ApiSession,
+  activityId: string,
+  expectedLockVersion: number,
+  reason: string,
+): Promise<ActivityViewDto> {
+  const res = await api.client.post(`${API_PREFIX}/activities/${activityId}/cancel`, {
+    headers: authHeaders(api.token, newIdempotencyKey()),
+    data: { expectedLockVersion, reason },
+  });
+  return readData<ActivityViewDto>(res, 200, `取消活动 ${activityId} 应 200`);
+}
+
 export async function submitActivity(api: ApiSession, activityId: string, expectedLockVersion: number): Promise<ActivityViewDto> {
   const res = await api.client.post(`${API_PREFIX}/activities/${activityId}/submit`, {
     headers: authHeaders(api.token, newIdempotencyKey()),

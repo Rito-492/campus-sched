@@ -18,6 +18,8 @@ export default defineConfig({
   expect: { timeout: 10_000 },
   // 业务状态等待一律用 expect 轮询（QA-03 规则），不用长固定 sleep
   fullyParallel: false,
+  // 用例共享 demo 活动 A（改期链会推进版本/产生终态），跨文件并发会互相污染；固定串行。
+  workers: 1,
   retries: 0,
   reporter: [
     ['list'],

@@ -44,6 +44,7 @@ import {
   resourceConfirmActivity,
   submitActivity,
   approverDecideActivity,
+  cancelActivity,
   type ActivityInputDto,
   type ApiSession,
   type PlanDto,
@@ -71,10 +72,11 @@ async function createFeasibleChange(api: ApiSession): Promise<string> {
 }
 
 /** 另一申请人 applicant_b 创建并确认一个真实占用首选资源的活动（预览后抢占）。 */
-async function preemptPreferredResources(): Promise<void> {
+async function preemptPreferredResources(): Promise<string> {
   const owner = await apiLogin(USERS.applicantB);
   const approver = await apiLogin(USERS.approverA);
   const resource = await apiLogin(USERS.resourceAdmin);
+  let createdId: string | null = null;
   try {
     const input: ActivityInputDto = {
       title: 'D-AT-12 抢占活动（测试数据）',
@@ -92,10 +94,23 @@ async function preemptPreferredResources(): Promise<void> {
       ),
     };
     let created = await createActivity(owner, input);
+    createdId = created.id;
     created = await submitActivity(owner, created.id, created.lockVersion);
     created = await approverDecideActivity(approver, created.id, 'APPROVE', created.lockVersion);
     created = await resourceConfirmActivity(resource, created.id, created.lockVersion);
     expect(created.status, '抢占活动应 SCHEDULED 以真实占用候选资源').toBe('SCHEDULED');
+    return created.id;
+  } catch (error) {
+    // 抢占准备失败也不留下共享资源占用：尽力取消已创建活动后重抛原错误。
+    if (createdId) {
+      try {
+        const current = await getActivity(owner, createdId);
+        await cancelActivity(owner, createdId, current.lockVersion, 'D-AT-12 抢占准备失败清理（测试数据）');
+      } catch {
+        // 保留原始失败，不掩盖真正原因。
+      }
+    }
+    throw error;
   } finally {
     await apiClose([owner, approver, resource]);
   }
@@ -250,6 +265,7 @@ test.describe('D-AT-12 预览后被抢占（最终确认冲突）', () => {
     async ({ browser }) => {
       const sessions: UiSession[] = [];
       const apis: ApiSession[] = [];
+      let preemptedId: string | null = null;
       try {
         const organizerApi = await apiLogin(USERS.applicantA);
         apis.push(organizerApi);
@@ -264,7 +280,7 @@ test.describe('D-AT-12 预览后被抢占（最终确认冲突）', () => {
         expect(preview.check.conflicts, '初始预览应无冲突').toEqual([]);
 
         // 另一活动先占用候选资源 3102 + 3202×2
-        await preemptPreferredResources();
+        preemptedId = await preemptPreferredResources();
 
         const changeId = await createFeasibleChange(organizerApi);
         const staffApi = await apiLogin(USERS.staffA);
@@ -305,6 +321,23 @@ test.describe('D-AT-12 预览后被抢占（最终确认冲突）', () => {
         await expectOriginalPlanPreserved(organizer.page);
       } finally {
         await closeSessions(sessions);
+        // 清理：抢占活动真实占用 3102/3202×2，若不取消会污染同库后续 TC-10-1/TC-23-1。
+        // 使用该活动所有者调用 API-21 并核对取消成功，保留抢占与 409 断言不变。
+        if (preemptedId) {
+          const preemptOwner = await apiLogin(USERS.applicantB);
+          try {
+            const current = await getActivity(preemptOwner, preemptedId);
+            const cancelled = await cancelActivity(
+              preemptOwner,
+              preemptedId,
+              current.lockVersion,
+              'D-AT-12 抢占活动清理（测试数据）',
+            );
+            expect(cancelled.status, '清理后抢占活动应为 CANCELLED').toBe('CANCELLED');
+          } finally {
+            await apiClose([preemptOwner]);
+          }
+        }
         await apiClose(apis);
       }
     },
