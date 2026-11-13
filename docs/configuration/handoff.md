@@ -1,5 +1,48 @@
 # 交接单（配置经理）
 
+## 任务 6「配置库」交付（2026-11-13）
+
+- 成员、学号、任务ID：杨瀚霖、55231031、配置经理；任务 6 配置库交付（截至 2026-11-14）。
+- main 基准：`git fetch` 后 `origin/main` 推进至 `db01829`（PR #20 foundation、PR #22 activity 合并）；本分支 `work/55231031-change` 领先于 PR #21（改期修复，评审中：jixiiangyang 已放行，Kimcra1 待复审）。
+- 本轮交付（配置库 = Git 仓库，文件目录形式，含全部文档与代码，本轮不改目录结构）：
+  1. **补全配置项索引**（`docs/configuration/configuration-index.md`）：由原先只登记 CM 环境项 + QA 测试项，补全为六人模块全覆盖——管理/需求/设计/界面/测试各岗位文档（含课程提交版 Word）、后端源码（PM 基础工程、AN 活动报名、DS 资源调度、CM 改期通知审计）、前端 `web/`、OpenAPI 契约、验收证据，并明确负责人与状态。
+  2. **基线信息**：三条历史基线（init / task-package-v2.0 / v3.0）保持"待核实（无追溯 CCB 记录）"，不补造、不倒造审批；`baseline/release-v1.0.0` 标记"待建立（待 PM CCB 授权后打 tag）"，对应任务 6 最终交付。
+  3. **未产生内容不预登记**：软件测试报告（QA 待产出）、设计图源（`models/` 仅骨架）、发布包（`release/` 为空）、项目考核评估表（PM 课程提交物）均不预登记，仅留待补说明。
+- 实际检查（真实执行）：
+  - `git tag -l`：init-v1.0 / task-package-v2.0 / task-package-v3.0 三条 tag 存在；release-v1.0.0 未打（待 PM 授权）。
+  - `git diff --check`：通过。
+  - 文档版本号逐项核对：需求族 v1.1、系统设计 v0.2、用户手册 v0.1、测试计划/设计/数据 v0.2、初始计划 v0.9、详细计划 v3.1.3 等，已写入索引"版本"列（以各文档头部标注为准）。
+- 未完成项/外部依赖（本 agent 不越权）：
+  - 任务 6 打包（.zip）与学习通上传由项目经理执行，本 agent 不执行外部提交。
+  - `baseline/release-v1.0.0` 打 tag 需项目经理 CCB 授权，不自行建立。
+  - 软件测试报告（测试经理）、用户手册终版（界面设计师）、项目考核评估表（项目经理）为他人交付物，不在配置经理范围。
+  - 各文档内部"修订历史记录表"整理：本人仅负责 `docs/configuration/` 下本人文档；其余岗位文档由其负责人整理（红线：不改他人已评审文档）。
+- 下一接收人：项目经理（组织任务 6 打包提交、授权 release 基线）；测试经理/界面设计师（补齐各自任务 6 交付物后告知 CM 登记）。
+
+## 评审整改（2026-11-10）：API-32 鉴权先于版本冲突 + 存量自确认处置
+
+独立交叉评审对 `23825cc` 提出「必须改」两项阻塞，本轮逐项整改（未提交，待授权）：
+
+1. **API-32 资源复核在鉴权前返回活动版本/状态**：原 `resourceDecision` 在 `AuthorizationPolicy.confirmation` 之前检查 `baseVersionNo` 并抛 `STALE_VERSION`（details 含 versionNo/lockVersion/status），无复核权限的账号在版本冲突时收到 409 而非 403，泄露无权查看的版本/状态。整改：把 `STALE_VERSION` 检查移到 `lockUsers` + `AuthorizationPolicy.confirmation`（最新权限、完整资源范围、本人回避）之后，与 02 §3「不泄露无权查看的对象」及 §6 原子切换锁序一致。新增 `ChangeServiceTest.resourceDecisionChecksAuthorizationBeforeVersionConflict`：管理员但无 RESOURCE_CONFIRM 权限 + 版本过期 → 403，且不进入调度锁检查。
+
+2. **存量 AWAITING_CONFIRMATIONS 自确认处置（明确 + 验证）**：`impact.requiredStaffUserIds` 过滤所有者只影响新快照；升级前旧快照仍含发起人本人，`confirm` 按旧快照放行发起人自确认。
+   - 明确：本人不得向自己确认（01 §3「人员确认不可代签」），`confirm` 授权时追加所有者排除；影响快照不可改，存量申请**走现有撤回流程（API-33）重建**，重建时按新规则——若发起人为唯一工作人员则直接进入审批（PENDING_APPROVER）——不就地改写旧快照。
+   - 验证：新增 `ChangeServiceTest.ownerCannotSelfConfirmLegacySnapshot`：旧快照 requiredStaffUserIds 仅含发起人 → 发起人 confirm 403，且未调用 decideConfirmation。
+
+- 回归（真实执行，`D:\Java\jdk-23` + `--release 21`，单元测试无需数据库）：`ChangeServiceTest` 由 4 用例扩至 6 用例；全量单元测试（Surefire `*Test`）**82/82 通过**（0 失败 0 错误）；`git diff --check` 通过。契约检查与 PostgreSQL 集成验收本轮未执行（纯服务层逻辑修复，未触及 contract/openapi 与数据库迁移/表结构）。
+- 下一接收人：项目经理复审整改；测试经理复审回归用例。
+
+## 本轮工作（2026-11-07）：修复改期自确认与版本冲突提示两项验收阻塞
+
+- 成员、学号、任务ID：杨瀚霖、55231031、配置经理；CM 改期模块（API-26～33）缺陷修复。
+- main 基准：本轮 `git fetch` 后 `origin/main` 推进至 `16de4a5`（PR #19 foundation 合并）；本分支 `work/55231031-change` 由 `b19ae8b`（已并入 main 的 PR #18 头）快进合并到 `16de4a5`，无冲突、未 reset。
+- 本轮修复（对应全量验收剩余三项中的两项 CM 项；活动审批项属 AN 冯玉琪，不在本 agent 范围）：
+  1. **改期确认（发起人是唯一工作人员时仍要求其确认自己）**：`ChangeService.impact` 计算 `requiredStaffUserIds` 时过滤掉所有者本人。所有者发起改期不再被列入待确认工作人员，若其为唯一工作人员则 `requiredStaffUserIds` 为空，`create` 直接置 `PENDING_APPROVER`（跳过人员确认阶段），不再要求发起人向自己确认。有其他工作人员时仍仅由他们确认，发起人无法代签自己。依据 01 §3「无其他工作人员直接复审」与「人员确认不可代签」。
+  2. **版本冲突提示（请求版本过期时未返回当前版本/状态）**：新增 `ChangeService.staleVersion` 助手，`preview`/`create`/`resourceDecision` 四处 `STALE_VERSION` 409 统一在 `details` 返回 `{versionNo, lockVersion, status}`（当前版本/锁版本/活动状态），供前端提示。依据 02 §3「其余 409 的 details 至少含当前 versionNo/lockVersion 或当前 status」。
+- 回归测试（真实执行，jdk-23 `--release 21`，单元测试无需数据库）：`ChangeServiceTest` 由 1 用例扩至 4 用例，新增——所有者唯一工作人员→PENDING_APPROVER 且 `requiredStaffUserIds` 为空、`createConfirmations` 空表；所有者+其他工作人员→仍 AWAITING_CONFIRMATIONS 且仅剩该工作人员；预览版本过期→409 STALE_VERSION 且 details 含 versionNo=2/lockVersion=4/status=SCHEDULED。全量单元测试（Surefire `*Test`）**80/80 通过**（含新增 3 用例，0 失败 0 错误）。
+- 未完成项/外部依赖：改期回滚/通知一致性等验收 IT 仍依赖 QA 测试支撑修复（`DbTestSupport` 装载顺序、`NotificationConsistencyIT` 生产 Probe 覆盖、`ActivityRegistrationIT` 双 bean 冲突），与本轮两项逻辑修复无关，未复跑；活动审批修复（不填批准意见审批失败）由 AN 冯玉琪负责。
+- 下一接收人：项目经理评审本分支改动；测试经理复审回归用例；AN 完成活动审批项后进入全量验收复跑。
+
 ## 评审整改（2026-10-31）：P1 改期目标未来复核已关闭；P2 发件箱租约所有权/恢复修复
 
 独立 AI 交叉评审（非自审）对 PR #18 提出「必须改」，经两轮整改，本轮仅补完剩余一项（租约所有权/恢复），不扩大整改范围，重新推送待复审：
