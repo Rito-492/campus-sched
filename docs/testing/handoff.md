@@ -6,7 +6,8 @@
 
 - 已按复审完成 TC-12-1 抢占活动清理（所有者 API-21 取消并核对 CANCELLED）并固定 E2E `workers: 1`；默认浏览器套件 29/29 通过。
 - 当前复审唯一待办：保留 `PermissionsIT` 两条陈旧版本详情断言，待 CM #21 合入后以最新 main + 本 PR 复跑默认 verify 并附 SHA/结果。断言未改动、未放宽。
-- 候选组合（未合入）：QA `8f30a49` + CM `ade8c2b`，本地合并 `ff78b2a`，默认 verify **exit 0：101/101 单测；158 IT=157 通过、0 失败、1 跳过**。仅作候选证据，不等于已合入主线验收。
+- 候选组合（未合入）：QA `8ca2efc` + CM 最新 `196f4a8`，本地合并 `fd7e868`，默认 verify **exit 0：101/101 单测；158 IT=157 通过、0 失败、1 跳过**。早前 `8f30a49`+`ade8c2b` 组合同样 exit 0。仅作候选证据，不等于已合入主线验收。
+- #21 阻塞原因已定位：`required_conversation_resolution` 开启，`ChangeService.java` 尚有 2 条未解决评审对话；需 CM/评审人解决后合并。
 - #21 状态：PM 已 APPROVE，但早前一条 CHANGES_REQUESTED 未清除，GitHub 仍 BLOCKED；需评审人/PM 清理后合入，QA 随即复跑。
 - 证据：`artifacts/test-results/qa-2026-11-13/`。
 
