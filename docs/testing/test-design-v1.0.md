@@ -1202,7 +1202,7 @@
   2) 2) 重新 GET 活动
 
 - 预期结果：
-  1) 409 STALE_VERSION（details 结构不作强制断言）
+  1) 409 STALE_VERSION，details 至少含一项准确的当前 versionNo/lockVersion/status（02 §3 适用时）
   2) 无覆盖：重新 GET 显示 versionNo/lockVersion 与提交前一致，输入保留待重新提交
 
 
@@ -1312,7 +1312,7 @@
   2) 2) 重新 GET 活动
 
 - 预期结果：
-  1) 409 STALE_VERSION；无状态变化；重新 GET 显示当前版本未被覆盖
+  1) 409 STALE_VERSION，details 至少含一项准确的当前 versionNo/lockVersion/status（02 §3 适用时）；无状态变化；重新 GET 显示当前版本未被覆盖
 
 
 ### UC-07 审批活动申请——测试用例
@@ -1866,7 +1866,7 @@
   2) 2) 重新 GET 活动
 
 - 预期结果：
-  1) 409 STALE_VERSION；要求查看新安排后操作；报名无变化
+  1) 409 STALE_VERSION，details 至少含一项准确的当前 versionNo/lockVersion/status（02 §3 适用时）；要求查看新安排后操作；报名无变化
 
 
 #### UC-10-TC07 身份或状态不符的报名被拒
@@ -2142,7 +2142,7 @@
   2) 2) 重新 GET 活动
 
 - 预期结果：
-  1) 409 STALE_VERSION；无 change 写入；重新 GET 显示当前版本未被覆盖
+  1) 409 STALE_VERSION，details 至少含一项准确的当前 versionNo、lockVersion 或 status（02 §3，不限定唯一字段）；无 change 写入；重新 GET 显示当前版本未被覆盖
 
 
 #### UC-12-TC07 带冲突目标仍可创建但不占位

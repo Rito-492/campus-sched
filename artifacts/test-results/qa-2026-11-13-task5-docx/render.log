@@ -1,0 +1,42 @@
+[2026-11-13T15:53:44+08:00] python3 qa/scripts/render-test-design.py
+data=/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/test-data/test-design-cases-v1.0.json sha256=cc9d453988fb890cc965ed9e091a3eb35ce505b8b473d47a3f716bb4aadbf1d4
+out=/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/docs/testing/test-design-v1.0.docx sha256=07914b1924dc5f98373e93a5132dd8990d52c285d2af5a27709187dabdff5bc1
+scenarios=24 cases=138 positive=47 negative=91 P0=63 P1=63 P2=12 status_unexecuted=138
+traceability: UC=20/20 D-AT=24/24 N-AT=6/6 API=40/40
+caseID check: json=138 doc=138 missing=0
+verify=PASS
+- [通过] OOXML 包结构：9 个部件
+- [通过] XML 良构：[Content_Types].xml
+- [通过] XML 良构：_rels/.rels
+- [通过] XML 良构：word/document.xml
+- [通过] XML 良构：word/_rels/document.xml.rels
+- [通过] XML 良构：word/styles.xml
+- [通过] XML 良构：word/settings.xml
+- [通过] XML 良构：word/footer1.xml
+- [通过] XML 良构：docProps/core.xml
+- [通过] XML 良构：docProps/app.xml
+- [通过] 样式定义 Heading1
+- [通过] 样式定义 Heading2
+- [通过] 样式定义 Heading3
+- [通过] 样式定义 Heading4
+- [通过] 样式定义 TableText
+- [通过] 正文字体宋体：styles.xml docDefaults
+- [通过] 标题字体黑体：styles.xml Heading1~4
+- [通过] 标题带大纲级别（导航窗格）：outlineLvl×4
+- [通过] 页脚页码域（PAGE/NUMPAGES）
+- [通过] 页面 A4 与页边距：11906×16838 twips，左右边距 1247 twips
+- [通过] 表格数量与预期一致：实际 190，预期 190
+- [通过] 全部表格首行重复表头：tblHeader 190 / 表格 190
+- [通过] 表格不超宽（列宽合计=版心宽 9412 twips）：190 张表，最大列宽合计 9412
+- [通过] 封面/正文含必备事实：校园活动协同与资源调度系统
+- [通过] 封面/正文含必备事实：软件测试设计
+- [通过] 封面/正文含必备事实：1.0
+- [通过] 封面/正文含必备事实：汤雨润（55230316）
+- [通过] 封面/正文含必备事实：2026-11-03
+- [通过] 正文完整包含全部场景与用例字段（无文本截断）：缺失 0 项
+- [通过] caseID 一致性：全部用例 id 出现在正文：JSON 用例 138 条，正文命中 138 条
+- [通过] caseID 一致性：全部场景 id 出现在正文：JSON 场景 24 条，正文命中 24 条
+- [通过] caseID 一致性：JSON 内用例 id 无重复：重复 0 条
+- [通过] 用例详情标题与用例数一一对应：详情标题 138 个 vs 用例 138 条（每用例 1 张纵向表）
+- [通过] 用例状态核对：138/138 条为「未执行」
+- [提示] 统计口径：全部数字按 JSON 计算，未生成任何通过率/执行结果。

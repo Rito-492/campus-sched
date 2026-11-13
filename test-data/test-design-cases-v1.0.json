@@ -1020,7 +1020,7 @@
             "2) 重新 GET 活动"
           ],
           "expected": [
-            "409 STALE_VERSION（details 结构不作强制断言）",
+            "409 STALE_VERSION，details 至少含一项准确的当前 versionNo/lockVersion/status（02 §3 适用时）",
             "无覆盖：重新 GET 显示 versionNo/lockVersion 与提交前一致，输入保留待重新提交"
           ],
           "cleanup": "无写入",
@@ -1167,7 +1167,7 @@
             "2) 重新 GET 活动"
           ],
           "expected": [
-            "409 STALE_VERSION；无状态变化；重新 GET 显示当前版本未被覆盖"
+            "409 STALE_VERSION，details 至少含一项准确的当前 versionNo/lockVersion/status（02 §3 适用时）；无状态变化；重新 GET 显示当前版本未被覆盖"
           ],
           "cleanup": "无写入",
           "automation": "拟落点：ActivityRegistrationIT uc06tc05",
@@ -1895,7 +1895,7 @@
             "2) 重新 GET 活动"
           ],
           "expected": [
-            "409 STALE_VERSION；要求查看新安排后操作；报名无变化"
+            "409 STALE_VERSION，details 至少含一项准确的当前 versionNo/lockVersion/status（02 §3 适用时）；要求查看新安排后操作；报名无变化"
           ],
           "cleanup": "无写入",
           "automation": "拟落点：RegistrationCapacityIT uc10tc06",
@@ -2266,7 +2266,7 @@
             "2) 重新 GET 活动"
           ],
           "expected": [
-            "409 STALE_VERSION；无 change 写入；重新 GET 显示当前版本未被覆盖"
+            "409 STALE_VERSION，details 至少含一项准确的当前 versionNo、lockVersion 或 status（02 §3，不限定唯一字段）；无 change 写入；重新 GET 显示当前版本未被覆盖"
           ],
           "cleanup": "无写入",
           "automation": "拟落点：ChangeRollbackIT uc12tc06",
