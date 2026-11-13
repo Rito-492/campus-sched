@@ -2,7 +2,14 @@
 
 > 维护：测试经理（55230316）。格式依据 `agents/common/04-协作与集成规程.md` §4 固定模板。运行时信息填真实值；**不能为了填满模板虚构结果**，未执行的检查如实标注。
 
-## 最新进展（2026-11-13：评审清理完成，等待 CM #21 合入后正式复跑）
+## 最新进展（2026-11-13 晚：同步 main 20debb3，仍待 #21）
+
+- 已把最新 main `20debb3` 合入 QA 分支（合并 `5f50578`）。在最新组合上定向复跑 `PermissionsIT.tc2001And02`：仍**恰为 2 处** `details={}` 失败（两种陈旧请求各一处），`assertAll` 正常分别报告；断言未放宽。
+- CM #21 已 APPROVED（`196f4a8`），但仓库开启 `required_conversation_resolution`，`ChangeService.java` 仍有 2 条未解决评审对话，故 `mergeStateStatus=BLOCKED`；合入后按评审要求以最新 main + 本 PR 复跑默认 verify 并附 SHA。
+- 候选组合 v2：QA `8ca2efc` + CM `196f4a8`（合并 `fd7e868`），默认 verify **exit 0：101/101 单测；158 IT=157 通过、0 失败、1 跳过**；仅候选证据。
+- 证据：`artifacts/test-results/qa-2026-11-13/`。
+
+## 历史进展（2026-11-13：评审清理完成，等待 CM #21 合入后正式复跑）
 
 - 已按复审完成 TC-12-1 抢占活动清理（所有者 API-21 取消并核对 CANCELLED）并固定 E2E `workers: 1`；默认浏览器套件 29/29 通过。
 - 当前复审唯一待办：保留 `PermissionsIT` 两条陈旧版本详情断言，待 CM #21 合入后以最新 main + 本 PR 复跑默认 verify 并附 SHA/结果。断言未改动、未放宽。
