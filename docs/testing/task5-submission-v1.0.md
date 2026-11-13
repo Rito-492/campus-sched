@@ -111,7 +111,9 @@ Word内容须独立包含用例，不要求阅卷者访问本仓库才能获得�
 ### 8.2 合并顺序与复跑依赖
 
 - 本 PR 独立组合最新 main 时，`ContractBoundaryIT` 曾在装载 demo 阶段因 `fk_user_resource_scope_resource` 报错、7 个方法未执行；该失败记录保留为历史证据。
-- **依赖关系**：QA #16 提供测试装载支撑（`DbTestSupport` 事务/schema/demo 装载修复，是边界类可执行的前置）；CM #21 提供改期边界（API-27 版本冲突详情与所有者自确认）的生产修复。两者合入后同一边界类 7/7 通过。
+- **依赖关系**：QA #16 提供测试装载支撑（`DbTestSupport` 事务/schema/demo 装载修复，是边界类可执行的前置）；CM #21 提供改期边界（API-27 版本冲突详情与所有者自确认）的生产修复。
+- **候选组合（非主线）**：QA `8f30a49` + CM `ade8c2b` 的隔离组合下，`ContractBoundaryIT` 曾达到 7/7；该结果**不代表当前 main**。当前主线尚无这两项依赖，独立组合时该边界类仍未执行。
+- **正式复跑条件**：#16、#21 均进入 `main` 后，同步最新 main 并复跑默认 `verify`，在提交说明中附实际 main SHA、本 PR SHA、退出码与 `ContractBoundaryIT` 逐项结果；不复用候选组合结论。
 - 待 #16、#21 合入 main 后：同步最新主线，重新生成并复跑独立默认验收（Maven `verify` + 浏览器），附对应 SHA 与结果；不复用早期失败为当前结论。
 
 ### 8.3 Word 重生成
