@@ -1,0 +1,37 @@
+diff --git a/qa/tests/change-conflict.spec.ts b/qa/tests/change-conflict.spec.ts
+index 31a2b84..14f0e7f 100644
+--- a/qa/tests/change-conflict.spec.ts
++++ b/qa/tests/change-conflict.spec.ts
+@@ -26,0 +27,3 @@ import {
++  authHeaders,
++  newIdempotencyKey,
++  readData,
+@@ -74 +77 @@ async function createFeasibleChange(api: ApiSession): Promise<string> {
+-async function preemptPreferredResources(): Promise<void> {
++async function preemptPreferredResources(): Promise<string> {
+@@ -98,0 +102 @@ async function preemptPreferredResources(): Promise<void> {
++    return created.id;
+@@ -252,0 +257 @@ test.describe('D-AT-12 预览后被抢占（最终确认冲突）', () => {
++      let preemptingActivityId: string | undefined;
+@@ -267 +272 @@ test.describe('D-AT-12 预览后被抢占（最终确认冲突）', () => {
+-        await preemptPreferredResources();
++        preemptingActivityId = await preemptPreferredResources();
+@@ -307,2 +312,16 @@ test.describe('D-AT-12 预览后被抢占（最终确认冲突）', () => {
+-        await closeSessions(sessions);
+-        await apiClose(apis);
++        try {
++          if (preemptingActivityId) {
++            const preemptingOwner = await apiLogin(USERS.applicantB);
++            apis.push(preemptingOwner);
++            const blocker = await getActivity(preemptingOwner, preemptingActivityId);
++            const cancelled = await preemptingOwner.client.post(`/api/v1/activities/${blocker.id}/cancel`, {
++              headers: authHeaders(preemptingOwner.token, newIdempotencyKey()),
++              data: { expectedLockVersion: blocker.lockVersion, reason: '清理抢占测试预约' },
++            });
++            const result = await readData<{ status: string }>(cancelled, 200, '清理抢占活动');
++            expect(result.status).toBe('CANCELLED');
++          }
++        } finally {
++          await closeSessions(sessions);
++          await apiClose(apis);
++        }
