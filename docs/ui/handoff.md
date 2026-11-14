@@ -2,6 +2,18 @@
 
 ## 当前交付状态
 
+### PR #27 建议项修正（2026-11-14）
+
+杨畅（17231018），UI-01/05，分支`work/17231018-ui`。按[独立评审](https://github.com/Rito-492/campus-sched/pull/27#pullrequestreview-5903490873)处理两项建议：`web/package.json`及锁文件根`engines`统一为`>=22.22.2 <23`，README安装说明同步并使用`npm ci --engine-strict`；`.node-version`保持已验证的22.23.0。README直接列出11项review测试中包含的所有者唯一工作人员、仅其他工作人员确认及陈旧版本恢复三项。依赖版本、生产代码、测试实现和手册成品未改。
+
+本轮已无冲突同步`origin/main=46df56df31f973a484d8e4e6bbd8ed26d8baedac`，同步提交`5f8caf3`；旧报告的750763b仍是原执行基准，不改写历史证据。Node22.23.0/npm11.16.0下，`npm ci --dry-run --engine-strict --ignore-scripts --no-audit --no-fund`通过；逐项检查锁文件的Node范围均兼容22.22.2，根配置拒绝22.20.0，依赖树未变。最低版本仅检查依赖声明，未实机运行22.22.2。最初系统npm启动器使用Node24.18.1而被根engines正确拒绝，随后显式使用Node22.23.0执行npm-cli完成检查。
+
+本轮`types:check`、`typecheck`、22文件109项单测、生产构建及产物/体积检查全部通过；`test:review -- --list`列出11项且含上述3项，仅核对清单，不计为真实浏览器执行。命令输出保留于本机忽略目录`web/.integration-runtime/pr27-*.log`；未重跑真实业务、后端重启、手册渲染或全量QA验收。
+
+公共任务包`agents/common/01-开发基线.md`仍写Node至少22.18，由PM维护；待PM协调统一公共下限及QA配置，本文不声明该跨岗位事项已完成。下一接收人为独立评审人、PM及CM，需复核本轮增量；现有评审结论为“建议改，可合并”，GitHub状态COMMENTED，正式APPROVED和合并尚未发生。继续更新同一个Ready PR #27。
+
+### 此前提交与草稿评审记录
+
 用户在完成两项自查修正后明确授权提交。已提交并推送`624d235c4e978b306827cccb446c5cca9a5cd4be`，创建[PR #27](https://github.com/Rito-492/campus-sched/pull/27)，来源`ychangz1:work/17231018-ui`，目标`Rito-492/campus-sched:main`。首个提交包含221个文件，交付记录随后补入同一PR。项目经理已对cb5cbd7完成[草稿技术评审](https://github.com/Rito-492/campus-sched/pull/27#pullrequestreview-5901778021)，独立检查通过，状态为COMMENTED；正式批准、接收或合并尚未发生。
 
 本轮按评审意见将手册交付说明、验证报告中的“尚未创建PR”等表述明确标为历史状态，并同步接口矩阵和界面说明的当前交付状态。仅修改文档，生产代码、测试、Word/PDF成品及历史原始证据未变，未重复运行或增加测试计数；后续进入Ready后的正式合并评审。PR实际阶段以GitHub页面为准。
