@@ -1,0 +1,42 @@
+-------------------------------------------------------------------------------
+Test set: com.campus.events.acceptance.PermissionsIT
+-------------------------------------------------------------------------------
+Tests run: 13, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 3.649 s <<< FAILURE! -- in com.campus.events.acceptance.PermissionsIT
+com.campus.events.acceptance.PermissionsIT.tc0802_sameKeyDifferentBodyRejected -- Time elapsed: 0.245 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 批准人审批失败：{"error":{"message":"事件字段不完整","details":{},"code":"VALIDATION_ERROR"},"requestId":"2aba36e9-5ece-418b-a427-7230768d15e0"} ==> expected: <200> but was: <400>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.PermissionsIT.createApprovedUnreserved(PermissionsIT.java:552)
+	at com.campus.events.acceptance.PermissionsIT.tc0802_sameKeyDifferentBodyRejected(PermissionsIT.java:284)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.campus.events.acceptance.PermissionsIT.tc2001And02_staleVersionProtection -- Time elapsed: 0.208 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 批准人审批失败：{"error":{"message":"事件字段不完整","details":{},"code":"VALIDATION_ERROR"},"requestId":"02904e9f-d3b9-428a-9753-cc4176f434c4"} ==> expected: <200> but was: <400>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.PermissionsIT.tc2001And02_staleVersionProtection(PermissionsIT.java:340)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+com.campus.events.acceptance.PermissionsIT.tc0801_replaySameKeySameBodyReturnsFirstResponse -- Time elapsed: 0.295 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 批准人审批失败：{"error":{"message":"事件字段不完整","details":{},"code":"VALIDATION_ERROR"},"requestId":"49fcf50e-3fa5-4f82-a7a6-8c8a670bfeb3"} ==> expected: <200> but was: <400>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.PermissionsIT.createApprovedUnreserved(PermissionsIT.java:552)
+	at com.campus.events.acceptance.PermissionsIT.tc0801_replaySameKeySameBodyReturnsFirstResponse(PermissionsIT.java:237)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

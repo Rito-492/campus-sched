@@ -1,0 +1,65 @@
+{
+  "scope": "真实Java21/PostgreSQL，登录/活动列表/详情/改期工作台三视口自动检查；未进行人工视觉审美判定",
+  "screenshots": [
+    {
+      "file": "artifacts/screenshots/qa-pr16-ready-2026-11-01/desktop-1920-activities.png",
+      "sha256": "2418d9b417476eac96f6ed0d5fae9f9c76d7f0090ce263e6aa863124badea752",
+      "bytes": 59403
+    },
+    {
+      "file": "artifacts/screenshots/qa-pr16-ready-2026-11-01/desktop-login.png",
+      "sha256": "bd73314170134d61763294afa66c037f7e59f5c703041cdf7b77e7e64e8e6de9",
+      "bytes": 62706
+    },
+    {
+      "file": "artifacts/screenshots/qa-pr16-ready-2026-11-01/desktop-activity-detail.png",
+      "sha256": "dde614c257eba9ac217d24e1ff6f77e83725403cd9b22fd83057caa35eb5d7de",
+      "bytes": 108227
+    },
+    {
+      "file": "artifacts/screenshots/qa-pr16-ready-2026-11-01/desktop-1920-login.png",
+      "sha256": "70c89d1e0db7bd1fe46d8d3235f6fc748001df5aeec0266de9dc51907c552e7c",
+      "bytes": 68266
+    },
+    {
+      "file": "artifacts/screenshots/qa-pr16-ready-2026-11-01/mobile-390-change-workbench.png",
+      "sha256": "42b5ad4d2ccfeee7531879275bb4891aa7586ab9e722c1bb6b36fee597ddfe5c",
+      "bytes": 88772
+    },
+    {
+      "file": "artifacts/screenshots/qa-pr16-ready-2026-11-01/mobile-390-login.png",
+      "sha256": "fdb503a48ff02f773183de7d99158fe4afd475aa9d9ce459a7548ee71d19c9b1",
+      "bytes": 37594
+    },
+    {
+      "file": "artifacts/screenshots/qa-pr16-ready-2026-11-01/desktop-activities.png",
+      "sha256": "dc7e4a167edde3e9dd83ef76f685b13b8e50232573260d98ab78df5bf49dc40e",
+      "bytes": 54801
+    },
+    {
+      "file": "artifacts/screenshots/qa-pr16-ready-2026-11-01/desktop-change-workbench.png",
+      "sha256": "290f8b0c00ac78a47b8d09d47584858583db6e133ad8f9666193bef154dd3e0e",
+      "bytes": 102334
+    },
+    {
+      "file": "artifacts/screenshots/qa-pr16-ready-2026-11-01/mobile-390-activities.png",
+      "sha256": "2574bd0db905217977a75886f23cca21a22edfb27a6c62fd784eff87dd6bc25c",
+      "bytes": 34862
+    },
+    {
+      "file": "artifacts/screenshots/qa-pr16-ready-2026-11-01/desktop-1920-activity-detail.png",
+      "sha256": "c5a66c5c2bf320eb1af0c1b07290fdcfbe4fb1a5483bf3320ece0c91fd014930",
+      "bytes": 112727
+    },
+    {
+      "file": "artifacts/screenshots/qa-pr16-ready-2026-11-01/mobile-390-activity-detail.png",
+      "sha256": "f7700ba6bf5ddc0ff79ee24a56eaefc5d90781bfa034b2339c56af6e0675dc00",
+      "bytes": 86182
+    },
+    {
+      "file": "artifacts/screenshots/qa-pr16-ready-2026-11-01/desktop-1920-change-workbench.png",
+      "sha256": "cf96776ab28433abb51831acc0429a410578300af348d5271d68a01834f20998",
+      "bytes": 106578
+    }
+  ]
+}

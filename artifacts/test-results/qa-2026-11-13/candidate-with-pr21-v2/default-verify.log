@@ -1,0 +1,863 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.campus:campus-events >----------------------
+[INFO] Building 校园活动协同与资源调度系统 0.1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ campus-events ---
+[INFO] Copying 4 resources from src/main/resources to target/classes
+[INFO] Copying 2 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ campus-events ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ campus-events ---
+[INFO] skip non existing resourceDirectory /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/.review-tmp/candidate-pr21-1113b/server/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ campus-events ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ campus-events ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.campus.events.auth.AuthorizationPolicyTest
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.074 s -- in com.campus.events.auth.AuthorizationPolicyTest
+[INFO] Running com.campus.events.auth.PasswordPolicyTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 s -- in com.campus.events.auth.PasswordPolicyTest
+[INFO] Running com.campus.events.scheduling.TimeIntervalTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 s -- in com.campus.events.scheduling.TimeIntervalTest
+[INFO] Running com.campus.events.scheduling.ScheduleQueryServiceTest
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+WARNING: A Java agent has been loaded dynamically (/home/r1t0/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.875 s -- in com.campus.events.scheduling.ScheduleQueryServiceTest
+[INFO] Running com.campus.events.scheduling.StrategyEvaluatorTest
+22:00:43.189 [main] INFO org.hibernate.validator.internal.util.Version -- HV000001: Hibernate Validator 8.0.3.Final
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.650 s -- in com.campus.events.scheduling.StrategyEvaluatorTest
+[INFO] Running com.campus.events.scheduling.CandidateRankingTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 s -- in com.campus.events.scheduling.CandidateRankingTest
+[INFO] Running com.campus.events.scheduling.CapacitySweepTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.045 s -- in com.campus.events.scheduling.CapacitySweepTest
+[INFO] Running com.campus.events.foundation.ResponsesTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.145 s -- in com.campus.events.foundation.ResponsesTest
+[INFO] Running com.campus.events.foundation.ContractJsonTest
+[INFO] Tests run: 19, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.184 s -- in com.campus.events.foundation.ContractJsonTest
+[INFO] Running com.campus.events.foundation.CanonicalJsonTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 s -- in com.campus.events.foundation.CanonicalJsonTest
+[INFO] Running com.campus.events.contract.ContractValidationTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.068 s -- in com.campus.events.contract.ContractValidationTest
+[INFO] Running com.campus.events.activity.ActivityStateMachineTest
+[INFO] Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.011 s -- in com.campus.events.activity.ActivityStateMachineTest
+[INFO] Running com.campus.events.activity.ActivityServiceTest
+[INFO] Tests run: 18, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.226 s -- in com.campus.events.activity.ActivityServiceTest
+[INFO] Running com.campus.events.change.ChangeServiceTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.086 s -- in com.campus.events.change.ChangeServiceTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 101, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ campus-events ---
+[INFO] 
+[INFO] --- spring-boot:3.5.16:repackage (repackage) @ campus-events ---
+[INFO] Replacing main artifact /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/.review-tmp/candidate-pr21-1113b/server/target/campus-events-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/.review-tmp/candidate-pr21-1113b/server/target/campus-events-0.1.0-SNAPSHOT.jar.original
+[INFO] 
+[INFO] --- failsafe:3.5.6:integration-test (default) @ campus-events ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.campus.events.resource.ResourceSchedulingIT
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-13T22:00:46.799+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.resource.ResourceSchedulingIT      : Starting ResourceSchedulingIT using Java 21.0.13 with PID 45751 (started by r1t0 in /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/.review-tmp/candidate-pr21-1113b/server)
+2026-11-13T22:00:46.800+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.resource.ResourceSchedulingIT      : The following 1 profile is active: "test"
+2026-11-13T22:00:47.812+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-11-13T22:00:47.832+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@c97721b
+2026-11-13T22:00:47.833+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-11-13T22:00:47.862+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_f941d0c5d5a2464799ed3f9e7ab8d283 (PostgreSQL 17.11)
+2026-11-13T22:00:47.903+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_f941d0c5d5a2464799ed3f9e7ab8d283"."flyway_schema_history" does not exist yet
+2026-11-13T22:00:47.907+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.017s)
+2026-11-13T22:00:47.924+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_f941d0c5d5a2464799ed3f9e7ab8d283"."flyway_schema_history" ...
+2026-11-13T22:00:47.967+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_f941d0c5d5a2464799ed3f9e7ab8d283": << Empty Schema >>
+2026-11-13T22:00:47.995+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_f941d0c5d5a2464799ed3f9e7ab8d283" to version "1 - schema"
+2026-11-13T22:00:48.105+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_f941d0c5d5a2464799ed3f9e7ab8d283" to version "2 - outbox claim token"
+2026-11-13T22:00:48.121+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "t_f941d0c5d5a2464799ed3f9e7ab8d283", now at version v2 (execution time 00:00.091s)
+2026-11-13T22:00:49.031+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-13T22:00:49.031+08:00  INFO 45751 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-13T22:00:49.033+08:00  INFO 45751 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 2 ms
+2026-11-13T22:00:49.054+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.resource.ResourceSchedulingIT      : Started ResourceSchedulingIT in 2.669 seconds (process running for 3.792)
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+WARNING: A Java agent has been loaded dynamically (/home/r1t0/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+2026-11-13T22:01:10.131+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-11-13T22:01:10.136+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+[WARNING] Tests run: 30, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 24.09 s -- in com.campus.events.resource.ResourceSchedulingIT
+[INFO] Running DS-01 V1 迁移验证 v3.0（SchemaIT）
+2026-11-13T22:01:10.171+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.11)
+2026-11-13T22:01:10.182+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_58ec73f54cf64594869d38a03af7338d"."flyway_schema_history" does not exist yet
+2026-11-13T22:01:10.183+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.004s)
+2026-11-13T22:01:10.189+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_58ec73f54cf64594869d38a03af7338d"."flyway_schema_history" ...
+2026-11-13T22:01:10.205+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_58ec73f54cf64594869d38a03af7338d": << Empty Schema >>
+2026-11-13T22:01:10.219+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_58ec73f54cf64594869d38a03af7338d" to version "1 - schema"
+2026-11-13T22:01:10.289+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_58ec73f54cf64594869d38a03af7338d" to version "2 - outbox claim token"
+2026-11-13T22:01:10.298+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "t_58ec73f54cf64594869d38a03af7338d", now at version v2 (execution time 00:00.061s)
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.843 s -- in DS-01 V1 迁移验证 v3.0（SchemaIT）
+[INFO] Running D-AT-19 通知一致性
+2026-11-13T22:01:11.001+08:00  INFO 45751 --- [campus-events] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.NotificationConsistencyIT
+2026-11-13T22:01:11.020+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.11)
+2026-11-13T22:01:11.027+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_1fac108257a8447fa1d87d8539f45c9f"."flyway_schema_history" does not exist yet
+2026-11-13T22:01:11.028+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.002s)
+2026-11-13T22:01:11.033+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_1fac108257a8447fa1d87d8539f45c9f"."flyway_schema_history" ...
+2026-11-13T22:01:11.047+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_1fac108257a8447fa1d87d8539f45c9f": << Empty Schema >>
+2026-11-13T22:01:11.054+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_1fac108257a8447fa1d87d8539f45c9f" to version "1 - schema"
+2026-11-13T22:01:11.107+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_1fac108257a8447fa1d87d8539f45c9f" to version "2 - outbox claim token"
+2026-11-13T22:01:11.112+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "t_1fac108257a8447fa1d87d8539f45c9f", now at version v2 (execution time 00:00.046s)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-13T22:01:11.248+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.a.NotificationConsistencyIT        : Starting NotificationConsistencyIT using Java 21.0.13 with PID 45751 (started by r1t0 in /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/.review-tmp/candidate-pr21-1113b/server)
+2026-11-13T22:01:11.248+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.a.NotificationConsistencyIT        : The following 1 profile is active: "test"
+2026-11-13T22:01:11.441+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2026-11-13T22:01:11.451+08:00  INFO 45751 --- [campus-events] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-13T22:01:11.451+08:00  INFO 45751 --- [campus-events] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-11-13T22:01:11.473+08:00  INFO 45751 --- [campus-events] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-11-13T22:01:11.473+08:00  INFO 45751 --- [campus-events] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 224 ms
+2026-11-13T22:01:11.528+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-11-13T22:01:11.533+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@7d25d10e
+2026-11-13T22:01:11.534+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-11-13T22:01:11.535+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_1fac108257a8447fa1d87d8539f45c9f (PostgreSQL 17.11)
+2026-11-13T22:01:11.544+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.004s)
+2026-11-13T22:01:11.554+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_1fac108257a8447fa1d87d8539f45c9f": 2
+2026-11-13T22:01:11.555+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Schema "t_1fac108257a8447fa1d87d8539f45c9f" is up to date. No migration necessary.
+2026-11-13T22:01:11.952+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 46319 (http) with context path '/'
+2026-11-13T22:01:11.954+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.a.NotificationConsistencyIT        : Started NotificationConsistencyIT in 0.724 seconds (process running for 26.692)
+2026-11-13T22:01:12.029+08:00  INFO 45751 --- [campus-events] [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-13T22:01:12.029+08:00  INFO 45751 --- [campus-events] [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-13T22:01:12.030+08:00  INFO 45751 --- [campus-events] [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-11-13T22:01:18.108+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-11-13T22:01:18.111+08:00  INFO 45751 --- [campus-events] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-11-13T22:01:18.113+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2026-11-13T22:01:18.113+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.127 s -- in D-AT-19 通知一致性
+[INFO] Running D-AT-01/02/08/20/21 权限、幂等、陈旧版本与读取隔离（PermissionsIT）
+2026-11-13T22:01:18.121+08:00  INFO 45751 --- [campus-events] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.campus.events.acceptance.PermissionsIT]: PermissionsIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-13T22:01:18.122+08:00  INFO 45751 --- [campus-events] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.PermissionsIT
+2026-11-13T22:01:18.136+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.11)
+2026-11-13T22:01:18.142+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_bced3e42051f4c4b973d5f548c1f6cf0"."flyway_schema_history" does not exist yet
+2026-11-13T22:01:18.143+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.002s)
+2026-11-13T22:01:18.147+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_bced3e42051f4c4b973d5f548c1f6cf0"."flyway_schema_history" ...
+2026-11-13T22:01:18.158+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_bced3e42051f4c4b973d5f548c1f6cf0": << Empty Schema >>
+2026-11-13T22:01:18.163+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_bced3e42051f4c4b973d5f548c1f6cf0" to version "1 - schema"
+2026-11-13T22:01:18.215+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_bced3e42051f4c4b973d5f548c1f6cf0" to version "2 - outbox claim token"
+2026-11-13T22:01:18.221+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "t_bced3e42051f4c4b973d5f548c1f6cf0", now at version v2 (execution time 00:00.046s)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-13T22:01:18.309+08:00  INFO 45751 --- [campus-events] [           main] c.c.events.acceptance.PermissionsIT      : Starting PermissionsIT using Java 21.0.13 with PID 45751 (started by r1t0 in /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/.review-tmp/candidate-pr21-1113b/server)
+2026-11-13T22:01:18.309+08:00  INFO 45751 --- [campus-events] [           main] c.c.events.acceptance.PermissionsIT      : The following 1 profile is active: "test"
+2026-11-13T22:01:18.430+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2026-11-13T22:01:18.431+08:00  INFO 45751 --- [campus-events] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-13T22:01:18.431+08:00  INFO 45751 --- [campus-events] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-11-13T22:01:18.436+08:00  INFO 45751 --- [campus-events] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-11-13T22:01:18.436+08:00  INFO 45751 --- [campus-events] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 126 ms
+2026-11-13T22:01:18.459+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2026-11-13T22:01:18.465+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection org.postgresql.jdbc.PgConnection@51d2218e
+2026-11-13T22:01:18.465+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2026-11-13T22:01:18.466+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_bced3e42051f4c4b973d5f548c1f6cf0 (PostgreSQL 17.11)
+2026-11-13T22:01:18.474+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.003s)
+2026-11-13T22:01:18.482+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_bced3e42051f4c4b973d5f548c1f6cf0": 2
+2026-11-13T22:01:18.483+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Schema "t_bced3e42051f4c4b973d5f548c1f6cf0" is up to date. No migration necessary.
+2026-11-13T22:01:18.748+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 45289 (http) with context path '/'
+2026-11-13T22:01:18.750+08:00  INFO 45751 --- [campus-events] [           main] c.c.events.acceptance.PermissionsIT      : Started PermissionsIT in 0.453 seconds (process running for 33.488)
+2026-11-13T22:01:18.771+08:00  INFO 45751 --- [campus-events] [o-auto-2-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-13T22:01:18.771+08:00  INFO 45751 --- [campus-events] [o-auto-2-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-13T22:01:18.771+08:00  INFO 45751 --- [campus-events] [o-auto-2-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-11-13T22:01:21.384+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-11-13T22:01:21.386+08:00  INFO 45751 --- [campus-events] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-11-13T22:01:21.388+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2026-11-13T22:01:21.388+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+[INFO] Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.271 s -- in D-AT-01/02/08/20/21 权限、幂等、陈旧版本与读取隔离（PermissionsIT）
+[INFO] Running D-AT-07 两活动抢同一资源恰一成功（BookingConcurrencyIT）
+2026-11-13T22:01:21.393+08:00  INFO 45751 --- [campus-events] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.campus.events.acceptance.BookingConcurrencyIT]: BookingConcurrencyIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-13T22:01:21.394+08:00  INFO 45751 --- [campus-events] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.BookingConcurrencyIT
+2026-11-13T22:01:21.409+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.11)
+2026-11-13T22:01:21.418+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_0d07dfe30a9249f78905423a0e839689"."flyway_schema_history" does not exist yet
+2026-11-13T22:01:21.418+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.004s)
+2026-11-13T22:01:21.425+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_0d07dfe30a9249f78905423a0e839689"."flyway_schema_history" ...
+2026-11-13T22:01:21.442+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_0d07dfe30a9249f78905423a0e839689": << Empty Schema >>
+2026-11-13T22:01:21.448+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_0d07dfe30a9249f78905423a0e839689" to version "1 - schema"
+2026-11-13T22:01:21.519+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_0d07dfe30a9249f78905423a0e839689" to version "2 - outbox claim token"
+2026-11-13T22:01:21.530+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "t_0d07dfe30a9249f78905423a0e839689", now at version v2 (execution time 00:00.065s)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-13T22:01:21.657+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.acceptance.BookingConcurrencyIT    : Starting BookingConcurrencyIT using Java 21.0.13 with PID 45751 (started by r1t0 in /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/.review-tmp/candidate-pr21-1113b/server)
+2026-11-13T22:01:21.657+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.acceptance.BookingConcurrencyIT    : The following 1 profile is active: "test"
+2026-11-13T22:01:21.751+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2026-11-13T22:01:21.752+08:00  INFO 45751 --- [campus-events] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-13T22:01:21.752+08:00  INFO 45751 --- [campus-events] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-11-13T22:01:21.756+08:00  INFO 45751 --- [campus-events] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-11-13T22:01:21.757+08:00  INFO 45751 --- [campus-events] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 98 ms
+2026-11-13T22:01:21.774+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2026-11-13T22:01:21.779+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-4 - Added connection org.postgresql.jdbc.PgConnection@495fa126
+2026-11-13T22:01:21.779+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2026-11-13T22:01:21.780+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_0d07dfe30a9249f78905423a0e839689 (PostgreSQL 17.11)
+2026-11-13T22:01:21.786+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.002s)
+2026-11-13T22:01:21.795+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_0d07dfe30a9249f78905423a0e839689": 2
+2026-11-13T22:01:21.796+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Schema "t_0d07dfe30a9249f78905423a0e839689" is up to date. No migration necessary.
+2026-11-13T22:01:22.060+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 44845 (http) with context path '/'
+2026-11-13T22:01:22.061+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.acceptance.BookingConcurrencyIT    : Started BookingConcurrencyIT in 0.416 seconds (process running for 36.799)
+2026-11-13T22:01:22.067+08:00  INFO 45751 --- [campus-events] [o-auto-3-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-13T22:01:22.067+08:00  INFO 45751 --- [campus-events] [o-auto-3-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-13T22:01:22.067+08:00  INFO 45751 --- [campus-events] [o-auto-3-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-11-13T22:01:22.580+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-11-13T22:01:22.581+08:00  INFO 45751 --- [campus-events] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-11-13T22:01:22.583+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
+2026-11-13T22:01:22.584+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.194 s -- in D-AT-07 两活动抢同一资源恰一成功（BookingConcurrencyIT）
+[INFO] Running D-AT-15/16 报名冻结与并发容量
+2026-11-13T22:01:22.589+08:00  INFO 45751 --- [campus-events] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.campus.events.acceptance.RegistrationCapacityIT]: RegistrationCapacityIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-13T22:01:22.590+08:00  INFO 45751 --- [campus-events] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.RegistrationCapacityIT
+2026-11-13T22:01:22.604+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.11)
+2026-11-13T22:01:22.610+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_653702a6105b41cea68d49f4c027a7c4"."flyway_schema_history" does not exist yet
+2026-11-13T22:01:22.611+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.002s)
+2026-11-13T22:01:22.615+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_653702a6105b41cea68d49f4c027a7c4"."flyway_schema_history" ...
+2026-11-13T22:01:22.627+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_653702a6105b41cea68d49f4c027a7c4": << Empty Schema >>
+2026-11-13T22:01:22.635+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_653702a6105b41cea68d49f4c027a7c4" to version "1 - schema"
+2026-11-13T22:01:22.702+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_653702a6105b41cea68d49f4c027a7c4" to version "2 - outbox claim token"
+2026-11-13T22:01:22.709+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "t_653702a6105b41cea68d49f4c027a7c4", now at version v2 (execution time 00:00.061s)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-13T22:01:23.006+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.acceptance.RegistrationCapacityIT  : Starting RegistrationCapacityIT using Java 21.0.13 with PID 45751 (started by r1t0 in /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/.review-tmp/candidate-pr21-1113b/server)
+2026-11-13T22:01:23.006+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.acceptance.RegistrationCapacityIT  : The following 1 profile is active: "test"
+2026-11-13T22:01:23.085+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2026-11-13T22:01:23.086+08:00  INFO 45751 --- [campus-events] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-13T22:01:23.086+08:00  INFO 45751 --- [campus-events] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-11-13T22:01:23.089+08:00  INFO 45751 --- [campus-events] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-11-13T22:01:23.090+08:00  INFO 45751 --- [campus-events] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 83 ms
+2026-11-13T22:01:23.104+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2026-11-13T22:01:23.109+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-5 - Added connection org.postgresql.jdbc.PgConnection@76fc11ab
+2026-11-13T22:01:23.109+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2026-11-13T22:01:23.110+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_653702a6105b41cea68d49f4c027a7c4 (PostgreSQL 17.11)
+2026-11-13T22:01:23.116+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.002s)
+2026-11-13T22:01:23.124+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_653702a6105b41cea68d49f4c027a7c4": 2
+2026-11-13T22:01:23.124+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Schema "t_653702a6105b41cea68d49f4c027a7c4" is up to date. No migration necessary.
+2026-11-13T22:01:23.366+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 45179 (http) with context path '/'
+2026-11-13T22:01:23.367+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.acceptance.RegistrationCapacityIT  : Started RegistrationCapacityIT in 0.372 seconds (process running for 38.105)
+2026-11-13T22:01:23.374+08:00  INFO 45751 --- [campus-events] [o-auto-4-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-13T22:01:23.374+08:00  INFO 45751 --- [campus-events] [o-auto-4-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-13T22:01:23.375+08:00  INFO 45751 --- [campus-events] [o-auto-4-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-11-13T22:01:25.421+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-11-13T22:01:25.422+08:00  INFO 45751 --- [campus-events] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-11-13T22:01:25.425+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
+2026-11-13T22:01:25.426+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.842 s -- in D-AT-15/16 报名冻结与并发容量
+[INFO] Running N-AT-01～06 身份、资格与授权范围（IdentityEligibilityIT）
+2026-11-13T22:01:25.432+08:00  INFO 45751 --- [campus-events] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.campus.events.acceptance.IdentityEligibilityIT]: IdentityEligibilityIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-13T22:01:25.433+08:00  INFO 45751 --- [campus-events] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.IdentityEligibilityIT
+2026-11-13T22:01:25.450+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.11)
+2026-11-13T22:01:25.458+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_0bd3c6ecad5a4feb8c9a6e589e5f1ede"."flyway_schema_history" does not exist yet
+2026-11-13T22:01:25.458+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.003s)
+2026-11-13T22:01:25.463+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_0bd3c6ecad5a4feb8c9a6e589e5f1ede"."flyway_schema_history" ...
+2026-11-13T22:01:25.478+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_0bd3c6ecad5a4feb8c9a6e589e5f1ede": << Empty Schema >>
+2026-11-13T22:01:25.483+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_0bd3c6ecad5a4feb8c9a6e589e5f1ede" to version "1 - schema"
+2026-11-13T22:01:25.540+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_0bd3c6ecad5a4feb8c9a6e589e5f1ede" to version "2 - outbox claim token"
+2026-11-13T22:01:25.553+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "t_0bd3c6ecad5a4feb8c9a6e589e5f1ede", now at version v2 (execution time 00:00.044s)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-13T22:01:25.657+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.acceptance.IdentityEligibilityIT   : Starting IdentityEligibilityIT using Java 21.0.13 with PID 45751 (started by r1t0 in /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/.review-tmp/candidate-pr21-1113b/server)
+2026-11-13T22:01:25.657+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.acceptance.IdentityEligibilityIT   : The following 1 profile is active: "test"
+2026-11-13T22:01:25.754+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2026-11-13T22:01:25.754+08:00  INFO 45751 --- [campus-events] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-13T22:01:25.755+08:00  INFO 45751 --- [campus-events] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-11-13T22:01:25.758+08:00  INFO 45751 --- [campus-events] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-11-13T22:01:25.759+08:00  INFO 45751 --- [campus-events] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 100 ms
+2026-11-13T22:01:25.777+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2026-11-13T22:01:25.784+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-6 - Added connection org.postgresql.jdbc.PgConnection@4363a519
+2026-11-13T22:01:25.784+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2026-11-13T22:01:25.785+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_0bd3c6ecad5a4feb8c9a6e589e5f1ede (PostgreSQL 17.11)
+2026-11-13T22:01:25.793+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.003s)
+2026-11-13T22:01:25.806+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_0bd3c6ecad5a4feb8c9a6e589e5f1ede": 2
+2026-11-13T22:01:25.806+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Schema "t_0bd3c6ecad5a4feb8c9a6e589e5f1ede" is up to date. No migration necessary.
+2026-11-13T22:01:26.064+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 45863 (http) with context path '/'
+2026-11-13T22:01:26.066+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.acceptance.IdentityEligibilityIT   : Started IdentityEligibilityIT in 0.424 seconds (process running for 40.803)
+2026-11-13T22:01:26.072+08:00  INFO 45751 --- [campus-events] [o-auto-5-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-13T22:01:26.072+08:00  INFO 45751 --- [campus-events] [o-auto-5-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-13T22:01:26.072+08:00  INFO 45751 --- [campus-events] [o-auto-5-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-11-13T22:01:31.001+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-11-13T22:01:31.002+08:00  INFO 45751 --- [campus-events] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-11-13T22:01:31.003+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
+2026-11-13T22:01:31.006+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.577 s -- in N-AT-01～06 身份、资格与授权范围（IdentityEligibilityIT）
+[INFO] Running D-AT-17 取消与竞争
+2026-11-13T22:01:31.010+08:00  INFO 45751 --- [campus-events] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.campus.events.acceptance.CancellationRaceIT]: CancellationRaceIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-13T22:01:31.010+08:00  INFO 45751 --- [campus-events] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.CancellationRaceIT
+2026-11-13T22:01:31.023+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.11)
+2026-11-13T22:01:31.028+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_5c42e142ffb64307b5eb08477a726be6"."flyway_schema_history" does not exist yet
+2026-11-13T22:01:31.028+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.002s)
+2026-11-13T22:01:31.032+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_5c42e142ffb64307b5eb08477a726be6"."flyway_schema_history" ...
+2026-11-13T22:01:31.044+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_5c42e142ffb64307b5eb08477a726be6": << Empty Schema >>
+2026-11-13T22:01:31.049+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_5c42e142ffb64307b5eb08477a726be6" to version "1 - schema"
+2026-11-13T22:01:31.104+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_5c42e142ffb64307b5eb08477a726be6" to version "2 - outbox claim token"
+2026-11-13T22:01:31.110+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "t_5c42e142ffb64307b5eb08477a726be6", now at version v2 (execution time 00:00.047s)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-13T22:01:31.255+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.acceptance.CancellationRaceIT      : Starting CancellationRaceIT using Java 21.0.13 with PID 45751 (started by r1t0 in /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/.review-tmp/candidate-pr21-1113b/server)
+2026-11-13T22:01:31.256+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.acceptance.CancellationRaceIT      : The following 1 profile is active: "test"
+2026-11-13T22:01:31.349+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2026-11-13T22:01:31.350+08:00  INFO 45751 --- [campus-events] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-13T22:01:31.350+08:00  INFO 45751 --- [campus-events] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-11-13T22:01:31.373+08:00  INFO 45751 --- [campus-events] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-11-13T22:01:31.373+08:00  INFO 45751 --- [campus-events] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 117 ms
+2026-11-13T22:01:31.388+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
+2026-11-13T22:01:31.393+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-7 - Added connection org.postgresql.jdbc.PgConnection@5742a4bb
+2026-11-13T22:01:31.393+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
+2026-11-13T22:01:31.394+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_5c42e142ffb64307b5eb08477a726be6 (PostgreSQL 17.11)
+2026-11-13T22:01:31.402+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.003s)
+2026-11-13T22:01:31.412+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_5c42e142ffb64307b5eb08477a726be6": 2
+2026-11-13T22:01:31.412+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Schema "t_5c42e142ffb64307b5eb08477a726be6" is up to date. No migration necessary.
+2026-11-13T22:01:31.660+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 46447 (http) with context path '/'
+2026-11-13T22:01:31.661+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.acceptance.CancellationRaceIT      : Started CancellationRaceIT in 0.414 seconds (process running for 46.399)
+2026-11-13T22:01:31.668+08:00  INFO 45751 --- [campus-events] [o-auto-6-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-13T22:01:31.668+08:00  INFO 45751 --- [campus-events] [o-auto-6-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-13T22:01:31.668+08:00  INFO 45751 --- [campus-events] [o-auto-6-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-11-13T22:01:32.379+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-11-13T22:01:32.380+08:00  INFO 45751 --- [campus-events] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-11-13T22:01:32.382+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown initiated...
+2026-11-13T22:01:32.382+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown completed.
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.376 s -- in D-AT-17 取消与竞争
+[INFO] Running com.campus.events.acceptance.SeederRollbackIT
+2026-11-13T22:01:32.397+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.11)
+2026-11-13T22:01:32.402+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_658c497de2184cdcbf76770aed0dee00"."flyway_schema_history" does not exist yet
+2026-11-13T22:01:32.402+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.001s)
+2026-11-13T22:01:32.406+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_658c497de2184cdcbf76770aed0dee00"."flyway_schema_history" ...
+2026-11-13T22:01:32.419+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_658c497de2184cdcbf76770aed0dee00": << Empty Schema >>
+2026-11-13T22:01:32.427+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_658c497de2184cdcbf76770aed0dee00" to version "1 - schema"
+2026-11-13T22:01:32.479+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_658c497de2184cdcbf76770aed0dee00" to version "2 - outbox claim token"
+2026-11-13T22:01:32.484+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "t_658c497de2184cdcbf76770aed0dee00", now at version v2 (execution time 00:00.047s)
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.319 s -- in com.campus.events.acceptance.SeederRollbackIT
+[INFO] Running QA-04 / D-AT-22 策略评测执行器（SchedulingBenchmarkIT）
+2026-11-13T22:01:32.708+08:00  INFO 45751 --- [campus-events] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.campus.events.acceptance.SchedulingBenchmarkIT]: SchedulingBenchmarkIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-13T22:01:32.708+08:00  INFO 45751 --- [campus-events] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.SchedulingBenchmarkIT
+2026-11-13T22:01:32.721+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.11)
+2026-11-13T22:01:32.726+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_1cc076fa018a49f792380cd3156b8cf7"."flyway_schema_history" does not exist yet
+2026-11-13T22:01:32.726+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.002s)
+2026-11-13T22:01:32.730+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_1cc076fa018a49f792380cd3156b8cf7"."flyway_schema_history" ...
+2026-11-13T22:01:32.743+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_1cc076fa018a49f792380cd3156b8cf7": << Empty Schema >>
+2026-11-13T22:01:32.750+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_1cc076fa018a49f792380cd3156b8cf7" to version "1 - schema"
+2026-11-13T22:01:32.809+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_1cc076fa018a49f792380cd3156b8cf7" to version "2 - outbox claim token"
+2026-11-13T22:01:32.816+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "t_1cc076fa018a49f792380cd3156b8cf7", now at version v2 (execution time 00:00.053s)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-13T22:01:32.903+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.acceptance.SchedulingBenchmarkIT   : Starting SchedulingBenchmarkIT using Java 21.0.13 with PID 45751 (started by r1t0 in /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/.review-tmp/candidate-pr21-1113b/server)
+2026-11-13T22:01:32.903+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.acceptance.SchedulingBenchmarkIT   : The following 1 profile is active: "test"
+2026-11-13T22:01:32.985+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Starting...
+2026-11-13T22:01:32.992+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-8 - Added connection org.postgresql.jdbc.PgConnection@787aa9f1
+2026-11-13T22:01:32.992+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Start completed.
+2026-11-13T22:01:32.993+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_1cc076fa018a49f792380cd3156b8cf7 (PostgreSQL 17.11)
+2026-11-13T22:01:33.000+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.003s)
+2026-11-13T22:01:33.009+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_1cc076fa018a49f792380cd3156b8cf7": 2
+2026-11-13T22:01:33.009+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Schema "t_1cc076fa018a49f792380cd3156b8cf7" is up to date. No migration necessary.
+2026-11-13T22:01:33.250+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.acceptance.SchedulingBenchmarkIT   : Started SchedulingBenchmarkIT in 0.356 seconds (process running for 47.988)
+2026-11-13T22:01:41.779+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown initiated...
+2026-11-13T22:01:41.780+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown completed.
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.074 s -- in QA-04 / D-AT-22 策略评测执行器（SchedulingBenchmarkIT）
+[INFO] Running D-AT-11/12/13/14 改期拒绝、抢占、自身排除与回滚（ChangeRollbackIT）
+2026-11-13T22:01:41.785+08:00  INFO 45751 --- [campus-events] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.campus.events.acceptance.ChangeRollbackIT]: ChangeRollbackIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2026-11-13T22:01:41.788+08:00  INFO 45751 --- [campus-events] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.ChangeRollbackIT
+2026-11-13T22:01:41.801+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.11)
+2026-11-13T22:01:41.806+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_ecd9fd8df22c47d2a7993fa020d0ed32"."flyway_schema_history" does not exist yet
+2026-11-13T22:01:41.806+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.002s)
+2026-11-13T22:01:41.811+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_ecd9fd8df22c47d2a7993fa020d0ed32"."flyway_schema_history" ...
+2026-11-13T22:01:41.822+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_ecd9fd8df22c47d2a7993fa020d0ed32": << Empty Schema >>
+2026-11-13T22:01:41.829+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_ecd9fd8df22c47d2a7993fa020d0ed32" to version "1 - schema"
+2026-11-13T22:01:41.887+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_ecd9fd8df22c47d2a7993fa020d0ed32" to version "2 - outbox claim token"
+2026-11-13T22:01:41.894+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "t_ecd9fd8df22c47d2a7993fa020d0ed32", now at version v2 (execution time 00:00.052s)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-13T22:01:41.991+08:00  INFO 45751 --- [campus-events] [           main] c.c.events.acceptance.ChangeRollbackIT   : Starting ChangeRollbackIT using Java 21.0.13 with PID 45751 (started by r1t0 in /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/.review-tmp/candidate-pr21-1113b/server)
+2026-11-13T22:01:41.991+08:00  INFO 45751 --- [campus-events] [           main] c.c.events.acceptance.ChangeRollbackIT   : The following 1 profile is active: "test"
+2026-11-13T22:01:42.067+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2026-11-13T22:01:42.067+08:00  INFO 45751 --- [campus-events] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-13T22:01:42.067+08:00  INFO 45751 --- [campus-events] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-11-13T22:01:42.071+08:00  INFO 45751 --- [campus-events] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-11-13T22:01:42.071+08:00  INFO 45751 --- [campus-events] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 79 ms
+2026-11-13T22:01:42.089+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Starting...
+2026-11-13T22:01:42.094+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-9 - Added connection org.postgresql.jdbc.PgConnection@33bf3cc9
+2026-11-13T22:01:42.094+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Start completed.
+2026-11-13T22:01:42.095+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_ecd9fd8df22c47d2a7993fa020d0ed32 (PostgreSQL 17.11)
+2026-11-13T22:01:42.104+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.003s)
+2026-11-13T22:01:42.112+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_ecd9fd8df22c47d2a7993fa020d0ed32": 2
+2026-11-13T22:01:42.113+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Schema "t_ecd9fd8df22c47d2a7993fa020d0ed32" is up to date. No migration necessary.
+2026-11-13T22:01:42.725+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 45269 (http) with context path '/'
+2026-11-13T22:01:42.730+08:00  INFO 45751 --- [campus-events] [           main] c.c.events.acceptance.ChangeRollbackIT   : Started ChangeRollbackIT in 0.75 seconds (process running for 57.467)
+2026-11-13T22:01:42.747+08:00  INFO 45751 --- [campus-events] [o-auto-7-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-13T22:01:42.747+08:00  INFO 45751 --- [campus-events] [o-auto-7-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-13T22:01:42.748+08:00  INFO 45751 --- [campus-events] [o-auto-7-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-11-13T22:01:45.104+08:00 ERROR 45751 --- [campus-events] [o-auto-7-exec-3] c.c.e.foundation.ApiExceptionHandler     : 请求处理失败，requestId=938f8484-0280-48f3-81b8-cacae775e12c
+
+java.lang.RuntimeException: 测试故障注入：replaceReservations 失败（D-AT-14）
+	at com.campus.events.scheduling.SchedulingPortAdapter.replaceReservations(SchedulingPortAdapter.java:81) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360) ~[spring-aop-6.2.19.jar:6.2.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.2.19.jar:6.2.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.2.19.jar:6.2.19]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380) ~[spring-tx-6.2.19.jar:6.2.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.2.19.jar:6.2.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.19.jar:6.2.19]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728) ~[spring-aop-6.2.19.jar:6.2.19]
+	at com.campus.events.scheduling.SchedulingPortAdapter$$SpringCGLIB$$0.replaceReservations(<generated>) ~[classes/:na]
+	at com.campus.events.change.ChangeService.resourceDecision(ChangeService.java:347) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360) ~[spring-aop-6.2.19.jar:6.2.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.2.19.jar:6.2.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.2.19.jar:6.2.19]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380) ~[spring-tx-6.2.19.jar:6.2.19]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.2.19.jar:6.2.19]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.2.19.jar:6.2.19]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728) ~[spring-aop-6.2.19.jar:6.2.19]
+	at com.campus.events.change.ChangeService$$SpringCGLIB$$0.resourceDecision(<generated>) ~[classes/:na]
+	at com.campus.events.change.ChangeController.lambda$resourceDecision$4(ChangeController.java:75) ~[classes/:na]
+	at com.campus.events.foundation.CommandExecutor.lambda$execute$0(CommandExecutor.java:40) ~[classes/:na]
+	at org.springframework.transaction.support.TransactionTemplate.execute(TransactionTemplate.java:140) ~[spring-tx-6.2.19.jar:6.2.19]
+	at com.campus.events.foundation.CommandExecutor.execute(CommandExecutor.java:27) ~[classes/:na]
+	at com.campus.events.change.ChangeController.decision(ChangeController.java:35) ~[classes/:na]
+	at com.campus.events.change.ChangeController.resourceDecision(ChangeController.java:75) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.19.jar:6.2.19]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:991) ~[spring-webmvc-6.2.19.jar:6.2.19]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:896) ~[spring-webmvc-6.2.19.jar:6.2.19]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.19.jar:6.2.19]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.2.19.jar:6.2.19]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.2.19.jar:6.2.19]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.19.jar:6.2.19]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.2.19.jar:6.2.19]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.55.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.19.jar:6.2.19]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.55.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.55.jar:10.1.55]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:370) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:125) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at com.campus.events.auth.BearerFilter.doFilterInternal(BearerFilter.java:38) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:379) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.5.11.jar:6.5.11]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319) ~[spring-security-config-6.5.11.jar:6.5.11]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267) ~[spring-webmvc-6.2.19.jar:6.2.19]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240) ~[spring-security-config-6.5.11.jar:6.5.11]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at com.campus.events.foundation.RequestIdFilter.doFilterInternal(RequestIdFilter.java:23) ~[classes/:na]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.19.jar:6.2.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1272) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1797) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.55.jar:10.1.55]
+	at java.base/java.lang.Thread.run(Thread.java:1583) ~[na:na]
+
+2026-11-13T22:01:45.230+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-11-13T22:01:45.232+08:00  INFO 45751 --- [campus-events] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-11-13T22:01:45.235+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown initiated...
+2026-11-13T22:01:45.237+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown completed.
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.457 s -- in D-AT-11/12/13/14 改期拒绝、抢占、自身排除与回滚（ChangeRollbackIT）
+[INFO] Running CM-01 DemoDataSeeder 导入顺序与幂等回归
+2026-11-13T22:01:45.268+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.11)
+2026-11-13T22:01:45.277+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_cac5c80e8f24497eb8cbdbeccd593c3e"."flyway_schema_history" does not exist yet
+2026-11-13T22:01:45.278+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.004s)
+2026-11-13T22:01:45.284+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_cac5c80e8f24497eb8cbdbeccd593c3e"."flyway_schema_history" ...
+2026-11-13T22:01:45.304+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_cac5c80e8f24497eb8cbdbeccd593c3e": << Empty Schema >>
+2026-11-13T22:01:45.325+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_cac5c80e8f24497eb8cbdbeccd593c3e" to version "1 - schema"
+2026-11-13T22:01:45.418+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_cac5c80e8f24497eb8cbdbeccd593c3e" to version "2 - outbox claim token"
+2026-11-13T22:01:45.433+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "t_cac5c80e8f24497eb8cbdbeccd593c3e", now at version v2 (execution time 00:00.062s)
+2026-11-13T22:01:45.541+08:00  INFO 45751 --- [campus-events] [           main] com.campus.events.dev.DemoDataSeeder     : 演示数据导入完成：组织 2、用户 9、资源 12、活动 2、预约 4、报名 1（演示日期 2030-10-20）
+2026-11-13T22:01:45.622+08:00  INFO 45751 --- [campus-events] [           main] com.campus.events.dev.DemoDataSeeder     : 演示数据导入完成：组织 0、用户 0、资源 0、活动 0、预约 0、报名 0（演示日期 2030-10-20）
+2026-11-13T22:01:45.712+08:00  INFO 45751 --- [campus-events] [           main] com.campus.events.dev.DemoDataSeeder     : 演示数据导入完成：组织 0、用户 0、资源 0、活动 0、预约 0、报名 0（演示日期 2030-10-20）
+2026-11-13T22:01:45.871+08:00  INFO 45751 --- [campus-events] [           main] com.campus.events.dev.DemoDataSeeder     : 演示数据导入完成：组织 0、用户 1、资源 0、活动 0、预约 0、报名 0（演示日期 2030-10-20）
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.665 s -- in CM-01 DemoDataSeeder 导入顺序与幂等回归
+[INFO] Running com.campus.events.scheduling.DsStrategyBenchmarkIT
+2026-11-13T22:01:45.943+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.11)
+2026-11-13T22:01:45.958+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_375efab33ad34931bf6423a331580853"."flyway_schema_history" does not exist yet
+2026-11-13T22:01:45.959+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.009s)
+2026-11-13T22:01:45.968+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_375efab33ad34931bf6423a331580853"."flyway_schema_history" ...
+2026-11-13T22:01:45.991+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_375efab33ad34931bf6423a331580853": << Empty Schema >>
+2026-11-13T22:01:45.996+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_375efab33ad34931bf6423a331580853" to version "1 - schema"
+2026-11-13T22:01:46.094+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_375efab33ad34931bf6423a331580853" to version "2 - outbox claim token"
+2026-11-13T22:01:46.107+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "t_375efab33ad34931bf6423a331580853", now at version v2 (execution time 00:00.073s)
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 45.42 s -- in com.campus.events.scheduling.DsStrategyBenchmarkIT
+[INFO] Running com.campus.events.foundation.ProductionWorkflowIT
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-13T22:02:31.365+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.foundation.ProductionWorkflowIT    : Starting ProductionWorkflowIT using Java 21.0.13 with PID 45751 (started by r1t0 in /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/.review-tmp/candidate-pr21-1113b/server)
+2026-11-13T22:02:31.365+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.foundation.ProductionWorkflowIT    : The following 1 profile is active: "test"
+2026-11-13T22:02:31.568+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Starting...
+2026-11-13T22:02:31.574+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-10 - Added connection org.postgresql.jdbc.PgConnection@4fb68460
+2026-11-13T22:02:31.574+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Start completed.
+2026-11-13T22:02:31.575+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_1ef69fd1a5b9426b8c5914f3aa6fac51 (PostgreSQL 17.11)
+2026-11-13T22:02:31.582+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.database.base.Schema   : Creating schema "t_1ef69fd1a5b9426b8c5914f3aa6fac51" ...
+2026-11-13T22:02:31.585+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_1ef69fd1a5b9426b8c5914f3aa6fac51"."flyway_schema_history" ...
+2026-11-13T22:02:31.609+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_1ef69fd1a5b9426b8c5914f3aa6fac51": null
+2026-11-13T22:02:31.615+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_1ef69fd1a5b9426b8c5914f3aa6fac51" to version "1 - schema"
+2026-11-13T22:02:31.707+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_1ef69fd1a5b9426b8c5914f3aa6fac51" to version "2 - outbox claim token"
+2026-11-13T22:02:31.719+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "t_1ef69fd1a5b9426b8c5914f3aa6fac51", now at version v2 (execution time 00:00.079s)
+2026-11-13T22:02:32.045+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-13T22:02:32.045+08:00  INFO 45751 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-13T22:02:32.045+08:00  INFO 45751 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-11-13T22:02:32.051+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.foundation.ProductionWorkflowIT    : Started ProductionWorkflowIT in 0.708 seconds (process running for 106.788)
+2026-11-13T22:02:35.296+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown initiated...
+2026-11-13T22:02:35.297+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown completed.
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.963 s -- in com.campus.events.foundation.ProductionWorkflowIT
+[INFO] Running com.campus.events.foundation.StandardMavenSchemaIT
+2026-11-13T22:02:35.314+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.11)
+2026-11-13T22:02:35.321+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_2e574072781d430892c8ba739aaa8436"."flyway_schema_history" does not exist yet
+2026-11-13T22:02:35.322+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.002s)
+2026-11-13T22:02:35.332+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_2e574072781d430892c8ba739aaa8436"."flyway_schema_history" ...
+2026-11-13T22:02:35.347+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_2e574072781d430892c8ba739aaa8436": << Empty Schema >>
+2026-11-13T22:02:35.353+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_2e574072781d430892c8ba739aaa8436" to version "1 - schema"
+2026-11-13T22:02:35.417+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_2e574072781d430892c8ba739aaa8436" to version "2 - outbox claim token"
+2026-11-13T22:02:35.424+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "t_2e574072781d430892c8ba739aaa8436", now at version v2 (execution time 00:00.057s)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-13T22:02:35.445+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.foundation.StandardMavenSchemaIT   : Starting StandardMavenSchemaIT using Java 21.0.13 with PID 45751 (started by r1t0 in /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/.review-tmp/candidate-pr21-1113b/server)
+2026-11-13T22:02:35.445+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.foundation.StandardMavenSchemaIT   : The following 1 profile is active: "test"
+2026-11-13T22:02:35.544+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Starting...
+2026-11-13T22:02:35.548+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-11 - Added connection org.postgresql.jdbc.PgConnection@47fb1b38
+2026-11-13T22:02:35.549+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Start completed.
+2026-11-13T22:02:35.550+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_2e574072781d430892c8ba739aaa8436 (PostgreSQL 17.11)
+2026-11-13T22:02:35.558+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.003s)
+2026-11-13T22:02:35.568+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_2e574072781d430892c8ba739aaa8436": 2
+2026-11-13T22:02:35.568+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Schema "t_2e574072781d430892c8ba739aaa8436" is up to date. No migration necessary.
+2026-11-13T22:02:35.859+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.foundation.StandardMavenSchemaIT   : Started StandardMavenSchemaIT in 0.431 seconds (process running for 110.596)
+2026-11-13T22:02:35.886+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Shutdown initiated...
+2026-11-13T22:02:35.901+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Shutdown completed.
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.604 s -- in com.campus.events.foundation.StandardMavenSchemaIT
+[INFO] Running com.campus.events.foundation.PublishedModulesIT
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-13T22:02:35.922+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.foundation.PublishedModulesIT      : Starting PublishedModulesIT using Java 21.0.13 with PID 45751 (started by r1t0 in /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/.review-tmp/candidate-pr21-1113b/server)
+2026-11-13T22:02:35.922+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.foundation.PublishedModulesIT      : The following 1 profile is active: "test"
+2026-11-13T22:02:36.033+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Starting...
+2026-11-13T22:02:36.038+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-12 - Added connection org.postgresql.jdbc.PgConnection@6880f559
+2026-11-13T22:02:36.039+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Start completed.
+2026-11-13T22:02:36.040+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_2e861d0565a54dfcb2054d4b8c089565 (PostgreSQL 17.11)
+2026-11-13T22:02:36.046+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_2e861d0565a54dfcb2054d4b8c089565"."flyway_schema_history" does not exist yet
+2026-11-13T22:02:36.047+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.002s)
+2026-11-13T22:02:36.053+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_2e861d0565a54dfcb2054d4b8c089565"."flyway_schema_history" ...
+2026-11-13T22:02:36.069+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_2e861d0565a54dfcb2054d4b8c089565": << Empty Schema >>
+2026-11-13T22:02:36.073+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_2e861d0565a54dfcb2054d4b8c089565" to version "1 - schema"
+2026-11-13T22:02:36.148+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_2e861d0565a54dfcb2054d4b8c089565" to version "2 - outbox claim token"
+2026-11-13T22:02:36.157+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "t_2e861d0565a54dfcb2054d4b8c089565", now at version v2 (execution time 00:00.067s)
+2026-11-13T22:02:36.406+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-13T22:02:36.407+08:00  INFO 45751 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-13T22:02:36.407+08:00  INFO 45751 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-11-13T22:02:36.410+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.foundation.PublishedModulesIT      : Started PublishedModulesIT in 0.504 seconds (process running for 111.148)
+2026-11-13T22:02:38.440+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Shutdown initiated...
+2026-11-13T22:02:38.442+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Shutdown completed.
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.540 s -- in com.campus.events.foundation.PublishedModulesIT
+[INFO] Running com.campus.events.foundation.FoundationIT
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-13T22:02:38.468+08:00  INFO 45751 --- [campus-events] [           main] c.campus.events.foundation.FoundationIT  : Starting FoundationIT using Java 21.0.13 with PID 45751 (started by r1t0 in /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/.review-tmp/candidate-pr21-1113b/server)
+2026-11-13T22:02:38.468+08:00  INFO 45751 --- [campus-events] [           main] c.campus.events.foundation.FoundationIT  : The following 1 profile is active: "test"
+2026-11-13T22:02:38.591+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Starting...
+2026-11-13T22:02:38.596+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-13 - Added connection org.postgresql.jdbc.PgConnection@241c1155
+2026-11-13T22:02:38.597+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Start completed.
+2026-11-13T22:02:38.598+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_1daa9e8336134c83b2ecc99856f3ece6 (PostgreSQL 17.11)
+2026-11-13T22:02:38.605+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_1daa9e8336134c83b2ecc99856f3ece6"."flyway_schema_history" does not exist yet
+2026-11-13T22:02:38.606+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.002s)
+2026-11-13T22:02:38.612+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_1daa9e8336134c83b2ecc99856f3ece6"."flyway_schema_history" ...
+2026-11-13T22:02:38.628+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_1daa9e8336134c83b2ecc99856f3ece6": << Empty Schema >>
+2026-11-13T22:02:38.633+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_1daa9e8336134c83b2ecc99856f3ece6" to version "1 - schema"
+2026-11-13T22:02:38.701+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_1daa9e8336134c83b2ecc99856f3ece6" to version "2 - outbox claim token"
+2026-11-13T22:02:38.708+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "t_1daa9e8336134c83b2ecc99856f3ece6", now at version v2 (execution time 00:00.061s)
+2026-11-13T22:02:38.974+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-13T22:02:38.974+08:00  INFO 45751 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-13T22:02:38.975+08:00  INFO 45751 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2026-11-13T22:02:38.978+08:00  INFO 45751 --- [campus-events] [           main] c.campus.events.foundation.FoundationIT  : Started FoundationIT in 0.529 seconds (process running for 113.716)
+2026-11-13T22:02:46.659+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Shutdown initiated...
+2026-11-13T22:02:46.660+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Shutdown completed.
+[INFO] Tests run: 25, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.216 s -- in com.campus.events.foundation.FoundationIT
+[INFO] Running com.campus.events.notification.OutboxClaimIT
+2026-11-13T22:02:46.674+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.11)
+2026-11-13T22:02:46.679+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_65a8514c6e6e49b896af26958637a953"."flyway_schema_history" does not exist yet
+2026-11-13T22:02:46.679+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.002s)
+2026-11-13T22:02:46.684+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_65a8514c6e6e49b896af26958637a953"."flyway_schema_history" ...
+2026-11-13T22:02:46.697+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_65a8514c6e6e49b896af26958637a953": << Empty Schema >>
+2026-11-13T22:02:46.702+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_65a8514c6e6e49b896af26958637a953" to version "1 - schema"
+2026-11-13T22:02:46.759+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_65a8514c6e6e49b896af26958637a953" to version "2 - outbox claim token"
+2026-11-13T22:02:46.766+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "t_65a8514c6e6e49b896af26958637a953", now at version v2 (execution time 00:00.050s)
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.265 s -- in com.campus.events.notification.OutboxClaimIT
+[INFO] Running com.campus.events.support.DbTestSupportIT
+2026-11-13T22:02:46.944+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.11)
+2026-11-13T22:02:46.951+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "t_8ac83f488e2a4bc29838a84fe8ba2629"."flyway_schema_history" does not exist yet
+2026-11-13T22:02:46.952+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.002s)
+2026-11-13T22:02:46.957+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "t_8ac83f488e2a4bc29838a84fe8ba2629"."flyway_schema_history" ...
+2026-11-13T22:02:46.971+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_8ac83f488e2a4bc29838a84fe8ba2629": << Empty Schema >>
+2026-11-13T22:02:46.977+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_8ac83f488e2a4bc29838a84fe8ba2629" to version "1 - schema"
+2026-11-13T22:02:47.047+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "t_8ac83f488e2a4bc29838a84fe8ba2629" to version "2 - outbox claim token"
+2026-11-13T22:02:47.054+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "t_8ac83f488e2a4bc29838a84fe8ba2629", now at version v2 (execution time 00:00.064s)
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.342 s -- in com.campus.events.support.DbTestSupportIT
+[INFO] Running com.campus.events.activity.ActivityRegistrationIT
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-13T22:02:47.290+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.activity.ActivityRegistrationIT    : Starting ActivityRegistrationIT using Java 21.0.13 with PID 45751 (started by r1t0 in /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/.review-tmp/candidate-pr21-1113b/server)
+2026-11-13T22:02:47.291+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.activity.ActivityRegistrationIT    : The following 1 profile is active: "test"
+2026-11-13T22:02:47.371+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-14 - Starting...
+2026-11-13T22:02:47.377+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-14 - Added connection org.postgresql.jdbc.PgConnection@67f60665
+2026-11-13T22:02:47.377+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-14 - Start completed.
+2026-11-13T22:02:47.378+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=an_e820e138ddbb4976b0831f4d4a31f2b8 (PostgreSQL 17.11)
+2026-11-13T22:02:47.384+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "an_e820e138ddbb4976b0831f4d4a31f2b8"."flyway_schema_history" does not exist yet
+2026-11-13T22:02:47.385+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.002s)
+2026-11-13T22:02:47.391+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "an_e820e138ddbb4976b0831f4d4a31f2b8"."flyway_schema_history" ...
+2026-11-13T22:02:47.404+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "an_e820e138ddbb4976b0831f4d4a31f2b8": << Empty Schema >>
+2026-11-13T22:02:47.408+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "an_e820e138ddbb4976b0831f4d4a31f2b8" to version "1 - schema"
+2026-11-13T22:02:47.464+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "an_e820e138ddbb4976b0831f4d4a31f2b8" to version "2 - outbox claim token"
+2026-11-13T22:02:47.470+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "an_e820e138ddbb4976b0831f4d4a31f2b8", now at version v2 (execution time 00:00.050s)
+2026-11-13T22:02:47.714+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-13T22:02:47.714+08:00  INFO 45751 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-13T22:02:47.714+08:00  INFO 45751 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-11-13T22:02:47.717+08:00  INFO 45751 --- [campus-events] [           main] c.c.e.activity.ActivityRegistrationIT    : Started ActivityRegistrationIT in 0.442 seconds (process running for 122.454)
+2026-11-13T22:03:36.876+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-14 - Shutdown initiated...
+2026-11-13T22:03:36.878+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-14 - Shutdown completed.
+[INFO] Tests run: 35, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 49.61 s -- in com.campus.events.activity.ActivityRegistrationIT
+[INFO] Running com.campus.events.activity.ActivityApprovalIT
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-13T22:03:36.895+08:00  INFO 45751 --- [campus-events] [           main] c.c.events.activity.ActivityApprovalIT   : Starting ActivityApprovalIT using Java 21.0.13 with PID 45751 (started by r1t0 in /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/.review-tmp/candidate-pr21-1113b/server)
+2026-11-13T22:03:36.895+08:00  INFO 45751 --- [campus-events] [           main] c.c.events.activity.ActivityApprovalIT   : The following 1 profile is active: "test"
+2026-11-13T22:03:37.035+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Starting...
+2026-11-13T22:03:37.040+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-15 - Added connection org.postgresql.jdbc.PgConnection@da3b3fe
+2026-11-13T22:03:37.040+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Start completed.
+2026-11-13T22:03:37.041+08:00  INFO 45751 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=an_4b4a4da7243f4128adb46b11a62aa0e1 (PostgreSQL 17.11)
+2026-11-13T22:03:37.047+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.database.base.Schema   : Creating schema "an_4b4a4da7243f4128adb46b11a62aa0e1" ...
+2026-11-13T22:03:37.049+08:00  INFO 45751 --- [campus-events] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "an_4b4a4da7243f4128adb46b11a62aa0e1"."flyway_schema_history" ...
+2026-11-13T22:03:37.062+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "an_4b4a4da7243f4128adb46b11a62aa0e1": null
+2026-11-13T22:03:37.073+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "an_4b4a4da7243f4128adb46b11a62aa0e1" to version "1 - schema"
+2026-11-13T22:03:37.130+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "an_4b4a4da7243f4128adb46b11a62aa0e1" to version "2 - outbox claim token"
+2026-11-13T22:03:37.135+08:00  INFO 45751 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Successfully applied 2 migrations to schema "an_4b4a4da7243f4128adb46b11a62aa0e1", now at version v2 (execution time 00:00.051s)
+2026-11-13T22:03:37.385+08:00  INFO 45751 --- [campus-events] [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2026-11-13T22:03:37.385+08:00  INFO 45751 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2026-11-13T22:03:37.385+08:00  INFO 45751 --- [campus-events] [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2026-11-13T22:03:37.391+08:00  INFO 45751 --- [campus-events] [           main] c.c.events.activity.ActivityApprovalIT   : Started ActivityApprovalIT in 0.505 seconds (process running for 172.128)
+2026-11-13T22:03:44.017+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Shutdown initiated...
+2026-11-13T22:03:44.018+08:00  INFO 45751 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-15 - Shutdown completed.
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.138 s -- in com.campus.events.activity.ActivityApprovalIT
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 158, Failures: 0, Errors: 0, Skipped: 1
+[INFO] 
+[INFO] 
+[INFO] --- failsafe:3.5.6:verify (default) @ campus-events ---
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  03:03 min
+[INFO] Finished at: 2026-11-13T22:03:44+08:00
+[INFO] ------------------------------------------------------------------------

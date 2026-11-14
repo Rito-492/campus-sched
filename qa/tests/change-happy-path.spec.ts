@@ -22,6 +22,7 @@ import {
   ACTIVITIES,
   RESOURCES,
   TESTID,
+  UI_TESTID,
   USERS,
   closeSessions,
   expectChangeStatus,
@@ -56,24 +57,36 @@ test.describe('D-AT-10 / D-AT-23 改期成功主线与持久化', () => {
         await organizer.page.getByTestId(TESTID.changePreview).click();
         await expect(organizer.page.getByTestId(TESTID.conflictList)).toBeVisible();
 
+        // 选择候选只是把方案填入目标；必须等对最终目标的再次预览（API-26）完成，
+        // 不能沿用旧影响快照（useChangeWorkspace.select → preview，真实联调记录「QA接收路径」）
+        const finalPreview = organizer.page.waitForResponse((res) =>
+          res.url().includes(`/activities/${ACTIVITIES.a.id}/change-preview`),
+        );
         await organizer.page.getByTestId(TESTID.alternative0).click();
+        expect((await finalPreview).status(), '选候选后的最终预览应 200').toBe(200);
+
+        // 改期原因是契约必填项（02 §3 ChangeCreateDto.reason）：
+        // 未填原因时 change-create 保持禁用，填原因后才可创建
+        await expect(organizer.page.getByTestId(TESTID.changeCreate), '未填改期原因不得允许创建').toBeDisabled();
+        await organizer.page.getByTestId(UI_TESTID.changeReason).fill('D-AT-10 改期至 15:00（测试数据）');
+        await expect(organizer.page.getByTestId(TESTID.changeCreate)).toBeEnabled();
         await organizer.page.getByTestId(TESTID.changeCreate).click();
         await expect(organizer.page).toHaveURL(/\/changes\/[0-9a-f-]{36}(?:[/?#]|$)/i);
         const changeId = lastPathSegment(organizer.page.url());
 
         // 2) 创建后处于 AWAITING_CONFIRMATIONS（A 的 staff 含 staff_a）
-        await expectChangeStatus(organizer.page, /AWAITING_CONFIRMATIONS|待确认/);
+        await expectChangeStatus(organizer.page, /AWAITING_CONFIRMATIONS|等待工作人员确认/);
 
         // 3) TC-23-1：刷新后状态仍来自真实持久化，不是仅内存成功
         await organizer.page.reload();
-        await expectChangeStatus(organizer.page, /AWAITING_CONFIRMATIONS|待确认/);
+        await expectChangeStatus(organizer.page, /AWAITING_CONFIRMATIONS|等待工作人员确认/);
 
         // 4) staff_a 确认同意 → PENDING_APPROVER
         const staff = await openSession(browser, USERS.staffA);
         sessions.push(staff);
         await staff.page.goto(`/changes/${changeId}`);
         await staff.page.getByTestId(TESTID.staffApprove).click();
-        await expectChangeStatus(staff.page, /PENDING_APPROVER|待批准人审批/);
+        await expectChangeStatus(staff.page, /PENDING_APPROVER|等待批准人复审/);
 
         // 5) approver_a 同意 → PENDING_RESOURCE
         const approver = await openSession(browser, USERS.approverA);

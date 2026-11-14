@@ -1,0 +1,71 @@
+diff --git a/server/src/test/java/com/campus/events/acceptance/IdentityEligibilityIT.java b/server/src/test/java/com/campus/events/acceptance/IdentityEligibilityIT.java
+index c48c74e..4614251 100644
+--- a/server/src/test/java/com/campus/events/acceptance/IdentityEligibilityIT.java
++++ b/server/src/test/java/com/campus/events/acceptance/IdentityEligibilityIT.java
+@@ -504,6 +504,16 @@ class IdentityEligibilityIT {
+         String changeId = created.data().path("id").asText();
+         assertEquals("AWAITING_CONFIRMATIONS", created.data().path("status").asText());
+ 
++        UUID changeUuid = UUID.fromString(changeId);
++        long staffRowsBefore = countWhere(
++                "SELECT count(*) FROM change_confirmation WHERE change_id = ? AND user_id = ?",
++                changeUuid, USER_STAFF_A);
++        assertEquals(1L, staffRowsBefore, "创建改期应预建工作人员待确认行");
++        assertEquals(staffRowsBefore, countWhere(
++                "SELECT count(*) FROM change_confirmation WHERE change_id = ? AND user_id = ? "
++                        + "AND decision IS NULL AND decided_at IS NULL", changeUuid, USER_STAFF_A),
++                "停用前工作人员尚未作决定");
++
+         HttpResult disabled = call(HttpMethod.PATCH, "/api/v1/users/" + USER_STAFF_A + "/enabled",
+                 admin, idem(), toJson(boolBody("enabled", false)));
+         assertEquals(200, disabled.status(), () -> "停用工作人员失败：" + disabled.body());
+@@ -514,9 +524,16 @@ class IdentityEligibilityIT {
+                     staffToken, idem(), toJson(decisionBody("APPROVE", "")));
+             assertTrue(confirm.status() == 401 || confirm.status() == 403,
+                     () -> "停用工作人员确认请求应被拒：" + confirm.body());
+-            assertEquals(0L, countWhere(
++            assertEquals(staffRowsBefore, countWhere(
+                     "SELECT count(*) FROM change_confirmation WHERE change_id = ? AND user_id = ?",
+-                    UUID.fromString(changeId), USER_STAFF_A), "停用账号不得代签，change_confirmation 不应有该用户记录");
++                    changeUuid, USER_STAFF_A), "拒绝停用账号请求后待确认快照行数不变");
++            assertEquals(staffRowsBefore, countWhere(
++                    "SELECT count(*) FROM change_confirmation WHERE change_id = ? AND user_id = ? "
++                            + "AND decision IS NULL AND decided_at IS NULL", changeUuid, USER_STAFF_A),
++                    "停用账号不得代签，原待办的decision和decided_at必须仍为NULL");
++            assertEquals("AWAITING_CONFIRMATIONS", queryString(
++                    "SELECT status FROM change_request WHERE id = ?", changeUuid),
++                    "停用账号请求被拒不得推进改期");
+         } finally {
+             HttpResult restored = call(HttpMethod.PATCH, "/api/v1/users/" + USER_STAFF_A + "/enabled",
+                     admin, idem(), toJson(boolBody("enabled", true)));
+diff --git a/server/src/test/java/com/campus/events/acceptance/PermissionsIT.java b/server/src/test/java/com/campus/events/acceptance/PermissionsIT.java
+index 0544c59..8e85f90 100644
+--- a/server/src/test/java/com/campus/events/acceptance/PermissionsIT.java
++++ b/server/src/test/java/com/campus/events/acceptance/PermissionsIT.java
+@@ -360,9 +360,11 @@ class PermissionsIT {
+                 owner, idem(), toJson(staleBase));
+         assertEquals(409, r1.status());
+         assertEquals("STALE_VERSION", r1.errorCode());
+-        assertTrue(r1.body().path("error").path("details").has("versionNo")
+-                        || r1.body().path("error").path("details").has("lockVersion"),
+-                "STALE_VERSION details 应含当前 versionNo/lockVersion");
++        assertTrue(r1.body().hasNonNull("requestId"));
++        assertTrue(r1.error().hasNonNull("message"));
++        assertTrue(r1.error().path("details").isObject(), "错误信封details允许为空对象");
++        assertEquals(currentVersion, readActivityVersion(owner, activityId), "冲突后重新GET内容版本不变");
++        assertEquals(currentLock, readActivityLockVersion(owner, activityId), "冲突后重新GET锁版本不变");
+ 
+         ObjectNode staleLock = changeCreateBody(currentVersion,
+                 "2030-10-20T18:00:00+08:00", "2030-10-20T19:00:00+08:00",
+@@ -371,6 +373,11 @@ class PermissionsIT {
+                 owner, idem(), toJson(staleLock));
+         assertEquals(409, r2.status());
+         assertEquals("STALE_VERSION", r2.errorCode());
++        assertTrue(r2.body().hasNonNull("requestId"));
++        assertTrue(r2.error().hasNonNull("message"));
++        assertTrue(r2.error().path("details").isObject(), "错误信封details允许为空对象");
++        assertEquals(currentVersion, readActivityVersion(owner, activityId), "旧锁版本请求后重新GET内容版本不变");
++        assertEquals(currentLock, readActivityLockVersion(owner, activityId), "旧锁版本请求后重新GET锁版本不变");
+ 
+         assertEquals(versionsBefore, countWhere("SELECT count(*) FROM activity_version WHERE activity_id = ?",
+                 UUID.fromString(activityId)), "陈旧版本请求不得产生新 activity_version");

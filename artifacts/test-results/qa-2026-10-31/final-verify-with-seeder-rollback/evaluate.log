@@ -1,0 +1,9 @@
+Command: npm --prefix qa run evaluate
+Input at execution time: server/target/scheduling-evaluation.json (same final run output copied beside this log)
+Exit code: 1
+Output:
+npm notice run campus-sched-qa@0.1.0 evaluate
+npm notice run node scripts/evaluate-scheduling.ts
+[evaluate-scheduling] 失败：期望对照存在不一致，已保留证据于 artifacts/evaluation/，请交 DS/PM 核查（不修改契约迎合实现）
+
+Generated expected-vs-measured details are in artifacts/evaluation/summary.md and results.csv.

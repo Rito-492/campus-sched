@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "backendRestarted": true,
+  "databaseRestarted": false,
+  "reseeded": false,
+  "apiStateEqual": true,
+  "browserVersion": 2,
+  "browserVenue": "3102",
+  "browserTime": "15:00",
+  "browserReloadVerified": true
+}

@@ -1,0 +1,992 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node",
+      "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/node_modules/.bin/playwright",
+      "test",
+      "login.spec.ts",
+      "ui-layout.spec.ts",
+      "--workers=1"
+    ],
+    "configFile": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/playwright.config.ts",
+    "rootDir": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/artifacts/test-results/e2e-raw",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/artifacts/test-results/e2e-raw",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-1920",
+        "name": "desktop-1920",
+        "testDir": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "/ui-layout\\.spec\\.ts/"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/artifacts/test-results/e2e-raw",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-390",
+        "name": "mobile-390",
+        "testDir": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "/ui-layout\\.spec\\.ts/"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "./test-results/e2e-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "login.spec.ts",
+      "file": "login.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "D-AT-01 登录、令牌与响应脱敏",
+          "file": "login.spec.ts",
+          "line": 28,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-01-1 applicant_a 正常登录进入主页，登录响应无密码字段、页面无散列信息",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "D-AT",
+                      "description": "D-AT-01",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/login.spec.ts",
+                        "line": 29,
+                        "column": 3
+                      }
+                    },
+                    {
+                      "type": "TC",
+                      "description": "TC-01-1",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/login.spec.ts",
+                        "line": 29,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 717,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-10T06:08:30.394Z",
+                      "annotations": [
+                        {
+                          "type": "D-AT",
+                          "description": "D-AT-01",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/login.spec.ts",
+                            "line": 29,
+                            "column": 3
+                          }
+                        },
+                        {
+                          "type": "TC",
+                          "description": "TC-01-1",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/login.spec.ts",
+                            "line": 29,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41d3fd2474a19feb00a1-b72a75ee6a439ca81bc4",
+              "file": "login.spec.ts",
+              "line": 29,
+              "column": 3
+            },
+            {
+              "title": "TC-01-2 错误密码返回 401 并显示错误提示，停留登录页，随后正确密码仍可登录",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "D-AT",
+                      "description": "D-AT-01",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/login.spec.ts",
+                        "line": 64,
+                        "column": 3
+                      }
+                    },
+                    {
+                      "type": "TC",
+                      "description": "TC-01-2",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/login.spec.ts",
+                        "line": 64,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 839,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-10T06:08:31.175Z",
+                      "annotations": [
+                        {
+                          "type": "D-AT",
+                          "description": "D-AT-01",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/login.spec.ts",
+                            "line": 64,
+                            "column": 3
+                          }
+                        },
+                        {
+                          "type": "TC",
+                          "description": "TC-01-2",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/login.spec.ts",
+                            "line": 64,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41d3fd2474a19feb00a1-c7cdd144bd9da1ca2a53",
+              "file": "login.spec.ts",
+              "line": 64,
+              "column": 3
+            },
+            {
+              "title": "D-AT-01 登录后页面与浏览器存储不出现密码散列或明文口令",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "D-AT",
+                      "description": "D-AT-01",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/login.spec.ts",
+                        "line": 111,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 640,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-10T06:08:32.020Z",
+                      "annotations": [
+                        {
+                          "type": "D-AT",
+                          "description": "D-AT-01",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/login.spec.ts",
+                            "line": 111,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "41d3fd2474a19feb00a1-799e490f3b74fef95b1d",
+              "file": "login.spec.ts",
+              "line": 111,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "ui-layout.spec.ts",
+      "file": "ui-layout.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "附表 界面与视觉核对（desktop / desktop-1920 / mobile-390）",
+          "file": "ui-layout.spec.ts",
+          "line": 37,
+          "column": 6,
+          "specs": [
+            {
+              "title": "登录页：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "登录页 05 §2 /login",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                        "line": 38,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 304,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-10T06:08:32.675Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "登录页 05 §2 /login",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                            "line": 38,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-48b488e3bbf3738c2a49",
+              "file": "ui-layout.spec.ts",
+              "line": 38,
+              "column": 3
+            },
+            {
+              "title": "活动列表：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "活动列表 05 §2 /activities",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                        "line": 54,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 830,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-10T06:08:32.984Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "活动列表 05 §2 /activities",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                            "line": 54,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-743ab668d6e1a2d3ac1b",
+              "file": "ui-layout.spec.ts",
+              "line": 54,
+              "column": 3
+            },
+            {
+              "title": "活动详情：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "活动详情 05 §2 /activities/:id",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                        "line": 71,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 828,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-10T06:08:33.819Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "活动详情 05 §2 /activities/:id",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                            "line": 71,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-8b4dd725f01ed290adaf",
+              "file": "ui-layout.spec.ts",
+              "line": 71,
+              "column": 3
+            },
+            {
+              "title": "改期工作台：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "改期工作台 05 §2 /activities/:id/change",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                        "line": 88,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 842,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-10T06:08:34.653Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "改期工作台 05 §2 /activities/:id/change",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                            "line": 88,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-a7659764aea8a81681b7",
+              "file": "ui-layout.spec.ts",
+              "line": 88,
+              "column": 3
+            },
+            {
+              "title": "登录页：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "登录页 05 §2 /login",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                        "line": 38,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 343,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-10T06:08:35.783Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "登录页 05 §2 /login",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                            "line": 38,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-32c30108fc735665b3c8",
+              "file": "ui-layout.spec.ts",
+              "line": 38,
+              "column": 3
+            },
+            {
+              "title": "活动列表：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "活动列表 05 §2 /activities",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                        "line": 54,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 842,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-10T06:08:36.180Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "活动列表 05 §2 /activities",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                            "line": 54,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-b4fedc177d190793ac80",
+              "file": "ui-layout.spec.ts",
+              "line": 54,
+              "column": 3
+            },
+            {
+              "title": "活动详情：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "活动详情 05 §2 /activities/:id",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                        "line": 71,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 863,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-10T06:08:37.030Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "活动详情 05 §2 /activities/:id",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                            "line": 71,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-280ca7f5932e0b568ce5",
+              "file": "ui-layout.spec.ts",
+              "line": 71,
+              "column": 3
+            },
+            {
+              "title": "改期工作台：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "改期工作台 05 §2 /activities/:id/change",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                        "line": 88,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop-1920",
+                  "projectName": "desktop-1920",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 844,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-10T06:08:37.899Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "改期工作台 05 §2 /activities/:id/change",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                            "line": 88,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-58727a631153cb921732",
+              "file": "ui-layout.spec.ts",
+              "line": 88,
+              "column": 3
+            },
+            {
+              "title": "登录页：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "登录页 05 §2 /login",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                        "line": 38,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-390",
+                  "projectName": "mobile-390",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 313,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-10T06:08:39.046Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "登录页 05 §2 /login",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                            "line": 38,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-02f2d0e7c8600a903bfc",
+              "file": "ui-layout.spec.ts",
+              "line": 38,
+              "column": 3
+            },
+            {
+              "title": "活动列表：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "活动列表 05 §2 /activities",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                        "line": 54,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-390",
+                  "projectName": "mobile-390",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 777,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-10T06:08:39.409Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "活动列表 05 §2 /activities",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                            "line": 54,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-2cfc8bd1eda29959438d",
+              "file": "ui-layout.spec.ts",
+              "line": 54,
+              "column": 3
+            },
+            {
+              "title": "活动详情：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "活动详情 05 §2 /activities/:id",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                        "line": 71,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-390",
+                  "projectName": "mobile-390",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 827,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-10T06:08:40.193Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "活动详情 05 §2 /activities/:id",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                            "line": 71,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-8f4ee2d62b1aae179b11",
+              "file": "ui-layout.spec.ts",
+              "line": 71,
+              "column": 3
+            },
+            {
+              "title": "改期工作台：无横向溢出、无错误横幅、文字可读并留存截图",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "SCREEN",
+                      "description": "改期工作台 05 §2 /activities/:id/change",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                        "line": 88,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile-390",
+                  "projectName": "mobile-390",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 830,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-10T06:08:41.026Z",
+                      "annotations": [
+                        {
+                          "type": "SCREEN",
+                          "description": "改期工作台 05 §2 /activities/:id/change",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/ui-layout.spec.ts",
+                            "line": 88,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e8d96ce8588ecc9b0472-80e613905345d484b949",
+              "file": "ui-layout.spec.ts",
+              "line": 88,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-10T06:08:29.989Z",
+    "duration": 11909.935,
+    "expected": 15,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

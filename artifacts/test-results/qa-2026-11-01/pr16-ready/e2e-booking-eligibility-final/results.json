@@ -1,0 +1,485 @@
+{
+  "config": {
+    "argv": [
+      "/usr/bin/node",
+      "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/node_modules/.bin/playwright",
+      "test",
+      "booking.spec.ts",
+      "eligibility.spec.ts",
+      "--workers=1"
+    ],
+    "configFile": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/playwright.config.ts",
+    "rootDir": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/artifacts/test-results/e2e-raw",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/artifacts/test-results/e2e-raw",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "desktop-1920",
+        "name": "desktop-1920",
+        "testDir": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "/ui-layout\\.spec\\.ts/"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/artifacts/test-results/e2e-raw",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile-390",
+        "name": "mobile-390",
+        "testDir": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "/ui-layout\\.spec\\.ts/"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "./test-results/e2e-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "booking.spec.ts",
+      "file": "booking.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "D-AT-03 首次预约主线（新建→编辑→提交→批准→资源确认→发布→报名）",
+          "file": "booking.spec.ts",
+          "line": 67,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-03-1 applicant_a 新建并提交，approver_a 同意、resource_admin 确认、发布后 student_a 报名成功",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "D-AT",
+                      "description": "D-AT-03",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/booking.spec.ts",
+                        "line": 68,
+                        "column": 3
+                      }
+                    },
+                    {
+                      "type": "TC",
+                      "description": "TC-03-1",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/booking.spec.ts",
+                        "line": 68,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 4704,
+                      "error": {
+                        "message": "Error: 批准人同意应 200\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m400\u001b[39m",
+                        "stack": "Error: 批准人同意应 200\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m400\u001b[39m\n    at /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/booking.spec.ts:127:64",
+                        "location": {
+                          "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/booking.spec.ts",
+                          "column": 64,
+                          "line": 127
+                        },
+                        "snippet": "  125 |         );\n  126 |         await approver.page.getByTestId(TESTID.approverApprove).click();\n> 127 |         expect((await approveResponse).status(), '批准人同意应 200').toBe(200);\n      |                                                                ^\n  128 |         expect((await getActivity(ownerApi, activityId)).status, '批准后应 APPROVED_UNRESERVED').toBe('APPROVED_UNRESERVED');\n  129 |\n  130 |         // 7) resource_admin 经 UI 确认（05 §4 resource-confirm）→ SCHEDULED，完整数量预约"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/booking.spec.ts",
+                            "column": 64,
+                            "line": 127
+                          },
+                          "message": "Error: 批准人同意应 200\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m400\u001b[39m\n\n  125 |         );\n  126 |         await approver.page.getByTestId(TESTID.approverApprove).click();\n> 127 |         expect((await approveResponse).status(), '批准人同意应 200').toBe(200);\n      |                                                                ^\n  128 |         expect((await getActivity(ownerApi, activityId)).status, '批准后应 APPROVED_UNRESERVED').toBe('APPROVED_UNRESERVED');\n  129 |\n  130 |         // 7) resource_admin 经 UI 确认（05 §4 resource-confirm）→ SCHEDULED，完整数量预约\n    at /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/booking.spec.ts:127:64"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-01T08:53:49.877Z",
+                      "annotations": [
+                        {
+                          "type": "D-AT",
+                          "description": "D-AT-03",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/booking.spec.ts",
+                            "line": 68,
+                            "column": 3
+                          }
+                        },
+                        {
+                          "type": "TC",
+                          "description": "TC-03-1",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/booking.spec.ts",
+                            "line": 68,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/artifacts/test-results/e2e-raw/booking-D-AT-03-首次预约主线（新建→-ed6ea-admin-确认、发布后-student-a-报名成功-desktop/test-failed-1.png"
+                        },
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/artifacts/test-results/e2e-raw/booking-D-AT-03-首次预约主线（新建→-ed6ea-admin-确认、发布后-student-a-报名成功-desktop/test-failed-2.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/artifacts/test-results/e2e-raw/booking-D-AT-03-首次预约主线（新建→-ed6ea-admin-确认、发布后-student-a-报名成功-desktop/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/booking.spec.ts",
+                        "column": 64,
+                        "line": 127
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a3a10f2351dcc49e1cb9-b57e8da27dc371355f94",
+              "file": "booking.spec.ts",
+              "line": 68,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "eligibility.spec.ts",
+      "file": "eligibility.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "N-AT-02 资格限制（仅教师资源）",
+          "file": "eligibility.spec.ts",
+          "line": 65,
+          "column": 6,
+          "specs": [
+            {
+              "title": "N-AT-02 applicant_b（STUDENT）UI 明示仅教师资源不可申请并禁选（HTTP提交另验）",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "N-AT",
+                      "description": "N-AT-02",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/eligibility.spec.ts",
+                        "line": 66,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 11028,
+                      "error": {
+                        "message": "TimeoutError: locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('combobox', { name: '设备' }).locator('xpath=ancestor::*[contains(@class,\"el-select\")][1]')\u001b[22m\n\u001b[2m    - locator resolved to <div class=\"el-select__selected-item el-select__input-wrapper is-hidden\">…</div>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"el-select__selected-item el-select__placeholder is-transparent\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"el-select__selected-item el-select__placeholder is-transparent\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    19 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <div class=\"el-select__selected-item el-select__placeholder is-transparent\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+                        "stack": "TimeoutError: locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('combobox', { name: '设备' }).locator('xpath=ancestor::*[contains(@class,\"el-select\")][1]')\u001b[22m\n\u001b[2m    - locator resolved to <div class=\"el-select__selected-item el-select__input-wrapper is-hidden\">…</div>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"el-select__selected-item el-select__placeholder is-transparent\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"el-select__selected-item el-select__placeholder is-transparent\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    19 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <div class=\"el-select__selected-item el-select__placeholder is-transparent\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n    at /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/eligibility.spec.ts:88:128",
+                        "location": {
+                          "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/eligibility.spec.ts",
+                          "column": 128,
+                          "line": 88
+                        },
+                        "snippet": "  86 |         await student.page.keyboard.press('Escape');\n  87 |         await student.page.getByRole('button', { name: '添加设备' }).click();\n> 88 |         await student.page.getByRole('combobox', { name: '设备' }).locator('xpath=ancestor::*[contains(@class,\"el-select\")][1]').click();\n     |                                                                                                                                ^\n  89 |         const equipment = student.page.getByRole('option', { name: ELIGIBILITY_RESOURCES.equipmentTeacherOnly.name });\n  90 |         await expect(equipment).toBeVisible();\n  91 |         await expect(equipment).toHaveAttribute('aria-disabled', 'true');"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/eligibility.spec.ts",
+                            "column": 128,
+                            "line": 88
+                          },
+                          "message": "TimeoutError: locator.click: Timeout 10000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('combobox', { name: '设备' }).locator('xpath=ancestor::*[contains(@class,\"el-select\")][1]')\u001b[22m\n\u001b[2m    - locator resolved to <div class=\"el-select__selected-item el-select__input-wrapper is-hidden\">…</div>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"el-select__selected-item el-select__placeholder is-transparent\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <div class=\"el-select__selected-item el-select__placeholder is-transparent\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    19 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <div class=\"el-select__selected-item el-select__placeholder is-transparent\">…</div> intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n\n  86 |         await student.page.keyboard.press('Escape');\n  87 |         await student.page.getByRole('button', { name: '添加设备' }).click();\n> 88 |         await student.page.getByRole('combobox', { name: '设备' }).locator('xpath=ancestor::*[contains(@class,\"el-select\")][1]').click();\n     |                                                                                                                                ^\n  89 |         const equipment = student.page.getByRole('option', { name: ELIGIBILITY_RESOURCES.equipmentTeacherOnly.name });\n  90 |         await expect(equipment).toBeVisible();\n  91 |         await expect(equipment).toHaveAttribute('aria-disabled', 'true');\n    at /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/eligibility.spec.ts:88:128"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-01T08:53:54.959Z",
+                      "annotations": [
+                        {
+                          "type": "N-AT",
+                          "description": "N-AT-02",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/eligibility.spec.ts",
+                            "line": 66,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/artifacts/test-results/e2e-raw/eligibility-N-AT-02-资格限制（仅-57c6d-UI-明示仅教师资源不可申请并禁选（HTTP提交另验）-desktop/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/artifacts/test-results/e2e-raw/eligibility-N-AT-02-资格限制（仅-57c6d-UI-明示仅教师资源不可申请并禁选（HTTP提交另验）-desktop/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/eligibility.spec.ts",
+                        "column": 128,
+                        "line": 88
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "1dbb26507d3dd8bb8f37-761ad332b5b1a287c6a9",
+              "file": "eligibility.spec.ts",
+              "line": 66,
+              "column": 3
+            },
+            {
+              "title": "N-AT-02 applicant_a（TEACHER）同目标可走到下一步（对照，按 identity 判断）",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "N-AT",
+                      "description": "N-AT-02",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/eligibility.spec.ts",
+                        "line": 99,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2332,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-01T08:54:06.335Z",
+                      "annotations": [
+                        {
+                          "type": "N-AT",
+                          "description": "N-AT-02",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/eligibility.spec.ts",
+                            "line": 99,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "1dbb26507d3dd8bb8f37-c0f66fb4ec9ca4f68f85",
+              "file": "eligibility.spec.ts",
+              "line": 99,
+              "column": 3
+            },
+            {
+              "title": "N-AT-02 applicant_b 直接 HTTP 保存草稿后提交 → 403 RESOURCE_INELIGIBLE 且草稿不推进",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [
+                    {
+                      "type": "N-AT",
+                      "description": "N-AT-02",
+                      "location": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/eligibility.spec.ts",
+                        "line": 134,
+                        "column": 3
+                      }
+                    }
+                  ],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 272,
+                      "error": {
+                        "message": "Error: 被拒申请不得创建活动\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m",
+                        "stack": "Error: 被拒申请不得创建活动\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/eligibility.spec.ts:178:11",
+                        "location": {
+                          "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/eligibility.spec.ts",
+                          "column": 11,
+                          "line": 178
+                        },
+                        "snippet": "  176 |           mine.some((a) => a.input.title === TEACHER_ONLY_INPUT.title),\n  177 |           '被拒申请不得创建活动',\n> 178 |         ).toBe(false);\n      |           ^\n  179 |       } finally {\n  180 |         await apiClose(apis);\n  181 |       }"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/eligibility.spec.ts",
+                            "column": 11,
+                            "line": 178
+                          },
+                          "message": "Error: 被拒申请不得创建活动\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n\n  176 |           mine.some((a) => a.input.title === TEACHER_ONLY_INPUT.title),\n  177 |           '被拒申请不得创建活动',\n> 178 |         ).toBe(false);\n      |           ^\n  179 |       } finally {\n  180 |         await apiClose(apis);\n  181 |       }\n    at /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/eligibility.spec.ts:178:11"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-11-01T08:54:08.721Z",
+                      "annotations": [
+                        {
+                          "type": "N-AT",
+                          "description": "N-AT-02",
+                          "location": {
+                            "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/eligibility.spec.ts",
+                            "line": 134,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "attachments": [
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/artifacts/test-results/e2e-raw/eligibility-N-AT-02-资格限制（仅-ba0d9--RESOURCE-INELIGIBLE-且草稿不推进-desktop/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/eligibility.spec.ts",
+                        "column": 11,
+                        "line": 178
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "1dbb26507d3dd8bb8f37-5fa65699b3b630dda8b8",
+              "file": "eligibility.spec.ts",
+              "line": 134,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-01T08:53:49.319Z",
+    "duration": 19719.917,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 3,
+    "flaky": 0
+  }
+}

@@ -1,0 +1,18 @@
+npm notice run campus-sched-web@0.1.0 dev
+npm notice run vite --host 127.0.0.1
+
+  VITE v7.3.7  ready in 397 ms
+
+  ➜  Local:   http://127.0.0.1:5173/
+2:51:13 PM [vite] vite.config.ts changed, restarting server...
+2:51:13 PM [vite] server restarted.
+2:53:22 PM [vite] vite.config.ts changed, restarting server...
+2:53:22 PM [vite] server restarted.
+2:56:27 PM [vite] vite.config.ts changed, restarting server...
+failed to load config from /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/web/vite.config.ts
+2:56:27 PM [vite] config must export or return an object.
+2:56:27 PM [vite] server restart failed
+2:56:31 PM [vite] vite.config.ts changed, restarting server...
+2:56:31 PM [vite] server restarted.
+2:57:31 PM [vite] vite.config.ts changed, restarting server...
+2:57:31 PM [vite] server restarted.

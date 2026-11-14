@@ -1,0 +1,10 @@
+$ python3 artifacts/test-results/qa-2026-10-20/data-reference-check.py
+DATA_REFERENCE_CHECK_OK: demo org=2 users=9 resources=12 activities=2 registrations=1; concurrency users=20 activities=1; scheduling scenarios=8 strategies=2 candidateLimit=300
+exit_code=0
+
+QA TypeScript检查：`npx tsc --noEmit`（workdir=qa）exit_code=0。
+Playwright列举：`npx playwright test --list`（workdir=qa）输出“Total: 29 tests in 7 files”，exit_code=0；仅列举用例，不代表E2E已运行。
+
+TypeScript检查：`npx tsc --noEmit`（workdir=qa）exit_code=0。
+数据脚本与QA静态支撑均不涉及真实后端交易；DEMO_PASSWORD未设置或回显。
+密码处理：上述列举不要求或读取DEMO_PASSWORD；本轮未设置、未记录密码值。

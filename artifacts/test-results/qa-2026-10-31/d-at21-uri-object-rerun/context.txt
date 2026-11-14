@@ -1,0 +1,6 @@
+date=2026-10-31 Asia/Shanghai
+commit=514b8dcce2d3666ff0fc9f15c3bae7826656c60e
+postgres=17/campus_test/127.0.0.1:55439
+query=encoded UTC offsets sent as absolute URI
+credentials=random ephemeral/not logged
+temporary PostgreSQL removed after identity check

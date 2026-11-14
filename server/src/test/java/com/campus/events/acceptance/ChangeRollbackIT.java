@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.NullNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
@@ -26,6 +27,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.util.AopTestUtils;
 import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 
 import java.util.List;
@@ -40,6 +42,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.reset;
+import static org.mockito.Mockito.verify;
 
 /**
  * D-AT-11 / D-AT-12 / D-AT-13 / D-AT-14 改期拒绝、抢占、自身排除与事务回滚集成验收测试（ChangeRollback）。
@@ -86,6 +89,23 @@ class ChangeRollbackIT {
     /** D-AT-14 故障注入挂钩；依赖 M0 按 02 §5 装配的 SchedulingPort bean。 */
     @MockitoSpyBean
     private SchedulingPort schedulingPort;
+
+    /** 前例失败也经合法撤回释放待处理改期；不直改业务表，不掩盖原测试失败。 */
+    @AfterEach
+    void withdrawUnfinishedChange() {
+        List<String> pending = db.jdbc().queryForList(
+                "SELECT id::text FROM change_request WHERE activity_id = ? "
+                        + "AND status IN ('AWAITING_CONFIRMATIONS','PENDING_APPROVER','PENDING_RESOURCE')",
+                String.class, ACTIVITY_A);
+        if (pending.isEmpty()) return;
+        String owner = login("applicant_a");
+        for (String id : pending) {
+            ObjectNode body = MAPPER.createObjectNode().put("reason", "验收结束清理未完成申请");
+            HttpResult result = call(HttpMethod.POST, "/api/v1/changes/" + id + "/withdraw",
+                    owner, idem(), toJson(body));
+            assertEquals(200, result.status(), () -> "清理待处理改期失败：" + result.body());
+        }
+    }
 
     // ------------------------------------------------------------------ D-AT-11
 
@@ -276,15 +296,17 @@ class ChangeRollbackIT {
         decision.put("decision", "APPROVE");
         decision.put("comment", "");
 
+        SchedulingPort targetSpy = AopTestUtils.getUltimateTargetObject(schedulingPort);
         doThrow(new RuntimeException("测试故障注入：replaceReservations 失败（D-AT-14）"))
-                .when(schedulingPort).replaceReservations(any(UUID.class), anyInt(), any(Plan.class));
+                .when(targetSpy).replaceReservations(any(UUID.class), anyInt(), any(Plan.class));
         try {
             HttpResult failed = call(HttpMethod.POST, "/api/v1/changes/" + changeId + "/resource-decision",
                     resource, key, toJson(decision));
             assertEquals(500, failed.status(), () -> "注入故障后应返回 500：" + failed.body());
             assertEquals("INTERNAL_ERROR", failed.errorCode());
+            verify(targetSpy).replaceReservations(any(UUID.class), anyInt(), any(Plan.class));
         } finally {
-            reset(schedulingPort);
+            reset(targetSpy);
         }
 
         assertEquals(beforeEffectiveVersion, db.effectiveVersionNo(ACTIVITY_A), "活动版本指针必须回滚");

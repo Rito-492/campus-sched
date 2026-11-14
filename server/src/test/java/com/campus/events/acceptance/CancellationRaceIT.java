@@ -98,9 +98,14 @@ class CancellationRaceIT {
         assertEquals(releasedAfterFirst, releasedReservationCount(ACTIVITY_A), "重放不得额外释放预约");
         assertEquals(totalAfterFirst, totalReservationCount(ACTIVITY_A));
 
-        // 第三次：不同 key，活动已 CANCELLED，应被拒绝且不得再次释放
-        HttpResult other = cancel(ACTIVITY_A, currentLockVersion(ACTIVITY_A), UUID.randomUUID().toString(), applicant);
-        assertEquals(409, other.status(), "已取消活动再次取消应 409：" + other.body());
+        // 第三次：03契约§6要求合法所有者重复取消返回当前结果，不得再次释放。
+        int cancelledLock = currentLockVersion(ACTIVITY_A);
+        long outboxAfterFirst = db.outboxCount();
+        HttpResult other = cancel(ACTIVITY_A, cancelledLock, UUID.randomUUID().toString(), applicant);
+        assertEquals(200, other.status(), "合法所有者重复取消应返回当前结果：" + other.body());
+        assertEquals("CANCELLED", other.body().path("data").path("status").asText());
+        assertEquals(cancelledLock, currentLockVersion(ACTIVITY_A), "重复取消不应再递增版本锁");
+        assertEquals(outboxAfterFirst, db.outboxCount(), "重复取消不应追加事件");
         assertEquals(releasedAfterFirst, releasedReservationCount(ACTIVITY_A));
         assertEquals(totalAfterFirst, totalReservationCount(ACTIVITY_A));
         assertEquals("CANCELLED", db.activityStatus(ACTIVITY_A));
@@ -109,7 +114,7 @@ class CancellationRaceIT {
         ObjectNode confirmBody = MAPPER.createObjectNode();
         confirmBody.put("expectedLockVersion", currentLockVersion(ACTIVITY_A));
         HttpResult confirm = call(HttpMethod.POST, "/api/v1/activities/" + ACTIVITY_A + "/resource-confirm",
-                applicant, UUID.randomUUID().toString(), confirmBody);
+                login("resource_admin"), UUID.randomUUID().toString(), confirmBody);
         assertEquals(409, confirm.status(), "取消后资源确认应被拒：" + confirm.body());
         assertEquals(0, db.activeReservationCount(ACTIVITY_A));
 

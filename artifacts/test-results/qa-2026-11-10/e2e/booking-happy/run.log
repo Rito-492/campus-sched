@@ -1,0 +1,11 @@
+npm notice run campus-sched-qa@0.1.0 test:e2e
+npm notice run playwright test booking.spec.ts change-happy-path.spec.ts --workers=1
+
+Running 2 tests using 1 worker
+
+(node:11687) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [desktop] › tests/booking.spec.ts:68:3 › D-AT-03 首次预约主线（新建→编辑→提交→批准→资源确认→发布→报名） › TC-03-1 applicant_a 新建并提交，approver_a 同意、resource_admin 确认、发布后 student_a 报名成功 (6.5s)
+  ✓  2 [desktop] › tests/change-happy-path.spec.ts:38:3 › D-AT-10 / D-AT-23 改期成功主线与持久化 › TC-10-1 / TC-23-1 预览选首选方案→staff/approver/resource 确认→version2→student 收到通知（含 reload 持久化） (6.6s)
+
+  2 passed (13.7s)

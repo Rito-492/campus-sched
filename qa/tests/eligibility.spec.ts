@@ -18,18 +18,22 @@ import { expect, test } from '@playwright/test';
 import {
   ELIGIBILITY_RESOURCES,
   ERROR_CODES,
-  TESTID,
+  UI_TESTID,
   USERS,
   apiClose,
   apiLogin,
   closeSessions,
   createActivityResponse,
   createActivityViaUi,
-  fillNewActivityForm,
   listActivities,
   openSession,
   planFor,
   readError,
+  readData,
+  authHeaders,
+  newIdempotencyKey,
+  getActivity,
+  type ActivityViewDto,
   type ActivityInputDto,
   type ApiSession,
   type UiSession,
@@ -60,7 +64,7 @@ function includesAny(haystack: string, values: string[]): boolean {
 
 test.describe('N-AT-02 资格限制（仅教师资源）', () => {
   test(
-    'N-AT-02 applicant_b（STUDENT）UI 提交仅教师资源被拒，错误区展示具体受限资源',
+    'N-AT-02 applicant_b（STUDENT）UI 明示仅教师资源不可申请并禁选（HTTP提交另验）',
     { annotation: [{ type: 'N-AT', description: 'N-AT-02' }] },
     async ({ browser }) => {
       const sessions: UiSession[] = [];
@@ -68,28 +72,24 @@ test.describe('N-AT-02 资格限制（仅教师资源）', () => {
         const student = await openSession(browser, USERS.applicantB);
         sessions.push(student);
         await student.page.goto('/activities/new');
-        await fillNewActivityForm(student.page, {
-          title: TEACHER_ONLY_INPUT.title,
-          description: TEACHER_ONLY_INPUT.description,
-          expectedAttendees: TEACHER_ONLY_INPUT.expectedAttendees,
-          registrationCapacity: TEACHER_ONLY_INPUT.registrationCapacity,
-          startAt: TEACHER_ONLY_PLAN.startAt,
-          endAt: TEACHER_ONLY_PLAN.endAt,
-          venueName: ELIGIBILITY_RESOURCES.venueTeacherOnly.name,
-          equipmentNames: [ELIGIBILITY_RESOURCES.equipmentTeacherOnly.name],
-        });
-        await student.page.getByTestId(TESTID.activitySubmit).click();
-
-        // 05 §6：UI 必须说明具体受限资源，不能只写「无权限」。
-        // 资格错误区 testid 待 UI 提供，见 handoff；用 alert/错误容器语义 + 文案定位。
-        const errorArea = student.page
-          .getByRole('alert')
-          .or(student.page.locator('[data-testid*="error"], .error-message'))
-          .filter({ hasText: /资格|受限|不可申请|教师专用|教师投影|RESOURCE_INELIGIBLE/ })
-          .first();
-        await expect(errorArea).toBeVisible();
-        await expect(errorArea).toContainText(ELIGIBILITY_RESOURCES.venueTeacherOnly.name);
-        await expect(errorArea).toContainText(ELIGIBILITY_RESOURCES.equipmentTeacherOnly.name);
+        await student.page.getByTestId(UI_TESTID.activityTitle).fill(TEACHER_ONLY_INPUT.title);
+        await student.page.getByLabel(/简介|描述|说明/).fill(TEACHER_ONLY_INPUT.description);
+        await student.page.getByLabel(/预计(参加)?人数/).fill('10');
+        await student.page.getByLabel('报名容量').fill('10');
+        await student.page.getByRole('button', { name: '下一步' }).click();
+        // 真实UI在选择阶段阻止受限资源，不强点disabled选项制造提交。
+        await student.page.getByTestId(UI_TESTID.activityVenue).click();
+        const venue = student.page.getByRole('option', { name: ELIGIBILITY_RESOURCES.venueTeacherOnly.name });
+        await expect(venue).toBeVisible();
+        await expect(venue).toHaveAttribute('aria-disabled', 'true');
+        await expect(venue).toContainText('当前身份不可申请');
+        await student.page.keyboard.press('Escape');
+        await student.page.getByRole('button', { name: '添加设备' }).click();
+        await student.page.getByRole('combobox', { name: '设备' }).locator('xpath=ancestor::*[contains(concat(" ", normalize-space(@class), " "), " el-select ")][1]').click();
+        const equipment = student.page.getByRole('option', { name: ELIGIBILITY_RESOURCES.equipmentTeacherOnly.name });
+        await expect(equipment).toBeVisible();
+        await expect(equipment).toHaveAttribute('aria-disabled', 'true');
+        await expect(equipment).toContainText('当前身份不可申请');
       } finally {
         await closeSessions(sessions);
       }
@@ -132,7 +132,7 @@ test.describe('N-AT-02 资格限制（仅教师资源）', () => {
   );
 
   test(
-    'N-AT-02 applicant_b 直接 HTTP 提交同目标 → 403 RESOURCE_INELIGIBLE 且无写入',
+    'N-AT-02 applicant_b 直接 HTTP 保存草稿后提交 → 403 RESOURCE_INELIGIBLE 且草稿不推进',
     { annotation: [{ type: 'N-AT', description: 'N-AT-02' }] },
     async () => {
       const apis: ApiSession[] = [];
@@ -140,11 +140,18 @@ test.describe('N-AT-02 资格限制（仅教师资源）', () => {
         const studentApi = await apiLogin(USERS.applicantB);
         apis.push(studentApi);
 
-        const err = await readError(
-          await createActivityResponse(studentApi, TEACHER_ONLY_INPUT),
-          403,
-          'STUDENT 提交仅教师资源应 403',
-        );
+        // DRAFT允许暂存未合资格目标；01§2明确在submit重新校验，不能把保存误当提交。
+        const draft = await readData<ActivityViewDto>(
+          await createActivityResponse(studentApi, TEACHER_ONLY_INPUT), 201, '保存草稿应201');
+        const response = await studentApi.client.post(`/api/v1/activities/${draft.id}/submit`, {
+          headers: authHeaders(studentApi.token, newIdempotencyKey()),
+          data: { expectedLockVersion: draft.lockVersion },
+        });
+        const err = await readError(response, 403, 'STUDENT 提交仅教师资源应403');
+        const after = await getActivity(studentApi, draft.id);
+        expect(after.status).toBe('DRAFT');
+        expect(after.lockVersion).toBe(draft.lockVersion);
+        expect(after.effectiveVersionNo).toBeNull();
         expect(err.error.code, '错误码应为 RESOURCE_INELIGIBLE（02 §1）').toBe(ERROR_CODES.resourceIneligible);
         expect(err.error.message, '403 应含中文可读原因').toBeTruthy();
 
@@ -163,12 +170,16 @@ test.describe('N-AT-02 资格限制（仅教师资源）', () => {
         ).toBe(true);
         expect(detailsText, 'details 应含申请者身份 STUDENT').toContain('STUDENT');
 
-        // 拒绝后不得留下任何活动（无预约、无写入）
+        // 草稿本来已经保存；提交被拒不能新增活动，也不能生成预约。
         const mine = await listActivities(studentApi, 'mine');
-        expect(
-          mine.some((a) => a.input.title === TEACHER_ONLY_INPUT.title),
-          '被拒申请不得创建活动',
-        ).toBe(false);
+        expect(mine.filter((a) => a.id === draft.id)).toHaveLength(1);
+        expect(mine.find((a) => a.id === draft.id)?.status).toBe('DRAFT');
+        const calendar = await studentApi.client.get('/api/v1/resources/calendar', {
+          headers: authHeaders(studentApi.token),
+          params: { from: TEACHER_ONLY_PLAN.startAt, to: TEACHER_ONLY_PLAN.endAt },
+        });
+        const entries = await readData<{activityId?: string}[]>(calendar, 200, '读取预约日历');
+        expect(entries.filter(e => e.activityId === draft.id)).toHaveLength(0);
       } finally {
         await apiClose(apis);
       }

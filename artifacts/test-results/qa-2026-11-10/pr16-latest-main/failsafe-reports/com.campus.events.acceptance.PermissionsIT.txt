@@ -1,0 +1,17 @@
+-------------------------------------------------------------------------------
+Test set: com.campus.events.acceptance.PermissionsIT
+-------------------------------------------------------------------------------
+Tests run: 13, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 3.378 s <<< FAILURE! -- in com.campus.events.acceptance.PermissionsIT
+com.campus.events.acceptance.PermissionsIT.tc2001And02_staleVersionProtection -- Time elapsed: 0.362 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: STALE_VERSION details 至少返回当前versionNo/lockVersion/status之一：{} ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at com.campus.events.acceptance.PermissionsIT.assertStaleVersionDetails(PermissionsIT.java:581)
+	at com.campus.events.acceptance.PermissionsIT.tc2001And02_staleVersionProtection(PermissionsIT.java:365)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

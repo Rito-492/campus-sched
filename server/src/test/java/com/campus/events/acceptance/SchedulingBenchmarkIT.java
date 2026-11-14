@@ -18,15 +18,21 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
+import java.util.HexFormat;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,9 +51,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * 汇总为 {@code artifacts/evaluation/results.csv} 与 {@code summary.md}（03 §4）。本测试只产出原始
  * 测量行，不判定结论、不补齐缺失行、不填充占位数值。
  *
- * <p>装载规则（test-data-plan §7）：评测环境 = {@code demo.json} 的 organizations/users/resources
- * 参考数据 + {@code scenarios/scheduling.json} 场景数据；<b>不装载演示活动 A/B 与报名</b>，避免场景
- * 互相干扰。{@code blockers} 合成 SCHEDULED、versionNo=1 的占用活动及其 ACTIVE 预约行
+ * <p>装载规则（test-data-plan §7）：评测环境 = {@code scenarios/scheduling-reference.json} 中仅用于评测的
+ * organizations/users/基础resources + {@code scenarios/scheduling.json} 场景数据；不加载demo里的N-AT资格扩展资源，
+ * 避免额外候选改变固定几何预期；<b>不装载演示活动 A/B 与报名</b>，避免场景互相干扰。{@code blockers} 合成 SCHEDULED、versionNo=1 的占用活动及其 ACTIVE 预约行
  * （区间取 reservations 原值，quantity 按行）；{@code faults} 写 {@code resource_fault}；
  * {@code request.subjectTail} 为被评估活动，作为 {@link StrategyEvaluator#evaluateStrategies} 的
  * {@code excludeActivityId}（02 §8）。每个场景跑前重置场景数据（保留参考数据）。
@@ -87,10 +93,14 @@ class SchedulingBenchmarkIT {
     @Autowired
     private StrategyEvaluator evaluator;
 
-    /** 先装载参考数据（demo 的组织/用户/资源），场景数据在各测试方法内按场景装载。 */
+    /** 先装载评测专用基础组织/账号/资源；场景数据在各测试方法内按场景事务装载。 */
     @BeforeAll
     static void loadReferenceData() {
-        db.loadReferenceData("demo");
+        db.loadReferenceData("scenarios/scheduling-reference");
+        assertEquals(4L, db.jdbc().queryForObject("SELECT count(*) FROM resource", Long.class),
+                "benchmark专用参考集必须只有两场地和两器材，避免资格扩展资源进入候选空间");
+        assertEquals(4L, db.managedResourceCount(USER_RESOURCE_ADMIN),
+                "benchmark-only resource_admin范围应与隔离参考资源一致，不代表canonical demo范围");
     }
 
     @Test
@@ -188,6 +198,22 @@ class SchedulingBenchmarkIT {
     }
 
     private static void loadScenario(JsonNode scenario) throws IOException {
+        TransactionTemplate transaction = new TransactionTemplate(new DataSourceTransactionManager(db.dataSource()));
+        try {
+            transaction.executeWithoutResult(status -> {
+                try {
+                    insertScenarioRows(scenario);
+                } catch (IOException e) {
+                    throw new UncheckedIOException("构造评测占用活动 input_json 失败", e);
+                }
+            });
+        } catch (UncheckedIOException e) {
+            throw e.getCause();
+        }
+    }
+
+    /** activity 与首个 activity_version 受延迟外键约束，场景数据必须同事务插入。 */
+    private static void insertScenarioRows(JsonNode scenario) throws IOException {
         UUID fallbackVenue = uuid(scenario.path("request").path("plan").path("venueId").asText());
         for (JsonNode blocker : scenario.path("blockers")) {
             UUID activityId = uuid(blocker.path("tail").asLong());
@@ -207,7 +233,7 @@ class SchedulingBenchmarkIT {
             String inputJson = blockerInputJson(blocker, venueId, start, end);
             db.jdbc().update("INSERT INTO activity (id, organization_id, owner_id, status, version_no, effective_version_no, lock_version, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?)",
                     activityId, ORG_1001, USER_APPLICANT_A, "SCHEDULED", 1, 1, 0, ts(), ts());
-            db.jdbc().update("INSERT INTO activity_version (activity_id, version_no, input_json, created_by, created_at) VALUES (?,?,?,?,?)",
+            db.jdbc().update("INSERT INTO activity_version (activity_id, version_no, input_json, created_by, created_at) VALUES (?,?,?::jsonb,?,?)",
                     activityId, 1, inputJson, USER_APPLICANT_A, ts());
             for (JsonNode reservation : blocker.path("reservations")) {
                 db.jdbc().update("INSERT INTO reservation (id, activity_id, version_no, resource_id, start_at, end_at, quantity, status, created_at, updated_at) VALUES (?,?,?,?,?,?,?,?,?,?)",
@@ -310,7 +336,7 @@ class SchedulingBenchmarkIT {
 
     // ---------------------------------------------------------------- 输出
 
-    private static ObjectNode buildOutput(List<ObjectNode> runs) {
+    private static ObjectNode buildOutput(List<ObjectNode> runs) throws IOException {
         ObjectNode output = MAPPER.createObjectNode();
         output.put("schemaVersion", 1);
         output.put("generatedAt", Instant.now().toString());
@@ -323,7 +349,7 @@ class SchedulingBenchmarkIT {
         return output;
     }
 
-    private static ObjectNode buildEnvironment() {
+    private static ObjectNode buildEnvironment() throws IOException {
         String machine = System.getenv("MACHINE");
         if (machine == null || machine.isBlank()) {
             machine = System.getProperty("os.name", "unknown") + "/" + System.getProperty("os.arch", "unknown");
@@ -339,6 +365,10 @@ class SchedulingBenchmarkIT {
         environment.put("commit", commit == null || commit.isBlank() ? "未提供（构建时注入）" : commit);
         environment.put("demoDate", DEMO_DATE);
         environment.put("clock", "2030-10-19T00:00:00Z");
+        environment.put("referenceData", "test-data/scenarios/scheduling-reference.json");
+        environment.put("referenceDataSha256", sha256(resolveReferenceDataFile()));
+        environment.put("scenarioData", "test-data/scenarios/scheduling.json");
+        environment.put("scenarioDataSha256", sha256(resolveScenarioFile()));
         return environment;
     }
 
@@ -364,6 +394,28 @@ class SchedulingBenchmarkIT {
             }
         }
         throw new IllegalStateException("找不到评测场景文件 scenarios/scheduling.json，已查找 " + candidates);
+    }
+
+    private static Path resolveReferenceDataFile() {
+        String dir = System.getProperty("test.data.dir", "");
+        List<Path> candidates = new ArrayList<>();
+        if (!dir.isEmpty()) {
+            candidates.add(Path.of(dir, "scenarios", "scheduling-reference.json"));
+        }
+        candidates.add(Path.of("test-data", "scenarios", "scheduling-reference.json"));
+        candidates.add(Path.of("..", "test-data", "scenarios", "scheduling-reference.json"));
+        for (Path candidate : candidates) {
+            if (Files.isRegularFile(candidate)) return candidate;
+        }
+        throw new IllegalStateException("找不到评测参考数据 scenarios/scheduling-reference.json，已查找 " + candidates);
+    }
+
+    private static String sha256(Path path) throws IOException {
+        try {
+            return HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(Files.readAllBytes(path)));
+        } catch (NoSuchAlgorithmException e) {
+            throw new IllegalStateException("当前JDK不支持SHA-256", e);
+        }
     }
 
     private static Path resolveOutputFile() {

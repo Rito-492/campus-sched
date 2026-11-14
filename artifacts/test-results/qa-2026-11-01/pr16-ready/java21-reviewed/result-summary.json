@@ -1,0 +1,1293 @@
+{
+  "sourceCommit": "253c23075ec95905f9dea52775d5d68f6730145e",
+  "verifyExit": 1,
+  "groups": {
+    "surefire": {
+      "totals": {
+        "tests": 77,
+        "passed": 77,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "suites": [
+        {
+          "class": "com.campus.events.activity.ActivityServiceTest",
+          "tests": 18,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 18,
+          "cases": [
+            {
+              "name": "resourceConfirmationRequiresSpecificPermissionAndAvoidsOwner",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "mineScopeRequiresCurrentApplicantRole",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "pastRegistrationAllowsCancelledDetailsButNotParticipantRoster",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "publishRejectsStartedActivityWithoutStateOrEventWrites",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "oldContentVersionAndFrozenChangesRejectRegistration",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "publishRejectsCurrentResourceRiskWithoutStateOrEventWrites",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "adapterCopiesMetadataAndAdvancesOnlyActiveRegistrationVersions",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "withdrawRequiresPriorRegistrationAndDuplicateWithdrawDoesNotBumpVersion",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "approvalRejectsTeacherWithoutRoleAndIncompleteScopeAndSelfApproval",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "cancelledActivityCannotBeJoinedAndOtherOwnerCannotReadIdempotentCancellation",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "publishRejectsWrongServiceStateWithoutStateOrEventWrites",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "fullCapacityRejectsButDuplicateJoinReturnsExistingRow",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "staleDraftEditCannotAppendAVersion",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "pendingChangeDoesNotAddAnUndocumentedPublishRestriction",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "registrationUsesCurrentIdentityRatherThanRequestActor",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "missingChangePortCannotMasqueradeAsNoPendingChange",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "nonOwnerEditAndSubmitRejectBeforeLockingSuppliedStaff",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "publicDetailsHideStaffButInternalSnapshotRetainsThemAndNullsMyStatus",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.activity.ActivityStateMachineTest",
+          "tests": 7,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 7,
+          "cases": [
+            {
+              "name": "followsTheApprovedSchedulingAndPublishingPath",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "everyLifecycleStatusCanCancelAndCancellationNeverChangesContentVersion",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "rejectionReturnsToDraftAndWithdrawalCreatesANewVersion",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "cancellationIsTerminalAndAnAlreadyCancelledStateIsIdempotent",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "registrationMutationAdvancesLockVersionWithoutChangingContentVersion",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "cancellationFromAnOpenActivityCannotBeReversed",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "rejectsIllegalTransitionsAndStaleApprovalVersions",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.auth.AuthorizationPolicyTest",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 8,
+          "cases": [
+            {
+              "name": "permissionRequiresAdminRole",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "approvalRequiresWholeOrganizationAndCategoryCoverage",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "onlyStudentApplicantsCanRegister",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "ownersCannotApproveOrConfirmEvenWithBothRoles",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "teacherIdentityDoesNotGrantApproval",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "confirmationRequiresEveryResource",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "disabledActorsCannotOperate",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "accountAdminHasNoResourceAuthority",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.auth.PasswordPolicyTest",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 6,
+          "cases": [
+            {
+              "name": "supplementaryCharactersDoNotCountTwice",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "bcryptByteBoundaryIsEnforced",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "unicodeUsesCharactersForMinimumAndUtf8ForMaximum",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "nullAndBlankAreRejected",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "eightCharactersAreAccepted",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "sevenCharactersAreRejected",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.change.ChangeServiceTest",
+          "tests": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 1,
+          "cases": [
+            {
+              "name": "resourceApproveRejectsTargetAlreadyInPastAtFinalReview",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.contract.ContractValidationTest",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 6,
+          "cases": [
+            {
+              "name": "legalPlanAndAllEligibilityCombinationsAreAccepted",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "expectedAttendeesMustCoverCapacity",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "duplicateResourcesAndInvalidQuantityFail",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "resourceShapeAndOpenWindowAreChecked",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "durationMinutePrecisionAndShanghaiDayAreChecked",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "rejectionRequiresReason",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.foundation.CanonicalJsonTest",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 6,
+          "cases": [
+            {
+              "name": "duplicateKeysAndMalformedJsonFail",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "preciseDecimalsRemainDistinctAndTrailingValuesFail",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "equivalentNumbersHaveSameRepresentation",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "arraysKeepSemanticOrder",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "objectOrderAndWhitespaceDoNotChangeHash",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "sha256IsUtf8AndStable",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.foundation.ResponsesTest",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 2,
+          "cases": [
+            {
+              "name": "errorAndTruncationHaveDedicatedEnvelopes",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "responseKeepsRequestIdAndDoesNotWrapTwice",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.scheduling.CandidateRankingTest",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 3,
+          "cases": [
+            {
+              "name": "canonicalEquipmentIgnoresInsertionOrderAndKeepsQuantities",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "rejectsInvalidSearchCostsAndEquipmentQuantities",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "ordersAllSixCostFieldsAndIsStableAcrossInputOrder",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.scheduling.CapacitySweepTest",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 6,
+          "cases": [
+            {
+              "name": "reportsExactShortageAndClipsToRequestedInterval",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "ignoresOutsideLoadsAndDoesNotOverflowIntegerTotals",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "agreesWithIndependentMinuteOracleOnRandomOverlaps",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "nonSimultaneousReservationsAreNotSummed",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "overlappingFaultsClampAvailabilityToZero",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "validatesQuantities",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.scheduling.ScheduleQueryServiceTest",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 4,
+          "cases": [
+            {
+              "name": "authorizedReviewerCanPreviewAlternativesUsingOwnersIdentity",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "ownerPreviewUsesLatestIdentityAndDoesNotReserve",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "teacherIdentityDoesNotGrantApprovalAndIncompleteScopeIsRejected",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "staleVersionStopsBeforeResourceEvaluation",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.scheduling.StrategyEvaluatorTest",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 6,
+          "cases": [
+            {
+              "name": "exactBudgetAndTruncationAreStableAndDeduplicated",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "rankedPrefersOriginalVenueWhileFirstFitUsesUuidOrder",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "checksHoursCapacityAndInvalidInputs",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "filtersIneligibleOriginalAndUsesSameCategorySingleReplacement",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "noSolutionHasNullChoiceAndZeroCandidatesForIneligibleResources",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "identityMatrixAppliesToVenueAndEveryEquipmentLine",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.scheduling.TimeIntervalTest",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 4,
+          "cases": [
+            {
+              "name": "validatesOpeningBoundaries",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "rejectsInvalidDurationPrecisionAndBuffers",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "rejectsCrossDayIncludingBuffersAndUsesShanghaiDay",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "adjacentIntervalsDoNotOverlapButSetupDoes",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        }
+      ]
+    },
+    "failsafe": {
+      "totals": {
+        "tests": 112,
+        "passed": 101,
+        "failures": 9,
+        "errors": 1,
+        "skipped": 1
+      },
+      "suites": [
+        {
+          "class": "com.campus.events.acceptance.BookingConcurrencyIT",
+          "tests": 1,
+          "failures": 1,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 0,
+          "cases": [
+            {
+              "name": "tc0701_concurrentResourceConfirmExactlyOneWins",
+              "status": "failure",
+              "message": "批准人审批失败：{\"error\":{\"message\":\"事件字段不完整\",\"details\":{},\"code\":\"VALIDATION_ERROR\"},\"requestId\":\"221b1a06-186b-4b33-b46f-3a2b8dd69417\"} ==> expected: <200> but was: <400>"
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.acceptance.CancellationRaceIT",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 2,
+          "cases": [
+            {
+              "name": "cancelTwiceDoesNotOverReleaseNorRevive",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "cancelRacesResourceDecisionToConsistentTerminalState",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.acceptance.ChangeRollbackIT",
+          "tests": 5,
+          "failures": 1,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 4,
+          "cases": [
+            {
+              "name": "tc1101_staffRejectKeepsOriginalPlan",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "tc1102_approverRejectKeepsOriginalPlan",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "tc1201_finalConfirmationConflictedWhenPreempted",
+              "status": "failure",
+              "message": "批准人审批失败：{\"error\":{\"message\":\"事件字段不完整\",\"details\":{},\"code\":\"VALIDATION_ERROR\"},\"requestId\":\"b9fdb9c6-7d2b-44ea-803d-7ac842add7d3\"} ==> expected: <200> but was: <400>"
+            },
+            {
+              "name": "tc1301_schedulePreviewExcludesSelf",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "tc1401_replaceReservationsFailureRollsBack",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.acceptance.IdentityEligibilityIT",
+          "tests": 6,
+          "failures": 4,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 2,
+          "cases": [
+            {
+              "name": "nat02_eligibilityMatrixEightCombos",
+              "status": "failure",
+              "message": "教师×双允许(3111/3211) 审批失败：{\"error\":{\"message\":\"事件字段不完整\",\"details\":{},\"code\":\"VALIDATION_ERROR\"},\"requestId\":\"0d8aa6fd-adf4-4650-b9d7-3f89ced729db\"} ==> expected: <200> but was: <400>"
+            },
+            {
+              "name": "nat01_identitySeparateFromRole",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "nat04_identityChangeUsesLatestForPending",
+              "status": "failure",
+              "message": "审批失败：{\"error\":{\"message\":\"事件字段不完整\",\"details\":{},\"code\":\"VALIDATION_ERROR\"},\"requestId\":\"cd39dd3c-d22d-4798-b266-e76668da6eec\"} ==> expected: <200> but was: <400>"
+            },
+            {
+              "name": "nat06_scopePartialAndDisabledStaff",
+              "status": "failure",
+              "message": "审批失败：{\"error\":{\"message\":\"事件字段不完整\",\"details\":{},\"code\":\"VALIDATION_ERROR\"},\"requestId\":\"0261175a-d184-44b3-8967-c6bd1a6af3b3\"} ==> expected: <200> but was: <400>"
+            },
+            {
+              "name": "nat03_candidateFiltersIneligibleAndDirectSubmitRejected",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "nat05_ownerCannotSelfApproveOrConfirm",
+              "status": "failure",
+              "message": "独立批准人应成功：{\"error\":{\"message\":\"事件字段不完整\",\"details\":{},\"code\":\"VALIDATION_ERROR\"},\"requestId\":\"916ed437-a833-40cb-94ab-45caa7241c74\"} ==> expected: <200> but was: <400>"
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.acceptance.NotificationConsistencyIT",
+          "tests": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 1,
+          "cases": [
+            {
+              "name": "consumerFailureRecoversAndDuplicateDeliveryIsIdempotent",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.acceptance.PermissionsIT",
+          "tests": 13,
+          "failures": 3,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 10,
+          "cases": [
+            {
+              "name": "tc0203_nonOwnerCannotEdit",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "tc2104_userDirectoryPurposePermissions",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "tc2102_studentCannotReadForeignRegistrations",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "tc0102_wrongPasswordUnauthenticated",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "tc2101_calendarRedactsUnauthorizedActivityTitles",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "tc0101_loginAndMeAreRedacted",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "tc0802_sameKeyDifferentBodyRejected",
+              "status": "failure",
+              "message": "批准人审批失败：{\"error\":{\"message\":\"事件字段不完整\",\"details\":{},\"code\":\"VALIDATION_ERROR\"},\"requestId\":\"2aba36e9-5ece-418b-a427-7230768d15e0\"} ==> expected: <200> but was: <400>"
+            },
+            {
+              "name": "tc2001And02_staleVersionProtection",
+              "status": "failure",
+              "message": "批准人审批失败：{\"error\":{\"message\":\"事件字段不完整\",\"details\":{},\"code\":\"VALIDATION_ERROR\"},\"requestId\":\"02904e9f-d3b9-428a-9753-cc4176f434c4\"} ==> expected: <200> but was: <400>"
+            },
+            {
+              "name": "tc0201_approverFromOtherOrgCannotDecide",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "tc2103_changeViewRedactedForStaff",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "tc0801_replaySameKeySameBodyReturnsFirstResponse",
+              "status": "failure",
+              "message": "批准人审批失败：{\"error\":{\"message\":\"事件字段不完整\",\"details\":{},\"code\":\"VALIDATION_ERROR\"},\"requestId\":\"49fcf50e-3fa5-4f82-a7a6-8c8a670bfeb3\"} ==> expected: <200> but was: <400>"
+            },
+            {
+              "name": "tc0202_accountAdminHasNoBusinessApproval",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "tc0103_disabledAccountInvalidatesOldToken",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.acceptance.RegistrationCapacityIT",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 4,
+          "cases": [
+            {
+              "name": "pendingChangeFreezesRegistrationUntilTerminal",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "concurrentJoinOnCapacityOneYieldsSingleActive",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "repeatedJoinByWinnerDoesNotIncreaseCount",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "withdrawReleasesCapacityForAnotherStudent",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.acceptance.SchedulingBenchmarkIT",
+          "tests": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 1,
+          "cases": [
+            {
+              "name": "benchmarkAllScenarios",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.acceptance.SeederRollbackIT",
+          "tests": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 1,
+          "cases": [
+            {
+              "name": "lateRegistrationForeignKeyFailureRollsBackEntireSeed(Path)",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.activity.ActivityRegistrationIT",
+          "tests": 1,
+          "failures": 0,
+          "errors": 1,
+          "skipped": 0,
+          "passed": 0,
+          "cases": [
+            {
+              "name": "",
+              "status": "error",
+              "message": "Failed to load ApplicationContext for [WebMergedContextConfiguration@2209d045 testClass = com.campus.events.activity.ActivityRegistrationIT, locations = [], classes = [com.campus.events.CampusEventsApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = [\"org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true\"], contextCustomizers = [[ImportsContextCustomizer@5bb82485 key = [org.springframework.boot.autoconfigure.security.oauth2.client.servlet.OAuth2ClientWebSecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.saml2.Saml2RelyingPartyAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcSecurityConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcWebDriverAutoConfiguration, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityFilterAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration, com.campus.events.activity.ActivityRegistrationIT$Ports, org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@528c868, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@31c7528f, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@2f16c6b3, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@740d2e78, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@1b955cac, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@8999b401, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@39655d3e, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@6b11b6a4, org.springframework.boot.test.context.SpringBootTestAnnotation@cf32a2d8], resourceBasePath = \"src/main/webapp\", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]"
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.dev.DemoDataSeederIT",
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 3,
+          "cases": [
+            {
+              "name": "firstImportGrantsAllScopes",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "revokedScopeIsNotReplayed",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "newUserStillGetsScopes",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.foundation.FoundationIT",
+          "tests": 22,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 22,
+          "cases": [
+            {
+              "name": "accountLocksAndResourceGrantsRequireExistingTransaction",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "requestAndRouteMismatchAreRejectedAndOriginalRemainsReplayable",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "revokedPermissionCannotBeUsedByStaleActor",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "malformedOrMissingFieldsAndKeysReturn400",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "logoutInvalidatesCurrentSessionOnly",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "differentKeysForSameActorCanLockUserWithoutDeadlock",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "listsReportActualTruncation",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "loginUserLockIsCompatibleWithInFlightReceiptForeignKey",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "privilegedQueriesAreDeniedAndStaffDirectoryIsRedacted",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "fullAuthorizationReplacementChangesLatestSessionActor",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "inconsistentOrNonexistentAuthorizationFailsWithoutHistory",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "invalidCredentialsAndUnknownUserAreUnauthenticated",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "historyAndAuthorizationRollBackTogether",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "newPasswordMinimumAndUtf8LimitAreEnforcedWithoutWrites",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "unauthorizedWriteDoesNotLeaveReceipt",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "loginIsHashedRedactedAndExpiresAfterEightHours",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "createUserUsesPasswordHashAndReplaysSameResponse",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "conflictResultCommitsAndReplaysOriginalRequestId",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "exceptionRollsBackBusinessAndReceiptThenAllowsRetry",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "concurrentSameKeyRunsBusinessOnce",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "publicHealthAndErrorEnvelopesDoNotLeakInternals",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "disablingRevokesSessionsAndRecordsBeforeAndAfter",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.foundation.PublishedModulesIT",
+          "tests": 6,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 6,
+          "cases": [
+            {
+              "name": "missingEventPortDoesNotLeaveFaultOrReceipt",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "missingEventPortReturns503AndRollsBackReceiptAndActivity",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "persistedActivityPortAndSchedulingPreviewWorkWithoutMocks",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "newResourceIsGrantedViaRealAccountPort",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "identityReplacementImmediatelyAffectsRealPreviewAndDisabledSessionIsRejected",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "resourceScopeRevocationIsEnforcedAcrossModulesUsingTheExistingSession",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.foundation.StandardMavenSchemaIT",
+          "tests": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 1,
+          "cases": [
+            {
+              "name": "springAndFlywayUseTheSameRandomSchemaAsTestSupport",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.notification.OutboxClaimIT",
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 4,
+          "cases": [
+            {
+              "name": "recordFailureDoesNotOverwriteDoneState",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "staleClaimerCannotAffectReclaimedEvent",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "recordFailureBacksOffAndKeepsPendingForRetry",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "claimLeasePreventsSecondConsumerFromClaimingSameEvent",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.resource.ResourceSchedulingIT",
+          "tests": 30,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 1,
+          "passed": 29,
+          "cases": [
+            {
+              "name": "faultHttpListFiltersEachActivityAndRechecksCurrentScope",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "suspendedTransactionDoesNotLendItsCheckToAnotherTransaction",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "absentEventPortDoesNotCommitFault",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "resourceHttpWritesReuseSharedIdempotencyAndPersistScopeAndHistory",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "demoConflictReturnsSameTimeVenueAndEquipmentReplacementWithoutWrites",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "eligibilityHttpRechecksScopeAndRejectsReusedKeyWithChangedBody",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "eligibilityMatrixReadsDatabaseForBothResourceKinds",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "mutableEquipmentCannotChangeThePlanAfterResourceLocksWereTaken",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "twoActivitiesCompeteExactlyOneSucceedsWithoutPartialReservations",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "faultHttpReportsActualEventDependencyAndNeverCommitsPartialWork",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "missingChangePortRejectsActivityLockWithoutPartialWrites",
+              "status": "skipped",
+              "message": ""
+            },
+            {
+              "name": "equipmentCompetitionAcrossVenuesNeverOverbooks",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "adjacentLoadsUsePeakAndSetupOverlapConflicts",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "injectedDatabaseFailureRollsBackReleasePartialInsertAndVersion",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "replaceExcludesOwnOccupancyAndReleaseIsRepeatable",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "databaseConstraintsIncludeCapacityOpeningHoursAndInvalidShanghaiDay",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "calendarSegmentsAreRedactedAndHttpUsesCommonEnvelope",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "realActivityPortAndSchedulingPortSwitchAndRollbackTogether",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "eventFailureRollsBackFaultAndLeavesOriginalReservations",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "eligibilityHistoryFailureRollsBackFlagsAndKeepsReservations",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "conflictAndMissingResourceLeaveNoPartialReservation",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "mandatoryTransactionAndSuccessfulSamePlanCheckAreRequired",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "resourceCreateGrantsScopeAndRangeViolationsDoNotWrite",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "finalCheckWaitsForEligibilityWriterAndReadsCommittedRestriction",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "latestOwnerIdentityAndEligibilityOverridePreviewArguments",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "overlappingFaultsClampCapacityAndRiskIsLive",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "replaceRechecksFaultsAndRollsBackTheNewVersion",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "faultResponseRedactionDoesNotSuppressInternalActivityEvents",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "calendarTruncationAndCandidateBudgetUseRealRows",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "resourceListsAndCalendarUseStableCreationOrder",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.resource.SchemaIT",
+          "tests": 8,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 8,
+          "cases": [
+            {
+              "name": "tc08_approverDecisionColumnRenamed",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "tc01_allTwentyTwoBusinessTablesExist",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "tc02_uniqueConstraintsRejectDuplicates",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "tc04_onlyOnePendingChangePerActivity",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "tc03_resourceChecksRejectIllegalValues",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "tc06_immutabilityTriggersRejectIllegalUpdates",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "tc07_v3IdentityEligibilityStructures",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "tc05_deferredFkBehavior",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.scheduling.DsStrategyBenchmarkIT",
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 2,
+          "cases": [
+            {
+              "name": "fullReferenceDataRecordsActualResultsAndExpectedDifferences",
+              "status": "passed",
+              "message": ""
+            },
+            {
+              "name": "fourResourceControlMatchesTheEightScenarioExpectations",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        },
+        {
+          "class": "com.campus.events.support.DbTestSupportIT",
+          "tests": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "passed": 1,
+          "cases": [
+            {
+              "name": "demoLoadsWithResourceScopesActivityVersionsAndJsonb",
+              "status": "passed",
+              "message": ""
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

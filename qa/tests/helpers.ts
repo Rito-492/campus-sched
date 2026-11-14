@@ -19,6 +19,7 @@ import {
   type APIResponse,
   type Browser,
   type BrowserContext,
+  type Locator,
   type Page,
 } from '@playwright/test';
 import { randomUUID } from 'node:crypto';
@@ -34,8 +35,14 @@ export const API_PREFIX = '/api/v1';
 /** 自动测试固定演示日期（test-data-plan §3）；禁止依赖实际当天。 */
 export const DEMO_DATE = process.env.DEMO_DATE ?? '2030-10-20';
 
-/** 演示口令经环境变量提供，仓库不写入口令（test-data-plan §3、03 §1）。 */
-export const DEMO_PASSWORD = process.env.DEMO_PASSWORD ?? 'demo-password';
+/** 演示口令由运行环境安全注入；仅实际登录测试读取，不在模块加载时强制要求。 */
+export function demoPassword(): string {
+  const value = process.env.DEMO_PASSWORD;
+  if (!value || value.trim().length === 0) {
+    throw new Error('必须通过环境变量安全提供 DEMO_PASSWORD；请勿在源码或日志中写入口令。');
+  }
+  return value;
+}
 
 /** 02 契约 §2 / test-data-plan §2：ID 前缀与尾号。 */
 const UUID_PREFIX = '00000000-0000-0000-0000-';
@@ -133,6 +140,28 @@ export const TESTID = {
 } as const;
 export type TestIdName = keyof typeof TESTID;
 
+/**
+ * UI 已补齐的 QA 扩展定位标识（docs/ui/real-integration-2026-10-31.md「QA接收路径」）：
+ * 05 §4 公共清单之外、QA 脚本可依赖的真实页面 testid，逐字使用。
+ */
+export const UI_TESTID = {
+  activityTitle: 'activity-title',
+  activityStart: 'activity-start',
+  activityEnd: 'activity-end',
+  activityVenue: 'activity-venue',
+  activitySave: 'activity-save',
+  activityPublish: 'activity-publish',
+  changeEntry: 'change-entry',
+  changeStart: 'change-start',
+  changeEnd: 'change-end',
+  changeReason: 'change-reason',
+  changeReject: 'change-reject',
+  rejectReason: 'reject-reason',
+  rejectConfirm: 'reject-confirm',
+  registrationSubmit: 'registration-submit',
+  registrationList: 'registration-list',
+} as const;
+
 // ---------------------------------------------------------------- 时间/路径
 
 export const activityPath = (activityId: string): string => `/activities/${activityId}`;
@@ -164,7 +193,7 @@ export interface UiSession {
  * 05 §4 仅定义 login-submit；账号/密码输入框与错误提示 testid 待 UI 提供，见 handoff，
  * 使用可访问名称定位。
  */
-export async function login(page: Page, username: string, password: string = DEMO_PASSWORD): Promise<void> {
+export async function login(page: Page, username: string, password: string = demoPassword()): Promise<void> {
   await page.goto('/login');
   await page.getByLabel(/账号|用户名/).fill(username);
   await page.getByLabel(/密码/).fill(password);
@@ -206,25 +235,72 @@ export interface NewActivityForm {
 const localDateTime = (instant: string): string => instant.slice(0, 16);
 
 export async function fillNewActivityForm(page: Page, form: NewActivityForm): Promise<void> {
-  await page.getByLabel(/标题|活动名称/).fill(form.title);
+  // 真实交互（docs/ui/real-integration-2026-10-31.md「QA接收路径」）：
+  // /activities/new 是 4 步向导（基本信息→时间资源→工作人员→检查保存），必须逐步点「下一步」；
+  // 保存按钮 activity-save 只在第 4 步出现；容量标签为「报名容量」；
+  // Element Plus 场地/设备选择器不能用原生 selectOption，须点击后以 getByRole('option') 选择。
+  // 第 1 步：基本信息（el-input/el-input-number 的 id 透传到原生控件，标签定位有效）
+  await page.getByTestId(UI_TESTID.activityTitle).fill(form.title);
   await page.getByLabel(/简介|描述|说明/).fill(form.description);
   await page.getByLabel(/预计(参加)?人数/).fill(String(form.expectedAttendees));
-  await page.getByLabel(/报名(人数)?(名额|上限)|名额/).fill(String(form.registrationCapacity));
-  await page.getByLabel(/开始时间/).fill(localDateTime(form.startAt));
-  await page.getByLabel(/结束时间/).fill(localDateTime(form.endAt));
-  // 场地/器材选择器 testid 待 UI 提供，见 handoff；Element Plus 选择器以可访问名称选择
-  await page.getByLabel(/场地/).first().selectOption({ label: form.venueName });
-  for (const name of form.equipmentNames) {
-    await page.getByLabel(/器材|设备/).first().selectOption({ label: name });
+  await page.getByLabel('报名容量').fill(String(form.registrationCapacity));
+  await page.getByRole('button', { name: '下一步' }).click();
+
+  // 第 2 步：时间资源
+  await page.getByTestId(UI_TESTID.activityStart).fill(localDateTime(form.startAt));
+  await page.getByTestId(UI_TESTID.activityEnd).fill(localDateTime(form.endAt));
+  await selectElementPlusOption(page, page.getByTestId(UI_TESTID.activityVenue), form.venueName);
+  for (const _ of form.equipmentNames) {
+    await page.getByRole('button', { name: '添加设备' }).click();
   }
+  const equipmentSelects = page.getByRole('combobox', { name: '设备' });
+  for (const [i, name] of form.equipmentNames.entries()) {
+    await selectElementPlusOption(page, equipmentSelects.nth(i), name);
+  }
+  await page.getByRole('button', { name: '下一步' }).click();
+
+  // 第 3 步：工作人员（当前用例均不勾选；需要时由调用方扩展）
+  await page.getByRole('button', { name: '下一步' }).click();
+
+  // 第 4 步：确认草稿——保存入口为 activity-save（保存草稿不会自动提交审批）
+  await expect(page.getByTestId(UI_TESTID.activitySave)).toBeVisible();
 }
 
-export async function createActivityViaUi(page: Page, form: NewActivityForm): Promise<string> {
+/**
+ * Element Plus 选择器交互：点击选择框打开下拉，再以可访问角色 option 点选。
+ * option 展示文案带「· 容量N人 / · 库存N」等后缀，name 按资源名子串匹配（Playwright 默认子串）。
+ */
+async function selectElementPlusOption(page: Page, select: Locator, optionName: string): Promise<void> {
+  // el-select的内部input被占位层覆盖；点击真实选择框外壳，不使用force穿透。
+  const wrapper = select.locator('xpath=ancestor-or-self::*[contains(concat(" ", normalize-space(@class), " "), " el-select ")][1]');
+  await wrapper.click();
+  const option = page.getByRole('option', { name: optionName });
+  await expect(option, `下拉应出现选项「${optionName}」`).toBeVisible();
+  await option.click();
+}
+
+/**
+ * 经 UI 新建活动：/activities/new 向导逐步填写 → 第 4 步点 activity-save 保存草稿，
+ * 详情页路由 /activities/{id} 即服务端生成的活动编号。
+ * 草稿保存不会自动提交审批；如需经 UI 提交，传 `submit: true` 在详情页点 activity-submit（05 §4）。
+ */
+export async function createActivityViaUi(
+  page: Page,
+  form: NewActivityForm,
+  options: { submit?: boolean } = {},
+): Promise<string> {
   await page.goto('/activities/new');
   await fillNewActivityForm(page, form);
-  await page.getByTestId(TESTID.activitySubmit).click();
+  await page.getByTestId(UI_TESTID.activitySave).click();
   await expect(page).toHaveURL(/\/activities\/[0-9a-f-]{36}(?:[/?#]|$)/i);
-  return lastPathSegment(page.url());
+  const activityId = lastPathSegment(page.url());
+  if (options.submit) {
+    // 提交审批入口在详情页 activity-submit，保存草稿后不会自动提交
+    const submitted = page.waitForResponse((res) => res.url().includes(`/activities/${activityId}/submit`));
+    await page.getByTestId(TESTID.activitySubmit).click();
+    expect((await submitted).status(), '提交审批应 200').toBe(200);
+  }
+  return activityId;
 }
 
 // ---------------------------------------------------------------- 页面语义断言
@@ -241,24 +317,22 @@ export async function expectCurrentVersion(page: Page, version: number): Promise
 
 /**
  * 活动详情 → 发起改期 → 断言落到改期工作台。
- * 「发起改期」入口 testid 待 UI 提供，见 handoff；用可访问名称定位。
+ * 「发起改期」入口为 UI 扩展 testid change-entry（真实页面为 RouterLink）。
  */
 export async function openChangeWorkbench(page: Page, activityId: string): Promise<void> {
   await page.goto(activityPath(activityId));
-  const entry = page
-    .getByRole('link', { name: /发起改期/ })
-    .or(page.getByRole('button', { name: /发起改期/ }));
-  await entry.click();
+  await page.getByTestId(UI_TESTID.changeEntry).click();
   await expect(page).toHaveURL(new RegExp(`/activities/${activityId}/change(?:[/?#]|$)`));
 }
 
 /**
  * 在改期工作台填写目标时间（页面预填原场地/器材，需保持原组合以复现 TC-09 冲突）。
- * 目标时间字段 testid 待 UI 提供，见 handoff；用可访问名称定位。
+ * PlanEditor(prefix=change) 的目标时间输入为 change-start/change-end（datetime-local），
+ * 传入 `HH:mm` 按 DEMO_DATE 当天展开（目标为同日改时段，03 §1）。
  */
 export async function fillChangeTargetTime(page: Page, start: string, end: string): Promise<void> {
-  await page.getByLabel(/开始时间/).fill(start);
-  await page.getByLabel(/结束时间/).fill(end);
+  await page.getByTestId(UI_TESTID.changeStart).fill(localDateTime(at(start)));
+  await page.getByTestId(UI_TESTID.changeEnd).fill(localDateTime(at(end)));
 }
 
 // ---------------------------------------------------------------- 真实 REST 辅助（非 Mock）
@@ -278,7 +352,7 @@ export interface ApiSession {
   client: APIRequestContext;
 }
 
-export async function apiLogin(username: string, password: string = DEMO_PASSWORD): Promise<ApiSession> {
+export async function apiLogin(username: string, password: string = demoPassword()): Promise<ApiSession> {
   const client = await request.newContext({ baseURL: BASE_URL });
   const res = await client.post(`${API_PREFIX}/auth/login`, {
     data: { username, password },
@@ -478,6 +552,23 @@ export async function editActivity(
     data: edit,
   });
   return readData<ActivityViewDto>(res, 200, '编辑活动应 200');
+}
+
+/**
+ * API-21 取消活动（所有者）。用于清理测试自己创建的临时活动，
+ * 不改变产品断言；reason 为契约必填。
+ */
+export async function cancelActivity(
+  api: ApiSession,
+  activityId: string,
+  expectedLockVersion: number,
+  reason: string,
+): Promise<ActivityViewDto> {
+  const res = await api.client.post(`${API_PREFIX}/activities/${activityId}/cancel`, {
+    headers: authHeaders(api.token, newIdempotencyKey()),
+    data: { expectedLockVersion, reason },
+  });
+  return readData<ActivityViewDto>(res, 200, `取消活动 ${activityId} 应 200`);
 }
 
 export async function submitActivity(api: ApiSession, activityId: string, expectedLockVersion: number): Promise<ActivityViewDto> {

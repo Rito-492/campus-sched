@@ -1,0 +1,12 @@
+npm notice run campus-sched-qa@0.1.0 test:e2e
+npm notice run playwright test eligibility.spec.ts --workers=1
+
+Running 3 tests using 1 worker
+
+(node:131099) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [desktop] › tests/eligibility.spec.ts:66:3 › N-AT-02 资格限制（仅教师资源） › N-AT-02 applicant_b（STUDENT）UI 明示仅教师资源不可申请并禁选（HTTP提交另验） (1.3s)
+  ✓  2 [desktop] › tests/eligibility.spec.ts:99:3 › N-AT-02 资格限制（仅教师资源） › N-AT-02 applicant_a（TEACHER）同目标可走到下一步（对照，按 identity 判断） (2.2s)
+  ✓  3 [desktop] › tests/eligibility.spec.ts:134:3 › N-AT-02 资格限制（仅教师资源） › N-AT-02 applicant_b 直接 HTTP 保存草稿后提交 → 403 RESOURCE_INELIGIBLE 且草稿不推进 (282ms)
+
+  3 passed (4.2s)

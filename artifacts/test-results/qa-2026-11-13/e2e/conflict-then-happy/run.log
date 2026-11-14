@@ -1,0 +1,15 @@
+npm notice run campus-sched-qa@0.1.0 test:e2e
+npm notice run playwright test change-conflict.spec.ts change-happy-path.spec.ts --workers=1
+
+Running 6 tests using 1 worker
+
+(node:9983) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [desktop] › tests/change-conflict.spec.ts:144:3 › D-AT-09 改期冲突与替代方案（UI） › TC-09-2 预览同时展示场地占用与器材缺件，首选替代为 3102+3202×2 同时间 (2.6s)
+  ✓  2 [desktop] › tests/change-conflict.spec.ts:189:3 › D-AT-11 拒绝改期（原安排保护） › TC-11-1 staff_a 拒绝 → REJECTED，原安排与版本完全保留 (2.4s)
+  ✓  3 [desktop] › tests/change-conflict.spec.ts:225:3 › D-AT-11 拒绝改期（原安排保护） › TC-11-2 批准人驳回 → REJECTED，版本指针不变且意见落库 (1.8s)
+  ✓  4 [desktop] › tests/change-conflict.spec.ts:262:3 › D-AT-12 预览后被抢占（最终确认冲突） › TC-12-1 候选资源被占 → 409 RESOURCE_CONFLICT、改期 CONFLICTED、原安排保留 (3.7s)
+  ✓  5 [desktop] › tests/change-conflict.spec.ts:348:3 › D-AT-18 资源故障与风险提示 › TC-18-1 故障使 A 原安排标 AT_RISK，页面展示风险提示且不谎报可用 (1.2s)
+  ✓  6 [desktop] › tests/change-happy-path.spec.ts:38:3 › D-AT-10 / D-AT-23 改期成功主线与持久化 › TC-10-1 / TC-23-1 预览选首选方案→staff/approver/resource 确认→version2→student 收到通知（含 reload 持久化） (6.0s)
+
+  6 passed (18.2s)
