@@ -18,7 +18,7 @@
 | 导出文件名 | 来源路径 | 版本 | 负责人 |
 |---|---|---|---|
 | `CS-CI-PKG-01_v3.0_总开发任务书.md` | `taskbook.md` | v3.0 | 项目经理 |
-| `CS-CI-DOC-04_v1.7_配置管理计划.md` | `docs/configuration/configuration-management-plan.md` | v1.7 | 配置经理 |
+| `CS-CI-DOC-04_v1.8_配置管理计划.md` | `docs/configuration/configuration-management-plan.md` | v1.8 | 配置经理 |
 | `CS-CI-DOC-05_v1.7_配置管理计划.docx` | `docs/configuration/T08_配置管理计划.docx` | v1.7 | 配置经理 |
 | `CS-CI-DOC-06_配置项索引.md` | `docs/configuration/configuration-index.md` | —（持续维护） | 配置经理 |
 | `CS-CI-DOC-03_v0.2_仓库结构指南.md` | `docs/configuration/repo-structure.md` | v0.2 | 配置经理 |
@@ -88,11 +88,12 @@ git show HEAD:models/activity/首次资源确认活动图.drawio > CS-CI-MODEL-0
 
 | 工件（配置项） | 历史版本 | 来源 commit | 同目录输出文件名（`编号_v版本_名称.扩展名`） |
 |---|---|---|---|
-| 配置管理计划 Markdown（CS-CI-DOC-04，当前 v1.7） | v1.0 | `bfa2cd6` | `CS-CI-DOC-04_v1.0_配置管理计划.md` |
+| 配置管理计划 Markdown（CS-CI-DOC-04，当前 v1.8） | v1.0 | `bfa2cd6` | `CS-CI-DOC-04_v1.0_配置管理计划.md` |
 | 同上 | v1.1 | `5d07897` | `CS-CI-DOC-04_v1.1_配置管理计划.md` |
 | 同上 | v1.4 | `298780f` | `CS-CI-DOC-04_v1.4_配置管理计划.md` |
 | 同上 | v1.5 | `1382623` | `CS-CI-DOC-04_v1.5_配置管理计划.md` |
 | 同上 | v1.6 | `2981c37` | `CS-CI-DOC-04_v1.6_配置管理计划.md` |
+| 同上 | v1.7 | `7726193` | `CS-CI-DOC-04_v1.7_配置管理计划.md` |
 | 配置管理计划 Word（CS-CI-DOC-05，课程提交版，当前 v1.7） | v1.0 | `5d07897` | `CS-CI-DOC-05_v1.0_配置管理计划.docx` |
 | 同上 | v1.4 | `298780f` | `CS-CI-DOC-05_v1.4_配置管理计划.docx` |
 | 同上 | v1.5 | `1382623` | `CS-CI-DOC-05_v1.5_配置管理计划.docx` |
@@ -132,20 +133,20 @@ git show HEAD:models/activity/首次资源确认活动图.drawio > CS-CI-MODEL-0
 | 交付物 | 路径 | 状态（截至 main） |
 |---|---|---|
 | 测试计划 Word | `docs/testing/T08_软件测试计划.docx` | 已入库 |
-| 测试设计 Markdown v1.0 | `docs/testing/test-design-v1.0.md` | **待 PR #23 合入** |
-| 测试设计 Word | `docs/testing/T08_任务5_软件测试设计.docx` | **待 PR #23 合入** |
-| 结构化用例 JSON | `test-data/test-design-cases-v1.0.json` | **待 PR #23 合入** |
+| 测试设计 Markdown v1.0 | `docs/testing/test-design-v1.0.md` | 已入库（PR #23） |
+| 测试设计 Word | `docs/testing/T08_任务5_软件测试设计.docx` | 已入库（PR #23） |
+| 结构化用例 JSON | `test-data/test-design-cases-v1.0.json` | 已入库（PR #23） |
 | 测试数据设计 | `docs/testing/test-data-plan.md` | 已入库 |
 | 需求覆盖矩阵 | `docs/testing/coverage-matrix.md` | 已入库 |
 | 缺陷登记表 | `docs/testing/defect-register.md` | 已入库 |
 | 测试报告 Word | `docs/testing/T08_软件测试报告.docx` | 已入库 |
 | 测试报告 Markdown | `docs/testing/test-report.md` | 已入库 |
 
-> 说明：任务 5「软件测试设计」三件正式交付物（Markdown v1.0、Word、结构化用例 JSON）已由测试经理在 `work/55230316-qa`（提交 `26c5dad`，PR #23）产出，尚未合入 main，故当前导出核验会因缺项返回退出码 2。属测试经理/项目经理交付依赖，配置经理不代产、不代合。
+> 说明：任务 5「软件测试设计」三件正式交付物（Markdown v1.0、Word、结构化用例 JSON）已由测试经理在 `work/55230316-qa`（提交 `26c5dad`，PR #23）产出，并已随 PR #23 合入 main（`567c1fb`），导出核验现返回退出码 0。三件随发布标签 `baseline/release-v1.0.0` 归档，其版本/编号口径由测试经理在任务 5 文档中登记，配置经理不代改其内容。
 
 ## 5. 与发布清单/索引的关系
 
 - 编号、版本、路径、负责人以 `docs/configuration/configuration-index.md` 为唯一登记处；本清单是它在「课程导出目录」上的落点映射，不作第二事实来源。
 - 发布内容与校验值见 `release/manifest.json`；干净启动步骤见 `release/README.md`。
 - 导出目录中的历史版本副本一律由 §3 脚本从 Git 还原生成，**不**在版本库中重复存副本（避免与 Git 历史双写不一致）；生成脚本 `release/export.py` 本身纳入版本库（并入 CS-CI-REL-01）。
-- **发布提交口径**：`release/manifest.json` 的 `commit` 字段当前为**本分支主线起点**（main `cbf4945`，含 PR #27 用户手册合入，不含本 PR 发布文件）；QA 2026-11-13 全量 verify 基线为更早的 main `e1051df`（含 CM #21），结果与证据见 manifest `tests`。最终归档课程包及工件的提交 SHA 以实际发布标签 `baseline/release-v1.0.0` 经 `git rev-parse` 解析为准（待 CCB 授权后打 tag 再登记）。导出脚本会在报告中将「清单声明 commit」与「本次导出候选 SHA」分别标注，二者不一致时提示「本分支主线起点（非导出候选）」。
+- **发布提交口径**：`release/manifest.json` 的 `commit` 字段为发布标签 `baseline/release-v1.0.0` 经 `git rev-parse` 解析的 SHA（main 顶点 `567c1fb`，含 PR #29 release/ + PR #23 任务 5 三件正式交付物，CCB 冀项阳 2026-11-14 授权）；QA 2026-11-13 全量 verify 基线为更早的 main `e1051df`（含 CM #21），结果与证据见 manifest `tests`。导出脚本会在报告中将「清单声明 commit」与「本次导出候选 SHA」分别标注，二者一致即与发布标签对齐。

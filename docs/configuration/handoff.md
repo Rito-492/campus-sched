@@ -1,5 +1,21 @@
 # 交接单（配置经理）
 
+## 本轮工作（2026-11-14）：发布基线建立（打 tag + 登记「已建立」）
+
+- 成员、学号、任务ID：杨瀚霖、55231031、配置经理；任务 6「配置库」最终发布基线建立。
+- 前置（真实核实，不臆造）：PR #29（release/ 可执行导出脚本与清单）已合入 main；PR #23（任务 5「软件测试设计」三件正式交付物）已合入 main（`567c1fb`）；CCB 冀项阳（项目经理）2026-11-14 口头授权打 tag（经配置经理转达）。
+- 已执行（真实执行）：
+  1. **打 tag**：`git tag -a baseline/release-v1.0.0 567c1fb` 并推送 GitHub（`git rev-parse baseline/release-v1.0.0^{commit}` = `567c1fb3c70d286b8dac230a723df0664705cc40`，main 顶点，含 PR #29 + PR #23）。
+  2. **登记「已建立」**：`configuration-index.md` §3 release 行「待授权/待建立」→「已建立（tag 存在）」；《配置管理计划》§5.2 release 行同步（文档 v1.7→v1.8）；`manifest.json` `baselineStatus`→已建立、`commit`→tag 解析 SHA `567c1fb`、`commitNote` 更新；`release/README.md` 发布提交→`567c1fb`；`export-manifest.md` §5 发布提交口径→已建立。
+  3. **历史版本补 v1.7**：配置管理计划 Markdown v1.7（`7726193`）因 v1.8 成为当前版而补入 `HIST`（34→35 件），`export-manifest.md` §4.1 表同步。
+  4. **任务 5 三件状态更正**：`configuration-index.md` §2.7 与 `export-manifest.md` §4.2 由「待 PR #23 合入」更正为「已合入（PR #23，`567c1fb`）」，导出核验退出码 2→0。
+- 实际运行结果（真实执行）：`python release/export.py --commit baseline/release-v1.0.0` 实跑，任务 5 三件齐备，退出码 0，字节保真逐件通过，六项散列匹配；报告见 `export-report.json`（附于本轮）。
+- 未决 / 交接：
+  - 任务 5「软件测试设计」三件（`test-design-v1.0.md`、`T08_任务5_软件测试设计.docx`、`test-design-cases-v1.0.json`）的**版本/编号口径**由测试经理在其任务 5 文档中登记；配置经理未代改内容、未代分 CI 编号。
+  - 《配置管理计划》Word（CS-CI-DOC-05，课程提交版）仍为 v1.7，.md 已至 v1.8；课程提交 .zip 打包时如需 Word 对齐 v1.8，由配置经理重导（另行处理）。
+  - 任务 6 打包（.zip）与学习通上传由项目经理执行。
+- 下一接收人：项目经理（按标签重跑完整导出留存报告并组织打包提交）；测试经理（确认任务 5 三件正式交付物版本/编号口径）。
+
 ## 本轮工作（2026-11-14 六轮复审整改）：更正发布清单测试归属
 
 - 成员、学号、任务ID：杨瀚霖、55231031、配置经理；任务 6「配置库」第六轮复审「必须改」1 项整改（另两条件为外部依赖，见下）。

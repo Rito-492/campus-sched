@@ -72,7 +72,7 @@ DOCS = [
     ('CS-CI-DOC-01', '仓库约定', None, 'AGENTS.md'),
     ('CS-CI-DOC-02', '项目名片', None, 'README.md'),
     ('CS-CI-DOC-03', '仓库结构指南', 'v0.2', 'docs/configuration/repo-structure.md'),
-    ('CS-CI-DOC-04', '配置管理计划', 'v1.7', 'docs/configuration/configuration-management-plan.md'),
+    ('CS-CI-DOC-04', '配置管理计划', 'v1.8', 'docs/configuration/configuration-management-plan.md'),
     ('CS-CI-DOC-05', '配置管理计划', 'v1.7', 'docs/configuration/T08_配置管理计划.docx'),
     ('CS-CI-DOC-06', '配置项索引', None, 'docs/configuration/configuration-index.md'),
     ('CS-CI-DOC-30', '初始项目计划', 'v0.9', 'docs/management/initial-project-plan.md'),
@@ -133,12 +133,13 @@ AGENT_ROLES = {
 # 历史版本： (编号, 中文名, 版本, commit, 源路径) —— 与当前版同目录并存，_v<版本> 区分
 # 版本↔commit 以各文档头部「修订历史」为准（真实 git 核实，不臆造）；未独立入库的工作稿不在此列（见 export-manifest §4.1 说明）。
 HIST = [
-    # 配置管理计划 Markdown（CS-CI-DOC-04）：v1.0/v1.1/v1.4/v1.5/v1.6 均有独立 Git 提交（v1.2 未独立提交，内容并入 v1.4）
+    # 配置管理计划 Markdown（CS-CI-DOC-04）：v1.0/v1.1/v1.4/v1.5/v1.6/v1.7 均有独立 Git 提交（v1.2 未独立提交，内容并入 v1.4）
     ('CS-CI-DOC-04', '配置管理计划', 'v1.0', 'bfa2cd6', 'docs/configuration/configuration-management-plan.md'),
     ('CS-CI-DOC-04', '配置管理计划', 'v1.1', '5d07897', 'docs/configuration/configuration-management-plan.md'),
     ('CS-CI-DOC-04', '配置管理计划', 'v1.4', '298780f', 'docs/configuration/configuration-management-plan.md'),
     ('CS-CI-DOC-04', '配置管理计划', 'v1.5', '1382623', 'docs/configuration/configuration-management-plan.md'),
     ('CS-CI-DOC-04', '配置管理计划', 'v1.6', '2981c37', 'docs/configuration/configuration-management-plan.md'),
+    ('CS-CI-DOC-04', '配置管理计划', 'v1.7', '7726193', 'docs/configuration/configuration-management-plan.md'),
     # 配置管理计划 Word（CS-CI-DOC-05，课程提交版）：v1.0 起独立入库
     ('CS-CI-DOC-05', '配置管理计划', 'v1.0', '5d07897', 'docs/configuration/T08_配置管理计划.docx'),
     ('CS-CI-DOC-05', '配置管理计划', 'v1.4', '298780f', 'docs/configuration/T08_配置管理计划.docx'),
