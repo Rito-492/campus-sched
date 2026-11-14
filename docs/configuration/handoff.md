@@ -1,5 +1,23 @@
 # 交接单（配置经理）
 
+## 本轮工作（2026-11-14 二轮评审整改）：release 授权统一待授权 + 导出可执行化并实际核验
+
+- 成员、学号、任务ID：杨瀚霖、55231031、配置经理；任务 6「配置库」第二轮评审「仍阻塞」四项整改。
+- main 基准：`origin/main` 已至 `cbf4945`；本次改动在 `work/55231031-change`（c02148b）。
+- 整改内容（真实执行，`git` 核实，不臆造）：
+  1. **发布基线授权统一（阻塞 #3）**：远程尚无 `baseline/release-v1.0.0` tag，索引此前写「PM 已授权」与 manifest「待授权」互相矛盾。统一为「待授权（项目经理（CCB）· 冀项阳，PR #29 合入 main 后授权）/ 待建立」，候选提交 = release/ 内容随 PR #29 合入 main 后的 merge commit（合入前评审/导出候选为 `work/55231031-change` 最新提交）。索引 §3、计划 §5.2、`manifest.json`、T08 Word 两处基线表同步。
+  2. **T08 Word 基线表排序（阻塞 #3）**：按 tag commit 时间升序，design-v1.0（11-14）移至 task-package-v3.0（10-14）之后；release 行授权列由「项目经理（CCB）· 冀项阳」改为「待授权（…）」。两处基线表均同步（docx 经 python 改 word/document.xml 后重打包，字节核对通过）。
+  3. **导出可执行化（阻塞 #1/#2/#4）**：`release/export-manifest.md` 重写为可执行清单，新增 `release/export.py`（并入 CS-CI-REL-01）并落地运行。脚本三步：整库 `git archive` 快照 + 文档逐件 `git show <commit>:<path>` 字节保真重命名为「编号_版本_名称」+ 历史版本（配置管理计划 v1.6=`2981c37`）与当前版同目录并存；二进制（docx/pdf/drawio/png）不经文本转码。修正旧清单「不需要在提交包里另存」与课程要求的矛盾。
+  4. **用户手册 PDF 更正（阻塞 #2）**：导出源由过时的 `docs/ui/T08_用户手册.pdf` 改为 PR #27 成品 `docs/ui/user-manual.pdf`；索引 §2.6 登记同步（待界面设计师重导 T08 课程版）。
+- 实际运行结果（真实执行，非臆造）：
+  - `python release/export.py --commit HEAD` 产出 `D:\TEMP\campus-sched-export`：文档 61 件（含历史版本 1 件）+ 整库快照 + `export-report.json`。
+  - 字节保真逐件核对通过（sha256 与 `git show` 原始字节一致）；任务 5 正式交付物（测试计划/测试设计·结构化用例/测试数据设计/覆盖矩阵/缺陷登记/测试报告 Word+md）8 项齐全；`openapi.yaml`、`demo.json` 哈希与 `manifest.json` 交叉核对匹配。
+- 未完成项 / 外部依赖（不越权）：
+  - `baseline/release-v1.0.0` 打 tag 仍需项目经理 CCB 授权（PR #29 合入 main 后）。
+  - 用户手册 `T08_用户手册.pdf` 重导（界面设计师）。
+  - 任务 6 打包（.zip）与学习通上传由项目经理执行。
+- 下一接收人：项目经理（授权 release 基线、核对导出目录、组织打包提交）。
+
 ## 本轮工作（2026-11-14 修缮）：评审整改收口（design 重打 + 导出清单 + PDF 差异标注）
 
 - 成员、学号、任务ID：杨瀚霖、55231031、配置经理；任务 6「配置库」评审结论「必须改」五项修缮。
