@@ -173,11 +173,11 @@ campus-sched/
 | `baseline/init-v1.0` | 任务包并入仓库、仓库结构定型 | 2026-09-25 22:15:33（commit=tag） | 项目经理（CCB）· 冀项阳 | 已建立（tag 存在） |
 | `baseline/task-package-v2.0` | 任务包 v2.0 基线 | 2026-09-26 19:59:40（commit=tag） | 项目经理（CCB）· 冀项阳 | 已建立（tag 存在） |
 | `baseline/requirements-v1.0` | 需求规范评审通过（需求文档族 v1.1，v3.0 对齐） | 2026-10-13（7fb247b） | 项目经理（CCB）· 冀项阳（2026-11-14 授权） | 已建立（tag 存在） |
-| `baseline/design-v1.0` | 设计文档评审通过（设计文档族 v0.2 + UML 图源 models/） | 2026-11-14（328025d） | 项目经理（CCB）· 冀项阳（2026-11-14 授权） | 已建立（tag 存在） |
 | `baseline/task-package-v3.0` | 任务包 v3.0 基线（含 AN 活动状态机对齐） | commit 2026-10-14 15:44:47 / tag 15:54:57 | 项目经理（CCB）· 冀项阳 | 已建立（tag 存在） |
-| `baseline/release-v1.0.0` | 最终交付（发布说明/清单 v1.0.0） | 2026-11-14（最终交付） | 项目经理（CCB）· 冀项阳（2026-11-14 授权） | 待建立（release/ 待 PR #29 合入 main 后打 tag） |
+| `baseline/design-v1.0` | 设计文档评审通过（设计文档族 v0.2 + UML 图源 models/） | 2026-11-14（328025d） | 项目经理（CCB）· 冀项阳（2026-11-14 授权） | 已建立（tag 存在） |
+| `baseline/release-v1.0.0` | 最终交付（发布说明/清单 v1.0.0） | 2026-11-14（最终交付） | 待授权（项目经理（CCB）· 冀项阳，PR #29 合入 main 后授权） | 待建立（release/ 待 PR #29 合入 main 后打 tag） |
 
-时间口径（三者不可混同）：**tag commit 时间** = 基线 tag 指向提交的提交时间（git 可查、可复现）；**tag 时间** = tag 对象的创建时间（轻量 tag 与 commit 相同，注解 tag 可单独记录）；**授权时间** = CCB 评审批准时间，须有可追溯记录（评审记录/决策日志）方可填写。requirements 的内容于 2026-10-13 冻结入库（v3.0 协调对齐），CCB 授权于 2026-11-14 补授（非倒填）；其 tag 对象 `baseline/requirements-v1.0` 于 2026-11-14 17:19 建立、指向 10-13 冻结提交 7fb247b，属"内容先冻结、基线后补打"。design 的设计文档族 v0.2 于 10-13 冻结，但其 UML 图源（models/ 两份 drawio）于 11-14 才补齐入库，故 `baseline/design-v1.0` 于 2026-11-14 重打、指向含图源的提交 328025d，冻结时间按 tag commit 计为 11-14（CCB 授权 11-14）；release 的建立时间为最终交付日 2026-11-14，待 release/ 内容随 PR #29 合入 main 后打 tag。
+时间口径（三者不可混同）：**tag commit 时间** = 基线 tag 指向提交的提交时间（git 可查、可复现）；**tag 时间** = tag 对象的创建时间（轻量 tag 与 commit 相同，注解 tag 可单独记录）；**授权时间** = CCB 评审批准时间，须有可追溯记录（评审记录/决策日志）方可填写。requirements 的内容于 2026-10-13 冻结入库（v3.0 协调对齐），CCB 授权于 2026-11-14 补授（非倒填）；其 tag 对象 `baseline/requirements-v1.0` 于 2026-11-14 17:19 建立、指向 10-13 冻结提交 7fb247b，属"内容先冻结、基线后补打"。design 的设计文档族 v0.2 于 10-13 冻结，但其 UML 图源（models/ 两份 drawio）于 11-14 才补齐入库，故 `baseline/design-v1.0` 于 2026-11-14 重打、指向含图源的提交 328025d，冻结时间按 tag commit 计为 11-14（CCB 授权 11-14）；清单按 tag commit 时间升序排列，故 design（11-14）排在 task-package-v3.0（10-14）之后。release 的建立时间为最终交付日 2026-11-14，候选提交为 release/ 内容随 PR #29 合入 main 后的 merge commit（合入前评审/导出候选为 work/55231031-change 最新提交），其 CCB 授权与打 tag 均待 PR #29 合入后执行，暂标「待授权 / 待建立」。
 
 **基线授权**：基线由配置经理负责建立、登记并打 tag，经项目经理（CCB，冀项阳）评审批准后正式冻结生效；未经授权不得变更已冻结基线。本计划编制前已存在的三条历史基线（init-v1.0 / task-package-v2.0 / task-package-v3.0）tag 已建立，其"授权（CCB）"为项目经理（CCB）冀项阳。
 
