@@ -1,0 +1,99 @@
+{
+  "baseline": "ca162bf975b2ebae0bd0dd59d7c63b23bc505b35",
+  "branch": "work/17231018-ui",
+  "date": "2026-11-10",
+  "worktreeChangesIncluded": true,
+  "runtime": {
+    "node": "v22.23.0",
+    "npm": "11.16.0",
+    "java": "21.0.9",
+    "postgres": "17.6",
+    "browser": "Edge 157.0.4341.42"
+  },
+  "auditBefore": {
+    "info": 0,
+    "low": 0,
+    "moderate": 6,
+    "high": 0,
+    "critical": 2,
+    "total": 8
+  },
+  "auditAfter": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "unit": {
+    "files": 22,
+    "passed": 109,
+    "failed": 0,
+    "pending": 0
+  },
+  "browser": {
+    "layout": {
+      "startTime": "2026-11-10T14:23:23.299Z",
+      "duration": 36877.7,
+      "expected": 13,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "production-ui": {
+      "startTime": "2026-11-10T14:27:58.913Z",
+      "duration": 22617.493000000002,
+      "expected": 3,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "real": {
+      "startTime": "2026-11-10T14:23:23.316Z",
+      "duration": 62663.174,
+      "expected": 13,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "restart": {
+      "startTime": "2026-11-10T14:29:16.563Z",
+      "duration": 12312.042,
+      "expected": 4,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "checks": {
+    "npmCi": "passed",
+    "typesCheck": "passed",
+    "typecheck": "passed",
+    "build": "passed",
+    "productionFixtureExclusion": "passed",
+    "bundleBudget": "passed",
+    "backendPackage": "passed - skipTests",
+    "backendFullVerify": "not run",
+    "compose": "not run - docker unavailable"
+  },
+  "restart": {
+    "oldPid": 21512,
+    "oldStartedAt": "2026-11-10T22:19:47.054116+08:00",
+    "stoppedAt": "2026-11-10T14:28:44.5937139Z",
+    "databasePort": 55433,
+    "reseeded": false,
+    "newPid": 5676,
+    "restartCommand": "start-backend.ps1 --no-seed",
+    "newStartedAt": "2026-11-10T22:28:44.6656330+08:00",
+    "health": "UP",
+    "healthPath": "/api/v1/health",
+    "checkedAt": "2026-11-10T14:29:53.3900319Z"
+  },
+  "pending": [
+    "CM PR #21 merged-baseline UI integration",
+    "QA independent acceptance",
+    "CM/QA Compose release verification",
+    "PM release baseline and sign-off"
+  ]
+}

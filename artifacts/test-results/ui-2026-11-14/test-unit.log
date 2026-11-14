@@ -1,0 +1,13 @@
+
+> campus-sched-web@0.1.0 test:unit
+> vitest run
+
+
+ RUN  v4.1.12 D:/code/01_projects/project/campus-sched/web
+
+
+ Test Files  22 passed (22)
+      Tests  109 passed (109)
+   Start at  11:52:20
+   Duration  68.01s (transform 15.89s, setup 0ms, import 409.59s, tests 10.26s, environment 385.04s)
+

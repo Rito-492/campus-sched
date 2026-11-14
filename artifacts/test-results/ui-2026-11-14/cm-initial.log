@@ -1,0 +1,74 @@
+
+Running 3 tests using 1 worker
+
+(node:24828) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:24828) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\integration\review-regression.spec.ts:169:3 › CM修复真实页面：所有者为唯一工作人员直接复审 (21.4s)
+(node:19468) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:19468) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  2 tests\integration\review-regression.spec.ts:169:3 › CM修复真实页面：所有者加其他工作人员仅由他人确认 (20.5s)
+(node:29212) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:29212) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 3 tests\integration\review-regression.spec.ts:204:1 › CM修复真实页面：陈旧版本409显示详情，保留输入重预览后只创建一次 (8.2s)
+
+
+  1) tests\integration\review-regression.spec.ts:169:3 › CM修复真实页面：所有者为唯一工作人员直接复审 ───────────────────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: getByTestId('change-status')
+    Expected: [32m"等待批准人复审"[39m
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toHaveText" with timeout 15000ms[22m
+    [2m  - waiting for getByTestId('change-status')[22m
+
+
+      179 |     await expect(page.getByTestId('staff-approve')).toHaveCount(0)
+      180 |     await page.reload()
+    > 181 |     await expect(page.getByTestId('change-status')).toHaveText(includeOther ? '等待工作人员确认' : '等待批准人复审')
+          |                                                     ^
+      182 |     await expect(page.getByTestId('staff-approve')).toHaveCount(0)
+      183 |     await screenshots(page, includeOther ? 'cm-owner-other' : 'cm-owner-only')
+      184 |     if (includeOther) {
+        at D:\code\01_projects\project\campus-sched\web\tests\integration\review-regression.spec.ts:181:53
+
+    Error Context: test-results\integration\review-regression-CM修复真实页面：所有者为唯一工作人员直接复审\error-context.md
+
+  2) tests\integration\review-regression.spec.ts:169:3 › CM修复真实页面：所有者加其他工作人员仅由他人确认 ─────────────────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoHaveText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: getByTestId('change-status')
+    Expected: [32m"等待工作人员确认"[39m
+    Timeout: 15000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toHaveText" with timeout 15000ms[22m
+    [2m  - waiting for getByTestId('change-status')[22m
+
+
+      179 |     await expect(page.getByTestId('staff-approve')).toHaveCount(0)
+      180 |     await page.reload()
+    > 181 |     await expect(page.getByTestId('change-status')).toHaveText(includeOther ? '等待工作人员确认' : '等待批准人复审')
+          |                                                     ^
+      182 |     await expect(page.getByTestId('staff-approve')).toHaveCount(0)
+      183 |     await screenshots(page, includeOther ? 'cm-owner-other' : 'cm-owner-only')
+      184 |     if (includeOther) {
+        at D:\code\01_projects\project\campus-sched\web\tests\integration\review-regression.spec.ts:181:53
+
+    Error Context: test-results\integration\review-regression-CM修复真实页面：所有者加其他工作人员仅由他人确认\error-context.md
+
+  2 failed
+    tests\integration\review-regression.spec.ts:169:3 › CM修复真实页面：所有者为唯一工作人员直接复审 ────────────────────
+    tests\integration\review-regression.spec.ts:169:3 › CM修复真实页面：所有者加其他工作人员仅由他人确认 ──────────────────
+  1 passed (58.7s)

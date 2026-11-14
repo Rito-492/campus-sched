@@ -1,0 +1,524 @@
+{
+  "checkedAt": "2026-11-11T01:45:49.804Z",
+  "candidateFiles": 127,
+  "trackedChanges": 9,
+  "untrackedAdditions": 118,
+  "scopeViolations": [],
+  "validPngs": 84,
+  "badPngs": [],
+  "productionDependencyChanges": [],
+  "files": [
+    {
+      "path": "docs/ui/api-matrix.md",
+      "sha256": "e15c448dd7de21ae870090433c1a167f410f925a3e0b10abf84737b6a2653de7"
+    },
+    {
+      "path": "docs/ui/handoff.md",
+      "sha256": "4c9b2c965a58e013d8ee880aff42574588ef1b0174f5992761b1811dbbcafd12"
+    },
+    {
+      "path": "docs/ui/interface-implementation-0.1.md",
+      "sha256": "12929e7c3ee6af3f5bfe906c2980a42e2fe3262cf04a37a2414bc13e4a7e21ae"
+    },
+    {
+      "path": "docs/ui/user-manual.md",
+      "sha256": "db1de34d13f7bab42b6c335467c0e9098b3a34932c6eb991ae1d2a540ec47f67"
+    },
+    {
+      "path": "web/README.md",
+      "sha256": "69f2da390f528a5698d52f0016e88c44fd5c5951097ce1cb9780cc12b0674398"
+    },
+    {
+      "path": "web/package-lock.json",
+      "sha256": "1d56db3798735c74d0694c9648e115daf63fb64860d98bde0aefbe7614bfadfe"
+    },
+    {
+      "path": "web/package.json",
+      "sha256": "96cbd15cdf9eb1b2b8545cb1e8435ac0e4944c6c2c98d42b90f5d07228423987"
+    },
+    {
+      "path": "web/tests/integration/review-regression.spec.ts",
+      "sha256": "c8ff7ee86e292ba7429d8d818230d672b4673b0a9cb0a224e7ed0c5f42cd6d12"
+    },
+    {
+      "path": "web/tests/integration/review-restart.spec.ts",
+      "sha256": "6d661d7da2e4f8910940393efe434385f9c6cf8b9c845b46645c51ce1be6e65d"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/accounts-1366x768.png",
+      "sha256": "89a7d15f6956535d80c10996de2b527b72461f14b71e901b323ed2a99de17547"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/accounts-1920x1080.png",
+      "sha256": "73b3ba7098cc6f22142e84d06a271231c830937bdd0946bfcaccdd4efd3f1f63"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/accounts-390x844.png",
+      "sha256": "be72a3325e4b8b73f4c04eaa0f25a01db11a72183909c0008bf61f2845db4637"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/activity-detail-1366x768.png",
+      "sha256": "6eb4041ce06a41edae77921ab5b76d9309a34c0c9aca9062c1d8d6aec13539e3"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/activity-detail-1920x1080.png",
+      "sha256": "843e25deb25b86f2ff47d4555921d079126244cd0f279ccdba8d0997ca492b5c"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/activity-detail-390x844.png",
+      "sha256": "54a0fd83a42c4ac4972bce6ebd22b9e648aa386f1a3e15137a4d344714039daf"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/alternatives-impact-1366x768.png",
+      "sha256": "672c856ddcaf4ee215f17b03031dec0a8c432cf85e4c47f625876de7beb74708"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/alternatives-impact-1920x1080.png",
+      "sha256": "aa6c08fe297545c8c1d6e92a297a16e98a11c4035726d7f4eb6305d5a865c7ef"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/alternatives-impact-390x844.png",
+      "sha256": "b653cbb5e02f17f9e39bfcdbc60edec1c1d17844ece971b1f492d57e0fd94fdc"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/authorization-1366x768.png",
+      "sha256": "113f30661897714e4213669fbd4f8daff52e62072b8fa3427c2a48bb39343f0c"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/authorization-1920x1080.png",
+      "sha256": "a6be863656da4b9a43850e3970a32c4824fc82b46d0cd6aa58e5400176d40bac"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/authorization-390x844.png",
+      "sha256": "c55b8c8470d1ed725f4f46b9290e8e4be9da784ceacdc4760d4f2c40db8cab8b"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/calendar-1366x768.png",
+      "sha256": "1f05b6425fa45ec38b130d4c9aa728b4d4af661b4ec89c228ea92182751716a4"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/calendar-1920x1080.png",
+      "sha256": "c416ec540b34bab43f19d91d1c42d85c162d25e0784c8bf0c7b5b47222804142"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/calendar-390x844.png",
+      "sha256": "7de5c074b062562169cfb97c1040555793b1bb43462476cfc32b59d801f55c4e"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/change-applied-sample-1366x768.png",
+      "sha256": "c70cc7dd30345babd2e996a3f128f1431dceba9c2691100793e886af6f7035b2"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/change-applied-sample-1920x1080.png",
+      "sha256": "852417f5f1f50191c99aee88aa30c1074bec78f394409897afc5961a82f69917"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/change-applied-sample-390x844.png",
+      "sha256": "d05443b71ae9babcfce9ffb1d7bceb084140c053ca184e9216c7e14ce32f0595"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/change-conflicted-1366x768.png",
+      "sha256": "d61166081dee00d9478ca0f3e7f9196057682fe55db8c73d383aeae69348ab55"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/change-conflicted-1920x1080.png",
+      "sha256": "f2218df579ca4b7af431ebe51ecf0ea8353db3932d2b586c75592fff199dbe67"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/change-conflicted-390x844.png",
+      "sha256": "aedd46a660c6c7435ce02de6746a00dacb48499840d1b24169157a2e82bd0517"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/login-1366x768.png",
+      "sha256": "89a4f07c0b42beb4b201338d11bf3149e50e01aaf462aa62b02b6601c5300931"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/login-1920x1080.png",
+      "sha256": "8d764b51e4f318dee4c925257a38df0970739113c57989525ef5a6d2c9d4fdb1"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/login-390x844.png",
+      "sha256": "c89a9de53fc662ae49162eb0a549b0096d91b97126b8a5c9883c54114bcd1e8d"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/notifications-1366x768.png",
+      "sha256": "b3fb6b17dd499e450bb80168a96a73819dbe0266e76a3bfaabe3d77d3217323d"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/notifications-1920x1080.png",
+      "sha256": "6b43453d7a35a1d5b6acb4896e051e610c426a0a88a17d7e67af0cbd03af56b3"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/notifications-390x844.png",
+      "sha256": "fe15aab9bdd46799ce52039acd726b30dba5e3c77fcdd9686df095bc7af5fa9e"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/prototype-1366x768.png",
+      "sha256": "22c01d82022f0e8e45e8c3dca6df9ed4fae3fe8002eb76a0db25c46b272070d4"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/prototype-1920x1080.png",
+      "sha256": "cfac2773af83449610509f9309a84c835ef820afb6172d561e6f7f5ceccde9ea"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/prototype-390x844.png",
+      "sha256": "c16b3d3809a31e7e8c610dd54015f6140495d752aef7fe99a1bb2905a30ebcbe"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/resources-1366x768.png",
+      "sha256": "294b04453e4e27ba4695e551350b395bc02b495491f5b4ae0457045212330bb9"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/resources-1920x1080.png",
+      "sha256": "4f60c094c7c0405bf75611e0b9538ee2d536f5602ec5c0034654149690151995"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/resources-390x844.png",
+      "sha256": "d52c878bbedac2d8ac812eacb2ce539b328b463387aa22ba64689522379c5f61"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/workspace-1366x768.png",
+      "sha256": "7e21f386d6dc55d8d5586948133d158e608f2bc6cdef58643a0f72a6ebf7fb96"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/workspace-1920x1080.png",
+      "sha256": "dd75b6475fac8568c647d0935d60e734b69fcac463c46df36342730b1b055f67"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/layout/workspace-390x844.png",
+      "sha256": "73f01970aac0c5325f001ac2f516b3a537fccecb05d8b908cb94fa81e27eaf80"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/production/production-dialog-1366x768.png",
+      "sha256": "b716b81fda438e2580edb5d42018b303bfe62e9b6941810c2cdbdabac0176a5f"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/production/production-dialog-1920x1080.png",
+      "sha256": "7da3e63c080940e90c5ebdcffaa54c33328c4bffcdfce0e2de1914d60db7167a"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/production/production-dialog-390x844.png",
+      "sha256": "3e952671b49aff355b9f3e934ffb031ac6eeb4a272128adaa87eb1f7abf3bf7d"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-approval-empty-reserved-1366x768.png",
+      "sha256": "dea128cf870622e386a43312121c1e4c5f6154569651fcbdf52f9904f67da069"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-approval-empty-reserved-1920x1080.png",
+      "sha256": "cc311fe2598b695d630293cca47f7caf44f191e0eff6365783037bc41ef5af04"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-approval-empty-reserved-390x844.png",
+      "sha256": "2c9f52edde156602d9050676072c36c34b327153a8bec97285fcd4b4c27c908b"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-approval-whitespace-reserved-1366x768.png",
+      "sha256": "4d2305b144a8949f36e85983e11987c65f42f619085cefc5cd9c9c78f6f4a348"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-approval-whitespace-reserved-1920x1080.png",
+      "sha256": "0c5e9d7bd986b59153feb979b4e53651420057b6491d4aef140e08a881085be9"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-approval-whitespace-reserved-390x844.png",
+      "sha256": "cb272ace50492dbe108e14b9f8bd57bcb526cd8891f8311c4260d4e1f2b51c2e"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-authorization-1366x768.png",
+      "sha256": "ef21d81011ed1455cb1d9f770ccce2ed5dc8364b56c6e004550c8495842aa64d"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-authorization-1920x1080.png",
+      "sha256": "88f932d88e95c9221248893621e16e4136c272a8ede9b5f1a6cf00727092fc02"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-authorization-390x844.png",
+      "sha256": "2bc7c33436db7b868d0b166922bf25778a6938c766f8c5a1e5ce2e0aa42c34fc"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-calendar-1366x768.png",
+      "sha256": "0a2b20ae3e42d2d5230f3f4074ea83b129b8ff05af29ecaee17c683e127c9497"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-calendar-1920x1080.png",
+      "sha256": "b223e413b7ef6af54429be338d4a9568f954448d9602aa13f47fc496568774df"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-calendar-390x844.png",
+      "sha256": "a1ee7a8a085dd2bd1f342a037f22ce63c72f062454e7245e9f661c6d7f859156"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-change-applied-1366x768.png",
+      "sha256": "6c3d5ea682b60ae52de6ef5f0d3a79d3f2dbb4578c4684ab0b40c2fceb24097a"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-change-applied-1920x1080.png",
+      "sha256": "878a9854717738bc51735c3d2dd338cb7d0f7c0c0b505c32649dec39dc2767be"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-change-applied-390x844.png",
+      "sha256": "79c209ace2ac28a7cf33f88618b69dbbf9123da7c6a8a1e77d785cb09ab47fe8"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-conflict-risk-1366x768.png",
+      "sha256": "945c839704002a189e2e6260df2c54da6c6c77ea88177b45dfe6ee501b55a846"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-conflict-risk-1920x1080.png",
+      "sha256": "20f42ce929c03707dd143a0ddf81a5879898b3c7cab87b5b0b37051e983ac1de"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-conflict-risk-390x844.png",
+      "sha256": "fd25228faba3fc64af5770ca2f91ea427834e212220b1b670051afa46f4019a5"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-cross-org-staff-1366x768.png",
+      "sha256": "9852a39029f6b5da62df81ecf67d4300f2d777996c8c8fdb1ebf5ea0336d2de1"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-cross-org-staff-1920x1080.png",
+      "sha256": "57dcc58471224963a1a94160f670c3d7658f1f74e34e94d65e57743b3d8fc99b"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-cross-org-staff-390x844.png",
+      "sha256": "77f6ae3f850b5dea076961ca2c7c4bb3cdc79574550917c2b62706b1b4368e30"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-draft-1366x768.png",
+      "sha256": "828b74cd1c4401cc5a1b47b6d0c4a58ec892abb30d4171cea9c618ba5aaf9574"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-draft-1920x1080.png",
+      "sha256": "8494820a544ff59d811dc4686600153d2c8152d5fca5e0806790233cba0fda6d"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-draft-390x844.png",
+      "sha256": "54deba6d662406337db99b4eb1d8b2c4c1500ba5569ce9cbc87d45500a7655ef"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-eligibility-error-1366x768.png",
+      "sha256": "c754e3d555a23328552b3094370c87adaeb4b6df367dfa6c04c6223e5fad060d"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-eligibility-error-1920x1080.png",
+      "sha256": "0b9ec3e275265a54a0246e72e7772a3eadc9c000139a50c0c1c440d12d0f6288"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-eligibility-error-390x844.png",
+      "sha256": "c9e5b5f9bb3ab38801534b5226ccbc461c642083c9c4a46f0c7215d6ab5ec4e1"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-eligibility-refresh-saved-1366x768.png",
+      "sha256": "063ba72c6e970db30434e3c97a4861a84349a5dd56e4722c8d57c33a3d6dff4f"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-eligibility-refresh-saved-1920x1080.png",
+      "sha256": "6fcd1daaa21ebd47b33206ff8915472fe706f18376f23f2b6396bbafb02cbbdd"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-eligibility-refresh-saved-390x844.png",
+      "sha256": "52ed6f93dd07e2332a5e3df20728503442b20222dbb00883ed481c49022ac71c"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-resource-1366x768.png",
+      "sha256": "fc575e9f07e8e5226dbdd391c593b84042d9152690c87ef2ac12691946f6fe96"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-resource-1920x1080.png",
+      "sha256": "929f6f2b7a38ade020c0f69c98e64a098a9050b1b3d92c9e7395ee4eeac52d75"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-resource-390x844.png",
+      "sha256": "55825fe794876eb7df0a5a8714d3058f399e02f51cdf0944bbc73a025d223820"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-revoked-detail-1366x768.png",
+      "sha256": "5036b1f14934ad8289987549f74d1cada197fa808407587ef658500633c82012"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-revoked-detail-1920x1080.png",
+      "sha256": "9fd14def7408ac57ff76b82e3e7e8c773b10c051654158e8177d531e353698f7"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-revoked-detail-390x844.png",
+      "sha256": "6544b3283fb39be61dbe89fb3189491d153bf86649f084f5bba12fb7b0c41b02"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-staff-applied-history-1366x768.png",
+      "sha256": "df31bfcab9fd11cdef0b330e65b77ea02bfcf31c1894a41be5d6814bfc23b980"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-staff-applied-history-1920x1080.png",
+      "sha256": "e91b7536eada1c9b2d363b24c88eb7d3c7e8efd00aad3c123469c65465eac181"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-staff-applied-history-390x844.png",
+      "sha256": "1c2f9c75867ddd14569cc31fabf09347c210f32ec16b1673ce6ce1128117b685"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-withdrawn-1366x768.png",
+      "sha256": "21aa780357d7cad1e68eae5837b5438490c33130a77bb0499c85bbb752681c99"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-withdrawn-1920x1080.png",
+      "sha256": "6d2bab0c999f638eaf8e8e48be71090684f7526c8d41b08cd9eca01a2abba343"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/real/real-withdrawn-390x844.png",
+      "sha256": "a7fbfada1cdfb11b2096a8a3377d2c1ecc917dfcd52a123fd3fbef50995191a5"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/restart/real-change-after-restart-1366x768.png",
+      "sha256": "c624f9b6a1a0f05735797bfdf0d5e3d2ca534a720b2aa21a0ac6acec84e4c5a5"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/restart/real-change-after-restart-1920x1080.png",
+      "sha256": "8f8c6a9331bfd6871f5ef268047c61138a2774a24509fbaba384bcdc6e7a4273"
+    },
+    {
+      "path": "artifacts/screenshots/ui-2026-11-10/restart/real-change-after-restart-390x844.png",
+      "sha256": "79c209ace2ac28a7cf33f88618b69dbbf9123da7c6a8a1e77d785cb09ab47fe8"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/audit-after-initial.json",
+      "sha256": "e476b3d976343e08194559143bd30ce2e31da71c25a0aa1ab52ca47a770888e1"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/audit-after.json",
+      "sha256": "6209b4e8b0fee86195d1d51a3906a87ef9c774bc8ce17a0069541baec17cbc65"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/audit-before.json",
+      "sha256": "4a6c2c436c92153a4fef8da9d30794d84946b536d82dc6749bf98676a02277f8"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/audit-gate.log",
+      "sha256": "2129b9082bc69af0ca2050b2776ec5e0a66d07adc35d3887b9736c5bda164d90"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/backend-package.log",
+      "sha256": "ecd2c1c0260d2daa961f856fb88bd2158ac35782d04f64f1a52e7024ba130672"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/backend-restart.json",
+      "sha256": "f01e6d493dc709e855773ed66d9de5adc20bfb1b77d4a3e1e7751ef6ea4c2fb0"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/build.log",
+      "sha256": "d3dfe8f85b39e1d3a279e978dc70e60c74649fe168fa51f20eba77032f0d5833"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/bundle-report.json",
+      "sha256": "62c4d5f25669cfa9b28ac0f026208db5f8b50f6a0f3038fe467cc43339588887"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/dependency-install-final.log",
+      "sha256": "7735d13c08b629b7673b871d033cbdb028c7b628f713bca3759f7bf5d55c0bb6"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/dependency-install.log",
+      "sha256": "ffbeb3b8c582a121e001e4522bc80b425c474bd62b33c3d98884c6a5d5e2d6ba"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/dependency-tree.json",
+      "sha256": "dbebf8a53f2465e313d2ef3dd0a5d01640be4817eae88cbcfab0a90c87f974cd"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/final-check-2026-11-11.json",
+      "sha256": "1d582bf2cab2636b965b72e56a96d9d537ef7d9e41f50b830deddd1aea8eb4d2"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/layout-results.json",
+      "sha256": "25bd8d13db4609b5058d83107e3d462e904486d4a7a0b94637d44c0f0a8df28d"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/layout.log",
+      "sha256": "fd8a1133f0146c162d3c1333ae537ca40011a33518a26f7bd4e5334a32e0a4d7"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/lockfile-comparison.json",
+      "sha256": "cad7ae54f1349ef2d65ed6858248e2557a21a2d7808d8be5217eac74472cedf6"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/manifest.json",
+      "sha256": "2d1de3f165c7b1e888fdf1446400eed52592581b3ecb1553c46e6e603c164196"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/npm-ci.log",
+      "sha256": "28c0317858f0d3d2d1fd624d6174d0bd90cc0472e4063f57cd7a17084cfbbc89"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/production-ui-results.json",
+      "sha256": "bcc8d469fc769d7c274b7ca756e5b8603c4453d89f816b6d2b5c7be6665a0040"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/production-ui.log",
+      "sha256": "4987fefa4cc5b70e94a8d4aa7ee727af3d1e6e5dc915f08bdd0b9c93a9f27568"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/real-results.json",
+      "sha256": "2833c5bbbb54e8ea1ed8f2b501aaac574f301c1f08b529604700f3955c06b608"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/real.log",
+      "sha256": "1c53dc02ca87c7f82c0c95c13f4fbbe7c33c31228cbfd5e913f078bc20e2bf47"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/remote-status.json",
+      "sha256": "7209c47532814e0ab712956825b8ce2643a30d7c8aa2dd2912f6d9df1f5a15e9"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/restart-results.json",
+      "sha256": "7989d4b41d00331e9df9a3ba0f978ee66370e27042cb0eaebba69df3a8f35291"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/restart.log",
+      "sha256": "0577b7aef87d5ff0ba3ae069233095658bfccfdc016c6f61d6730b6b72546a30"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/runtime-cleanup.json",
+      "sha256": "37978a3a2a86e0ad6bfda2e7bd37a0dc12b19e65f0f34dbaf5432b0094b50ddb"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/summary.json",
+      "sha256": "8de4c6b1b6c50d472f1079ed5a106405d350a6aad14d375e3939a1d96ed915df"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/tooling-compatibility.log",
+      "sha256": "01e654af0321c12fcfcc8dca185b17df4951ee6e8d134f1c41a9b265125a38f1"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/typecheck.log",
+      "sha256": "8c7c252e67f1ddf35c380bd7d4e4e8e499a9529fff68dc417d34db0873e62c6e"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/types-check.log",
+      "sha256": "9489d050b8183ab9a0f63fbf2fb527c8d764b093ccd353d63c620c1df1e739e7"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/unit-results.json",
+      "sha256": "4177b389816051b93033e25627482b71d80e59328ac07e607e30d77a43ff9ade"
+    },
+    {
+      "path": "artifacts/test-results/ui-2026-11-10/unit.log",
+      "sha256": "606ba8392a4ac87505c5b1e99a88b2be46bafa36b7e58973522583010bc66671"
+    },
+    {
+      "path": "docs/ui/pr-draft-2026-11-10.md",
+      "sha256": "b15807806735a451f2ff0e6931b7d843aa2bcb40fd48ef9421bb7143b7d9f5d4"
+    },
+    {
+      "path": "docs/ui/ui-validation-2026-11-10.md",
+      "sha256": "09b238f831b2c2138ef879e25ab90aea4b14b274e95cad5226ccf73d3b204048"
+    },
+    {
+      "path": "web/tests/tooling-compatibility.test.ts",
+      "sha256": "2b116c10105ce6276384ad33d8bdbc9bc11b17d5a0f46f8c27d88da64dcedb27"
+    }
+  ],
+  "localSettingValueMatches": [
+    "web/tests/integration/review-regression.spec.ts"
+  ],
+  "scanNote": "Initial broad scan included non-secret databaseName. Credential classification is recorded separately in security-scan.json."
+}

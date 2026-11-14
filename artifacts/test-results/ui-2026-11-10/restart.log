@@ -1,0 +1,13 @@
+
+Running 4 tests using 1 worker
+
+(node:4288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:4288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\integration\persistence.spec.ts:5:1 › 服务重启后保留草稿、资源资格、完整授权和停用状态 (3.3s)
+  ok 2 tests\integration\review-restart.spec.ts:5:3 › 实际重启后empty批准意见对应的预约与审计仍保留 (1.5s)
+  ok 3 tests\integration\review-restart.spec.ts:5:3 › 实际重启后whitespace批准意见对应的预约与审计仍保留 (1.5s)
+  ok 4 tests\integration\review-restart.spec.ts:37:1 › 实际重启后改期生效版本、安排、报名、日历和通知仍可读取 (3.2s)
+
+  4 passed (12.3s)

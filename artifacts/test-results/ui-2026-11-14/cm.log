@@ -1,0 +1,12 @@
+
+Running 3 tests using 1 worker
+
+(node:19800) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:19800) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\integration\review-regression.spec.ts:169:3 › CM修复真实页面：所有者为唯一工作人员直接复审 (6.0s)
+  ok 2 tests\integration\review-regression.spec.ts:169:3 › CM修复真实页面：所有者加其他工作人员仅由他人确认 (6.8s)
+  ok 3 tests\integration\review-regression.spec.ts:206:1 › CM修复真实页面：陈旧版本409显示详情，保留输入重预览后只创建一次 (7.7s)
+
+  3 passed (23.3s)
