@@ -1,0 +1,151 @@
+{
+  "task": "task5 QA代码实现及真实验证（测试设计质量门禁+自测+HTTP/PG边界回归）",
+  "author": "汤雨润（tyr，55230316）",
+  "date": "2026-11-03",
+  "timezone": "Asia/Shanghai",
+  "branch": "work/55230316-qa",
+  "head": "5f081aa2cccc401aaec35a6948bed37a643890f2",
+  "main": "16de4a507aa434df6505a49f67619990bc2926c2",
+  "corrections": [
+    "ContractBoundaryIT 实为 7 个 @Test（本文件早期版本误记 6 项），已更正",
+    "资格边界用例收紧：create 成功时 submit 必须 403（01-基线 §2 资格校验覆盖提交），不再放行 submit 200 继续最终确认；create 403 路径补活动/预约快照计数无写入核验（父代理技术复核意见）",
+    "negative 语义内容检查：扩充拒绝/限制/降级/无副作用信号并降级为 warning 人工复核（占位内容仍硬性失败），不逼文档虚构错误码（父代理技术复核意见）"
+  ],
+  "environment": {
+    "node": "v26.13.0",
+    "npm": "12.2.1",
+    "java": "OpenJDK 27.0.1.0.3",
+    "mavenWrapper": "3.9.11",
+    "dockerServer": "29.9.2",
+    "deviations": [
+      "Node v26.13.0：基线为 22 系列（≥22.18，engines 满足），版本线偏离基线，已如实记录",
+      "OpenJDK 27.0.1.0.3：基线 Java 21，编译目标仍为 release 21，版本线偏离基线，已如实记录",
+      "无安全已配置的 campus_test 测试库（TEST_DATABASE_URL/TEST_DB_USERNAME/TEST_DB_PASSWORD/DEMO_PASSWORD 均未设置）；历史容器未复用、未改动；本轮按指示不新搭数据库"
+    ]
+  },
+  "commands": [
+    {
+      "cmd": "npm --prefix qa run test:contract",
+      "exitCode": 0,
+      "result": "check-contract：40 个接口、9 组枚举、15 个 DTO 全部通过"
+    },
+    {
+      "cmd": "npm --prefix qa run typecheck",
+      "exitCode": 0,
+      "result": "tsc --noEmit 无错误（规则更新后复跑仍 0）"
+    },
+    {
+      "cmd": "node --test qa/scripts/check-test-design.test.ts",
+      "exitCode": 0,
+      "result": "tests 27 / pass 27 / fail 0 / cancelled 0 / skipped 0",
+      "tests": "node:test 内置自测：有效正例 1、反例 22、提示不阻塞 2（negative 成功预期→人工复核 warning 不硬失败；拒绝/限制/降级/无副作用合法表述不误伤）、CLI 真实执行 1（有效exit0/无效exit1/缺失exit1）、JSON非法 1"
+    },
+    {
+      "cmd": "./server/mvnw -f server/pom.xml test-compile",
+      "exitCode": 0,
+      "result": "main+test 源码编译通过，含收紧后的 ContractBoundaryIT.java（7 个 @Test）"
+    },
+    {
+      "cmd": "./server/mvnw -f server/pom.xml \"-Dit.test=ContractBoundaryIT\" verify",
+      "exitCode": null,
+      "result": "未执行",
+      "reason": "缺安全已配置测试库（TEST_DATABASE_URL/TEST_DB_USERNAME/TEST_DB_PASSWORD/DEMO_PASSWORD 未设置）；本轮按指示只做编译检查，不新搭数据库基础设施",
+      "notExecutedTests": 7
+    }
+  ],
+  "gateRuns": [
+    {
+      "run": 1,
+      "time": "18:09 前",
+      "cmd": "node qa/scripts/check-test-design.ts（默认 test-data/test-design-cases-v1.0.json）",
+      "exitCode": 1,
+      "result": "找不到文件（writer 未交付）→ 门禁按设计失败，不假通过（历史保留）"
+    },
+    {
+      "run": 2,
+      "time": "18:12",
+      "cmd": "node qa/scripts/check-test-design.ts --file test-data/test-design-cases-v1.0.json（writer 首版 24 场景/134 条：47 正/87 负）",
+      "exitCode": 1,
+      "result": "共 11 项问题：4 项 requirementIds 非法编号（UI-01/PERF-01/SEC-01/INSTALL-01）+ 7 项 negative 关键词误伤",
+      "disposition": "4 项定责 writer 去掉非法编号（writer 18:14 修订后复核为无）；7 项属门禁规则过窄（父代理技术复核确认语义正确：不显示虚假退出/下限0不出现负数/不展示伪造历史/不渲染业务数据/无溢出/不落localStorage/退出码非0），已扩充拒绝/限制/降级/无副作用信号并降级 warning"
+    },
+    {
+      "run": 3,
+      "time": "18:16",
+      "cmd": "node qa/scripts/check-test-design.ts --file test-data/test-design-cases-v1.0.json（writer 18:14 修订版 + 门禁规则更新）",
+      "exitCode": 0,
+      "result": "通过：场景 24 个/用例 134 条（positive 47、negative 87），用例 ID 134 全局唯一；覆盖 UC 20/20、验收 30/30、API 40/40；结构、必填、唯一ID、极性配比、逐条 status=未执行、场景编号（id=UC-01～20）全部通过",
+      "warnings": "FR 25/25、BR 32/32、NFR 30/30 全引用；无人工复核提示；步骤/预期因果语义仍需人工评审"
+    }
+  ],
+  "deliverables": {
+    "newFiles": [
+      "qa/scripts/check-test-design.ts — 测试设计用例质量门禁（导出 validate/validateJsonText/formatReport/runCli/defaultInputPath，CLI 支持 --file）",
+      "qa/scripts/check-test-design.test.ts — node:test 自测 27 项（正例+反例+提示+CLI）",
+      "server/src/test/java/com/campus/events/acceptance/ContractBoundaryIT.java — 真实 HTTP+PG 边界回归 7 项"
+    ],
+    "modifiedFiles": [],
+    "notTouched": ["生产代码、旧文档、handoff、package 锁、未跟踪历史证据"]
+  },
+  "gateChecks": [
+    "结构：schemaVersion=1、document(title/version/author/date/status)、environment、dataDictionary、scenarios",
+    "必填与具体：每用例 preconditions/inputs/steps/expected 非空字符串数组、cleanup、automation",
+    "唯一ID：场景 id 与用例 id（全局）不重复",
+    "场景编号覆盖：id=UC-01～UC-20 一一对应（单个大场景罗列全部 UC 不算覆盖）",
+    "需求覆盖：UC-01～UC-20 全部出现于 requirementIds（编号仅允许 UC/FR/BR/NFR 基线族，未知编号报错）",
+    "极性配比：每场景 ≥1 positive 且 ≥2 negative",
+    "状态：每条用例 status 逐字为「未执行」",
+    "验收覆盖：D-AT-01～24 与 N-AT-01～06 共 30 编号全部出现于 acceptanceIds（未知编号报错）",
+    "API 设计引用：API-01～API-40 全部出现在 inputs/steps/automation 文本（未知/超范围报错）",
+    "内容级-硬性：占位内容（TODO/待定/占位等）报错",
+    "内容级-提示：negative 用例预期未见负面结果信号（拒绝/限制/降级/无副作用等，含不显示/不出现/不渲染/非0/仅在等语义）仅 warning 人工复核，不硬失败",
+    "0 条/缺失一律失败：0 场景、0 用例、文件缺失、JSON 非法均 exit 1",
+    "提示不阻塞：FR/NFR/BR 引用统计与缺失清单为 warning；flow 引用未知备选流N 为 warning"
+  ],
+  "boundaryTestsCompiledNotRun": [
+    "titleBoundary_1and100Accepted_0and101Rejected：标题 1/100 字 201，0/101 字 400 VALIDATION_ERROR（02 契约 title 1—100）",
+    "durationBoundary_30minAnd6hAccepted_29minAnd6h1mRejected：30 分钟/6 小时 201，29 分钟/6 小时 1 分 400（01-基线 §3）",
+    "rejectWithEmptyComment_isRejected：REJECT 空理由 400 且状态/审批记录不推进（拒绝理由至少 1 字）",
+    "approveWithEmptyComment_isLegal：APPROVE 合法空意见 200 + APPROVED_UNRESERVED + 审计落库（02 契约：意见允许空字符串）",
+    "eligibility_teacherOwnerStudentOnlyVenueRejectedNoReservation（已收紧）：教师所有者→仅学生活动室，create 403 时活动/预约快照计数无写入；create 201 时 submit 必须 403 RESOURCE_INELIGIBLE（details 含受限资源与身份）、状态留 DRAFT、仅草稿 1 行、预约快照不变（01-基线 §2 覆盖提交）",
+    "changeOnlyOwnerStaff_goesStraightToApprover：改期 staff 仅所有者 → 创建后 PENDING_APPROVER 且 0 条 change_confirmation（BR-07/BR-23）",
+    "changeOwnerPlusOtherStaff_ownerHasNoSelfConfirmationRow：改期 staff 所有者+他人 → 仅 staff_a 1 条待确认行、所有者无自我确认行（BR-07/BR-23）"
+  ],
+  "knownDefectsExpectedToFailWhenRun": [
+    {
+      "id": "AN-空事件摘要",
+      "owner": "冯玉琪（AN）",
+      "evidence": "integration-review-2026-11-02-v1.0.md §4；EventPortAdapter.append 拒绝空白 summary，ActivityService 以审批意见作事件摘要",
+      "affectedTest": "ContractBoundaryIT.approveWithEmptyComment_isLegal（保留契约正确预期，不改断言迁就实现）"
+    },
+    {
+      "id": "CM-所有者自我确认",
+      "owner": "杨瀚霖（CM）",
+      "evidence": "integration-review-2026-11-02-v1.0.md §4；ChangeService:123 将全部 staff 纳入 requiredStaffUserIds，违反 BR-07/BR-23",
+      "affectedTest": "ContractBoundaryIT.changeOnlyOwnerStaff_goesStraightToApprover、changeOwnerPlusOtherStaff_ownerHasNoSelfConfirmationRow（期望 PENDING_APPROVER/无所有者确认行）"
+    }
+  ],
+  "coverageGapsForWriter": {
+    "status": "已满足（门禁第 3 轮 exit 0）",
+    "resolved": [
+      "requirementIds 非法编号 UI-01/PERF-01/SEC-01/INSTALL-01 已由 writer 去掉/替换为基线编号（18:14 修订后复核为无；现 FR 25/25、BR 32/32、NFR 30/30 全引用）",
+      "24 场景（id=UC-01～20 全覆盖 + 4 专项）、134 用例（47 正/87 负，每场景 ≥1+2）、逐条 status=未执行、30 验收、40 API 引用均满足"
+    ],
+    "remainingForHumanReview": [
+      "步骤与预期的因果语义、UI 长内容压力用例的正/负面极性归类，由人工评审判定（门禁仅提示）",
+      "BR/NFR 各族在成稿中全引用，需人工确认引用语义正确（门禁只查编号存在）"
+    ],
+    "recheckCommand": "node qa/scripts/check-test-design.ts --file test-data/test-design-cases-v1.0.json"
+  },
+  "summary": {
+    "executedTests": 27,
+    "failedTests": 0,
+    "skippedTests": 0,
+    "gateFinalResult": "exit 0（24 场景/134 条；UC 20/20、验收 30/30、API 40/40）",
+    "notExecuted": [
+      "ContractBoundaryIT 7 项数据库执行（缺安全测试库，仅编译通过；其中 3 项预计在 AN/CM 已知缺陷修复前失败）",
+      "test:e2e / evaluate / 全量 verify（本轮范围外）"
+    ],
+    "fakePass": false
+  }
+}
