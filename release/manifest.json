@@ -3,7 +3,7 @@
   "baseline": "baseline/release-v1.0.0",
   "baselineStatus": "已建立（baseline/release-v1.0.0 → main 567c1fb，CCB 冀项阳 2026-11-14 授权；release/ 经 PR #29 合入、任务5 三件正式交付物经 PR #23 合入）",
   "commit": "567c1fb3c70d286b8dac230a723df0664705cc40",
-  "commitNote": "上列 commit 为发布标签 baseline/release-v1.0.0 经 git rev-parse 解析的 SHA（main 顶点 567c1fb，含 PR #29 release/ 可执行导出脚本与清单 + PR #23 任务5 软件测试设计三件正式交付物，CCB 冀项阳 2026-11-14 授权打 tag）。QA 2026-11-13 全量 verify 基线为更早的 main e1051df（含 CM #21），结果与证据见 tests。",
+  "commitNote": "上列 commit 为发布标签 baseline/release-v1.0.0 经 git rev-parse 解析的 SHA（main 顶点 567c1fb，含 PR #29 release/ 可执行导出脚本与清单 + PR #23 任务5 软件测试设计三件正式交付物，CCB 冀项阳 2026-11-14 授权打 tag）。发布引用采用「冻结快照 + 随包授权登记/发布元数据」：发布内容（代码/文档/图源）冻结于标签 567c1fb，其内 release/manifest.json 自述 commit 为打 tag 前历史值 cbf4945（非权威，仅作透明对照）；本清单（随包元数据）的 commit/baselineStatus 为权威发布引用。QA 2026-11-13 全量 verify 基线为更早的 main e1051df（含 CM #21），结果与证据见 tests。",
   "generatedAt": "2026-11-14",
   "author": "杨瀚霖（55231031，配置经理）",
   "environment": {

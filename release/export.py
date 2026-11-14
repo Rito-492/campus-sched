@@ -18,7 +18,11 @@
 安全与核验：
     --out 若指向已存在的非空目录或文件，直接拒绝退出（不递归删除），请另选唯一输出目录。
     任务5（测试）正式交付物按精确文件路径核验，缺项返回退出码 2（不会「假通过」）。
-    发布清单（release/manifest.json @ 候选 SHA）逐件核对各散列的文件路径，不匹配返回退出码 3。
+    发布清单逐件核对各散列的文件路径（以候选快照内 release/manifest.json 为准），不匹配返回退出码 3。
+    版本与快照绑定：.md 文档导出名以快照实际内容头部「版本：」为准，不随脚本工作树声明版本漂移。
+    发布引用采用「冻结快照 + 随包授权登记/发布元数据」：内容字节取自 --commit 冻结快照；
+    release/manifest.json 的 commit/baselineStatus 等授权登记以工作树（随包）为权威，冻结快照内
+    自述值（打 tag 前）仅作透明对照，不作为发布引用。
 退出码：1=致命错误（提交无法解析 / 输出目录冲突 / 清单无法解析）；2=任务5正式交付物缺失；3=发布清单哈希不匹配。
 
 二进制文件一律经 `git show <commit>:<path>` 取原始字节写出，不经过文本转码，
@@ -28,6 +32,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -64,6 +69,19 @@ def outname(ci, name, ver, src):
     ext = os.path.splitext(src)[1]
     base = '%s_%s' % (ci, name) if ver is None else '%s_%s_%s' % (ci, ver, name)
     return base + ext
+
+
+def content_version(data, src):
+    """从 .md 头部提取「版本：vX.Y」；无清晰版本头返回 None（沿用 DOCS 声明版本）。
+
+    版本与来源快照绑定：导出文件名以快照实际内容头部为准，而非脚本工作树的声明版本。
+    这样导出发布标签（冻结快照，配置管理计划为 v1.7）时不会错标为工作树的 v1.8。
+    """
+    if not src.endswith('.md'):
+        return None
+    text = data.decode('utf-8', 'replace')[:3000]
+    m = re.search(r'版本\s*[：:]\s*(v\d+(?:\.\d+){1,2})', text)
+    return m.group(1) if m else None
 
 
 # 文档映射： (编号, 中文名, 版本(None=无版本段), 源路径)
@@ -247,11 +265,23 @@ def main():
         t.extractall(snapdir, filter='data')
     os.remove(tar_tmp)
 
-    # 2) 文档重命名导出（当前版）
+    # 2) 文档重命名导出（当前版）：.md 文档版本与来源快照实际内容绑定
     items = build_docs(commit)
     report = []
+    current_keys = set()
     for it in items:
         data = git_show(it['commit'], it['src'])
+        # 版本↔快照绑定：.md 文档按快照实际内容头部「版本：」命名，脚本声明版本仅作对照
+        cv = content_version(data, it['src'])
+        it['declared_version'] = it['ver']
+        if cv is not None:
+            it['ver'] = cv
+            it['out'] = outname(it['ci'], it['name'], cv, it['src'])
+            it['version_match'] = (it['declared_version'] == cv)
+            current_keys.add((it['ci'], cv))
+        else:
+            it['version_match'] = None
+            current_keys.add((it['ci'], it['ver']))
         dst = os.path.join(docsdir, it['out'])
         with open(dst, 'wb') as f:
             f.write(data)
@@ -262,9 +292,13 @@ def main():
         it['byte_preserved'] = (written == data)
         report.append(it)
 
-    # 3) 历史版本（同目录，编号_版本_名称）
+    # 3) 历史版本（同目录，编号_版本_名称）；与当前版同号的跳过（避免同名覆盖）
     hist = []
+    skipped_hist = []
     for ci, name, ver, hc, src in HIST:
+        if (ci, ver) in current_keys:
+            skipped_hist.append(dict(ci=ci, name=name, ver=ver, commit=hc, reason='与当前版同号，跳过'))
+            continue
         data = git_show(hc, src)
         fn = outname(ci, name, ver, src)
         dst = os.path.join(docsdir, fn)
@@ -288,14 +322,21 @@ def main():
         if not present:
             task5_missing.append((label, path))
 
-    # 5) 校验发布清单本身（release/manifest.json @ 候选 SHA）：逐件核对各散列的文件路径，不匹配返回非零
+    # 5) 发布元数据与清单校验（「冻结快照 + 随包授权登记/发布元数据」）：
+    #    - 随包元数据（工作树 release/manifest.json）：权威的 commit / baselineStatus，随包提供、不在冻结快照内
+    #    - 冻结快照内清单（git show <commit>:release/manifest.json）：逐件核对组件散列（可复现，匹配该快照内容）
     try:
-        manifest = json.loads(git_show(commit, 'release/manifest.json').decode('utf-8'))
+        with open(os.path.join(REPO, 'release', 'manifest.json'), encoding='utf-8') as f:
+            release_manifest = json.load(f)
+    except Exception as e:
+        sys.exit('随包发布元数据 release/manifest.json（工作树）无法解析：%s' % e)
+    try:
+        frozen_manifest = json.loads(git_show(commit, 'release/manifest.json').decode('utf-8'))
     except Exception as e:
         sys.exit('release/manifest.json 在 %s 无法解析：%s' % (commit, e))
     cross = []
     manifest_mismatch = []
-    for comp in manifest.get('components', []):
+    for comp in frozen_manifest.get('components', []):
         name = comp.get('name')
         sha = comp.get('sha256')
         path = comp.get('file') or comp.get('artifact')
@@ -314,15 +355,19 @@ def main():
         if not match:
             manifest_mismatch.append((name, path, '清单 %s… / 实际 %s…' % (sha[:12], actual[:12])))
 
-    manifest_declared = manifest.get('commit')
+    release_commit = release_manifest.get('commit')
+    frozen_declared = frozen_manifest.get('commit')
     result = {
         'commit': commit,
         'out': outdir,
-        'manifest_declared_commit': manifest_declared,
-        'manifest_commit_matches_candidate': (manifest_declared == commit),
-        'manifest_commit_note': manifest.get('commitNote'),
+        'release_commit': release_commit,
+        'release_commit_matches_candidate': (release_commit == commit),
+        'frozen_manifest_commit': frozen_declared,
+        'baseline_status': release_manifest.get('baselineStatus'),
+        'release_commit_note': release_manifest.get('commitNote'),
         'doc_count': len(report),
         'historical': hist,
+        'skipped_historical': skipped_hist,
         'all_byte_preserved': all_byte_ok,
         'task5_formal_artifacts': task5,
         'manifest_hash_crosscheck': cross,
@@ -334,16 +379,25 @@ def main():
     print('commit=%s' % commit)
     print('out=%s' % outdir)
     print('文档件数=%d（含历史版本 %d 件）' % (len(report), len(hist)))
+    if skipped_hist:
+        print('  已跳过与当前版同号的历史版本 %d 件' % len(skipped_hist))
     print('字节保真逐件通过=%s' % all_byte_ok)
     print('任务5正式交付物：%s' % ('齐全' if not task5_missing else '缺失 %d 件' % len(task5_missing)))
     for t in task5:
         print('  [%s] %s : %s' % ('OK' if t['present'] else '缺', t['label'], t['path']))
-    print('发布清单哈希校验（release/manifest.json @ %s）：' % commit)
-    print('  清单声明 commit=%s（%s）' % (
-        manifest_declared,
-        '与本导出候选一致' if manifest_declared == commit else '本分支主线起点（非导出候选），最终以发布标签解析 SHA 为准'))
-    if manifest.get('commitNote'):
-        print('  清单说明：%s' % manifest['commitNote'])
+    ver_mismatch = [it for it in report if it.get('version_match') is False]
+    if ver_mismatch:
+        print('版本与快照核对（导出名以快照内容为准，声明版本仅对照）：')
+        for it in ver_mismatch:
+            print('  [注意] %s：脚本声明 %s / 快照内容 %s' % (it['src'], it['declared_version'], it['ver']))
+    print('发布元数据与清单校验：')
+    print('  随包授权登记 commit=%s（%s）——权威发布引用' % (
+        release_commit,
+        '与本导出候选一致' if release_commit == commit else '与本导出候选不一致'))
+    print('  冻结快照内清单自述 commit=%s（打 tag 前历史值，非权威）' % frozen_declared)
+    print('  基线状态：%s' % release_manifest.get('baselineStatus'))
+    if release_manifest.get('commitNote'):
+        print('  发布说明：%s' % release_manifest['commitNote'])
     for v in cross:
         if v['match'] is None:
             print('  [跳过] %s : %s（%s）' % (v['name'], v['file'], v['note']))

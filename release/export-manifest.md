@@ -64,10 +64,10 @@ python release/export.py --commit <提交> --out <导出目录>
 
 1. **提交锁定**：`--commit`（默认 `HEAD`）先经 `git rev-parse <ref>^{commit}` 解析为**唯一提交 SHA**；归档、当前工件读取与报告记录均用该 SHA，不在同一导出目录混入不同提交。
 2. **整库快照**：`git archive --format=tar <SHA>` 抽出完整源码与工程树（`campus-sched-完整快照/`），与提交字节一致，可复现。
-3. **文档重命名**：按 §2 映射，逐件 `git show <SHA>:<路径>` 取原始字节写为 `配置项文档/<编号>_v<版本>_<中文名>.<扩展名>`；二进制（docx/pdf/drawio/png）不经文本转码，与版本库 blob 字节一致。
-4. **历史版本同目录**：对存在历史版本的文档，从显式 commit 另取旧版写入同一目录，以 `_v<版本>` 区分。
+3. **文档重命名（版本↔快照绑定）**：按 §2 映射，逐件 `git show <SHA>:<路径>` 取原始字节写为 `配置项文档/<编号>_v<版本>_<中文名>.<扩展名>`；.md 文档的 `_v<版本>` 以该 SHA **实际内容头部「版本：」**为准（不随脚本工作树声明版本漂移，导出标签时配置管理计划即命名为 `v1.7` 而非工作树 `v1.8`）；二进制（docx/pdf/drawio/png）不经文本转码，与版本库 blob 字节一致。
+4. **历史版本同目录**：对存在历史版本的文档，从显式 commit 另取旧版写入同一目录，以 `_v<版本>` 区分；与当前版同号的跳过（避免同名覆盖）。
 5. **任务 5 正式交付物核验**：按 §4.2 精确文件路径逐件核验，缺项打印明细并**返回退出码 2**（不「假通过」）。
-6. **发布清单哈希校验**：读取同一候选 SHA 的 `release/manifest.json`，逐件按清单 `file` 字段核对散列文件路径，任何一件**文件缺失或哈希不匹配即返回退出码 3**（不再只比两个写死值）。
+6. **发布清单哈希校验 + 随包授权登记**：读取同一候选 SHA 的 `release/manifest.json` 逐件按清单 `file` 字段核对散列文件路径，任何一件**文件缺失或哈希不匹配即返回退出码 3**；发布引用（`commit`/`baselineStatus`）以工作树（随包）`release/manifest.json` 为权威，冻结快照内自述值仅作透明对照。
 7. **输出目录安全**：`--out` 若指向已存在的非空目录或文件，直接拒绝退出（不递归删除），请另选唯一输出目录。
 
 退出码：`1`=致命错误（提交无法解析 / 输出目录冲突 / 清单无法解析）；`2`=任务 5 正式交付物缺失；`3`=发布清单哈希不匹配。
@@ -149,4 +149,4 @@ git show HEAD:models/activity/首次资源确认活动图.drawio > CS-CI-MODEL-0
 - 编号、版本、路径、负责人以 `docs/configuration/configuration-index.md` 为唯一登记处；本清单是它在「课程导出目录」上的落点映射，不作第二事实来源。
 - 发布内容与校验值见 `release/manifest.json`；干净启动步骤见 `release/README.md`。
 - 导出目录中的历史版本副本一律由 §3 脚本从 Git 还原生成，**不**在版本库中重复存副本（避免与 Git 历史双写不一致）；生成脚本 `release/export.py` 本身纳入版本库（并入 CS-CI-REL-01）。
-- **发布提交口径**：`release/manifest.json` 的 `commit` 字段为发布标签 `baseline/release-v1.0.0` 经 `git rev-parse` 解析的 SHA（main 顶点 `567c1fb`，含 PR #29 release/ + PR #23 任务 5 三件正式交付物，CCB 冀项阳 2026-11-14 授权）；QA 2026-11-13 全量 verify 基线为更早的 main `e1051df`（含 CM #21），结果与证据见 manifest `tests`。导出脚本会在报告中将「清单声明 commit」与「本次导出候选 SHA」分别标注，二者一致即与发布标签对齐。
+- **发布引用口径（冻结快照 + 随包授权登记/发布元数据）**：发布内容（代码/文档/图源）冻结于发布标签 `baseline/release-v1.0.0`（→ main 顶点 `567c1fb`，含 PR #29 release/ + PR #23 任务 5 三件正式交付物，CCB 冀项阳 2026-11-14 授权）。`release/manifest.json` 的 `commit` 字段即该标签经 `git rev-parse` 解析的 SHA（`567c1fb`），`baselineStatus` 为「已建立」——此二者为本工作树（随包元数据）的**权威发布引用**；冻结快照 `567c1fb` 内那份 `release/manifest.json` 自述 `commit=cbf4945`、状态「待授权」，是打 tag 前的历史值，仅作透明对照、非权威。导出脚本报告中「随包授权登记 commit」与「本次导出候选 SHA」一致即与发布标签对齐（导出标签时二者均为 `567c1fb`），并单列「冻结快照内清单自述 commit」（`cbf4945`）供对照。QA 2026-11-13 全量 verify 基线为更早的 main `e1051df`（含 CM #21），结果与证据见 manifest `tests`。

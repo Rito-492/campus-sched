@@ -1,7 +1,7 @@
 # 发布说明（Release Notes）— campus-sched
 
 > 面向校园活动的多资源协同调度与变更影响分析系统
-> 发布版本：v1.0.0　基线：`baseline/release-v1.0.0`（待 PM CCB 授权后打 tag）
+> 发布版本：v1.0.0　基线：`baseline/release-v1.0.0`（已建立，CCB 冀项阳 2026-11-14 授权）
 > 发布提交：`567c1fb3c70d286b8dac230a723df0664705cc40`（= 发布标签 `baseline/release-v1.0.0` 经 `git rev-parse` 解析 SHA，CCB 冀项阳 2026-11-14 授权）
 > 编制：杨瀚霖（55231031，配置经理）　日期：2026-11-14
 
