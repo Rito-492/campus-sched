@@ -31,7 +31,7 @@
 | D-AT-23 | 刷新/重启后状态来自真实持久化 | FR-23 | UI+配置 | `change-happy-path.spec.ts`（reload 断言） | ✅ 通过：11-13默认全量29/29（含reload后version2/3102/15:00）；11-01关闭seed重启后API与新浏览器状态一致（重启证据为11-01版本） |
 | D-AT-24 | 干净环境按发布说明启动换角色答辩 | FR-24 | 全员 | 发布演练（check.ps1 + 人工） | ⬜ 未执行：本机Docker仅29.9.3、缺compose插件与docker-compose；仅静态解析compose/compose.qa服务结构，未启动干净环境，不记通过 |
 | N-AT-01 | 身份与角色分离：教师申请人/学生申请人/仅账号管理员调用审批复核 | 身份规则 | PM+AN | IdentityEligibilityIT.nat01 | ✅ 通过：IdentityEligibilityIT 6/6全通过；教师/学生/账号管理员不自动有审批复核权，状态与记录不变 |
-| N-AT-02 | 两类身份×四种资源资格（3111-3114/3211-3214），UI+HTTP 双通道 | 资格规则 | DS+UI | IdentityEligibilityIT.nat02 + conflict.spec | 🟨 部分：两类身份×四种资源资格的直接HTTP八组合真库全部通过；UI 仅教师专用组一组证据，其余组合未逐组从UI提交，未达契约§6「UI+HTTP双通道」全覆盖 |
+| N-AT-02 | 两类身份×四种资源资格（3111-3114/3211-3214），UI+HTTP 双通道 | 资格规则 | DS+UI | IdentityEligibilityIT.nat02 + eligibility.spec.ts | ✅ 交付候选八组均通过。合资格请求进入审批，受限草稿经 UI 和 HTTP 提交均获 403，界面标出场地和器材，预约未新增。 |
 | N-AT-03 | 候选过滤受限资源；强制提交仍拒绝；按所有者身份校验 | 资格规则 | DS | IdentityEligibilityIT.nat03 + Bench | ✅ 通过：候选过滤+强制受限提交403/无新增改期真库通过，按所有者身份 |
 | N-AT-04 | 提交后改身份/资格：未确认用最新设置；旧预约保留；新目标不合资格拒绝 | 资格规则 | AN+CM | IdentityEligibilityIT.nat04 | ✅ 通过：身份变更后用最新设置、旧预约保留、新目标不合资格拒绝且原安排不变，真库通过 |
 | N-AT-05 | 所有者兼任 APPROVER/RESOURCE_CONFIRM 对本人申请 4 种审核全拒 | 回避规则 | PM+AN | IdentityEligibilityIT.nat05 | ✅ 通过：四种自审回避全部403且无成功变化，独立授权人员正常执行（含改期） |

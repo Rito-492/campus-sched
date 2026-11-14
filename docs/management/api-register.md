@@ -18,14 +18,14 @@
 | API-12 | POST /activities | AN | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-13 | GET /activities | AN | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-14 | GET /activities/{id} | AN | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
-| API-15 | PATCH /activities/{id} | AN | UI、QA | 陈旧锁返回 409，授权调用者的当前详情为空，待 AN 修复 |
-| API-16 | POST /activities/{id}/submit | AN | UI、QA | 陈旧锁返回 409，授权调用者的当前详情为空，待 AN 修复 |
+| API-15 | PATCH /activities/{id} | AN | UI、QA | 交付候选已修复陈旧锁冲突详情，真实库回归通过 |
+| API-16 | POST /activities/{id}/submit | AN | UI、QA | 交付候选已修复陈旧锁冲突详情，真实库回归通过 |
 | API-17 | POST /activities/{id}/withdraw | AN | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-18 | POST /activities/{id}/approver-decision | AN | UI、QA | #22 已合入，空意见或纯空白批准的后端与真实页面回归通过 |
 | API-19 | POST /activities/{id}/resource-confirm | AN | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-20 | POST /activities/{id}/publish | AN | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-21 | POST /activities/{id}/cancel | AN | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
-| API-22 | PUT /activities/{id}/registration | AN | UI、QA | 陈旧有效版本返回 409，授权调用者的当前详情为空，待 AN 修复 |
+| API-22 | PUT /activities/{id}/registration | AN | 交付候选已修复陈旧有效版本详情，真实库回归通过 |
 | API-23 | GET /activities/{id}/registrations | AN | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-24 | POST /activities/{id}/schedule-preview | DS | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-25 | POST /activities/{id}/alternatives | DS | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |

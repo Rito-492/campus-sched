@@ -2,7 +2,7 @@
 # 项目名固定为 campus-events（04 协作规程 §4，避免中文目录名成为无效项目名）。
 # 端口：db 5432 / API 8080 / web（Nginx 演示入口）8088；前端 Vite 开发服务器 5173 不在本编排内，见 release/README.md。
 # 启动数据库：. ./scripts/load-env.ps1 && docker compose up -d db
-# 完整启动（需 PM 后端 pom 与 UI web 工程就绪后）：docker compose up -d --build
+# 完整启动：docker compose up -d --build
 # 种子导入：仅当 APP_DEMO_SEED=true 且 server 以 dev profile 运行时执行（幂等，见 dev/DemoDataSeeder）。
 
 name: campus-events
@@ -17,7 +17,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres_dev}
       POSTGRES_DB: ${POSTGRES_DB:-postgres}
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     volumes:
       - db-data:/var/lib/postgresql/data
       # 首次初始化：创建 campus_dev / campus_test 与业务账号 campus_app
@@ -46,7 +46,7 @@ services:
       APP_DEMO_SEED: ${APP_DEMO_SEED:-false}
       APP_TEST_NOW: ""
     ports:
-      - "8080:8080"
+      - "127.0.0.1:8080:8080"
     depends_on:
       db:
         condition: service_healthy
@@ -58,7 +58,7 @@ services:
     container_name: campus-events-web
     restart: unless-stopped
     ports:
-      - "8088:80"
+      - "127.0.0.1:8088:80"
     depends_on:
       - server
 

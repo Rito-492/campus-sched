@@ -2,7 +2,7 @@
 
 > 面向校园活动的多资源协同调度与变更影响分析系统
 > 发布版本：v1.0.0　基线：`baseline/release-v1.0.0`（待 PM CCB 授权后打 tag）
-> 发布提交：`750763b721ca999c454ac730d9876583b40ad202`
+> 交付候选提交见随源码包提供的版本记录。发布标签在验收后登记。
 > 编制：杨瀚霖（55231031，配置经理）　日期：2026-11-14
 
 本文是「按发布说明干净启动」的唯一入口，对应验收 **D-AT-24**：干净环境按本文启动后，真实后端/数据库连通，无手改数据库才能继续的步骤，版本、手册、报告一致。本文与 `manifest.json`（发布清单）、`docs/configuration/`（配置计划/索引/结构指南）共同构成配置库交付。
@@ -23,13 +23,14 @@
 ```powershell
 # 1. 准备环境变量（.env 不入库）
 Copy-Item .env.example .env
-# 编辑 .env，至少设置演示账号密码：DEMO_PASSWORD=<你的演示密码>（默认 demo123 仅限本地演示）
+# 编辑 .env，设置 APP_DEMO_SEED=true，并设置本机演示密码 DEMO_PASSWORD
 
 # 2. 启动（首次构建镜像 + 后台运行）
 docker compose up -d --build
 
 # 3. 等待数据库健康（db 容器 healthcheck 通过后 server 自动启动）
 docker compose ps
+Invoke-RestMethod http://127.0.0.1:8088/api/v1/health
 ```
 
 首次启动时 `db` 容器执行 `infra/db/init.sql`，创建业务账号 `campus_app` 与 `campus_dev`（开发库）/`campus_test`（测试库）两个库；`server` 以 `dev` profile 启动时由 **Flyway 自动依序应用迁移 V1→V2**，无需任何手改数据库步骤。
@@ -75,18 +76,18 @@ docker compose cp db:/tmp/campus_dev.dump ./backup-campus_dev.dump
 **恢复**（演练步骤）：
 
 ```powershell
-# 恢复到干净库：先清空业务数据，再还原逻辑备份
-docker compose exec db dropdb -U postgres --if-exists campus_dev
-docker compose exec db createdb -U postgres -O campus_app campus_dev
+# 在独立新库演练。库名已存在时，停止并选用一个未占用的演练库名。
+docker compose exec db createdb -U postgres -O campus_app campus_restore
 docker compose cp ./backup-campus_dev.dump db:/tmp/campus_dev.dump
-docker compose exec db pg_restore -U campus_app -d campus_dev -c /tmp/campus_dev.dump
+docker compose exec db pg_restore -U campus_app -d campus_restore --exit-on-error /tmp/campus_dev.dump
+docker compose exec db psql -U campus_app -d campus_restore -v ON_ERROR_STOP=1 -c "SELECT COUNT(*) FROM activity;"
 ```
 
-> 恢复演练的**实际执行与证据**待 QA 复验时在真实 PostgreSQL 上跑通后补记（本说明先固化可复现步骤）；届时与本清单、测试报告、用户手册的版本号一并核对一致。
+> 本地已核对应用关闭演示初始化后的重启持久化。逻辑备份恢复由仓库自动检查在独立新库执行，发布验收以实际运行结果为准。
 
 ## 6. 版本一致性
 
-本发布对应提交 `750763b`，其代码/文档/测试版本见 `manifest.json`。用户手册（`docs/ui/user-manual.md`）、软件测试报告与本文须指向同一发布提交；三者版本号或状态不一致时，以 `docs/configuration/configuration-index.md` 的唯一登记为准。
+源码包的版本记录给出候选提交及验证结果。正式发布时，将该提交与配置项索引、用户手册及测试报告对齐。
 
 ## 7. 验收关联
 

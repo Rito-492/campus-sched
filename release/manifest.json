@@ -1,10 +1,9 @@
 {
   "releaseVersion": "v1.0.0",
   "baseline": "baseline/release-v1.0.0",
-  "baselineStatus": "待建立（待 PM CCB 授权后打 tag，见 docs/configuration/configuration-index.md §3）",
-  "commit": "750763b721ca999c454ac730d9876583b40ad202",
+  "baselineStatus": "候选，待正式发布验收",
   "generatedAt": "2026-11-14",
-  "author": "杨瀚霖（55231031，配置经理）",
+  "author": "T08 项目组",
   "environment": {
     "java": "21",
     "springBoot": "3.5.16",
@@ -14,13 +13,48 @@
     "deploy": "Docker Compose：db + server（dev profile）+ web（Nginx）"
   },
   "components": [
-    { "name": "server", "artifact": "server/", "version": "0.1.0-SNAPSHOT", "sha256": "e60ba9f94fe32b3d6be8e6fb03128f4d380d8487b95bc9087bb9b7dd0e640b55", "note": "pom.xml 校验值" },
-    { "name": "web", "artifact": "web/", "version": "0.1.0", "sha256": "9010d41210605d4a96f59b9b22cf9e3331000ff641a9ead24b95daa9094082e5", "note": "package.json 校验值" },
-    { "name": "qa", "artifact": "qa/", "version": "—", "sha256": null, "note": "Playwright E2E 与契约检查工程" },
-    { "name": "openapi-contract", "artifact": "contracts/openapi.yaml", "version": "40 接口", "sha256": "4ee84d2111a489d83b28e4d4e41969c2fb8c38bf476d3beb86d84d3039eef5c7" },
-    { "name": "migration-v1", "artifact": "server/src/main/resources/db/migration/V1__schema.sql", "version": "V1", "sha256": "f05ff82fa0fcb3959f7a2031e25ed72d91e882224da0f5a68ed45b766d9f3a95", "note": "22 表契约 schema" },
-    { "name": "migration-v2", "artifact": "server/src/main/resources/db/migration/V2__outbox_claim_token.sql", "version": "V2", "sha256": "d9c5f4c3b952e36a554c1153bb76e5dfdb90e01100a1d66e0aa3f3b56c7ee4c2", "note": "发件箱认领所有权" },
-    { "name": "demo-data", "artifact": "test-data/demo.json", "version": "—", "sha256": "b29450bf4d40473f5d6db8e33b40f9d2d203af07f8f8f6a4b1476fc8936d8130", "note": "演示账号/组织/资源（不含密码）" }
+    {
+      "name": "server",
+      "artifact": "server/pom.xml",
+      "version": "0.1.0-SNAPSHOT",
+      "sha256": "e60ba9f94fe32b3d6be8e6fb03128f4d380d8487b95bc9087bb9b7dd0e640b55"
+    },
+    {
+      "name": "web",
+      "artifact": "web/package-lock.json",
+      "version": "0.1.0",
+      "sha256": "1d56db3798735c74d0694c9648e115daf63fb64860d98bde0aefbe7614bfadfe"
+    },
+    {
+      "name": "qa",
+      "artifact": "qa/package-lock.json",
+      "version": "0.1.0",
+      "sha256": "ca0a1d49dc328a60424f596c7322f043c605ac5155e408f07e51bb9a75087a99"
+    },
+    {
+      "name": "openapi-contract",
+      "artifact": "contracts/openapi.yaml",
+      "version": "40 API",
+      "sha256": "3bfd5e520c48ad328d2e030f6c5d6588136647723c312d82861dad042f83355a"
+    },
+    {
+      "name": "migration-v1",
+      "artifact": "server/src/main/resources/db/migration/V1__schema.sql",
+      "version": "V1",
+      "sha256": "f05ff82fa0fcb3959f7a2031e25ed72d91e882224da0f5a68ed45b766d9f3a95"
+    },
+    {
+      "name": "migration-v2",
+      "artifact": "server/src/main/resources/db/migration/V2__outbox_claim_token.sql",
+      "version": "V2",
+      "sha256": "d9c5f4c3b952e36a554c1153bb76e5dfdb90e01100a1d66e0aa3f3b56c7ee4c2"
+    },
+    {
+      "name": "demo-data",
+      "artifact": "test-data/demo.json",
+      "version": "v3.0",
+      "sha256": "b29450bf4d40473f5d6db8e33b40f9d2d203af07f8f8f6a4b1476fc8936d8130"
+    }
   ],
   "docs": {
     "taskbook": "v3.0",
@@ -29,16 +63,34 @@
     "仓库结构指南": "v0.2",
     "需求族": "v1.1",
     "系统设计": "v0.2",
-    "用户手册": "v0.1",
+    "用户手册": "v0.2",
     "测试计划/设计/数据": "v0.2",
     "需求覆盖矩阵": "v3.0",
     "初始项目计划": "v0.9",
     "详细项目计划": "v3.1.3"
   },
   "tests": {
-    "unit": { "count": 101, "result": "0 失败 / 0 错误 / 0 跳过" },
-    "integration": { "count": 46, "breakdown": "资源 29 / 闭环 7 / 迁移 8 / 策略评测 2", "result": "0 失败 / 0 错误 / 0 跳过" },
-    "evidence": "artifacts/test-results/ds-2026-11-13/（verify-summary.txt，exit 0）",
-    "note": "上述为 DS 2026-11-13 在 e1051df 的指定集合 verify 结果；该测试代码经 PR #25 合入 main。全量验收与发布放行以 QA/PM 正式记录为准。"
-  }
+    "unit": {
+      "passed": 101,
+      "failed": 0
+    },
+    "integration": {
+      "passed": 172,
+      "failed": 0,
+      "skipped": 0
+    },
+    "webUnit": {
+      "passed": 109,
+      "failed": 0
+    },
+    "browser": {
+      "passed": 34,
+      "failed": 0,
+      "eligibilityCombinations": 8
+    },
+    "dependencyAudit": 0,
+    "evidence": "artifacts/test-results/project-completion-2026-11-14/check-summary.json",
+    "deployment": "本机真实后端、数据库和前端生产预览通过。容器部署和逻辑恢复自动检查待运行。"
+  },
+  "versionRecord": "源码包外的版本记录提供 Git 提交和压缩包 SHA-256"
 }
