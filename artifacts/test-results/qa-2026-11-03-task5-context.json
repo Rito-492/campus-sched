@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-03",
+  "timezone": "Asia/Shanghai",
+  "author": "汤雨润（tyr，55230316）",
+  "branch": "work/55230316-qa",
+  "head": "5f081aa2cccc401aaec35a6948bed37a643890f2",
+  "main": "16de4a507aa434df6505a49f67619990bc2926c2",
+  "template": {
+    "path": "docs/course/5.3 测试设计文档模板.docx",
+    "bytes": 21911,
+    "sha256": "550734eabcc078286b118a84f2fbb2f90330497d370840b7528d03af906c2353",
+    "action": "读取后原名归档，未改内容"
+  },
+  "platformSubmission": "未执行，待项目经理人工提交",
+  "productRegression": "本文件仅记录基准与模板校验，不是产品测试结果"
+}

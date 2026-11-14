@@ -1,0 +1,14 @@
+[
+  {
+    "case": "missing",
+    "exitCode": 2,
+    "noOutput": true,
+    "output": "[render-test-design][错误] 用例数据文件缺失：/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/artifacts/test-results/qa-2026-11-03-task5-final/missing-input-must-not-exist.json\n（唯一用例数据源未就绪，按红线不生成空文档、不猜测内容；退出码 2）\n[render-test-design] 数据未就绪或非法：不生成任何文档，退出码 2。\n[render-test-design] 数据源：/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/artifacts/test-results/qa-2026-11-03-task5-final/missing-input-must-not-exist.json\n"
+  },
+  {
+    "case": "empty",
+    "exitCode": 2,
+    "noOutput": true,
+    "output": "[render-test-design][错误] 用例数据校验未通过（/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/artifacts/test-results/qa-2026-11-03-task5-final/empty-render-fixture.json）：\n  - document 缺失或不是对象\n  - environment 必须为非空字符串数组\n  - dataDictionary 必须为非空数组\n  - scenarios 必须为非空数组（0 场景的测试设计必须失败）\n[render-test-design] 数据未就绪或非法：不生成任何文档，退出码 2。\n[render-test-design] 数据源：/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/artifacts/test-results/qa-2026-11-03-task5-final/empty-render-fixture.json\n"
+  }
+]
