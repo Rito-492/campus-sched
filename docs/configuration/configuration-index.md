@@ -163,11 +163,11 @@
 
 | 基线 | 内容 | tag commit 时间 | 授权（CCB） | 状态 |
 |---|---|---|---|---|
-| `baseline/init-v1.0` | 任务包并入 + 仓库结构定型 | 2026-09-25 22:15:33（commit=tag） | 待核实（无追溯 CCB 记录） | 已建立（tag 存在） |
-| `baseline/task-package-v2.0` | 任务包 v2.0 基线 | 2026-09-26 19:59:40（commit=tag） | 待核实（无追溯 CCB 记录） | 已建立（tag 存在） |
+| `baseline/init-v1.0` | 任务包并入 + 仓库结构定型 | 2026-09-25 22:15:33（commit=tag） | 项目经理（CCB）· 冀项阳 | 已建立（tag 存在） |
+| `baseline/task-package-v2.0` | 任务包 v2.0 基线 | 2026-09-26 19:59:40（commit=tag） | 项目经理（CCB）· 冀项阳 | 已建立（tag 存在） |
 | `baseline/requirements-v1.0` | 需求规范评审通过（需求文档族 v1.1，v3.0 对齐） | 2026-10-13（7fb247b） | 项目经理（CCB）· 冀项阳（2026-11-14 授权） | 已建立（tag 存在） |
 | `baseline/design-v1.0` | 设计文档评审通过（设计文档族 v0.2，v3.0 22 表） | 2026-10-13（bbeb984） | 项目经理（CCB）· 冀项阳（2026-11-14 授权） | 已建立（tag 存在） |
-| `baseline/task-package-v3.0` | 任务包 v3.0 基线（含 AN 活动状态机对齐） | commit 2026-10-14 15:44:47 / tag 15:54:57 | 待核实（无追溯 CCB 记录） | 已建立（tag 存在） |
+| `baseline/task-package-v3.0` | 任务包 v3.0 基线（含 AN 活动状态机对齐） | commit 2026-10-14 15:44:47 / tag 15:54:57 | 项目经理（CCB）· 冀项阳 | 已建立（tag 存在） |
 | `baseline/release-v1.0.0` | 任务 6 最终交付（发布说明/清单 v1.0.0） | 2026-11-14（最终交付） | 项目经理（CCB）· 冀项阳（2026-11-14 授权） | 待建立（release/ 待 PR #29 合入 main 后打 tag） |
 
-时间口径与授权规则同《配置管理计划》§5.2：tag commit 时间（git 可查）与 CCB 授权时间不可混同。requirements / design 的内容于 2026-10-13 冻结入库（v3.0 协调对齐），CCB 授权于 2026-11-14 补授（非倒填），其 tag 对象亦于 2026-11-14 建立、指向 10-13 冻结提交（内容先冻结、基线后补打，故按 tag commit 时间排序）；release 的建立时间为最终交付日 2026-11-14，待 release/ 内容随 PR #29 合入 main 后打 tag。历史基线无追溯 CCB 记录者标"待核实"，不补造、不倒造审批。
+时间口径与授权规则同《配置管理计划》§5.2：tag commit 时间（git 可查）与 CCB 授权时间不可混同。requirements / design 的内容于 2026-10-13 冻结入库（v3.0 协调对齐），CCB 授权于 2026-11-14 补授（非倒填），其 tag 对象亦于 2026-11-14 建立、指向 10-13 冻结提交（内容先冻结、基线后补打，故按 tag commit 时间排序）；release 的建立时间为最终交付日 2026-11-14，待 release/ 内容随 PR #29 合入 main 后打 tag。历史基线（init-v1.0 / task-package-v2.0 / task-package-v3.0）的授权负责人为项目经理（CCB）冀项阳。
