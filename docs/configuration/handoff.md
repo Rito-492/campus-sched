@@ -1,5 +1,21 @@
 # 交接单（配置经理）
 
+## 本轮工作（2026-11-14）：发布说明 / 发布清单 / compose 演示入口对齐（发布交付）
+
+- 成员、学号、任务ID：杨瀚霖、55231031、配置经理；任务 6 发布交付（发布说明、发布清单、恢复演练步骤、D-AT-24 启动对齐），对应 PM 集成评审 2026-11-13 记录 line 39「D-AT-24、发布说明、发布清单和恢复演练仍由配置经理准备、QA 复验、PM 核对实际发布提交」。
+- main 基准：`git fetch` 后 `origin/main` 已至 `750763b`（PR #26 配置文档修订历史评审整改合入）。
+- 本轮交付：
+  1. **发布说明** `release/README.md`（v1.0.0）：前置条件（本机仅需 Docker）、干净环境启动步骤（`Copy-Item .env.example .env` → `docker compose up -d --build`，Flyway 自动 V1→V2，无手改库步骤）、端口表（演示入口 8088 / API 8080 / PG 5432）、9 个演示账号、备份/迁移/恢复演练步骤（pg_dump/pg_restore）、版本一致性、D-AT-24 验收关联。
+  2. **发布清单** `release/manifest.json`：releaseVersion v1.0.0、baseline 待建立、发布提交 750763b、环境（Java 21 / Spring Boot 3.5.16 / PG 17）、组件 SHA-256（server pom、web package.json、openapi、V1/V2 迁移、demo.json）、docs 版本、tests（101 单元 + 46 集成，DS 2026-11-13 结果）。
+  3. **compose 演示入口对齐** `compose.yaml`：web（Nginx）宿主端口由 `5173` 改为 `8088`，与文档口径（公共契约 04、计划 §7.1、NFR-27、索引 CS-CI-ENV-01）一致；前端 Vite 开发服务器 5173 不在本编排内。
+  4. **索引登记** `configuration-index.md`：CS-CI-REL-01 由「发布包与发布说明 · 待建立（当前为空）」改为「发布说明与发布清单 · v1.0.0 · 受控」，并补修订历史行。
+- 实际检查（真实执行）：`git diff --check` 通过；`compose.yaml` 端口与 `release/README.md` §3、计划 §7.1 逐项核对一致；SHA-256 为真实计算（`sha256sum`）而非臆造。发布交付为 Markdown/JSON/YAML，未运行产品测试。
+- 未完成项 / 外部依赖（本 agent 不越权）：
+  - `baseline/release-v1.0.0` 打 tag 仍需项目经理 CCB 授权，不自行建立（索引 §3、manifest 均标「待建立」）。
+  - 恢复演练的**实际执行与证据**待 QA 复验时在真实 PostgreSQL 上跑通后补记（发布说明 §5 已固化可复现步骤，暂未执行）。
+  - 任务 6 打包（.zip）与学习通上传由项目经理执行。
+- 下一接收人：项目经理（核对实际发布提交、授权 release 基线、组织打包提交）；测试经理（复验发布说明干净启动 D-AT-24 与恢复演练）。
+
 ## 任务 6「配置库」交付（2026-11-13）
 
 - 成员、学号、任务ID：杨瀚霖、55231031、配置经理；任务 6 配置库交付（截至 2026-11-14）。
