@@ -1,0 +1,53 @@
+-------------------------------------------------------------------------------
+Test set: com.campus.events.acceptance.PermissionsIT
+-------------------------------------------------------------------------------
+Tests run: 13, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 3.445 s <<< FAILURE! -- in com.campus.events.acceptance.PermissionsIT
+com.campus.events.acceptance.PermissionsIT.tc2001And02_staleVersionProtection -- Time elapsed: 0.437 s <<< FAILURE!
+org.opentest4j.MultipleFailuresError: 
+两种陈旧版本请求均须409及当前版本详情 (2 failures)
+	org.opentest4j.AssertionFailedError: STALE_VERSION details 至少返回当前versionNo/lockVersion/status之一：{} ==> expected: <true> but was: <false>
+	org.opentest4j.AssertionFailedError: STALE_VERSION details 至少返回当前versionNo/lockVersion/status之一：{} ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:80)
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:44)
+	at org.junit.jupiter.api.Assertions.assertAll(Assertions.java:2961)
+	at com.campus.events.acceptance.PermissionsIT.tc2001And02_staleVersionProtection(PermissionsIT.java:370)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	Suppressed: org.opentest4j.AssertionFailedError: STALE_VERSION details 至少返回当前versionNo/lockVersion/status之一：{} ==> expected: <true> but was: <false>
+		at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+		at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+		at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+		at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+		at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+		at com.campus.events.acceptance.PermissionsIT.assertStaleVersionDetails(PermissionsIT.java:584)
+		at com.campus.events.acceptance.PermissionsIT.lambda$tc2001And02_staleVersionProtection$19(PermissionsIT.java:375)
+		at org.junit.jupiter.api.AssertAll.lambda$assertAll$0(AssertAll.java:68)
+		at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+		at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+		at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+		at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+		at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+		at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+		at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+		at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:77)
+		... 6 more
+	Suppressed: org.opentest4j.AssertionFailedError: STALE_VERSION details 至少返回当前versionNo/lockVersion/status之一：{} ==> expected: <true> but was: <false>
+		at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+		at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+		at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+		at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+		at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+		at com.campus.events.acceptance.PermissionsIT.assertStaleVersionDetails(PermissionsIT.java:584)
+		at com.campus.events.acceptance.PermissionsIT.lambda$tc2001And02_staleVersionProtection$28(PermissionsIT.java:382)
+		at org.junit.jupiter.api.AssertAll.lambda$assertAll$0(AssertAll.java:68)
+		at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+		at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:1024)
+		at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+		at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+		at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+		at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+		at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+		at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:77)
+		... 6 more
+

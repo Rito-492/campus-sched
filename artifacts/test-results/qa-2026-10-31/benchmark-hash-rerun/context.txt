@@ -1,0 +1,6 @@
+date=2026-10-31 Asia/Shanghai
+commit=c3a4a2c6418b6ed4859c64a1b5da9b1b9fd82f6f
+postgres=17/campus_test/127.0.0.1:55439
+reference=scenarios/scheduling-reference.json
+DB/DEMO credentials=random ephemeral/not logged
+temporary PostgreSQL removed after identity check

@@ -2,7 +2,7 @@
 
 > 归属：测试经理（55230316）。配套文档：`test-design.md`（用例）、`test-data-plan.md`（数据）。
 > 依据：`agents/common/03-验收与演示数据.md` §3（统一验证入口）、`agents/common/01-开发基线.md` §9（质量目标）。
-> 状态记录：执行结果汇总于 `test-report.md`（QA-05，真实执行后编写）；本计划不含任何未执行的「通过」标记。
+> 状态记录：执行结果汇总于 `test-report.md`（QA-05，真实执行后编写）；本计划不含任何未执行的「通过」标记；实际执行结果汇总于 `test-report.md`。
 
 ## 1. 测试范围
 
@@ -10,7 +10,7 @@
 |---|---|---|---|
 | 模块单元/集成测试 | 各业务模块自身逻辑（活动状态机、调度约束、幂等等） | 各模块负责人 | `./server/mvnw.cmd -f server/pom.xml test`（Surefire `*Test`） |
 | 跨模块数据库与 HTTP 验收 | D-AT 权限/并发/回滚/取消/容量/通知六类（acceptance/ 六个 IT） | 测试经理 | `verify`（Failsafe `*IT`） |
-| 契约检查 | openapi.yaml 与实现一致性（38 接口/字段/枚举/包装/认证/Idempotency-Key） | 测试经理 | `npm --prefix qa run test:contract` |
+| 契约检查 | openapi.yaml 与实现一致性（40 接口/字段/枚举/包装/认证/Idempotency-Key） | 测试经理 | `npm --prefix qa run test:contract` |
 | 浏览器 E2E | 登录、改期主线、改期冲突、权限、界面布局（5 spec） | 测试经理 | `npm --prefix qa run test:e2e` |
 | 策略评测 | FIRST_FIT vs RANKED（8 场景，D-AT-22） | 测试经理 + DS | `-Dit.test=SchedulingBenchmarkIT verify` + `npm --prefix qa run evaluate` |
 | 发布验收 | D-AT-24 干净环境演练 | 全员 | `release/` 发布说明 + `scripts/check.ps1 -Scope all` |
@@ -32,7 +32,7 @@
 | 项 | 约定 | 来源 |
 |---|---|---|
 | 数据库 | `campus_test`；每次测试独立 schema `t_<UUID去连字符>`（正则 `^t_[0-9a-f]{32}$`），Flyway 迁移后载入独立数据，只清自己建的 schema | 03 §3 |
-| 环境变量 | `TEST_DATABASE_URL`/用户名/密码；`DEMO_PASSWORD`（BCrypt 编码，不入库）；`DEMO_DATE=2030-10-20`；Clock=`2030-10-19T00:00:00Z` | 03 §1/§3 |
+| 环境变量 | `TEST_DATABASE_URL`、`TEST_DB_USERNAME`/`TEST_DB_PASSWORD`（兼容旧 `TEST_DATABASE_USERNAME`/`TEST_DATABASE_PASSWORD`）；必需的`DEMO_PASSWORD`（由本地环境安全注入，严禁源码/日志硬编码或回显；缺失即测试失败；BCrypt编码后不入库）；`DEMO_DATE=2030-10-20`；Clock=`2030-10-19T00:00:00Z` | 03 §1/§3 |
 | 测试数据 | `test-data/demo.json`、`scenarios/*.json`；装载与派生规则见 `test-data-plan.md` | QA-01 |
 | 运行命令 | 03 §3 统一入口（load-env / compose up db / mvnw / npm / check.ps1） | 各负责人实现 |
 

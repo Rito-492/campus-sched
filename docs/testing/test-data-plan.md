@@ -10,6 +10,7 @@
 |---|---|---|
 | `test-data/demo.json` | 03 §1 统一演示数据集（组织/账号/资源/活动A、B/报名） | 配置经理种子导入器；DbTestSupport |
 | `test-data/scenarios/registration-concurrency.json` | D-AT-16 并发报名数据（20 名独立学生 + 容量1活动） | DbTestSupport → RegistrationCapacityIT |
+| `test-data/scenarios/scheduling-reference.json` | D-AT-22 专用基准账号与资源子集（仅3101/3102/3201/3202；不是canonical demo账号范围） | SchedulingBenchmarkIT，仅在独立schema装载 |
 | `test-data/scenarios/scheduling.json` | D-AT-22 策略评测场景（8 个） | SchedulingBenchmarkIT、`qa/scripts/evaluate-scheduling.ts` |
 
 ## 2. ID 与尾号分配
@@ -79,7 +80,7 @@ JSON 是唯一数据来源，以下记录由导入器推导写入：
 4. `reservation`：status ∈ SCHEDULED/OPEN 的活动按 input.plan 派生 ACTIVE 预约（区间为 `[startAt−setupMinutes, endAt+teardownMinutes)`，01 基线 §4）：
    - 场地行：(venueId, quantity=1, 该区间)；
    - 器材行：每条 equipment 一行 (resourceId, quantity, 同区间)。
-   - DRAFT/PENDING_TEACHER/APPROVED_UNRESERVED 活动不派生预约（首次确认前 0 条 ACTIVE，D-AT-03）。
+   - DRAFT/PENDING_APPROVER/APPROVED_UNRESERVED 活动不派生预约（首次确认前 0 条 ACTIVE，D-AT-03）。
 5. 幂等：已存在同 id 记录则校验一致后跳过，不覆盖用户已修改数据（03 §1）。
 6. 运行门禁：仅 dev profile 且 `APP_DEMO_SEED=true` 时运行（03 §1）。重新演示使用新数据库或明确授权的重置流程。
 
@@ -128,7 +129,7 @@ JSON 是唯一数据来源，以下记录由导入器推导写入：
 
 装载与语义规则：
 
-- **资源与组织来自 `demo.json`**：评测装载 = demo.json 的 organizations/users/resources + 本文件场景数据；**不装载**演示活动 A/B 与报名，避免场景互相干扰。
+- **评测专用基础数据来自 `scenarios/scheduling-reference.json`**：仅包含组织1001/1002、`applicant_a`、`resource_admin`及基线资源3101/3102/3201/3202，再叠加本文件的场景数据；不加载demo.json中的N-AT资格扩展资源3111-3114/3211-3214，因为教师申请人可使用其中部分资源，会改变固定场景候选空间与expected几何。评测文件中的resource_admin只管理这4个基线资源，是隔离schema内的Benchmark账号投影，**不是**canonical demo.json中resource_admin的12项管理范围；不可与demo数据在同一schema叠加。**不装载**演示活动A/B与报名，避免场景互相干扰。该文件仍使用同一JSON DTO/派生规则，非生产数据接口变更。
 - `blockers` 生成「占用活动」（SCHEDULED、versionNo=1）及其 ACTIVE 预约行；input_json 由装载器合成（title=blocker.title，expectedAttendees=registrationCapacity=1，staffUserIds=[]，plan 的 venueId 取 blocker 的场地预约行、无场地行时取 request.plan.venueId，setup/teardown=0）。**实际占用以 reservations 为准**，合成 input 仅为满足不可变输入结构（02 §4）。
 - `faults` 写入 `resource_fault`（02 §2 FaultInput）。场地故障 unavailableQuantity=1（01 基线 §8）。
 - `request.plan` 为被评估目标计划；`subjectTail` 为被评估活动（即 evaluateStrategies 的 excludeActivityId，02 契约 §8）。blockers 中同 subjectTail 的预约表示**该活动自身旧占用**，用于覆盖「排除自身旧占用」（D-AT-13）。
@@ -142,7 +143,7 @@ JSON 是唯一数据来源，以下记录由导入器推导写入：
 - 各测试装载文件选择：
   - 一般集成测试：`demo.json`；
   - RegistrationCapacityIT：`demo.json` + `registration-concurrency.json`；
-  - SchedulingBenchmarkIT：按 §7 规则装载 `scheduling.json`（各场景独立，跑前重置场景数据）。
+  - SchedulingBenchmarkIT：先在本类独立schema装载`scenarios/scheduling-reference.json`，再按§7装载`scheduling.json`的场景阻塞/故障（各场景独立，跑前重置场景数据）。
 
 ## 9. 评测原始结果格式（server/target/scheduling-evaluation.json）
 
@@ -152,7 +153,12 @@ SchedulingBenchmarkIT 写、`qa/scripts/evaluate-scheduling.ts` 读——QA-04 �
 {
   "schemaVersion": 1,
   "generatedAt": "ISO8601",
-  "environment": { "machine": "…", "os": "…", "jdk": "…", "commit": "…", "demoDate": "2030-10-20", "clock": "2030-10-19T00:00:00Z" },
+  "environment": {
+    "machine": "…", "os": "…", "jdk": "…", "commit": "…",
+    "referenceData": "test-data/scenarios/scheduling-reference.json", "referenceDataSha256": "…",
+    "scenarioData": "test-data/scenarios/scheduling.json", "scenarioDataSha256": "…",
+    "demoDate": "2030-10-20", "clock": "2030-10-19T00:00:00Z"
+  },
   "timingScope": "候选生成、资源读取、约束检查及选择/排序（不含HTTP与文件输出）",
   "runs": [ { "scenarioId": "SCH-01-TIME-CONFLICT", "strategy": "FIRST_FIT", "runIndex": 1,
               "feasible": true, "timeShiftMinutes": -60, "venueChanged": false,

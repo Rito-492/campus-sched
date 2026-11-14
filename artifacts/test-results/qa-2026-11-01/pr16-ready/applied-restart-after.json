@@ -1,0 +1,36 @@
+{
+  "id": "00000000-0000-0000-0000-000000004001",
+  "organizationId": "00000000-0000-0000-0000-000000001001",
+  "ownerId": "00000000-0000-0000-0000-000000002001",
+  "status": "OPEN",
+  "versionNo": 2,
+  "effectiveVersionNo": 2,
+  "lockVersion": 8,
+  "input": {
+    "title": "校园技术分享会",
+    "description": "面向软件学院师生的技术分享与交流，含主题演讲与自由讨论环节。（演示数据）",
+    "expectedAttendees": 60,
+    "registrationCapacity": 20,
+    "staffUserIds": [
+      "00000000-0000-0000-0000-000000002006"
+    ],
+    "plan": {
+      "startAt": "2030-10-20T07:00:00Z",
+      "endAt": "2030-10-20T08:00:00Z",
+      "setupMinutes": 30,
+      "teardownMinutes": 30,
+      "venueId": "00000000-0000-0000-0000-000000003102",
+      "equipment": [
+        {
+          "resourceId": "00000000-0000-0000-0000-000000003202",
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  "registrationCount": 1,
+  "resourceRisk": "NORMAL",
+  "activeChangeId": null,
+  "myRegistrationStatus": null,
+  "createdAt": "2026-11-01T08:34:32.387292Z"
+}

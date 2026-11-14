@@ -18,6 +18,8 @@ export default defineConfig({
   expect: { timeout: 10_000 },
   // 业务状态等待一律用 expect 轮询（QA-03 规则），不用长固定 sleep
   fullyParallel: false,
+  // 用例共享 demo 活动 A（改期链会推进版本/产生终态），跨文件并发会互相污染；固定串行。
+  workers: 1,
   retries: 0,
   reporter: [
     ['list'],
@@ -28,7 +30,8 @@ export default defineConfig({
   use: {
     baseURL,
     screenshot: 'only-on-failure',
-    trace: 'retain-on-failure',
+    // 真实登录链路的trace会收集认证请求体/Bearer，不将凭据写入证据。
+    trace: 'off',
     actionTimeout: 10_000,
     locale: 'zh-CN',
     timezoneId: 'Asia/Shanghai',
