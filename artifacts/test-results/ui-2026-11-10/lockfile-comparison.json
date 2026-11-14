@@ -1,0 +1,8 @@
+{
+  "node": "v22.23.0",
+  "baseline": "ca162bf975b2ebae0bd0dd59d7c63b23bc505b35",
+  "productionPackagesChecked": 59,
+  "productionVersionChanges": [],
+  "vitestBefore": "3.2.7",
+  "vitestAfter": "4.1.12"
+}
