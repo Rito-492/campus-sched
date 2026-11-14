@@ -1,0 +1,39 @@
+diff --git a/server/src/test/java/com/campus/events/foundation/ProductionWorkflowIT.java b/server/src/test/java/com/campus/events/foundation/ProductionWorkflowIT.java
+index 4efb622..c162d29 100644
+--- a/server/src/test/java/com/campus/events/foundation/ProductionWorkflowIT.java
++++ b/server/src/test/java/com/campus/events/foundation/ProductionWorkflowIT.java
+@@ -147,6 +147,34 @@ class ProductionWorkflowIT {
+         assertEquals("PENDING_RESOURCE", ok(200, "POST", "/changes/" + id + "/approver-decision", approverToken,
+                 new ChangeDecision(Decision.APPROVE, "")).path("status").asText());
+     }
++    @Test void activityVersionConflictsPreserveStateButOmitRequiredDetails() throws Exception {
++        var input = new ActivityInput("陈旧活动探针", "公开简介", 10, 1, List.of(),
++                plan(resource(), "2030-10-20T02:00:00Z", "2030-10-20T03:00:00Z"));
++        var draft = ok(201, "POST", "/activities", ownerToken, input);
++        String path = "/activities/" + draft.path("id").asText();
++        int previousLock = draft.path("lockVersion").asInt();
++        var current = ok(200, "PATCH", path, ownerToken, new ActivityEdit(previousLock, input));
++        var staleEdit = call("PATCH", path, ownerToken, UUID.randomUUID(), new ActivityEdit(previousLock, input));
++        var staleSubmit = call("POST", path + "/submit", ownerToken, UUID.randomUUID(), new VersionCommand(previousLock));
++        assertEquals(current, ok(200, "GET", path, ownerToken, null));
++        Flow open = published(false);
++        var staleRegistration = call("PUT", "/activities/" + open.id() + "/registration",
++                studentToken, UUID.randomUUID(), new RegistrationCommand(RegistrationAction.JOIN, 2));
++        assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM activity_registration WHERE activity_id=?", Integer.class, open.id()));
++        assertAll(
++                () -> assertContractConflict("API-15", staleEdit),
++                () -> assertContractConflict("API-16", staleSubmit),
++                () -> assertContractConflict("API-22", staleRegistration));
++    }
++
++    private void assertContractConflict(String api, Result result) {
++        assertEquals(409, result.status());
++        JsonNode error = result.body().path("error");
++        assertEquals("STALE_VERSION", error.path("code").asText());
++        JsonNode details = error.path("details");
++        assertTrue(details.hasNonNull("versionNo") || details.hasNonNull("lockVersion") || details.hasNonNull("status"),
++                () -> api + " 获授权的陈旧版本详情应至少含一项当前状态，实际 details=" + details);
++    }
+     @Test void allProductionPortsPersistChangeNotificationsAndCancellation() throws Exception {
+         Flow flow = published(true);
+         ok(200, "PUT", "/activities/" + flow.id() + "/registration", studentToken, new RegistrationCommand(RegistrationAction.JOIN, 1));
