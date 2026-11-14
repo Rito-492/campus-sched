@@ -58,7 +58,7 @@
 | 编号 | 配置项 | 位置 | 版本 | 负责人 | 状态 |
 |---|---|---|---|---|---|
 | CS-CI-DOC-30 | 初始项目计划 | `docs/management/initial-project-plan.md` | v0.9 | 项目经理 | 受控 |
-| CS-CI-DOC-31 | 详细项目计划 | `docs/management/detailed-project-plan.md` | v3.1.3 | 项目经理 | 受控 |
+| CS-CI-DOC-31 | 详细项目计划 | `docs/management/detailed-project-plan.md` | v3.1.4 | 项目经理 | 受控 |
 | CS-CI-DOC-32 | 决策记录 | `docs/management/decision-log.md` | — | 项目经理 | 受控 |
 | CS-CI-DOC-33 | 风险清单 | `docs/management/risks.md` | — | 项目经理 | 受控 |
 | CS-CI-DOC-34 | 集成记录 | `docs/management/integration-log.md` | — | 项目经理 | 受控 |

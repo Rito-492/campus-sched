@@ -15,9 +15,11 @@
     ├── 配置项文档/               # 按「编号_版本_名称」重命名的文档（当前版 + 历史版同目录）
     └── export-report.json        # 全量映射 + sha256 + 任务5正式交付物核验 + 哈希交叉核对
 
-安全：
+安全与核验：
     --out 若指向已存在的非空目录或文件，直接拒绝退出（不递归删除），请另选唯一输出目录。
     任务5（测试）正式交付物按精确文件路径核验，缺项返回退出码 2（不会「假通过」）。
+    发布清单（release/manifest.json @ 候选 SHA）逐件核对各散列的文件路径，不匹配返回退出码 3。
+退出码：1=致命错误（提交无法解析 / 输出目录冲突 / 清单无法解析）；2=任务5正式交付物缺失；3=发布清单哈希不匹配。
 
 二进制文件一律经 `git show <commit>:<path>` 取原始字节写出，不经过文本转码，
 从而保证 docx/pdf/drawio/png 与版本库字节一致（sha256 逐件核对）。
@@ -74,7 +76,7 @@ DOCS = [
     ('CS-CI-DOC-05', '配置管理计划', 'v1.7', 'docs/configuration/T08_配置管理计划.docx'),
     ('CS-CI-DOC-06', '配置项索引', None, 'docs/configuration/configuration-index.md'),
     ('CS-CI-DOC-30', '初始项目计划', 'v0.9', 'docs/management/initial-project-plan.md'),
-    ('CS-CI-DOC-31', '详细项目计划', 'v3.1.3', 'docs/management/detailed-project-plan.md'),
+    ('CS-CI-DOC-31', '详细项目计划', 'v3.1.4', 'docs/management/detailed-project-plan.md'),
     ('CS-CI-DOC-32', '决策记录', None, 'docs/management/decision-log.md'),
     ('CS-CI-DOC-33', '风险清单', None, 'docs/management/risks.md'),
     ('CS-CI-DOC-34', '集成记录', None, 'docs/management/integration-log.md'),
@@ -129,9 +131,31 @@ AGENT_ROLES = {
 }
 
 # 历史版本： (编号, 中文名, 版本, commit, 源路径) —— 与当前版同目录并存，_v<版本> 区分
+# 版本↔commit 以各文档头部「修订历史」为准（真实 git 核实，不臆造）；未独立入库的工作稿不在此列（见 export-manifest §4.1 说明）。
 HIST = [
+    # 配置管理计划 Markdown（CS-CI-DOC-04）：v1.0/v1.1/v1.4/v1.5/v1.6 均有独立 Git 提交（v1.2 未独立提交，内容并入 v1.4）
+    ('CS-CI-DOC-04', '配置管理计划', 'v1.0', 'bfa2cd6', 'docs/configuration/configuration-management-plan.md'),
+    ('CS-CI-DOC-04', '配置管理计划', 'v1.1', '5d07897', 'docs/configuration/configuration-management-plan.md'),
+    ('CS-CI-DOC-04', '配置管理计划', 'v1.4', '298780f', 'docs/configuration/configuration-management-plan.md'),
+    ('CS-CI-DOC-04', '配置管理计划', 'v1.5', '1382623', 'docs/configuration/configuration-management-plan.md'),
     ('CS-CI-DOC-04', '配置管理计划', 'v1.6', '2981c37', 'docs/configuration/configuration-management-plan.md'),
+    # 配置管理计划 Word（CS-CI-DOC-05，课程提交版）：v1.0 起独立入库
+    ('CS-CI-DOC-05', '配置管理计划', 'v1.0', '5d07897', 'docs/configuration/T08_配置管理计划.docx'),
+    ('CS-CI-DOC-05', '配置管理计划', 'v1.4', '298780f', 'docs/configuration/T08_配置管理计划.docx'),
+    ('CS-CI-DOC-05', '配置管理计划', 'v1.5', '1382623', 'docs/configuration/T08_配置管理计划.docx'),
     ('CS-CI-DOC-05', '配置管理计划', 'v1.6', '2981c37', 'docs/configuration/T08_配置管理计划.docx'),
+    # 总开发任务书（CS-CI-PKG-01）
+    ('CS-CI-PKG-01', '总开发任务书', 'v2.0', '9a80fa3', 'taskbook.md'),
+    # 详细项目计划（CS-CI-DOC-31）
+    ('CS-CI-DOC-31', '详细项目计划', 'v3.0', 'b30c0f2', 'docs/management/detailed-project-plan.md'),
+    ('CS-CI-DOC-31', '详细项目计划', 'v3.1', 'a5e0724', 'docs/management/detailed-project-plan.md'),
+    ('CS-CI-DOC-31', '详细项目计划', 'v3.1.1', '1fc3dd9', 'docs/management/detailed-project-plan.md'),
+    ('CS-CI-DOC-31', '详细项目计划', 'v3.1.2', '2055c63', 'docs/management/detailed-project-plan.md'),
+    ('CS-CI-DOC-31', '详细项目计划', 'v3.1.3', '4f0f304', 'docs/management/detailed-project-plan.md'),
+    # 测试计划（CS-CI-DOC-20）
+    ('CS-CI-DOC-20', '测试计划', 'v0.1', 'b5b1db3', 'docs/testing/test-plan.md'),
+    # 系统设计（CS-CI-DOC-50）
+    ('CS-CI-DOC-50', '系统设计', 'v0.1', 'f6bd329', 'docs/design/system-design.md'),
 ]
 
 # 任务5（测试）正式交付物：课程要求的精确文件路径（含 PR #23 软件测试设计，合入 main 后齐备）
@@ -240,18 +264,36 @@ def main():
         if not present:
             task5_missing.append((label, path))
 
-    # 5) 与发布清单哈希交叉核对（openapi / demo）
-    cross = {}
-    for label, path, expected in [
-        ('openapi-contract', 'contracts/openapi.yaml', '4ee84d2111a489d83b28e4d4e41969c2fb8c38bf476d3beb86d84d3039eef5c7'),
-        ('demo-data', 'test-data/demo.json', 'b29450bf4d40473f5d6db8e33b40f9d2d203af07f8f8f6a4b1476fc8936d8130'),
-    ]:
+    # 5) 校验发布清单本身（release/manifest.json @ 候选 SHA）：逐件核对各散列的文件路径，不匹配返回非零
+    try:
+        manifest = json.loads(git_show(commit, 'release/manifest.json').decode('utf-8'))
+    except Exception as e:
+        sys.exit('release/manifest.json 在 %s 无法解析：%s' % (commit, e))
+    cross = []
+    manifest_mismatch = []
+    for comp in manifest.get('components', []):
+        name = comp.get('name')
+        sha = comp.get('sha256')
+        path = comp.get('file') or comp.get('artifact')
+        if not sha:
+            cross.append(dict(name=name, file=path, expected=None, actual=None, match=None,
+                              note=comp.get('note', '无散列，跳过')))
+            continue
+        p = git(['cat-file', '-e', '%s:%s' % (commit, path)])
+        if p.returncode != 0:
+            cross.append(dict(name=name, file=path, expected=sha, actual=None, match=False, note='文件缺失'))
+            manifest_mismatch.append((name, path, '文件缺失'))
+            continue
         actual = sha256(git_show(commit, path))
-        cross[label] = dict(expected=expected, actual=actual, match=(actual == expected))
+        match = (actual == sha)
+        cross.append(dict(name=name, file=path, expected=sha, actual=actual, match=match, note=comp.get('note')))
+        if not match:
+            manifest_mismatch.append((name, path, '清单 %s… / 实际 %s…' % (sha[:12], actual[:12])))
 
     result = {
         'commit': commit,
         'out': outdir,
+        'manifest_declared_commit': manifest.get('commit'),
         'doc_count': len(report),
         'historical': hist,
         'all_byte_preserved': all_byte_ok,
@@ -269,10 +311,21 @@ def main():
     print('任务5正式交付物：%s' % ('齐全' if not task5_missing else '缺失 %d 件' % len(task5_missing)))
     for t in task5:
         print('  [%s] %s : %s' % ('OK' if t['present'] else '缺', t['label'], t['path']))
-    for k, v in cross.items():
-        print('  哈希交叉核对 %s: %s' % (k, '匹配' if v['match'] else '不匹配(%s...)' % v['actual'][:12]))
+    print('发布清单哈希校验（release/manifest.json @ %s，声明 commit=%s）：' % (commit, manifest.get('commit')))
+    for v in cross:
+        if v['match'] is None:
+            print('  [跳过] %s : %s（%s）' % (v['name'], v['file'], v['note']))
+        else:
+            print('  [%s] %s : %s' % ('匹配' if v['match'] else '不匹配', v['name'], v['file']))
     if task5_missing:
         print('导出不完整：任务5正式交付物缺失，不能作为最终课程包（退出码 2）。')
+    if manifest_mismatch:
+        for name, path, why in manifest_mismatch:
+            print('  [不匹配] %s : %s（%s）' % (name, path, why))
+        print('发布清单哈希校验失败，不能作为最终课程包（退出码 3）。')
+    if manifest_mismatch:
+        sys.exit(3)
+    if task5_missing:
         sys.exit(2)
 
 
