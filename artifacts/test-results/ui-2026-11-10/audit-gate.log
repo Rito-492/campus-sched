@@ -1,0 +1,5 @@
+
+> campus-sched-web@0.1.0 audit:dependencies
+> npm audit --audit-level=moderate
+
+found 0 vulnerabilities

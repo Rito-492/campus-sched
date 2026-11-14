@@ -1,0 +1,88 @@
+{
+  "metric": "构建产物字节数；gzip逐文件计算；页面包括入口及其静态依赖，不包括其他路由动态依赖",
+  "entry": {
+    "files": [
+      "assets/index-BD5R7863.js",
+      "assets/index-CuntVXz2.css"
+    ],
+    "jsBytes": 201474,
+    "jsGzipBytes": 78043,
+    "cssBytes": 41010,
+    "cssGzipBytes": 7278
+  },
+  "login": {
+    "files": [
+      "assets/LoginPage-TOd4WcKA.js",
+      "assets/el-input-cxzC7A-A.css",
+      "assets/el-input-lw_5x-hI.js",
+      "assets/index-BD5R7863.js",
+      "assets/index-CqReHWIL.js",
+      "assets/index-CuntVXz2.css",
+      "assets/index-DK1KPBfh.js"
+    ],
+    "jsBytes": 228753,
+    "jsGzipBytes": 89265,
+    "cssBytes": 52191,
+    "cssGzipBytes": 9146
+  },
+  "total": {
+    "files": [
+      "assets/ActivitiesPage-Bvm1YLVz.js",
+      "assets/ActivitiesPage-TYBaCPcE.css",
+      "assets/ActivityCreatePage-BoUZJjT0.js",
+      "assets/ActivityCreatePage-DtA3_m5y.css",
+      "assets/ActivityDetailPage-BAmdfGUb.css",
+      "assets/ActivityDetailPage-ZCvCsRkW.js",
+      "assets/AlternativesPanel.vue_vue_type_script_setup_true_lang-Pc949c4l.js",
+      "assets/CalendarPage-i6Y1mpPu.js",
+      "assets/change-Dm8EoFt6.js",
+      "assets/ChangeDetailPage-Br4ea_66.js",
+      "assets/ChangeWorkspacePage-v-EoHc1e.js",
+      "assets/el-dialog-BcNQgb2d.js",
+      "assets/el-dialog-DUbGnqO_.css",
+      "assets/el-form-item-CU4Nrv97.css",
+      "assets/el-input-cxzC7A-A.css",
+      "assets/el-input-lw_5x-hI.js",
+      "assets/el-input-number-BvseU5D4.css",
+      "assets/el-input-number-DKDlovGh.js",
+      "assets/el-overlay-vAjkDjGu.js",
+      "assets/el-overlay-Wv38huFO.css",
+      "assets/el-popconfirm-CUrdJrPL.js",
+      "assets/el-popconfirm-DY5hZ6_Y.css",
+      "assets/el-popper-B1pi6wk4.js",
+      "assets/el-popper-Wf_ds9r7.css",
+      "assets/el-select-BXciM3h3.js",
+      "assets/el-select-DC56plBF.css",
+      "assets/format-migFoBCL.js",
+      "assets/ImpactPanel.vue_vue_type_script_setup_true_lang-Byy4ONCR.js",
+      "assets/index-BD5R7863.js",
+      "assets/index-CqReHWIL.js",
+      "assets/index-CuntVXz2.css",
+      "assets/index-DK1KPBfh.js",
+      "assets/index-uKFNIajZ.js",
+      "assets/LoginPage-TOd4WcKA.js",
+      "assets/MutationFeedback.vue_vue_type_script_setup_true_lang-CVlnVTX2.js",
+      "assets/NotificationsPage-BnBa7pBC.js",
+      "assets/NotificationsPage-DpR9-s4E.css",
+      "assets/omit-BI_S6BaB.js",
+      "assets/PendingPage-eOj1y4Mk.js",
+      "assets/PlanSummary.vue_vue_type_script_setup_true_lang-vij1Xq3L.js",
+      "assets/ResourceCalendar-BmQQuU66.css",
+      "assets/ResourceCalendar.vue_vue_type_script_setup_true_lang-KI5-LL1C.js",
+      "assets/ResourceManagePage-K6PD4sn0.js",
+      "assets/UsersPage-InTsJseY.css",
+      "assets/UsersPage-YJMRWQX6.js",
+      "assets/validation-D_6SYB2i.css",
+      "assets/validation-jy5XPm-z.js"
+    ],
+    "jsBytes": 532792,
+    "jsGzipBytes": 207082,
+    "cssBytes": 133112,
+    "cssGzipBytes": 24996
+  },
+  "largestJavaScript": {
+    "file": "assets/index-BD5R7863.js",
+    "bytes": 201474,
+    "gzipBytes": 78043
+  }
+}

@@ -1,0 +1,11 @@
+
+ RUN  v4.1.12 D:/code/01_projects/project/campus-sched/web
+
+ ✓ tests/tooling-compatibility.test.ts (2 tests) 313ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  09:44:09
+   Duration  2.44s (transform 33ms, setup 0ms, import 172ms, tests 313ms, environment 1.67s)
+
+JSON report written to D:/code/01_projects/project/campus-sched/artifacts/test-results/ui-local-review-2026-11-11/tooling-results.json
