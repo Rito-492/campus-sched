@@ -6,14 +6,18 @@
 用法：
     python release/export.py [--commit <commit>] [--out <目录>]
 
-默认 commit 为 HEAD（当前工作分支最新提交），输出目录默认为系统临时目录下的
-campus-sched-export/。
+默认 commit 为 HEAD，但会先解析为唯一提交 SHA（git rev-parse），归档与全部
+当前工件的读取/报告都使用该 SHA，避免同一导出混入不同提交。
 
 产出结构：
     <out>/
     ├── campus-sched-完整快照/     # git archive 整库快照（含全部源码/文档/工程，字节保真）
     ├── 配置项文档/               # 按「编号_版本_名称」重命名的文档（当前版 + 历史版同目录）
-    └── export-report.json        # 全量映射 + sha256 + 校验结果
+    └── export-report.json        # 全量映射 + sha256 + 任务5正式交付物核验 + 哈希交叉核对
+
+安全：
+    --out 若指向已存在的非空目录或文件，直接拒绝退出（不递归删除），请另选唯一输出目录。
+    任务5（测试）正式交付物按精确文件路径核验，缺项返回退出码 2（不会「假通过」）。
 
 二进制文件一律经 `git show <commit>:<path>` 取原始字节写出，不经过文本转码，
 从而保证 docx/pdf/drawio/png 与版本库字节一致（sha256 逐件核对）。
@@ -40,6 +44,14 @@ def git_show(commit, path):
     if p.returncode != 0:
         raise RuntimeError('git show %s:%s 失败: %s' % (commit, path, p.stderr.decode('utf-8', 'replace')))
     return p.stdout
+
+
+def resolve_commit(ref):
+    """把 ref（HEAD/分支/tag/短 SHA）解析为唯一提交 SHA，供所有当前工件统一读取。"""
+    p = git(['rev-parse', '--verify', '%s^{commit}' % ref])
+    if p.returncode != 0:
+        sys.exit('无法解析提交 %s：%s' % (ref, p.stderr.decode('utf-8', 'replace')))
+    return p.stdout.decode('utf-8').strip()
 
 
 def sha256(b):
@@ -116,30 +128,40 @@ AGENT_ROLES = {
     '17231018-ui': '界面设计师',
 }
 
-# 历史版本： (编号, 中文名, 版本, commit, 源路径)
+# 历史版本： (编号, 中文名, 版本, commit, 源路径) —— 与当前版同目录并存，_v<版本> 区分
 HIST = [
     ('CS-CI-DOC-04', '配置管理计划', 'v1.6', '2981c37', 'docs/configuration/configuration-management-plan.md'),
+    ('CS-CI-DOC-05', '配置管理计划', 'v1.6', '2981c37', 'docs/configuration/T08_配置管理计划.docx'),
 ]
 
-# 任务5（测试）正式交付物，用于完整性核对
-TASK5 = ['CS-CI-DOC-20', 'CS-CI-DOC-21', 'CS-CI-DOC-22', 'CS-CI-DOC-24',
-         'CS-CI-DOC-25', 'CS-CI-DOC-27', 'CS-CI-DOC-28', 'CS-CI-DOC-29']
+# 任务5（测试）正式交付物：课程要求的精确文件路径（含 PR #23 软件测试设计，合入 main 后齐备）
+TASK5_FORMAL = {
+    '测试计划 Word': 'docs/testing/T08_软件测试计划.docx',
+    '测试设计 Markdown v1.0': 'docs/testing/test-design-v1.0.md',
+    '测试设计 Word': 'docs/testing/T08_任务5_软件测试设计.docx',
+    '结构化用例 JSON': 'test-data/test-design-cases-v1.0.json',
+    '测试数据设计': 'docs/testing/test-data-plan.md',
+    '需求覆盖矩阵': 'docs/testing/coverage-matrix.md',
+    '缺陷登记表': 'docs/testing/defect-register.md',
+    '测试报告 Word': 'docs/testing/T08_软件测试报告.docx',
+    '测试报告 Markdown': 'docs/testing/test-report.md',
+}
 
 
-def build_docs():
+def build_docs(commit):
     items = []
     for ci, name, ver, src in DOCS:
         items.append(dict(ci=ci, name=name, ver=ver, src=src,
-                          out=outname(ci, name, ver, src), commit='HEAD'))
+                          out=outname(ci, name, ver, src), commit=commit))
     for bn in AGENT_COMMON:
         src = 'agents/common/%s.md' % bn
         items.append(dict(ci='CS-CI-PKG-02', name='公共契约-' + bn, ver='v3.0', src=src,
-                          out=outname('CS-CI-PKG-02', '公共契约-' + bn, 'v3.0', src), commit='HEAD'))
+                          out=outname('CS-CI-PKG-02', '公共契约-' + bn, 'v3.0', src), commit=commit))
     for d, role in AGENT_ROLES.items():
         src = 'agents/%s/agent.md' % d
         nm = '个人任务书-' + role
         items.append(dict(ci='CS-CI-PKG-03', name=nm, ver='v3.0', src=src,
-                          out=outname('CS-CI-PKG-03', nm, 'v3.0', src), commit='HEAD'))
+                          out=outname('CS-CI-PKG-03', nm, 'v3.0', src), commit=commit))
     return items
 
 
@@ -149,10 +171,18 @@ def main():
     ap.add_argument('--out', default=os.path.join(tempfile.gettempdir(), 'campus-sched-export'))
     args = ap.parse_args()
 
-    commit = args.commit
+    # 提交锁定：解析为唯一 SHA，供归档与全部当前工件统一使用
+    commit = resolve_commit(args.commit)
     outdir = args.out
-    if os.path.isdir(outdir):
-        shutil.rmtree(outdir)
+
+    # 输出目录安全：拒绝覆盖已有非空目录/文件
+    if os.path.exists(outdir):
+        if os.path.isfile(outdir):
+            sys.exit('输出路径已存在且为文件，拒绝覆盖：%s（请另选 --out）' % outdir)
+        if os.listdir(outdir):
+            sys.exit('输出目录非空，拒绝删除：%s（请另选 --out 或先清空）' % outdir)
+        os.rmdir(outdir)
+
     docsdir = os.path.join(outdir, '配置项文档')
     snapdir = os.path.join(outdir, 'campus-sched-完整快照')
     os.makedirs(docsdir, exist_ok=True)
@@ -170,14 +200,13 @@ def main():
     os.remove(tar_tmp)
 
     # 2) 文档重命名导出（当前版）
-    items = build_docs()
+    items = build_docs(commit)
     report = []
     for it in items:
         data = git_show(it['commit'], it['src'])
         dst = os.path.join(docsdir, it['out'])
         with open(dst, 'wb') as f:
             f.write(data)
-        # 字节保真核对：写回后再读，与 git 原始字节的 sha256 一致
         with open(dst, 'rb') as f:
             written = f.read()
         it['sha256'] = sha256(written)
@@ -200,15 +229,18 @@ def main():
                          byte_preserved=(written == data)))
     report = report + hist
 
-    # 4) 核对：任务5 正式交付物齐全 + 字节保真
-    by_ci = {}
-    for it in report:
-        by_ci.setdefault(it['ci'], []).append(it)
-    task5 = [dict(ci=c, present=(c in by_ci),
-                  files=[(x['out'], x['sha256'][:12]) for x in by_ci.get(c, [])]) for c in TASK5]
+    # 4) 核对：任务5 正式交付物齐全（精确文件路径，缺项返回非零）+ 字节保真
     all_byte_ok = all(it['byte_preserved'] for it in report)
+    task5 = []
+    task5_missing = []
+    for label, path in TASK5_FORMAL.items():
+        p = git(['cat-file', '-e', '%s:%s' % (commit, path)])
+        present = (p.returncode == 0)
+        task5.append(dict(label=label, path=path, present=present))
+        if not present:
+            task5_missing.append((label, path))
 
-    # 5) 与发布清单哈希交叉核对（openapi / demo / 迁移脚本）
+    # 5) 与发布清单哈希交叉核对（openapi / demo）
     cross = {}
     for label, path, expected in [
         ('openapi-contract', 'contracts/openapi.yaml', '4ee84d2111a489d83b28e4d4e41969c2fb8c38bf476d3beb86d84d3039eef5c7'),
@@ -234,11 +266,14 @@ def main():
     print('out=%s' % outdir)
     print('文档件数=%d（含历史版本 %d 件）' % (len(report), len(hist)))
     print('字节保真逐件通过=%s' % all_byte_ok)
-    print('任务5正式交付物：%s' % ('齐全' if all(t['present'] for t in task5) else '缺失'))
+    print('任务5正式交付物：%s' % ('齐全' if not task5_missing else '缺失 %d 件' % len(task5_missing)))
     for t in task5:
-        print('  %s %s' % (t['ci'], 'OK' if t['present'] else 'MISSING'))
+        print('  [%s] %s : %s' % ('OK' if t['present'] else '缺', t['label'], t['path']))
     for k, v in cross.items():
         print('  哈希交叉核对 %s: %s' % (k, '匹配' if v['match'] else '不匹配(%s...)' % v['actual'][:12]))
+    if task5_missing:
+        print('导出不完整：任务5正式交付物缺失，不能作为最终课程包（退出码 2）。')
+        sys.exit(2)
 
 
 if __name__ == '__main__':

@@ -39,7 +39,7 @@
 | `CS-CI-DOC-62_v0.1_UI接口接入矩阵.md` | `docs/ui/api-matrix.md` | v0.1 | 界面设计师 |
 | `CS-CI-DOC-63_用户界面说明文档.docx` | `docs/ui/T08_用户界面说明文档.docx` | — | 界面设计师 |
 | `CS-CI-DOC-20_v0.2_测试计划.md` | `docs/testing/test-plan.md` | v0.2 | 测试经理 |
-| `CS-CI-DOC-21_v0.2_测试设计.md`（结构化用例） | `docs/testing/test-design.md` | v0.2 | 测试经理 |
+| `CS-CI-DOC-21_v0.2_测试设计.md` | `docs/testing/test-design.md` | v0.2 | 测试经理 |
 | `CS-CI-DOC-22_v0.2_测试数据设计.md` | `docs/testing/test-data-plan.md` | v0.2 | 测试经理 |
 | `CS-CI-DOC-23_测试ID需求清单.md` / `CS-CI-DOC-26_PR评审清单.md` | `docs/testing/testid-requirements.md`、`pr-review-checklist.md` | — | 测试经理 |
 | `CS-CI-DOC-24_v3.0_需求覆盖矩阵.md` | `docs/testing/coverage-matrix.md` | v3.0 | 测试经理 |
@@ -60,11 +60,14 @@
 python release/export.py --commit <提交> --out <导出目录>
 ```
 
-脚本实际执行以下三步，全部经 Git 还原、**字节保真**：
+脚本行为（全部经 Git 还原、**字节保真**）：
 
-1. **整库快照**：`git archive --format=tar <commit>` 抽出完整源码与工程树（`campus-sched-完整快照/`），与提交字节一致，可复现。
-2. **文档重命名**：按 §2 映射，逐件 `git show <commit>:<路径>` 取原始字节写为 `配置项文档/<编号>_v<版本>_<中文名>.<扩展名>`；二进制（docx/pdf/drawio/png）不经文本转码，与版本库 blob 字节一致。
-3. **历史版本同目录**：对存在历史版本的文档，从显式 commit 另取旧版写入同一目录，以 `_v<版本>` 区分；核验结果写入 `export-report.json`（含每件 sha256、任务 5 正式交付物清单、与 `manifest.json` 哈希交叉核对）。
+1. **提交锁定**：`--commit`（默认 `HEAD`）先经 `git rev-parse <ref>^{commit}` 解析为**唯一提交 SHA**；归档、当前工件读取与报告记录均用该 SHA，不在同一导出目录混入不同提交。
+2. **整库快照**：`git archive --format=tar <SHA>` 抽出完整源码与工程树（`campus-sched-完整快照/`），与提交字节一致，可复现。
+3. **文档重命名**：按 §2 映射，逐件 `git show <SHA>:<路径>` 取原始字节写为 `配置项文档/<编号>_v<版本>_<中文名>.<扩展名>`；二进制（docx/pdf/drawio/png）不经文本转码，与版本库 blob 字节一致。
+4. **历史版本同目录**：对存在历史版本的文档，从显式 commit 另取旧版写入同一目录，以 `_v<版本>` 区分。
+5. **任务 5 正式交付物核验**：按 §4.2 精确文件路径逐件核验，缺项打印明细并**返回退出码 2**（不「假通过」）。
+6. **输出目录安全**：`--out` 若指向已存在的非空目录或文件，直接拒绝退出（不递归删除），请另选唯一输出目录。
 
 二进制逐件核验示例（等价于脚本内部实现，可直接单独复现）：
 
@@ -74,15 +77,36 @@ git show HEAD:docs/ui/user-manual.pdf            > CS-CI-DOC-64_v0.2_用户手�
 git show HEAD:models/activity/首次资源确认活动图.drawio > CS-CI-MODEL-01_v1.0_首次资源确认活动图.drawio
 ```
 
-## 4. 历史版本对照（版本 ↔ Git commit）
+## 4. 历史版本与任务 5 正式交付物
 
-历史版本不靠手工另存，而是从 Git 逐件还原（见 §3 第 3 步）。各文档版本与 commit 的对应见文档头部「修订历史」；当前演示的历史版本（与当前版同目录并存）：
+### 4.1 历史版本对照（版本 ↔ Git commit）
+
+历史版本不靠手工另存，而是从 Git 逐件还原（见 §3 第 4 步）。版本↔commit 以各文档头部「修订历史」为准，不臆造；当前纳入的历史版本（与当前版同目录并存）：
 
 | 文档 | 历史版本 | 对应 commit | 当前版本 | 对应 commit |
 |---|---|---|---|---|
-| 配置管理计划 | v1.6 | `2981c37` | v1.7 | 本轮提交（导出时 `HEAD`） |
+| 配置管理计划（Markdown） | v1.6 | `2981c37` | v1.7 | 本轮提交（导出时解析为 SHA） |
+| 配置管理计划（Word 课程提交版） | v1.6 | `2981c37` | v1.7 | 本轮提交（导出时解析为 SHA） |
 
-其余文档如需历史版本，同法用 `git show <commit>:<路径>` 还原，版本↔commit 以该文档「修订历史」为准，不臆造。
+其余有可追溯版本的正式文档同法用 `git show <commit>:<路径>` 还原。
+
+### 4.2 任务 5 正式交付物核验（精确文件路径）
+
+任务 5（测试）正式交付物按下列**精确文件路径**核验，缺项返回退出码 2：
+
+| 交付物 | 路径 | 状态（截至 main） |
+|---|---|---|
+| 测试计划 Word | `docs/testing/T08_软件测试计划.docx` | 已入库 |
+| 测试设计 Markdown v1.0 | `docs/testing/test-design-v1.0.md` | **待 PR #23 合入** |
+| 测试设计 Word | `docs/testing/T08_任务5_软件测试设计.docx` | **待 PR #23 合入** |
+| 结构化用例 JSON | `test-data/test-design-cases-v1.0.json` | **待 PR #23 合入** |
+| 测试数据设计 | `docs/testing/test-data-plan.md` | 已入库 |
+| 需求覆盖矩阵 | `docs/testing/coverage-matrix.md` | 已入库 |
+| 缺陷登记表 | `docs/testing/defect-register.md` | 已入库 |
+| 测试报告 Word | `docs/testing/T08_软件测试报告.docx` | 已入库 |
+| 测试报告 Markdown | `docs/testing/test-report.md` | 已入库 |
+
+> 说明：任务 5「软件测试设计」三件正式交付物（Markdown v1.0、Word、结构化用例 JSON）已由测试经理在 `work/55230316-qa`（提交 `26c5dad`，PR #23）产出，尚未合入 main，故当前导出核验会因缺项返回退出码 2。属测试经理/项目经理交付依赖，配置经理不代产、不代合。
 
 ## 5. 与发布清单/索引的关系
 
