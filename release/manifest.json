@@ -15,7 +15,7 @@
   },
   "components": [
     { "name": "server", "artifact": "server/", "version": "0.1.0-SNAPSHOT", "sha256": "e60ba9f94fe32b3d6be8e6fb03128f4d380d8487b95bc9087bb9b7dd0e640b55", "note": "pom.xml 校验值" },
-    { "name": "web", "artifact": "web/", "version": "0.1.0", "sha256": "9010d41210605d4a96f59b9b22cf9e3331000ff641a9ead24b95daa9094082e5", "note": "package.json 校验值" },
+    { "name": "web", "artifact": "web/", "version": "0.1.0", "sha256": "192a0635b89bc8a8b2e4663e9eaa4cd8cd4c294c546bae29dcd6eae006fdcc3c", "note": "package.json 校验值" },
     { "name": "qa", "artifact": "qa/", "version": "—", "sha256": null, "note": "Playwright E2E 与契约检查工程" },
     { "name": "openapi-contract", "artifact": "contracts/openapi.yaml", "version": "40 接口", "sha256": "4ee84d2111a489d83b28e4d4e41969c2fb8c38bf476d3beb86d84d3039eef5c7" },
     { "name": "migration-v1", "artifact": "server/src/main/resources/db/migration/V1__schema.sql", "version": "V1", "sha256": "f05ff82fa0fcb3959f7a2031e25ed72d91e882224da0f5a68ed45b766d9f3a95", "note": "22 表契约 schema" },
@@ -23,8 +23,8 @@
     { "name": "demo-data", "artifact": "test-data/demo.json", "version": "—", "sha256": "b29450bf4d40473f5d6db8e33b40f9d2d203af07f8f8f6a4b1476fc8936d8130", "note": "演示账号/组织/资源（不含密码）" }
   ],
   "models": [
-    { "id": "CS-CI-MODEL-01", "name": "首次资源确认活动图（UC-08）", "artifact": "models/activity/首次资源确认活动图.drawio（+ .png）", "version": "—" },
-    { "id": "CS-CI-MODEL-02", "name": "首次活动申请与发布用例图（UC-05~09）", "artifact": "models/use-case/首次活动申请与发布用例图.drawio（+ .png）", "version": "—" }
+    { "id": "CS-CI-MODEL-01", "name": "首次资源确认活动图（UC-08）", "artifact": "models/activity/首次资源确认活动图.drawio（+ .png）", "version": "v1.0" },
+    { "id": "CS-CI-MODEL-02", "name": "首次活动申请与发布用例图（UC-05~09）", "artifact": "models/use-case/首次活动申请与发布用例图.drawio（+ .png）", "version": "v1.0" }
   ],
   "docs": {
     "taskbook": "v3.0",
