@@ -2,7 +2,9 @@
 
 ## 当前交付状态
 
-用户在完成两项自查修正后明确授权提交。已提交并推送`624d235c4e978b306827cccb446c5cca9a5cd4be`，创建草稿[PR #27](https://github.com/Rito-492/campus-sched/pull/27)，来源`ychangz1:work/17231018-ui`，目标`Rito-492/campus-sched:main`。首个提交包含221个文件；本段及提交记录另以文档提交补入同一PR。当前等待独立交叉评审，尚未批准、接收或合并。
+用户在完成两项自查修正后明确授权提交。已提交并推送`624d235c4e978b306827cccb446c5cca9a5cd4be`，创建[PR #27](https://github.com/Rito-492/campus-sched/pull/27)，来源`ychangz1:work/17231018-ui`，目标`Rito-492/campus-sched:main`。首个提交包含221个文件，交付记录随后补入同一PR。项目经理已对cb5cbd7完成[草稿技术评审](https://github.com/Rito-492/campus-sched/pull/27#pullrequestreview-5901778021)，独立检查通过，状态为COMMENTED；正式批准、接收或合并尚未发生。
+
+本轮按评审意见将手册交付说明、验证报告中的“尚未创建PR”等表述明确标为历史状态，并同步接口矩阵和界面说明的当前交付状态。仅修改文档，生产代码、测试、Word/PDF成品及历史原始证据未变，未重复运行或增加测试计数；后续进入Ready后的正式合并评审。PR实际阶段以GitHub页面为准。
 
 提交前核对远端main仍为750763b，85项修正后文件哈希一致；候选凭据值扫描0命中，源码及文档空白检查通过。原始日志保留工具自身的尾随空白，不为消除提示修改历史证据；Git对文本按仓库设置规范化换行，历史manifest仍描述当时工作区字节。提交记录见`artifacts/test-results/ui-local-review-2026-11-14/submission.json`。下方“暂停/尚未提交”描述均为提交前过程记录，以本节为准。
 
