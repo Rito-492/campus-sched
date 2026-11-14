@@ -3,7 +3,7 @@
   "baseline": "baseline/release-v1.0.0",
   "baselineStatus": "待建立（待授权：PR #29 合入 main 后由 CCB 冀项阳授权并打 tag；合入前评审/导出候选为 work/55231031-change 最新提交，见 docs/configuration/configuration-index.md §3）",
   "commit": "cbf49455660311e99e4a40aa5c45ff2c6d38b0a2",
-  "commitNote": "上列 commit 为旧验证基准（main cbf4945，QA 2026-11-13 全量 verify 基准，不含本 PR work/55231031-change 的发布文件）。最终归档课程包及工件的提交 SHA 以实际发布标签 baseline/release-v1.0.0 经 git rev-parse 解析为准（待 CCB 授权后打 tag 再登记）。",
+  "commitNote": "上列 commit 为本分支 work/55231031-change 的主线起点（main cbf4945，含 PR #27 用户手册合入，不含本 PR 的发布文件）。QA 2026-11-13 全量 verify 基线为更早的 main e1051df（含 CM #21），结果与证据见 tests。最终归档课程包及工件的提交 SHA 以实际发布标签 baseline/release-v1.0.0 经 git rev-parse 解析为准（待 CCB 授权后打 tag 再登记）。",
   "generatedAt": "2026-11-14",
   "author": "杨瀚霖（55231031，配置经理）",
   "environment": {

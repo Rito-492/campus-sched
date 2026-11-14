@@ -340,7 +340,7 @@ def main():
     print('发布清单哈希校验（release/manifest.json @ %s）：' % commit)
     print('  清单声明 commit=%s（%s）' % (
         manifest_declared,
-        '与本导出候选一致' if manifest_declared == commit else '旧验证基准，最终以发布标签解析 SHA 为准'))
+        '与本导出候选一致' if manifest_declared == commit else '本分支主线起点（非导出候选），最终以发布标签解析 SHA 为准'))
     if manifest.get('commitNote'):
         print('  清单说明：%s' % manifest['commitNote'])
     for v in cross:

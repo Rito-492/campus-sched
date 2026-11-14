@@ -148,4 +148,4 @@ git show HEAD:models/activity/首次资源确认活动图.drawio > CS-CI-MODEL-0
 - 编号、版本、路径、负责人以 `docs/configuration/configuration-index.md` 为唯一登记处；本清单是它在「课程导出目录」上的落点映射，不作第二事实来源。
 - 发布内容与校验值见 `release/manifest.json`；干净启动步骤见 `release/README.md`。
 - 导出目录中的历史版本副本一律由 §3 脚本从 Git 还原生成，**不**在版本库中重复存副本（避免与 Git 历史双写不一致）；生成脚本 `release/export.py` 本身纳入版本库（并入 CS-CI-REL-01）。
-- **发布提交口径**：`release/manifest.json` 的 `commit` 字段当前为**旧验证基准**（main `cbf4945`，QA 全量 verify 基准，不含本 PR 发布文件）；最终归档课程包及工件的提交 SHA 以实际发布标签 `baseline/release-v1.0.0` 经 `git rev-parse` 解析为准（待 CCB 授权后打 tag 再登记）。导出脚本会在报告中将「清单声明 commit」与「本次导出候选 SHA」分别标注，二者不一致时提示「旧验证基准」。
+- **发布提交口径**：`release/manifest.json` 的 `commit` 字段当前为**本分支主线起点**（main `cbf4945`，含 PR #27 用户手册合入，不含本 PR 发布文件）；QA 2026-11-13 全量 verify 基线为更早的 main `e1051df`（含 CM #21），结果与证据见 manifest `tests`。最终归档课程包及工件的提交 SHA 以实际发布标签 `baseline/release-v1.0.0` 经 `git rev-parse` 解析为准（待 CCB 授权后打 tag 再登记）。导出脚本会在报告中将「清单声明 commit」与「本次导出候选 SHA」分别标注，二者不一致时提示「本分支主线起点（非导出候选）」。
