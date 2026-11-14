@@ -20,6 +20,7 @@ import {
   DEMO_DATE,
   RESOURCES,
   TESTID,
+  UI_TESTID,
   USERS,
   USER_IDS,
   apiClose,
@@ -105,10 +106,12 @@ test.describe('D-AT-03 首次预约主线（新建→编辑→提交→批准→
         expect(activity.status, '提交后应 PENDING_APPROVER（02 §2）').toBe('PENDING_APPROVER');
 
         // 4) reload 持久化：提交状态来自真实后端而非内存
+        //    活动状态 badge 用 statusLabels 中文（PENDING_APPROVER→「待批准」，format.ts），
+        //    exact 匹配 badge 文案，避开「草稿 → 待批准 → …」常驻说明段落的假阳性
         await applicant.page.goto(`/activities/${activityId}`);
-        await expect(applicant.page.getByText(/PENDING_APPROVER|待批准人审批|待审批/).first()).toBeVisible();
+        await expect(applicant.page.getByText('待批准', { exact: true })).toBeVisible();
         await applicant.page.reload();
-        await expect(applicant.page.getByText(/PENDING_APPROVER|待批准人审批|待审批/).first()).toBeVisible();
+        await expect(applicant.page.getByText('待批准', { exact: true })).toBeVisible();
 
         // 5) 首次资源确认前：0 条 ACTIVE 预约（D-AT-03 关键断言）
         expect(await calendarEntriesFor(ownerApi, activityId), '资源确认前不得有预约占用').toEqual([]);
@@ -145,22 +148,25 @@ test.describe('D-AT-03 首次预约主线（新建→编辑→提交→批准→
           '资源确认后应出现器材 3202 的 ACTIVE 预约且数量完整',
         ).toBe(true);
 
-        // 8) applicant_a 发布（无公共 testid，用可访问名称）→ OPEN
-        const publishButton = applicant.page.getByRole('button', { name: /发布/ });
+        // 8) applicant_a 发布（05 §4 之外 UI 扩展 testid activity-publish）→ OPEN
         await applicant.page.goto(`/activities/${activityId}`);
+        const publishButton = applicant.page.getByTestId(UI_TESTID.activityPublish);
         await publishButton.click();
-        await expect(applicant.page.getByText(/OPEN|报名中/).first()).toBeVisible();
+        // OPEN 的 badge 文案为「开放报名」（format.ts statusLabels），exact 匹配避开常驻说明段落
+        await expect(applicant.page.getByText('开放报名', { exact: true })).toBeVisible();
         expect((await getActivity(ownerApi, activityId)).status, '发布后应 OPEN（02 §2）').toBe('OPEN');
 
-        // 9) student_a 登录并报名（报名入口 testid 待 UI 提供，见 handoff，用可访问名称）
+        // 9) student_a 登录并报名（报名入口为 UI 扩展 testid registration-submit）
         const student = await openSession(browser, USERS.studentA);
         sessions.push(student);
         await student.page.goto(`/activities/${activityId}`);
-        await student.page.getByRole('button', { name: /报名|参加/ }).first().click();
+        await student.page.getByTestId(UI_TESTID.registrationSubmit).click();
         await expect(student.page.getByText(/报名成功|已报名|ACTIVE/).first()).toBeVisible();
 
-        // 10) 断言名额与状态：报名 ACTIVE、计数 1 且不超过 registrationCapacity
-        const registrations = await readRegistrations(studentApi, activityId);
+        // 10) 断言名额与状态：报名 ACTIVE、计数 1 且不超过 registrationCapacity。
+        //     API-23 完整报名名单仅所有者/授权角色可读（D-AT-21）：
+        //     名单用 ownerApi 读取，学生只断言 myRegistrationStatus，不以学生身份取名单。
+        const registrations = await readRegistrations(ownerApi, activityId);
         const mine = registrations.find((r) => r.userId === USER_IDS.studentA);
         expect(mine?.status, 'student_a 报名应为 ACTIVE').toBe('ACTIVE');
         expect((await getActivity(studentApi, activityId)).myRegistrationStatus, '本人报名状态应为 ACTIVE').toBe('ACTIVE');

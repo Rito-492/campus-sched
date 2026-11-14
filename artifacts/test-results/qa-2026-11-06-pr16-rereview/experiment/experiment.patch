@@ -1,0 +1,80 @@
+diff --git a/server/src/main/java/com/campus/events/activity/ActivityService.java b/server/src/main/java/com/campus/events/activity/ActivityService.java
+index cebb6c4..c7816b3 100644
+--- a/server/src/main/java/com/campus/events/activity/ActivityService.java
++++ b/server/src/main/java/com/campus/events/activity/ActivityService.java
+@@ -138,7 +138,7 @@ public class ActivityService {
+         // 保证此处读取的versionNo就是提交时冻结的版本，不从客户端接受另一个审批版本。
+         transition(row,s->ActivityStateMachine.decide(s,row.versionNo(),ActivityStateMachine.Decision.valueOf(command.decision().name())),null);
+         activities.approval(row,latest.id(),command);
+-        event(row,latest,command.decision()==Decision.APPROVE?"ACTIVITY_APPROVED":"ACTIVITY_REJECTED",command.comment(),List.of());
++        event(row,latest,command.decision()==Decision.APPROVE?"ACTIVITY_APPROVED":"ACTIVITY_REJECTED",command.comment().isBlank()?"活动审批决定（仅解阻实验）":command.comment(),List.of());
+         return http(activities.get(id),latest);
+     }
+     @Transactional(propagation=Propagation.MANDATORY) public ActivityView confirm(Actor actor,UUID id,VersionCommand command) {
+diff --git a/server/src/main/java/com/campus/events/change/ChangeService.java b/server/src/main/java/com/campus/events/change/ChangeService.java
+index 9013dac..bebbc81 100644
+--- a/server/src/main/java/com/campus/events/change/ChangeService.java
++++ b/server/src/main/java/com/campus/events/change/ChangeService.java
+@@ -191,9 +191,9 @@ public class ChangeService {
+         var activity = snapshot.activity();
+         owner(activity, actor);
+         if (activity.lockVersion() != command.expectedLockVersion())
+-            throw new ApiException(409, "STALE_VERSION", "活动已被其他操作修改");
++            throw new ApiException(409, "STALE_VERSION", "活动已被其他操作修改", Map.of("versionNo", activity.versionNo(), "lockVersion", activity.lockVersion()));
+         if (command.baseVersionNo() != activity.versionNo())
+-            throw new ApiException(409, "STALE_VERSION", "活动版本已变化");
++            throw new ApiException(409, "STALE_VERSION", "活动版本已变化", Map.of("versionNo", activity.versionNo(), "lockVersion", activity.lockVersion()));
+         if (activity.status() != ActivityStatus.SCHEDULED && activity.status() != ActivityStatus.OPEN)
+             throw new ApiException(409, "INVALID_STATE", "当前活动不可创建改期");
+         future(activity);
+diff --git a/server/src/test/java/com/campus/events/acceptance/PermissionsIT.java b/server/src/test/java/com/campus/events/acceptance/PermissionsIT.java
+index 8e85f90..3095228 100644
+--- a/server/src/test/java/com/campus/events/acceptance/PermissionsIT.java
++++ b/server/src/test/java/com/campus/events/acceptance/PermissionsIT.java
+@@ -362,7 +362,7 @@ class PermissionsIT {
+         assertEquals("STALE_VERSION", r1.errorCode());
+         assertTrue(r1.body().hasNonNull("requestId"));
+         assertTrue(r1.error().hasNonNull("message"));
+-        assertTrue(r1.error().path("details").isObject(), "错误信封details允许为空对象");
++        assertStaleVersionDetails(r1.error().path("details"), currentVersion, currentLock, "OPEN");
+         assertEquals(currentVersion, readActivityVersion(owner, activityId), "冲突后重新GET内容版本不变");
+         assertEquals(currentLock, readActivityLockVersion(owner, activityId), "冲突后重新GET锁版本不变");
+ 
+@@ -375,7 +375,7 @@ class PermissionsIT {
+         assertEquals("STALE_VERSION", r2.errorCode());
+         assertTrue(r2.body().hasNonNull("requestId"));
+         assertTrue(r2.error().hasNonNull("message"));
+-        assertTrue(r2.error().path("details").isObject(), "错误信封details允许为空对象");
++        assertStaleVersionDetails(r2.error().path("details"), currentVersion, currentLock, "OPEN");
+         assertEquals(currentVersion, readActivityVersion(owner, activityId), "旧锁版本请求后重新GET内容版本不变");
+         assertEquals(currentLock, readActivityLockVersion(owner, activityId), "旧锁版本请求后重新GET锁版本不变");
+ 
+@@ -569,6 +569,28 @@ class PermissionsIT {
+         return readActivityFieldInt(token, activityId, "versionNo");
+     }
+ 
++    /**
++     * 02 §3行196：适用本场景的409 details至少含当前versionNo/lockVersion/status之一（不锁定唯一字段），
++     * 且返回的每项都必须与重新GET所得当前值一致，避免陈旧值冒充。
++     */
++    private void assertStaleVersionDetails(JsonNode details, int versionNo, int lockVersion, String status) {
++        assertTrue(details.isObject(), "错误信封details应为对象");
++        boolean hasVersion = details.hasNonNull("versionNo");
++        boolean hasLock = details.hasNonNull("lockVersion");
++        boolean hasStatus = details.hasNonNull("status");
++        assertTrue(hasVersion || hasLock || hasStatus,
++                "STALE_VERSION details 至少返回当前versionNo/lockVersion/status之一：" + details);
++        if (hasVersion) {
++            assertEquals(versionNo, details.path("versionNo").asInt(), "details.versionNo 必须为当前内容版本");
++        }
++        if (hasLock) {
++            assertEquals(lockVersion, details.path("lockVersion").asInt(), "details.lockVersion 必须为当前锁版本");
++        }
++        if (hasStatus) {
++            assertEquals(status, details.path("status").asText(), "details.status 必须为当前状态");
++        }
++    }
++
+     private int readActivityFieldInt(String token, String activityId, String field) {
+         HttpResult r = call(HttpMethod.GET, "/api/v1/activities/" + activityId, token, null, null);
+         assertEquals(200, r.status(), () -> "读取活动失败：" + r.body());

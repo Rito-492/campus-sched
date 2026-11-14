@@ -1,0 +1,78 @@
+npm notice run campus-sched-qa@0.1.0 test:e2e
+npm notice run playwright test change-conflict.spec.ts -g TC-09-2|TC-18-1 --workers=1
+
+Running 2 tests using 1 worker
+
+(node:11453) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [desktop] › tests/change-conflict.spec.ts:129:3 › D-AT-09 改期冲突与替代方案（UI） › TC-09-2 预览同时展示场地占用与器材缺件，首选替代为 3102+3202×2 同时间 (11.9s)
+(node:11537) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [desktop] › tests/change-conflict.spec.ts:311:3 › D-AT-18 资源故障与风险提示 › TC-18-1 故障使 A 原安排标 AT_RISK，页面展示风险提示且不谎报可用 (11.2s)
+
+
+  1) [desktop] › tests/change-conflict.spec.ts:129:3 › D-AT-09 改期冲突与替代方案（UI） › TC-09-2 预览同时展示场地占用与器材缺件，首选替代为 3102+3202×2 同时间 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByTestId('alternative-0')
+    Expected pattern: /首选/
+    Received string:  "选择并查看影响"
+    Timeout: 10000ms
+
+    Call log:
+      - Expect "toContainText" getByTestId('alternative-0') with timeout 10000ms
+      - waiting for getByTestId('alternative-0')
+        24 × locator resolved to <button type="button" class="el-button" aria-disabled="false" data-testid="alternative-0">…</button>
+           - unexpected value "选择并查看影响"
+
+
+      151 |         await expect(alternative0).toBeVisible();
+      152 |         // 05 §3：首个方案标「当前排序首选」，不能写全局最优
+    > 153 |         await expect(alternative0).toContainText(/首选/);
+          |                                    ^
+      154 |         // 首选替代：同时间 15:00，换场地 3102、换器材 3202×2
+      155 |         await expect(alternative0).toContainText(RESOURCES.venueB.name);
+      156 |         await expect(alternative0).toContainText(RESOURCES.equipmentB.name);
+        at /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/change-conflict.spec.ts:153:36
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../artifacts/test-results/e2e-raw/change-conflict-D-AT-09-改期-34183-与器材缺件，首选替代为-3102-3202×2-同时间-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../artifacts/test-results/e2e-raw/change-conflict-D-AT-09-改期-34183-与器材缺件，首选替代为-3102-3202×2-同时间-desktop/error-context.md
+
+  2) [desktop] › tests/change-conflict.spec.ts:311:3 › D-AT-18 资源故障与风险提示 › TC-18-1 故障使 A 原安排标 AT_RISK，页面展示风险提示且不谎报可用 
+
+    Error: 页面应展示 AT_RISK/风险提示
+
+    expect(locator).toBeVisible() failed
+
+    Locator: getByText(/AT_RISK|资源风险|受影响|不可用/).first()
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+      - 页面应展示 AT_RISK/风险提示 getByText(/AT_RISK|资源风险|受影响|不可用/).first() with timeout 10000ms
+      - waiting for getByText(/AT_RISK|资源风险|受影响|不可用/).first()
+
+
+      349 |           organizer.page.getByText(/AT_RISK|资源风险|受影响|不可用/).first(),
+      350 |           '页面应展示 AT_RISK/风险提示',
+    > 351 |         ).toBeVisible();
+          |           ^
+      352 |         await expect(
+      353 |           organizer.page.getByText(/可正常使用|安排正常/),
+      354 |           '页面不得把原安排显示为可正常使用',
+        at /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/qa/tests/change-conflict.spec.ts:351:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../artifacts/test-results/e2e-raw/change-conflict-D-AT-18-资源-1b1f4-原安排标-AT-RISK，页面展示风险提示且不谎报可用-desktop/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../artifacts/test-results/e2e-raw/change-conflict-D-AT-18-资源-1b1f4-原安排标-AT-RISK，页面展示风险提示且不谎报可用-desktop/error-context.md
+
+  2 failed
+    [desktop] › tests/change-conflict.spec.ts:129:3 › D-AT-09 改期冲突与替代方案（UI） › TC-09-2 预览同时展示场地占用与器材缺件，首选替代为 3102+3202×2 同时间 
+    [desktop] › tests/change-conflict.spec.ts:311:3 › D-AT-18 资源故障与风险提示 › TC-18-1 故障使 A 原安排标 AT_RISK，页面展示风险提示且不谎报可用 

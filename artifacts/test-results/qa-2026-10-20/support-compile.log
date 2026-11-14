@@ -1,0 +1,3 @@
+Command: javac -cp <Maven test dependency classpath> -d /tmp/opencode/qa-support-probe server/src/test/java/com/campus/events/support/DbTestSupport.java server/src/test/java/com/campus/events/support/DbTestSupportIT.java artifacts/test-results/qa-2026-10-20/DbSupportProbe.java
+Exit code: 0
+Compiler output: none

@@ -1,0 +1,68 @@
+{
+  "checkedAt": "2026-11-14T04:09:59.535383+00:00",
+  "documentDate": "2026-11-11",
+  "verificationDate": "2026-11-14",
+  "baseline": "750763b721ca999c454ac730d9876583b40ad202",
+  "pages": 18,
+  "chapters": 16,
+  "headings": [
+    "1 使用须知",
+    "2 角色权限与页面导航",
+    "3 登录与活动工作台",
+    "4 创建活动草稿",
+    "5 编辑草稿与检查资源",
+    "6 提交审批与首次资源预约",
+    "7 发布报名撤回与取消",
+    "8 查询资源日历",
+    "9 资源创建资格与故障管理",
+    "10 创建改期申请",
+    "11 处理改期与核对生效",
+    "12 通知与人员历史记录",
+    "13 账号创建启停与完整授权",
+    "14 异常提示与恢复操作",
+    "15 状态说明与当前已知限制",
+    "16 附录与文档维护"
+  ],
+  "pdfBookmarks": 65,
+  "tocLinks": 16,
+  "sourceTextMissingFromPdf": [],
+  "originalT08Unchanged": true,
+  "trackedChanges": 0,
+  "commentParts": 0,
+  "credentialMatches": 0,
+  "renderMethod": "Microsoft Word native PDF export; packaged render_docx.py rasterization with a native-PDF conversion adapter because LibreOffice is absent",
+  "visualReview": {
+    "pagesInspectedThisRevision": [
+      9
+    ],
+    "otherFinalPagesIdenticalToInspectedRender": 17,
+    "result": "Registration button corrected on page 9; all other pages identical to previously inspected final render"
+  },
+  "files": [
+    {
+      "path": "docs/ui/user-manual.md",
+      "bytes": 33764,
+      "sha256": "3709b4c3efa7924b959ceca7371ac07467cdd9a2e1c3a9bedb8974fc6e6a0286"
+    },
+    {
+      "path": "docs/ui/user-manual-v0.2-2026-11-11.docx",
+      "bytes": 263468,
+      "sha256": "86e93b3e5a9e9cb909c9d8c7210db0523532753e77bc696c8349a6b7858703d7"
+    },
+    {
+      "path": "docs/ui/user-manual.pdf",
+      "bytes": 406968,
+      "sha256": "01b8ab13e46986c956aefdf5683a9864031698e0769f7fc1bc27c47e895486ce"
+    }
+  ],
+  "changedRenderedPages": [
+    9
+  ],
+  "coverNameAndStudentIdRetained": true,
+  "removedCoverMetadataAbsent": true,
+  "embeddedImagesInWord": 2,
+  "pdfImagePages": [
+    8,
+    10
+  ]
+}

@@ -44,6 +44,7 @@ import {
   resourceConfirmActivity,
   submitActivity,
   approverDecideActivity,
+  cancelActivity,
   type ActivityInputDto,
   type ApiSession,
   type PlanDto,
@@ -71,10 +72,11 @@ async function createFeasibleChange(api: ApiSession): Promise<string> {
 }
 
 /** 另一申请人 applicant_b 创建并确认一个真实占用首选资源的活动（预览后抢占）。 */
-async function preemptPreferredResources(): Promise<void> {
+async function preemptPreferredResources(): Promise<string> {
   const owner = await apiLogin(USERS.applicantB);
   const approver = await apiLogin(USERS.approverA);
   const resource = await apiLogin(USERS.resourceAdmin);
+  let createdId: string | null = null;
   try {
     const input: ActivityInputDto = {
       title: 'D-AT-12 抢占活动（测试数据）',
@@ -92,22 +94,42 @@ async function preemptPreferredResources(): Promise<void> {
       ),
     };
     let created = await createActivity(owner, input);
+    createdId = created.id;
     created = await submitActivity(owner, created.id, created.lockVersion);
     created = await approverDecideActivity(approver, created.id, 'APPROVE', created.lockVersion);
     created = await resourceConfirmActivity(resource, created.id, created.lockVersion);
     expect(created.status, '抢占活动应 SCHEDULED 以真实占用候选资源').toBe('SCHEDULED');
+    return created.id;
+  } catch (error) {
+    // 抢占准备失败也不留下共享资源占用：尽力取消已创建活动后重抛原错误。
+    if (createdId) {
+      try {
+        const current = await getActivity(owner, createdId);
+        await cancelActivity(owner, createdId, current.lockVersion, 'D-AT-12 抢占准备失败清理（测试数据）');
+      } catch {
+        // 保留原始失败，不掩盖真正原因。
+      }
+    }
+    throw error;
   } finally {
     await apiClose([owner, approver, resource]);
   }
 }
 
-/** 拒绝改期（05 §3：拒绝需填理由；弹窗字段 testid 待 UI 提供，见 handoff，用 dialog 语义定位）。 */
+/**
+ * 拒绝改期（05 §3：拒绝需填理由；docs/ui/real-integration-2026-10-31.md「QA接收路径」：
+ * change-reject → 弹窗 reject-reason（理由必填）→ reject-confirm；改期不同步骤互斥，
+ * change-reject 只对应当前可处理步骤）。
+ */
 async function rejectChangeViaUi(page: Page, reason: string): Promise<void> {
-  await page.getByRole('button', { name: /拒绝|驳回/ }).click();
+  await page.getByTestId('change-reject').click();
   const dialog = page.getByRole('dialog');
   await expect(dialog).toBeVisible();
-  await dialog.getByLabel(/理由|原因/).fill(reason);
-  await dialog.getByRole('button', { name: /确定|确认|提交/ }).click();
+  await expect(dialog, '拒绝弹窗应有标题「拒绝改期」').toContainText('拒绝改期');
+  // 理由必填：未填理由时确认按钮保持禁用（05 §3 / 契约 reason 必填）
+  await expect(page.getByTestId('reject-confirm'), '未填理由时不得允许确认拒绝').toBeDisabled();
+  await page.getByTestId('reject-reason').fill(reason);
+  await page.getByTestId('reject-confirm').click();
 }
 
 /** 原安排保留：活动仍是 version1，仍为原场地（3101）与原时间（10:00）。 */
@@ -140,14 +162,18 @@ test.describe('D-AT-09 改期冲突与替代方案（UI）', () => {
         // EQUIPMENT_SHORTAGE：3201 库存 2 − B 占 1 = 可用 1 < 需求 2
         await expect(conflictList).toContainText(RESOURCES.equipmentA.name);
 
-        const alternative0 = organizer.page.getByTestId(TESTID.alternative0);
-        await expect(alternative0).toBeVisible();
+        // alternative-0 testid 在「选择并查看影响」按钮上（AlternativesPanel.vue:62），
+        // 方案文案在所属方案卡片（article）内；必须定位卡片，不能对按钮断言方案内容。
+        const alternativeCard = organizer.page
+          .getByTestId(TESTID.alternative0)
+          .locator('xpath=ancestor::article[1]');
+        await expect(alternativeCard).toBeVisible();
         // 05 §3：首个方案标「当前排序首选」，不能写全局最优
-        await expect(alternative0).toContainText(/首选/);
+        await expect(alternativeCard).toContainText('当前排序首选');
         // 首选替代：同时间 15:00，换场地 3102、换器材 3202×2
-        await expect(alternative0).toContainText(RESOURCES.venueB.name);
-        await expect(alternative0).toContainText(RESOURCES.equipmentB.name);
-        await expect(alternative0).toContainText('15:00');
+        await expect(alternativeCard).toContainText(RESOURCES.venueB.name);
+        await expect(alternativeCard).toContainText(RESOURCES.equipmentB.name);
+        await expect(alternativeCard).toContainText('15:00');
 
         // 预览只读：活动 A 仍为 version1（未回写）
         await organizer.page.goto(`/activities/${ACTIVITIES.a.id}`);
@@ -174,7 +200,7 @@ test.describe('D-AT-11 拒绝改期（原安排保护）', () => {
         const staff = await openSession(browser, USERS.staffA);
         sessions.push(staff);
         await staff.page.goto(`/changes/${changeId}`);
-        await expectChangeStatus(staff.page, /AWAITING_CONFIRMATIONS|待确认/);
+        await expectChangeStatus(staff.page, /AWAITING_CONFIRMATIONS|等待工作人员确认/);
         await rejectChangeViaUi(staff.page, '时间冲突');
         await expectChangeStatus(staff.page, /REJECTED|已拒绝|驳回/);
 
@@ -214,7 +240,7 @@ test.describe('D-AT-11 拒绝改期（原安排保护）', () => {
         const approver = await openSession(browser, USERS.approverA);
         sessions.push(approver);
         await approver.page.goto(`/changes/${changeId}`);
-        await expectChangeStatus(approver.page, /PENDING_APPROVER|待批准人审批/);
+        await expectChangeStatus(approver.page, /PENDING_APPROVER|等待批准人复审/);
         await rejectChangeViaUi(approver.page, '不同意');
         await expectChangeStatus(approver.page, /REJECTED|已拒绝|驳回/);
 
@@ -239,6 +265,7 @@ test.describe('D-AT-12 预览后被抢占（最终确认冲突）', () => {
     async ({ browser }) => {
       const sessions: UiSession[] = [];
       const apis: ApiSession[] = [];
+      let preemptedId: string | null = null;
       try {
         const organizerApi = await apiLogin(USERS.applicantA);
         apis.push(organizerApi);
@@ -253,7 +280,7 @@ test.describe('D-AT-12 预览后被抢占（最终确认冲突）', () => {
         expect(preview.check.conflicts, '初始预览应无冲突').toEqual([]);
 
         // 另一活动先占用候选资源 3102 + 3202×2
-        await preemptPreferredResources();
+        preemptedId = await preemptPreferredResources();
 
         const changeId = await createFeasibleChange(organizerApi);
         const staffApi = await apiLogin(USERS.staffA);
@@ -294,6 +321,23 @@ test.describe('D-AT-12 预览后被抢占（最终确认冲突）', () => {
         await expectOriginalPlanPreserved(organizer.page);
       } finally {
         await closeSessions(sessions);
+        // 清理：抢占活动真实占用 3102/3202×2，若不取消会污染同库后续 TC-10-1/TC-23-1。
+        // 使用该活动所有者调用 API-21 并核对取消成功，保留抢占与 409 断言不变。
+        if (preemptedId) {
+          const preemptOwner = await apiLogin(USERS.applicantB);
+          try {
+            const current = await getActivity(preemptOwner, preemptedId);
+            const cancelled = await cancelActivity(
+              preemptOwner,
+              preemptedId,
+              current.lockVersion,
+              'D-AT-12 抢占活动清理（测试数据）',
+            );
+            expect(cancelled.status, '清理后抢占活动应为 CANCELLED').toBe('CANCELLED');
+          } finally {
+            await apiClose([preemptOwner]);
+          }
+        }
         await apiClose(apis);
       }
     },
@@ -338,10 +382,11 @@ test.describe('D-AT-18 资源故障与风险提示', () => {
         const organizer = await openSession(browser, USERS.applicantA);
         sessions.push(organizer);
         await organizer.page.goto(`/activities/${ACTIVITIES.a.id}`);
-        await expect(
-          organizer.page.getByText(/AT_RISK|资源风险|受影响|不可用/).first(),
-          '页面应展示 AT_RISK/风险提示',
-        ).toBeVisible();
+        // 风险提示的稳定定位是 ActivityDetailPage 的 risk-banner（UI 扩展 testid）；
+        // 通用文本正则匹配不到该提示的实际文案（「当前资源受故障影响…」），会误报定位失败。
+        const riskBanner = organizer.page.getByTestId('risk-banner');
+        await expect(riskBanner, '页面应展示资源风险提示').toBeVisible();
+        await expect(riskBanner).toContainText(/故障|风险/);
         await expect(
           organizer.page.getByText(/可正常使用|安排正常/),
           '页面不得把原安排显示为可正常使用',

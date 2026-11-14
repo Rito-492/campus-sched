@@ -14,6 +14,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -23,12 +24,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.time.OffsetDateTime;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -80,6 +84,9 @@ class PermissionsIT {
 
     @Autowired
     private TestRestTemplate rest;
+
+    @LocalServerPort
+    private int port;
 
     // ------------------------------------------------------------------ D-AT-01
 
@@ -348,26 +355,35 @@ class PermissionsIT {
         long versionsBefore = countWhere("SELECT count(*) FROM activity_version WHERE activity_id = ?",
                 UUID.fromString(activityId));
 
+        // 评审要求两种陈旧版本请求各自真实执行并分别报告：先发出两个请求，
+        // 再用 assertAll 汇总检查，避免第一处契约失败掩盖第二处结果。
         ObjectNode staleBase = changeCreateBody(1, "2030-10-20T18:00:00+08:00", "2030-10-20T19:00:00+08:00",
                 30, 30, VENUE_3102, EQUIP_3202, 1, currentLock);
         HttpResult r1 = call(HttpMethod.POST, "/api/v1/activities/" + activityId + "/changes",
                 owner, idem(), toJson(staleBase));
-        assertEquals(409, r1.status());
-        assertEquals("STALE_VERSION", r1.errorCode());
-        assertTrue(r1.body().path("error").path("details").has("versionNo")
-                        || r1.body().path("error").path("details").has("lockVersion"),
-                "STALE_VERSION details 应含当前 versionNo/lockVersion");
-
         ObjectNode staleLock = changeCreateBody(currentVersion,
                 "2030-10-20T18:00:00+08:00", "2030-10-20T19:00:00+08:00",
                 30, 30, VENUE_3102, EQUIP_3202, 1, 0);
         HttpResult r2 = call(HttpMethod.POST, "/api/v1/activities/" + activityId + "/changes",
                 owner, idem(), toJson(staleLock));
-        assertEquals(409, r2.status());
-        assertEquals("STALE_VERSION", r2.errorCode());
 
-        assertEquals(versionsBefore, countWhere("SELECT count(*) FROM activity_version WHERE activity_id = ?",
-                UUID.fromString(activityId)), "陈旧版本请求不得产生新 activity_version");
+        assertAll("两种陈旧版本请求均须409及当前版本详情",
+                () -> assertEquals(409, r1.status(), () -> "旧baseVersion请求状态：" + r1.body()),
+                () -> assertEquals("STALE_VERSION", r1.errorCode(), () -> "旧baseVersion错误码：" + r1.body()),
+                () -> assertTrue(r1.body().hasNonNull("requestId"), "旧baseVersion错误信封应含requestId"),
+                () -> assertTrue(r1.error().hasNonNull("message"), "旧baseVersion错误信封应含message"),
+                () -> assertStaleVersionDetails(r1.error().path("details"), currentVersion, currentLock, "OPEN"),
+                () -> assertEquals(currentVersion, readActivityVersion(owner, activityId), "冲突后重新GET内容版本不变"),
+                () -> assertEquals(currentLock, readActivityLockVersion(owner, activityId), "冲突后重新GET锁版本不变"),
+                () -> assertEquals(409, r2.status(), () -> "旧expectedLockVersion请求状态：" + r2.body()),
+                () -> assertEquals("STALE_VERSION", r2.errorCode(), () -> "旧expectedLockVersion错误码：" + r2.body()),
+                () -> assertTrue(r2.body().hasNonNull("requestId"), "旧锁版本错误信封应含requestId"),
+                () -> assertTrue(r2.error().hasNonNull("message"), "旧锁版本错误信封应含message"),
+                () -> assertStaleVersionDetails(r2.error().path("details"), currentVersion, currentLock, "OPEN"),
+                () -> assertEquals(currentVersion, readActivityVersion(owner, activityId), "旧锁版本请求后重新GET内容版本不变"),
+                () -> assertEquals(currentLock, readActivityLockVersion(owner, activityId), "旧锁版本请求后重新GET锁版本不变"),
+                () -> assertEquals(versionsBefore, countWhere("SELECT count(*) FROM activity_version WHERE activity_id = ?",
+                        UUID.fromString(activityId)), "陈旧版本请求不得产生新 activity_version"));
     }
 
     // ------------------------------------------------------------------ D-AT-21
@@ -377,12 +393,18 @@ class PermissionsIT {
     void tc2101_calendarRedactsUnauthorizedActivityTitles() {
         String student = login("student_a");
         String url = UriComponentsBuilder.fromPath("/api/v1/resources/calendar")
-                .queryParam("from", "2030-10-20T00:00:00+08:00")
-                .queryParam("to", "2030-10-21T00:00:00+08:00")
-                .build().encode().toUriString();
+                .queryParam("from", "{from}")
+                .queryParam("to", "{to}")
+                .encode()
+                .buildAndExpand(Map.of(
+                        "from", "2030-10-20T00:00:00+08:00",
+                        "to", "2030-10-21T00:00:00+08:00"))
+                .toUriString();
+        assertTrue(url.contains("%2B"), "query中的UTC偏移+必须编码，避免表单解码将其解释为空格：" + url);
 
-        HttpResult r = call(HttpMethod.GET, url, student, null, null);
-        assertEquals(200, r.status(), () -> "日历读取失败：" + r.body());
+        URI calendarUri = URI.create("http://127.0.0.1:" + port + url);
+        HttpResult r = call(HttpMethod.GET, calendarUri, student, null, null);
+        assertEquals(200, r.status(), () -> "日历请求GET " + calendarUri + " 失败：" + r.body());
         JsonNode entries = r.data();
         assertTrue(entries.isArray(), "data 应为数组");
         assertTrue(r.body().has("truncated"), "列表响应应含 truncated");
@@ -497,6 +519,20 @@ class PermissionsIT {
         return new HttpResult(response.getStatusCode().value(), parse(response.getBody()));
     }
 
+    private HttpResult call(HttpMethod method, URI uri, String token, String idempotencyKey, String jsonBody) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        if (token != null) {
+            headers.setBearerAuth(token);
+        }
+        if (idempotencyKey != null) {
+            headers.set("Idempotency-Key", idempotencyKey);
+        }
+        HttpEntity<String> entity = new HttpEntity<>(jsonBody, headers);
+        ResponseEntity<String> response = rest.exchange(uri, method, entity, String.class);
+        return new HttpResult(response.getStatusCode().value(), parse(response.getBody()));
+    }
+
     private String login(String username) {
         HttpResult r = call(HttpMethod.POST, "/api/v1/auth/login", null, null,
                 toJson(loginBody(username, demoPassword())));
@@ -534,6 +570,28 @@ class PermissionsIT {
 
     private int readActivityVersion(String token, String activityId) {
         return readActivityFieldInt(token, activityId, "versionNo");
+    }
+
+    /**
+     * 02 §3行196：适用本场景的409 details至少含当前versionNo/lockVersion/status之一（不锁定唯一字段），
+     * 且返回的每项都必须与重新GET所得当前值一致，避免陈旧值冒充。
+     */
+    private void assertStaleVersionDetails(JsonNode details, int versionNo, int lockVersion, String status) {
+        assertTrue(details.isObject(), "错误信封details应为对象");
+        boolean hasVersion = details.hasNonNull("versionNo");
+        boolean hasLock = details.hasNonNull("lockVersion");
+        boolean hasStatus = details.hasNonNull("status");
+        assertTrue(hasVersion || hasLock || hasStatus,
+                "STALE_VERSION details 至少返回当前versionNo/lockVersion/status之一：" + details);
+        if (hasVersion) {
+            assertEquals(versionNo, details.path("versionNo").asInt(), "details.versionNo 必须为当前内容版本");
+        }
+        if (hasLock) {
+            assertEquals(lockVersion, details.path("lockVersion").asInt(), "details.lockVersion 必须为当前锁版本");
+        }
+        if (hasStatus) {
+            assertEquals(status, details.path("status").asText(), "details.status 必须为当前状态");
+        }
     }
 
     private int readActivityFieldInt(String token, String activityId, String field) {

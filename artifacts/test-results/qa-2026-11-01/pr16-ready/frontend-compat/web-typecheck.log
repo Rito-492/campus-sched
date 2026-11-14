@@ -1,0 +1,5 @@
+命令: npm --prefix web run typecheck  (vue-tsc --noEmit)
+exit=0
+---- 完整 stdout ----
+npm notice run campus-sched-web@0.1.0 typecheck
+npm notice run vue-tsc --noEmit

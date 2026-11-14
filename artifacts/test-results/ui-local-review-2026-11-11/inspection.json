@@ -1,0 +1,404 @@
+{
+  "baseline": "ca162bf975b2ebae0bd0dd59d7c63b23bc505b35",
+  "checkedAt": "2026-11-11T01:44:06.979Z",
+  "verifiedManifestFiles": 272,
+  "mismatches": [],
+  "lockChanges": [
+    {
+      "path": "",
+      "from": "0.1.0",
+      "to": "0.1.0",
+      "changedKeys": [
+        "devDependencies"
+      ]
+    },
+    {
+      "path": "node_modules/@vitest/expect",
+      "from": "3.2.7",
+      "to": "4.1.12",
+      "fromDev": true,
+      "toDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dependencies"
+      ]
+    },
+    {
+      "path": "node_modules/@vitest/mocker",
+      "from": "3.2.7",
+      "to": "4.1.12",
+      "fromDev": true,
+      "toDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dependencies",
+        "peerDependencies"
+      ]
+    },
+    {
+      "path": "node_modules/@vitest/pretty-format",
+      "from": "3.2.7",
+      "to": "4.1.12",
+      "fromDev": true,
+      "toDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dependencies"
+      ]
+    },
+    {
+      "path": "node_modules/@vitest/runner",
+      "from": "3.2.7",
+      "to": "4.1.12",
+      "fromDev": true,
+      "toDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dependencies"
+      ]
+    },
+    {
+      "path": "node_modules/@vitest/snapshot",
+      "from": "3.2.7",
+      "to": "4.1.12",
+      "fromDev": true,
+      "toDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dependencies"
+      ]
+    },
+    {
+      "path": "node_modules/@vitest/spy",
+      "from": "3.2.7",
+      "to": "4.1.12",
+      "fromDev": true,
+      "toDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dependencies"
+      ]
+    },
+    {
+      "path": "node_modules/@vitest/utils",
+      "from": "3.2.7",
+      "to": "4.1.12",
+      "fromDev": true,
+      "toDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dependencies"
+      ]
+    },
+    {
+      "path": "node_modules/cac",
+      "from": "6.7.14",
+      "fromDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dev",
+        "license",
+        "engines"
+      ]
+    },
+    {
+      "path": "node_modules/chai",
+      "from": "5.3.3",
+      "to": "6.3.0",
+      "fromDev": true,
+      "toDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dependencies"
+      ]
+    },
+    {
+      "path": "node_modules/check-error",
+      "from": "2.1.3",
+      "fromDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dev",
+        "license",
+        "engines"
+      ]
+    },
+    {
+      "path": "node_modules/deep-eql",
+      "from": "5.0.2",
+      "fromDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dev",
+        "license",
+        "engines"
+      ]
+    },
+    {
+      "path": "node_modules/es-module-lexer",
+      "from": "1.7.0",
+      "to": "2.3.2",
+      "fromDev": true,
+      "toDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity"
+      ]
+    },
+    {
+      "path": "node_modules/glob",
+      "from": "13.0.6",
+      "to": "14.0.2",
+      "fromDev": true,
+      "toDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dependencies"
+      ]
+    },
+    {
+      "path": "node_modules/js-tokens",
+      "from": "9.0.1",
+      "fromDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dev",
+        "license"
+      ]
+    },
+    {
+      "path": "node_modules/loupe",
+      "from": "3.2.1",
+      "fromDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dev",
+        "license"
+      ]
+    },
+    {
+      "path": "node_modules/minimatch",
+      "from": "10.2.6",
+      "to": "11.0.1",
+      "fromDev": true,
+      "toDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dependencies"
+      ]
+    },
+    {
+      "path": "node_modules/path-scurry",
+      "from": "2.0.2",
+      "to": "3.0.0",
+      "fromDev": true,
+      "toDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity"
+      ]
+    },
+    {
+      "path": "node_modules/pathval",
+      "from": "2.0.1",
+      "fromDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dev",
+        "license",
+        "engines"
+      ]
+    },
+    {
+      "path": "node_modules/semver",
+      "from": "7.8.5",
+      "to": "7.8.6",
+      "fromDev": true,
+      "toDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity"
+      ]
+    },
+    {
+      "path": "node_modules/std-env",
+      "from": "3.10.0",
+      "to": "4.3.0",
+      "fromDev": true,
+      "toDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity"
+      ]
+    },
+    {
+      "path": "node_modules/strip-literal",
+      "from": "3.1.0",
+      "fromDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dev",
+        "license",
+        "dependencies",
+        "funding"
+      ]
+    },
+    {
+      "path": "node_modules/tinyexec",
+      "from": "0.3.2",
+      "to": "1.3.1",
+      "fromDev": true,
+      "toDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "engines"
+      ]
+    },
+    {
+      "path": "node_modules/tinypool",
+      "from": "1.1.1",
+      "fromDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dev",
+        "license",
+        "engines"
+      ]
+    },
+    {
+      "path": "node_modules/tinyrainbow",
+      "from": "2.0.0",
+      "to": "3.2.0",
+      "fromDev": true,
+      "toDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity"
+      ]
+    },
+    {
+      "path": "node_modules/tinyspy",
+      "from": "4.0.6",
+      "fromDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dev",
+        "license",
+        "engines"
+      ]
+    },
+    {
+      "path": "node_modules/vite-node",
+      "from": "3.2.4",
+      "fromDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dev",
+        "license",
+        "dependencies",
+        "bin",
+        "engines",
+        "funding"
+      ]
+    },
+    {
+      "path": "node_modules/vitest",
+      "from": "3.2.7",
+      "to": "4.1.12",
+      "fromDev": true,
+      "toDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dependencies",
+        "engines",
+        "peerDependencies",
+        "peerDependenciesMeta"
+      ]
+    },
+    {
+      "path": "node_modules/@isaacs/nonrecursive-glob-match",
+      "to": "1.1.0",
+      "toDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dev",
+        "license"
+      ]
+    },
+    {
+      "path": "node_modules/@standard-schema/spec",
+      "to": "1.1.0",
+      "toDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dev",
+        "license"
+      ]
+    },
+    {
+      "path": "node_modules/convert-source-map",
+      "to": "2.0.0",
+      "toDev": true,
+      "changedKeys": [
+        "version",
+        "resolved",
+        "integrity",
+        "dev",
+        "license"
+      ]
+    }
+  ]
+}

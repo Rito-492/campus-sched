@@ -1,0 +1,1614 @@
+{
+  "schemaVersion" : 1,
+  "generatedAt" : "2026-10-31T05:32:43.983206220Z",
+  "environment" : {
+    "machine" : "Linux/amd64",
+    "os" : "Linux 6.18.33.1-microsoft-standard-WSL2 (amd64)",
+    "jdk" : "27.0.1.0.3 (Arch Linux)",
+    "commit" : "a697d90871c6126bf6f42f26c938be9a1e9792cc",
+    "demoDate" : "2030-10-20",
+    "clock" : "2030-10-19T00:00:00Z"
+  },
+  "timingScope" : "候选生成、资源读取、约束检查及选择/排序（不含HTTP与文件输出）",
+  "runs" : [ {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 1,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 9,
+    "elapsedMs" : 36.486946
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "RANKED",
+    "runIndex" : 1,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 602.69848
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 2,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 9,
+    "elapsedMs" : 39.718948
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "RANKED",
+    "runIndex" : 2,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 535.099831
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 3,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 9,
+    "elapsedMs" : 43.620632
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "RANKED",
+    "runIndex" : 3,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 644.374429
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 4,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 9,
+    "elapsedMs" : 38.605856
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "RANKED",
+    "runIndex" : 4,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 541.489052
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 5,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 9,
+    "elapsedMs" : 38.602988
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "RANKED",
+    "runIndex" : 5,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 583.01404
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 6,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 9,
+    "elapsedMs" : 35.286343
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "RANKED",
+    "runIndex" : 6,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 551.83033
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 7,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 9,
+    "elapsedMs" : 32.682982
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "RANKED",
+    "runIndex" : 7,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 485.686147
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 8,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 9,
+    "elapsedMs" : 37.852904
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "RANKED",
+    "runIndex" : 8,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 576.758055
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 9,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 9,
+    "elapsedMs" : 31.842688
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "RANKED",
+    "runIndex" : 9,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 603.42259
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 10,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 9,
+    "elapsedMs" : 40.487459
+  }, {
+    "scenarioId" : "SCH-01-TIME-CONFLICT",
+    "strategy" : "RANKED",
+    "runIndex" : 10,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 540.158129
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 1,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 5,
+    "elapsedMs" : 23.664495
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "RANKED",
+    "runIndex" : 1,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 550.522866
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 2,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 5,
+    "elapsedMs" : 21.211501
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "RANKED",
+    "runIndex" : 2,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 540.20017
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 3,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 5,
+    "elapsedMs" : 14.807926
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "RANKED",
+    "runIndex" : 3,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 510.863163
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 4,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 5,
+    "elapsedMs" : 14.943547
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "RANKED",
+    "runIndex" : 4,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 489.802072
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 5,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 5,
+    "elapsedMs" : 15.931894
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "RANKED",
+    "runIndex" : 5,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 445.422314
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 6,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 5,
+    "elapsedMs" : 16.03591
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "RANKED",
+    "runIndex" : 6,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 452.249522
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 7,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 5,
+    "elapsedMs" : 20.788922
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "RANKED",
+    "runIndex" : 7,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 463.615974
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 8,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 5,
+    "elapsedMs" : 20.711633
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "RANKED",
+    "runIndex" : 8,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 435.011408
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 9,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 5,
+    "elapsedMs" : 14.96481
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "RANKED",
+    "runIndex" : 9,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 418.386518
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 10,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 5,
+    "elapsedMs" : 14.508088
+  }, {
+    "scenarioId" : "SCH-02-VENUE-SWAP",
+    "strategy" : "RANKED",
+    "runIndex" : 10,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 401.799696
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 1,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 6.475439
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "RANKED",
+    "runIndex" : 1,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 437.39646
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 2,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 8.258649
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "RANKED",
+    "runIndex" : 2,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 413.078187
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 3,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 5.982029
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "RANKED",
+    "runIndex" : 3,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 370.970873
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 4,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 5.450456
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "RANKED",
+    "runIndex" : 4,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 420.802928
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 5,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 6.526265
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "RANKED",
+    "runIndex" : 5,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 414.654185
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 6,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 7.327504
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "RANKED",
+    "runIndex" : 6,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 387.857088
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 7,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 7.143611
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "RANKED",
+    "runIndex" : 7,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 386.740607
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 8,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 8.219873
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "RANKED",
+    "runIndex" : 8,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 410.699589
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 9,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 7.379517
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "RANKED",
+    "runIndex" : 9,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 446.258769
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 10,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 6.105613
+  }, {
+    "scenarioId" : "SCH-03-EQUIPMENT-REPLACE",
+    "strategy" : "RANKED",
+    "runIndex" : 10,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 363.904807
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 1,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 9,
+    "elapsedMs" : 37.187009
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "RANKED",
+    "runIndex" : 1,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 413.599659
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 2,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 9,
+    "elapsedMs" : 28.366945
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "RANKED",
+    "runIndex" : 2,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 418.293963
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 3,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 9,
+    "elapsedMs" : 24.696541
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "RANKED",
+    "runIndex" : 3,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 383.522864
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 4,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 9,
+    "elapsedMs" : 24.014335
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "RANKED",
+    "runIndex" : 4,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 369.989736
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 5,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 9,
+    "elapsedMs" : 22.116613
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "RANKED",
+    "runIndex" : 5,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 377.448203
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 6,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 9,
+    "elapsedMs" : 24.790573
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "RANKED",
+    "runIndex" : 6,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 346.749035
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 7,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 9,
+    "elapsedMs" : 23.849954
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "RANKED",
+    "runIndex" : 7,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 352.043988
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 8,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 9,
+    "elapsedMs" : 20.760657
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "RANKED",
+    "runIndex" : 8,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 338.448998
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 9,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 9,
+    "elapsedMs" : 21.155325
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "RANKED",
+    "runIndex" : 9,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 322.542595
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 10,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 9,
+    "elapsedMs" : 20.824757
+  }, {
+    "scenarioId" : "SCH-04-NO-SOLUTION",
+    "strategy" : "RANKED",
+    "runIndex" : 10,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 346.465213
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 1,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 3.120736
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "RANKED",
+    "runIndex" : 1,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 364.709603
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 2,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 3.159942
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "RANKED",
+    "runIndex" : 2,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 373.908776
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 3,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 3.590286
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "RANKED",
+    "runIndex" : 3,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 358.500754
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 4,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 3.138463
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "RANKED",
+    "runIndex" : 4,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 339.842034
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 5,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 3.051474
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "RANKED",
+    "runIndex" : 5,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 355.368505
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 6,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 3.232049
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "RANKED",
+    "runIndex" : 6,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 361.427167
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 7,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 4.231559
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "RANKED",
+    "runIndex" : 7,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 405.879129
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 8,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 3.329696
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "RANKED",
+    "runIndex" : 8,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 373.392023
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 9,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 3.891778
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "RANKED",
+    "runIndex" : 9,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 361.009942
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 10,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 3.550115
+  }, {
+    "scenarioId" : "SCH-05-BOUNDARY-TOUCH",
+    "strategy" : "RANKED",
+    "runIndex" : 10,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 376.991845
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 1,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 4.452783
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "RANKED",
+    "runIndex" : 1,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 382.619296
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 2,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 2.889183
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "RANKED",
+    "runIndex" : 2,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 391.875654
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 3,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 3.230218
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "RANKED",
+    "runIndex" : 3,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 339.843211
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 4,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 3.406492
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "RANKED",
+    "runIndex" : 4,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 341.952238
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 5,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 3.463012
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "RANKED",
+    "runIndex" : 5,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 323.900696
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 6,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 3.752216
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "RANKED",
+    "runIndex" : 6,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 335.7267
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 7,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 2.838296
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "RANKED",
+    "runIndex" : 7,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 347.792234
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 8,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 4.373832
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "RANKED",
+    "runIndex" : 8,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 366.461452
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 9,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 3.364911
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "RANKED",
+    "runIndex" : 9,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 367.373234
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 10,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 1,
+    "elapsedMs" : 3.12709
+  }, {
+    "scenarioId" : "SCH-06-PEAK-QUANTITY",
+    "strategy" : "RANKED",
+    "runIndex" : 10,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 0,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 393.421265
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 1,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 5.321513
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "RANKED",
+    "runIndex" : 1,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 341.937134
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 2,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 5.721936
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "RANKED",
+    "runIndex" : 2,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 349.812664
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 3,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 5.525552
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "RANKED",
+    "runIndex" : 3,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 382.111942
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 4,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 5.627031
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "RANKED",
+    "runIndex" : 4,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 370.650761
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 5,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 5.948397
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "RANKED",
+    "runIndex" : 5,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 404.230329
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 6,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 6.548078
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "RANKED",
+    "runIndex" : 6,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 377.542891
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 7,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 5.972193
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "RANKED",
+    "runIndex" : 7,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 394.734576
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 8,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 6.859927
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "RANKED",
+    "runIndex" : 8,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 374.926305
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 9,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 5.910126
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "RANKED",
+    "runIndex" : 9,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 375.332288
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 10,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 2,
+    "elapsedMs" : 5.757668
+  }, {
+    "scenarioId" : "SCH-07-RESOURCE-FAULT",
+    "strategy" : "RANKED",
+    "runIndex" : 10,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : false,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 371.576057
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 1,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 10,
+    "elapsedMs" : 25.844598
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "RANKED",
+    "runIndex" : 1,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 387.125029
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 2,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 10,
+    "elapsedMs" : 27.412292
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "RANKED",
+    "runIndex" : 2,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 379.160551
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 3,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 10,
+    "elapsedMs" : 29.018988
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "RANKED",
+    "runIndex" : 3,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 365.701396
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 4,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 10,
+    "elapsedMs" : 25.516927
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "RANKED",
+    "runIndex" : 4,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 356.019839
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 5,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 10,
+    "elapsedMs" : 24.815477
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "RANKED",
+    "runIndex" : 5,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 341.122545
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 6,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 10,
+    "elapsedMs" : 25.565918
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "RANKED",
+    "runIndex" : 6,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 365.583904
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 7,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 10,
+    "elapsedMs" : 24.707542
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "RANKED",
+    "runIndex" : 7,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 500.907018
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 8,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 10,
+    "elapsedMs" : 34.751464
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "RANKED",
+    "runIndex" : 8,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 515.638774
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 9,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 10,
+    "elapsedMs" : 37.095973
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "RANKED",
+    "runIndex" : 9,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 418.777792
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "FIRST_FIT",
+    "runIndex" : 10,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 10,
+    "elapsedMs" : 25.206343
+  }, {
+    "scenarioId" : "SCH-08-STRATEGY-DIFF",
+    "strategy" : "RANKED",
+    "runIndex" : 10,
+    "feasible" : true,
+    "timeShiftMinutes" : 0,
+    "venueChanged" : true,
+    "replacedEquipmentLines" : 1,
+    "evaluatedCount" : 144,
+    "elapsedMs" : 393.567617
+  } ]
+}
