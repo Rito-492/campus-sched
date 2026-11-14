@@ -156,6 +156,29 @@ HIST = [
     ('CS-CI-DOC-20', '测试计划', 'v0.1', 'b5b1db3', 'docs/testing/test-plan.md'),
     # 系统设计（CS-CI-DOC-50）
     ('CS-CI-DOC-50', '系统设计', 'v0.1', 'f6bd329', 'docs/design/system-design.md'),
+    # 用户手册 Markdown（CS-CI-DOC-60）
+    ('CS-CI-DOC-60', '用户手册', 'v0.1', 'd94dbaf', 'docs/ui/user-manual.md'),
+    # 初始项目计划（CS-CI-DOC-30）
+    ('CS-CI-DOC-30', '初始项目计划', 'v0.5', '364f07b', 'docs/management/initial-project-plan.md'),
+    ('CS-CI-DOC-30', '初始项目计划', 'v0.6', 'a5e0724', 'docs/management/initial-project-plan.md'),
+    ('CS-CI-DOC-30', '初始项目计划', 'v0.7', '1fc3dd9', 'docs/management/initial-project-plan.md'),
+    ('CS-CI-DOC-30', '初始项目计划', 'v0.8', '2055c63', 'docs/management/initial-project-plan.md'),
+    # 测试设计（CS-CI-DOC-21）
+    ('CS-CI-DOC-21', '测试设计', 'v0.1', '4f5a7a1', 'docs/testing/test-design.md'),
+    # 测试数据设计（CS-CI-DOC-22）
+    ('CS-CI-DOC-22', '测试数据设计', 'v0.1', '1cb2e86', 'docs/testing/test-data-plan.md'),
+    # 缺陷登记表（CS-CI-DOC-25）
+    ('CS-CI-DOC-25', '缺陷登记表', 'v0.1', '56f9149', 'docs/testing/defect-register.md'),
+    ('CS-CI-DOC-25', '缺陷登记表', 'v0.2', 'a48367e', 'docs/testing/defect-register.md'),
+    ('CS-CI-DOC-25', '缺陷登记表', 'v0.3', '19ae94b', 'docs/testing/defect-register.md'),
+    # 测试报告 Markdown（CS-CI-DOC-29）
+    ('CS-CI-DOC-29', '软件测试报告', 'v0.1', 'a48367e', 'docs/testing/test-report.md'),
+    ('CS-CI-DOC-29', '软件测试报告', 'v0.4', 'b97cf70', 'docs/testing/test-report.md'),
+    ('CS-CI-DOC-29', '软件测试报告', 'v0.6', 'db038b1', 'docs/testing/test-report.md'),
+    ('CS-CI-DOC-29', '软件测试报告', 'v0.7', '291b31d', 'docs/testing/test-report.md'),
+    ('CS-CI-DOC-29', '软件测试报告', 'v0.8', 'e1e175c', 'docs/testing/test-report.md'),
+    ('CS-CI-DOC-29', '软件测试报告', 'v0.9', '19ae94b', 'docs/testing/test-report.md'),
+    ('CS-CI-DOC-29', '软件测试报告', 'v1.0', '8f30a49', 'docs/testing/test-report.md'),
 ]
 
 # 任务5（测试）正式交付物：课程要求的精确文件路径（含 PR #23 软件测试设计，合入 main 后齐备）
@@ -290,10 +313,13 @@ def main():
         if not match:
             manifest_mismatch.append((name, path, '清单 %s… / 实际 %s…' % (sha[:12], actual[:12])))
 
+    manifest_declared = manifest.get('commit')
     result = {
         'commit': commit,
         'out': outdir,
-        'manifest_declared_commit': manifest.get('commit'),
+        'manifest_declared_commit': manifest_declared,
+        'manifest_commit_matches_candidate': (manifest_declared == commit),
+        'manifest_commit_note': manifest.get('commitNote'),
         'doc_count': len(report),
         'historical': hist,
         'all_byte_preserved': all_byte_ok,
@@ -311,7 +337,12 @@ def main():
     print('任务5正式交付物：%s' % ('齐全' if not task5_missing else '缺失 %d 件' % len(task5_missing)))
     for t in task5:
         print('  [%s] %s : %s' % ('OK' if t['present'] else '缺', t['label'], t['path']))
-    print('发布清单哈希校验（release/manifest.json @ %s，声明 commit=%s）：' % (commit, manifest.get('commit')))
+    print('发布清单哈希校验（release/manifest.json @ %s）：' % commit)
+    print('  清单声明 commit=%s（%s）' % (
+        manifest_declared,
+        '与本导出候选一致' if manifest_declared == commit else '旧验证基准，最终以发布标签解析 SHA 为准'))
+    if manifest.get('commitNote'):
+        print('  清单说明：%s' % manifest['commitNote'])
     for v in cross:
         if v['match'] is None:
             print('  [跳过] %s : %s（%s）' % (v['name'], v['file'], v['note']))
