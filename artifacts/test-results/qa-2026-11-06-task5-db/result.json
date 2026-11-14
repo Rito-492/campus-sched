@@ -1,0 +1,55 @@
+{
+  "suite": "ContractBoundaryIT",
+  "tests": 7,
+  "passed": 4,
+  "failed": 3,
+  "skipped": 0,
+  "database": "PostgreSQL 17.11 (docker postgres:17, isolated campus_test schema per test)",
+  "executedAt": "2026-11-06T17:14+08:00",
+  "command": "./server/mvnw -f server/pom.xml verify -Dit.test=ContractBoundaryIT -DfailIfNoTests=false",
+  "scope": "QA自建边界回归，非138条设计用例的批量执行",
+  "cases": [
+    {
+      "name": "eligibility_teacherOwnerStudentOnlyVenueRejectedNoReservation",
+      "time": 0.828,
+      "status": "passed",
+      "message": ""
+    },
+    {
+      "name": "approveWithEmptyComment_isLegal",
+      "time": 0.244,
+      "status": "failed",
+      "message": "APPROVE 空意见是合法请求，应成功：{\"error\":{\"message\":\"事件字段不完整\",\"details\":{},\"code\":\"VALIDATION_ERROR\"},\"requestId\":\"b56351cd-8fe3-4271-9eb5-fa65b8195572\"} ==> expected: <20"
+    },
+    {
+      "name": "rejectWithEmptyComment_isRejected",
+      "time": 0.223,
+      "status": "passed",
+      "message": ""
+    },
+    {
+      "name": "changeOnlyOwnerStaff_goesStraightToApprover",
+      "time": 0.422,
+      "status": "failed",
+      "message": "仅所有者 staff 的改期应直接待复审，实测：{\"requestId\":\"45ed42d9-99f0-499d-88ee-d55c453ef667\",\"data\":{\"id\":\"47f61aee-2a3f-46c6-9b06-b3fba92c6de8\",\"activityId\":\"0fd319c2-d695-4532"
+    },
+    {
+      "name": "changeOwnerPlusOtherStaff_ownerHasNoSelfConfirmationRow",
+      "time": 0.335,
+      "status": "failed",
+      "message": "BR-07/BR-23：所有者不向自己确认，不得为所有者预建待确认行 ==> expected: <0> but was: <1>"
+    },
+    {
+      "name": "titleBoundary_1and100Accepted_0and101Rejected",
+      "time": 0.111,
+      "status": "passed",
+      "message": ""
+    },
+    {
+      "name": "durationBoundary_30minAnd6hAccepted_29minAnd6h1mRejected",
+      "time": 0.121,
+      "status": "passed",
+      "message": ""
+    }
+  ]
+}

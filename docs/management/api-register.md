@@ -1,6 +1,6 @@
 # 接口实现与调用登记
 
-依据开发任务包v3.0；当前核查日期2026-11-07，主线`16de4a5`、PM已提交HEAD `984892c`加本轮未提交修复。40项生产归属如下；表内11-02限定验证为历史记录，当前执行与未通过项以[本轮集成报告](integration-review-2026-11-07-v1.0.md)为准，不代替其他成员确认或完整验收。
+依据开发任务包 v3.0。2026-11-14 核查基准为主线 `750763b`。40 项接口的提供方和调用方如下。最新验收范围见[集成与评审记录](integration-review-2026-11-14-v1.0.md)。
 
 | 编号 | 方法及路径 | 提供方 | 调用方 | 实现状态 |
 |---|---|---|---|---|
@@ -18,19 +18,19 @@
 | API-12 | POST /activities | AN | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-13 | GET /activities | AN | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-14 | GET /activities/{id} | AN | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
-| API-15 | PATCH /activities/{id} | AN | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
-| API-16 | POST /activities/{id}/submit | AN | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
+| API-15 | PATCH /activities/{id} | AN | UI、QA | 交付候选已修复陈旧锁冲突详情，真实库回归通过 |
+| API-16 | POST /activities/{id}/submit | AN | UI、QA | 交付候选已修复陈旧锁冲突详情，真实库回归通过 |
 | API-17 | POST /activities/{id}/withdraw | AN | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
-| API-18 | POST /activities/{id}/approver-decision | AN | UI、QA | 已有生产实现；合法空APPROVE意见400待AN修复 |
+| API-18 | POST /activities/{id}/approver-decision | AN | UI、QA | #22 已合入，空意见或纯空白批准的后端与真实页面回归通过 |
 | API-19 | POST /activities/{id}/resource-confirm | AN | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-20 | POST /activities/{id}/publish | AN | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-21 | POST /activities/{id}/cancel | AN | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
-| API-22 | PUT /activities/{id}/registration | AN | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
+| API-22 | PUT /activities/{id}/registration | AN | 交付候选已修复陈旧有效版本详情，真实库回归通过 |
 | API-23 | GET /activities/{id}/registrations | AN | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-24 | POST /activities/{id}/schedule-preview | DS | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-25 | POST /activities/{id}/alternatives | DS | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-26 | POST /activities/{id}/change-preview | CM | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
-| API-27 | POST /activities/{id}/changes | CM | UI、QA | 生产已实现；所有者staff自我确认、两处陈旧版本空详情仍待CM修复；最新QA详情断言技术复核通过 |
+| API-27 | POST /activities/{id}/changes | CM | UI、QA | #21 已合入，所有者自我确认和两种陈旧版本的详情已修复，最新 QA 组合通过 |
 | API-28 | GET /activities/{id}/changes | CM | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-29 | GET /changes/{id} | CM | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |
 | API-30 | POST /changes/{id}/confirmation | CM | UI、QA | 已有生产实现；限定验证与遗留验收见2026-11-02审核 |

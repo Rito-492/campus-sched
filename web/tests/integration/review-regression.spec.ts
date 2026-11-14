@@ -11,6 +11,7 @@ import type {
   ActivityView,
   CalendarEntry,
   ChangeView,
+  ChangePreview,
   ResourceView,
   UserCreate,
 } from '../../src/types/api'
@@ -143,6 +144,111 @@ async function clickCommand<T>(
   await page.getByTestId(testId).click()
   return successful(await response)
 }
+
+async function ownerStaffActivity(page: Page, includeOther: boolean) {
+  const f = await setup(page.request)
+  const draft = await call<ActivityView>(page.request, f.owner.token,
+    `/activities/${f.draft.id}`, 'PATCH', {
+      expectedLockVersion: f.draft.lockVersion,
+      input: { ...f.draft.input, staffUserIds: [f.owner.user.id, ...(includeOther ? [f.staff.user.id] : [])] },
+    })
+  return { f, current: await openActivity(page, f, draft) }
+}
+
+async function previewOwnerChange(page: Page, activityId: string) {
+  const path = `/activities/${activityId}`
+  await login(page, 'applicant_a', `${path}/change`)
+  await page.getByTestId('change-start').fill('2030-10-22T12:00')
+  await page.getByTestId('change-end').fill('2030-10-22T13:00')
+  const preview = await clickCommand<ChangePreview>(page, 'change-preview', `${path}/change-preview`)
+  await page.getByTestId('change-reason').fill('核对所有者确认规则及版本冲突恢复')
+  return preview
+}
+
+for (const includeOther of [false, true]) {
+  test(`CM修复真实页面：所有者${includeOther ? '加其他工作人员仅由他人确认' : '为唯一工作人员直接复审'}`, async ({ page }) => {
+    test.setTimeout(120000)
+    const { f, current } = await ownerStaffActivity(page, includeOther)
+    const preview = await previewOwnerChange(page, current.id)
+    const expectedStaff = includeOther ? [f.staff.user.id] : []
+    expect(preview.impact.requiredStaffUserIds).toEqual(expectedStaff)
+    const change = await clickCommand<ChangeView>(page, 'change-create', `/activities/${current.id}/changes`)
+    expect(change.impact.requiredStaffUserIds).toEqual(expectedStaff)
+    expect(change.confirmations.map(c => c.userId)).toEqual(expectedStaff)
+    expect(change.status).toBe(includeOther ? 'AWAITING_CONFIRMATIONS' : 'PENDING_APPROVER')
+    await expect(page).toHaveURL(new RegExp(`/changes/${change.id}$`))
+    await expect(page.getByTestId('change-status')).toBeVisible()
+    await expect(page.getByTestId('staff-approve')).toHaveCount(0)
+    await page.reload()
+    await expect(page.getByTestId('change-status')).toHaveText(includeOther ? '等待工作人员确认' : '等待批准人复审')
+    await expect(page.getByTestId('staff-approve')).toHaveCount(0)
+    await screenshots(page, includeOther ? 'cm-owner-other' : 'cm-owner-only')
+    if (includeOther) {
+      const denied = await page.request.post(`/api/v1/changes/${change.id}/confirmation`, {
+        headers: { Authorization: `Bearer ${f.owner.token}`, 'Idempotency-Key': randomUUID() },
+        data: { decision: 'APPROVE', comment: '' },
+      })
+      expect(denied.status()).toBe(403)
+      const unchanged = await call<ChangeView>(page.request, f.owner.token, `/changes/${change.id}`)
+      expect(unchanged.status).toBe('AWAITING_CONFIRMATIONS')
+      expect(unchanged.confirmations.every(c => c.decision === null)).toBe(true)
+      await login(page, 'staff_a', `/changes/${change.id}`)
+      const confirmed = await clickCommand<ChangeView>(page, 'staff-approve', `/changes/${change.id}/confirmation`)
+      expect(confirmed.status).toBe('PENDING_APPROVER')
+      expect(confirmed.confirmations).toHaveLength(1)
+      expect(confirmed.confirmations[0]?.userId).toBe(f.staff.user.id)
+      expect(confirmed.confirmations[0]?.decision).toBe('APPROVE')
+    }
+    await expectOriginalReservation(page, f, current)
+  })
+}
+
+test('CM修复真实页面：陈旧版本409显示详情，保留输入重预览后只创建一次', async ({ page }) => {
+  test.setTimeout(180000)
+  const { f, current } = await ownerStaffActivity(page, false)
+  await previewOwnerChange(page, current.id)
+  const path = `/activities/${current.id}`
+  // 另一会话真实创建并撤回，使页面持有的锁版本过期，不伪造409响应。
+  const other = await createPending(page, f)
+  await call(page.request, f.owner.token, `/changes/${other.id}/withdraw`, 'POST', { reason: '隔离回归制造真实并发版本变化' })
+  const latest = await call<ActivityView>(page.request, f.owner.token, path)
+  const response = page.waitForResponse(r => r.url().endsWith(`${path}/changes`) && r.request().method() === 'POST')
+  await page.getByTestId('change-create').click()
+  const conflict = await response
+  expect(conflict.status()).toBe(409)
+  const body = await conflict.json()
+  expect(body.error.code).toBe('STALE_VERSION')
+  expect(body.error.details).toMatchObject({ versionNo: latest.versionNo, lockVersion: latest.lockVersion, status: latest.status })
+  await expect(page.getByTestId('api-error')).toContainText('活动已被其他操作修改')
+  await page.getByText('查看服务端详细原因', { exact: true }).click()
+  await expect(page.locator('.error-details')).toContainText(`"lockVersion": ${latest.lockVersion}`)
+  await expect(page.getByTestId('change-start')).toHaveValue('2030-10-22T12:00')
+  await expect(page.getByTestId('change-end')).toHaveValue('2030-10-22T13:00')
+  await expect(page.getByTestId('change-impact')).toHaveCount(0)
+  const before = await call<ChangeView[]>(page.request, f.owner.token, `${path}/changes`)
+  expect(before).toHaveLength(1)
+  expect(before[0]?.status).toBe('WITHDRAWN')
+  await expectOriginalReservation(page, f, current)
+  await screenshots(page, 'cm-stale-version-input')
+  await clickCommand(page, 'change-preview', `${path}/change-preview`)
+  await expect(page.getByTestId('change-reason')).toHaveValue('核对所有者确认规则及版本冲突恢复')
+  const retried = await clickCommand<ChangeView>(page, 'change-create', `${path}/changes`)
+  expect(retried.status).toBe('PENDING_APPROVER')
+  const after = await call<ChangeView[]>(page.request, f.owner.token, `${path}/changes`)
+  expect(after).toHaveLength(2)
+  expect(after.filter(c => c.status !== 'WITHDRAWN').map(c => c.id)).toEqual([retried.id])
+  await login(page, f.approver.username, `/changes/${retried.id}`)
+  await clickCommand(page, 'approver-approve', `/changes/${retried.id}/approver-decision`)
+  await login(page, f.confirmer.username, `/changes/${retried.id}`)
+  const applied = await clickCommand<ChangeView>(page, 'change-resource-approve', `/changes/${retried.id}/resource-decision`)
+  expect(applied.status).toBe('APPLIED')
+  const effective = await call<ActivityView>(page.request, f.owner.token, path)
+  expect(effective.input.plan).toEqual(applied.targetPlan)
+  expect(effective.activeChangeId).toBeNull()
+  await expectOriginalReservation(page, f, effective)
+  await page.reload()
+  await expect(page.getByTestId('change-status')).toHaveText('改期已生效')
+})
 test.beforeEach(async ({ page }) => {
   expect((await page.request.get('/api/v1/health')).ok()).toBe(true)
   page.on('pageerror', (error) => {
@@ -212,7 +318,7 @@ test('真实纯角色与跨组织工作人员展示，撤销审批范围后刷�
   )
   await screenshots(page, 'real-revoked-detail')
   await checkStaff(f.approver.username)
-  // 空批准意见触发当前 AN/CM 事件校验缺陷，单独保留失败证据；本主线明确填写意见。
+  // 本用例保留正常意见路径；空意见与空白意见由下方独立真实回归覆盖。
   await page.locator('#comment').fill('范围与安排已核对，同意活动')
   const approved = await clickCommand<ActivityView>(
     page,
@@ -222,6 +328,63 @@ test('真实纯角色与跨组织工作人员展示，撤销审批范围后刷�
   expect(approved.status).toBe('APPROVED_UNRESERVED')
   await checkStaff(f.confirmer.username)
 })
+
+for (const [name, comment] of [
+  ['empty', ''],
+  ['whitespace', '   '],
+] as const) {
+  test(`真实首次批准允许${name === 'empty' ? '空意见' : '纯空白意见'}，刷新后可联合预约`, async ({ page }) => {
+    test.setTimeout(120000)
+    const f = await setup(page.request)
+    const path = `/activities/${f.draft.id}`
+    await login(page, 'applicant_a', path)
+    const submitted = await clickCommand<ActivityView>(page, 'activity-submit', `${path}/submit`)
+    expect(submitted.status).toBe('PENDING_APPROVER')
+    await login(page, f.approver.username, path)
+    await page.locator('#comment').fill(comment)
+    const responsePromise = page.waitForResponse(
+      (r) => r.url().endsWith(`${path}/approver-decision`) && r.request().method() === 'POST',
+    )
+    await page.getByTestId('approver-approve').click()
+    const response = await responsePromise
+    expect(response.request().postDataJSON()).toEqual({
+      expectedLockVersion: submitted.lockVersion,
+      decision: 'APPROVE',
+      comment,
+    })
+    const approved = await successful(response) as ActivityView
+    expect(approved.status).toBe('APPROVED_UNRESERVED')
+    expect(approved.effectiveVersionNo).toBeNull()
+    expect(approved.versionNo).toBe(submitted.versionNo)
+    expect(approved.lockVersion).toBe(submitted.lockVersion + 1)
+    await page.reload()
+    await expect(page.locator('main')).toContainText('待资源确认')
+    await expect(page.getByTestId('api-error')).toHaveCount(0)
+    const audits = await call<{ eventType: string; summary: string }[]>(
+      page.request, f.owner.token, `${path}/audit`,
+    )
+    expect(audits.filter((a) => a.eventType === 'ACTIVITY_APPROVED')).toEqual([
+      expect.objectContaining({ summary: '活动审批通过' }),
+    ])
+    await login(page, f.confirmer.username, path)
+    const reserved = await clickCommand<ActivityView>(page, 'resource-confirm', `${path}/resource-confirm`)
+    expect(reserved.status).toBe('SCHEDULED')
+    expect(reserved.effectiveVersionNo).toBe(approved.versionNo)
+    await page.reload()
+    await expect(page.getByTestId('current-version')).toHaveText(String(reserved.effectiveVersionNo))
+    await expect(page.locator('main')).toContainText('已预约')
+    await expect(page.getByTestId('api-error')).toHaveCount(0)
+    const calendar = await call<CalendarEntry[]>(
+      page.request, f.owner.token,
+      `/resources/calendar?from=2030-10-22T00:00:00%2B08:00&to=2030-10-23T00:00:00%2B08:00&resourceId=${f.resource.id}`,
+    )
+    expect(calendar.filter((entry) => entry.activityId === reserved.id)).toEqual([
+      expect.objectContaining({ segment: 'EVENT', quantity: 1, resourceId: f.resource.id }),
+    ])
+    saveState({ [`approval_${name}`]: { id: reserved.id, version: reserved.effectiveVersionNo, plan: reserved.input.plan } })
+    await screenshots(page, `real-approval-${name}-reserved`)
+  })
+}
 
 test('真实首次预约报名与改期本人确认、审批、生效和日历通知刷新', async ({
   page,

@@ -1,0 +1,22 @@
+{
+  "date": "2026-11-14",
+  "authorizedBy": "杨畅 17231018",
+  "authorization": "用户在修正本地自查意见后明确指示提交PR",
+  "baseline": "750763b721ca999c454ac730d9876583b40ad202",
+  "candidateCommit": "624d235c4e978b306827cccb446c5cca9a5cd4be",
+  "source": "ychangz1/campus-sched:work/17231018-ui",
+  "target": "Rito-492/campus-sched:main",
+  "pullRequest": "https://github.com/Rito-492/campus-sched/pull/27",
+  "createdAt": "2026-11-14T04:13:14Z",
+  "draft": true,
+  "merged": false,
+  "independentReviewReceived": false,
+  "candidateFiles": 221,
+  "preSubmitVerifiedManifestEntries": 85,
+  "credentialValueMatches": 0,
+  "sourceAndDocsWhitespaceCheck": "passed",
+  "rawLogWhitespace": "原始Maven/Vitest日志包含工具输出的行尾空白和空行，保留原记录；全量暂存空白检查因此非零，源码与文档单独检查通过",
+  "gitTextNormalization": "Git按现有配置将部分文本CRLF规范化为LF；历史manifest记录原工作区字节，不作为所有发布文本的逐字节校验值",
+  "businessTestsRerunDuringSubmission": false,
+  "note": "本记录与handoff更新在首个候选提交之后，以文档提交补入同一PR"
+}

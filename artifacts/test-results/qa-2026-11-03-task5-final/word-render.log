@@ -1,0 +1,5 @@
+[render-test-design] 数据源：/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/test-data/test-design-cases-v1.0.json
+[render-test-design] 已生成：/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/docs/testing/test-design-v1.0.docx
+[render-test-design] 场景 24（业务 20 + 专项 4）；用例 138 条（正面 47 / 负面 91；P0 63 / P1 63 / P2 12）；状态「未执行」138/138
+[caseID一致性] JSON 用例 138 条 → 正文命中 138 条；缺失 0；重复 0；场景 24 → 正文命中 24 条
+[render-test-design] 自校验全部通过（明细见证据目录 verification-report.md）。

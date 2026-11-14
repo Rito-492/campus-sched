@@ -1,0 +1,8 @@
+[check-test-design] 文件：/home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/test-data/test-design-cases-v1.0.json
+[check-test-design] 场景 24 个 / 用例 138 条（positive 47、negative 91）
+[check-test-design] 覆盖：UC 20/20、验收 30/30、API 40/40
+[check-test-design] 通过：结构、必填、唯一ID、极性配比、未执行状态与覆盖检查全部通过
+[check-test-design] 提示：需求引用统计（仅提示，不要求全覆盖）：FR 25/25，未引用 无
+[check-test-design] 提示：需求引用统计（仅提示，不要求全覆盖）：BR 32/32，未引用 无
+[check-test-design] 提示：需求引用统计（仅提示，不要求全覆盖）：NFR 30/30，未引用 无
+[check-test-design] 提示：自动校验只覆盖结构/必填/唯一性/覆盖量与少量内容信号；步骤与预期的因果语义仍需人工评审，不能以本检查通过宣称设计语义正确。

@@ -1,0 +1,116 @@
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/home/r1t0/.m2/wrapper/dists/apache-maven-3.9.11/a2d47e15/lib/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+WARNING: Final field _cipher in class org.sonatype.plexus.components.sec.dispatcher.DefaultSecDispatcher has been mutated reflectively by class org.eclipse.sisu.bean.BeanPropertyField in unnamed module @78e117e3 (file:/home/r1t0/.m2/wrapper/dists/apache-maven-3.9.11/a2d47e15/lib/org.eclipse.sisu.inject-0.9.0.M4.jar)
+WARNING: Use --enable-final-field-mutation=ALL-UNNAMED to avoid a warning
+WARNING: Mutating final fields will be blocked in a future release unless final field mutation is enabled
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+WARNING: A Java agent has been loaded dynamically (/home/r1t0/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+17:14:23.732 [main] INFO org.hibernate.validator.internal.util.Version -- HV000001: Hibernate Validator 8.0.3.Final
+17:14:26.176 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.campus.events.acceptance.ContractBoundaryIT]: ContractBoundaryIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+17:14:26.267 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.campus.events.CampusEventsApplication for test class com.campus.events.acceptance.ContractBoundaryIT
+17:14:26.579 [main] INFO org.flywaydb.core.FlywayExecutor -- Database: jdbc:postgresql://127.0.0.1:55432/campus_test (PostgreSQL 17.11)
+17:14:26.613 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Schema history table "t_3416097371da4e12a4bbeef6f4fbcb06"."flyway_schema_history" does not exist yet
+17:14:26.616 [main] INFO org.flywaydb.core.internal.command.DbValidate -- Successfully validated 2 migrations (execution time 00:00.020s)
+17:14:26.630 [main] INFO org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory -- Creating Schema History table "t_3416097371da4e12a4bbeef6f4fbcb06"."flyway_schema_history" ...
+17:14:26.674 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Current version of schema "t_3416097371da4e12a4bbeef6f4fbcb06": << Empty Schema >>
+17:14:26.699 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "t_3416097371da4e12a4bbeef6f4fbcb06" to version "1 - schema"
+17:14:26.822 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Migrating schema "t_3416097371da4e12a4bbeef6f4fbcb06" to version "2 - outbox claim token"
+17:14:26.839 [main] INFO org.flywaydb.core.internal.command.DbMigrate -- Successfully applied 2 migrations to schema "t_3416097371da4e12a4bbeef6f4fbcb06", now at version v2 (execution time 00:00.109s)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-11-06T17:14:27.229+08:00  INFO 17743 --- [campus-events] [           main] c.c.e.acceptance.ContractBoundaryIT      : Starting ContractBoundaryIT using Java 27.0.1.0.3 with PID 17743 (started by r1t0 in /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/server)
+2026-11-06T17:14:27.230+08:00  INFO 17743 --- [campus-events] [           main] c.c.e.acceptance.ContractBoundaryIT      : The following 1 profile is active: "test"
+2026-11-06T17:14:27.956+08:00  INFO 17743 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+2026-11-06T17:14:27.964+08:00  INFO 17743 --- [campus-events] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-06T17:14:27.965+08:00  INFO 17743 --- [campus-events] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-11-06T17:14:27.983+08:00  INFO 17743 --- [campus-events] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-11-06T17:14:27.983+08:00  INFO 17743 --- [campus-events] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 745 ms
+2026-11-06T17:14:28.071+08:00  INFO 17743 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-11-06T17:14:28.089+08:00  INFO 17743 --- [campus-events] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7440265c
+2026-11-06T17:14:28.090+08:00  INFO 17743 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-11-06T17:14:28.098+08:00  INFO 17743 --- [campus-events] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:postgresql://127.0.0.1:55432/campus_test?currentSchema=t_3416097371da4e12a4bbeef6f4fbcb06 (PostgreSQL 17.11)
+2026-11-06T17:14:28.110+08:00  INFO 17743 --- [campus-events] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 2 migrations (execution time 00:00.006s)
+2026-11-06T17:14:28.131+08:00  INFO 17743 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "t_3416097371da4e12a4bbeef6f4fbcb06": 2
+2026-11-06T17:14:28.132+08:00  INFO 17743 --- [campus-events] [           main] o.f.core.internal.command.DbMigrate      : Schema "t_3416097371da4e12a4bbeef6f4fbcb06" is up to date. No migration necessary.
+2026-11-06T17:14:28.852+08:00  INFO 17743 --- [campus-events] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 45723 (http) with context path '/'
+2026-11-06T17:14:28.859+08:00  INFO 17743 --- [campus-events] [           main] c.c.e.acceptance.ContractBoundaryIT      : Started ContractBoundaryIT in 1.841 seconds (process running for 3.228)
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+WARNING: A Java agent has been loaded dynamically (/home/r1t0/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+2026-11-06T17:14:29.351+08:00  INFO 17743 --- [campus-events] [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-06T17:14:29.352+08:00  INFO 17743 --- [campus-events] [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-06T17:14:29.352+08:00  INFO 17743 --- [campus-events] [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-11-06T17:14:31.198+08:00  INFO 17743 --- [campus-events] [           main] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-11-06T17:14:31.201+08:00  INFO 17743 --- [campus-events] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-11-06T17:14:31.204+08:00  INFO 17743 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-11-06T17:14:31.206+08:00  INFO 17743 --- [campus-events] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+[ERROR] Tests run: 7, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 5.095 s <<< FAILURE! -- in 契约边界回归：标题/时长/资格/审批意见/改期确认（ContractBoundaryIT）
+[ERROR] com.campus.events.acceptance.ContractBoundaryIT.approveWithEmptyComment_isLegal -- Time elapsed: 0.244 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: APPROVE 空意见是合法请求，应成功：{"error":{"message":"事件字段不完整","details":{},"code":"VALIDATION_ERROR"},"requestId":"b56351cd-8fe3-4271-9eb5-fa65b8195572"} ==> expected: <200> but was: <400>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:156)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:598)
+	at com.campus.events.acceptance.ContractBoundaryIT.approveWithEmptyComment_isLegal(ContractBoundaryIT.java:160)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:583)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1612)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1612)
+
+[ERROR] com.campus.events.acceptance.ContractBoundaryIT.changeOnlyOwnerStaff_goesStraightToApprover -- Time elapsed: 0.422 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: 仅所有者 staff 的改期应直接待复审，实测：{"requestId":"45ed42d9-99f0-499d-88ee-d55c453ef667","data":{"id":"47f61aee-2a3f-46c6-9b06-b3fba92c6de8","activityId":"0fd319c2-d695-4532-af42-37c94f717f7d","baseVersionNo":1,"targetPlan":{"startAt":"2030-10-20T03:00:00Z","endAt":"2030-10-20T04:00:00Z","setupMinutes":0,"teardownMinutes":0,"venueId":"00000000-0000-0000-0000-000000003102","equipment":[]},"reason":"边界回归改期到空闲时段（测试数据）","status":"AWAITING_CONFIRMATIONS","impact":{"oldPlan":{"startAt":"2030-10-20T02:00:00Z","endAt":"2030-10-20T03:00:00Z","setupMinutes":0,"teardownMinutes":0,"venueId":"00000000-0000-0000-0000-000000003102","equipment":[]},"newPlan":{"startAt":"2030-10-20T03:00:00Z","endAt":"2030-10-20T04:00:00Z","setupMinutes":0,"teardownMinutes":0,"venueId":"00000000-0000-0000-0000-000000003102","equipment":[]},"releasedResourceIds":[],"acquiredResourceIds":[],"retainedResourceIds":["00000000-0000-0000-0000-000000003102"],"requiredStaffUserIds":["00000000-0000-0000-0000-000000002001"],"registeredUserIds":[],"registeredCount":0,"notificationUserIds":["00000000-0000-0000-0000-000000002001"],"approvalReset":true,"originalResourceRisk":"NORMAL","changedFields":["startAt","endAt"]},"confirmations":[{"userId":"00000000-0000-0000-0000-000000002001","decision":null,"comment":"","decidedAt":null}],"approverDecision":null,"resourceDecision":null,"lastConflicts":[],"appliedVersionNo":null,"createdBy":"00000000-0000-0000-0000-000000002001","createdAt":"2026-11-06T09:14:30.542223Z","updatedAt":"2026-11-06T09:14:30.542223Z"}} ==> expected: <PENDING_APPROVER> but was: <AWAITING_CONFIRMATIONS>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:188)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1167)
+	at com.campus.events.acceptance.ContractBoundaryIT.changeOnlyOwnerStaff_goesStraightToApprover(ContractBoundaryIT.java:221)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:583)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1612)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1612)
+
+[ERROR] com.campus.events.acceptance.ContractBoundaryIT.changeOwnerPlusOtherStaff_ownerHasNoSelfConfirmationRow -- Time elapsed: 0.335 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: BR-07/BR-23：所有者不向自己确认，不得为所有者预建待确认行 ==> expected: <0> but was: <1>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:166)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:664)
+	at com.campus.events.acceptance.ContractBoundaryIT.changeOwnerPlusOtherStaff_ownerHasNoSelfConfirmationRow(ContractBoundaryIT.java:244)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:583)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1612)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1612)
+
+[ERROR] Failures: 
+[ERROR]   ContractBoundaryIT.approveWithEmptyComment_isLegal:160 APPROVE 空意见是合法请求，应成功：{"error":{"message":"事件字段不完整","details":{},"code":"VALIDATION_ERROR"},"requestId":"b56351cd-8fe3-4271-9eb5-fa65b8195572"} ==> expected: <200> but was: <400>
+[ERROR]   ContractBoundaryIT.changeOnlyOwnerStaff_goesStraightToApprover:221 仅所有者 staff 的改期应直接待复审，实测：{"requestId":"45ed42d9-99f0-499d-88ee-d55c453ef667","data":{"id":"47f61aee-2a3f-46c6-9b06-b3fba92c6de8","activityId":"0fd319c2-d695-4532-af42-37c94f717f7d","baseVersionNo":1,"targetPlan":{"startAt":"2030-10-20T03:00:00Z","endAt":"2030-10-20T04:00:00Z","setupMinutes":0,"teardownMinutes":0,"venueId":"00000000-0000-0000-0000-000000003102","equipment":[]},"reason":"边界回归改期到空闲时段（测试数据）","status":"AWAITING_CONFIRMATIONS","impact":{"oldPlan":{"startAt":"2030-10-20T02:00:00Z","endAt":"2030-10-20T03:00:00Z","setupMinutes":0,"teardownMinutes":0,"venueId":"00000000-0000-0000-0000-000000003102","equipment":[]},"newPlan":{"startAt":"2030-10-20T03:00:00Z","endAt":"2030-10-20T04:00:00Z","setupMinutes":0,"teardownMinutes":0,"venueId":"00000000-0000-0000-0000-000000003102","equipment":[]},"releasedResourceIds":[],"acquiredResourceIds":[],"retainedResourceIds":["00000000-0000-0000-0000-000000003102"],"requiredStaffUserIds":["00000000-0000-0000-0000-000000002001"],"registeredUserIds":[],"registeredCount":0,"notificationUserIds":["00000000-0000-0000-0000-000000002001"],"approvalReset":true,"originalResourceRisk":"NORMAL","changedFields":["startAt","endAt"]},"confirmations":[{"userId":"00000000-0000-0000-0000-000000002001","decision":null,"comment":"","decidedAt":null}],"approverDecision":null,"resourceDecision":null,"lastConflicts":[],"appliedVersionNo":null,"createdBy":"00000000-0000-0000-0000-000000002001","createdAt":"2026-11-06T09:14:30.542223Z","updatedAt":"2026-11-06T09:14:30.542223Z"}} ==> expected: <PENDING_APPROVER> but was: <AWAITING_CONFIRMATIONS>
+[ERROR]   ContractBoundaryIT.changeOwnerPlusOtherStaff_ownerHasNoSelfConfirmationRow:244 BR-07/BR-23：所有者不向自己确认，不得为所有者预建待确认行 ==> expected: <0> but was: <1>
+[ERROR] Tests run: 7, Failures: 3, Errors: 0, Skipped: 0
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-failsafe-plugin:3.5.6:verify (default) on project campus-events: There are test failures.
+[ERROR] 
+[ERROR] See /home/r1t0/workspace/30_projects/10_academic_labs/campus-sched/server/target/failsafe-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

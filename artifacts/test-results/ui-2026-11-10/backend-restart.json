@@ -1,0 +1,13 @@
+{
+  "oldPid": 21512,
+  "oldStartedAt": "2026-11-10T22:19:47.054116+08:00",
+  "stoppedAt": "2026-11-10T14:28:44.5937139Z",
+  "databasePort": 55433,
+  "reseeded": false,
+  "newPid": 5676,
+  "restartCommand": "start-backend.ps1 --no-seed",
+  "newStartedAt": "2026-11-10T22:28:44.6656330+08:00",
+  "health": "UP",
+  "healthPath": "/api/v1/health",
+  "checkedAt": "2026-11-10T14:29:53.3900319Z"
+}

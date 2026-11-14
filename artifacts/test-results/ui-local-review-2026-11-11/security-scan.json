@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-11-11T01:46:39.246Z",
+  "credentialKeysChecked": [
+    "databasePassword",
+    "demoPassword"
+  ],
+  "credentialValueMatches": [],
+  "initialNonSecretMatches": [
+    {
+      "path": "web/tests/integration/review-regression.spec.ts",
+      "line": 18,
+      "settingKey": "databaseName",
+      "classification": "Non-secret test database name in existing comment, not a credential"
+    }
+  ]
+}

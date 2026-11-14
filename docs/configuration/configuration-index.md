@@ -2,7 +2,7 @@
 
 > 项目：campus-sched　负责人：杨瀚霖（55231031，配置经理）
 > 本文是"配置库"交付物（任务包 §5 交付物 10）的索引部分，是配置项与基线状态的**唯一登记处**（single source of truth）：编号、名称、版本、状态均以此为准；只登记**真实纳入版本库**的配置项，未产生的内容不预登记。《配置管理计划》§5.2 与 T08 Word 附录B 的基线表为课程/计划用的**同步视图**，随本索引同步维护，不作为第二事实来源。
-> 更新：随各模块交付与基线建立持续维护；最近一次 2026-11-13 对齐任务 6「配置库」交付，补全六人模块源码与各岗位文档登记。
+> 更新：随各模块交付与基线建立持续维护；最近一次 2026-11-14 登记发布说明/清单（CS-CI-REL-01）、软件测试报告（CS-CI-DOC-28）与用户手册 PDF（CS-CI-DOC-64）。
 
 ## 修订历史
 
@@ -12,6 +12,7 @@
 | 2026-10-16 | 杨瀚霖 | 补录 QA 测试文档与演示/场景数据 |
 | 2026-10-30 | 杨瀚霖 | 修正 init-v1.0 基线内容、索引任务书路径、同步视图说明 |
 | 2026-11-13 | 杨瀚霖 | 任务 6 补全六人模块源码与各岗位文档登记、基线状态 |
+| 2026-11-14 | 杨瀚霖 | 登记发布说明/清单（CS-CI-REL-01）、软件测试报告（CS-CI-DOC-28）、用户手册 PDF（CS-CI-DOC-64） |
 
 ## 1. 说明
 
@@ -83,6 +84,7 @@
 | CS-CI-DOC-61 | 界面说明 | `docs/ui/interface-description.md` | v1.1 | 界面设计师 | 受控 |
 | CS-CI-DOC-62 | UI 接口接入矩阵 | `docs/ui/api-matrix.md` | v0.1 | 界面设计师 | 受控 |
 | CS-CI-DOC-63 | 用户界面说明文档（课程提交版，Word） | `docs/ui/T08_用户界面说明文档.docx` | — | 界面设计师 | 受控 |
+| CS-CI-DOC-64 | 用户手册（课程提交版，PDF） | `docs/ui/T08_用户手册.pdf` | v0.2 | 界面设计师 | 受控 |
 
 ### 2.7 测试文档与支撑（CS-CI-DOC / CS-CI-DATA / CS-CI-SRC，测试经理）
 
@@ -96,6 +98,7 @@
 | CS-CI-DOC-25 | 缺陷登记表 | `docs/testing/defect-register.md` | v0.1 | 测试经理 | 受控 |
 | CS-CI-DOC-26 | PR 评审清单 | `docs/testing/pr-review-checklist.md` | — | 测试经理 | 受控 |
 | CS-CI-DOC-27 | 软件测试计划（课程提交版，Word） | `docs/testing/T08_软件测试计划.docx` | — | 测试经理 | 受控 |
+| CS-CI-DOC-28 | 软件测试报告（课程提交版，Word） | `docs/testing/T08_软件测试报告.docx` | v1.0 | 测试经理 | 受控 |
 | CS-CI-DATA-01 | 演示数据集 v3.0 | `test-data/demo.json` | v3.0 | 测试经理 | 受控 |
 | CS-CI-DATA-02 | 场景数据 | `test-data/scenarios/*.json` | — | 测试经理 | 受控 |
 | CS-CI-SRC-30 | 后端测试支撑 | `server/src/test/.../support/` | — | 测试经理 | 受控 |
@@ -138,11 +141,10 @@
 |---|---|---|---|---|---|
 | CS-CI-DOC-70 | OpenAPI 契约（40 接口） | `contracts/openapi.yaml` | — | 项目经理 | 受控 |
 | CS-CI-ART-01 | 验收证据（截图/测试结果） | `artifacts/`（screenshots、test-results） | — | 产出者所有 | 受控 |
-| CS-CI-REL-01 | 发布包与发布说明 | `release/` | — | 配置经理 | 待建立（当前为空） |
+| CS-CI-REL-01 | 发布说明与发布清单 | `release/README.md`、`release/manifest.json` | v1.0.0 | 配置经理 | 受控 |
 
 ### 2.12 未产生/待补内容（不预登记）
 
-- **软件测试报告**（`docs/testing/test-report.md`，任务 6 交付物，测试经理）：尚未纳入版本库，产出后由测试经理登记为 CS-CI-DOC-28。
 - **设计图源**（`models/*.drawio`）：当前仅有目录骨架（`.gitkeep`），真实图源产出后按《配置管理计划》§3.1 登记为 CS-CI-MODEL-*。
 - **项目考核评估表**（任务 6 交付物，项目经理）：课程提交物，由项目经理负责，不属配置库源码/文档项。
 

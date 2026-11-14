@@ -1,0 +1,67 @@
+{
+  "createdAt": "2026-11-11T01:46:40.552Z",
+  "baseline": "ca162bf975b2ebae0bd0dd59d7c63b23bc505b35",
+  "originalManifest": "artifacts/test-results/ui-2026-11-10/manifest.json",
+  "originalManifestSha256": "2d1de3f165c7b1e888fdf1446400eed52592581b3ecb1553c46e6e603c164196",
+  "changesSinceReviewedSnapshot": [
+    "docs/ui/handoff.md"
+  ],
+  "explanation": "Only handoff gained the self-review summary; reviewed product code, tests and original test evidence remain unchanged.",
+  "files": [
+    {
+      "path": "docs/ui/handoff.md",
+      "bytes": 31753,
+      "sha256": "32dd82bf67574476837d08fcb9bd1ea4c0ffd90f486411f51fd4fe35b0bd943e"
+    },
+    {
+      "path": "docs/ui/local-pr-review-2026-11-11.md",
+      "bytes": 6287,
+      "sha256": "72fd5fefa36b62492605ac289e4dade42a83986bb26ac7f8c34f565c011c57c0"
+    },
+    {
+      "path": "artifacts/test-results/ui-local-review-2026-11-11/audit.json",
+      "bytes": 386,
+      "sha256": "7b8368b5b6c4059560c1bffd9b0a3bea64c9adb1964cdececfe769fbffa8870f"
+    },
+    {
+      "path": "artifacts/test-results/ui-local-review-2026-11-11/audit.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/test-results/ui-local-review-2026-11-11/candidate-checks.json",
+      "bytes": 23026,
+      "sha256": "5ff0a77a88967b1303de8a1ef9e45769f83c9063433586db81ce6b6618a879f4"
+    },
+    {
+      "path": "artifacts/test-results/ui-local-review-2026-11-11/dependencies.json",
+      "bytes": 1498,
+      "sha256": "61efdf9f05b6f54bda21a112285554b79d71fbd2a8cc250294150de216336724"
+    },
+    {
+      "path": "artifacts/test-results/ui-local-review-2026-11-11/dependencies.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "artifacts/test-results/ui-local-review-2026-11-11/inspection.json",
+      "bytes": 7827,
+      "sha256": "a8f1b3d3ba0fb13a072cd06f915e164cdf556e99aef7e2a8300e86dba118de41"
+    },
+    {
+      "path": "artifacts/test-results/ui-local-review-2026-11-11/security-scan.json",
+      "bytes": 416,
+      "sha256": "7f936d49302a042c28f5970f795418b47ae5533127073c2b248655526ea58a11"
+    },
+    {
+      "path": "artifacts/test-results/ui-local-review-2026-11-11/tooling-results.json",
+      "bytes": 1312,
+      "sha256": "97a2720288a4937924aac03ed75b624b65d345bb8fbe2892394079ebdc2110d9"
+    },
+    {
+      "path": "artifacts/test-results/ui-local-review-2026-11-11/tooling.log",
+      "bytes": 433,
+      "sha256": "b7ea0e2b54b26bd9f60bd349c8a789ae7725bf4cd751ab065a7602eeb0f99061"
+    }
+  ]
+}

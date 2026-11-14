@@ -1,0 +1,80 @@
+name: 项目回归
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      TEST_DATABASE_URL: jdbc:postgresql://127.0.0.1:5440/campus_test
+      TEST_DB_USERNAME: campus_app
+      TEST_DB_PASSWORD: campus_app_dev
+      BASE_URL: http://127.0.0.1:8089
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+          cache-dependency-path: server/pom.xml
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: |
+            web/package-lock.json
+            qa/package-lock.json
+      - name: 准备隔离演示口令
+        run: |
+          password=$(openssl rand -hex 18)
+          echo "::add-mask::$password"
+          echo "DEMO_PASSWORD=$password" >> "$GITHUB_ENV"
+      - name: 启动隔离验收环境
+        run: docker compose -f compose.qa.yaml up -d --build --wait
+      - name: 后端单元及数据库集成
+        run: ./server/mvnw -f server/pom.xml clean verify
+      - name: 前端类型、单元及生产构建
+        run: |
+          npm --prefix web ci
+          npm --prefix web run types:check
+          npm --prefix web run typecheck
+          npm --prefix web run test:unit
+          npm --prefix web run build
+      - name: 契约、测试设计及调度评测
+        run: |
+          npm --prefix qa ci
+          npm --prefix qa run test:contract
+          npm --prefix qa run typecheck
+          node --test qa/scripts/check-test-design.test.ts
+          node qa/scripts/check-test-design.ts --file test-data/test-design-cases-v1.0.json
+          npm --prefix qa run evaluate
+      - name: 三种视口的真实浏览器验收
+        working-directory: qa
+        run: |
+          npx playwright install --with-deps chromium
+          curl --fail --silent --show-error --retry 30 --retry-delay 2 --retry-all-errors "$BASE_URL/api/v1/health"
+          npm run test:e2e
+      - name: 在新库验证备份恢复
+        run: |
+          docker compose -f compose.qa.yaml stop server
+          docker compose -f compose.qa.yaml exec -T db sh -e -c '
+            pg_dump -U campus_app -d campus_test -Fc -f /tmp/acceptance.dump
+            createdb -U "$POSTGRES_USER" -O campus_app campus_restore
+            pg_restore -U campus_app -d campus_restore --exit-on-error /tmp/acceptance.dump
+            query="SELECT count(*) FROM activity; SELECT count(*) FROM reservation; SELECT count(*) FROM notification;"
+            source_counts=$(psql -U campus_app -d campus_test -At -v ON_ERROR_STOP=1 -c "$query")
+            restored_counts=$(psql -U campus_app -d campus_restore -At -v ON_ERROR_STOP=1 -c "$query")
+            test "$source_counts" = "$restored_counts"
+          '
+      - name: 停止隔离环境
+        if: always()
+        run: docker compose -f compose.qa.yaml down --volumes

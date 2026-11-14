@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-11-14T04:10:40.673320+00:00",
+  "fixed": [
+    "manual_registration_button",
+    "readme_latest_evidence_link"
+  ],
+  "unresolvedMustFix": 0,
+  "unresolvedSuggestions": 0,
+  "wordPdfSynchronized": true,
+  "changedRenderedPages": [
+    9
+  ],
+  "unchangedRenderedPages": 17,
+  "verifiedUnchangedCodeAndLockFiles": 5,
+  "businessTestsRerun": false,
+  "submissionPaused": true
+}

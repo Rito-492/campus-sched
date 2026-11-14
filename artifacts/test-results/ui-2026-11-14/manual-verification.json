@@ -1,0 +1,74 @@
+{
+  "checkedAt": "2026-11-14T03:59:36.640652+00:00",
+  "documentDate": "2026-11-11",
+  "verificationDate": "2026-11-14",
+  "baseline": "750763b721ca999c454ac730d9876583b40ad202",
+  "pages": 18,
+  "chapters": 16,
+  "headings": [
+    "1 使用须知",
+    "2 角色权限与页面导航",
+    "3 登录与活动工作台",
+    "4 创建活动草稿",
+    "5 编辑草稿与检查资源",
+    "6 提交审批与首次资源预约",
+    "7 发布报名撤回与取消",
+    "8 查询资源日历",
+    "9 资源创建资格与故障管理",
+    "10 创建改期申请",
+    "11 处理改期与核对生效",
+    "12 通知与人员历史记录",
+    "13 账号创建启停与完整授权",
+    "14 异常提示与恢复操作",
+    "15 状态说明与当前已知限制",
+    "16 附录与文档维护"
+  ],
+  "pdfBookmarks": 65,
+  "tocLinks": 16,
+  "sourceTextMissingFromPdf": [],
+  "originalT08Unchanged": true,
+  "trackedChanges": 0,
+  "commentParts": 0,
+  "credentialMatches": 0,
+  "renderMethod": "Microsoft Word native PDF export; packaged render_docx.py rasterization with a native-PDF conversion adapter because LibreOffice is absent",
+  "visualReview": {
+    "pagesInspectedThisRevision": [
+      13,
+      16,
+      17,
+      18
+    ],
+    "otherFinalPagesIdenticalToInspectedRender": 14,
+    "result": "Changed pages inspected; other pages identical to the previously inspected cover revision"
+  },
+  "files": [
+    {
+      "path": "docs/ui/user-manual.md",
+      "bytes": 33764,
+      "sha256": "3f75b6af29ee839ffed416f01a6b1a361b4e43aca37151dcbc7245bd2ec229e2"
+    },
+    {
+      "path": "docs/ui/user-manual-v0.2-2026-11-11.docx",
+      "bytes": 263186,
+      "sha256": "49cdf1a939e51bbfe73d65a2dd6eb19dc967017c26ea30fc86d295d9784472e9"
+    },
+    {
+      "path": "docs/ui/user-manual.pdf",
+      "bytes": 406961,
+      "sha256": "eb0b30997706c661649295d96cf128b41a26f25cd6f136df239232591fe85332"
+    }
+  ],
+  "changedRenderedPages": [
+    13,
+    16,
+    17,
+    18
+  ],
+  "coverNameAndStudentIdRetained": true,
+  "removedCoverMetadataAbsent": true,
+  "embeddedImagesInWord": 2,
+  "pdfImagePages": [
+    8,
+    10
+  ]
+}
