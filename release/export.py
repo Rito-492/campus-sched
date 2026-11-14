@@ -23,7 +23,7 @@
     发布引用采用「冻结快照 + 随包授权登记/发布元数据」：内容字节取自 --commit 冻结快照；
     release/manifest.json 的 commit/baselineStatus 等授权登记以工作树（随包）为权威，冻结快照内
     自述值（打 tag 前）仅作透明对照，不作为发布引用。
-退出码：1=致命错误（提交无法解析 / 输出目录冲突 / 清单无法解析）；2=任务5正式交付物缺失；3=发布清单哈希不匹配。
+退出码：1=致命错误（提交无法解析 / 输出目录冲突 / 清单无法解析）；2=任务5正式交付物缺失；3=发布清单哈希不匹配；4=随包授权登记 commit 与所选发布标签/提交不一致。
 
 二进制文件一律经 `git show <commit>:<path>` 取原始字节写出，不经过文本转码，
 从而保证 docx/pdf/drawio/png 与版本库字节一致（sha256 逐件核对）。
@@ -357,6 +357,13 @@ def main():
 
     release_commit = release_manifest.get('commit')
     frozen_declared = frozen_manifest.get('commit')
+    release_mismatch = (release_commit != commit)
+
+    # 随包授权登记：把工作树（随包）权威清单作为独立文件写入导出目录（与冻结快照内的历史清单并存）
+    release_manifest_file = '随包授权登记-manifest.json'
+    with open(os.path.join(outdir, release_manifest_file), 'w', encoding='utf-8') as f:
+        json.dump(release_manifest, f, ensure_ascii=False, indent=2)
+
     result = {
         'commit': commit,
         'out': outdir,
@@ -365,6 +372,7 @@ def main():
         'frozen_manifest_commit': frozen_declared,
         'baseline_status': release_manifest.get('baselineStatus'),
         'release_commit_note': release_manifest.get('commitNote'),
+        'release_manifest_file': release_manifest_file,
         'doc_count': len(report),
         'historical': hist,
         'skipped_historical': skipped_hist,
@@ -391,10 +399,11 @@ def main():
         for it in ver_mismatch:
             print('  [注意] %s：脚本声明 %s / 快照内容 %s' % (it['src'], it['declared_version'], it['ver']))
     print('发布元数据与清单校验：')
+    print('  随包授权登记已写入独立文件：%s' % release_manifest_file)
     print('  随包授权登记 commit=%s（%s）——权威发布引用' % (
         release_commit,
-        '与本导出候选一致' if release_commit == commit else '与本导出候选不一致'))
-    print('  冻结快照内清单自述 commit=%s（打 tag 前历史值，非权威）' % frozen_declared)
+        '与所选发布标签/提交一致' if release_commit == commit else '与所选发布标签/提交不一致（退出码 4）'))
+    print('  冻结快照内清单自述 commit=%s（打 tag 前历史值，非权威，保留原字节）' % frozen_declared)
     print('  基线状态：%s' % release_manifest.get('baselineStatus'))
     if release_manifest.get('commitNote'):
         print('  发布说明：%s' % release_manifest['commitNote'])
@@ -403,12 +412,16 @@ def main():
             print('  [跳过] %s : %s（%s）' % (v['name'], v['file'], v['note']))
         else:
             print('  [%s] %s : %s' % ('匹配' if v['match'] else '不匹配', v['name'], v['file']))
+    if release_mismatch:
+        print('随包授权登记 commit（%s）与所选发布标签/提交（%s）不一致，不能作为正式发布包（退出码 4）。' % (release_commit, commit))
     if task5_missing:
         print('导出不完整：任务5正式交付物缺失，不能作为最终课程包（退出码 2）。')
     if manifest_mismatch:
         for name, path, why in manifest_mismatch:
             print('  [不匹配] %s : %s（%s）' % (name, path, why))
         print('发布清单哈希校验失败，不能作为最终课程包（退出码 3）。')
+    if release_mismatch:
+        sys.exit(4)
     if manifest_mismatch:
         sys.exit(3)
     if task5_missing:
