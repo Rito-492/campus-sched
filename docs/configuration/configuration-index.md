@@ -2,7 +2,7 @@
 
 > 项目：campus-sched　负责人：杨瀚霖（55231031，配置经理）
 > 本文是"配置库"交付物（任务包 §5 交付物 10）的索引部分，是配置项与基线状态的**唯一登记处**（single source of truth）：编号、名称、版本、状态均以此为准；只登记**真实纳入版本库**的配置项，未产生的内容不预登记。《配置管理计划》§5.2 与 T08 Word 附录B 的基线表为课程/计划用的**同步视图**，随本索引同步维护，不作为第二事实来源。
-> 更新：随各模块交付与基线建立持续维护；最近一次 2026-11-13 对齐任务 6「配置库」交付，补全六人模块源码与各岗位文档登记。
+> 更新：随各模块交付与基线建立持续维护；最近一次 2026-11-14：历史版本完整盘点（`HIST` 34 件，含用户手册 v0.1、初始项目计划 v0.5–v0.8、缺陷登记 v0.1–v0.3、软件测试报告 v0.1–v1.0 等已入库版本）+ 发布提交口径收口（manifest `commit` 标注为本分支主线起点 `cbf4945`，QA 全量 verify 归 `e1051df`，最终归档 SHA 以发布标签解析为准）；§2.7 标注任务 5「软件测试设计」三件待 PR #23 合入。
 
 ## 修订历史
 
@@ -12,6 +12,17 @@
 | 2026-10-16 | 杨瀚霖 | 补录 QA 测试文档与演示/场景数据 |
 | 2026-10-30 | 杨瀚霖 | 修正 init-v1.0 基线内容、索引任务书路径、同步视图说明 |
 | 2026-11-13 | 杨瀚霖 | 任务 6 补全六人模块源码与各岗位文档登记、基线状态 |
+| 2026-11-14 | 杨瀚霖 | 登记发布说明/清单（CS-CI-REL-01）、软件测试报告（CS-CI-DOC-28）、用户手册 PDF（CS-CI-DOC-64） |
+| 2026-11-14 | 杨瀚霖 | §3 基线清单补 requirements/design 两条基线并补真实建立时间（2026-10-13，已打 tag）；与计划 §5.2 同步 |
+| 2026-11-14 | 杨瀚霖 | 同步 main（46df56d）：缺陷登记表 v0.1→v0.4，登记软件测试报告 test-report.md v1.1（CS-CI-DOC-29） |
+| 2026-11-14 | 杨瀚霖 | 登记两份设计图源（CS-CI-MODEL-01/02）、用户手册 v0.1→v0.2（同步 main cbf4945，PR #31 图源合入） |
+| 2026-11-14 | 杨瀚霖 | §3 基线时间口径补 tag 创建时间（requirements/design tag 于 11-14 补打）；项目考核评估表已产出（PM，课程提交物不登记） |
+| 2026-11-14 | 杨瀚霖 | §3 design-v1.0 重打 tag 指向 328025d（纳入 11-14 补齐的 UML 图源），冻结时间更正为 11-14；与计划 §5.2 同步 |
+| 2026-11-14 | 杨瀚霖 | 导出脚本三轮整改：`release/export.py` 提交锁定为唯一 SHA、`--out` 拒绝非空目录、任务 5 按精确文件路径核验（缺项退出码 2）、历史版本补配置管理计划 Word v1.6；§2.7 标注任务 5 软件测试设计三件待 PR #23 合入 |
+| 2026-11-14 | 杨瀚霖 | 登记导出清单（release/export-manifest.md 并入 CS-CI-REL-01）；§2.1 配置管理计划 v1.6→v1.7；§2.6 标注两份 v0.2 用户手册 PDF 差异待界面设计师统一 |
+| 2026-11-14 | 杨瀚霖 | 导出清单重写为可执行脚本（release/export.py，字节保真）并实际运行核验；§2.6 用户手册 PDF 登记更正为 #27 成品 user-manual.pdf（T08 导出版过时，待界面设计师重导）；T08 Word 基线表设计行移至 task-package-v3.0 之后、release 授权改「待授权」 |
+| 2026-11-14 | 杨瀚霖 | 五轮整改：历史版本完整盘点补漏（`HIST` 17→34 件：用户手册 v0.1、初始项目计划 v0.5–v0.8、测试设计 v0.1、测试数据设计 v0.1、缺陷登记 v0.1–v0.3、软件测试报告 v0.1–v1.0 等，逐 commit 核实）；发布提交口径收口（manifest `commit` 标注为本分支主线起点 `cbf4945` + 增 commitNote，最终归档 SHA 以发布标签解析为准）；§3、§2.7、release/export-manifest.md §4/§5 同步 |
+| 2026-11-14 | 杨瀚霖 | 六轮整改：更正发布清单测试归属——`commitNote` 将 `cbf4945` 由「QA 全量 verify 基准」更正为「本分支主线起点」（main 合入 PR #27 用户手册后的提交），QA 2026-11-13 全量 verify 结果/证据单独归 `e1051df`（含 CM #21，见 manifest `tests`）；最终归档仍待 CCB 授权打 tag 后按标签解析 SHA 登记；同步 §3、header、release/export-manifest.md §5、handoff |
 
 ## 1. 说明
 
@@ -33,8 +44,8 @@
 | CS-CI-DOC-01 | 仓库约定 | `AGENTS.md` | — | 项目经理 | 受控 |
 | CS-CI-DOC-02 | 项目名片 | `README.md` | — | 项目经理 | 受控 |
 | CS-CI-DOC-03 | 仓库结构指南 | `docs/configuration/repo-structure.md` | v0.2 | 配置经理 | 受控 |
-| CS-CI-DOC-04 | 配置管理计划 | `docs/configuration/configuration-management-plan.md` | v1.5 | 配置经理 | 受控 |
-| CS-CI-DOC-05 | 配置管理计划（课程提交版，Word） | `docs/configuration/T08_配置管理计划.docx` | v1.5 | 配置经理 | 受控 |
+| CS-CI-DOC-04 | 配置管理计划 | `docs/configuration/configuration-management-plan.md` | v1.7 | 配置经理 | 受控 |
+| CS-CI-DOC-05 | 配置管理计划（课程提交版，Word） | `docs/configuration/T08_配置管理计划.docx` | v1.7 | 配置经理 | 受控 |
 | CS-CI-DOC-06 | 配置项索引（本索引） | `docs/configuration/configuration-index.md` | — | 配置经理 | 受控 |
 
 ### 2.2 课程下发材料（CS-CI-DOC，只读）
@@ -49,7 +60,7 @@
 | 编号 | 配置项 | 位置 | 版本 | 负责人 | 状态 |
 |---|---|---|---|---|---|
 | CS-CI-DOC-30 | 初始项目计划 | `docs/management/initial-project-plan.md` | v0.9 | 项目经理 | 受控 |
-| CS-CI-DOC-31 | 详细项目计划 | `docs/management/detailed-project-plan.md` | v3.1.3 | 项目经理 | 受控 |
+| CS-CI-DOC-31 | 详细项目计划 | `docs/management/detailed-project-plan.md` | v3.1.4 | 项目经理 | 受控 |
 | CS-CI-DOC-32 | 决策记录 | `docs/management/decision-log.md` | — | 项目经理 | 受控 |
 | CS-CI-DOC-33 | 风险清单 | `docs/management/risks.md` | — | 项目经理 | 受控 |
 | CS-CI-DOC-34 | 集成记录 | `docs/management/integration-log.md` | — | 项目经理 | 受控 |
@@ -79,10 +90,13 @@
 
 | 编号 | 配置项 | 位置 | 版本 | 负责人 | 状态 |
 |---|---|---|---|---|---|
-| CS-CI-DOC-60 | 用户手册 | `docs/ui/user-manual.md` | v0.1 | 界面设计师 | 受控 |
+| CS-CI-DOC-60 | 用户手册 | `docs/ui/user-manual.md` | v0.2 | 界面设计师 | 受控 |
 | CS-CI-DOC-61 | 界面说明 | `docs/ui/interface-description.md` | v1.1 | 界面设计师 | 受控 |
 | CS-CI-DOC-62 | UI 接口接入矩阵 | `docs/ui/api-matrix.md` | v0.1 | 界面设计师 | 受控 |
 | CS-CI-DOC-63 | 用户界面说明文档（课程提交版，Word） | `docs/ui/T08_用户界面说明文档.docx` | — | 界面设计师 | 受控 |
+| CS-CI-DOC-64 | 用户手册（PDF） | `docs/ui/user-manual.pdf` | v0.2 | 界面设计师 | 受控 |
+
+> **用户手册 PDF 版本说明（#6）**：`docs/ui/` 下 `user-manual.pdf`（2026-11-14 18:40，PR #27 已合入成品，含「报名参加」按钮表述）与 `T08_用户手册.pdf`（2026-11-14 16:17，课程提交版导出，缺该表述）存在内容差异。本索引登记与导出清单（`release/export-manifest.md`）均以 #27 成品 `user-manual.pdf` 为当前 v0.2；课程提交版 `T08_用户手册.pdf` 由界面设计师重导或确认后替换，配置经理不代改其内容。
 
 ### 2.7 测试文档与支撑（CS-CI-DOC / CS-CI-DATA / CS-CI-SRC，测试经理）
 
@@ -93,14 +107,18 @@
 | CS-CI-DOC-22 | 测试数据设计 | `docs/testing/test-data-plan.md` | v0.2 | 测试经理 | 受控 |
 | CS-CI-DOC-23 | 测试 ID 需求清单 | `docs/testing/testid-requirements.md` | — | 测试经理 | 受控 |
 | CS-CI-DOC-24 | 需求覆盖矩阵 | `docs/testing/coverage-matrix.md` | v3.0 | 测试经理 | 受控 |
-| CS-CI-DOC-25 | 缺陷登记表 | `docs/testing/defect-register.md` | v0.1 | 测试经理 | 受控 |
+| CS-CI-DOC-25 | 缺陷登记表 | `docs/testing/defect-register.md` | v0.4 | 测试经理 | 受控 |
 | CS-CI-DOC-26 | PR 评审清单 | `docs/testing/pr-review-checklist.md` | — | 测试经理 | 受控 |
 | CS-CI-DOC-27 | 软件测试计划（课程提交版，Word） | `docs/testing/T08_软件测试计划.docx` | — | 测试经理 | 受控 |
+| CS-CI-DOC-28 | 软件测试报告（课程提交版，Word） | `docs/testing/T08_软件测试报告.docx` | v1.0 | 测试经理 | 受控 |
+| CS-CI-DOC-29 | 软件测试报告 | `docs/testing/test-report.md` | v1.1 | 测试经理 | 受控 |
 | CS-CI-DATA-01 | 演示数据集 v3.0 | `test-data/demo.json` | v3.0 | 测试经理 | 受控 |
 | CS-CI-DATA-02 | 场景数据 | `test-data/scenarios/*.json` | — | 测试经理 | 受控 |
 | CS-CI-SRC-30 | 后端测试支撑 | `server/src/test/.../support/` | — | 测试经理 | 受控 |
 | CS-CI-SRC-31 | 跨模块集成测试 | `server/src/test/.../acceptance/` | — | 测试经理 | 受控 |
 | CS-CI-SRC-32 | E2E 与契约检查工程 | `qa/` | — | 测试经理 | 受控 |
+
+> **任务 5「软件测试设计」正式交付物待合入说明**：课程要求的任务 5 正式交付物中，「软件测试设计」三件——`docs/testing/test-design-v1.0.md`（v1.0）、`docs/testing/T08_任务5_软件测试设计.docx`、`test-data/test-design-cases-v1.0.json`（结构化用例）——已由测试经理在 `work/55230316-qa`（提交 `26c5dad`，PR #23）产出，**尚未合入 main**，故本索引只登记已入 main 的 `test-design.md` v0.2（CS-CI-DOC-21），不预登记未合入项。导出脚本（`release/export.py`）按精确文件路径核验，缺项返回退出码 2，避免「假通过」；属测试经理/项目经理交付依赖，配置经理不代产、不代合。
 
 ### 2.8 后端源码（CS-CI-SRC，按模块）
 
@@ -138,21 +156,28 @@
 |---|---|---|---|---|---|
 | CS-CI-DOC-70 | OpenAPI 契约（40 接口） | `contracts/openapi.yaml` | — | 项目经理 | 受控 |
 | CS-CI-ART-01 | 验收证据（截图/测试结果） | `artifacts/`（screenshots、test-results） | — | 产出者所有 | 受控 |
-| CS-CI-REL-01 | 发布包与发布说明 | `release/` | — | 配置经理 | 待建立（当前为空） |
+| CS-CI-REL-01 | 发布说明、发布清单与导出清单 | `release/README.md`、`release/manifest.json`、`release/export-manifest.md` | v1.0.0 | 配置经理 | 受控 |
 
-### 2.12 未产生/待补内容（不预登记）
+### 2.12 模型图（CS-CI-MODEL，设计师）
 
-- **软件测试报告**（`docs/testing/test-report.md`，任务 6 交付物，测试经理）：尚未纳入版本库，产出后由测试经理登记为 CS-CI-DOC-28。
-- **设计图源**（`models/*.drawio`）：当前仅有目录骨架（`.gitkeep`），真实图源产出后按《配置管理计划》§3.1 登记为 CS-CI-MODEL-*。
-- **项目考核评估表**（任务 6 交付物，项目经理）：课程提交物，由项目经理负责，不属配置库源码/文档项。
+| 编号 | 配置项 | 位置 | 版本 | 负责人 | 状态 |
+|---|---|---|---|---|---|
+| CS-CI-MODEL-01 | 首次资源确认活动图（UC-08） | `models/activity/首次资源确认活动图.drawio`（+ `.png`） | v1.0 | 设计师 | 受控 |
+| CS-CI-MODEL-02 | 首次活动申请与发布用例图（UC-05~09） | `models/use-case/首次活动申请与发布用例图.drawio`（+ `.png`） | v1.0 | 设计师 | 受控 |
+
+### 2.13 课程提交物（不在配置库登记）
+
+- **项目考核评估表**（任务 6 交付物，项目经理）：为项目组成员分配权值，属课程考核提交物；已由项目经理产出（2026-11-14），随任务 6 .zip 直接提交学习通，不属配置库源码/文档项，故不在本索引登记。
 
 ## 3. 基线清单
 
 | 基线 | 内容 | tag commit 时间 | 授权（CCB） | 状态 |
 |---|---|---|---|---|
-| `baseline/init-v1.0` | 任务包并入 + 仓库结构定型 | 2026-09-25 22:15:33（commit=tag） | 待核实（无追溯 CCB 记录） | 已建立（tag 存在） |
-| `baseline/task-package-v2.0` | 任务包 v2.0 基线 | 2026-09-26 19:59:40（commit=tag） | 待核实（无追溯 CCB 记录） | 已建立（tag 存在） |
-| `baseline/task-package-v3.0` | 任务包 v3.0 基线（含 AN 活动状态机对齐） | commit 2026-10-14 15:44:47 / tag 15:54:57 | 待核实（无追溯 CCB 记录） | 已建立（tag 存在） |
-| `baseline/release-v1.0.0` | 任务 6 最终交付（2026-11-14） | — | 项目经理（CCB）· 冀项阳 | 待建立（待 PM 授权后打 tag） |
+| `baseline/init-v1.0` | 任务包并入 + 仓库结构定型 | 2026-09-25 22:15:33（commit=tag） | 项目经理（CCB）· 冀项阳 | 已建立（tag 存在） |
+| `baseline/task-package-v2.0` | 任务包 v2.0 基线 | 2026-09-26 19:59:40（commit=tag） | 项目经理（CCB）· 冀项阳 | 已建立（tag 存在） |
+| `baseline/requirements-v1.0` | 需求规范评审通过（需求文档族 v1.1，v3.0 对齐） | 2026-10-13（7fb247b） | 项目经理（CCB）· 冀项阳（2026-11-14 授权） | 已建立（tag 存在） |
+| `baseline/task-package-v3.0` | 任务包 v3.0 基线（含 AN 活动状态机对齐） | commit 2026-10-14 15:44:47 / tag 15:54:57 | 项目经理（CCB）· 冀项阳 | 已建立（tag 存在） |
+| `baseline/design-v1.0` | 设计文档评审通过（设计文档族 v0.2 + UML 图源 models/） | 2026-11-14（328025d） | 项目经理（CCB）· 冀项阳（2026-11-14 授权） | 已建立（tag 存在） |
+| `baseline/release-v1.0.0` | 任务 6 最终交付（发布说明/清单 v1.0.0） | 2026-11-14（最终交付） | 待授权（项目经理（CCB）· 冀项阳，PR #29 合入 main 后授权） | 待建立（release/ 待 PR #29 合入 main 后打 tag） |
 
-其余基线（requirements / design）随对应交付物评审通过后建立并在此登记。时间口径与授权规则同《配置管理计划》§5.2：tag commit 时间（git 可查）与 CCB 授权时间不可混同；历史基线无追溯 CCB 记录者标"待核实"，不补造、不倒造审批。
+时间口径与授权规则同《配置管理计划》§5.2：tag commit 时间（git 可查）与 CCB 授权时间不可混同。requirements 的内容于 2026-10-13 冻结入库（v3.0 协调对齐），CCB 授权于 2026-11-14 补授（非倒填），其 tag 对象亦于 2026-11-14 建立、指向 10-13 冻结提交 7fb247b（内容先冻结、基线后补打）；design 的设计文档族 v0.2 于 10-13 冻结、图源于 11-14 补齐，故 design-v1.0 于 11-14 重打指向 328025d（含图源），冻结时间按 tag commit 计为 11-14；清单按 tag commit 时间升序排列，故 design（11-14）排在 task-package-v3.0（10-14）之后。release 的建立时间为最终交付日 2026-11-14，候选提交为 release/ 内容随 PR #29 合入 main 后的 merge commit（合入前评审/导出候选为 `work/55231031-change` 最新提交）；其 CCB 授权与打 tag 均待 PR #29 合入后执行，故标「待授权 / 待建立」。`release/manifest.json` 的 `commit` 字段当前为**本分支主线起点**（main `cbf4945`，含 PR #27 用户手册合入，不含本 PR 发布文件；QA 2026-11-13 全量 verify 基线为更早的 main `e1051df`，含 CM #21，结果/证据见 manifest `tests`），最终归档的课程包/工件提交 SHA 以 `baseline/release-v1.0.0` 打 tag 后经 `git rev-parse` 解析为准。历史基线（init-v1.0 / task-package-v2.0 / task-package-v3.0）的授权负责人为项目经理（CCB）冀项阳。

@@ -1,6 +1,6 @@
 # campus-sched 开发环境编排（配置经理拥有）
 # 项目名固定为 campus-events（04 协作规程 §4，避免中文目录名成为无效项目名）。
-# 端口：db 5432 / API 8080 / web 5173；演示部署入口 127.0.0.1:8088 见 release/README.md。
+# 端口：db 5432 / API 8080 / web（Nginx 演示入口）8088；前端 Vite 开发服务器 5173 不在本编排内，见 release/README.md。
 # 启动数据库：. ./scripts/load-env.ps1 && docker compose up -d db
 # 完整启动（需 PM 后端 pom 与 UI web 工程就绪后）：docker compose up -d --build
 # 种子导入：仅当 APP_DEMO_SEED=true 且 server 以 dev profile 运行时执行（幂等，见 dev/DemoDataSeeder）。
@@ -58,7 +58,7 @@ services:
     container_name: campus-events-web
     restart: unless-stopped
     ports:
-      - "5173:80"
+      - "8088:80"
     depends_on:
       - server
 
