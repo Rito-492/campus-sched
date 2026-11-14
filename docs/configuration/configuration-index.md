@@ -2,7 +2,7 @@
 
 > 项目：campus-sched　负责人：杨瀚霖（55231031，配置经理）
 > 本文是"配置库"交付物（任务包 §5 交付物 10）的索引部分，是配置项与基线状态的**唯一登记处**（single source of truth）：编号、名称、版本、状态均以此为准；只登记**真实纳入版本库**的配置项，未产生的内容不预登记。《配置管理计划》§5.2 与 T08 Word 附录B 的基线表为课程/计划用的**同步视图**，随本索引同步维护，不作为第二事实来源。
-> 更新：随各模块交付与基线建立持续维护；最近一次 2026-11-14 同步 main（cbf4945）：登记两份设计图源（CS-CI-MODEL-01/02）、用户手册 v0.1→v0.2，项目考核评估表已由项目经理产出（课程提交物，不登记）；前次已登记缺陷登记表 v0.4、软件测试报告 test-report.md v1.1（CS-CI-DOC-29）、配置管理计划 v1.6。
+> 更新：随各模块交付与基线建立持续维护；最近一次 2026-11-14：design-v1.0 重打 tag 指向 328025d（纳入 11-14 补齐的 UML 图源），配置管理计划 v1.7，登记导出清单（`release/export-manifest.md`，并入 CS-CI-REL-01），并标注两份 v0.2 用户手册 PDF 差异待界面设计师统一。
 
 ## 修订历史
 
@@ -17,6 +17,8 @@
 | 2026-11-14 | 杨瀚霖 | 同步 main（46df56d）：缺陷登记表 v0.1→v0.4，登记软件测试报告 test-report.md v1.1（CS-CI-DOC-29） |
 | 2026-11-14 | 杨瀚霖 | 登记两份设计图源（CS-CI-MODEL-01/02）、用户手册 v0.1→v0.2（同步 main cbf4945，PR #31 图源合入） |
 | 2026-11-14 | 杨瀚霖 | §3 基线时间口径补 tag 创建时间（requirements/design tag 于 11-14 补打）；项目考核评估表已产出（PM，课程提交物不登记） |
+| 2026-11-14 | 杨瀚霖 | §3 design-v1.0 重打 tag 指向 328025d（纳入 11-14 补齐的 UML 图源），冻结时间更正为 11-14；与计划 §5.2 同步 |
+| 2026-11-14 | 杨瀚霖 | 登记导出清单（release/export-manifest.md 并入 CS-CI-REL-01）；§2.1 配置管理计划 v1.6→v1.7；§2.6 标注两份 v0.2 用户手册 PDF 差异待界面设计师统一 |
 
 ## 1. 说明
 
@@ -38,8 +40,8 @@
 | CS-CI-DOC-01 | 仓库约定 | `AGENTS.md` | — | 项目经理 | 受控 |
 | CS-CI-DOC-02 | 项目名片 | `README.md` | — | 项目经理 | 受控 |
 | CS-CI-DOC-03 | 仓库结构指南 | `docs/configuration/repo-structure.md` | v0.2 | 配置经理 | 受控 |
-| CS-CI-DOC-04 | 配置管理计划 | `docs/configuration/configuration-management-plan.md` | v1.6 | 配置经理 | 受控 |
-| CS-CI-DOC-05 | 配置管理计划（课程提交版，Word） | `docs/configuration/T08_配置管理计划.docx` | v1.6 | 配置经理 | 受控 |
+| CS-CI-DOC-04 | 配置管理计划 | `docs/configuration/configuration-management-plan.md` | v1.7 | 配置经理 | 受控 |
+| CS-CI-DOC-05 | 配置管理计划（课程提交版，Word） | `docs/configuration/T08_配置管理计划.docx` | v1.7 | 配置经理 | 受控 |
 | CS-CI-DOC-06 | 配置项索引（本索引） | `docs/configuration/configuration-index.md` | — | 配置经理 | 受控 |
 
 ### 2.2 课程下发材料（CS-CI-DOC，只读）
@@ -89,6 +91,8 @@
 | CS-CI-DOC-62 | UI 接口接入矩阵 | `docs/ui/api-matrix.md` | v0.1 | 界面设计师 | 受控 |
 | CS-CI-DOC-63 | 用户界面说明文档（课程提交版，Word） | `docs/ui/T08_用户界面说明文档.docx` | — | 界面设计师 | 受控 |
 | CS-CI-DOC-64 | 用户手册（课程提交版，PDF） | `docs/ui/T08_用户手册.pdf` | v0.2 | 界面设计师 | 受控 |
+
+> **待界面设计师统一（#6）**：`docs/ui/` 下同时存在两份 v0.2 用户手册 PDF——`user-manual.pdf`（2026-11-14 18:40，PR #27 已合入成品，含「报名参加」按钮表述）与 `T08_用户手册.pdf`（2026-11-14 16:17，课程提交版导出，缺该表述），二者内容不一致。按评审意见二选一：以 #27 成品重导 `T08_用户手册.pdf`，或分别标注实际版本与来源。属界面设计师交付物，配置经理不代改其内容。
 
 ### 2.7 测试文档与支撑（CS-CI-DOC / CS-CI-DATA / CS-CI-SRC，测试经理）
 
@@ -146,7 +150,7 @@
 |---|---|---|---|---|---|
 | CS-CI-DOC-70 | OpenAPI 契约（40 接口） | `contracts/openapi.yaml` | — | 项目经理 | 受控 |
 | CS-CI-ART-01 | 验收证据（截图/测试结果） | `artifacts/`（screenshots、test-results） | — | 产出者所有 | 受控 |
-| CS-CI-REL-01 | 发布说明与发布清单 | `release/README.md`、`release/manifest.json` | v1.0.0 | 配置经理 | 受控 |
+| CS-CI-REL-01 | 发布说明、发布清单与导出清单 | `release/README.md`、`release/manifest.json`、`release/export-manifest.md` | v1.0.0 | 配置经理 | 受控 |
 
 ### 2.12 模型图（CS-CI-MODEL，设计师）
 
@@ -166,8 +170,8 @@
 | `baseline/init-v1.0` | 任务包并入 + 仓库结构定型 | 2026-09-25 22:15:33（commit=tag） | 项目经理（CCB）· 冀项阳 | 已建立（tag 存在） |
 | `baseline/task-package-v2.0` | 任务包 v2.0 基线 | 2026-09-26 19:59:40（commit=tag） | 项目经理（CCB）· 冀项阳 | 已建立（tag 存在） |
 | `baseline/requirements-v1.0` | 需求规范评审通过（需求文档族 v1.1，v3.0 对齐） | 2026-10-13（7fb247b） | 项目经理（CCB）· 冀项阳（2026-11-14 授权） | 已建立（tag 存在） |
-| `baseline/design-v1.0` | 设计文档评审通过（设计文档族 v0.2，v3.0 22 表） | 2026-10-13（bbeb984） | 项目经理（CCB）· 冀项阳（2026-11-14 授权） | 已建立（tag 存在） |
+| `baseline/design-v1.0` | 设计文档评审通过（设计文档族 v0.2 + UML 图源 models/） | 2026-11-14（328025d） | 项目经理（CCB）· 冀项阳（2026-11-14 授权） | 已建立（tag 存在） |
 | `baseline/task-package-v3.0` | 任务包 v3.0 基线（含 AN 活动状态机对齐） | commit 2026-10-14 15:44:47 / tag 15:54:57 | 项目经理（CCB）· 冀项阳 | 已建立（tag 存在） |
 | `baseline/release-v1.0.0` | 任务 6 最终交付（发布说明/清单 v1.0.0） | 2026-11-14（最终交付） | 项目经理（CCB）· 冀项阳（2026-11-14 授权） | 待建立（release/ 待 PR #29 合入 main 后打 tag） |
 
-时间口径与授权规则同《配置管理计划》§5.2：tag commit 时间（git 可查）与 CCB 授权时间不可混同。requirements / design 的内容于 2026-10-13 冻结入库（v3.0 协调对齐），CCB 授权于 2026-11-14 补授（非倒填），其 tag 对象亦于 2026-11-14 建立、指向 10-13 冻结提交（内容先冻结、基线后补打，故按 tag commit 时间排序）；release 的建立时间为最终交付日 2026-11-14，待 release/ 内容随 PR #29 合入 main 后打 tag。历史基线（init-v1.0 / task-package-v2.0 / task-package-v3.0）的授权负责人为项目经理（CCB）冀项阳。
+时间口径与授权规则同《配置管理计划》§5.2：tag commit 时间（git 可查）与 CCB 授权时间不可混同。requirements 的内容于 2026-10-13 冻结入库（v3.0 协调对齐），CCB 授权于 2026-11-14 补授（非倒填），其 tag 对象亦于 2026-11-14 建立、指向 10-13 冻结提交 7fb247b（内容先冻结、基线后补打）；design 的设计文档族 v0.2 于 10-13 冻结、图源于 11-14 补齐，故 design-v1.0 于 11-14 重打指向 328025d（含图源），冻结时间按 tag commit 计为 11-14；release 的建立时间为最终交付日 2026-11-14，待 release/ 内容随 PR #29 合入 main 后打 tag。历史基线（init-v1.0 / task-package-v2.0 / task-package-v3.0）的授权负责人为项目经理（CCB）冀项阳。
