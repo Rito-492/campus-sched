@@ -2,7 +2,7 @@
 
 > 面向校园活动的多资源协同调度与变更影响分析系统
 > 发布版本：v1.0.0　基线：`baseline/release-v1.0.0`（待 PM CCB 授权后打 tag）
-> 发布提交：`750763b721ca999c454ac730d9876583b40ad202`
+> 发布提交：`cbf49455660311e99e4a40aa5c45ff2c6d38b0a2`（待 PR #29 合入 main 后打 tag，届时以 tag commit 为准）
 > 编制：杨瀚霖（55231031，配置经理）　日期：2026-11-14
 
 本文是「按发布说明干净启动」的唯一入口，对应验收 **D-AT-24**：干净环境按本文启动后，真实后端/数据库连通，无手改数据库才能继续的步骤，版本、手册、报告一致。本文与 `manifest.json`（发布清单）、`docs/configuration/`（配置计划/索引/结构指南）共同构成配置库交付。
@@ -86,7 +86,7 @@ docker compose exec db pg_restore -U campus_app -d campus_dev -c /tmp/campus_dev
 
 ## 6. 版本一致性
 
-本发布对应提交 `750763b`，其代码/文档/测试版本见 `manifest.json`。用户手册（`docs/ui/user-manual.md`）、软件测试报告与本文须指向同一发布提交；三者版本号或状态不一致时，以 `docs/configuration/configuration-index.md` 的唯一登记为准。
+本发布对应提交 `cbf4945`（发布提交待 PR #29 合入 main 后打 tag 时定稿），其代码/文档/测试版本见 `manifest.json`。用户手册（`docs/ui/user-manual.md`）、软件测试报告与本文须指向同一发布提交；三者版本号或状态不一致时，以 `docs/configuration/configuration-index.md` 的唯一登记为准。
 
 ## 7. 验收关联
 

@@ -2,7 +2,7 @@
   "releaseVersion": "v1.0.0",
   "baseline": "baseline/release-v1.0.0",
   "baselineStatus": "待建立（待 PM CCB 授权后打 tag，见 docs/configuration/configuration-index.md §3）",
-  "commit": "750763b721ca999c454ac730d9876583b40ad202",
+  "commit": "cbf49455660311e99e4a40aa5c45ff2c6d38b0a2",
   "generatedAt": "2026-11-14",
   "author": "杨瀚霖（55231031，配置经理）",
   "environment": {
