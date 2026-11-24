@@ -4,7 +4,7 @@
 
 FROM maven:3.9-eclipse-temurin-21 AS build
 WORKDIR /build
-# 先复制 pom 以复用依赖缓存；server/ 目前仅有 db/migration 与测试源码，无 pom（待 PM M0 交付）
+# 先复制 pom 以复用依赖缓存。
 COPY server/pom.xml ./pom.xml
 RUN mvn -B -q dependency:go-offline
 COPY server/src ./src

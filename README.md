@@ -50,8 +50,12 @@ test-data/ contracts/ infra/ scripts/ release/ artifacts/ models/
 - **了解项目**：本 README → [`AGENTS.md`](AGENTS.md)（agent 与新成员指南）
 - **课程与分工文档**：`docs/course/`
 
-## 项目经理工作包（2026-11-07）
+## 启动演示
 
-main=`16de4a5` 已包含公共工程、账号认证/权限、幂等事务、活动、资源调度、改期/通知/审计和 UI。40 项 [API 契约](contracts/openapi.yaml)均有生产 Controller，五类端口已有真实实现。本轮 PM 修复小数版本/数量被截断、数字枚举被接受及资源自动授权缺少历史的问题，并补齐真库回归与管理交接。
+从源码包根目录按[发布说明](release/README.md)启动，使用本机演示口令。打开 `http://127.0.0.1:8088`，依次以申请人、批准人、资源管理员和学生演示活动提交、审批、预约、报名与改期。申请人可以在改期前查看冲突和备选方案；遇到最终确认冲突时可以核对旧预约仍有效。
 
-需 Java 21、Node 22 和真实 PostgreSQL；默认后端入口为 `./server/mvnw.cmd -f server/pom.xml test` 及 `verify`。本轮 96 项单元和 43 项指定 IT 通过；默认全量仍有 9 个初始化错误、1 项跳过。最新 QA #16 的版本详情断言已符合契约，组合验收仍受 AN/CM 缺陷影响。前端 107 项单元、类型和构建通过，真实局部浏览器 5 项及关闭播种后的重启检查 1 项通过；QA 全部浏览器 29 项中 25 通过、4 失败。依赖审计仍为 8 项。具体修复、各次计数、责任与发布门槛见 [本轮集成记录](docs/management/integration-review-2026-11-07-v1.0.md)及 [交接单](docs/management/handoff.md)，完整验收与发布尚未放行。
+## 代码与验证
+
+后端包含统一账号与权限、命令幂等、活动、资源调度、改期、通知和审计。40 项 [API 契约](contracts/openapi.yaml)都有生产实现。测试设计、用户手册和发布清单随源码提供。项目经理的权限边界、资源自动授权历史、命令回执和跨模块事务回归见[公共模块接入说明](docs/management/foundation-guide.md)。
+
+本次交付候选在 Java 21、PostgreSQL 17 和 Node 22 上通过 101 项后端单元测试、172 项真实数据库集成测试、109 项前端单元测试及 34 项真实浏览器测试。角色资格的八组组合均通过 UI 与 HTTP 回归。验证范围见[本次执行证据](artifacts/test-results/project-completion-2026-11-14/check-summary.json)。

@@ -1404,7 +1404,7 @@ paths:
       tags:
         - AN
       x-owner: AN
-      x-implementation-status: 生产实现已合入；合法空APPROVE意见事件衔接缺陷待AN修复，见2026-11-02审核
+      x-implementation-status: PR #22 已修复合法空批准意见；后端边界及真实页面回归通过
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
   /activities/{id}/resource-confirm:
     post:
@@ -2136,7 +2136,7 @@ paths:
       tags:
         - CM
       x-owner: CM
-      x-implementation-status: 生产实现已合入；所有者自我确认与STALE_VERSION空详情待CM修复，见2026-11-06复审
+      x-implementation-status: PR #21 已修复所有者自我确认及两种陈旧版本的冲突详情；最新主线与 QA 组合复验通过
       description: 访问范围、状态前置条件、所有者回避及资格校验遵循agents/common/02-数据与接口契约.md。契约声明不表示业务已实现。
     get:
       operationId: API-28

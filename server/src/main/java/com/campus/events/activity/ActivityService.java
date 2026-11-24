@@ -54,7 +54,11 @@ public class ActivityService {
         if(!row.ownerId().equals(actor.id())) throw ApiException.forbidden();
     }
     private void version(ActivityRepository.Row row,int expected) {
-        if(row.lockVersion()!=expected) throw new ApiException(409,"STALE_VERSION","活动已被其他操作修改");
+        if(row.lockVersion()!=expected) throw staleVersion(row, "活动已被其他操作修改");
+    }
+    private ApiException staleVersion(ActivityRepository.Row row, String message) {
+        return new ApiException(409, "STALE_VERSION", message, Map.of(
+                "versionNo", row.versionNo(), "lockVersion", row.lockVersion(), "status", row.status().name()));
     }
     private void future(ActivityRepository.Row row) {
         if(!clock.instant().isBefore(row.input().plan().startAt())) throw new ApiException(409,"INVALID_STATE","活动已经开始");
@@ -166,8 +170,13 @@ public class ActivityService {
         validate(command); var row=activities.lock(id);
         // 归属先检查；重复取消不以旧lockVersion或开始时间阻断幂等读取。
         if(!row.ownerId().equals(actor.id())) throw ApiException.forbidden();
-        if(row.status()==ActivityStatus.CANCELLED) { var latest=lockActor(row,actor); owner(row,latest); return http(row,latest); }
-        version(row,command.expectedLockVersion()); future(row);
+        if(row.status()==ActivityStatus.CANCELLED || row.lockVersion()!=command.expectedLockVersion()) {
+            var latest=lockActor(row,actor);
+            owner(row,latest);
+            if(row.status()==ActivityStatus.CANCELLED) return http(row,latest);
+            throw staleVersion(row, "活动已被其他操作修改");
+        }
+        future(row);
         var recipients=registrations.activeIds(id);
         // change行锁必须先于用户与资源锁；后续授权失败将整体回滚。
         views.changes().cancelPending(id,actor.id(),command.reason());
@@ -178,7 +187,8 @@ public class ActivityService {
     @Transactional(propagation=Propagation.MANDATORY) public RegistrationView registration(Actor actor,UUID id,RegistrationCommand command) {
         validate(command); var row=activities.lock(id); var latest=lockActor(row,actor); AuthorizationPolicy.registration(latest); future(row);
         if(row.status()!=ActivityStatus.OPEN) throw new ApiException(409,"INVALID_STATE","活动未开放报名");
-        if(!Objects.equals(row.effectiveVersionNo(),command.expectedVersionNo())) throw new ApiException(409,"STALE_VERSION","活动有效安排已变化");
+        if(!Objects.equals(row.effectiveVersionNo(),command.expectedVersionNo()))
+            throw staleVersion(row, "活动有效安排已变化");
         if(views.changes().hasPending(id)) throw new ApiException(409,"CHANGE_PENDING","改期期间冻结报名和退出");
         var previous=registrations.get(id,latest.id());
         RegistrationStatus target=command.action()==RegistrationAction.JOIN ? RegistrationStatus.ACTIVE : RegistrationStatus.WITHDRAWN;

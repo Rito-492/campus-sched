@@ -1,0 +1,145 @@
+{
+  "date": "2026-11-14",
+  "main": "750763b721ca999c454ac730d9876583b40ad202",
+  "qa": "eb16c752221912641cd66e6fe9f37dd5ead66f48",
+  "task5": "c3cbd9e2168124083f10713afcbfca3fa6314257",
+  "ui": "cb5cbd7b9491c95f2e6c744a4b04f05ad5108bc3",
+  "qaCandidateTree": "83ad7ac1d8de1eedb188732719d9ee1581b26148",
+  "task5CandidateTree": "e1e467f7096df3ceea0f9220f8a1ffa540538ae2",
+  "environment": "Java 21.0.12.1 / Maven Wrapper 3.9.11 / PostgreSQL 17.6 / Node 22.23.0 / Edge",
+  "maven": "./server/mvnw.cmd -f server/pom.xml [optional -Dit.test=<selection>] clean verify",
+  "selection": {
+    "pm-main": "FoundationIT,PublishedModulesIT,ProductionWorkflowIT,StandardMavenSchemaIT,DemoDataSeederIT,OutboxClaimIT",
+    "qa-main-default": "默认，750763b + eb16c75",
+    "task5-candidate": "ContractBoundaryIT，750763b + eb16c75 + c3cbd9e",
+    "an-contract-probe": "ProductionWorkflowIT#activityVersionConflictsPreserveStateButOmitRequiredDetails，独立诊断补丁"
+  },
+  "backend": [
+    {
+      "name": "pm-main",
+      "exit": 0,
+      "unit": {
+        "total": 101,
+        "passed": 101,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "integration": {
+        "total": 43,
+        "passed": 43,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "name": "qa-main-default",
+      "exit": 0,
+      "unit": {
+        "total": 101,
+        "passed": 101,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "integration": {
+        "total": 164,
+        "passed": 164,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "name": "task5-candidate",
+      "exit": 0,
+      "unit": {
+        "total": 101,
+        "passed": 101,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "integration": {
+        "total": 7,
+        "passed": 7,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "name": "an-contract-probe",
+      "exit": 1,
+      "unit": {
+        "total": 101,
+        "passed": 101,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "integration": {
+        "total": 1,
+        "passed": 0,
+        "failed": 1,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  ],
+  "task5Passed": [
+    "eligibility_teacherOwnerStudentOnlyVenueRejectedNoReservation",
+    "approveWithEmptyComment_isLegal",
+    "rejectWithEmptyComment_isRejected",
+    "changeOnlyOwnerStaff_goesStraightToApprover",
+    "changeOwnerPlusOtherStaff_ownerHasNoSelfConfirmationRow",
+    "titleBoundary_1and100Accepted_0and101Rejected",
+    "durationBoundary_30minAnd6hAccepted_29minAnd6h1mRejected"
+  ],
+  "task5Documents": {
+    "cases": 138,
+    "gateSelfTests": 27,
+    "pages": 50,
+    "sha256": "07914b1924dc5f98373e93a5132dd8990d52c285d2af5a27709187dabdff5bc1"
+  },
+  "uiChecks": {
+    "commands": [
+      "npm --prefix web ci",
+      "npm --prefix web run types:check",
+      "npm --prefix web run typecheck",
+      "npm --prefix web run test:unit",
+      "npm --prefix web run build",
+      "npm --prefix web audit --json",
+      "npm --prefix web run test:review"
+    ],
+    "unitPassed": 109,
+    "auditTotal": 0,
+    "browserPassed": [
+      "tests\\integration\\review-regression.spec.ts:169:3 › CM修复真实页面：所有者为唯一工作人员直接复审 (3.7s)",
+      "tests\\integration\\review-regression.spec.ts:169:3 › CM修复真实页面：所有者加其他工作人员仅由他人确认 (3.7s)",
+      "tests\\integration\\review-regression.spec.ts:206:1 › CM修复真实页面：陈旧版本409显示详情，保留输入重预览后只创建一次 (4.4s)",
+      "tests\\integration\\review-regression.spec.ts:259:1 › 真实纯角色与跨组织工作人员展示，撤销审批范围后刷新隐藏旧详情 (4.0s)",
+      "tests\\integration\\review-regression.spec.ts:336:3 › 真实首次批准允许空意见，刷新后可联合预约 (3.5s)",
+      "tests\\integration\\review-regression.spec.ts:336:3 › 真实首次批准允许纯空白意见，刷新后可联合预约 (3.6s)",
+      "tests\\integration\\review-regression.spec.ts:389:1 › 真实首次预约报名与改期本人确认、审批、生效和日历通知刷新 (10.0s)",
+      "tests\\integration\\review-regression.spec.ts:691:1 › 真实通知已读不代签，拒绝及撤回解除报名冻结并保留原安排 (8.3s)",
+      "tests\\integration\\review-regression.spec.ts:788:1 › 真实改期资源竞争返回409保留旧安排，故障标为AT_RISK (3.9s)",
+      "tests\\integration\\review-regression.spec.ts:867:1 › 真实报名响应丢失后同key同body重试，不重复增加人数 (2.3s)",
+      "tests\\integration\\review-regression.spec.ts:906:1 › 真实资源资格被外部关闭后刷新与保存均保持服务端最新值 (1.8s)"
+    ],
+    "manualPages": 18,
+    "manualTextMatches": true
+  },
+  "contract": "40 API / 9 枚举 / 15 DTO，通过",
+  "activityConflictObservations": [
+    "API-15 获授权的陈旧版本详情应至少含一项当前状态，实际 details={}",
+    "API-16 获授权的陈旧版本详情应至少含一项当前状态，实际 details={}",
+    "API-22 获授权的陈旧版本详情应至少含一项当前状态，实际 details={}"
+  ],
+  "reviews": {
+    "qa": 5901777775,
+    "task5": 5901777921,
+    "ui": 5901778021
+  }
+}

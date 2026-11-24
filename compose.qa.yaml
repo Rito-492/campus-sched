@@ -17,7 +17,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres_dev}
       POSTGRES_DB: ${POSTGRES_DB:-postgres}
     ports:
-      - "5440:5432"
+      - "127.0.0.1:5440:5432"
     volumes:
       - db-data-qa:/var/lib/postgresql/data
       - ./infra/db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
@@ -46,7 +46,7 @@ services:
       APP_DEMO_SEED: "true"
       APP_TEST_NOW: "2030-10-19T00:00:00Z"
     ports:
-      - "8081:8080"
+      - "127.0.0.1:8081:8080"
     depends_on:
       db:
         condition: service_healthy
@@ -58,7 +58,7 @@ services:
     container_name: campus-events-qa-web
     restart: unless-stopped
     ports:
-      - "8089:80"
+      - "127.0.0.1:8089:80"
     depends_on:
       - server
 

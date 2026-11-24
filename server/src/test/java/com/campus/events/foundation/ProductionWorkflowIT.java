@@ -147,6 +147,44 @@ class ProductionWorkflowIT {
         assertEquals("PENDING_RESOURCE", ok(200, "POST", "/changes/" + id + "/approver-decision", approverToken,
                 new ChangeDecision(Decision.APPROVE, "")).path("status").asText());
     }
+    @Test void staleActivityRequestsReturnCurrentDetailsWithoutChangingState() throws Exception {
+        var input = new ActivityInput("活动版本冲突", "公开简介", 10, 1, List.of(),
+                plan(resource(), "2030-10-20T02:00:00Z", "2030-10-20T03:00:00Z"));
+        var draft = ok(201, "POST", "/activities", ownerToken, input);
+        String path = "/activities/" + draft.path("id").asText();
+        int oldLock = draft.path("lockVersion").asInt();
+        var current = ok(200, "PATCH", path, ownerToken, new ActivityEdit(oldLock, input));
+
+        UUID editKey = UUID.randomUUID();
+        assertStaleVersion(current, call("PATCH", path, ownerToken, editKey, new ActivityEdit(oldLock, input)));
+        assertStaleVersion(current, call("POST", path + "/submit", ownerToken, UUID.randomUUID(), new VersionCommand(oldLock)));
+        assertStaleVersion(current, call("POST", path + "/cancel", ownerToken, UUID.randomUUID(), new ReasonCommand(oldLock, "取消")));
+        var forbidden = call("PATCH", path, staffToken, UUID.randomUUID(), new ActivityEdit(oldLock, input));
+        assertEquals(403, forbidden.status());
+        assertEquals(0, forbidden.body().path("error").path("details").size());
+        assertEquals(current, ok(200, "GET", path, ownerToken, null));
+        assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM command_receipt WHERE actor_id=? AND idempotency_key=?",
+                Integer.class, owner, editKey.toString()));
+
+        Flow open = published(false);
+        var beforeRegistration = activity(open.id());
+        assertStaleVersion(beforeRegistration, call("PUT", "/activities/" + open.id() + "/registration",
+                studentToken, UUID.randomUUID(), new RegistrationCommand(RegistrationAction.JOIN, 2)));
+        assertEquals(beforeRegistration, activity(open.id()));
+        assertEquals(0, jdbc.queryForObject("SELECT count(*) FROM activity_registration WHERE activity_id=?",
+                Integer.class, open.id()));
+    }
+
+    private void assertStaleVersion(JsonNode current, Result result) {
+        assertEquals(409, result.status(), result.body().toString());
+        var error = result.body().path("error");
+        assertEquals("STALE_VERSION", error.path("code").asText());
+        var details = error.path("details");
+        assertEquals(current.path("versionNo"), details.path("versionNo"));
+        assertEquals(current.path("lockVersion"), details.path("lockVersion"));
+        assertEquals(current.path("status"), details.path("status"));
+    }
+
     @Test void allProductionPortsPersistChangeNotificationsAndCancellation() throws Exception {
         Flow flow = published(true);
         ok(200, "PUT", "/activities/" + flow.id() + "/registration", studentToken, new RegistrationCommand(RegistrationAction.JOIN, 1));
