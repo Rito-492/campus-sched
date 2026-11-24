@@ -37,4 +37,4 @@ Word通过本机Microsoft Word更新字段和目录并导出PDF。本机缺少Li
 
 原始检查：[证据目录](../../artifacts/test-results/ui-manual-2026-11-11/)，含`verification.json`、`a11y.json`及本次`manifest.json`。内部渲染图和构建辅助脚本保留在被忽略的运行目录，不作为用户成品交付；正文、Word和PDF均在docs/ui中单独版本化。
 
-最初手册编写阶段只补充文档；本次主线修订另有109项单测与16项真实业务复验，详见ui-validation-2026-11-14.md。下一接收人QA/独立评审人、CM、PM，尚未签收；未提交、推送或创建PR。
+最初手册编写阶段只补充文档；本次主线修订另有109项单测与16项真实业务复验，详见ui-validation-2026-11-14.md。“未提交、推送或创建PR”仅为当时验证完成时的历史状态。用户随后授权提交，当前已推送至[PR #27](https://github.com/Rito-492/campus-sched/pull/27)。项目经理已独立检查18页Word/PDF、正文一致性和版式，并给出[草稿技术评审](https://github.com/Rito-492/campus-sched/pull/27#pullrequestreview-5901778021)；其状态为COMMENTED，尚非正式APPROVED，最终接收及发布签收仍待完成。
