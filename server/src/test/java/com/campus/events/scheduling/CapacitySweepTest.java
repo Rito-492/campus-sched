@@ -46,7 +46,7 @@ class CapacitySweepTest {
     }
 
     @Test void agreesWithIndependentMinuteOracleOnRandomOverlaps() {
-        var random = new Random(55230315L);
+        var random = new Random(41L);
         var start = at("10:00");
         var requested = new TimeInterval(start, start.plusSeconds(3600));
         for (int trial = 0; trial < 200; trial++) {

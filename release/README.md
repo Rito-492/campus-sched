@@ -1,11 +1,6 @@
-# 发布说明（Release Notes）— campus-sched
+# 演示发布说明
 
-> 面向校园活动的多资源协同调度与变更影响分析系统
-> 发布版本：v1.0.0　基线：`baseline/release-v1.0.0`（已建立，CCB 冀项阳 2026-11-14 授权）
-> 发布提交：`567c1fb3c70d286b8dac230a723df0664705cc40`（= 发布标签 `baseline/release-v1.0.0` 经 `git rev-parse` 解析 SHA，CCB 冀项阳 2026-11-14 授权）
-> 编制：杨瀚霖（55231031，配置经理）　日期：2026-11-14
-
-本文是「按发布说明干净启动」的唯一入口，对应验收 **D-AT-24**：干净环境按本文启动后，真实后端/数据库连通，无手改数据库才能继续的步骤，版本、手册、报告一致。本文与 `manifest.json`（发布清单）、`docs/configuration/`（配置计划/索引/结构指南）共同构成配置库交付。
+适用于校园活动多资源协同调度与变更影响分析系统。演示包含真实后端、PostgreSQL 与 Nginx 前端。按本页操作可验证干净环境启动及换角色演示（D-AT-24）。
 
 ## 1. 前置条件
 
@@ -23,7 +18,7 @@
 ```powershell
 # 1. 准备环境变量（.env 不入库）
 Copy-Item .env.example .env
-# 编辑 .env，至少设置演示账号密码：DEMO_PASSWORD=<你的演示密码>（默认 demo123 仅限本地演示）
+# 编辑 .env，设置 DEMO_PASSWORD 和 APP_DEMO_SEED=true
 
 # 2. 启动（首次构建镜像 + 后台运行）
 docker compose up -d --build
@@ -86,7 +81,7 @@ docker compose exec db pg_restore -U campus_app -d campus_dev -c /tmp/campus_dev
 
 ## 6. 版本一致性
 
-本发布对应提交 `567c1fb`（= 发布标签 `baseline/release-v1.0.0` 解析 SHA），其代码/文档/测试版本见 `manifest.json`。用户手册（`docs/ui/user-manual.md`）、软件测试报告与本文须指向同一发布提交；三者版本号或状态不一致时，以 `docs/configuration/configuration-index.md` 的唯一登记为准。
+从同一份源码快照启动项目并查阅[用户手册](../docs/ui/user-manual.md)和[测试报告](../docs/testing/test-report.md)。复验时记录提交、环境及实际结果。课程导出使用受限归档中的脚本与清单。制作展示包时使用已经核验的脱敏提交或其独立仓库。
 
 ## 7. 验收关联
 

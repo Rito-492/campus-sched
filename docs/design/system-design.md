@@ -1,6 +1,6 @@
 # 系统设计文档（v0.2 草稿——DS-01 范围，v3.0 契约）
 
-> 维护：黄方勇 55230315（设计师）。本文档随交付逐步充实，当前覆盖 DS-01：统一数据库结构与设计模型。v3.0 采用三角色（APPLICANT/APPROVER/ADMIN）、独立身份（TEACHER/STUDENT）与资源资格（allowTeacher/allowStudent，四组合均合法）。
+> 维护：设计师。本文档随交付逐步充实，当前覆盖 DS-01：统一数据库结构与设计模型。v3.0 采用三角色（APPLICANT/APPROVER/ADMIN）、独立身份（TEACHER/STUDENT）与资源资格（allowTeacher/allowStudent，四组合均合法）。
 > 全文体系为 Mermaid 图源（可直接编辑），不提供外部链接占位。
 
 ## 1. 系统模块图
@@ -9,7 +9,7 @@
 
 ```mermaid
 flowchart LR
-    subgraph web["web — Vue 3 / TS（杨畅）"]
+    subgraph web["web — Vue 3 / TS（界面设计师）"]
         FE["页面与 API 客户端"]
     end
     subgraph server["server — com.campus.events"]

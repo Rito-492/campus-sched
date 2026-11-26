@@ -1,7 +1,0 @@
-{
-  "scope": "passed",
-  "secretScan": "passed",
-  "historicalEvidenceHashesMatched": 112,
-  "existingPackageVersionsChanged": [],
-  "lockfileRoot": "matched"
-}

@@ -27,7 +27,7 @@
 
 ## 最新结论：2026-11-01
 
-已安全合入main `b8be7e4`（PR13/14/17/18均已合并）。详见[本轮集成报告](pr16-integration-2026-11-01.md)及[最新覆盖矩阵](coverage-matrix.md)：Java21真实默认verify单测77/77，IT112项=101通过/9失败/1错误/1跳过，exit1；原CM端口/UI缺失已解除，新残余问题为AN首次批准空意见400与模块测试Bean冲突。
+已安全合入main `b8be7e4`（PR13/14/17/18均已合并）。详见本轮集成报告（本地归档）及[最新覆盖矩阵](coverage-matrix.md)：Java21真实默认verify单测77/77，IT112项=101通过/9失败/1错误/1跳过，exit1；原CM端口/UI缺失已解除，新残余问题为AN首次批准空意见400与模块测试Bean冲突。
 
 真实UI登录+三视口15/15通过；真实后端关闭seed重启后，权限隔离+三视口16/16通过（布局重复不重复统计）。通知失败恢复、20抢1、取消竞争、改期故障整体回滚均已通过。Seeder加强末尾SQLState/外键定位与全部权限表回滚后专项复验通过。
 
@@ -36,7 +36,7 @@
 ---
 以下为2026-10-31历史快照，旧端口/UI/Java21缺失描述不代表现状。
 
-> 归属：测试经理（55230316）。仅按真实运行且可查证据统计；静态检查、用例列举、代码存在和模块替身测试均不冒充完整跨模块验收。
+> 归属：测试经理。仅按真实运行且可查证据统计；静态检查、用例列举、代码存在和模块替身测试均不冒充完整跨模块验收。
 
 ## 最新续验：PR #15 已合并
 
@@ -52,9 +52,9 @@
 ## 基本信息
 
 - 日期：2026-10-31（Asia/Shanghai）
-- QA测试分支：`work/55230316-qa`；最终全量verify及D-AT-21 URI编码测试commit=`514b8dcce2d3666ff0fc9f15c3bae7826656c60e`；文档/证据更新随后继续随Draft PR提交。
+- QA测试分支：`work/test-manager`；最终全量verify及D-AT-21 URI编码测试commit=`514b8dcce2d3666ff0fc9f15c3bae7826656c60e`；文档/证据更新随后继续随Draft PR提交。
 - main基线：`origin/main=feb0d70e2ff9da1669eb9c4c3e4beeb592a43ae9`；QA分支已变基到该基线。
-- PR状态：#8 CLOSED；#10/#11/#12 MERGED；main仍为feb0d70；#13 AN/#14 PM OPEN且review required，#15 DS已非Draft（head `7521511`，含SchedulingPortAdapter等变更）但仍待评审，均未合入main；QA Draft PR #16 OPEN，分支`work/55230316-qa-feb0d70`、base `feb0d70`。
+- PR状态：#8 CLOSED；#10/#11/#12 MERGED；main仍为feb0d70；#13 AN/#14 PM OPEN且review required，#15 DS已非Draft（head `7521511`，含SchedulingPortAdapter等变更）但仍待评审，均未合入main；QA Draft PR #16 OPEN，分支`work/test-manager-feb0d70`、base `feb0d70`。
 - 同步前修改和未跟踪文件已备份于`.git/qa-pre-sync-backup-2026-10-31/`，SHA256校验通过；`.review-tmp/`保持未跟踪、未纳入QA改动。
 - Maven运行环境：JDK 27.0.1.0.3（Arch Linux/WSL2），项目编译目标Java 21；**与基线JDK 21不一致，发布前仍需在JDK 21复验**。
 - 数据库：临时PostgreSQL 17 `campus_test`，本机55439端口、按测试类隔离schema；DB密码及`DEMO_PASSWORD`随机生成于当前进程，未写入源码/日志；测试后按容器名/标签/镜像校验并清理。
@@ -89,13 +89,13 @@
 
 ## 主要未完成项与提供者
 
-1. CM杨瀚霖（55231031）：提供生产EventPort、ChangePort/改期通知API；解除多项真实HTTP验收503/404阻塞，完成后QA回归。
-2. DS黄方勇（55230315）：PR #15调度改动仍未合入main，需按评审流程接收。D-AT-22原mismatch已定位为canonical demo资格资源污染候选集合，Benchmark专用参考集复验通过、expected未改；D-AT-21 calendar 400系QA URI编码问题，编码修复后真实PG子用例通过。
-3. UI杨畅（17231018）：当前`web/package.json`缺失且本机没有`docker compose`插件，Playwright真实E2E、视觉验收及D-AT-23/24未执行。
+1. CM配置经理：提供生产EventPort、ChangePort/改期通知API；解除多项真实HTTP验收503/404阻塞，完成后QA回归。
+2. DS设计师：PR #15调度改动仍未合入main，需按评审流程接收。D-AT-22原mismatch已定位为canonical demo资格资源污染候选集合，Benchmark专用参考集复验通过、expected未改；D-AT-21 calendar 400系QA URI编码问题，编码修复后真实PG子用例通过。
+3. UI界面设计师：当前`web/package.json`缺失且本机没有`docker compose`插件，Playwright真实E2E、视觉验收及D-AT-23/24未执行。
 4. CM/全组：SeederIT现有三项加QA新回滚项均已跑；生产端口、干净发布环境及Java 21基线复验仍未完成。
 
 ## PR与接收状态
 
-本地QA分支已基于feb0d70；按用户授权新建远端分支`work/55230316-qa-feb0d70`并创建Draft PR #16（base=`feb0d70`，URL：https://github.com/Rito-492/campus-sched/pull/16）。原固定远端分支`work/55230316-qa`未被覆盖。接收确认尚未收到。
+本地QA分支已基于feb0d70；按用户授权新建远端分支`work/test-manager-feb0d70`并创建Draft PR #16（base=`feb0d70`，URL：课程归档仓库`work/test-manager`未被覆盖。接收确认尚未收到。
 
 本报告是2026-10-31执行快照，不是最终课程验收报告。待CM端口、UI工程及Java 21环境到位后逐项复验coverage-matrix并更新证据。

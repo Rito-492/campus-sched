@@ -1,4 +1,0 @@
-
-> campus-sched-web@0.1.0 types:check
-> node scripts/sync-types.mjs --check
-

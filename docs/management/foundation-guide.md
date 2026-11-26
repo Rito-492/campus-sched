@@ -1,6 +1,6 @@
 # PM公共模块接入说明
 
-适用：开发任务包v3.0；交付分支`work/55230223-foundation`；提交及评审状态见交接单最新记录。接收人：AN/DS/CM/UI/QA，业务接收均尚未确认。
+适用：开发任务包v3.0；交付分支`work/project-manager`；提交及评审状态见交接单最新记录。接收人：AN/DS/CM/UI/QA，业务接收均尚未确认。
 
 ## 1 工程与检查
 
@@ -39,7 +39,7 @@ Clock默认系统UTC，只有e2e profile读取APP_TEST_NOW；普通dev不受该�
 
 ## 2 HTTP与账号
 
-PM 负责 API-01～06、37～39 的生产实现；截至 2026-11-07，其他成员也已交付其余 API，40 项均有 Controller，五类端口均有生产适配器。实现存在不等于完整验收通过。应用未添加生产替身或空成功接口。详细请求/响应结构见`contracts/openapi.yaml`，归属见[接口登记](api-register.md)。
+PM 负责 API-01～06、37～39 的生产实现；截至 2026-11-07，其他成员也已交付其余 API，40 项均有 Controller，五类端口均有生产适配器。实现存在不等于完整验收通过。应用未添加生产替身或空成功接口。详细请求/响应结构见`contracts/openapi.yaml`，归属见[OpenAPI 契约](../../contracts/openapi.yaml)。
 
 登录示例：`POST /api/v1/auth/login`，请求为`{"username":"applicant_a","password":"本地DEMO_PASSWORD的值"}`。成功`data`含token、expiresAt和user，后续带`Authorization: Bearer <token>`。密码不返回，数据库只保存BCrypt哈希和令牌SHA-256。会话8小时，停用时删除该用户全部会话，重新启用不恢复旧令牌，退出只删当前会话。
 
@@ -84,17 +84,17 @@ AuthorizationPolicy提供role、permission、approval、resources、confirmation
 
 统一锁序为receipt→activity→change→按UUID字符串升序的user→按UUID字符串升序的resource。重要操作至少锁操作者与活动所有者，取其最新身份/范围；AccountPort不能自动猜测哪些用户需锁。Java UUID自然比较对高位有符号，跨模块统一使用UUID.toString的字典序，与PostgreSQL uuid排序一致。
 
-用户行锁统一使用`FOR NO KEY UPDATE`，登录路径同样如此。它仍互斥于其他用户写操作，但兼容command_receipt等外键的隐式KEY SHARE，避免同账号不同键的回执插入后再升级FOR UPDATE形成死锁。本版本不提供修改用户id/username等唯一键或删除账号的命令；未来新增这类操作必须重新检查锁策略，不能直接复用当前非键更新锁假设。详见[评审修复记录](review-fixes-2026-10-20.md)。
+用户行锁统一使用`FOR NO KEY UPDATE`，登录路径同样如此。它仍互斥于其他用户写操作，但兼容command_receipt等外键的隐式KEY SHARE，避免同账号不同键的回执插入后再升级FOR UPDATE形成死锁。本版本不提供修改用户id/username等唯一键或删除账号的命令；未来新增这类操作必须重新检查锁策略，不能直接复用当前非键更新锁假设。详见评审修复记录（本地归档）。
 
-2026-10-31已接收AN ActivityPortAdapter和DS SchedulingPortAdapter；ChangePort/EventPort仍仅有定义。禁止反向依赖Controller，禁止在写端口中另开REQUIRES_NEW，禁止生产Mock。CM应先交仅依赖自身Repository的ChangePortAdapter和EventPort，再由AN/DS接入，避免循环。接收状态及尚未统一的评审建议见[契约协调记录](contract-coordination-2026-10-31.md)。
+2026-10-31已接收AN ActivityPortAdapter和DS SchedulingPortAdapter；ChangePort/EventPort仍仅有定义。禁止反向依赖Controller，禁止在写端口中另开REQUIRES_NEW，禁止生产Mock。CM应先交仅依赖自身Repository的ChangePortAdapter和EventPort，再由AN/DS接入，避免循环。接收状态及尚未统一的评审建议见契约协调记录（本地归档）。
 
 ## 5 最新跨模块接收（2026-10-31同日续作）
 
-main=c4f3d41已同步。PublishedModulesIT新增通过真实API创建独立账号与资源，验证API-39身份改变立即作用于旧会话的AN/DS预览、API-06停用拒绝旧会话，以及撤销资源范围后API-40拒绝且无资格/历史/回执写入。当日6项真实跨模块测试均无CM替身；标准PM集合共76单元+32 IT全通过。QA/UI候选及完整失败边界见[最新候选接收记录](integration-intake-2026-10-31-v1.0.md)；接口协调见[访问与资源边界方案](access-coordination-v1.0.md)。
+main=c4f3d41已同步。PublishedModulesIT新增通过真实API创建独立账号与资源，验证API-39身份改变立即作用于旧会话的AN/DS预览、API-06停用拒绝旧会话，以及撤销资源范围后API-40拒绝且无资格/历史/回执写入。当日6项真实跨模块测试均无CM替身；标准PM集合共76单元+32 IT全通过。QA/UI候选及完整失败边界见最新候选接收记录（本地归档）；接口协调见访问与资源边界方案（本地归档）。
 
 ## 6 2026-11-02 全生产依赖与审核
 
-ChangePort/EventPort和UI现已在main=b8be7e4。ProductionWorkflowIT不替换任何业务端口，补真实首次链、报名/改期冻结、原子版本/预约切换、通知及取消，以及最终管理范围撤销后403、无回执/审计污染和原key恢复重试。默认验收不排除任何测试；历史pm-isolated另行排除此依赖业务模块的类。当日PM指定集合77单元+38 IT通过，默认仍失败。QA待确认行不是决定。11-02 曾将版本冲突 details 解释为可空，11-06 已纠正：common/02 §3 要求适用的授权 409 至少包含一项准确的当前 versionNo、lockVersion 或 status；前端仍须重新 GET。不得由此向无权访问者泄露私有状态。历史执行见[2026-11-02集成与正式审核](integration-review-2026-11-02-v1.0.md)，当前结论以第 7 节为准。
+ChangePort/EventPort和UI现已在main=b8be7e4。ProductionWorkflowIT不替换任何业务端口，补真实首次链、报名/改期冻结、原子版本/预约切换、通知及取消，以及最终管理范围撤销后403、无回执/审计污染和原key恢复重试。默认验收不排除任何测试；历史pm-isolated另行排除此依赖业务模块的类。当日PM指定集合77单元+38 IT通过，默认仍失败。QA待确认行不是决定。11-02 曾将版本冲突 details 解释为可空，11-06 已纠正：common/02 §3 要求适用的授权 409 至少包含一项准确的当前 versionNo、lockVersion 或 status；前端仍须重新 GET。不得由此向无权访问者泄露私有状态。历史执行见2026-11-02集成与正式审核（本地归档），当前结论以第 7 节为准。
 
 ## 7 2026-11-07 当前接入与回归
 
@@ -104,4 +104,4 @@ ChangePort/EventPort和UI现已在main=b8be7e4。ProductionWorkflowIT不替换�
 ./server/mvnw.cmd -f server/pom.xml "-Dit.test=FoundationIT,PublishedModulesIT,ProductionWorkflowIT,StandardMavenSchemaIT,DemoDataSeederIT,OutboxClaimIT" clean verify
 ```
 
-本轮 96 项单元和 43 项指定 IT 通过。默认全量仍有 QA 数据装载及 AN 测试端口初始化错误；最新 QA 独立组合已解除装载，仍受 AN 空审批及 CM 详情缺陷影响。API-27 新 QA 断言符合既有契约，空详情应由 CM 修复，不应放宽断言。具体命令、限定范围、浏览器与建议补丁见[当前集成记录](integration-review-2026-11-07-v1.0.md)。
+本轮 96 项单元和 43 项指定 IT 通过。默认全量仍有 QA 数据装载及 AN 测试端口初始化错误；最新 QA 独立组合已解除装载，仍受 AN 空审批及 CM 详情缺陷影响。API-27 新 QA 断言符合既有契约，空详情应由 CM 修复，不应放宽断言。具体命令、限定范围、浏览器与建议补丁见当前集成记录（本地归档）。

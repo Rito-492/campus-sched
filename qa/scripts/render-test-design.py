@@ -51,7 +51,7 @@ DEFAULT_EVIDENCE = "artifacts/test-results/qa-2026-11-03-task5-docx"
 
 PROJECT_NAME = "校园活动协同与资源调度系统"
 DOC_KIND = "软件测试设计"
-AUTHOR_LINE = "汤雨润（55230316）"
+AUTHOR_LINE = "测试经理"
 DOC_DATE = "2026-11-03"
 
 # A4：11906×16838 twips；页边距上下 2.5cm(1418)、左右 2.2cm(1247) → 版心宽 9412 twips
@@ -879,7 +879,7 @@ def verify(out_path: Path, doc: dict, expected_tables: int, warnings: list[str])
           f"{len(grid_sums)} 张表，最大列宽合计 {max(grid_sums) if grid_sums else 0}")
 
     # ---- 封面事实
-    for needle in (PROJECT_NAME, DOC_KIND, "1.0", "汤雨润（55230316）", DOC_DATE):
+    for needle in (PROJECT_NAME, DOC_KIND, "1.0", "测试经理", DOC_DATE):
         check(f"封面/正文含必备事实：{needle}", needle in full_text)
 
     # ---- 用例正文完整性（不截断、自包含）
@@ -1004,7 +1004,7 @@ def main(argv=None) -> int:
             "- 未做完整 XSD schema 校验（本机无 defusedxml/lxml，docx skill 的 validate.py 不可运行），"
             "也未做视觉/分页验证；结构校验不等于视觉检查。",
             "- 未使用 HTML 渲染冒充 Word 版面；最终分页与表格视觉效果须由项目经理在 Word/WPS 中"
-            "人工核对（见 docs/testing/task5-submission-v1.0.md §6）。",
+            "人工核对用例和文档。",
         ]
         (ev_path / "verification-report.md").write_text("\n".join(report) + "\n", encoding="utf-8")
         (ev_path / "render.log").write_text(
